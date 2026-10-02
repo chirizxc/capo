@@ -12,12 +12,24 @@ from typing_extensions import Never
 import capo_geo_maps._auth._signers
 import capo_geo_maps._auth._sigv4
 import capo_geo_maps._protocol.eventstream
+import capo_geo_maps.types.buildings
+import capo_geo_maps.types.color_scheme
+import capo_geo_maps.types.contour_density
 import capo_geo_maps.types.get_style_descriptor_request
 import capo_geo_maps.types.get_style_descriptor_response
+import capo_geo_maps.types.map_style
+import capo_geo_maps.types.poi_category_list
+import capo_geo_maps.types.poi_density
+import capo_geo_maps.types.terrain
+import capo_geo_maps.types.traffic
 import capo_geo_maps.types.travel_mode_list
 from capo_geo_maps._protocol.errors import parse_error_metadata_json
 from capo_geo_maps._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_geo_maps._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_geo_maps._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_geo_maps.errors import UnknownServiceError
 
 
@@ -99,24 +111,75 @@ def build_request(
             Region=options.region,
         )
     )  # noqa: F841
-    url = endpoint.url.rstrip("/") + "/styles/{Style}/descriptor"
-    url = url.replace("{Style}", quote(input_["style"], safe=""))
+    import capo_geo_maps.types.buildings
+    import capo_geo_maps.types.color_scheme
+    import capo_geo_maps.types.contour_density
+    import capo_geo_maps.types.map_style
+    import capo_geo_maps.types.poi_category
+    import capo_geo_maps.types.poi_density
+    import capo_geo_maps.types.terrain
+    import capo_geo_maps.types.traffic
+    import capo_geo_maps.types.travel_mode
+
+    url = endpoint.url.rstrip("/") + "/v2/styles/{Style}/descriptor"
+    url = url.replace(
+        "{Style}",
+        quote(capo_geo_maps.types.map_style.serialize_json(input_["style"]), safe=""),
+    )
     params: list[tuple[str, str]] = []
     if "color_scheme" in input_:
-        params.append(("color-scheme", input_["color_scheme"]))
+        params.append(
+            (
+                "color-scheme",
+                capo_geo_maps.types.color_scheme.serialize_json(input_["color_scheme"]),
+            )
+        )
     if "political_view" in input_:
         params.append(("political-view", input_["political_view"]))
     if "terrain" in input_:
-        params.append(("terrain", input_["terrain"]))
+        params.append(
+            ("terrain", capo_geo_maps.types.terrain.serialize_json(input_["terrain"]))
+        )
     if "contour_density" in input_:
-        params.append(("contour-density", input_["contour_density"]))
+        params.append(
+            (
+                "contour-density",
+                capo_geo_maps.types.contour_density.serialize_json(
+                    input_["contour_density"]
+                ),
+            )
+        )
     if "traffic" in input_:
-        params.append(("traffic", input_["traffic"]))
+        params.append(
+            ("traffic", capo_geo_maps.types.traffic.serialize_json(input_["traffic"]))
+        )
     if "travel_modes" in input_:
         for item in input_["travel_modes"]:
-            params.append(("travel-modes", item))
+            params.append(
+                ("travel-modes", capo_geo_maps.types.travel_mode.serialize_json(item))
+            )
     if "buildings" in input_:
-        params.append(("buildings", input_["buildings"]))
+        params.append(
+            (
+                "buildings",
+                capo_geo_maps.types.buildings.serialize_json(input_["buildings"]),
+            )
+        )
+    if "poi_density" in input_:
+        params.append(
+            (
+                "poi-density",
+                capo_geo_maps.types.poi_density.serialize_json(input_["poi_density"]),
+            )
+        )
+    if "poi_categories" in input_:
+        for item in input_["poi_categories"]:
+            params.append(
+                (
+                    "poi-categories",
+                    capo_geo_maps.types.poi_category.serialize_json(item),
+                )
+            )
     if "key" in input_:
         params.append(("key", input_["key"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
@@ -141,7 +204,7 @@ def get_style_descriptor(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -159,7 +222,7 @@ async def async_get_style_descriptor(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

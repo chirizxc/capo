@@ -8,6 +8,7 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.date_timestamp
+    import capo_bedrock_agentcore_control.types.enforcement_mode
     import capo_bedrock_agentcore_control.types.policy_arn
     import capo_bedrock_agentcore_control.types.policy_name
     import capo_bedrock_agentcore_control.types.policy_status
@@ -29,6 +30,10 @@ class GetPolicySummaryResponse(TypedDict, closed=True):
     """<p>The Amazon Resource Name (ARN) of the policy.</p>"""
     status: "capo_bedrock_agentcore_control.types.policy_status.PolicyStatus"
     """<p>The current status of the policy.</p>"""
+    enforcement_mode: (
+        "capo_bedrock_agentcore_control.types.enforcement_mode.EnforcementMode"
+    )
+    """<p>The current enforcement mode of the policy.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -56,6 +61,13 @@ def serialize_json(value: GetPolicySummaryResponse) -> dict:
 
     out["status"] = capo_bedrock_agentcore_control.types.policy_status.serialize_json(
         value["status"]
+    )
+    import capo_bedrock_agentcore_control.types.enforcement_mode
+
+    out["enforcementMode"] = (
+        capo_bedrock_agentcore_control.types.enforcement_mode.serialize_json(
+            value.get("enforcement_mode", "ACTIVE")
+        )
     )
     return out
 
@@ -108,4 +120,14 @@ def deserialize_json(data: dict) -> GetPolicySummaryResponse:
         )
     else:
         raise DeserializationError("GetPolicySummaryResponse.status required")
+    if data.get("enforcementMode") is not None:
+        import capo_bedrock_agentcore_control.types.enforcement_mode
+
+        out["enforcement_mode"] = (
+            capo_bedrock_agentcore_control.types.enforcement_mode.deserialize_json(
+                data["enforcementMode"]
+            )
+        )
+    else:
+        out["enforcement_mode"] = "ACTIVE"
     return out

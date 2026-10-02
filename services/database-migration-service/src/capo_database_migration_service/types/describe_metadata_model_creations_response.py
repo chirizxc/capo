@@ -11,11 +11,11 @@ if TYPE_CHECKING:
 
 class DescribeMetadataModelCreationsResponse(TypedDict, closed=True):
     marker: NotRequired["capo_database_migration_service.types.string.String"]
-    """<p>Specifies the unique pagination token that makes it possible to display the next page of metadata model creation requests. If Marker is returned, there are more metadata model creation requests available.</p>"""
+    """<p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>"""
     requests: NotRequired[
         "capo_database_migration_service.types.schema_conversion_request_list.SchemaConversionRequestList"
     ]
-    """<p>A list of metadata model creation requests. The ExportSqlDetails field will never be populated for the DescribeMetadataModelCreations operation.</p>"""
+    """<p>A paginated list of metadata model creation requests.</p> <note> <p>DMS never populates the <code>ExportSqlDetails</code> field for this operation.</p> </note>"""
 
 
 # --- awsJson1_1 ser/de ---

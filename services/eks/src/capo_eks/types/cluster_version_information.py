@@ -7,6 +7,8 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_eks.types.boolean
     import capo_eks.types.cluster_version_status
+    import capo_eks.types.control_plane_config_info
+    import capo_eks.types.control_plane_scaling_tier_list
     import capo_eks.types.string
     import capo_eks.types.timestamp
     import capo_eks.types.version_status
@@ -33,6 +35,14 @@ class ClusterVersionInformation(TypedDict, closed=True):
     """<p>Current status of this cluster version.</p>"""
     kubernetes_patch_version: NotRequired["capo_eks.types.string.String"]
     """<p>The patch version of Kubernetes for this cluster version.</p>"""
+    control_plane_scaling_tiers: NotRequired[
+        "capo_eks.types.control_plane_scaling_tier_list.ControlPlaneScalingTierList"
+    ]
+    """<p>The available provisioned control plane scaling tiers and their capabilities for this Kubernetes version.</p>"""
+    control_plane_component_config: NotRequired[
+        "capo_eks.types.control_plane_config_info.ControlPlaneConfigInfo"
+    ]
+    """<p>The default control plane component configuration and constraints for this Kubernetes version.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -77,6 +87,22 @@ def serialize_json(value: ClusterVersionInformation) -> dict:
         )
     if "kubernetes_patch_version" in value:
         out["kubernetesPatchVersion"] = value["kubernetes_patch_version"]
+    if "control_plane_scaling_tiers" in value:
+        import capo_eks.types.control_plane_scaling_tier_list
+
+        out["controlPlaneScalingTiers"] = (
+            capo_eks.types.control_plane_scaling_tier_list.serialize_json(
+                value["control_plane_scaling_tiers"]
+            )
+        )
+    if "control_plane_component_config" in value:
+        import capo_eks.types.control_plane_config_info
+
+        out["controlPlaneComponentConfig"] = (
+            capo_eks.types.control_plane_config_info.serialize_json(
+                value["control_plane_component_config"]
+            )
+        )
     return out
 
 
@@ -124,4 +150,20 @@ def deserialize_json(data: dict) -> ClusterVersionInformation:
         )
     if data.get("kubernetesPatchVersion") is not None:
         out["kubernetes_patch_version"] = data["kubernetesPatchVersion"]
+    if data.get("controlPlaneScalingTiers") is not None:
+        import capo_eks.types.control_plane_scaling_tier_list
+
+        out["control_plane_scaling_tiers"] = (
+            capo_eks.types.control_plane_scaling_tier_list.deserialize_json(
+                data["controlPlaneScalingTiers"]
+            )
+        )
+    if data.get("controlPlaneComponentConfig") is not None:
+        import capo_eks.types.control_plane_config_info
+
+        out["control_plane_component_config"] = (
+            capo_eks.types.control_plane_config_info.deserialize_json(
+                data["controlPlaneComponentConfig"]
+            )
+        )
     return out

@@ -612,6 +612,9 @@ class AsyncDocDBClient:
             "capo_docdb.types.string.String"
         ] = None,
         network_type: Optional["capo_docdb.types.string.String"] = None,
+        copy_tags_to_snapshot: Optional[
+            "capo_docdb.types.boolean_optional.BooleanOptional"
+        ] = None,
     ) -> "capo_docdb.types.create_db_cluster_result.CreateDBClusterResult":
         r"""<p>Creates a new Amazon DocumentDB cluster.</p>
 
@@ -633,14 +636,15 @@ class AsyncDocDBClient:
             storage_encrypted: <p>Specifies whether the cluster is encrypted.</p>
             kms_key_id: <p>The KMS key identifier for an encrypted cluster.</p> <p>The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a cluster using the same Amazon Web Services account that owns the KMS encryption key that is used to encrypt the new cluster, you can use the KMS key alias instead of the ARN for the KMS encryption key.</p> <p>If an encryption key is not specified in <code>KmsKeyId</code>: </p> <ul> <li> <p>If the <code>StorageEncrypted</code> parameter is <code>true</code>, Amazon DocumentDB uses your default encryption key. </p> </li> </ul> <p>KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Regions.</p>
             pre_signed_url: <p>Not currently supported. </p>
-            enable_cloudwatch_logs_exports: <p>A list of log types that need to be enabled for exporting to Amazon CloudWatch Logs. You can enable audit logs or profiler logs. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/event-auditing.html\"> Auditing Amazon DocumentDB Events</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/profiling.html\"> Profiling Amazon DocumentDB Operations</a>. </p>
+            enable_cloudwatch_logs_exports: <p>A list of log types that need to be enabled for exporting to Amazon CloudWatch Logs. You can enable audit logs or profiler logs. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/event-auditing.html\"> Auditing Amazon DocumentDB Events</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/profiling.html\"> Profiling Amazon DocumentDB Operations</a>. </p>
             deletion_protection: <p>Specifies whether this cluster can be deleted. If <code>DeletionProtection</code> is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code> is disabled. <code>DeletionProtection</code> protects clusters from being accidentally deleted.</p>
             global_cluster_identifier: <p>The cluster identifier of the new global cluster.</p>
             storage_type: <p>The storage type to associate with the DB cluster.</p> <p>For information on storage types for Amazon DocumentDB clusters, see Cluster storage configurations in the <i>Amazon DocumentDB Developer Guide</i>.</p> <p>Valid values for storage type - <code>standard | iopt1</code> </p> <p>Default value is <code>standard </code> </p> <note> <p>When you create an Amazon DocumentDB cluster with the storage type set to <code>iopt1</code>, the storage type is returned in the response. The storage type isn't returned when you set it to <code>standard</code>.</p> </note>
             serverless_v2_scaling_configuration: <p>Contains the scaling configuration of an Amazon DocumentDB Serverless cluster.</p>
             manage_master_user_password: <p>Specifies whether to manage the master user password with Amazon Web Services Secrets Manager.</p> <p>Constraint: You can't manage the master user password with Amazon Web Services Secrets Manager if <code>MasterUserPassword</code> is specified.</p>
             master_user_secret_kms_key_id: <p>The Amazon Web Services KMS key identifier to encrypt a secret that is automatically generated and managed in Amazon Web Services Secrets Manager. This setting is valid only if the master user password is managed by Amazon DocumentDB in Amazon Web Services Secrets Manager for the DB cluster.</p> <p>The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key. To use a KMS key in a different Amazon Web Services account, specify the key ARN or alias ARN.</p> <p>If you don't specify <code>MasterUserSecretKmsKeyId</code>, then the <code>aws/secretsmanager</code> KMS key is used to encrypt the secret. If the secret is in a different Amazon Web Services account, then you can't use the <code>aws/secretsmanager</code> KMS key to encrypt the secret, and you must use a customer managed KMS key.</p> <p>There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services account has a different default KMS key for each Amazon Web Services Region.</p>
-            network_type: <p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>
+            network_type: <p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>
+            copy_tags_to_snapshot: <p>Specifies whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.</p>
 
         Raises:
             capo_docdb.errors.db_cluster_already_exists_fault.DBClusterAlreadyExistsFault: <p>You already have a cluster with the given identifier.</p>
@@ -733,6 +737,8 @@ class AsyncDocDBClient:
             input_["master_user_secret_kms_key_id"] = master_user_secret_kms_key_id
         if network_type is not None:
             input_["network_type"] = network_type
+        if copy_tags_to_snapshot is not None:
+            input_["copy_tags_to_snapshot"] = copy_tags_to_snapshot
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -753,7 +759,7 @@ class AsyncDocDBClient:
         description: Optional["capo_docdb.types.string.String"] = None,
         tags: Optional["capo_docdb.types.tag_list.TagList"] = None,
     ) -> "capo_docdb.types.create_db_cluster_parameter_group_result.CreateDBClusterParameterGroupResult":
-        r"""<p>Creates a new cluster parameter group.</p> <p>Parameters in a cluster parameter group apply to all of the instances in a cluster.</p> <p>A cluster parameter group is initially created with the default parameters for the database engine used by instances in the cluster. In Amazon DocumentDB, you cannot make modifications directly to the <code>default.docdb3.6</code> cluster parameter group. If your Amazon DocumentDB cluster is using the default cluster parameter group and you want to modify a value in it, you must first <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/cluster_parameter_group-create.html\"> create a new parameter group</a> or <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/cluster_parameter_group-copy.html\"> copy an existing parameter group</a>, modify it, and then apply the modified parameter group to your cluster. For the new cluster parameter group and associated settings to take effect, you must then reboot the instances in the cluster without failover. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/cluster_parameter_group-modify.html\"> Modifying Amazon DocumentDB Cluster Parameter Groups</a>. </p>
+        r"""<p>Creates a new cluster parameter group.</p> <p>Parameters in a cluster parameter group apply to all of the instances in a cluster.</p> <p>A cluster parameter group is initially created with the default parameters for the database engine used by instances in the cluster. In Amazon DocumentDB, you cannot make modifications directly to the <code>default.docdb3.6</code> cluster parameter group. If your Amazon DocumentDB cluster is using the default cluster parameter group and you want to modify a value in it, you must first <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/cluster_parameter_group-create.html\"> create a new parameter group</a> or <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/cluster_parameter_group-copy.html\"> copy an existing parameter group</a>, modify it, and then apply the modified parameter group to your cluster. For the new cluster parameter group and associated settings to take effect, you must then reboot the instances in the cluster without failover. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/cluster_parameter_group-modify.html\"> Modifying Amazon DocumentDB Cluster Parameter Groups</a>. </p>
 
         Args:
             db_cluster_parameter_group_name: <p>The name of the cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must not match the name of an existing <code>DBClusterParameterGroup</code>.</p> </li> </ul> <note> <p>This value is stored as a lowercase string.</p> </note>
@@ -900,9 +906,9 @@ class AsyncDocDBClient:
             db_cluster_identifier: <p>The identifier of the cluster that the instance will belong to.</p>
             copy_tags_to_snapshot: <p>A value that indicates whether to copy tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.</p>
             promotion_tier: <p>A value that specifies the order in which an Amazon DocumentDB replica is promoted to the primary instance after a failure of the existing primary instance.</p> <p>Default: 1</p> <p>Valid values: 0-15</p>
-            enable_performance_insights: <p>A value that indicates whether to enable Performance Insights for the DB Instance. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/performance-insights.html\">Using Amazon Performance Insights</a>.</p>
+            enable_performance_insights: <p>A value that indicates whether to enable Performance Insights for the DB Instance. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/performance-insights.html\">Using Amazon Performance Insights</a>.</p>
             performance_insights_kms_key_id: <p>The KMS key identifier for encryption of Performance Insights data.</p> <p>The KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.</p> <p>If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon DocumentDB uses your default KMS key. There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services account has a different default KMS key for each Amazon Web Services region.</p>
-            ca_certificate_identifier: <p>The CA certificate identifier to use for the DB instance's server certificate.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html\">Updating Your Amazon DocumentDB TLS Certificates</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html\"> Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.</p>
+            ca_certificate_identifier: <p>The CA certificate identifier to use for the DB instance's server certificate.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/ca_cert_rotation.html\">Updating Your Amazon DocumentDB TLS Certificates</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/security.encryption.ssl.html\"> Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.</p>
 
         Raises:
             capo_docdb.errors.authorization_not_found_fault.AuthorizationNotFoundFault: <p>The specified CIDR IP or Amazon EC2 security group isn't authorized for the specified security group.</p> <p>Amazon DocumentDB also might not be authorized to perform necessary actions on your behalf using IAM.</p>
@@ -3125,6 +3131,9 @@ class AsyncDocDBClient:
             "capo_docdb.types.boolean_optional.BooleanOptional"
         ] = None,
         network_type: Optional["capo_docdb.types.string.String"] = None,
+        copy_tags_to_snapshot: Optional[
+            "capo_docdb.types.boolean_optional.BooleanOptional"
+        ] = None,
     ) -> "capo_docdb.types.modify_db_cluster_result.ModifyDBClusterResult":
         r"""<p>Modifies a setting for an Amazon DocumentDB cluster. You can change one or more database configuration parameters by specifying these parameters and the new values in the request. </p>
 
@@ -3148,7 +3157,8 @@ class AsyncDocDBClient:
             manage_master_user_password: <p>Specifies whether to manage the master user password with Amazon Web Services Secrets Manager. If the cluster doesn't manage the master user password with Amazon Web Services Secrets Manager, you can turn on this management. In this case, you can't specify <code>MasterUserPassword</code>. If the cluster already manages the master user password with Amazon Web Services Secrets Manager, and you specify that the master user password is not managed with Amazon Web Services Secrets Manager, then you must specify <code>MasterUserPassword</code>. In this case, Amazon DocumentDB deletes the secret and uses the new password for the master user specified by <code>MasterUserPassword</code>.</p>
             master_user_secret_kms_key_id: <p>The Amazon Web Services KMS key identifier to encrypt a secret that is automatically generated and managed in Amazon Web Services Secrets Manager.</p> <p>This setting is valid only if both of the following conditions are met:</p> <ul> <li> <p>The cluster doesn't manage the master user password in Amazon Web Services Secrets Manager. If the cluster already manages the master user password in Amazon Web Services Secrets Manager, you can't change the KMS key that is used to encrypt the secret.</p> </li> <li> <p>You are enabling <code>ManageMasterUserPassword</code> to manage the master user password in Amazon Web Services Secrets Manager. If you are turning on <code>ManageMasterUserPassword</code> and don't specify <code>MasterUserSecretKmsKeyId</code>, then the <code>aws/secretsmanager</code> KMS key is used to encrypt the secret. If the secret is in a different Amazon Web Services account, then you can't use the <code>aws/secretsmanager</code> KMS key to encrypt the secret, and you must use a customer managed KMS key.</p> </li> </ul> <p>The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key. To use a KMS key in a different Amazon Web Services account, specify the key ARN or alias ARN.</p> <p>There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services account has a different default KMS key for each Amazon Web Services Region.</p>
             rotate_master_user_password: <p>Specifies whether to rotate the secret managed by Amazon Web Services Secrets Manager for the master user password.</p> <p>This setting is valid only if the master user password is managed by Amazon DocumentDB in Amazon Web Services Secrets Manager for the cluster. The secret value contains the updated password.</p> <p>Constraint: You must apply the change immediately when rotating the master user password.</p>
-            network_type: <p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>
+            network_type: <p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>
+            copy_tags_to_snapshot: <p>Specifies whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.</p>
 
         Raises:
             capo_docdb.errors.db_cluster_already_exists_fault.DBClusterAlreadyExistsFault: <p>You already have a cluster with the given identifier.</p>
@@ -3227,6 +3237,8 @@ class AsyncDocDBClient:
             input_["rotate_master_user_password"] = rotate_master_user_password
         if network_type is not None:
             input_["network_type"] = network_type
+        if copy_tags_to_snapshot is not None:
+            input_["copy_tags_to_snapshot"] = copy_tags_to_snapshot
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3392,9 +3404,9 @@ class AsyncDocDBClient:
             ca_certificate_identifier: <p>Indicates the certificate that needs to be associated with the instance.</p>
             copy_tags_to_snapshot: <p>A value that indicates whether to copy all tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.</p>
             promotion_tier: <p>A value that specifies the order in which an Amazon DocumentDB replica is promoted to the primary instance after a failure of the existing primary instance.</p> <p>Default: 1</p> <p>Valid values: 0-15</p>
-            enable_performance_insights: <p>A value that indicates whether to enable Performance Insights for the DB Instance. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/performance-insights.html\">Using Amazon Performance Insights</a>.</p>
+            enable_performance_insights: <p>A value that indicates whether to enable Performance Insights for the DB Instance. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/performance-insights.html\">Using Amazon Performance Insights</a>.</p>
             performance_insights_kms_key_id: <p>The KMS key identifier for encryption of Performance Insights data.</p> <p>The KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.</p> <p>If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon DocumentDB uses your default KMS key. There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services account has a different default KMS key for each Amazon Web Services region.</p>
-            certificate_rotation_restart: <p>Specifies whether the DB instance is restarted when you rotate your SSL/TLS certificate.</p> <p>By default, the DB instance is restarted when you rotate your SSL/TLS certificate. The certificate is not updated until the DB instance is restarted.</p> <important> <p>Set this parameter only if you are <i>not</i> using SSL/TLS to connect to the DB instance.</p> </important> <p>If you are using SSL/TLS to connect to the DB instance, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html\">Updating Your Amazon DocumentDB TLS Certificates</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html\"> Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.</p>
+            certificate_rotation_restart: <p>Specifies whether the DB instance is restarted when you rotate your SSL/TLS certificate.</p> <p>By default, the DB instance is restarted when you rotate your SSL/TLS certificate. The certificate is not updated until the DB instance is restarted.</p> <important> <p>Set this parameter only if you are <i>not</i> using SSL/TLS to connect to the DB instance.</p> </important> <p>If you are using SSL/TLS to connect to the DB instance, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/ca_cert_rotation.html\">Updating Your Amazon DocumentDB TLS Certificates</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/security.encryption.ssl.html\"> Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.</p>
 
         Raises:
             capo_docdb.errors.authorization_not_found_fault.AuthorizationNotFoundFault: <p>The specified CIDR IP or Amazon EC2 security group isn't authorized for the specified security group.</p> <p>Amazon DocumentDB also might not be authorized to perform necessary actions on your behalf using IAM.</p>
@@ -3934,6 +3946,9 @@ class AsyncDocDBClient:
         ] = None,
         storage_type: Optional["capo_docdb.types.string.String"] = None,
         network_type: Optional["capo_docdb.types.string.String"] = None,
+        copy_tags_to_snapshot: Optional[
+            "capo_docdb.types.boolean_optional.BooleanOptional"
+        ] = None,
     ) -> "capo_docdb.types.restore_db_cluster_from_snapshot_result.RestoreDBClusterFromSnapshotResult":
         r"""<p>Creates a new cluster from a snapshot or cluster snapshot.</p> <p>If a snapshot is specified, the target cluster is created from the source DB snapshot with a default configuration and default security group.</p> <p>If a cluster snapshot is specified, the target cluster is created from the source cluster restore point with the same configuration as the original source DB cluster, except that the new cluster is created with the default security group.</p>
 
@@ -3953,7 +3968,8 @@ class AsyncDocDBClient:
             db_cluster_parameter_group_name: <p>The name of the DB cluster parameter group to associate with this DB cluster.</p> <p> <i>Type:</i> String. <i>Required:</i> No.</p> <p>If this argument is omitted, the default DB cluster parameter group is used. If supplied, must match the name of an existing default DB cluster parameter group. The string must consist of from 1 to 255 letters, numbers or hyphens. Its first character must be a letter, and it cannot end with a hyphen or contain two consecutive hyphens.</p>
             serverless_v2_scaling_configuration: <p>Contains the scaling configuration of an Amazon DocumentDB Serverless cluster.</p>
             storage_type: <p>The storage type to associate with the DB cluster.</p> <p>For information on storage types for Amazon DocumentDB clusters, see Cluster storage configurations in the <i>Amazon DocumentDB Developer Guide</i>.</p> <p>Valid values for storage type - <code>standard | iopt1</code> </p> <p>Default value is <code>standard </code> </p>
-            network_type: <p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>
+            network_type: <p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>
+            copy_tags_to_snapshot: <p>Specifies whether to copy all tags from the restored DB cluster to snapshots of the restored DB cluster. The default is not to copy them.</p>
 
         Raises:
             capo_docdb.errors.db_cluster_already_exists_fault.DBClusterAlreadyExistsFault: <p>You already have a cluster with the given identifier.</p>
@@ -4025,6 +4041,8 @@ class AsyncDocDBClient:
             input_["storage_type"] = storage_type
         if network_type is not None:
             input_["network_type"] = network_type
+        if copy_tags_to_snapshot is not None:
+            input_["copy_tags_to_snapshot"] = copy_tags_to_snapshot
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -4061,6 +4079,9 @@ class AsyncDocDBClient:
         ] = None,
         storage_type: Optional["capo_docdb.types.string.String"] = None,
         network_type: Optional["capo_docdb.types.string.String"] = None,
+        copy_tags_to_snapshot: Optional[
+            "capo_docdb.types.boolean_optional.BooleanOptional"
+        ] = None,
     ) -> "capo_docdb.types.restore_db_cluster_to_point_in_time_result.RestoreDBClusterToPointInTimeResult":
         r"""<p>Restores a cluster to an arbitrary point in time. Users can restore to any point in time before <code>LatestRestorableTime</code> for up to <code>BackupRetentionPeriod</code> days. The target cluster is created from the source cluster with the same configuration as the original cluster, except that the new cluster is created with the default security group. </p>
 
@@ -4079,7 +4100,8 @@ class AsyncDocDBClient:
             deletion_protection: <p>Specifies whether this cluster can be deleted. If <code>DeletionProtection</code> is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code> is disabled. <code>DeletionProtection</code> protects clusters from being accidentally deleted.</p>
             serverless_v2_scaling_configuration: <p>Contains the scaling configuration of an Amazon DocumentDB Serverless cluster.</p>
             storage_type: <p>The storage type to associate with the DB cluster.</p> <p>For information on storage types for Amazon DocumentDB clusters, see Cluster storage configurations in the <i>Amazon DocumentDB Developer Guide</i>.</p> <p>Valid values for storage type - <code>standard | iopt1</code> </p> <p>Default value is <code>standard </code> </p>
-            network_type: <p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>
+            network_type: <p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>
+            copy_tags_to_snapshot: <p>Specifies whether to copy all tags from the restored DB cluster to snapshots of the restored DB cluster. The default is not to copy them.</p>
 
         Raises:
             capo_docdb.errors.db_cluster_already_exists_fault.DBClusterAlreadyExistsFault: <p>You already have a cluster with the given identifier.</p>
@@ -4150,6 +4172,8 @@ class AsyncDocDBClient:
             input_["storage_type"] = storage_type
         if network_type is not None:
             input_["network_type"] = network_type
+        if copy_tags_to_snapshot is not None:
+            input_["copy_tags_to_snapshot"] = copy_tags_to_snapshot
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -4165,7 +4189,7 @@ class AsyncDocDBClient:
         config_overrides: Optional[AsyncDocDBClientConfig] = None,
         db_cluster_identifier: Optional["capo_docdb.types.string.String"] = None,
     ) -> "capo_docdb.types.start_db_cluster_result.StartDBClusterResult":
-        r"""<p>Restarts the stopped cluster that is specified by <code>DBClusterIdentifier</code>. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/db-cluster-stop-start.html\">Stopping and Starting an Amazon DocumentDB Cluster</a>.</p>
+        r"""<p>Restarts the stopped cluster that is specified by <code>DBClusterIdentifier</code>. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/db-cluster-stop-start.html\">Stopping and Starting an Amazon DocumentDB Cluster</a>.</p>
 
         Args:
             db_cluster_identifier: <p>The identifier of the cluster to restart. Example: <code>docdb-2019-05-28-15-24-52</code> </p>
@@ -4211,7 +4235,7 @@ class AsyncDocDBClient:
         config_overrides: Optional[AsyncDocDBClientConfig] = None,
         db_cluster_identifier: Optional["capo_docdb.types.string.String"] = None,
     ) -> "capo_docdb.types.stop_db_cluster_result.StopDBClusterResult":
-        r"""<p>Stops the running cluster that is specified by <code>DBClusterIdentifier</code>. The cluster must be in the <i>available</i> state. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/db-cluster-stop-start.html\">Stopping and Starting an Amazon DocumentDB Cluster</a>.</p>
+        r"""<p>Stops the running cluster that is specified by <code>DBClusterIdentifier</code>. The cluster must be in the <i>available</i> state. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/db-cluster-stop-start.html\">Stopping and Starting an Amazon DocumentDB Cluster</a>.</p>
 
         Args:
             db_cluster_identifier: <p>The identifier of the cluster to stop. Example: <code>docdb-2019-05-28-15-24-52</code> </p>

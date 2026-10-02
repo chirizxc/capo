@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_bedrock_agentcore.errors import DeserializationError
 
@@ -19,7 +19,9 @@ class SystemPromptRecommendationConfig(TypedDict, closed=True):
     """<p>The current system prompt to optimize.</p>"""
     agent_traces: "capo_bedrock_agentcore.types.agent_traces_config.AgentTracesConfig"
     """<p>The agent traces to analyze for generating recommendations.</p>"""
-    evaluation_config: "capo_bedrock_agentcore.types.recommendation_evaluation_config.RecommendationEvaluationConfig"
+    evaluation_config: NotRequired[
+        "capo_bedrock_agentcore.types.recommendation_evaluation_config.RecommendationEvaluationConfig"
+    ]
     """<p>The evaluation configuration specifying which evaluator to use for assessing recommendation quality.</p>"""
 
 
@@ -40,13 +42,14 @@ def serialize_json(value: SystemPromptRecommendationConfig) -> dict:
             value["agent_traces"]
         )
     )
-    import capo_bedrock_agentcore.types.recommendation_evaluation_config
+    if "evaluation_config" in value:
+        import capo_bedrock_agentcore.types.recommendation_evaluation_config
 
-    out["evaluationConfig"] = (
-        capo_bedrock_agentcore.types.recommendation_evaluation_config.serialize_json(
-            value["evaluation_config"]
+        out["evaluationConfig"] = (
+            capo_bedrock_agentcore.types.recommendation_evaluation_config.serialize_json(
+                value["evaluation_config"]
+            )
         )
-    )
     return out
 
 
@@ -83,9 +86,5 @@ def deserialize_json(data: dict) -> SystemPromptRecommendationConfig:
             capo_bedrock_agentcore.types.recommendation_evaluation_config.deserialize_json(
                 data["evaluationConfig"]
             )
-        )
-    else:
-        raise DeserializationError(
-            "SystemPromptRecommendationConfig.evaluation_config required"
         )
     return out

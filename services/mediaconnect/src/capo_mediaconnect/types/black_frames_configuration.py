@@ -1,0 +1,55 @@
+"""Generated from Smithy shape ``com.amazonaws.mediaconnect#BlackFramesConfiguration``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import TypedDict
+
+from capo_mediaconnect.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_mediaconnect.types.content_quality_analysis_state
+    import capo_mediaconnect.types.router_cqa_threshold_seconds
+
+
+class BlackFramesConfiguration(TypedDict, closed=True):
+    state: "capo_mediaconnect.types.content_quality_analysis_state.ContentQualityAnalysisState"
+    """<p>Indicates whether black frames detection is enabled or disabled.</p>"""
+    threshold_seconds: (
+        "capo_mediaconnect.types.router_cqa_threshold_seconds.RouterCqaThresholdSeconds"
+    )
+    """<p>The number of consecutive seconds of black frames that MediaConnect must detect before it reports an issue.</p>"""
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: BlackFramesConfiguration) -> dict:
+    out: dict = {}
+    import capo_mediaconnect.types.content_quality_analysis_state
+
+    out["state"] = (
+        capo_mediaconnect.types.content_quality_analysis_state.serialize_json(
+            value["state"]
+        )
+    )
+    out["thresholdSeconds"] = value["threshold_seconds"]
+    return out
+
+
+def deserialize_json(data: dict) -> BlackFramesConfiguration:
+    out: BlackFramesConfiguration = {}  # type: ignore[typeddict-item]
+    if data.get("state") is not None:
+        import capo_mediaconnect.types.content_quality_analysis_state
+
+        out["state"] = (
+            capo_mediaconnect.types.content_quality_analysis_state.deserialize_json(
+                data["state"]
+            )
+        )
+    else:
+        raise DeserializationError("BlackFramesConfiguration.state required")
+    if data.get("thresholdSeconds") is not None:
+        out["threshold_seconds"] = data["thresholdSeconds"]
+    else:
+        raise DeserializationError(
+            "BlackFramesConfiguration.threshold_seconds required"
+        )
+    return out

@@ -12,7 +12,7 @@ class IncrementalRunConfig(TypedDict, closed=True):
     incremental_run_type: NotRequired[
         "capo_entityresolution.types.incremental_run_type.IncrementalRunType"
     ]
-    r"""<p>The type of incremental run. The only valid value is <code>IMMEDIATE</code>. This appears as \"Automatic\" in the console.</p> <important> <p>For workflows where <code>resolutionType</code> is <code>ML_MATCHING</code> or <code>PROVIDER</code>, incremental processing is not supported. </p> </important>"""
+    r"""<p>The type of incremental run. The only valid value is <code>IMMEDIATE</code>. This appears as \"Automatic\" in the console.</p> <important> <p>For workflows where <code>resolutionType</code> is <code>PROVIDER</code>, incremental processing is not supported. </p> </important>"""
 
 
 # --- restJson1 ser/de ---

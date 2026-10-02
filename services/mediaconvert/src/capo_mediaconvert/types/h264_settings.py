@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     import capo_mediaconvert.types.h264_dynamic_sub_gop
     import capo_mediaconvert.types.h264_end_of_stream_markers
     import capo_mediaconvert.types.h264_entropy_encoding
+    import capo_mediaconvert.types.h264_explicit_weighted_prediction
     import capo_mediaconvert.types.h264_field_encoding
     import capo_mediaconvert.types.h264_flicker_adaptive_quantization
     import capo_mediaconvert.types.h264_framerate_control
@@ -79,6 +80,10 @@ class H264Settings(TypedDict, closed=True):
         "capo_mediaconvert.types.h264_entropy_encoding.H264EntropyEncoding"
     ]
     """Entropy encoding mode. Use CABAC (must be in Main or High profile) or CAVLC."""
+    explicit_weighted_prediction: NotRequired[
+        "capo_mediaconvert.types.h264_explicit_weighted_prediction.H264ExplicitWeightedPrediction"
+    ]
+    """Enable or disable explicit weighted prediction for the H.264 encoder. Weighted prediction improves compression efficiency for content with fading or brightness changes between frames."""
     field_encoding: NotRequired[
         "capo_mediaconvert.types.h264_field_encoding.H264FieldEncoding"
     ]
@@ -276,6 +281,14 @@ def serialize_json(value: H264Settings) -> dict:
         out["entropyEncoding"] = (
             capo_mediaconvert.types.h264_entropy_encoding.serialize_json(
                 value["entropy_encoding"]
+            )
+        )
+    if "explicit_weighted_prediction" in value:
+        import capo_mediaconvert.types.h264_explicit_weighted_prediction
+
+        out["explicitWeightedPrediction"] = (
+            capo_mediaconvert.types.h264_explicit_weighted_prediction.serialize_json(
+                value["explicit_weighted_prediction"]
             )
         )
     if "field_encoding" in value:
@@ -551,6 +564,14 @@ def deserialize_json(data: dict) -> H264Settings:
         out["entropy_encoding"] = (
             capo_mediaconvert.types.h264_entropy_encoding.deserialize_json(
                 data["entropyEncoding"]
+            )
+        )
+    if data.get("explicitWeightedPrediction") is not None:
+        import capo_mediaconvert.types.h264_explicit_weighted_prediction
+
+        out["explicit_weighted_prediction"] = (
+            capo_mediaconvert.types.h264_explicit_weighted_prediction.deserialize_json(
+                data["explicitWeightedPrediction"]
             )
         )
     if data.get("fieldEncoding") is not None:

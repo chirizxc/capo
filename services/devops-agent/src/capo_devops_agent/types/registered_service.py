@@ -7,6 +7,8 @@ from typing_extensions import NotRequired, TypedDict
 from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_devops_agent.types.additional_service_details
     import capo_devops_agent.types.document_list
     import capo_devops_agent.types.kms_key_arn
@@ -37,6 +39,10 @@ class RegisteredService(TypedDict, closed=True):
         "capo_devops_agent.types.private_connection_name.PrivateConnectionName"
     ]
     """<p>The name of the private connection used for VPC connectivity.</p>"""
+    created_at: NotRequired["datetime.datetime"]
+    """<p>The timestamp when the service was registered.</p>"""
+    updated_at: NotRequired["datetime.datetime"]
+    """<p>The timestamp when the service was last updated.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -70,6 +76,18 @@ def serialize_json(value: RegisteredService) -> dict:
         out["kmsKeyArn"] = value["kms_key_arn"]
     if "private_connection_name" in value:
         out["privateConnectionName"] = value["private_connection_name"]
+    if "created_at" in value:
+        import capo_devops_agent._protocol.serialize
+
+        out["createdAt"] = capo_devops_agent._protocol.serialize.fmt_date_time(
+            value["created_at"]
+        )
+    if "updated_at" in value:
+        import capo_devops_agent._protocol.serialize
+
+        out["updatedAt"] = capo_devops_agent._protocol.serialize.fmt_date_time(
+            value["updated_at"]
+        )
     return out
 
 
@@ -109,4 +127,16 @@ def deserialize_json(data: dict) -> RegisteredService:
         out["kms_key_arn"] = data["kmsKeyArn"]
     if data.get("privateConnectionName") is not None:
         out["private_connection_name"] = data["privateConnectionName"]
+    if data.get("createdAt") is not None:
+        import datetime
+
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
+        )
+    if data.get("updatedAt") is not None:
+        import datetime
+
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
+        )
     return out

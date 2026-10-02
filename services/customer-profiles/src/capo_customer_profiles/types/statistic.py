@@ -11,6 +11,7 @@ Statistic: TypeAlias = Literal[
     "MAXIMUM",
     "AVERAGE",
     "MAX_OCCURRENCE",
+    "RECENT_OCCURRENCES",
 ]
 
 

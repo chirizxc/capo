@@ -6,6 +6,7 @@ FilterClass: TypeAlias = Literal[
     "ENFORCED_VALUE_FILTER",
     "CONDITIONAL_VALUE_FILTER",
     "NAMED_VALUE_FILTER",
+    "DASHBOARD_DEFAULT_FILTER",
 ]
 
 

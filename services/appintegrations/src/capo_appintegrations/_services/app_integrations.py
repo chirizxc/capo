@@ -39,6 +39,7 @@ if TYPE_CHECKING:
     import capo_appintegrations.types.application_type
     import capo_appintegrations.types.arn
     import capo_appintegrations.types.arn_or_uuid
+    import capo_appintegrations.types.auth_config
     import capo_appintegrations.types.boolean
     import capo_appintegrations.types.client_association_metadata
     import capo_appintegrations.types.client_id
@@ -245,6 +246,9 @@ class AppIntegrationsClient:
         application_type: Optional[
             "capo_appintegrations.types.application_type.ApplicationType"
         ] = None,
+        auth_config: Optional[
+            "capo_appintegrations.types.auth_config.AuthConfig"
+        ] = None,
     ) -> "capo_appintegrations.types.create_application_response.CreateApplicationResponse":
         r"""<p>Creates and persists an Application resource.</p>
 
@@ -263,6 +267,7 @@ class AppIntegrationsClient:
             application_config: <p>The configuration settings for the application.</p>
             iframe_config: <p>The iframe configuration for the application.</p>
             application_type: <p>The type of application.</p>
+            auth_config: <p>The authentication settings that Connect Customer uses when calling the external application.</p>
 
         Raises:
             capo_appintegrations.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -324,6 +329,8 @@ class AppIntegrationsClient:
             input_["iframe_config"] = iframe_config
         if application_type is not None:
             input_["application_type"] = application_type
+        if auth_config is not None:
+            input_["auth_config"] = auth_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -581,11 +588,13 @@ class AppIntegrationsClient:
         arn: "capo_appintegrations.types.arn_or_uuid.ArnOrUUID",
         *,
         config_overrides: Optional[AppIntegrationsClientConfig] = None,
+        force: Optional["capo_appintegrations.types.boolean.Boolean"] = None,
     ) -> "capo_appintegrations.types.delete_application_response.DeleteApplicationResponse":
-        """<p>Deletes the Application. Only Applications that don't have any Application Associations can be deleted.</p>
+        """<p>Deletes an application. If the application has associations, you must delete them first. Alternatively, use the <code>force</code> option to delete the application and remove its associations.</p>
 
         Args:
             arn: <p>The Amazon Resource Name (ARN) of the Application.</p>
+            force: <p>Specifies whether to delete the application even if it still has application associations. If <code>true</code>, the operation removes the application and its associations. If <code>false</code> or absent, the delete fails when associations exist.</p> <important> <p>Setting this parameter to <code>true</code> permanently removes all of the application's associations. Doing so might impact other resources that rely on and reference the application. This action can't be undone.</p> </important>
 
         Raises:
             capo_appintegrations.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -620,6 +629,8 @@ class AppIntegrationsClient:
         input_: capo_appintegrations.types.delete_application_request.DeleteApplicationRequest = {
             "arn": arn
         }
+        if force is not None:
+            input_["force"] = force
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1545,6 +1556,9 @@ class AppIntegrationsClient:
         application_type: Optional[
             "capo_appintegrations.types.application_type.ApplicationType"
         ] = None,
+        auth_config: Optional[
+            "capo_appintegrations.types.auth_config.AuthConfig"
+        ] = None,
     ) -> "capo_appintegrations.types.update_application_response.UpdateApplicationResponse":
         """<p>Updates and persists an Application resource.</p>
 
@@ -1561,9 +1575,11 @@ class AppIntegrationsClient:
             application_config: <p>The configuration settings for the application.</p>
             iframe_config: <p>The iframe configuration for the application.</p>
             application_type: <p>The type of application.</p>
+            auth_config: <p>The authentication settings that Connect Customer uses when calling the external application.</p>
 
         Raises:
             capo_appintegrations.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_appintegrations.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource. Verify the application's current state and retry the request.</p>
             capo_appintegrations.errors.internal_service_error.InternalServiceError: <p>Request processing failed due to an error or failure with the service.</p>
             capo_appintegrations.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid. </p>
             capo_appintegrations.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
@@ -1618,6 +1634,8 @@ class AppIntegrationsClient:
             input_["iframe_config"] = iframe_config
         if application_type is not None:
             input_["application_type"] = application_type
+        if auth_config is not None:
+            input_["auth_config"] = auth_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

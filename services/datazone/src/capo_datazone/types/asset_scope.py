@@ -18,6 +18,8 @@ class AssetScope(TypedDict, closed=True):
     """<p>The filter IDs of the asset scope.</p>"""
     status: "str"
     """<p>The status of the asset scope.</p>"""
+    scope_name: NotRequired["str"]
+    """<p>The name of the materialized asset scope.</p>"""
     error_message: NotRequired["str"]
     """<p>The error message of the asset scope.</p>"""
 
@@ -32,6 +34,8 @@ def serialize_json(value: AssetScope) -> dict:
         value["filter_ids"]
     )
     out["status"] = value["status"]
+    if "scope_name" in value:
+        out["scopeName"] = value["scope_name"]
     if "error_message" in value:
         out["errorMessage"] = value["error_message"]
     return out
@@ -55,6 +59,8 @@ def deserialize_json(data: dict) -> AssetScope:
         out["status"] = data["status"]
     else:
         raise DeserializationError("AssetScope.status required")
+    if data.get("scopeName") is not None:
+        out["scope_name"] = data["scopeName"]
     if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

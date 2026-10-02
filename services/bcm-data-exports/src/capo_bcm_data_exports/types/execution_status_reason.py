@@ -6,6 +6,7 @@ ExecutionStatusReason: TypeAlias = Literal[
     "INSUFFICIENT_PERMISSION",
     "BILL_OWNER_CHANGED",
     "INTERNAL_FAILURE",
+    "DEPRECATED",
 ]
 
 

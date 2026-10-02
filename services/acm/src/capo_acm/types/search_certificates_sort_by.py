@@ -22,6 +22,9 @@ SearchCertificatesSortBy: TypeAlias = Literal[
     "EXPORT_OPTION",
     "VALIDATION_METHOD",
     "IMPORTED_AT",
+    "ACME_ENDPOINT_ARN",
+    "ACME_ACCOUNT_ID",
+    "CERTIFICATE_KEY_PAIR_ORIGIN",
 ]
 
 

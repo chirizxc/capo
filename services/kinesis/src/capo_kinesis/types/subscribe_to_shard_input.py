@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_kinesis.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_kinesis.types.boolean_object
     import capo_kinesis.types.consumer_arn
     import capo_kinesis.types.shard_id
     import capo_kinesis.types.starting_position
@@ -22,6 +23,8 @@ class SubscribeToShardInput(TypedDict, closed=True):
     """<p>The ID of the shard you want to subscribe to. To see a list of all the shards for a given stream, use <a>ListShards</a>.</p>"""
     starting_position: "capo_kinesis.types.starting_position.StartingPosition"
     """<p>The starting position in the data stream from which to start streaming.</p>"""
+    dry_run: NotRequired["capo_kinesis.types.boolean_object.BooleanObject"]
+    """<p>Checks if your request will succeed. <code>DryRun</code> is an optional parameter.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -38,6 +41,8 @@ def serialize_aws_json_1_1(value: SubscribeToShardInput) -> dict:
             value["starting_position"]
         )
     )
+    if "dry_run" in value:
+        out["DryRun"] = value["dry_run"]
     return out
 
 
@@ -63,4 +68,6 @@ def deserialize_aws_json_1_1(data: dict) -> SubscribeToShardInput:
         )
     else:
         raise DeserializationError("SubscribeToShardInput.starting_position required")
+    if data.get("DryRun") is not None:
+        out["dry_run"] = data["DryRun"]
     return out

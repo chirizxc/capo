@@ -277,13 +277,13 @@ class IVSRealTimeClient:
             tags: <p>Tags attached to the resource. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging AWS Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -350,14 +350,14 @@ class IVSRealTimeClient:
             attributes: <p>Application-provided attributes to store in the IngestConfiguration and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>
             ingest_protocol: <p>Type of ingest protocol that the user employs to broadcast. If this is set to <code>RTMP</code>, <code>insecureIngest</code> must be set to <code>true</code>.</p>
             insecure_ingest: <p>Whether the stage allows insecure RTMP ingest. This must be set to <code>true</code>, if <code>ingestProtocol</code> is set to <code>RTMP</code>. Default: <code>false</code>. </p>
-            redundant_ingest: <p>Indicates whether redundant ingest is enabled for the ingest configuration. Default: <code>false</code>.</p>
+            redundant_ingest: <p>Indicates whether redundant ingest is enabled for the ingest configuration. Default: <code>false</code>. </p>
             tags: <p>Tags attached to the resource. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging AWS Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -430,11 +430,11 @@ class IVSRealTimeClient:
             capabilities: <p>Set of capabilities that the user is allowed to perform in the stage. Default: <code>PUBLISH, SUBSCRIBE</code>.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -495,10 +495,10 @@ class IVSRealTimeClient:
             auto_participant_recording_configuration: <p>Configuration object for individual participant recording, to attach to the new stage.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -557,13 +557,13 @@ class IVSRealTimeClient:
             tags: <p>Tags attached to the resource. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging AWS Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -610,12 +610,12 @@ class IVSRealTimeClient:
             arn: <p>ARN of the EncoderConfiguration.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -660,11 +660,11 @@ class IVSRealTimeClient:
             force: <p>Optional field to force deletion of the IngestConfiguration. If this is set to <code>true</code> when a participant is actively publishing, the participant is disconnected from the stage, followed by deletion of the IngestConfiguration. Default: <code>false</code>.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -709,11 +709,11 @@ class IVSRealTimeClient:
             arn: <p>ARN of the public key to be deleted.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -756,11 +756,11 @@ class IVSRealTimeClient:
             arn: <p>ARN of the stage to be deleted.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -803,12 +803,12 @@ class IVSRealTimeClient:
             arn: <p>ARN of the storage configuration to be deleted.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -857,10 +857,10 @@ class IVSRealTimeClient:
             reason: <p>Description of why this participant is being disconnected.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -906,12 +906,12 @@ class IVSRealTimeClient:
             arn: <p>ARN of the Composition resource.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -954,12 +954,12 @@ class IVSRealTimeClient:
             arn: <p>ARN of the EncoderConfiguration resource.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1002,9 +1002,9 @@ class IVSRealTimeClient:
             arn: <p>ARN of the ingest for which the information is to be retrieved.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1051,9 +1051,9 @@ class IVSRealTimeClient:
             participant_id: <p>Unique identifier for the participant. This is assigned by IVS and returned by <a>CreateParticipantToken</a>.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1098,9 +1098,9 @@ class IVSRealTimeClient:
             arn: <p>ARN of the public key for which the information is to be retrieved.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1143,9 +1143,9 @@ class IVSRealTimeClient:
             arn: <p>ARN of the stage for which the information is to be retrieved.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1188,9 +1188,9 @@ class IVSRealTimeClient:
             session_id: <p>ID of a session within the stage.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1234,12 +1234,12 @@ class IVSRealTimeClient:
             arn: <p>ARN of the storage configuration to be retrieved.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1286,11 +1286,11 @@ class IVSRealTimeClient:
             tags: <p>Tags attached to the resource. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging AWS Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1351,11 +1351,11 @@ class IVSRealTimeClient:
             max_results: <p>Maximum number of results to return. Default: 100.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1443,11 +1443,11 @@ class IVSRealTimeClient:
             max_results: <p>Maximum number of results to return. Default: 100.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1529,8 +1529,8 @@ class IVSRealTimeClient:
             max_results: <p>Maximum number of results to return. Default: 50.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1624,8 +1624,8 @@ class IVSRealTimeClient:
             max_results: <p>Maximum number of results to return. Default: 50.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1713,8 +1713,8 @@ class IVSRealTimeClient:
             max_results: <p>Maximum number of results to return. Default: 50.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1815,8 +1815,8 @@ class IVSRealTimeClient:
             filter_by_recording_state: <p>Filters the response list to only show participants with the specified recording state. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, <code>filterByState</code>, or <code>filterByRecordingState</code> can be provided per request.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1919,8 +1919,8 @@ class IVSRealTimeClient:
             max_results: <p>Maximum number of results to return. Default: 50.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1996,9 +1996,9 @@ class IVSRealTimeClient:
             max_results: <p>Maximum number of results to return. Default: 50.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2076,8 +2076,8 @@ class IVSRealTimeClient:
             max_results: <p>Maximum number of results to return. Default: 50.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2155,11 +2155,11 @@ class IVSRealTimeClient:
             max_results: <p>Maximum number of storage configurations to return. Default: your service quota or 100, whichever is smaller.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2227,9 +2227,9 @@ class IVSRealTimeClient:
             resource_arn: <p>The ARN of the resource to be retrieved. The ARN must be URL-encoded.</p>
 
         Raises:
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2284,13 +2284,13 @@ class IVSRealTimeClient:
             tags: <p>Tags attached to the resource. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging AWS Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2353,13 +2353,13 @@ class IVSRealTimeClient:
             attributes: <p>Application-provided attributes to set on the replicated participant in the destination stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p> <p>These attributes are merged with any attributes set for this participant when creating the token. If there is overlap in keys, the values in these attributes are replaced.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2408,12 +2408,12 @@ class IVSRealTimeClient:
             arn: <p>ARN of the Composition.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2460,10 +2460,10 @@ class IVSRealTimeClient:
             participant_id: <p>Participant ID of the publisher that has been replicated. This is assigned by IVS and returned by <a>CreateParticipantToken</a> or the <code>jti</code> (JWT ID) used to <a href=\"https://docs.aws.amazon.com/ivs/latest/RealTimeUserGuide/getting-started-distribute-tokens.html#getting-started-distribute-tokens-self-signed\"> create a self signed token</a>.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2510,9 +2510,9 @@ class IVSRealTimeClient:
             tags: <p>Array of tags to be added or updated. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging AWS Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there.</p>
 
         Raises:
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2558,9 +2558,9 @@ class IVSRealTimeClient:
             tag_keys: <p>Array of tag keys (strings) for the tags to be removed. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging AWS Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there.</p>
 
         Raises:
-            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2609,14 +2609,14 @@ class IVSRealTimeClient:
         Args:
             arn: <p>ARN of the IngestConfiguration, for which the related stage ARN needs to be updated.</p>
             stage_arn: <p>Stage ARN that needs to be updated.</p>
-            redundant_ingest: <p>Indicates whether redundant ingest is enabled for the ingest configuration. Default: <code>false</code>.</p>
+            redundant_ingest: <p>Indicates whether redundant ingest is enabled for the ingest configuration. Default: <code>false</code>. </p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2669,12 +2669,12 @@ class IVSRealTimeClient:
             auto_participant_recording_configuration: <p>Configuration object for individual participant recording, to attach to the stage. Note that this cannot be updated while recording is active.</p>
 
         Raises:
-            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs_realtime.errors.validation_exception.ValidationException: <p/>
+            capo_ivs_realtime.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs_realtime.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs_realtime.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs_realtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs_realtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs_realtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs_realtime.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 

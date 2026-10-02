@@ -14,9 +14,9 @@ from capo_bedrock_agent_runtime import AsyncBedrockAgentRuntimeClient
 
 async def main():
     async with AsyncBedrockAgentRuntimeClient() as bedrock_agent_runtime:
-        # Example: call the get_execution_flow_snapshot operation
-        response = await bedrock_agent_runtime.get_execution_flow_snapshot()
-        print(response["flow_identifier"])
+        # Example: call the agentic_retrieve_stream operation
+        response = await bedrock_agent_runtime.agentic_retrieve_stream()
+        print(response["stream"])
 ```
 
 ## Pagination
@@ -46,7 +46,7 @@ from capo_bedrock_agent_runtime.error import AccessDeniedException
 async def main():
     async with AsyncBedrockAgentRuntimeClient() as bedrock_agent_runtime:
         try:
-            await bedrock_agent_runtime.get_execution_flow_snapshot()
+            await bedrock_agent_runtime.agentic_retrieve_stream()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -65,11 +65,11 @@ from capo_bedrock_agent_runtime import AsyncBedrockAgentRuntimeClient
 async def main():
     async with AsyncBedrockAgentRuntimeClient() as bedrock_agent_runtime:
         # Default: 3 attempts for every operation
-        response = await bedrock_agent_runtime.get_execution_flow_snapshot()
+        response = await bedrock_agent_runtime.agentic_retrieve_stream()
 
         # Override per operation
-        response = await bedrock_agent_runtime.get_execution_flow_snapshot(config_overrides={"retry_max_attempts": 5})
+        response = await bedrock_agent_runtime.agentic_retrieve_stream(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await bedrock_agent_runtime.get_execution_flow_snapshot(config_overrides={"retry_max_attempts": 1})
+        response = await bedrock_agent_runtime.agentic_retrieve_stream(config_overrides={"retry_max_attempts": 1})
 ```

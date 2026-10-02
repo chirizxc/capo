@@ -124,12 +124,14 @@ class CollaborationResource:
         self,
         members: "capo_cleanrooms.types.member_list.MemberList",
         name: "capo_cleanrooms.types.collaboration_name.CollaborationName",
-        description: "capo_cleanrooms.types.collaboration_description.CollaborationDescription",
         creator_member_abilities: "capo_cleanrooms.types.member_abilities.MemberAbilities",
         creator_display_name: "capo_cleanrooms.types.display_name.DisplayName",
         query_log_status: "capo_cleanrooms.types.collaboration_query_log_status.CollaborationQueryLogStatus",
         *,
         config_overrides: Optional[CleanRoomsClientConfig] = None,
+        description: Optional[
+            "capo_cleanrooms.types.collaboration_description.CollaborationDescription"
+        ] = None,
         creator_ml_member_abilities: Optional[
             "capo_cleanrooms.types.ml_member_abilities.MLMemberAbilities"
         ] = None,
@@ -200,11 +202,12 @@ class CollaborationResource:
         input_: capo_cleanrooms.types.create_collaboration_input.CreateCollaborationInput = {
             "members": members,
             "name": name,
-            "description": description,
             "creator_member_abilities": creator_member_abilities,
             "creator_display_name": creator_display_name,
             "query_log_status": query_log_status,
         }
+        if description is not None:
+            input_["description"] = description
         if creator_ml_member_abilities is not None:
             input_["creator_ml_member_abilities"] = creator_ml_member_abilities
         if data_encryption_metadata is not None:
@@ -1592,12 +1595,14 @@ class AsyncCollaborationResource:
         self,
         members: "capo_cleanrooms.types.member_list.MemberList",
         name: "capo_cleanrooms.types.collaboration_name.CollaborationName",
-        description: "capo_cleanrooms.types.collaboration_description.CollaborationDescription",
         creator_member_abilities: "capo_cleanrooms.types.member_abilities.MemberAbilities",
         creator_display_name: "capo_cleanrooms.types.display_name.DisplayName",
         query_log_status: "capo_cleanrooms.types.collaboration_query_log_status.CollaborationQueryLogStatus",
         *,
         config_overrides: Optional[AsyncCleanRoomsClientConfig] = None,
+        description: Optional[
+            "capo_cleanrooms.types.collaboration_description.CollaborationDescription"
+        ] = None,
         creator_ml_member_abilities: Optional[
             "capo_cleanrooms.types.ml_member_abilities.MLMemberAbilities"
         ] = None,
@@ -1669,11 +1674,12 @@ class AsyncCollaborationResource:
         input_: capo_cleanrooms.types.create_collaboration_input.CreateCollaborationInput = {
             "members": members,
             "name": name,
-            "description": description,
             "creator_member_abilities": creator_member_abilities,
             "creator_display_name": creator_display_name,
             "query_log_status": query_log_status,
         }
+        if description is not None:
+            input_["description"] = description
         if creator_ml_member_abilities is not None:
             input_["creator_ml_member_abilities"] = creator_ml_member_abilities
         if data_encryption_metadata is not None:

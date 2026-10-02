@@ -14,6 +14,7 @@ from capo_geo_places._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_geo_places.types.address_translation_component_list
     import capo_geo_places.types.api_key
     import capo_geo_places.types.autocomplete_additional_feature_list
     import capo_geo_places.types.autocomplete_filter
@@ -23,12 +24,14 @@ if TYPE_CHECKING:
     import capo_geo_places.types.country_code
     import capo_geo_places.types.distance_meters
     import capo_geo_places.types.geocode_additional_feature_list
+    import capo_geo_places.types.geocode_address_names_mode
     import capo_geo_places.types.geocode_filter
     import capo_geo_places.types.geocode_intended_use
     import capo_geo_places.types.geocode_query_components
     import capo_geo_places.types.geocode_request
     import capo_geo_places.types.geocode_response
     import capo_geo_places.types.get_place_additional_feature_list
+    import capo_geo_places.types.get_place_address_names_mode
     import capo_geo_places.types.get_place_intended_use
     import capo_geo_places.types.get_place_request
     import capo_geo_places.types.get_place_response
@@ -37,6 +40,7 @@ if TYPE_CHECKING:
     import capo_geo_places.types.position
     import capo_geo_places.types.postal_code_mode
     import capo_geo_places.types.reverse_geocode_additional_feature_list
+    import capo_geo_places.types.reverse_geocode_address_names_mode
     import capo_geo_places.types.reverse_geocode_filter
     import capo_geo_places.types.reverse_geocode_intended_use
     import capo_geo_places.types.reverse_geocode_request
@@ -51,12 +55,14 @@ if TYPE_CHECKING:
     import capo_geo_places.types.search_text_intended_use
     import capo_geo_places.types.search_text_request
     import capo_geo_places.types.search_text_response
+    import capo_geo_places.types.search_text_travel_mode
     import capo_geo_places.types.sensitive_string
     import capo_geo_places.types.suggest_additional_feature_list
     import capo_geo_places.types.suggest_filter
     import capo_geo_places.types.suggest_intended_use
     import capo_geo_places.types.suggest_request
     import capo_geo_places.types.suggest_response
+    import capo_geo_places.types.suggest_travel_mode
     import capo_geo_places.types.token
     from capo_geo_places._services.async_geo_places import (
         AsyncGeoPlacesClient,
@@ -97,16 +103,16 @@ class ProviderResource:
         ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
     ) -> "capo_geo_places.types.autocomplete_response.AutocompleteResponse":
-        r"""<p> <code>Autocomplete</code> completes potential places and addresses as the user types, based on the partial input. The API enhances the efficiency and accuracy of address by completing query based on a few entered keystrokes. It helps you by completing partial queries with valid address completion. Also, the API supports the filtering of results based on geographic location, country, or specific place types, and can be tailored using optional parameters like language and political views.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/autocomplete.html\">Autocomplete</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
+        r"""<p> <code>Autocomplete</code> completes potential places and addresses as the user types, based on the partial input. The API enhances the efficiency and accuracy of address by completing query based on a few entered keystrokes. It helps you by completing partial queries with valid address completion. Also, the API supports the filtering of results based on geographic location, country, or specific place types, and can be tailored using optional parameters like language and political views. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/autocomplete.html\">Autocomplete</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
         Args:
             query_text: <p>The free-form text query to match addresses against. This is usually a partially typed address from an end user in an address box or form.</p> <note> <p>The fields <code>QueryText</code>, and <code>QueryID</code> are mutually exclusive.</p> </note>
             max_results: <p>An optional limit for the number of results returned in a single call.</p> <p>Default value: 5</p>
             bias_position: <p>The position in longitude and latitude that the results should be close to. Typically, place results returned are ranked higher the closer they are to this position. Stored in <code>[lng, lat]</code> and in the WGS 84 format.</p> <note> <p>The fields <code>BiasPosition</code>, <code>FilterBoundingBox</code>, and <code>FilterCircle</code> are mutually exclusive.</p> </note>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
-            postal_code_mode: <p>The <code>PostalCodeMode</code> affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value <code>EnumerateSpannedLocalities</code>, all cities in that postal code are returned.</p>
+            postal_code_mode: <p>The <code>PostalCodeMode</code> affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value <code>EnumerateSpannedLocalities</code>, all cities in that postal code are returned. If it's populated with the value <code>EnumerateSpannedDistricts</code>, all combinations of the postal code with the corresponding district and city names are returned.</p>
             additional_features: <p>A list of optional additional parameters that can be requested for each result.</p>
-            language: <p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
+            language: <p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
             political_view: <p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p> <p>The following political views are currently supported:</p> <ul> <li> <p> <code>ARG</code>: Argentina's view on the Southern Patagonian Ice Field and Tierra Del Fuego, including the Falkland Islands, South Georgia, and South Sandwich Islands</p> </li> <li> <p> <code>EGY</code>: Egypt's view on Bir Tawil</p> </li> <li> <p> <code>IND</code>: India's view on Gilgit-Baltistan</p> </li> <li> <p> <code>KEN</code>: Kenya's view on the Ilemi Triangle</p> </li> <li> <p> <code>MAR</code>: Morocco's view on Western Sahara</p> </li> <li> <p> <code>RUS</code>: Russia's view on Crimea</p> </li> <li> <p> <code>SDN</code>: Sudan's view on the Halaib Triangle</p> </li> <li> <p> <code>SRB</code>: Serbia's view on Kosovo, Vukovar, and Sarengrad Islands</p> </li> <li> <p> <code>SUR</code>: Suriname's view on the Courantyne Headwaters and Lawa Headwaters</p> </li> <li> <p> <code>SYR</code>: Syria's view on the Golan Heights</p> </li> <li> <p> <code>TUR</code>: Turkey's view on Cyprus and Northern Cyprus</p> </li> <li> <p> <code>TZA</code>: Tanzania's view on Lake Malawi</p> </li> <li> <p> <code>URY</code>: Uruguay's view on Rincon de Artigas</p> </li> <li> <p> <code>VNM</code>: Vietnam's view on the Paracel Islands and Spratly Islands</p> </li> </ul>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Currently, <code>Autocomplete</code> does not support storage of results. </p>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
@@ -188,8 +194,17 @@ class ProviderResource:
             "capo_geo_places.types.geocode_intended_use.GeocodeIntendedUse"
         ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
+        postal_code_mode: Optional[
+            "capo_geo_places.types.postal_code_mode.PostalCodeMode"
+        ] = None,
+        address_translations: Optional[
+            "capo_geo_places.types.address_translation_component_list.AddressTranslationComponentList"
+        ] = None,
+        address_names_mode: Optional[
+            "capo_geo_places.types.geocode_address_names_mode.GeocodeAddressNamesMode"
+        ] = None,
     ) -> "capo_geo_places.types.geocode_response.GeocodeResponse":
-        r"""<p> <code>Geocode</code> converts a textual address or place into geographic coordinates. You can obtain geographic coordinates, address component, and other related information. It supports flexible queries, including free-form text or structured queries with components like street names, postal codes, and regions. The Geocode API can also provide additional features such as time zone information and the inclusion of political views.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/geocode.html\">Geocode</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
+        r"""<p> <code>Geocode</code> converts a textual address or place into geographic coordinates. You can obtain geographic coordinates, address component, and other related information. It supports flexible queries, including free-form text or structured queries with components like street names, postal codes, and regions. The Geocode API can also provide additional features such as time zone information and the inclusion of political views. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/geocode.html\">Geocode</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
         Args:
             query_text: <p>The free-form text query to match addresses against. This is usually a partially typed address from an end user in an address box or form.</p>
@@ -197,10 +212,13 @@ class ProviderResource:
             bias_position: <p>The position, in longitude and latitude, that the results should be close to. Typically, place results returned are ranked higher the closer they are to this position. Stored in <code>[lng, lat]</code> and in the WGS 84 format.</p>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p>A list of optional additional parameters, such as time zone, that can be requested for each result.</p>
-            language: <p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
+            language: <p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
             political_view: <p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p> <note> <p>When storing <code>Geocode</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
+            postal_code_mode: <p>The <code>PostalCodeMode</code> affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value <code>EnumerateSpannedLocalities</code>, all cities in that postal code are returned. If it's populated with the value <code>EnumerateSpannedDistricts</code>, all combinations of the postal code with the corresponding district and city names are returned.</p>
+            address_translations: <p>Specifies which address components to include translations for. Translations include all name variants and alternative names for the requested fields in all available languages. Valid values are <code>District</code>, <code>Locality</code>, <code>Region</code>, and <code>SubRegion</code>.</p>
+            address_names_mode: <p>Specifies how address names are returned. If not set, the service returns normalized (official) names by default. When set to <code>Matched</code>, address names in the response are based on the input query rather than official names. When set to <code>Administrative</code>, the service returns the official administrative names for address components. <code>Administrative</code> currently applies only to addresses in the United States.</p>
 
         Raises:
             capo_geo_places.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
@@ -246,6 +264,12 @@ class ProviderResource:
             input_["intended_use"] = intended_use
         if key is not None:
             input_["key"] = key
+        if postal_code_mode is not None:
+            input_["postal_code_mode"] = postal_code_mode
+        if address_translations is not None:
+            input_["address_translations"] = address_translations
+        if address_names_mode is not None:
+            input_["address_names_mode"] = address_names_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -271,16 +295,20 @@ class ProviderResource:
             "capo_geo_places.types.get_place_intended_use.GetPlaceIntendedUse"
         ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
+        address_names_mode: Optional[
+            "capo_geo_places.types.get_place_address_names_mode.GetPlaceAddressNamesMode"
+        ] = None,
     ) -> "capo_geo_places.types.get_place_response.GetPlaceResponse":
         r"""<p> <code>GetPlace</code> finds a place by its unique ID. A <code>PlaceId</code> is returned by other place operations.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/get-place.html\">GetPlace</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
         Args:
             place_id: <p>The <code>PlaceId</code> of the place you wish to receive the information for.</p>
             additional_features: <p> A list of optional additional parameters such as time zone that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>TimeZone</code> value. </p>
-            language: <p> A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
+            language: <p> A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
             political_view: <p> The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p> <note> <p>When storing <code>GetPlace</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
+            address_names_mode: <p>Specifies how address names are returned. When set to <code>Administrative</code>, the service returns the official administrative names for address components. <code>Administrative</code> currently applies only to addresses in the United States.</p>
 
         Raises:
             capo_geo_places.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
@@ -318,6 +346,8 @@ class ProviderResource:
             input_["intended_use"] = intended_use
         if key is not None:
             input_["key"] = key
+        if address_names_mode is not None:
+            input_["address_names_mode"] = address_names_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -351,6 +381,9 @@ class ProviderResource:
         ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
         heading: Optional["capo_geo_places.types.heading.Heading"] = None,
+        address_names_mode: Optional[
+            "capo_geo_places.types.reverse_geocode_address_names_mode.ReverseGeocodeAddressNamesMode"
+        ] = None,
     ) -> "capo_geo_places.types.reverse_geocode_response.ReverseGeocodeResponse":
         r"""<p> <code>ReverseGeocode</code> converts geographic coordinates into a human-readable address or place. You can obtain address component, and other related information such as place type, category, street information. The Reverse Geocode API supports filtering to on place type so that you can refine result based on your need. Also, The Reverse Geocode API can also provide additional features such as time zone information and the inclusion of political views.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/reverse-geocode.html\">Reverse Geocode</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
@@ -360,11 +393,12 @@ class ProviderResource:
             max_results: <p> An optional limit for the number of results returned in a single call.</p> <p>Default value: 1</p>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p> A list of optional additional parameters, such as time zone that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>TimeZone</code> value. </p>
-            language: <p> A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
+            language: <p> A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
             political_view: <p> The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). </p> <note> <p>When storing <code>ReverseGeocode</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
             heading: <p>The heading in degrees from true north in a navigation context. The heading is measured as the angle clockwise from the North direction.</p> <p>Example: North is <code>0</code> degrees, East is <code>90</code> degrees, South is <code>180</code> degrees, and West is <code>270</code> degrees.</p>
+            address_names_mode: <p>Specifies how address names are returned. When set to <code>Administrative</code>, the service returns the official administrative names for address components. <code>Administrative</code> currently applies only to addresses in the United States.</p>
 
         Raises:
             capo_geo_places.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
@@ -410,6 +444,8 @@ class ProviderResource:
             input_["key"] = key
         if heading is not None:
             input_["heading"] = heading
+        if address_names_mode is not None:
+            input_["address_names_mode"] = address_names_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -444,7 +480,7 @@ class ProviderResource:
         next_token: Optional["capo_geo_places.types.token.Token"] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
     ) -> "capo_geo_places.types.search_nearby_response.SearchNearbyResponse":
-        r"""<p> <code>SearchNearby</code> queries for points of interest within a radius from a central coordinates, returning place results with optional filters such as categories, business chains, food types and more. The API returns details such as a place name, address, phone, category, food type, contact, opening hours. Also, the API can return phonemes, time zones and more based on requested parameters.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/search-nearby.html\">Search Nearby</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
+        r"""<p> <code>SearchNearby</code> queries for points of interest within a radius from a central coordinates, returning place results with optional filters such as categories, business chains, food types and more. The API returns details such as a place name, address, phone, category, food type, contact, opening hours. Also, the API can return phonemes, time zones and more based on requested parameters. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/search-nearby.html\">Search Nearby</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
         Args:
             query_position: <p>The position in World Geodetic System (WGS 84) format: [longitude, latitude] for which you are querying nearby results for. Results closer to the position will be ranked higher then results further away from the position</p>
@@ -452,7 +488,7 @@ class ProviderResource:
             max_results: <p>An optional limit for the number of results returned in a single call.</p> <p>Default value: 20</p>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p>A list of optional additional parameters, such as time zone, that can be requested for each result.</p>
-            language: <p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
+            language: <p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
             political_view: <p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p> <note> <p>When storing <code>SearchNearby</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. </p>
@@ -537,6 +573,9 @@ class ProviderResource:
             "capo_geo_places.types.search_text_intended_use.SearchTextIntendedUse"
         ] = None,
         next_token: Optional["capo_geo_places.types.token.Token"] = None,
+        travel_mode: Optional[
+            "capo_geo_places.types.search_text_travel_mode.SearchTextTravelMode"
+        ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
     ) -> "capo_geo_places.types.search_text_response.SearchTextResponse":
         r"""<p> <code>SearchText</code> searches for geocode and place information. You can then complete a follow-up query suggested from the <code>Suggest</code> API via a query id.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/search-text.html\">Search Text</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
@@ -548,10 +587,11 @@ class ProviderResource:
             bias_position: <p>The position, in longitude and latitude, that the results should be close to. Typically, place results returned are ranked higher the closer they are to this position. Stored in <code>[lng, lat]</code> and in the WGS 84 format.</p> <note> <p>Exactly one of the following fields must be set: <code>BiasPosition</code>, <code>Filter.BoundingBox</code>, or <code>Filter.Circle</code>.</p> </note>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p>A list of optional additional parameters, such as time zone, that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>TimeZone</code> value.</p>
-            language: <p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
+            language: <p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
             political_view: <p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not available in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). </p> <note> <p>When storing <code>SearchText</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. </p>
+            travel_mode: <p>Indicates the mode of mobility used by the end user. This is used to improve the relevance of search results. Valid values are <code>Car</code>, <code>Scooter</code>, and <code>Truck</code>.</p>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
 
         Raises:
@@ -598,6 +638,8 @@ class ProviderResource:
             input_["intended_use"] = intended_use
         if next_token is not None:
             input_["next_token"] = next_token
+        if travel_mode is not None:
+            input_["travel_mode"] = travel_mode
         if key is not None:
             input_["key"] = key
 
@@ -628,6 +670,9 @@ class ProviderResource:
         intended_use: Optional[
             "capo_geo_places.types.suggest_intended_use.SuggestIntendedUse"
         ] = None,
+        travel_mode: Optional[
+            "capo_geo_places.types.suggest_travel_mode.SuggestTravelMode"
+        ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
     ) -> "capo_geo_places.types.suggest_response.SuggestResponse":
         r"""<p> <code>Suggest</code> provides intelligent predictions or recommendations based on the user's input or context, such as relevant places, points of interest, query terms or search category. It is designed to help users find places or point of interests candidates or identify a follow on query based on incomplete or misspelled queries. It returns a list of possible matches or refinements that can be used to formulate a more accurate query. Users can select the most appropriate suggestion and use it for further searching. The API provides options for filtering results by location and other attributes, and allows for additional features like phonemes and timezones. The response includes refined query terms and detailed place information.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/suggest.html\">Suggest</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
@@ -639,9 +684,10 @@ class ProviderResource:
             bias_position: <p>The position, in longitude and latitude, that the results should be close to. Typically, place results returned are ranked higher the closer they are to this position. Stored in <code>[lng, lat]</code> and in the WGS 84 format.</p> <note> <p>The fields <code>BiasPosition</code>, <code>FilterBoundingBox</code>, and <code>FilterCircle</code> are mutually exclusive.</p> </note>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p> A list of optional additional parameters, such as time zone, that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>Core</code> and <code>TimeZone</code> values. </p>
-            language: <p> A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
+            language: <p> A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
             political_view: <p> The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Currently, <code>Suggest</code> does not support storage of results. </p>
+            travel_mode: <p>Indicates the mode of mobility used by the end user. This is used to improve the relevance of search results. Valid values are <code>Car</code>, <code>Scooter</code>, and <code>Truck</code>.</p>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
 
         Raises:
@@ -686,6 +732,8 @@ class ProviderResource:
             input_["political_view"] = political_view
         if intended_use is not None:
             input_["intended_use"] = intended_use
+        if travel_mode is not None:
+            input_["travel_mode"] = travel_mode
         if key is not None:
             input_["key"] = key
 
@@ -727,16 +775,16 @@ class AsyncProviderResource:
         ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
     ) -> "capo_geo_places.types.autocomplete_response.AutocompleteResponse":
-        r"""<p> <code>Autocomplete</code> completes potential places and addresses as the user types, based on the partial input. The API enhances the efficiency and accuracy of address by completing query based on a few entered keystrokes. It helps you by completing partial queries with valid address completion. Also, the API supports the filtering of results based on geographic location, country, or specific place types, and can be tailored using optional parameters like language and political views.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/autocomplete.html\">Autocomplete</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
+        r"""<p> <code>Autocomplete</code> completes potential places and addresses as the user types, based on the partial input. The API enhances the efficiency and accuracy of address by completing query based on a few entered keystrokes. It helps you by completing partial queries with valid address completion. Also, the API supports the filtering of results based on geographic location, country, or specific place types, and can be tailored using optional parameters like language and political views. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/autocomplete.html\">Autocomplete</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
         Args:
             query_text: <p>The free-form text query to match addresses against. This is usually a partially typed address from an end user in an address box or form.</p> <note> <p>The fields <code>QueryText</code>, and <code>QueryID</code> are mutually exclusive.</p> </note>
             max_results: <p>An optional limit for the number of results returned in a single call.</p> <p>Default value: 5</p>
             bias_position: <p>The position in longitude and latitude that the results should be close to. Typically, place results returned are ranked higher the closer they are to this position. Stored in <code>[lng, lat]</code> and in the WGS 84 format.</p> <note> <p>The fields <code>BiasPosition</code>, <code>FilterBoundingBox</code>, and <code>FilterCircle</code> are mutually exclusive.</p> </note>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
-            postal_code_mode: <p>The <code>PostalCodeMode</code> affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value <code>EnumerateSpannedLocalities</code>, all cities in that postal code are returned.</p>
+            postal_code_mode: <p>The <code>PostalCodeMode</code> affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value <code>EnumerateSpannedLocalities</code>, all cities in that postal code are returned. If it's populated with the value <code>EnumerateSpannedDistricts</code>, all combinations of the postal code with the corresponding district and city names are returned.</p>
             additional_features: <p>A list of optional additional parameters that can be requested for each result.</p>
-            language: <p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
+            language: <p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
             political_view: <p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p> <p>The following political views are currently supported:</p> <ul> <li> <p> <code>ARG</code>: Argentina's view on the Southern Patagonian Ice Field and Tierra Del Fuego, including the Falkland Islands, South Georgia, and South Sandwich Islands</p> </li> <li> <p> <code>EGY</code>: Egypt's view on Bir Tawil</p> </li> <li> <p> <code>IND</code>: India's view on Gilgit-Baltistan</p> </li> <li> <p> <code>KEN</code>: Kenya's view on the Ilemi Triangle</p> </li> <li> <p> <code>MAR</code>: Morocco's view on Western Sahara</p> </li> <li> <p> <code>RUS</code>: Russia's view on Crimea</p> </li> <li> <p> <code>SDN</code>: Sudan's view on the Halaib Triangle</p> </li> <li> <p> <code>SRB</code>: Serbia's view on Kosovo, Vukovar, and Sarengrad Islands</p> </li> <li> <p> <code>SUR</code>: Suriname's view on the Courantyne Headwaters and Lawa Headwaters</p> </li> <li> <p> <code>SYR</code>: Syria's view on the Golan Heights</p> </li> <li> <p> <code>TUR</code>: Turkey's view on Cyprus and Northern Cyprus</p> </li> <li> <p> <code>TZA</code>: Tanzania's view on Lake Malawi</p> </li> <li> <p> <code>URY</code>: Uruguay's view on Rincon de Artigas</p> </li> <li> <p> <code>VNM</code>: Vietnam's view on the Paracel Islands and Spratly Islands</p> </li> </ul>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Currently, <code>Autocomplete</code> does not support storage of results. </p>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
@@ -819,8 +867,17 @@ class AsyncProviderResource:
             "capo_geo_places.types.geocode_intended_use.GeocodeIntendedUse"
         ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
+        postal_code_mode: Optional[
+            "capo_geo_places.types.postal_code_mode.PostalCodeMode"
+        ] = None,
+        address_translations: Optional[
+            "capo_geo_places.types.address_translation_component_list.AddressTranslationComponentList"
+        ] = None,
+        address_names_mode: Optional[
+            "capo_geo_places.types.geocode_address_names_mode.GeocodeAddressNamesMode"
+        ] = None,
     ) -> "capo_geo_places.types.geocode_response.GeocodeResponse":
-        r"""<p> <code>Geocode</code> converts a textual address or place into geographic coordinates. You can obtain geographic coordinates, address component, and other related information. It supports flexible queries, including free-form text or structured queries with components like street names, postal codes, and regions. The Geocode API can also provide additional features such as time zone information and the inclusion of political views.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/geocode.html\">Geocode</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
+        r"""<p> <code>Geocode</code> converts a textual address or place into geographic coordinates. You can obtain geographic coordinates, address component, and other related information. It supports flexible queries, including free-form text or structured queries with components like street names, postal codes, and regions. The Geocode API can also provide additional features such as time zone information and the inclusion of political views. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/geocode.html\">Geocode</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
         Args:
             query_text: <p>The free-form text query to match addresses against. This is usually a partially typed address from an end user in an address box or form.</p>
@@ -828,10 +885,13 @@ class AsyncProviderResource:
             bias_position: <p>The position, in longitude and latitude, that the results should be close to. Typically, place results returned are ranked higher the closer they are to this position. Stored in <code>[lng, lat]</code> and in the WGS 84 format.</p>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p>A list of optional additional parameters, such as time zone, that can be requested for each result.</p>
-            language: <p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
+            language: <p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
             political_view: <p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p> <note> <p>When storing <code>Geocode</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
+            postal_code_mode: <p>The <code>PostalCodeMode</code> affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value <code>EnumerateSpannedLocalities</code>, all cities in that postal code are returned. If it's populated with the value <code>EnumerateSpannedDistricts</code>, all combinations of the postal code with the corresponding district and city names are returned.</p>
+            address_translations: <p>Specifies which address components to include translations for. Translations include all name variants and alternative names for the requested fields in all available languages. Valid values are <code>District</code>, <code>Locality</code>, <code>Region</code>, and <code>SubRegion</code>.</p>
+            address_names_mode: <p>Specifies how address names are returned. If not set, the service returns normalized (official) names by default. When set to <code>Matched</code>, address names in the response are based on the input query rather than official names. When set to <code>Administrative</code>, the service returns the official administrative names for address components. <code>Administrative</code> currently applies only to addresses in the United States.</p>
 
         Raises:
             capo_geo_places.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
@@ -878,6 +938,12 @@ class AsyncProviderResource:
             input_["intended_use"] = intended_use
         if key is not None:
             input_["key"] = key
+        if postal_code_mode is not None:
+            input_["postal_code_mode"] = postal_code_mode
+        if address_translations is not None:
+            input_["address_translations"] = address_translations
+        if address_names_mode is not None:
+            input_["address_names_mode"] = address_names_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -903,16 +969,20 @@ class AsyncProviderResource:
             "capo_geo_places.types.get_place_intended_use.GetPlaceIntendedUse"
         ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
+        address_names_mode: Optional[
+            "capo_geo_places.types.get_place_address_names_mode.GetPlaceAddressNamesMode"
+        ] = None,
     ) -> "capo_geo_places.types.get_place_response.GetPlaceResponse":
         r"""<p> <code>GetPlace</code> finds a place by its unique ID. A <code>PlaceId</code> is returned by other place operations.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/get-place.html\">GetPlace</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
         Args:
             place_id: <p>The <code>PlaceId</code> of the place you wish to receive the information for.</p>
             additional_features: <p> A list of optional additional parameters such as time zone that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>TimeZone</code> value. </p>
-            language: <p> A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
+            language: <p> A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
             political_view: <p> The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p> <note> <p>When storing <code>GetPlace</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
+            address_names_mode: <p>Specifies how address names are returned. When set to <code>Administrative</code>, the service returns the official administrative names for address components. <code>Administrative</code> currently applies only to addresses in the United States.</p>
 
         Raises:
             capo_geo_places.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
@@ -951,6 +1021,8 @@ class AsyncProviderResource:
             input_["intended_use"] = intended_use
         if key is not None:
             input_["key"] = key
+        if address_names_mode is not None:
+            input_["address_names_mode"] = address_names_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -984,6 +1056,9 @@ class AsyncProviderResource:
         ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
         heading: Optional["capo_geo_places.types.heading.Heading"] = None,
+        address_names_mode: Optional[
+            "capo_geo_places.types.reverse_geocode_address_names_mode.ReverseGeocodeAddressNamesMode"
+        ] = None,
     ) -> "capo_geo_places.types.reverse_geocode_response.ReverseGeocodeResponse":
         r"""<p> <code>ReverseGeocode</code> converts geographic coordinates into a human-readable address or place. You can obtain address component, and other related information such as place type, category, street information. The Reverse Geocode API supports filtering to on place type so that you can refine result based on your need. Also, The Reverse Geocode API can also provide additional features such as time zone information and the inclusion of political views.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/reverse-geocode.html\">Reverse Geocode</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
@@ -993,11 +1068,12 @@ class AsyncProviderResource:
             max_results: <p> An optional limit for the number of results returned in a single call.</p> <p>Default value: 1</p>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p> A list of optional additional parameters, such as time zone that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>TimeZone</code> value. </p>
-            language: <p> A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
+            language: <p> A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
             political_view: <p> The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). </p> <note> <p>When storing <code>ReverseGeocode</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
             heading: <p>The heading in degrees from true north in a navigation context. The heading is measured as the angle clockwise from the North direction.</p> <p>Example: North is <code>0</code> degrees, East is <code>90</code> degrees, South is <code>180</code> degrees, and West is <code>270</code> degrees.</p>
+            address_names_mode: <p>Specifies how address names are returned. When set to <code>Administrative</code>, the service returns the official administrative names for address components. <code>Administrative</code> currently applies only to addresses in the United States.</p>
 
         Raises:
             capo_geo_places.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
@@ -1044,6 +1120,8 @@ class AsyncProviderResource:
             input_["key"] = key
         if heading is not None:
             input_["heading"] = heading
+        if address_names_mode is not None:
+            input_["address_names_mode"] = address_names_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1078,7 +1156,7 @@ class AsyncProviderResource:
         next_token: Optional["capo_geo_places.types.token.Token"] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
     ) -> "capo_geo_places.types.search_nearby_response.SearchNearbyResponse":
-        r"""<p> <code>SearchNearby</code> queries for points of interest within a radius from a central coordinates, returning place results with optional filters such as categories, business chains, food types and more. The API returns details such as a place name, address, phone, category, food type, contact, opening hours. Also, the API can return phonemes, time zones and more based on requested parameters.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/search-nearby.html\">Search Nearby</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
+        r"""<p> <code>SearchNearby</code> queries for points of interest within a radius from a central coordinates, returning place results with optional filters such as categories, business chains, food types and more. The API returns details such as a place name, address, phone, category, food type, contact, opening hours. Also, the API can return phonemes, time zones and more based on requested parameters. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/search-nearby.html\">Search Nearby</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
 
         Args:
             query_position: <p>The position in World Geodetic System (WGS 84) format: [longitude, latitude] for which you are querying nearby results for. Results closer to the position will be ranked higher then results further away from the position</p>
@@ -1086,7 +1164,7 @@ class AsyncProviderResource:
             max_results: <p>An optional limit for the number of results returned in a single call.</p> <p>Default value: 20</p>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p>A list of optional additional parameters, such as time zone, that can be requested for each result.</p>
-            language: <p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
+            language: <p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>
             political_view: <p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p> <note> <p>When storing <code>SearchNearby</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. </p>
@@ -1172,6 +1250,9 @@ class AsyncProviderResource:
             "capo_geo_places.types.search_text_intended_use.SearchTextIntendedUse"
         ] = None,
         next_token: Optional["capo_geo_places.types.token.Token"] = None,
+        travel_mode: Optional[
+            "capo_geo_places.types.search_text_travel_mode.SearchTextTravelMode"
+        ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
     ) -> "capo_geo_places.types.search_text_response.SearchTextResponse":
         r"""<p> <code>SearchText</code> searches for geocode and place information. You can then complete a follow-up query suggested from the <code>Suggest</code> API via a query id.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/search-text.html\">Search Text</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
@@ -1183,10 +1264,11 @@ class AsyncProviderResource:
             bias_position: <p>The position, in longitude and latitude, that the results should be close to. Typically, place results returned are ranked higher the closer they are to this position. Stored in <code>[lng, lat]</code> and in the WGS 84 format.</p> <note> <p>Exactly one of the following fields must be set: <code>BiasPosition</code>, <code>Filter.BoundingBox</code>, or <code>Filter.Circle</code>.</p> </note>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p>A list of optional additional parameters, such as time zone, that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>TimeZone</code> value.</p>
-            language: <p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
+            language: <p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
             political_view: <p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not available in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). </p> <note> <p>When storing <code>SearchText</code> responses, you <i>must</i> set this field to <code>Storage</code> to comply with the terms of service. These requests will be charged at a higher rate. Please review the <a href=\"https://aws.amazon.com/location/sla/\">user agreement</a> and <a href=\"https://aws.amazon.com/location/pricing/\">service pricing structure</a> to determine the correct setting for your use case.</p> </note>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. </p>
+            travel_mode: <p>Indicates the mode of mobility used by the end user. This is used to improve the relevance of search results. Valid values are <code>Car</code>, <code>Scooter</code>, and <code>Truck</code>.</p>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
 
         Raises:
@@ -1234,6 +1316,8 @@ class AsyncProviderResource:
             input_["intended_use"] = intended_use
         if next_token is not None:
             input_["next_token"] = next_token
+        if travel_mode is not None:
+            input_["travel_mode"] = travel_mode
         if key is not None:
             input_["key"] = key
 
@@ -1264,6 +1348,9 @@ class AsyncProviderResource:
         intended_use: Optional[
             "capo_geo_places.types.suggest_intended_use.SuggestIntendedUse"
         ] = None,
+        travel_mode: Optional[
+            "capo_geo_places.types.suggest_travel_mode.SuggestTravelMode"
+        ] = None,
         key: Optional["capo_geo_places.types.api_key.ApiKey"] = None,
     ) -> "capo_geo_places.types.suggest_response.SuggestResponse":
         r"""<p> <code>Suggest</code> provides intelligent predictions or recommendations based on the user's input or context, such as relevant places, points of interest, query terms or search category. It is designed to help users find places or point of interests candidates or identify a follow on query based on incomplete or misspelled queries. It returns a list of possible matches or refinements that can be used to formulate a more accurate query. Users can select the most appropriate suggestion and use it for further searching. The API provides options for filtering results by location and other attributes, and allows for additional features like phonemes and timezones. The response includes refined query terms and detailed place information.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/suggest.html\">Suggest</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
@@ -1275,9 +1362,10 @@ class AsyncProviderResource:
             bias_position: <p>The position, in longitude and latitude, that the results should be close to. Typically, place results returned are ranked higher the closer they are to this position. Stored in <code>[lng, lat]</code> and in the WGS 84 format.</p> <note> <p>The fields <code>BiasPosition</code>, <code>FilterBoundingBox</code>, and <code>FilterCircle</code> are mutually exclusive.</p> </note>
             filter: <p>A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.</p>
             additional_features: <p> A list of optional additional parameters, such as time zone, that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>Core</code> and <code>TimeZone</code> values. </p>
-            language: <p> A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
+            language: <p> A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>
             political_view: <p> The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>
             intended_use: <p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Currently, <code>Suggest</code> does not support storage of results. </p>
+            travel_mode: <p>Indicates the mode of mobility used by the end user. This is used to improve the relevance of search results. Valid values are <code>Car</code>, <code>Scooter</code>, and <code>Truck</code>.</p>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>
 
         Raises:
@@ -1323,6 +1411,8 @@ class AsyncProviderResource:
             input_["political_view"] = political_view
         if intended_use is not None:
             input_["intended_use"] = intended_use
+        if travel_mode is not None:
+            input_["travel_mode"] = travel_mode
         if key is not None:
             input_["key"] = key
 

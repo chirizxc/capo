@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.lag_name
     import capo_direct_connect.types.location_code
     import capo_direct_connect.types.provider_name
+    import capo_direct_connect.types.request_billing_mode
     import capo_direct_connect.types.request_mac_sec
     import capo_direct_connect.types.tag_list
 
@@ -38,6 +39,10 @@ class CreateLagRequest(TypedDict, closed=True):
         "capo_direct_connect.types.request_mac_sec.RequestMACSec"
     ]
     r"""<p>Indicates whether the connection will support MAC Security (MACsec).</p> <note> <p>All connections in the LAG must be capable of supporting MAC Security (MACsec). For information about MAC Security (MACsec) prerequisties, see <a href=\"https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites\">MACsec prerequisties</a> in the <i>Direct Connect User Guide</i>.</p> </note>"""
+    billing_mode: NotRequired[
+        "capo_direct_connect.types.request_billing_mode.RequestBillingMode"
+    ]
+    """<p>The billing mode for the LAG.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -67,6 +72,14 @@ def serialize_aws_json_1_1(value: CreateLagRequest) -> dict:
         out["providerName"] = value["provider_name"]
     if "request_mac_sec" in value:
         out["requestMACSec"] = value["request_mac_sec"]
+    if "billing_mode" in value:
+        import capo_direct_connect.types.request_billing_mode
+
+        out["billingMode"] = (
+            capo_direct_connect.types.request_billing_mode.serialize_aws_json_1_1(
+                value["billing_mode"]
+            )
+        )
     return out
 
 
@@ -108,4 +121,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLagRequest:
         out["provider_name"] = data["providerName"]
     if data.get("requestMACSec") is not None:
         out["request_mac_sec"] = data["requestMACSec"]
+    if data.get("billingMode") is not None:
+        import capo_direct_connect.types.request_billing_mode
+
+        out["billing_mode"] = (
+            capo_direct_connect.types.request_billing_mode.deserialize_aws_json_1_1(
+                data["billingMode"]
+            )
+        )
     return out

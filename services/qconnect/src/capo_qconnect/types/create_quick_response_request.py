@@ -46,7 +46,7 @@ class CreateQuickResponseRequest(TypedDict, closed=True):
     is_active: NotRequired["bool"]
     """<p>Whether the quick response is active.</p>"""
     channels: NotRequired["capo_qconnect.types.channels.Channels"]
-    """<p>The Amazon Connect channels this quick response applies to.</p>"""
+    """<p>The Connect Customer channels this quick response applies to.</p>"""
     language: NotRequired["capo_qconnect.types.language_code.LanguageCode"]
     """<p>The language code value for the language in which the quick response is written. The supported language codes include <code>de_DE</code>, <code>en_US</code>, <code>es_ES</code>, <code>fr_FR</code>, <code>id_ID</code>, <code>it_IT</code>, <code>ja_JP</code>, <code>ko_KR</code>, <code>pt_BR</code>, <code>zh_CN</code>, <code>zh_TW</code> </p>"""
     client_token: NotRequired["capo_qconnect.types.non_empty_string.NonEmptyString"]

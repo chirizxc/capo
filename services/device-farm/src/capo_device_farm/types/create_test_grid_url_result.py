@@ -11,9 +11,9 @@ if TYPE_CHECKING:
 
 class CreateTestGridUrlResult(TypedDict, closed=True):
     url: NotRequired["capo_device_farm.types.sensitive_string.SensitiveString"]
-    """<p>A signed URL, expiring in <a>CreateTestGridUrlRequest$expiresInSeconds</a> seconds, to be passed to a <code>RemoteWebDriver</code>. </p>"""
+    """<p>A signed URL, expiring in the time specified by the <code>CreateTestGridUrlRequest</code>, to be passed to a <code>RemoteWebDriver</code>. </p>"""
     expires: NotRequired["capo_device_farm.types.date_time.DateTime"]
-    """<p>The number of seconds the URL from <a>CreateTestGridUrlResult$url</a> stays active.</p>"""
+    """<p>The number of seconds the URL stays active from creation.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

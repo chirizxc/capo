@@ -33,7 +33,7 @@ class GetQueryResultsResponse(TypedDict, closed=True):
     next_token: NotRequired[
         "capo_cloudwatch_logs.types.get_query_results_next_token.GetQueryResultsNextToken"
     ]
-    """<p>If there are more log events remaining in the results, the response includes a <code>nextToken</code>. You can use this token in a subsequent <code>GetQueryResults</code> request to get the next set of results. You can retrieve up to 100,000 log event results from a query by paginating with this token.</p>"""
+    """<p>If there are more log events remaining in the results, the response includes a <code>nextToken</code>. You can use this token in a subsequent <code>GetQueryResults</code> request to get the next set of results. You can retrieve up to 100,000 log event results from a query by paginating with this token. This is only supported for Logs Insights QL and is currently not supported for PPL and SQL query languages.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

@@ -22,6 +22,7 @@ import capo_bedrock_agentcore_control.errors.validation_exception
 import capo_bedrock_agentcore_control.types.create_policy_request
 import capo_bedrock_agentcore_control.types.create_policy_response
 import capo_bedrock_agentcore_control.types.date_timestamp
+import capo_bedrock_agentcore_control.types.enforcement_mode
 import capo_bedrock_agentcore_control.types.policy_definition
 import capo_bedrock_agentcore_control.types.policy_status
 import capo_bedrock_agentcore_control.types.policy_status_reasons
@@ -34,6 +35,7 @@ from capo_bedrock_agentcore_control._rule_engine._endpoint_rule_set import (
 from capo_bedrock_agentcore_control._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agentcore_control.errors import UnknownServiceError
 
@@ -165,7 +167,7 @@ def create_policy(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -183,7 +185,7 @@ async def async_create_policy(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

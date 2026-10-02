@@ -15,7 +15,7 @@ class GetImageRecipePolicyResponse(TypedDict, closed=True):
     policy: NotRequired[
         "capo_imagebuilder.types.resource_policy_document.ResourcePolicyDocument"
     ]
-    """<p>The image recipe policy object.</p>"""
+    """<p>The resource policy for the image recipe, as a JSON policy document. If no policy has been applied, the response contains an empty JSON object (<code>{}</code>).</p>"""
 
 
 # --- restJson1 ser/de ---

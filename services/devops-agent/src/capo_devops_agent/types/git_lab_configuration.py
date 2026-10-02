@@ -1,8 +1,13 @@
 """Generated from Smithy shape ``com.amazonaws.devopsagent#GitLabConfiguration``."""
 
+from typing import TYPE_CHECKING
+
 from typing_extensions import NotRequired, TypedDict
 
 from capo_devops_agent.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_devops_agent.types.role_arn
 
 
 class GitLabConfiguration(TypedDict, closed=True):
@@ -12,6 +17,8 @@ class GitLabConfiguration(TypedDict, closed=True):
     """<p>Full GitLab project path (e.g., namespace/project-name).</p>"""
     instance_identifier: NotRequired["str"]
     """<p>GitLab instance identifier (e.g., gitlab.com or e2e.gamma.dev.us-east-1.gitlab.falco.ai.aws.dev)</p>"""
+    runtime_role_arn: NotRequired["capo_devops_agent.types.role_arn.RoleArn"]
+    """<p>Optional role ARN that AIDevOps assumes at runtime for automatic verification testing and VPC connectivity on this association.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -21,6 +28,8 @@ def serialize_json(value: GitLabConfiguration) -> dict:
     out["projectPath"] = value["project_path"]
     if "instance_identifier" in value:
         out["instanceIdentifier"] = value["instance_identifier"]
+    if "runtime_role_arn" in value:
+        out["runtimeRoleArn"] = value["runtime_role_arn"]
     return out
 
 
@@ -36,4 +45,6 @@ def deserialize_json(data: dict) -> GitLabConfiguration:
         raise DeserializationError("GitLabConfiguration.project_path required")
     if data.get("instanceIdentifier") is not None:
         out["instance_identifier"] = data["instanceIdentifier"]
+    if data.get("runtimeRoleArn") is not None:
+        out["runtime_role_arn"] = data["runtimeRoleArn"]
     return out

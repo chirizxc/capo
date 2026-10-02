@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import datetime
 
+    import capo_launch_wizard.types.deployment_event_metadata
     import capo_launch_wizard.types.event_status
 
 
@@ -21,6 +22,9 @@ class DeploymentEventDataSummary(TypedDict, closed=True):
     """<p>The reason of the deployment event status.</p>"""
     timestamp: NotRequired["datetime.datetime"]
     """<p>The timestamp of the deployment event.</p>"""
+    metadata: NotRequired[
+        "capo_launch_wizard.types.deployment_event_metadata.DeploymentEventMetadata"
+    ]
 
 
 # --- restJson1 ser/de ---
@@ -44,6 +48,14 @@ def serialize_json(value: DeploymentEventDataSummary) -> dict:
         out["timestamp"] = capo_launch_wizard.types._prelude.timestamp.serialize_json(
             value["timestamp"]
         )
+    if "metadata" in value:
+        import capo_launch_wizard.types.deployment_event_metadata
+
+        out["metadata"] = (
+            capo_launch_wizard.types.deployment_event_metadata.serialize_json(
+                value["metadata"]
+            )
+        )
     return out
 
 
@@ -66,5 +78,13 @@ def deserialize_json(data: dict) -> DeploymentEventDataSummary:
 
         out["timestamp"] = capo_launch_wizard.types._prelude.timestamp.deserialize_json(
             data["timestamp"]
+        )
+    if data.get("metadata") is not None:
+        import capo_launch_wizard.types.deployment_event_metadata
+
+        out["metadata"] = (
+            capo_launch_wizard.types.deployment_event_metadata.deserialize_json(
+                data["metadata"]
+            )
         )
     return out

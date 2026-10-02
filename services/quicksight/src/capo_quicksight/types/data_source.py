@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_quicksight.types.arn
+    import capo_quicksight.types.credential_status
     import capo_quicksight.types.data_source_error_info
     import capo_quicksight.types.data_source_parameters
     import capo_quicksight.types.data_source_parameters_list
@@ -54,6 +55,14 @@ class DataSource(TypedDict, closed=True):
     """<p>Error information from the last update or the creation of the data source.</p>"""
     secret_arn: NotRequired["capo_quicksight.types.secret_arn.SecretArn"]
     """<p>The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.</p>"""
+    credential_status: NotRequired[
+        "capo_quicksight.types.credential_status.CredentialStatus"
+    ]
+    """<p>The credential verification status of the data source. Valid values include:</p> <ul> <li> <p> <code>CONNECTED</code> – Credential validation succeeded.</p> </li> <li> <p> <code>AUTH_FAILED</code> – Credential validation failed.</p> </li> <li> <p> <code>NOT_VERIFIED</code> – Credential validation has not been performed.</p> </li> </ul>"""
+    last_credential_verified_at: NotRequired[
+        "capo_quicksight.types.timestamp.Timestamp"
+    ]
+    """<p>The time that the credentials were last verified.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -127,6 +136,22 @@ def serialize_json(value: DataSource) -> dict:
         )
     if "secret_arn" in value:
         out["SecretArn"] = value["secret_arn"]
+    if "credential_status" in value:
+        import capo_quicksight.types.credential_status
+
+        out["CredentialStatus"] = (
+            capo_quicksight.types.credential_status.serialize_json(
+                value["credential_status"]
+            )
+        )
+    if "last_credential_verified_at" in value:
+        import capo_quicksight.types.timestamp
+
+        out["LastCredentialVerifiedAt"] = (
+            capo_quicksight.types.timestamp.serialize_json(
+                value["last_credential_verified_at"]
+            )
+        )
     return out
 
 
@@ -202,4 +227,20 @@ def deserialize_json(data: dict) -> DataSource:
         )
     if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
+    if data.get("CredentialStatus") is not None:
+        import capo_quicksight.types.credential_status
+
+        out["credential_status"] = (
+            capo_quicksight.types.credential_status.deserialize_json(
+                data["CredentialStatus"]
+            )
+        )
+    if data.get("LastCredentialVerifiedAt") is not None:
+        import capo_quicksight.types.timestamp
+
+        out["last_credential_verified_at"] = (
+            capo_quicksight.types.timestamp.deserialize_json(
+                data["LastCredentialVerifiedAt"]
+            )
+        )
     return out

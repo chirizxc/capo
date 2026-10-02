@@ -4,8 +4,10 @@ from typing import Literal, TypeAlias, cast
 
 EvaluatorType: TypeAlias = Literal[
     "Builtin",
+    "ThirdParty",
     "Custom",
     "CustomCode",
+    "CustomDerived",
 ]
 
 

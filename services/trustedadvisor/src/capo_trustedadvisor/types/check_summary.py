@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_trustedadvisor.errors import DeserializationError
 
@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_trustedadvisor.types.recommendation_aws_service_list
     import capo_trustedadvisor.types.recommendation_pillar_list
     import capo_trustedadvisor.types.recommendation_source
+    import capo_trustedadvisor.types.string_list
     import capo_trustedadvisor.types.string_map
 
 
@@ -33,6 +34,14 @@ class CheckSummary(TypedDict, closed=True):
     """<p>The source of the Recommendation</p>"""
     metadata: "capo_trustedadvisor.types.string_map.StringMap"
     """<p>The column headings for the metadata returned in the resource</p>"""
+    resource_arn_queryable: "bool"
+    """<p>Indicates whether this check is supported by the ListRecommendationsForResource API.</p>"""
+    aws_resource_types: "capo_trustedadvisor.types.string_list.StringList"
+    """<p>The AWS resource types that this check evaluates (for example, AWS::EC2::Instance).</p>"""
+    check_granularity: NotRequired["str"]
+    """<p>The granularity level at which the check operates: resource, account, or account_region.</p>"""
+    recommendation_id: NotRequired["str"]
+    """<p>The recommendation identifier associated with the check.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -66,6 +75,16 @@ def serialize_json(value: CheckSummary) -> dict:
     out["metadata"] = capo_trustedadvisor.types.string_map.serialize_json(
         value["metadata"]
     )
+    out["resourceArnQueryable"] = value.get("resource_arn_queryable", False)
+    import capo_trustedadvisor.types.string_list
+
+    out["awsResourceTypes"] = capo_trustedadvisor.types.string_list.serialize_json(
+        value.get("aws_resource_types", [])
+    )
+    if "check_granularity" in value:
+        out["checkGranularity"] = value["check_granularity"]
+    if "recommendation_id" in value:
+        out["recommendationId"] = value["recommendation_id"]
     return out
 
 
@@ -125,4 +144,22 @@ def deserialize_json(data: dict) -> CheckSummary:
         )
     else:
         raise DeserializationError("CheckSummary.metadata required")
+    if data.get("resourceArnQueryable") is not None:
+        out["resource_arn_queryable"] = data["resourceArnQueryable"]
+    else:
+        out["resource_arn_queryable"] = False
+    if data.get("awsResourceTypes") is not None:
+        import capo_trustedadvisor.types.string_list
+
+        out["aws_resource_types"] = (
+            capo_trustedadvisor.types.string_list.deserialize_json(
+                data["awsResourceTypes"]
+            )
+        )
+    else:
+        out["aws_resource_types"] = []
+    if data.get("checkGranularity") is not None:
+        out["check_granularity"] = data["checkGranularity"]
+    if data.get("recommendationId") is not None:
+        out["recommendation_id"] = data["recommendationId"]
     return out

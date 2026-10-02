@@ -1,0 +1,44 @@
+"""Generated from Smithy shape ``com.amazonaws.bedrockagentcore#ContentSource``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+from typing_extensions import TypedDict
+
+from capo_bedrock_agentcore.errors import DeserializationError, SerializationError
+
+if TYPE_CHECKING:
+    import capo_bedrock_agentcore.types.inline_memory_content
+
+
+class _ContentSource_inline(TypedDict, closed=True):
+    inline: "capo_bedrock_agentcore.types.inline_memory_content.InlineMemoryContent"
+
+
+ContentSource: TypeAlias = _ContentSource_inline
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: ContentSource) -> dict:
+    if "inline" in value:
+        import capo_bedrock_agentcore.types.inline_memory_content
+
+        return {
+            "inline": capo_bedrock_agentcore.types.inline_memory_content.serialize_json(
+                value["inline"]
+            )
+        }
+    else:
+        raise SerializationError("ContentSource: no variant present")
+
+
+def deserialize_json(data: dict) -> ContentSource:
+    if data.get("inline") is not None:
+        import capo_bedrock_agentcore.types.inline_memory_content
+
+        return {
+            "inline": capo_bedrock_agentcore.types.inline_memory_content.deserialize_json(
+                data["inline"]
+            )
+        }
+    else:
+        raise DeserializationError("ContentSource: no recognized variant key")

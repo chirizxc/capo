@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     import capo_wafv2.types.entity_id
     import capo_wafv2.types.entity_name
     import capo_wafv2.types.lock_token
+    import capo_wafv2.types.monetization_config
     import capo_wafv2.types.on_source_d_do_s_protection_config
     import capo_wafv2.types.rules
     import capo_wafv2.types.scope
@@ -68,6 +69,10 @@ class UpdateWebACLRequest(TypedDict, closed=True):
         "capo_wafv2.types.application_config.ApplicationConfig"
     ]
     """<p>Configures the ability for the WAF console to store and retrieve application attributes. Application attributes help WAF give recommendations for protection packs.</p> <p>When using <code>UpdateWebACL</code>, <code>ApplicationConfig</code> follows these rules:</p> <ul> <li> <p>If you omit <code>ApplicationConfig</code> from the request, all existing entries in the web ACL are retained.</p> </li> <li> <p>If you include <code>ApplicationConfig</code>, entries must match the existing values exactly. Any attempt to modify existing entries will result in an error.</p> </li> </ul>"""
+    monetization_config: NotRequired[
+        "capo_wafv2.types.monetization_config.MonetizationConfig"
+    ]
+    """<p>The monetization configuration for the web ACL. Provide this when any rule in the web ACL uses the <code>Monetize</code> action.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -153,6 +158,14 @@ def serialize_aws_json_1_1(value: UpdateWebACLRequest) -> dict:
         out["ApplicationConfig"] = (
             capo_wafv2.types.application_config.serialize_aws_json_1_1(
                 value["application_config"]
+            )
+        )
+    if "monetization_config" in value:
+        import capo_wafv2.types.monetization_config
+
+        out["MonetizationConfig"] = (
+            capo_wafv2.types.monetization_config.serialize_aws_json_1_1(
+                value["monetization_config"]
             )
         )
     return out
@@ -264,6 +277,14 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateWebACLRequest:
         out["application_config"] = (
             capo_wafv2.types.application_config.deserialize_aws_json_1_1(
                 data["ApplicationConfig"]
+            )
+        )
+    if data.get("MonetizationConfig") is not None:
+        import capo_wafv2.types.monetization_config
+
+        out["monetization_config"] = (
+            capo_wafv2.types.monetization_config.deserialize_aws_json_1_1(
+                data["MonetizationConfig"]
             )
         )
     return out

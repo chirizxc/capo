@@ -20,9 +20,11 @@ import capo_bedrock_agentcore_control.errors.validation_exception
 import capo_bedrock_agentcore_control.types.evaluator_config
 import capo_bedrock_agentcore_control.types.evaluator_level
 import capo_bedrock_agentcore_control.types.evaluator_status
+import capo_bedrock_agentcore_control.types.evaluator_type
 import capo_bedrock_agentcore_control.types.get_evaluator_request
 import capo_bedrock_agentcore_control.types.get_evaluator_response
 import capo_bedrock_agentcore_control.types.included_data
+import capo_bedrock_agentcore_control.types.provider
 from capo_bedrock_agentcore_control._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agentcore_control._rule_engine._endpoint_rule_set import (
     EndpointParams,
@@ -31,6 +33,7 @@ from capo_bedrock_agentcore_control._rule_engine._endpoint_rule_set import (
 from capo_bedrock_agentcore_control._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agentcore_control.errors import UnknownServiceError
 
@@ -159,7 +162,7 @@ def get_evaluator(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -177,7 +180,7 @@ async def async_get_evaluator(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

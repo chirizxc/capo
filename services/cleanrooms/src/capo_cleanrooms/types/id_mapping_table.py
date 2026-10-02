@@ -9,6 +9,7 @@ from capo_cleanrooms.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_cleanrooms.types.child_resource_list
     import capo_cleanrooms.types.collaboration_arn
     import capo_cleanrooms.types.id_mapping_table_arn
     import capo_cleanrooms.types.id_mapping_table_input_reference_config
@@ -49,6 +50,10 @@ class IdMappingTable(TypedDict, closed=True):
     """<p>The input reference properties for the ID mapping table.</p>"""
     kms_key_arn: NotRequired["capo_cleanrooms.types.kms_key_arn.KMSKeyArn"]
     """<p>The Amazon Resource Name (ARN) of the Amazon Web Services KMS key.</p>"""
+    child_resources: NotRequired[
+        "capo_cleanrooms.types.child_resource_list.ChildResourceList"
+    ]
+    """<p>The child resources that depend on this ID mapping table.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -89,6 +94,14 @@ def serialize_json(value: IdMappingTable) -> dict:
     )
     if "kms_key_arn" in value:
         out["kmsKeyArn"] = value["kms_key_arn"]
+    if "child_resources" in value:
+        import capo_cleanrooms.types.child_resource_list
+
+        out["childResources"] = (
+            capo_cleanrooms.types.child_resource_list.serialize_json(
+                value["child_resources"]
+            )
+        )
     return out
 
 
@@ -162,4 +175,12 @@ def deserialize_json(data: dict) -> IdMappingTable:
         raise DeserializationError("IdMappingTable.input_reference_properties required")
     if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
+    if data.get("childResources") is not None:
+        import capo_cleanrooms.types.child_resource_list
+
+        out["child_resources"] = (
+            capo_cleanrooms.types.child_resource_list.deserialize_json(
+                data["childResources"]
+            )
+        )
     return out

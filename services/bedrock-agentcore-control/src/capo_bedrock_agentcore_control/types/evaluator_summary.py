@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.evaluator_status
     import capo_bedrock_agentcore_control.types.evaluator_type
     import capo_bedrock_agentcore_control.types.kms_key_arn
+    import capo_bedrock_agentcore_control.types.provider
 
 
 class EvaluatorSummary(TypedDict, closed=True):
@@ -32,6 +33,8 @@ class EvaluatorSummary(TypedDict, closed=True):
     """<p> The description of the evaluator. </p>"""
     evaluator_type: "capo_bedrock_agentcore_control.types.evaluator_type.EvaluatorType"
     """<p> The type of evaluator, indicating whether it is a built-in evaluator provided by the service or a custom evaluator created by the user. </p>"""
+    provider: NotRequired["capo_bedrock_agentcore_control.types.provider.Provider"]
+    """<p> The source of the evaluator's logic: Amazon Web Services, a third-party library, or you. </p>"""
     level: NotRequired[
         "capo_bedrock_agentcore_control.types.evaluator_level.EvaluatorLevel"
     ]
@@ -65,6 +68,12 @@ def serialize_json(value: EvaluatorSummary) -> dict:
             value["evaluator_type"]
         )
     )
+    if "provider" in value:
+        import capo_bedrock_agentcore_control.types.provider
+
+        out["provider"] = capo_bedrock_agentcore_control.types.provider.serialize_json(
+            value["provider"]
+        )
     if "level" in value:
         import capo_bedrock_agentcore_control.types.evaluator_level
 
@@ -127,6 +136,14 @@ def deserialize_json(data: dict) -> EvaluatorSummary:
         )
     else:
         raise DeserializationError("EvaluatorSummary.evaluator_type required")
+    if data.get("provider") is not None:
+        import capo_bedrock_agentcore_control.types.provider
+
+        out["provider"] = (
+            capo_bedrock_agentcore_control.types.provider.deserialize_json(
+                data["provider"]
+            )
+        )
     if data.get("level") is not None:
         import capo_bedrock_agentcore_control.types.evaluator_level
 

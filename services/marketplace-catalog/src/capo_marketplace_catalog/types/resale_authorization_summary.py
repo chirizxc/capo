@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_marketplace_catalog.types.date_time_iso8601
+    import capo_marketplace_catalog.types.resale_authorization_issuer_account_id_string
     import capo_marketplace_catalog.types.resale_authorization_manufacturer_account_id_string
     import capo_marketplace_catalog.types.resale_authorization_manufacturer_legal_name_string
     import capo_marketplace_catalog.types.resale_authorization_name_string
@@ -14,6 +15,8 @@ if TYPE_CHECKING:
     import capo_marketplace_catalog.types.resale_authorization_product_name_string
     import capo_marketplace_catalog.types.resale_authorization_reseller_account_id_string
     import capo_marketplace_catalog.types.resale_authorization_reseller_legal_name_string
+    import capo_marketplace_catalog.types.resale_authorization_reseller_role_string
+    import capo_marketplace_catalog.types.resale_authorization_source_authorization_string
     import capo_marketplace_catalog.types.resale_authorization_status_string
 
 
@@ -62,6 +65,18 @@ class ResaleAuthorizationSummary(TypedDict, closed=True):
         "capo_marketplace_catalog.types.date_time_iso8601.DateTimeISO8601"
     ]
     """<p>The availability end date of the ResaleAuthorization.</p>"""
+    reseller_role: NotRequired[
+        "capo_marketplace_catalog.types.resale_authorization_reseller_role_string.ResaleAuthorizationResellerRoleString"
+    ]
+    """<p>The reseller role of the ResaleAuthorization.</p>"""
+    source_authorization: NotRequired[
+        "capo_marketplace_catalog.types.resale_authorization_source_authorization_string.ResaleAuthorizationSourceAuthorizationString"
+    ]
+    """<p>The source authorization of the ResaleAuthorization.</p>"""
+    issuer_account_id: NotRequired[
+        "capo_marketplace_catalog.types.resale_authorization_issuer_account_id_string.ResaleAuthorizationIssuerAccountIdString"
+    ]
+    """<p>The issuer account ID of the ResaleAuthorization.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -95,6 +110,18 @@ def serialize_json(value: ResaleAuthorizationSummary) -> dict:
         out["CreatedDate"] = value["created_date"]
     if "availability_end_date" in value:
         out["AvailabilityEndDate"] = value["availability_end_date"]
+    if "reseller_role" in value:
+        import capo_marketplace_catalog.types.resale_authorization_reseller_role_string
+
+        out["ResellerRole"] = (
+            capo_marketplace_catalog.types.resale_authorization_reseller_role_string.serialize_json(
+                value["reseller_role"]
+            )
+        )
+    if "source_authorization" in value:
+        out["SourceAuthorization"] = value["source_authorization"]
+    if "issuer_account_id" in value:
+        out["IssuerAccountId"] = value["issuer_account_id"]
     return out
 
 
@@ -128,4 +155,16 @@ def deserialize_json(data: dict) -> ResaleAuthorizationSummary:
         out["created_date"] = data["CreatedDate"]
     if data.get("AvailabilityEndDate") is not None:
         out["availability_end_date"] = data["AvailabilityEndDate"]
+    if data.get("ResellerRole") is not None:
+        import capo_marketplace_catalog.types.resale_authorization_reseller_role_string
+
+        out["reseller_role"] = (
+            capo_marketplace_catalog.types.resale_authorization_reseller_role_string.deserialize_json(
+                data["ResellerRole"]
+            )
+        )
+    if data.get("SourceAuthorization") is not None:
+        out["source_authorization"] = data["SourceAuthorization"]
+    if data.get("IssuerAccountId") is not None:
+        out["issuer_account_id"] = data["IssuerAccountId"]
     return out

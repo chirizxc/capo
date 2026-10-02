@@ -15,7 +15,7 @@ class UpdateCertificateOptionsRequest(TypedDict, closed=True):
     certificate_arn: "capo_acm.types.arn.Arn"
     """<p>ARN of the requested certificate to update. This must be of the form:</p> <p> <code>arn:aws:acm:us-east-1:<i>account</i>:certificate/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>"""
     options: "capo_acm.types.certificate_options.CertificateOptions"
-    """<p>Use to update the options for your certificate. Currently, you can specify whether to add your certificate to a transparency log or export your certificate. Certificate transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. </p>"""
+    r"""<p>Use to update the options for your certificate. Currently, you can change the domain validation method or specify whether to export your certificate. For more information about migrating from email to DNS validation, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/email-to-dns-migration.html\">Migrate from email to DNS validation</a>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

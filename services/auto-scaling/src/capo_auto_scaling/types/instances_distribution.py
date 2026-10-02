@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_auto_scaling._protocol.xml import Element
 
 if TYPE_CHECKING:
+    import capo_auto_scaling.types.distribution_segments
     import capo_auto_scaling.types.mixed_instance_spot_price
     import capo_auto_scaling.types.on_demand_base_capacity
     import capo_auto_scaling.types.on_demand_percentage_above_base_capacity
@@ -39,6 +40,10 @@ class InstancesDistribution(TypedDict, closed=True):
         "capo_auto_scaling.types.mixed_instance_spot_price.MixedInstanceSpotPrice"
     ]
     r"""<p>The maximum price per unit hour that you are willing to pay for a Spot Instance. If your maximum price is lower than the Spot price for the instance types that you selected, your Spot Instances are not launched. We do not recommend specifying a maximum price because it can lead to increased interruptions. When Spot Instances launch, you pay the current Spot price. To remove a maximum price that you previously set, include the property but specify an empty string (\"\") for the value.</p> <important> <p>If you specify a maximum price, your instances will be interrupted more frequently than if you do not specify one.</p> </important> <p>Valid Range: Minimum value of 0.001</p>"""
+    distribution_segments: NotRequired[
+        "capo_auto_scaling.types.distribution_segments.DistributionSegments"
+    ]
+    r"""<p>The Distribution Segments configuration. Each segment contains an ordered list of capacity types to prioritize.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/use-distribution-segments.html\">Use Distribution Segments to target multiple capacity types</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -77,6 +82,12 @@ def serialize_query(
         )
     if "spot_max_price" in value:
         pairs.append((f"{key_prefix}SpotMaxPrice", str(value["spot_max_price"])))
+    if "distribution_segments" in value:
+        import capo_auto_scaling.types.distribution_segments
+
+        capo_auto_scaling.types.distribution_segments.serialize_query(
+            value["distribution_segments"], pairs, f"{key_prefix}DistributionSegments"
+        )
 
 
 def deserialize_query(el: Element) -> InstancesDistribution:
@@ -105,4 +116,13 @@ def deserialize_query(el: Element) -> InstancesDistribution:
     child_spot_max_price = el.find("SpotMaxPrice")
     if child_spot_max_price is not None:
         out["spot_max_price"] = str(child_spot_max_price.text or "")
+    child_distribution_segments = el.find("DistributionSegments")
+    if child_distribution_segments is not None:
+        import capo_auto_scaling.types.distribution_segments
+
+        out["distribution_segments"] = (
+            capo_auto_scaling.types.distribution_segments.deserialize_query(
+                child_distribution_segments
+            )
+        )
     return out

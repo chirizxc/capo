@@ -17,12 +17,14 @@ import capo_resiliencehubv2.errors.resource_not_found_exception
 import capo_resiliencehubv2.errors.validation_exception
 import capo_resiliencehubv2.types.list_resources_request
 import capo_resiliencehubv2.types.list_resources_response
+import capo_resiliencehubv2.types.resource_type_filter_list
 import capo_resiliencehubv2.types.service_resource_list
 from capo_resiliencehubv2._protocol.errors import parse_error_metadata_json
 from capo_resiliencehubv2._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_resiliencehubv2._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_resiliencehubv2.errors import UnknownServiceError
 
@@ -121,6 +123,10 @@ def build_request(
         params.append(("serviceFunctionId", input_["service_function_id"]))
     if "aws_region" in input_:
         params.append(("awsRegion", input_["aws_region"]))
+    if "resource_types" in input_:
+        for item in input_["resource_types"]:
+            params.append(("resourceTypes", item))
+    params.append(("billable", "true" if input_.get("billable", True) else "false"))
     params.append(("maxResults", str(input_.get("max_results", 100))))
     if "next_token" in input_:
         params.append(("nextToken", input_["next_token"]))
@@ -146,7 +152,7 @@ def list_resources(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -164,7 +170,7 @@ async def async_list_resources(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_drs.types.launch_configuration_template_id
     import capo_drs.types.launch_disposition
     import capo_drs.types.licensing
+    import capo_drs.types.recovery_mode
     import capo_drs.types.target_instance_type_right_sizing_method
 
 
@@ -39,6 +40,8 @@ class UpdateLaunchConfigurationTemplateRequest(TypedDict, closed=True):
     """<p>Whether we want to activate post-launch actions.</p>"""
     launch_into_source_instance: NotRequired["bool"]
     """<p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>"""
+    recovery_mode: NotRequired["capo_drs.types.recovery_mode.RecoveryMode"]
+    """<p>Recovery mode.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -65,6 +68,8 @@ def serialize_json(value: UpdateLaunchConfigurationTemplateRequest) -> dict:
         out["postLaunchEnabled"] = value["post_launch_enabled"]
     if "launch_into_source_instance" in value:
         out["launchIntoSourceInstance"] = value["launch_into_source_instance"]
+    if "recovery_mode" in value:
+        out["recoveryMode"] = value["recovery_mode"]
     return out
 
 
@@ -96,4 +101,6 @@ def deserialize_json(data: dict) -> UpdateLaunchConfigurationTemplateRequest:
         out["post_launch_enabled"] = data["postLaunchEnabled"]
     if data.get("launchIntoSourceInstance") is not None:
         out["launch_into_source_instance"] = data["launchIntoSourceInstance"]
+    if data.get("recoveryMode") is not None:
+        out["recovery_mode"] = data["recoveryMode"]
     return out

@@ -8,6 +8,7 @@ PaymentInstrumentStatus: TypeAlias = Literal[
     "ACTIVE",
     "FAILED",
     "DELETED",
+    "BLOCKED",
 ]
 
 

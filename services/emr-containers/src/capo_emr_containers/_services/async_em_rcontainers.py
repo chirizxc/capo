@@ -52,6 +52,8 @@ if TYPE_CHECKING:
     import capo_emr_containers.types.delete_job_template_response
     import capo_emr_containers.types.delete_managed_endpoint_request
     import capo_emr_containers.types.delete_managed_endpoint_response
+    import capo_emr_containers.types.delete_security_configuration_request
+    import capo_emr_containers.types.delete_security_configuration_response
     import capo_emr_containers.types.delete_virtual_cluster_request
     import capo_emr_containers.types.delete_virtual_cluster_response
     import capo_emr_containers.types.describe_job_run_request
@@ -97,8 +99,10 @@ if TYPE_CHECKING:
     import capo_emr_containers.types.resource_name_string
     import capo_emr_containers.types.retry_policy_configuration
     import capo_emr_containers.types.rsi_arn
+    import capo_emr_containers.types.scheduler_configuration
     import capo_emr_containers.types.security_configuration
     import capo_emr_containers.types.security_configuration_data
+    import capo_emr_containers.types.session_idle_timeout_in_minutes
     import capo_emr_containers.types.start_job_run_request
     import capo_emr_containers.types.start_job_run_response
     import capo_emr_containers.types.string1024
@@ -110,6 +114,8 @@ if TYPE_CHECKING:
     import capo_emr_containers.types.template_parameter_input_map
     import capo_emr_containers.types.untag_resource_request
     import capo_emr_containers.types.untag_resource_response
+    import capo_emr_containers.types.update_virtual_cluster_request
+    import capo_emr_containers.types.update_virtual_cluster_response
     import capo_emr_containers.types.virtual_cluster
     import capo_emr_containers.types.virtual_cluster_states
 
@@ -332,6 +338,9 @@ class AsyncEMRcontainersClient:
             "capo_emr_containers.types.configuration_overrides.ConfigurationOverrides"
         ] = None,
         tags: Optional["capo_emr_containers.types.tag_map.TagMap"] = None,
+        session_idle_timeout_in_minutes: Optional[
+            "capo_emr_containers.types.session_idle_timeout_in_minutes.SessionIdleTimeoutInMinutes"
+        ] = None,
     ) -> "capo_emr_containers.types.create_managed_endpoint_response.CreateManagedEndpointResponse":
         """<p>Creates a managed endpoint. A managed endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate with your virtual cluster.</p>
 
@@ -345,6 +354,7 @@ class AsyncEMRcontainersClient:
             configuration_overrides: <p>The configuration settings that will be used to override existing configurations.</p>
             client_token: <p>The client idempotency token for this create call.</p>
             tags: <p>The tags of the managed endpoint. </p>
+            session_idle_timeout_in_minutes: <p>The number of idle minutes before the managed endpoint session times out.</p>
 
         Raises:
             capo_emr_containers.errors.internal_server_exception.InternalServerException: <p>This is an internal server exception.</p>
@@ -383,6 +393,8 @@ class AsyncEMRcontainersClient:
             input_["configuration_overrides"] = configuration_overrides
         if tags is not None:
             input_["tags"] = tags
+        if session_idle_timeout_in_minutes is not None:
+            input_["session_idle_timeout_in_minutes"] = session_idle_timeout_in_minutes
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -464,8 +476,12 @@ class AsyncEMRcontainersClient:
         security_configuration_id: Optional[
             "capo_emr_containers.types.resource_id_string.ResourceIdString"
         ] = None,
+        session_enabled: Optional["capo_emr_containers.types.boolean.Boolean"] = None,
+        scheduler_configuration: Optional[
+            "capo_emr_containers.types.scheduler_configuration.SchedulerConfiguration"
+        ] = None,
     ) -> "capo_emr_containers.types.create_virtual_cluster_response.CreateVirtualClusterResponse":
-        """<p>Creates a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>
+        """<p>Creates a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, update, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>
 
         Args:
             name: <p>The specified name of the virtual cluster.</p>
@@ -473,6 +489,8 @@ class AsyncEMRcontainersClient:
             client_token: <p>The client token of the virtual cluster.</p>
             tags: <p>The tags assigned to the virtual cluster.</p>
             security_configuration_id: <p>The ID of the security configuration.</p>
+            session_enabled: <p>Indicates whether the virtual cluster has session support enabled.</p>
+            scheduler_configuration: <p>The scheduler configuration (concurrency and queue limits) to apply to the virtual cluster at creation time. When omitted, no limits are applied.</p>
 
         Raises:
             capo_emr_containers.errors.eks_request_throttled_exception.EKSRequestThrottledException: <p>The request exceeded the Amazon EKS API operation limits.</p>
@@ -507,6 +525,10 @@ class AsyncEMRcontainersClient:
             input_["tags"] = tags
         if security_configuration_id is not None:
             input_["security_configuration_id"] = security_configuration_id
+        if session_enabled is not None:
+            input_["session_enabled"] = session_enabled
+        if scheduler_configuration is not None:
+            input_["scheduler_configuration"] = scheduler_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -609,13 +631,58 @@ class AsyncEMRcontainersClient:
         await response.response.aclose()
         return response.output
 
+    async def delete_security_configuration(
+        self,
+        id: "capo_emr_containers.types.resource_id_string.ResourceIdString",
+        *,
+        config_overrides: Optional[AsyncEMRcontainersClientConfig] = None,
+    ) -> "capo_emr_containers.types.delete_security_configuration_response.DeleteSecurityConfigurationResponse":
+        """<p>Deletes a security configuration.</p>
+
+        Args:
+            id: <p>The ID of the security configuration to delete.</p>
+
+        Raises:
+            capo_emr_containers.errors.internal_server_exception.InternalServerException: <p>This is an internal server exception.</p>
+            capo_emr_containers.errors.validation_exception.ValidationException: <p>There are invalid parameters in the client request.</p>
+            capo_emr_containers.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_emr_containers.types.delete_security_configuration_request.DeleteSecurityConfigurationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_emr_containers.types.delete_security_configuration_response.DeleteSecurityConfigurationResponse"
+        ]:
+            import capo_emr_containers._operations.aws_chicago_web_service.delete_security_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_emr_containers._operations.aws_chicago_web_service.delete_security_configuration.async_delete_security_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_emr_containers.types.delete_security_configuration_request.DeleteSecurityConfigurationRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_virtual_cluster(
         self,
         id: "capo_emr_containers.types.resource_id_string.ResourceIdString",
         *,
         config_overrides: Optional[AsyncEMRcontainersClientConfig] = None,
     ) -> "capo_emr_containers.types.delete_virtual_cluster_response.DeleteVirtualClusterResponse":
-        """<p>Deletes a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>
+        """<p>Deletes a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, update, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>
 
         Args:
             id: <p>The ID of the virtual cluster that will be deleted.</p>
@@ -850,7 +917,7 @@ class AsyncEMRcontainersClient:
         *,
         config_overrides: Optional[AsyncEMRcontainersClientConfig] = None,
     ) -> "capo_emr_containers.types.describe_virtual_cluster_response.DescribeVirtualClusterResponse":
-        """<p>Displays detailed information about a specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>
+        """<p>Displays detailed information about a specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, update, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>
 
         Args:
             id: <p>The ID of the virtual cluster that will be described.</p>
@@ -1432,7 +1499,7 @@ class AsyncEMRcontainersClient:
             "capo_emr_containers.types.boolean.Boolean"
         ] = None,
     ) -> "capo_emr_containers.types.list_virtual_clusters_response.ListVirtualClustersResponse":
-        """<p>Lists information about the specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>
+        """<p>Lists information about the specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, update, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>
 
         Args:
             container_provider_id: <p>The container provider ID of the virtual cluster.</p>
@@ -1723,6 +1790,61 @@ class AsyncEMRcontainersClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_virtual_cluster(
+        self,
+        id: "capo_emr_containers.types.resource_id_string.ResourceIdString",
+        client_token: "capo_emr_containers.types.client_token.ClientToken",
+        *,
+        config_overrides: Optional[AsyncEMRcontainersClientConfig] = None,
+        scheduler_configuration: Optional[
+            "capo_emr_containers.types.scheduler_configuration.SchedulerConfiguration"
+        ] = None,
+    ) -> "capo_emr_containers.types.update_virtual_cluster_response.UpdateVirtualClusterResponse":
+        """<p>Updates a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, update, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>
+
+        Args:
+            id: <p>The ID of the virtual cluster to update.</p>
+            scheduler_configuration: <p>The scheduler configuration to apply to the virtual cluster. The new configuration fully replaces the existing one. If you omit a field, the corresponding limit is removed.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
+
+        Raises:
+            capo_emr_containers.errors.internal_server_exception.InternalServerException: <p>This is an internal server exception.</p>
+            capo_emr_containers.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_emr_containers.errors.validation_exception.ValidationException: <p>There are invalid parameters in the client request.</p>
+            capo_emr_containers.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_emr_containers.types.update_virtual_cluster_request.UpdateVirtualClusterRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_emr_containers.types.update_virtual_cluster_response.UpdateVirtualClusterResponse"
+        ]:
+            import capo_emr_containers._operations.aws_chicago_web_service.update_virtual_cluster
+
+            (
+                output,
+                http_response,
+            ) = await capo_emr_containers._operations.aws_chicago_web_service.update_virtual_cluster.async_update_virtual_cluster(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_emr_containers.types.update_virtual_cluster_request.UpdateVirtualClusterRequest = {
+            "id": id,
+            "client_token": client_token,
+        }
+        if scheduler_configuration is not None:
+            input_["scheduler_configuration"] = scheduler_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

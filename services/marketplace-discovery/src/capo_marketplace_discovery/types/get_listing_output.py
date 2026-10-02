@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_marketplace_discovery.types.listing_associated_entity_list
     import capo_marketplace_discovery.types.listing_badge_list
     import capo_marketplace_discovery.types.listing_id
+    import capo_marketplace_discovery.types.locale
     import capo_marketplace_discovery.types.non_empty_string
     import capo_marketplace_discovery.types.nullable_string
     import capo_marketplace_discovery.types.pricing_model_list
@@ -28,6 +29,8 @@ if TYPE_CHECKING:
 
 
 class GetListingOutput(TypedDict, closed=True):
+    locale: NotRequired["capo_marketplace_discovery.types.locale.Locale"]
+    """<p>The locale of the returned content. Indicates whether the response contains content in the requested locale, or fell back to the default locale. See <code>Locale</code> for details.</p>"""
     associated_entities: "capo_marketplace_discovery.types.listing_associated_entity_list.ListingAssociatedEntityList"
     """<p>The products and offers associated with this listing. Each entity contains product and offer information.</p>"""
     badges: "capo_marketplace_discovery.types.listing_badge_list.ListingBadgeList"
@@ -85,6 +88,8 @@ class GetListingOutput(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetListingOutput) -> dict:
     out: dict = {}
+    if "locale" in value:
+        out["locale"] = value["locale"]
     import capo_marketplace_discovery.types.listing_associated_entity_list
 
     out["associatedEntities"] = (
@@ -180,6 +185,8 @@ def serialize_json(value: GetListingOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetListingOutput:
     out: GetListingOutput = {}  # type: ignore[typeddict-item]
+    if data.get("locale") is not None:
+        out["locale"] = data["locale"]
     if data.get("associatedEntities") is not None:
         import capo_marketplace_discovery.types.listing_associated_entity_list
 

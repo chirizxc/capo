@@ -8,6 +8,7 @@ from capo_devops_agent.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
     import capo_devops_agent.types.asset_file_content
+    import capo_devops_agent.types.asset_source_url_content
     import capo_devops_agent.types.asset_zip_content
 
 
@@ -19,7 +20,13 @@ class _AssetContent_zip(TypedDict, closed=True):
     zip: "capo_devops_agent.types.asset_zip_content.AssetZipContent"
 
 
-AssetContent: TypeAlias = _AssetContent_file | _AssetContent_zip
+class _AssetContent_sourceUrl(TypedDict, closed=True):
+    sourceUrl: "capo_devops_agent.types.asset_source_url_content.AssetSourceUrlContent"
+
+
+AssetContent: TypeAlias = (
+    _AssetContent_file | _AssetContent_zip | _AssetContent_sourceUrl
+)
 
 
 # --- restJson1 ser/de ---
@@ -38,6 +45,14 @@ def serialize_json(value: AssetContent) -> dict:
         return {
             "zip": capo_devops_agent.types.asset_zip_content.serialize_json(
                 value["zip"]
+            )
+        }
+    elif "sourceUrl" in value:
+        import capo_devops_agent.types.asset_source_url_content
+
+        return {
+            "sourceUrl": capo_devops_agent.types.asset_source_url_content.serialize_json(
+                value["sourceUrl"]
             )
         }
     else:
@@ -59,6 +74,14 @@ def deserialize_json(data: dict) -> AssetContent:
         return {
             "zip": capo_devops_agent.types.asset_zip_content.deserialize_json(
                 data["zip"]
+            )
+        }
+    elif data.get("sourceUrl") is not None:
+        import capo_devops_agent.types.asset_source_url_content
+
+        return {
+            "sourceUrl": capo_devops_agent.types.asset_source_url_content.deserialize_json(
+                data["sourceUrl"]
             )
         }
     else:

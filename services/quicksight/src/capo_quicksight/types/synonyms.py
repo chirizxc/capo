@@ -3,9 +3,9 @@
 from typing import TYPE_CHECKING, TypeAlias
 
 if TYPE_CHECKING:
-    import capo_quicksight.types.limited_string
+    import capo_quicksight.types.synonym_string
 
-Synonyms: TypeAlias = list["capo_quicksight.types.limited_string.LimitedString"]
+Synonyms: TypeAlias = list["capo_quicksight.types.synonym_string.SynonymString"]
 
 
 # --- restJson1 ser/de ---

@@ -29,8 +29,8 @@ from capo_mq import AsyncmqClient
 
 async def main():
     async with AsyncmqClient() as mq:
-        # Example: paginate over list_brokers
-        async for item in mq.iter_list_brokers():
+        # Example: paginate over describe_shared_resources
+        async for item in mq.iter_describe_shared_resources():
             print(item)
 ```
 

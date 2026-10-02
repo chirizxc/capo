@@ -5,17 +5,17 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_connect.types.traffic_distribution_group_arn
-    import capo_connect.types.traffic_distribution_group_id
+    import capo_connect.types.acgr_traffic_distribution_group_arn
+    import capo_connect.types.acgr_traffic_distribution_group_id
 
 
 class CreateTrafficDistributionGroupResponse(TypedDict, closed=True):
     id: NotRequired[
-        "capo_connect.types.traffic_distribution_group_id.TrafficDistributionGroupId"
+        "capo_connect.types.acgr_traffic_distribution_group_id.ACGRTrafficDistributionGroupId"
     ]
     """<p>The identifier of the traffic distribution group. This can be the ID or the ARN of the traffic distribution group.</p>"""
     arn: NotRequired[
-        "capo_connect.types.traffic_distribution_group_arn.TrafficDistributionGroupArn"
+        "capo_connect.types.acgr_traffic_distribution_group_arn.ACGRTrafficDistributionGroupArn"
     ]
     """<p>The Amazon Resource Name (ARN) of the traffic distribution group.</p>"""
 

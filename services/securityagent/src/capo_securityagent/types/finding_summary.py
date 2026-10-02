@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_securityagent.types.confidence_level
     import capo_securityagent.types.finding_status
     import capo_securityagent.types.risk_level
+    import capo_securityagent.types.validation_status
 
 
 class FindingSummary(TypedDict, closed=True):
@@ -37,6 +38,10 @@ class FindingSummary(TypedDict, closed=True):
     """<p>The risk level of the finding.</p>"""
     confidence: NotRequired["capo_securityagent.types.confidence_level.ConfidenceLevel"]
     """<p>The confidence level of the finding.</p>"""
+    validation_status: NotRequired[
+        "capo_securityagent.types.validation_status.ValidationStatus"
+    ]
+    """<p>The simulated validation status of the finding.</p>"""
     created_at: NotRequired["datetime.datetime"]
     """<p>The date and time the finding was created, in UTC format.</p>"""
     updated_at: NotRequired["datetime.datetime"]
@@ -77,6 +82,14 @@ def serialize_json(value: FindingSummary) -> dict:
 
         out["confidence"] = capo_securityagent.types.confidence_level.serialize_json(
             value["confidence"]
+        )
+    if "validation_status" in value:
+        import capo_securityagent.types.validation_status
+
+        out["validationStatus"] = (
+            capo_securityagent.types.validation_status.serialize_json(
+                value["validation_status"]
+            )
         )
     if "created_at" in value:
         import capo_securityagent._protocol.serialize
@@ -132,6 +145,14 @@ def deserialize_json(data: dict) -> FindingSummary:
 
         out["confidence"] = capo_securityagent.types.confidence_level.deserialize_json(
             data["confidence"]
+        )
+    if data.get("validationStatus") is not None:
+        import capo_securityagent.types.validation_status
+
+        out["validation_status"] = (
+            capo_securityagent.types.validation_status.deserialize_json(
+                data["validationStatus"]
+            )
         )
     if data.get("createdAt") is not None:
         import datetime

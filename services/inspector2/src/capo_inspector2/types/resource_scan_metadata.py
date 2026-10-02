@@ -6,10 +6,15 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_inspector2.types.code_repository_metadata
+    import capo_inspector2.types.container_image_metadata
+    import capo_inspector2.types.container_registry_metadata
+    import capo_inspector2.types.container_repository_metadata
     import capo_inspector2.types.ec2_metadata
     import capo_inspector2.types.ecr_container_image_metadata
     import capo_inspector2.types.ecr_repository_metadata
     import capo_inspector2.types.lambda_function_metadata
+    import capo_inspector2.types.serverless_function_metadata
+    import capo_inspector2.types.vm_instance_metadata
 
 
 class ResourceScanMetadata(TypedDict, closed=True):
@@ -31,6 +36,26 @@ class ResourceScanMetadata(TypedDict, closed=True):
         "capo_inspector2.types.code_repository_metadata.CodeRepositoryMetadata"
     ]
     """<p>Contains metadata about scan coverage for a code repository resource.</p>"""
+    vm_instance: NotRequired[
+        "capo_inspector2.types.vm_instance_metadata.VmInstanceMetadata"
+    ]
+    """<p>The VM instance metadata associated with a covered resource.</p>"""
+    container_image: NotRequired[
+        "capo_inspector2.types.container_image_metadata.ContainerImageMetadata"
+    ]
+    """<p>The container image metadata associated with a covered resource.</p>"""
+    container_repository: NotRequired[
+        "capo_inspector2.types.container_repository_metadata.ContainerRepositoryMetadata"
+    ]
+    """<p>The container repository metadata associated with a covered resource.</p>"""
+    container_registry: NotRequired[
+        "capo_inspector2.types.container_registry_metadata.ContainerRegistryMetadata"
+    ]
+    """<p>The container registry metadata associated with a covered resource.</p>"""
+    serverless_function: NotRequired[
+        "capo_inspector2.types.serverless_function_metadata.ServerlessFunctionMetadata"
+    ]
+    """<p>The serverless function metadata associated with a covered resource.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -72,6 +97,44 @@ def serialize_json(value: ResourceScanMetadata) -> dict:
                 value["code_repository"]
             )
         )
+    if "vm_instance" in value:
+        import capo_inspector2.types.vm_instance_metadata
+
+        out["vmInstance"] = capo_inspector2.types.vm_instance_metadata.serialize_json(
+            value["vm_instance"]
+        )
+    if "container_image" in value:
+        import capo_inspector2.types.container_image_metadata
+
+        out["containerImage"] = (
+            capo_inspector2.types.container_image_metadata.serialize_json(
+                value["container_image"]
+            )
+        )
+    if "container_repository" in value:
+        import capo_inspector2.types.container_repository_metadata
+
+        out["containerRepository"] = (
+            capo_inspector2.types.container_repository_metadata.serialize_json(
+                value["container_repository"]
+            )
+        )
+    if "container_registry" in value:
+        import capo_inspector2.types.container_registry_metadata
+
+        out["containerRegistry"] = (
+            capo_inspector2.types.container_registry_metadata.serialize_json(
+                value["container_registry"]
+            )
+        )
+    if "serverless_function" in value:
+        import capo_inspector2.types.serverless_function_metadata
+
+        out["serverlessFunction"] = (
+            capo_inspector2.types.serverless_function_metadata.serialize_json(
+                value["serverless_function"]
+            )
+        )
     return out
 
 
@@ -111,6 +174,46 @@ def deserialize_json(data: dict) -> ResourceScanMetadata:
         out["code_repository"] = (
             capo_inspector2.types.code_repository_metadata.deserialize_json(
                 data["codeRepository"]
+            )
+        )
+    if data.get("vmInstance") is not None:
+        import capo_inspector2.types.vm_instance_metadata
+
+        out["vm_instance"] = (
+            capo_inspector2.types.vm_instance_metadata.deserialize_json(
+                data["vmInstance"]
+            )
+        )
+    if data.get("containerImage") is not None:
+        import capo_inspector2.types.container_image_metadata
+
+        out["container_image"] = (
+            capo_inspector2.types.container_image_metadata.deserialize_json(
+                data["containerImage"]
+            )
+        )
+    if data.get("containerRepository") is not None:
+        import capo_inspector2.types.container_repository_metadata
+
+        out["container_repository"] = (
+            capo_inspector2.types.container_repository_metadata.deserialize_json(
+                data["containerRepository"]
+            )
+        )
+    if data.get("containerRegistry") is not None:
+        import capo_inspector2.types.container_registry_metadata
+
+        out["container_registry"] = (
+            capo_inspector2.types.container_registry_metadata.deserialize_json(
+                data["containerRegistry"]
+            )
+        )
+    if data.get("serverlessFunction") is not None:
+        import capo_inspector2.types.serverless_function_metadata
+
+        out["serverless_function"] = (
+            capo_inspector2.types.serverless_function_metadata.deserialize_json(
+                data["serverlessFunction"]
             )
         )
     return out

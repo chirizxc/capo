@@ -9,6 +9,7 @@ from capo_iotsitewise.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_iotsitewise.types.dataset_summaries
     import capo_iotsitewise.types.next_token
+    import capo_iotsitewise.types.workspace_name
 
 
 class ListDatasetsResponse(TypedDict, closed=True):
@@ -16,6 +17,8 @@ class ListDatasetsResponse(TypedDict, closed=True):
     """<p>A list that summarizes the dataset response.</p>"""
     next_token: NotRequired["capo_iotsitewise.types.next_token.NextToken"]
     """<p>The token for the next set of results, or null if there are no additional results.</p>"""
+    workspace_name: NotRequired["capo_iotsitewise.types.workspace_name.WorkspaceName"]
+    """<p>The name of the workspace.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -28,6 +31,8 @@ def serialize_json(value: ListDatasetsResponse) -> dict:
     )
     if "next_token" in value:
         out["nextToken"] = value["next_token"]
+    if "workspace_name" in value:
+        out["workspaceName"] = value["workspace_name"]
     return out
 
 
@@ -45,4 +50,6 @@ def deserialize_json(data: dict) -> ListDatasetsResponse:
         raise DeserializationError("ListDatasetsResponse.dataset_summaries required")
     if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
+    if data.get("workspaceName") is not None:
+        out["workspace_name"] = data["workspaceName"]
     return out

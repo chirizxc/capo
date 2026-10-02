@@ -13,7 +13,7 @@ class ListWorkflowsResponse(TypedDict, closed=True):
     workflow_version_list: NotRequired[
         "capo_imagebuilder.types.workflow_version_list.WorkflowVersionList"
     ]
-    """<p>A list of workflow build versions that match the request criteria.</p>"""
+    """<p>A list of workflow versions that match the request criteria.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
     """<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>"""
 

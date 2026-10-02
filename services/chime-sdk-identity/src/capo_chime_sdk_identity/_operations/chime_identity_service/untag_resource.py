@@ -27,6 +27,7 @@ from capo_chime_sdk_identity._rule_engine._endpoint_rule_set import (
 from capo_chime_sdk_identity._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_chime_sdk_identity.errors import UnknownServiceError
 
@@ -128,7 +129,7 @@ def untag_resource(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -143,7 +144,7 @@ async def async_untag_resource(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

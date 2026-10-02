@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_securityhub.types.connector_provider_name
     import capo_securityhub.types.connector_status
+    import capo_securityhub.types.enablement_status
     import capo_securityhub.types.max_results
     import capo_securityhub.types.next_token
 
@@ -24,6 +25,10 @@ class ListConnectorsV2Request(TypedDict, closed=True):
         "capo_securityhub.types.connector_status.ConnectorStatus"
     ]
     """<p>The status for the connectorV2.</p>"""
+    enablement_status: NotRequired[
+        "capo_securityhub.types.enablement_status.EnablementStatus"
+    ]
+    """<p>The enablement status to filter connectors by.</p>"""
 
 
 # --- restJson1 ser/de ---

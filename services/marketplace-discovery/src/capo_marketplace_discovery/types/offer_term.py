@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_marketplace_discovery.types.fixed_upfront_pricing_term
     import capo_marketplace_discovery.types.free_trial_pricing_term
     import capo_marketplace_discovery.types.legal_term
+    import capo_marketplace_discovery.types.net_payment_term
     import capo_marketplace_discovery.types.payment_schedule_term
     import capo_marketplace_discovery.types.recurring_payment_term
     import capo_marketplace_discovery.types.renewal_term
@@ -79,6 +80,10 @@ class _OfferTerm_variablePaymentTerm(TypedDict, closed=True):
     )
 
 
+class _OfferTerm_netPaymentTerm(TypedDict, closed=True):
+    netPaymentTerm: "capo_marketplace_discovery.types.net_payment_term.NetPaymentTerm"
+
+
 OfferTerm: TypeAlias = (
     _OfferTerm_byolPricingTerm
     | _OfferTerm_configurableUpfrontPricingTerm
@@ -92,6 +97,7 @@ OfferTerm: TypeAlias = (
     | _OfferTerm_usageBasedPricingTerm
     | _OfferTerm_validityTerm
     | _OfferTerm_variablePaymentTerm
+    | _OfferTerm_netPaymentTerm
 )
 
 
@@ -193,6 +199,14 @@ def serialize_json(value: OfferTerm) -> dict:
                 value["variablePaymentTerm"]
             )
         }
+    elif "netPaymentTerm" in value:
+        import capo_marketplace_discovery.types.net_payment_term
+
+        return {
+            "netPaymentTerm": capo_marketplace_discovery.types.net_payment_term.serialize_json(
+                value["netPaymentTerm"]
+            )
+        }
     else:
         raise SerializationError("OfferTerm: no variant present")
 
@@ -292,6 +306,14 @@ def deserialize_json(data: dict) -> OfferTerm:
         return {
             "variablePaymentTerm": capo_marketplace_discovery.types.variable_payment_term.deserialize_json(
                 data["variablePaymentTerm"]
+            )
+        }
+    elif data.get("netPaymentTerm") is not None:
+        import capo_marketplace_discovery.types.net_payment_term
+
+        return {
+            "netPaymentTerm": capo_marketplace_discovery.types.net_payment_term.deserialize_json(
+                data["netPaymentTerm"]
             )
         }
     else:

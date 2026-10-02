@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     import capo_connect.types.description
     import capo_connect.types.instance_id
     import capo_connect.types.participant_details
+    import capo_connect.types.segment_attributes
 
 
 class StartWebRTCContactRequest(TypedDict, closed=True):
@@ -38,6 +39,10 @@ class StartWebRTCContactRequest(TypedDict, closed=True):
     """<p>A formatted URL that is shown to an agent in the Contact Control Panel (CCP). Tasks can have the following reference types at the time of creation: <code>URL</code> | <code>NUMBER</code> | <code>STRING</code> | <code>DATE</code> | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a supported reference type during task creation.</p>"""
     description: NotRequired["capo_connect.types.description.Description"]
     """<p>A description of the task that is shown to an agent in the Contact Control Panel (CCP).</p>"""
+    segment_attributes: NotRequired[
+        "capo_connect.types.segment_attributes.SegmentAttributes"
+    ]
+    """<p>A map of system-defined attributes for the WebRTC contact segment. Use the <code>connect:Subtype</code> attribute to specify the channel subtype, such as <code>connect:WebRTC</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -76,6 +81,12 @@ def serialize_json(value: StartWebRTCContactRequest) -> dict:
         )
     if "description" in value:
         out["Description"] = value["description"]
+    if "segment_attributes" in value:
+        import capo_connect.types.segment_attributes
+
+        out["SegmentAttributes"] = capo_connect.types.segment_attributes.serialize_json(
+            value["segment_attributes"]
+        )
     return out
 
 
@@ -127,4 +138,12 @@ def deserialize_json(data: dict) -> StartWebRTCContactRequest:
         )
     if data.get("Description") is not None:
         out["description"] = data["Description"]
+    if data.get("SegmentAttributes") is not None:
+        import capo_connect.types.segment_attributes
+
+        out["segment_attributes"] = (
+            capo_connect.types.segment_attributes.deserialize_json(
+                data["SegmentAttributes"]
+            )
+        )
     return out

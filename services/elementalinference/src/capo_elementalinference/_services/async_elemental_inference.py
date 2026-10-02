@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.elementalinference#ElementalInference``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_elementalinference._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_elementalinference._auth._zapros_handler import AuthMiddleware
+from capo_elementalinference._pagination import resolve_path as _resolve_path
 from capo_elementalinference._resources.elemental_inference.dictionary_resource import (
     AsyncDictionaryResource,
 )
@@ -33,13 +35,65 @@ from capo_elementalinference._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_elementalinference.types.associate_feed_request
+    import capo_elementalinference.types.associate_feed_response
+    import capo_elementalinference.types.associated_resource_name
+    import capo_elementalinference.types.create_dictionary_request
+    import capo_elementalinference.types.create_dictionary_response
+    import capo_elementalinference.types.create_feed_request
+    import capo_elementalinference.types.create_feed_response
+    import capo_elementalinference.types.create_output_list
+    import capo_elementalinference.types.data_source_sport
+    import capo_elementalinference.types.delete_dictionary_request
+    import capo_elementalinference.types.delete_dictionary_response
+    import capo_elementalinference.types.delete_feed_policy_request
+    import capo_elementalinference.types.delete_feed_request
+    import capo_elementalinference.types.delete_feed_response
+    import capo_elementalinference.types.dictionary_entries_payload
+    import capo_elementalinference.types.dictionary_id
+    import capo_elementalinference.types.dictionary_language
+    import capo_elementalinference.types.dictionary_summary
+    import capo_elementalinference.types.disassociate_feed_request
+    import capo_elementalinference.types.disassociate_feed_response
+    import capo_elementalinference.types.export_dictionary_entries_request
+    import capo_elementalinference.types.export_dictionary_entries_response
+    import capo_elementalinference.types.feed_id
+    import capo_elementalinference.types.feed_summary
+    import capo_elementalinference.types.fixture_date
+    import capo_elementalinference.types.fixture_id
+    import capo_elementalinference.types.fixture_summary
+    import capo_elementalinference.types.get_dictionary_request
+    import capo_elementalinference.types.get_dictionary_response
+    import capo_elementalinference.types.get_feed_policy_request
+    import capo_elementalinference.types.get_feed_policy_response
+    import capo_elementalinference.types.get_feed_request
+    import capo_elementalinference.types.get_feed_response
+    import capo_elementalinference.types.get_fixture_request
+    import capo_elementalinference.types.get_fixture_response
+    import capo_elementalinference.types.iam_role_arn
+    import capo_elementalinference.types.list_dictionaries_request
+    import capo_elementalinference.types.list_dictionaries_response
+    import capo_elementalinference.types.list_feeds_request
+    import capo_elementalinference.types.list_feeds_response
     import capo_elementalinference.types.list_tags_for_resource_request
     import capo_elementalinference.types.list_tags_for_resource_response
+    import capo_elementalinference.types.policy_document
+    import capo_elementalinference.types.put_feed_policy_request
+    import capo_elementalinference.types.put_feed_policy_response
     import capo_elementalinference.types.resource_arn
+    import capo_elementalinference.types.resource_name
+    import capo_elementalinference.types.search_filter_list
+    import capo_elementalinference.types.search_fixtures_request
+    import capo_elementalinference.types.search_fixtures_response
     import capo_elementalinference.types.tag_key_list
     import capo_elementalinference.types.tag_map
     import capo_elementalinference.types.tag_resource_request
     import capo_elementalinference.types.untag_resource_request
+    import capo_elementalinference.types.update_dictionary_request
+    import capo_elementalinference.types.update_dictionary_response
+    import capo_elementalinference.types.update_feed_request
+    import capo_elementalinference.types.update_feed_response
+    import capo_elementalinference.types.update_output_list
 
 
 class AsyncElementalInferenceClientConfig(TypedDict, total=False, closed=True):
@@ -139,6 +193,56 @@ class AsyncElementalInferenceClient:
         )
         return interceptors_, options_
 
+    async def get_fixture(
+        self,
+        fixture_id: "capo_elementalinference.types.fixture_id.FixtureId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.get_fixture_response.GetFixtureResponse":
+        """<p>Retrieves information about the specified fixture (a sports event, such as a specific basketball game). You obtain a fixtureId from SearchFixtures, or from the clipping output of a feed. </p>
+
+        Args:
+            fixture_id: <p>The ID of the fixture to retrieve, as returned by SearchFixtures.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.gateway_timed_out_exception.GatewayTimedOutException: <p>The request timed out before the service returned a response. This is a temporary condition. Retry the request. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is temporarily unable to handle the request. Retry the request. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.get_fixture_request.GetFixtureRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.get_fixture_response.GetFixtureResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.get_fixture
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.get_fixture.async_get_fixture(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.get_fixture_request.GetFixtureRequest = {
+            "fixture_id": fixture_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def list_tags_for_resource(
         self,
         resource_arn: "capo_elementalinference.types.resource_arn.ResourceArn",
@@ -186,6 +290,113 @@ class AsyncElementalInferenceClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def search_fixtures(
+        self,
+        sport: "capo_elementalinference.types.data_source_sport.DataSourceSport",
+        start_date: "capo_elementalinference.types.fixture_date.FixtureDate",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        end_date: Optional[
+            "capo_elementalinference.types.fixture_date.FixtureDate"
+        ] = None,
+        filters: Optional[
+            "capo_elementalinference.types.search_filter_list.SearchFilterList"
+        ] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> (
+        "capo_elementalinference.types.search_fixtures_response.SearchFixturesResponse"
+    ):
+        """<p>Searches for the fixtures (sports events, such as a specific basketball game) that are available for a sport in a date window. Each fixture in the response includes a fixtureId that you specify in the clipping output of a feed, so that Elemental Inference maps the event data for that fixture onto the clipping metadata. This operation is paginated: if there are more fixtures than fit in one page, the response includes a nextToken that you pass in a subsequent request. </p>
+
+        Args:
+            sport: <p>The sport to search for fixtures. Valid values: basketball (search for basketball fixtures), american-football (search for american-football fixtures). </p>
+            start_date: <p>The first day of the search window, in UTC. The search includes fixtures that are scheduled on this day. </p> <p>Specify the date in ISO 8601 format, as <code>YYYY-MM-DD</code>. For example, 2026-03-14. </p>
+            end_date: <p>The last day of the search window, in UTC. The search includes fixtures that are scheduled on this day. Specify the date in ISO 8601 format, as <code>YYYY-MM-DD</code>. </p> <p>If you omit this parameter, Elemental Inference searches only the day that you specified in startDate. The window from startDate through endDate must not exceed seven days. </p>
+            filters: <p>An array of filters that narrow the results. Each filter applies to one dimension of a fixture, such as the competitor. You can specify up to 10 filters. </p> <p>A fixture must satisfy every filter in the array in order to appear in the results. Within one filter, a fixture must match at least one of the values. </p>
+            max_results: <p>The maximum number of fixtures to return for each API request.</p> <p>The service might return fewer fixtures than the maxResults value. When more fixtures match the search, the response also includes a nextToken value that you can use to fetch the next batch of results. </p>
+            next_token: <p>The token that identifies the batch of results that you want to see.</p> <p>For example, you submit a SearchFixtures request with maxResults set at 5. The service returns the first batch of results (up to 5) and a nextToken value. To see the next batch of results, you submit the SearchFixtures request a second time, with the same search criteria, and specify the nextToken value. </p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.gateway_timed_out_exception.GatewayTimedOutException: <p>The request timed out before the service returned a response. This is a temporary condition. Retry the request. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is temporarily unable to handle the request. Retry the request. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.search_fixtures_request.SearchFixturesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.search_fixtures_response.SearchFixturesResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.search_fixtures
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.search_fixtures.async_search_fixtures(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.search_fixtures_request.SearchFixturesRequest = {
+            "sport": sport,
+            "start_date": start_date,
+        }
+        if end_date is not None:
+            input_["end_date"] = end_date
+        if filters is not None:
+            input_["filters"] = filters
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_search_fixtures(
+        self,
+        sport: "capo_elementalinference.types.data_source_sport.DataSourceSport",
+        start_date: "capo_elementalinference.types.fixture_date.FixtureDate",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        end_date: Optional[
+            "capo_elementalinference.types.fixture_date.FixtureDate"
+        ] = None,
+        filters: Optional[
+            "capo_elementalinference.types.search_filter_list.SearchFilterList"
+        ] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> "AsyncIterator[capo_elementalinference.types.fixture_summary.FixtureSummary]":
+        _token = next_token
+        while True:
+            _response = await self.search_fixtures(
+                sport,
+                start_date,
+                config_overrides=config_overrides,
+                end_date=end_date,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("fixtures",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def tag_resource(
         self,
@@ -277,6 +488,907 @@ class AsyncElementalInferenceClient:
         input_: capo_elementalinference.types.untag_resource_request.UntagResourceRequest = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_dictionary(
+        self,
+        name: "capo_elementalinference.types.resource_name.ResourceName",
+        language: "capo_elementalinference.types.dictionary_language.DictionaryLanguage",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        entries: Optional[
+            "capo_elementalinference.types.dictionary_entries_payload.DictionaryEntriesPayload"
+        ] = None,
+        tags: Optional["capo_elementalinference.types.tag_map.TagMap"] = None,
+    ) -> "capo_elementalinference.types.create_dictionary_response.CreateDictionaryResponse":
+        """<p>Creates a custom dictionary for improving transcription accuracy. A dictionary contains custom words and phrases that the ASR engine might not recognize, such as brand names, technical terms, or proper nouns. You can reference a dictionary when configuring a smart subtitles output. </p>
+
+        Args:
+            name: <p>A user-friendly name for this dictionary.</p>
+            language: <p>The language of the dictionary entries. Specify the language using an ISO 639-2/T three-letter code. Supported values: eng, fra, ita, deu, spa, por. </p>
+            entries: <p>The dictionary entries payload. Contains the custom words and phrases for the dictionary. Maximum size is 40,960 characters. </p>
+            tags: <p>Optional tags to associate with the dictionary.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request was rejected because it would exceed one or more service quotas for your account. Review your service quotas and either delete unused resources or request a quota increase. </p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.create_dictionary_request.CreateDictionaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.create_dictionary_response.CreateDictionaryResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.create_dictionary
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.create_dictionary.async_create_dictionary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.create_dictionary_request.CreateDictionaryRequest = {
+            "name": name,
+            "language": language,
+        }
+        if entries is not None:
+            input_["entries"] = entries
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_dictionary(
+        self,
+        id: "capo_elementalinference.types.dictionary_id.DictionaryId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.get_dictionary_response.GetDictionaryResponse":
+        """<p>Retrieves information about the specified dictionary.</p>
+
+        Args:
+            id: <p>The ID of the dictionary to retrieve.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.get_dictionary_request.GetDictionaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.get_dictionary_response.GetDictionaryResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.get_dictionary
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.get_dictionary.async_get_dictionary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.get_dictionary_request.GetDictionaryRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_dictionary(
+        self,
+        id: "capo_elementalinference.types.dictionary_id.DictionaryId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        name: Optional[
+            "capo_elementalinference.types.resource_name.ResourceName"
+        ] = None,
+        language: Optional[
+            "capo_elementalinference.types.dictionary_language.DictionaryLanguage"
+        ] = None,
+        entries: Optional[
+            "capo_elementalinference.types.dictionary_entries_payload.DictionaryEntriesPayload"
+        ] = None,
+    ) -> "capo_elementalinference.types.update_dictionary_response.UpdateDictionaryResponse":
+        """<p>Updates the specified dictionary.</p>
+
+        Args:
+            id: <p>The ID of the dictionary to update.</p>
+            name: <p>A new name for the dictionary. If not specified, the name is not changed.</p>
+            language: <p>A new language for the dictionary. If not specified, the language is not changed.</p>
+            entries: <p>New dictionary entries. If not specified, the entries are not changed.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.update_dictionary_request.UpdateDictionaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.update_dictionary_response.UpdateDictionaryResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.update_dictionary
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.update_dictionary.async_update_dictionary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.update_dictionary_request.UpdateDictionaryRequest = {
+            "id": id
+        }
+        if name is not None:
+            input_["name"] = name
+        if language is not None:
+            input_["language"] = language
+        if entries is not None:
+            input_["entries"] = entries
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_dictionary(
+        self,
+        id: "capo_elementalinference.types.dictionary_id.DictionaryId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.delete_dictionary_response.DeleteDictionaryResponse":
+        """<p>Deletes the specified dictionary. You cannot delete a dictionary that is referenced by a feed. You must first remove the dictionary reference from the feed's subtitling configuration. </p>
+
+        Args:
+            id: <p>The ID of the dictionary to delete.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.delete_dictionary_request.DeleteDictionaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.delete_dictionary_response.DeleteDictionaryResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.delete_dictionary
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.delete_dictionary.async_delete_dictionary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.delete_dictionary_request.DeleteDictionaryRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_dictionaries(
+        self,
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_elementalinference.types.list_dictionaries_response.ListDictionariesResponse":
+        """<p>Lists the dictionaries in your account.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return per API request. Valid range: 1 to 100.</p>
+            next_token: <p>The token that identifies the next batch of results to return.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.list_dictionaries_request.ListDictionariesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.list_dictionaries_response.ListDictionariesResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.list_dictionaries
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.list_dictionaries.async_list_dictionaries(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.list_dictionaries_request.ListDictionariesRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_dictionaries(
+        self,
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> "AsyncIterator[capo_elementalinference.types.dictionary_summary.DictionarySummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_dictionaries(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("dictionaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def export_dictionary_entries(
+        self,
+        id: "capo_elementalinference.types.dictionary_id.DictionaryId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.export_dictionary_entries_response.ExportDictionaryEntriesResponse":
+        """<p>Exports the entries from the specified dictionary.</p>
+
+        Args:
+            id: <p>The ID of the dictionary whose entries you want to export.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.export_dictionary_entries_request.ExportDictionaryEntriesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.export_dictionary_entries_response.ExportDictionaryEntriesResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.export_dictionary_entries
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.export_dictionary_entries.async_export_dictionary_entries(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.export_dictionary_entries_request.ExportDictionaryEntriesRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_feed(
+        self,
+        name: "capo_elementalinference.types.resource_name.ResourceName",
+        outputs: "capo_elementalinference.types.create_output_list.CreateOutputList",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        access_role_arn: Optional[
+            "capo_elementalinference.types.iam_role_arn.IamRoleArn"
+        ] = None,
+        tags: Optional["capo_elementalinference.types.tag_map.TagMap"] = None,
+    ) -> "capo_elementalinference.types.create_feed_response.CreateFeedResponse":
+        """<p>Creates a feed. The feed is the target for the live media stream that is being sent by the calling application. An example of a calling application is AWS Elemental MediaLive. </p> <p>The key contents of the feed is an array of outputs. Each output represents an Elemental Inference feature. After you create the feed, you must associate a resource with the feed. At that point, you will have a useable feed: resource - feed - output or outputs. </p>
+
+        Args:
+            name: <p>A user-friendly name for this feed.</p>
+            access_role_arn: <p>The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. For example, the smart crop feature uses this role to read graphics-compositing templates from your Amazon S3 bucket. You specify one access role for each feed. </p>
+            outputs: <p>An array of outputs for this feed. Each output represents a specific Elemental Inference feature. For example, there is one output type for the smart crop feature. You must specify at least one output, but you can later add outputs using AssociateFeed, or add, modify, and delete outputs using UpdateFeed. </p>
+            tags: <p>Optional tags. You can also add tags later, using TagResource.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request was rejected because it would exceed one or more service quotas for your account. Review your service quotas and either delete unused resources or request a quota increase. </p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.create_feed_request.CreateFeedRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.create_feed_response.CreateFeedResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.create_feed
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.create_feed.async_create_feed(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.create_feed_request.CreateFeedRequest = {
+            "name": name,
+            "outputs": outputs,
+        }
+        if access_role_arn is not None:
+            input_["access_role_arn"] = access_role_arn
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_feed(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.get_feed_response.GetFeedResponse":
+        """<p>Retrieves information about the specified feed.</p>
+
+        Args:
+            id: <p>The ID of the feed to query.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.get_feed_request.GetFeedRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.get_feed_response.GetFeedResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.get_feed
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.get_feed.async_get_feed(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.get_feed_request.GetFeedRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_feed(
+        self,
+        name: "capo_elementalinference.types.resource_name.ResourceName",
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        outputs: "capo_elementalinference.types.update_output_list.UpdateOutputList",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        access_role_arn: Optional[
+            "capo_elementalinference.types.iam_role_arn.IamRoleArn"
+        ] = None,
+    ) -> "capo_elementalinference.types.update_feed_response.UpdateFeedResponse":
+        """<p>Updates the name and/or outputs in a feed. </p> <p>UpdateFeed is a PUT operation, which means that the payload that you specify completely overwrites the existing payload. </p> <p>This means that if you want to touch the array of outputs, you must pass in the full new list. So you must omit outputs you want to delete, and include outputs you want to add or modify. </p> <p>If you want to patch the array of outputs to make selective additions, use AssociateFeed. </p>
+
+        Args:
+            name: <p>Required. You can specify the existing name (to leave it unchanged) or a new name. </p>
+            access_role_arn: <p>The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. You can specify the existing role (to leave it unchanged) or a new role. You specify one access role for each feed. </p>
+            id: <p>The ID of the feed to update.</p>
+            outputs: <p>Required. You can specify the existing array of outputs (to leave outputs unchanged) or you can specify a new array. </p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request was rejected because it would exceed one or more service quotas for your account. Review your service quotas and either delete unused resources or request a quota increase. </p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.update_feed_request.UpdateFeedRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.update_feed_response.UpdateFeedResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.update_feed
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.update_feed.async_update_feed(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.update_feed_request.UpdateFeedRequest = {
+            "name": name,
+            "id": id,
+            "outputs": outputs,
+        }
+        if access_role_arn is not None:
+            input_["access_role_arn"] = access_role_arn
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_feed(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.delete_feed_response.DeleteFeedResponse":
+        """<p>Deletes the specified feed. You can delete the feed at any time. Elemental Inference doesn't block you from deleting a feed when the calling application is calling PutMedia or GetMetadata on that feed, although both these calls will start to fail. For more information about managing inactive feeds, see the Elemental Inference User Guide. </p>
+
+        Args:
+            id: <p>The ID of the feed.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.delete_feed_request.DeleteFeedRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.delete_feed_response.DeleteFeedResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.delete_feed
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.delete_feed.async_delete_feed(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.delete_feed_request.DeleteFeedRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_feeds(
+        self,
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_elementalinference.types.list_feeds_response.ListFeedsResponse":
+        """<p>Displays a list of feeds that belong to this AWS account.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return per API request.</p> <p>For example, you submit a list request with MaxResults set at 5. Although 20 items match your request, the service returns no more than the first 5 items. (The service also returns a NextToken value that you can use to fetch the next batch of results.) </p> <p>The service might return fewer results than the MaxResults value. If MaxResults is not included in the request, the service defaults to pagination with a maximum of 10 results per page. </p> <p>Valid Range: Minimum value of 1. Maximum value of 1000.</p>
+            next_token: <p>The token that identifies the batch of results that you want to see.</p> <p>For example, you submit a ListFeeds request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListFeeds request a second time and specify the NextToken value. </p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.list_feeds_request.ListFeedsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.list_feeds_response.ListFeedsResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.list_feeds
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.list_feeds.async_list_feeds(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.list_feeds_request.ListFeedsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_feeds(
+        self,
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> "AsyncIterator[capo_elementalinference.types.feed_summary.FeedSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_feeds(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("feeds",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def associate_feed(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        associated_resource_name: "capo_elementalinference.types.associated_resource_name.AssociatedResourceName",
+        outputs: "capo_elementalinference.types.create_output_list.CreateOutputList",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        dry_run: Optional[bool] = None,
+    ) -> "capo_elementalinference.types.associate_feed_response.AssociateFeedResponse":
+        """<p>Associates a resource with the feed. The resource provides the input that Elemental Inference needs in order to perform an Elemental Inference feature, such as cropping video. You always provide the resource by associating it with a feed. You can associate only one resource with each feed. With an association, a specific source media is claiming ownership of the feed. </p> <p>AssociateFeed is a PATCH operation, which means that you can include only parameters that you want to change. Parameters that you don't include will not be affected by the operation. </p> <p>Specifically:</p> <ul> <li> <p>You can add more outputs to the existing outputs. New outputs will be appended.</p> </li> <li> <p>You can't modify an existing output (for example to change its name). Instead, use UpdateFeed. </p> </li> <li> <p>You can't delete an existing output. Instead, use UpdateFeed.</p> </li> </ul> <p>Also note that you can't change the feed name with AssociateFeed. Instead, use UpdateFeed. </p>
+
+        Args:
+            id: <p>The ID of the feed.</p>
+            associated_resource_name: <p>An identifier for the resource. This name must not resemble an ARN.</p> <p>The resource is the source media that the feed will process. The name you assign should help you to later identify the source media that belongs to the feed. In this way, you will know which source media to push to the feed (using PutMedia). </p>
+            outputs: <p>An array of one or more outputs that you want to add to this feed now, to supplement any outputs that you specified when you created or updated the feed. </p>
+            dry_run: <p>Set to true if you want to do a dry run of the associate action.</p> <p>Elemental Inference will validate that the real request would succeed without actually making any changes. A dry run catches errors such as missing IAM permissions, quota limits exceeded, conflicting outputs, and so on. If the dry run fails, the action returns a 4xx error code. After you've fixed the errors, resubmit the request. </p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request was rejected because it would exceed one or more service quotas for your account. Review your service quotas and either delete unused resources or request a quota increase. </p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.associate_feed_request.AssociateFeedRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.associate_feed_response.AssociateFeedResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.associate_feed
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.associate_feed.async_associate_feed(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.associate_feed_request.AssociateFeedRequest = {
+            "id": id,
+            "associated_resource_name": associated_resource_name,
+            "outputs": outputs,
+        }
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_feed_policy(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the resource-based policy attached to the specified feed. After you delete the policy, the operation revokes the cross-account access that the policy granted. </p>
+
+        Args:
+            id: <p>The ID of the feed whose policy you want to delete.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.delete_feed_policy_request.DeleteFeedPolicyRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_elementalinference._operations.elemental_inference.delete_feed_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.delete_feed_policy.async_delete_feed_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.delete_feed_policy_request.DeleteFeedPolicyRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def disassociate_feed(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        associated_resource_name: "capo_elementalinference.types.associated_resource_name.AssociatedResourceName",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        dry_run: Optional[bool] = None,
+    ) -> "capo_elementalinference.types.disassociate_feed_response.DisassociateFeedResponse":
+        """<p>Releases the resource (the source media) that is associated with this feed. The outputs in the feed become DISABLED. </p>
+
+        Args:
+            id: <p>The ID of the feed where you want to release the resource.</p>
+            associated_resource_name: <p>The name of the resource currently associated with the feed.</p>
+            dry_run: <p>Set to true if you want to do a dry run of the disassociate action.</p> <p>Elemental Inference will validate that the real request would succeed without actually making any changes. A dry run catches errors such as missing IAM permissions. If the dry run fails, the action returns a 4xx error code. </p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.disassociate_feed_request.DisassociateFeedRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.disassociate_feed_response.DisassociateFeedResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.disassociate_feed
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.disassociate_feed.async_disassociate_feed(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.disassociate_feed_request.DisassociateFeedRequest = {
+            "id": id,
+            "associated_resource_name": associated_resource_name,
+        }
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_feed_policy(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.get_feed_policy_response.GetFeedPolicyResponse":
+        """<p>Retrieves the resource-based policy attached to the specified feed.</p>
+
+        Args:
+            id: <p>The ID of the feed whose policy you want to retrieve.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.get_feed_policy_request.GetFeedPolicyRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.get_feed_policy_response.GetFeedPolicyResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.get_feed_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.get_feed_policy.async_get_feed_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.get_feed_policy_request.GetFeedPolicyRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def put_feed_policy(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        policy: "capo_elementalinference.types.policy_document.PolicyDocument",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.put_feed_policy_response.PutFeedPolicyResponse":
+        """<p>Attaches or replaces a resource-based policy on the specified feed. A resource-based policy grants cross-account access to the feed. </p>
+
+        Args:
+            id: <p>The ID of the feed to attach the policy to.</p>
+            policy: <p>The resource-based policy document to attach to the feed.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.put_feed_policy_request.PutFeedPolicyRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.put_feed_policy_response.PutFeedPolicyResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.put_feed_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.put_feed_policy.async_put_feed_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_elementalinference.types.put_feed_policy_request.PutFeedPolicyRequest = {
+            "id": id,
+            "policy": policy,
         }
 
         response = await aexecute_pipeline(

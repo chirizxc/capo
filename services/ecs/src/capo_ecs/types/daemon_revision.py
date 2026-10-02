@@ -35,6 +35,8 @@ class DaemonRevision(TypedDict, closed=True):
     """<p>Specifies whether Amazon ECS managed tags are turned on for the daemon tasks.</p>"""
     enable_execute_command: NotRequired["capo_ecs.types.boxed_boolean.BoxedBoolean"]
     """<p>Specifies whether the execute command functionality is turned on for the daemon tasks.</p>"""
+    critical: NotRequired["capo_ecs.types.boxed_boolean.BoxedBoolean"]
+    """<p>If the <code>critical</code> parameter of this daemon revision is <code>true</code>, and the daemon task fails, stops, or becomes unhealthy, Amazon ECS drains the container instance and stops the other tasks running on it. If the parameter is <code>false</code>, the daemon task failure doesn't affect the other tasks on the instance, and doesn't block instance registration. The default value is <code>true</code>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -74,6 +76,8 @@ def serialize_aws_json_1_1(value: DaemonRevision) -> dict:
         out["enableECSManagedTags"] = value["enable_ecs_managed_tags"]
     if "enable_execute_command" in value:
         out["enableExecuteCommand"] = value["enable_execute_command"]
+    if "critical" in value:
+        out["critical"] = value["critical"]
     return out
 
 
@@ -113,4 +117,6 @@ def deserialize_aws_json_1_1(data: dict) -> DaemonRevision:
         out["enable_ecs_managed_tags"] = data["enableECSManagedTags"]
     if data.get("enableExecuteCommand") is not None:
         out["enable_execute_command"] = data["enableExecuteCommand"]
+    if data.get("critical") is not None:
+        out["critical"] = data["critical"]
     return out

@@ -23,12 +23,17 @@ import capo_geo_places.types.bounding_box
 import capo_geo_places.types.business_chain_list
 import capo_geo_places.types.category_list
 import capo_geo_places.types.contacts
+import capo_geo_places.types.cross_reference_list
 import capo_geo_places.types.food_type_list
 import capo_geo_places.types.get_place_additional_feature_list
+import capo_geo_places.types.get_place_address_names_mode
+import capo_geo_places.types.get_place_intended_use
 import capo_geo_places.types.get_place_request
 import capo_geo_places.types.get_place_response
 import capo_geo_places.types.opening_hours_list
 import capo_geo_places.types.phoneme_details
+import capo_geo_places.types.place_attribute_list
+import capo_geo_places.types.place_type
 import capo_geo_places.types.position
 import capo_geo_places.types.postal_code_details_list
 import capo_geo_places.types.related_place
@@ -36,7 +41,11 @@ import capo_geo_places.types.related_place_list
 import capo_geo_places.types.time_zone
 from capo_geo_places._protocol.errors import parse_error_metadata_json
 from capo_geo_places._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_geo_places._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_geo_places._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_geo_places.errors import UnknownServiceError
 
 
@@ -128,20 +137,47 @@ def build_request(
             Region=options.region,
         )
     )  # noqa: F841
+    import capo_geo_places.types.get_place_additional_feature
+    import capo_geo_places.types.get_place_address_names_mode
+    import capo_geo_places.types.get_place_intended_use
+
     url = endpoint.url.rstrip("/") + "/v2/place/{PlaceId}"
     url = url.replace("{PlaceId}", quote(input_["place_id"], safe=""))
     params: list[tuple[str, str]] = []
     if "additional_features" in input_:
         for item in input_["additional_features"]:
-            params.append(("additional-features", item))
+            params.append(
+                (
+                    "additional-features",
+                    capo_geo_places.types.get_place_additional_feature.serialize_json(
+                        item
+                    ),
+                )
+            )
     if "language" in input_:
         params.append(("language", input_["language"]))
     if "political_view" in input_:
         params.append(("political-view", input_["political_view"]))
     if "intended_use" in input_:
-        params.append(("intended-use", input_["intended_use"]))
+        params.append(
+            (
+                "intended-use",
+                capo_geo_places.types.get_place_intended_use.serialize_json(
+                    input_["intended_use"]
+                ),
+            )
+        )
     if "key" in input_:
         params.append(("key", input_["key"]))
+    if "address_names_mode" in input_:
+        params.append(
+            (
+                "address-names-mode",
+                capo_geo_places.types.get_place_address_names_mode.serialize_json(
+                    input_["address_names_mode"]
+                ),
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
@@ -161,7 +197,7 @@ def get_place(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -176,7 +212,7 @@ async def async_get_place(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

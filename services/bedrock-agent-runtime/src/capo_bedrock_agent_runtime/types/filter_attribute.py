@@ -15,7 +15,7 @@ class FilterAttribute(TypedDict, closed=True):
     key: "capo_bedrock_agent_runtime.types.filter_key.FilterKey"
     """<p>The name that the metadata attribute must match.</p>"""
     value: "capo_bedrock_agent_runtime.types.filter_value.FilterValue"
-    """<p>The value to whcih to compare the value of the metadata attribute.</p>"""
+    """<p>The value to which to compare the value of the metadata attribute.</p>"""
 
 
 # --- restJson1 ser/de ---

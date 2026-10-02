@@ -8,6 +8,7 @@ from capo_partnercentral_selling.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_partnercentral_selling.types.lead_customer
+    import capo_partnercentral_selling.types.lead_insights
     import capo_partnercentral_selling.types.lead_interaction
     import capo_partnercentral_selling.types.lead_qualification_status
 
@@ -21,6 +22,10 @@ class UpdateLeadContext(TypedDict, closed=True):
         "capo_partnercentral_selling.types.lead_interaction.LeadInteraction"
     ]
     """<p>Updated interaction details for the lead context.</p>"""
+    insights: NotRequired[
+        "capo_partnercentral_selling.types.lead_insights.LeadInsights"
+    ]
+    """<p>Insights that AI generates and associates with the lead. These insights provide automated analysis to help partners assess the lead quality and readiness.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -40,6 +45,14 @@ def serialize_aws_json_1_0(value: UpdateLeadContext) -> dict:
         out["Interaction"] = (
             capo_partnercentral_selling.types.lead_interaction.serialize_aws_json_1_0(
                 value["interaction"]
+            )
+        )
+    if "insights" in value:
+        import capo_partnercentral_selling.types.lead_insights
+
+        out["Insights"] = (
+            capo_partnercentral_selling.types.lead_insights.serialize_aws_json_1_0(
+                value["insights"]
             )
         )
     return out
@@ -67,6 +80,14 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateLeadContext:
         out["interaction"] = (
             capo_partnercentral_selling.types.lead_interaction.deserialize_aws_json_1_0(
                 data["Interaction"]
+            )
+        )
+    if data.get("Insights") is not None:
+        import capo_partnercentral_selling.types.lead_insights
+
+        out["insights"] = (
+            capo_partnercentral_selling.types.lead_insights.deserialize_aws_json_1_0(
+                data["Insights"]
             )
         )
     return out

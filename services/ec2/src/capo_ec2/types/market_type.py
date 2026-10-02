@@ -8,6 +8,7 @@ MarketType: TypeAlias = Literal[
     "spot",
     "capacity-block",
     "interruptible-capacity-reservation",
+    "on-demand",
 ]
 
 

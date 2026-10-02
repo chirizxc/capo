@@ -18,7 +18,7 @@ class ListWorkflowExecutionsResponse(TypedDict, closed=True):
     workflow_executions: NotRequired[
         "capo_imagebuilder.types.workflow_executions_list.WorkflowExecutionsList"
     ]
-    """<p>Contains an array of runtime details that represents each time a workflow ran for the requested image build version.</p>"""
+    """<p>An array of runtime details that represents each time a workflow ran for the requested image build version. Image Builder retains workflow execution records for a limited time, so this array can be empty for older image build versions.</p>"""
     image_build_version_arn: NotRequired[
         "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     ]
@@ -26,7 +26,7 @@ class ListWorkflowExecutionsResponse(TypedDict, closed=True):
     message: NotRequired[
         "capo_imagebuilder.types.image_build_message.ImageBuildMessage"
     ]
-    """<p>The output message from the list action, if applicable.</p>"""
+    """<p>The failure reason for the image build version, if it's in a failed state. This comes from the image itself, not from an individual workflow, so it's available even when no workflow executions remain for the image.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
     """<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>"""
 

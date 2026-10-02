@@ -21,7 +21,7 @@ class CreateTrailResponse(TypedDict, closed=True):
     sns_topic_arn: NotRequired["capo_cloudtrail.types.string.String"]
     """<p>Specifies the ARN of the Amazon SNS topic that CloudTrail uses to send notifications when log files are delivered. The format of a topic ARN is:</p> <p> <code>arn:aws:sns:us-east-2:123456789012:MyTopic</code> </p>"""
     include_global_service_events: NotRequired["capo_cloudtrail.types.boolean.Boolean"]
-    """<p>Specifies whether the trail is publishing events from global services such as IAM to the log files.</p>"""
+    """<p>Specifies whether the trail is publishing events from global services such as IAM to the log files. Setting this value to <code>true</code> only delivers global service events to the trail if the trail is multi-Region or if the trail's home Region is the partition leader Region (for example, us-east-1).</p>"""
     is_multi_region_trail: NotRequired["capo_cloudtrail.types.boolean.Boolean"]
     """<p>Specifies whether the trail exists in one Region or in all Regions.</p>"""
     trail_arn: NotRequired["capo_cloudtrail.types.string.String"]
@@ -36,6 +36,8 @@ class CreateTrailResponse(TypedDict, closed=True):
     """<p>Specifies the KMS key ID that encrypts the events delivered by CloudTrail. The value is a fully specified ARN to a KMS key in the following format.</p> <p> <code>arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012</code> </p>"""
     is_organization_trail: NotRequired["capo_cloudtrail.types.boolean.Boolean"]
     """<p>Specifies whether the trail is an organization trail.</p>"""
+    recursive_logging: NotRequired["capo_cloudtrail.types.boolean.Boolean"]
+    """<p>Specifies whether recursive logging is enabled for the trail.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -67,6 +69,8 @@ def serialize_aws_json_1_1(value: CreateTrailResponse) -> dict:
         out["KmsKeyId"] = value["kms_key_id"]
     if "is_organization_trail" in value:
         out["IsOrganizationTrail"] = value["is_organization_trail"]
+    if "recursive_logging" in value:
+        out["RecursiveLogging"] = value["recursive_logging"]
     return out
 
 
@@ -98,4 +102,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrailResponse:
         out["kms_key_id"] = data["KmsKeyId"]
     if data.get("IsOrganizationTrail") is not None:
         out["is_organization_trail"] = data["IsOrganizationTrail"]
+    if data.get("RecursiveLogging") is not None:
+        out["recursive_logging"] = data["RecursiveLogging"]
     return out

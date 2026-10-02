@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_datazone.types.notebook_id
     import capo_datazone.types.notebook_name
     import capo_datazone.types.notebook_status
+    import capo_datazone.types.notebook_type
     import capo_datazone.types.project_id
     import capo_datazone.types.updated_at
     import capo_datazone.types.updated_by
@@ -30,6 +31,8 @@ class NotebookSummary(TypedDict, closed=True):
     """<p>The identifier of the Amazon SageMaker Unified Studio domain.</p>"""
     status: "capo_datazone.types.notebook_status.NotebookStatus"
     """<p>The status of the notebook.</p>"""
+    type: NotRequired["capo_datazone.types.notebook_type.NotebookType"]
+    """<p>The type of the notebook.</p>"""
     description: NotRequired["capo_datazone.types.description.Description"]
     """<p>The description of the notebook.</p>"""
     created_at: NotRequired["capo_datazone.types.created_at.CreatedAt"]
@@ -52,6 +55,10 @@ def serialize_json(value: NotebookSummary) -> dict:
     import capo_datazone.types.notebook_status
 
     out["status"] = capo_datazone.types.notebook_status.serialize_json(value["status"])
+    if "type" in value:
+        import capo_datazone.types.notebook_type
+
+        out["type"] = capo_datazone.types.notebook_type.serialize_json(value["type"])
     if "description" in value:
         out["description"] = value["description"]
     if "created_at" in value:
@@ -99,6 +106,10 @@ def deserialize_json(data: dict) -> NotebookSummary:
         )
     else:
         raise DeserializationError("NotebookSummary.status required")
+    if data.get("type") is not None:
+        import capo_datazone.types.notebook_type
+
+        out["type"] = capo_datazone.types.notebook_type.deserialize_json(data["type"])
     if data.get("description") is not None:
         out["description"] = data["description"]
     if data.get("createdAt") is not None:

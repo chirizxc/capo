@@ -16,12 +16,14 @@ import capo_bedrock_agentcore_control.errors.access_denied_exception
 import capo_bedrock_agentcore_control.errors.conflict_exception
 import capo_bedrock_agentcore_control.errors.internal_server_exception
 import capo_bedrock_agentcore_control.errors.resource_not_found_exception
+import capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception
 import capo_bedrock_agentcore_control.errors.throttling_exception
 import capo_bedrock_agentcore_control.errors.validation_exception
 import capo_bedrock_agentcore_control.types.environment_variables_map
 import capo_bedrock_agentcore_control.types.harness
 import capo_bedrock_agentcore_control.types.harness_allowed_tools
 import capo_bedrock_agentcore_control.types.harness_environment_provider_request
+import capo_bedrock_agentcore_control.types.harness_hooks
 import capo_bedrock_agentcore_control.types.harness_model_configuration
 import capo_bedrock_agentcore_control.types.harness_skills
 import capo_bedrock_agentcore_control.types.harness_system_prompt
@@ -40,6 +42,7 @@ from capo_bedrock_agentcore_control._rule_engine._endpoint_rule_set import (
 from capo_bedrock_agentcore_control._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agentcore_control.errors import UnknownServiceError
 
@@ -62,6 +65,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ResourceNotFoundException":
             raise capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
+                data, message
+            )
+        case "ServiceQuotaExceededException":
+            raise capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException.from_json(
                 data, message
             )
         case "ThrottlingException":
@@ -167,7 +174,7 @@ def update_harness(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -185,7 +192,7 @@ async def async_update_harness(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

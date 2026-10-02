@@ -21,7 +21,11 @@ import capo_signin.types.put_console_authorization_configuration_input
 import capo_signin.types.put_console_authorization_configuration_output
 from capo_signin._protocol.errors import parse_error_metadata_json
 from capo_signin._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_signin._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_signin._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_signin.errors import UnknownServiceError
 
 
@@ -114,6 +118,7 @@ def build_request(
             Endpoint=options.endpoint,
             Region=options.region,
             IsControlPlane=True,
+            IsOAuthEndpoint=options.is_o_auth_endpoint,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/put-console-authorization-configuration"
@@ -146,7 +151,7 @@ def put_console_authorization_configuration(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -164,7 +169,7 @@ async def async_put_console_authorization_configuration(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

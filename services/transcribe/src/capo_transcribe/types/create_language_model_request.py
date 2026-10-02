@@ -9,6 +9,7 @@ from capo_transcribe.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_transcribe.types.base_model_name
     import capo_transcribe.types.clm_language_code
+    import capo_transcribe.types.encryption_configuration
     import capo_transcribe.types.input_data_config
     import capo_transcribe.types.model_name
     import capo_transcribe.types.tag_list
@@ -23,6 +24,10 @@ class CreateLanguageModelRequest(TypedDict, closed=True):
     """<p>A unique name, chosen by you, for your custom language model.</p> <p>This name is case sensitive, cannot contain spaces, and must be unique within an Amazon Web Services account. If you try to create a new custom language model with the same name as an existing custom language model, you get a <code>ConflictException</code> error.</p>"""
     input_data_config: "capo_transcribe.types.input_data_config.InputDataConfig"
     """<p>Contains the Amazon S3 location of the training data you want to use to create a new custom language model, and permissions to access this location.</p> <p>When using <code>InputDataConfig</code>, you must include these sub-parameters: <code>S3Uri</code>, which is the Amazon S3 location of your training data, and <code>DataAccessRoleArn</code>, which is the Amazon Resource Name (ARN) of the role that has permission to access your specified Amazon S3 location. You can optionally include <code>TuningDataS3Uri</code>, which is the Amazon S3 location of your tuning data. If you specify different Amazon S3 locations for training and tuning data, the ARN you use must have permissions to access both locations.</p>"""
+    encryption_configuration: NotRequired[
+        "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+    ]
+    """<p>Specifies the encryption configuration for your custom language model. Your model artifacts are encrypted with the specified KMS key or with an AWS-owned key if a key is not supplied.</p>"""
     tags: NotRequired["capo_transcribe.types.tag_list.TagList"]
     r"""<p>Adds one or more custom tags, each in the form of a key:value pair, to a new custom language model at the time you create this new model.</p> <p>To learn more about using tags with Amazon Transcribe, refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html\">Tagging resources</a>.</p>"""
 
@@ -50,6 +55,14 @@ def serialize_aws_json_1_1(value: CreateLanguageModelRequest) -> dict:
             value["input_data_config"]
         )
     )
+    if "encryption_configuration" in value:
+        import capo_transcribe.types.encryption_configuration
+
+        out["EncryptionConfiguration"] = (
+            capo_transcribe.types.encryption_configuration.serialize_aws_json_1_1(
+                value["encryption_configuration"]
+            )
+        )
     if "tags" in value:
         import capo_transcribe.types.tag_list
 
@@ -98,6 +111,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLanguageModelRequest:
     else:
         raise DeserializationError(
             "CreateLanguageModelRequest.input_data_config required"
+        )
+    if data.get("EncryptionConfiguration") is not None:
+        import capo_transcribe.types.encryption_configuration
+
+        out["encryption_configuration"] = (
+            capo_transcribe.types.encryption_configuration.deserialize_aws_json_1_1(
+                data["EncryptionConfiguration"]
+            )
         )
     if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list

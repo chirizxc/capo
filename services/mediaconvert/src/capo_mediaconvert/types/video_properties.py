@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_mediaconvert.types.__integer
     import capo_mediaconvert.types.__long
+    import capo_mediaconvert.types.aspect_ratio
     import capo_mediaconvert.types.codec_metadata
     import capo_mediaconvert.types.color_primaries
     import capo_mediaconvert.types.frame_rate
@@ -21,11 +22,15 @@ class VideoProperties(TypedDict, closed=True):
     bit_rate: NotRequired["capo_mediaconvert.types.__long.__long"]
     """The bit rate of the video track, in bits per second."""
     codec_metadata: NotRequired["capo_mediaconvert.types.codec_metadata.CodecMetadata"]
-    """Codec-specific parameters parsed from the video essence headers. This information provides detailed technical specifications about how the video was encoded, including profile settings, resolution details, and color space information that can help you understand the source video characteristics and make informed encoding decisions."""
+    """Codec-specific parameters parsed from the video essence headers. This information provides detailed technical specifications about how the video was encoded, including profile settings, resolution details, and color space information that can help you understand the source video characteristics and make informed encoding decisions. These fields are returned for H.264 (AVC), H.265 (HEVC), and MPEG-2 video, and might not be returned for other codecs. For MPEG-TS and MPEG-PS inputs, color information (color primaries, transfer characteristics, and matrix coefficients) appears in these fields rather than in the top-level videoProperties."""
     color_primaries: NotRequired[
         "capo_mediaconvert.types.color_primaries.ColorPrimaries"
     ]
     """The color space primaries of the video track, defining the red, green, and blue color coordinates used for the video. This information helps ensure accurate color reproduction during playback and transcoding."""
+    display_aspect_ratio: NotRequired[
+        "capo_mediaconvert.types.aspect_ratio.AspectRatio"
+    ]
+    """An aspect ratio expressed as a fraction with numerator and denominator values, reduced to lowest terms. Used for the sample (pixel) aspect ratio and the display aspect ratio of a video track. For example, a 720x576 anamorphic track has a sample aspect ratio of 64 / 45 and a display aspect ratio of 16 / 9. A video track can declare an aspect ratio in two independent places, and MediaConvert reports each one where it was found rather than choosing between them. The ratio declared by the container appears on the video track itself, and the ratio declared by the video essence appears under codecMetadata. When a file declares an aspect ratio in only one of the two places, the other is null; when it declares both and they disagree, you can compare them and decide which to use."""
     frame_rate: NotRequired["capo_mediaconvert.types.frame_rate.FrameRate"]
     """The frame rate of the video or audio track, expressed as a fraction with numerator and denominator values."""
     hdr_metadata: NotRequired["capo_mediaconvert.types.hdr_metadata.HdrMetadata"]
@@ -38,6 +43,8 @@ class VideoProperties(TypedDict, closed=True):
     """The color space matrix coefficients of the video track, defining how RGB color values are converted to and from YUV color space. This affects color accuracy during encoding and decoding processes."""
     rotation: NotRequired["capo_mediaconvert.types.__integer.__integer"]
     """The clockwise rotation angle of the video track, in degrees, as derived from container-level metadata (e.g. the MP4 tkhd transformation matrix or the Matroska ProjectionPoseRoll element). Common values are 90, 180, and 270. This field is null when no rotation metadata is present or when the rotation is 0 degrees. For MP4, non-standard transformation matrices also yield null."""
+    sample_aspect_ratio: NotRequired["capo_mediaconvert.types.aspect_ratio.AspectRatio"]
+    """An aspect ratio expressed as a fraction with numerator and denominator values, reduced to lowest terms. Used for the sample (pixel) aspect ratio and the display aspect ratio of a video track. For example, a 720x576 anamorphic track has a sample aspect ratio of 64 / 45 and a display aspect ratio of 16 / 9. A video track can declare an aspect ratio in two independent places, and MediaConvert reports each one where it was found rather than choosing between them. The ratio declared by the container appears on the video track itself, and the ratio declared by the video essence appears under codecMetadata. When a file declares an aspect ratio in only one of the two places, the other is null; when it declares both and they disagree, you can compare them and decide which to use."""
     transfer_characteristics: NotRequired[
         "capo_mediaconvert.types.transfer_characteristics.TransferCharacteristics"
     ]
@@ -65,6 +72,12 @@ def serialize_json(value: VideoProperties) -> dict:
         out["colorPrimaries"] = capo_mediaconvert.types.color_primaries.serialize_json(
             value["color_primaries"]
         )
+    if "display_aspect_ratio" in value:
+        import capo_mediaconvert.types.aspect_ratio
+
+        out["displayAspectRatio"] = capo_mediaconvert.types.aspect_ratio.serialize_json(
+            value["display_aspect_ratio"]
+        )
     if "frame_rate" in value:
         import capo_mediaconvert.types.frame_rate
 
@@ -89,6 +102,12 @@ def serialize_json(value: VideoProperties) -> dict:
         )
     if "rotation" in value:
         out["rotation"] = value["rotation"]
+    if "sample_aspect_ratio" in value:
+        import capo_mediaconvert.types.aspect_ratio
+
+        out["sampleAspectRatio"] = capo_mediaconvert.types.aspect_ratio.serialize_json(
+            value["sample_aspect_ratio"]
+        )
     if "transfer_characteristics" in value:
         import capo_mediaconvert.types.transfer_characteristics
 
@@ -122,6 +141,14 @@ def deserialize_json(data: dict) -> VideoProperties:
                 data["colorPrimaries"]
             )
         )
+    if data.get("displayAspectRatio") is not None:
+        import capo_mediaconvert.types.aspect_ratio
+
+        out["display_aspect_ratio"] = (
+            capo_mediaconvert.types.aspect_ratio.deserialize_json(
+                data["displayAspectRatio"]
+            )
+        )
     if data.get("frameRate") is not None:
         import capo_mediaconvert.types.frame_rate
 
@@ -146,6 +173,14 @@ def deserialize_json(data: dict) -> VideoProperties:
         )
     if data.get("rotation") is not None:
         out["rotation"] = data["rotation"]
+    if data.get("sampleAspectRatio") is not None:
+        import capo_mediaconvert.types.aspect_ratio
+
+        out["sample_aspect_ratio"] = (
+            capo_mediaconvert.types.aspect_ratio.deserialize_json(
+                data["sampleAspectRatio"]
+            )
+        )
     if data.get("transferCharacteristics") is not None:
         import capo_mediaconvert.types.transfer_characteristics
 

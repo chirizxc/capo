@@ -7,9 +7,11 @@ from typing_extensions import NotRequired, TypedDict
 from capo_lightsail.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_lightsail.types.boolean
     import capo_lightsail.types.cache_behavior
     import capo_lightsail.types.cache_behavior_list
     import capo_lightsail.types.cache_settings
+    import capo_lightsail.types.distribution_custom_error_response_list
     import capo_lightsail.types.input_origin
     import capo_lightsail.types.ip_address_type
     import capo_lightsail.types.resource_name
@@ -45,6 +47,14 @@ class CreateDistributionRequest(TypedDict, closed=True):
         "capo_lightsail.types.viewer_minimum_tls_protocol_version_enum.ViewerMinimumTlsProtocolVersionEnum"
     ]
     """<p>The minimum TLS protocol version for the SSL/TLS certificate.</p>"""
+    enable_private_origin_access: NotRequired["capo_lightsail.types.boolean.boolean"]
+    """<p>Specifies whether to enable private origin access for the distribution. With private origin access, the distribution can serve objects that aren't publicly accessible from a Lightsail bucket.</p> <p>Lightsail grants the distribution permission to read the bucket's objects. Enabling private origin access doesn't change the bucket's access settings, and you can still retrieve publicly accessible objects directly from the bucket's endpoint.</p> <note> <p>You can enable private origin access only when the distribution's origin is a Lightsail bucket. If the origin is another resource type, the request fails.</p> </note>"""
+    default_root_object: NotRequired["capo_lightsail.types.string.string"]
+    """<p>The object (for example, <code>index.html</code>) that the distribution returns when a viewer requests the root URL of the distribution (<code>/</code>) instead of a specific object. The object that you specify must be available from the origin.</p>"""
+    custom_error_responses: NotRequired[
+        "capo_lightsail.types.distribution_custom_error_response_list.DistributionCustomErrorResponseList"
+    ]
+    """<p>An array of objects that describe the custom error responses for the distribution. With a custom error response, you can specify the page to return when the origin responds with a given HTTP error code. You can also specify the HTTP status code to send to the viewer.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -102,6 +112,18 @@ def serialize_aws_json_1_1(value: CreateDistributionRequest) -> dict:
         out["viewerMinimumTlsProtocolVersion"] = (
             capo_lightsail.types.viewer_minimum_tls_protocol_version_enum.serialize_aws_json_1_1(
                 value["viewer_minimum_tls_protocol_version"]
+            )
+        )
+    if "enable_private_origin_access" in value:
+        out["enablePrivateOriginAccess"] = value["enable_private_origin_access"]
+    if "default_root_object" in value:
+        out["defaultRootObject"] = value["default_root_object"]
+    if "custom_error_responses" in value:
+        import capo_lightsail.types.distribution_custom_error_response_list
+
+        out["customErrorResponses"] = (
+            capo_lightsail.types.distribution_custom_error_response_list.serialize_aws_json_1_1(
+                value["custom_error_responses"]
             )
         )
     return out
@@ -177,6 +199,18 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDistributionRequest:
         out["viewer_minimum_tls_protocol_version"] = (
             capo_lightsail.types.viewer_minimum_tls_protocol_version_enum.deserialize_aws_json_1_1(
                 data["viewerMinimumTlsProtocolVersion"]
+            )
+        )
+    if data.get("enablePrivateOriginAccess") is not None:
+        out["enable_private_origin_access"] = data["enablePrivateOriginAccess"]
+    if data.get("defaultRootObject") is not None:
+        out["default_root_object"] = data["defaultRootObject"]
+    if data.get("customErrorResponses") is not None:
+        import capo_lightsail.types.distribution_custom_error_response_list
+
+        out["custom_error_responses"] = (
+            capo_lightsail.types.distribution_custom_error_response_list.deserialize_aws_json_1_1(
+                data["customErrorResponses"]
             )
         )
     return out

@@ -15,7 +15,7 @@ class DescribeMetadataModelImportsResponse(TypedDict, closed=True):
     requests: NotRequired[
         "capo_database_migration_service.types.schema_conversion_request_list.SchemaConversionRequestList"
     ]
-    """<p>A paginated list of metadata model imports.</p>"""
+    """<p>A paginated list of metadata model import requests.</p> <note> <p>DMS never populates the <code>ExportSqlDetails</code> field for this operation.</p> </note>"""
 
 
 # --- awsJson1_1 ser/de ---

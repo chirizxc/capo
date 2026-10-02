@@ -13,6 +13,7 @@ import capo_service_quotas._auth._sigv4
 import capo_service_quotas._protocol.eventstream
 import capo_service_quotas.errors.access_denied_exception
 import capo_service_quotas.errors.illegal_argument_exception
+import capo_service_quotas.errors.invalid_pagination_token_exception
 import capo_service_quotas.errors.no_such_resource_exception
 import capo_service_quotas.errors.service_exception
 import capo_service_quotas.errors.too_many_requests_exception
@@ -26,6 +27,7 @@ from capo_service_quotas._rule_engine._endpoint_rule_set import EndpointParams, 
 from capo_service_quotas._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_service_quotas.errors import UnknownServiceError
 
@@ -40,6 +42,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "IllegalArgumentException":
             raise capo_service_quotas.errors.illegal_argument_exception.IllegalArgumentException.from_aws_json_1_1(
+                data, message
+            )
+        case "InvalidPaginationTokenException":
+            raise capo_service_quotas.errors.invalid_pagination_token_exception.InvalidPaginationTokenException.from_aws_json_1_1(
                 data, message
             )
         case "NoSuchResourceException":
@@ -147,7 +153,7 @@ def get_quota_utilization_report(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -165,7 +171,7 @@ async def async_get_quota_utilization_report(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_launch_wizard.types.account_constraints_list
     import capo_launch_wizard.types.workload_name
     import capo_launch_wizard.types.workload_status
 
@@ -16,6 +17,10 @@ class WorkloadData(TypedDict, closed=True):
     """<p>The display name of a workload.</p>"""
     status: NotRequired["capo_launch_wizard.types.workload_status.WorkloadStatus"]
     """<p>The status of a workload.</p> <p> <i>You can list deployments in the <code>DISABLED</code> status.</i> </p>"""
+    account_constraints: NotRequired[
+        "capo_launch_wizard.types.account_constraints_list.AccountConstraintsList"
+    ]
+    """Optional list of constraints describing what kind of AWS account is allowed to deploy this workload or deployment pattern. Within a single list the semantics are OR: an account satisfies the list if it satisfies any entry. Workload-level and pattern-level lists combine with AND at deployment time. An absent or empty list at this level means no constraint at this level."""
     description: NotRequired["str"]
     """<p>The description of a workload.</p>"""
     documentation_url: NotRequired["str"]
@@ -39,6 +44,14 @@ def serialize_json(value: WorkloadData) -> dict:
         out["status"] = capo_launch_wizard.types.workload_status.serialize_json(
             value["status"]
         )
+    if "account_constraints" in value:
+        import capo_launch_wizard.types.account_constraints_list
+
+        out["accountConstraints"] = (
+            capo_launch_wizard.types.account_constraints_list.serialize_json(
+                value["account_constraints"]
+            )
+        )
     if "description" in value:
         out["description"] = value["description"]
     if "documentation_url" in value:
@@ -61,6 +74,14 @@ def deserialize_json(data: dict) -> WorkloadData:
 
         out["status"] = capo_launch_wizard.types.workload_status.deserialize_json(
             data["status"]
+        )
+    if data.get("accountConstraints") is not None:
+        import capo_launch_wizard.types.account_constraints_list
+
+        out["account_constraints"] = (
+            capo_launch_wizard.types.account_constraints_list.deserialize_json(
+                data["accountConstraints"]
+            )
         )
     if data.get("description") is not None:
         out["description"] = data["description"]

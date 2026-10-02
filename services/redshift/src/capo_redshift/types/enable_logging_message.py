@@ -25,9 +25,13 @@ class EnableLoggingMessage(TypedDict, closed=True):
     log_destination_type: NotRequired[
         "capo_redshift.types.log_destination_type.LogDestinationType"
     ]
-    """<p>The log destination type. An enum with possible values of <code>s3</code> and <code>cloudwatch</code>.</p>"""
+    """<p>The log destination type. An enum with possible values of <code>s3</code>, <code>cloudwatch</code>, and <code>s3table</code>.</p>"""
     log_exports: NotRequired["capo_redshift.types.log_type_list.LogTypeList"]
-    """<p>The collection of exported log types. Possible values are <code>connectionlog</code>, <code>useractivitylog</code>, and <code>userlog</code>.</p>"""
+    """<p>The collection of exported log types. When <code>LogDestinationType</code> is <code>s3</code> or <code>cloudwatch</code>, possible values are <code>connectionlog</code>, <code>useractivitylog</code>, and <code>userlog</code>. When <code>LogDestinationType</code> is <code>s3table</code>, the values are the names of the system tables to publish. Omitting this parameter, passing an empty list, or including the value <code>all</code> publishes all current and future system tables.</p>"""
+    s3_table_kms_key_id: NotRequired["capo_redshift.types.string.String"]
+    """<p>The identifier of a customer managed KMS key used to encrypt the S3 tables. This parameter is valid only when <code>LogDestinationType</code> is <code>s3table</code>.</p>"""
+    s3_table_granularity: NotRequired["capo_redshift.types.string.String"]
+    """<p>The scope of system table publishing. Valid values are <code>cluster</code> and <code>account</code>. A value of <code>cluster</code> scopes publishing to the individual cluster. A value of <code>account</code> scopes publishing to the Amazon Web Services account. This parameter is valid only when <code>LogDestinationType</code> is <code>s3table</code>.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -54,6 +58,14 @@ def serialize_query(
 
         capo_redshift.types.log_type_list.serialize_query(
             value["log_exports"], pairs, f"{key_prefix}LogExports"
+        )
+    if "s3_table_kms_key_id" in value:
+        pairs.append(
+            (f"{key_prefix}S3TableKmsKeyId", str(value["s3_table_kms_key_id"]))
+        )
+    if "s3_table_granularity" in value:
+        pairs.append(
+            (f"{key_prefix}S3TableGranularity", str(value["s3_table_granularity"]))
         )
 
 
@@ -84,4 +96,10 @@ def deserialize_query(el: Element) -> EnableLoggingMessage:
         out["log_exports"] = capo_redshift.types.log_type_list.deserialize_query(
             child_log_exports
         )
+    child_s3_table_kms_key_id = el.find("S3TableKmsKeyId")
+    if child_s3_table_kms_key_id is not None:
+        out["s3_table_kms_key_id"] = str(child_s3_table_kms_key_id.text or "")
+    child_s3_table_granularity = el.find("S3TableGranularity")
+    if child_s3_table_granularity is not None:
+        out["s3_table_granularity"] = str(child_s3_table_granularity.text or "")
     return out

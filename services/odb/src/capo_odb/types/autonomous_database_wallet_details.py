@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import datetime
 
     import capo_odb.types.autonomous_database_wallet_status
+    import capo_odb.types.wallet_password_source_summary
 
 
 class AutonomousDatabaseWalletDetails(TypedDict, closed=True):
@@ -17,6 +18,10 @@ class AutonomousDatabaseWalletDetails(TypedDict, closed=True):
     """<p>The current status of the Autonomous Database wallet.</p>"""
     time_rotated: NotRequired["datetime.datetime"]
     """<p>The date and time when the Autonomous Database wallet was last rotated.</p>"""
+    password_source_summary: NotRequired[
+        "capo_odb.types.wallet_password_source_summary.WalletPasswordSourceSummary"
+    ]
+    """<p>The summary of the password source configuration for the Autonomous Database wallet.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -36,6 +41,14 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseWalletDetails) -> dict:
         out["timeRotated"] = capo_odb._protocol.serialize.fmt_date_time(
             value["time_rotated"]
         )
+    if "password_source_summary" in value:
+        import capo_odb.types.wallet_password_source_summary
+
+        out["passwordSourceSummary"] = (
+            capo_odb.types.wallet_password_source_summary.serialize_aws_json_1_0(
+                value["password_source_summary"]
+            )
+        )
     return out
 
 
@@ -54,5 +67,13 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseWalletDetails:
 
         out["time_rotated"] = datetime.datetime.fromisoformat(
             data["timeRotated"].replace("Z", "+00:00")
+        )
+    if data.get("passwordSourceSummary") is not None:
+        import capo_odb.types.wallet_password_source_summary
+
+        out["password_source_summary"] = (
+            capo_odb.types.wallet_password_source_summary.deserialize_aws_json_1_0(
+                data["passwordSourceSummary"]
+            )
         )
     return out

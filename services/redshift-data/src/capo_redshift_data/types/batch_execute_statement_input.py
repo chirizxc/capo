@@ -9,6 +9,7 @@ from capo_redshift_data.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_redshift_data.types.client_token
     import capo_redshift_data.types.cluster_identifier_string
+    import capo_redshift_data.types.execution_mode
     import capo_redshift_data.types.result_format_string
     import capo_redshift_data.types.secret_arn
     import capo_redshift_data.types.session_alive_seconds
@@ -17,12 +18,13 @@ if TYPE_CHECKING:
     import capo_redshift_data.types.statement_name_string
     import capo_redshift_data.types.string
     import capo_redshift_data.types.uuid
+    import capo_redshift_data.types.wait_time_seconds
     import capo_redshift_data.types.workgroup_name_string
 
 
 class BatchExecuteStatementInput(TypedDict, closed=True):
     sqls: "capo_redshift_data.types.sql_list.SqlList"
-    """<p>One or more SQL statements to run. The SQL statements are run as a single transaction. They run serially in the order of the array. Subsequent SQL statements don't start until the previous statement in the array completes. If any SQL statement fails, then because they are run as one transaction, all work is rolled back.</p>"""
+    """<p>One or more SQL statements to run. The SQL statements run serially in the order of the array. Subsequent SQL statements don't start until the previous statement in the array completes. By default, the SQL statements are run as a single transaction. If any SQL statement fails, all work is rolled back. To change this behavior, see the <code>ExecutionMode</code> parameter.</p>"""
     cluster_identifier: NotRequired[
         "capo_redshift_data.types.cluster_identifier_string.ClusterIdentifierString"
     ]
@@ -42,7 +44,7 @@ class BatchExecuteStatementInput(TypedDict, closed=True):
     parameters: NotRequired[
         "capo_redshift_data.types.sql_parameters_list.SqlParametersList"
     ]
-    """<p>The parameters for the SQL statements. The parameters are shared across all SQL statements in the batch.</p>"""
+    """<p>The parameters for the SQL statements. The parameters are available to all SQL statements in the batch. Each statement can reference any subset of the provided parameters. Each provided parameter must be referenced by at least one SQL statement in the batch.</p>"""
     workgroup_name: NotRequired[
         "capo_redshift_data.types.workgroup_name_string.WorkgroupNameString"
     ]
@@ -59,6 +61,12 @@ class BatchExecuteStatementInput(TypedDict, closed=True):
     """<p>The number of seconds to keep the session alive after the query finishes. The maximum time a session can keep alive is 24 hours. After 24 hours, the session is forced closed and the query is terminated.</p>"""
     session_id: NotRequired["capo_redshift_data.types.uuid.UUID"]
     """<p>The session identifier of the query.</p>"""
+    execution_mode: NotRequired["capo_redshift_data.types.execution_mode.ExecutionMode"]
+    """<p>Determines how the SQL statements in the batch are run. If set to <code>TRANSACTION</code> (the default), all SQL statements are run as a single transaction and they are committed or rolled back together. If set to <code>AUTO_COMMIT</code>, each SQL statement is committed individually, and a failure of one statement does not affect the others.</p>"""
+    wait_time_seconds: NotRequired[
+        "capo_redshift_data.types.wait_time_seconds.WaitTimeSeconds"
+    ]
+    """<p>The number of seconds to wait for all SQL statements in the batch to complete execution before returning the response. If the SQL statements do not complete within the specified time, the response returns the current status. The maximum value is 30 seconds.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -99,6 +107,10 @@ def serialize_aws_json_1_1(value: BatchExecuteStatementInput) -> dict:
         out["SessionKeepAliveSeconds"] = value["session_keep_alive_seconds"]
     if "session_id" in value:
         out["SessionId"] = value["session_id"]
+    if "execution_mode" in value:
+        out["ExecutionMode"] = value["execution_mode"]
+    if "wait_time_seconds" in value:
+        out["WaitTimeSeconds"] = value["wait_time_seconds"]
     return out
 
 
@@ -142,4 +154,8 @@ def deserialize_aws_json_1_1(data: dict) -> BatchExecuteStatementInput:
         out["session_keep_alive_seconds"] = data["SessionKeepAliveSeconds"]
     if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
+    if data.get("ExecutionMode") is not None:
+        out["execution_mode"] = data["ExecutionMode"]
+    if data.get("WaitTimeSeconds") is not None:
+        out["wait_time_seconds"] = data["WaitTimeSeconds"]
     return out

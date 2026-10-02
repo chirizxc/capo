@@ -15,7 +15,6 @@ if TYPE_CHECKING:
     import capo_inspector2.types.scan_configuration_arn
     import capo_inspector2.types.scan_configuration_name
     import capo_inspector2.types.scope_settings
-    import capo_inspector2.types.tag_map
 
 
 class CodeSecurityScanConfigurationSummary(TypedDict, closed=True):
@@ -43,8 +42,6 @@ class CodeSecurityScanConfigurationSummary(TypedDict, closed=True):
     """<p>The categories of security rules applied during the scan.</p>"""
     scope_settings: NotRequired["capo_inspector2.types.scope_settings.ScopeSettings"]
     """<p>The scope settings that define which repositories will be scanned. If the <code>ScopeSetting</code> parameter is <code>ALL</code> the scan configuration applies to all existing and future projects imported into Amazon Inspector.</p>"""
-    tags: NotRequired["capo_inspector2.types.tag_map.TagMap"]
-    """<p>The tags associated with the scan configuration.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -82,10 +79,6 @@ def serialize_json(value: CodeSecurityScanConfigurationSummary) -> dict:
         out["scopeSettings"] = capo_inspector2.types.scope_settings.serialize_json(
             value["scope_settings"]
         )
-    if "tags" in value:
-        import capo_inspector2.types.tag_map
-
-        out["tags"] = capo_inspector2.types.tag_map.serialize_json(value["tags"])
     return out
 
 
@@ -143,8 +136,4 @@ def deserialize_json(data: dict) -> CodeSecurityScanConfigurationSummary:
         out["scope_settings"] = capo_inspector2.types.scope_settings.deserialize_json(
             data["scopeSettings"]
         )
-    if data.get("tags") is not None:
-        import capo_inspector2.types.tag_map
-
-        out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])
     return out

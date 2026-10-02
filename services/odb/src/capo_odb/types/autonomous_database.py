@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import datetime
 
+    import capo_odb.types.admin_password_source_summary
     import capo_odb.types.autonomous_database_apex
     import capo_odb.types.autonomous_database_connection_strings
     import capo_odb.types.autonomous_database_connection_urls
@@ -288,6 +289,10 @@ class AutonomousDatabase(TypedDict, closed=True):
     """<p>The date and time of the next scheduled long-term backup of the Autonomous Database.</p>"""
     time_undeleted: NotRequired["datetime.datetime"]
     """<p>The date and time when the Autonomous Database was restored after deletion.</p>"""
+    admin_password_source_summary: NotRequired[
+        "capo_odb.types.admin_password_source_summary.AdminPasswordSourceSummary"
+    ]
+    """<p>The summary of the admin password source configuration for the Autonomous Database.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -835,6 +840,14 @@ def serialize_aws_json_1_0(value: AutonomousDatabase) -> dict:
         out["timeUndeleted"] = capo_odb._protocol.serialize.fmt_date_time(
             value["time_undeleted"]
         )
+    if "admin_password_source_summary" in value:
+        import capo_odb.types.admin_password_source_summary
+
+        out["adminPasswordSourceSummary"] = (
+            capo_odb.types.admin_password_source_summary.serialize_aws_json_1_0(
+                value["admin_password_source_summary"]
+            )
+        )
     return out
 
 
@@ -1331,5 +1344,13 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabase:
 
         out["time_undeleted"] = datetime.datetime.fromisoformat(
             data["timeUndeleted"].replace("Z", "+00:00")
+        )
+    if data.get("adminPasswordSourceSummary") is not None:
+        import capo_odb.types.admin_password_source_summary
+
+        out["admin_password_source_summary"] = (
+            capo_odb.types.admin_password_source_summary.deserialize_aws_json_1_0(
+                data["adminPasswordSourceSummary"]
+            )
         )
     return out

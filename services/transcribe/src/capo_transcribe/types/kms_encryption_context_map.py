@@ -3,11 +3,11 @@
 from typing import TYPE_CHECKING, TypeAlias
 
 if TYPE_CHECKING:
-    import capo_transcribe.types.non_empty_string
+    import capo_transcribe.types.printable_non_empty_string
 
 KMSEncryptionContextMap: TypeAlias = dict[
-    "capo_transcribe.types.non_empty_string.NonEmptyString",
-    "capo_transcribe.types.non_empty_string.NonEmptyString",
+    "capo_transcribe.types.printable_non_empty_string.PrintableNonEmptyString",
+    "capo_transcribe.types.printable_non_empty_string.PrintableNonEmptyString",
 ]
 
 

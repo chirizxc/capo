@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.iam_role_arn
     import capo_pinpoint_sms_voice_v2.types.iso_country_code
     import capo_pinpoint_sms_voice_v2.types.message_type
+    import capo_pinpoint_sms_voice_v2.types.messaging_limits
     import capo_pinpoint_sms_voice_v2.types.number_capability_list
     import capo_pinpoint_sms_voice_v2.types.number_status
     import capo_pinpoint_sms_voice_v2.types.number_type
@@ -65,6 +66,10 @@ class PhoneNumberInformation(TypedDict, closed=True):
     """<p>The unique identifier of the pool associated with the phone number.</p>"""
     registration_id: NotRequired["str"]
     """<p>The unique identifier for the registration.</p>"""
+    messaging_limits: NotRequired[
+        "capo_pinpoint_sms_voice_v2.types.messaging_limits.MessagingLimits"
+    ]
+    """<p>The messaging limits that apply to the phone number, including the per-capability send rates and any advisory per-provider daily message caps.</p>"""
     created_timestamp: "datetime.datetime"
     r"""<p>The time when the phone number was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>"""
 
@@ -103,6 +108,14 @@ def serialize_aws_json_1_0(value: PhoneNumberInformation) -> dict:
         out["PoolId"] = value["pool_id"]
     if "registration_id" in value:
         out["RegistrationId"] = value["registration_id"]
+    if "messaging_limits" in value:
+        import capo_pinpoint_sms_voice_v2.types.messaging_limits
+
+        out["MessagingLimits"] = (
+            capo_pinpoint_sms_voice_v2.types.messaging_limits.serialize_aws_json_1_0(
+                value["messaging_limits"]
+            )
+        )
     import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
     out["CreatedTimestamp"] = (
@@ -187,6 +200,14 @@ def deserialize_aws_json_1_0(data: dict) -> PhoneNumberInformation:
         out["pool_id"] = data["PoolId"]
     if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
+    if data.get("MessagingLimits") is not None:
+        import capo_pinpoint_sms_voice_v2.types.messaging_limits
+
+        out["messaging_limits"] = (
+            capo_pinpoint_sms_voice_v2.types.messaging_limits.deserialize_aws_json_1_0(
+                data["MessagingLimits"]
+            )
+        )
     if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 

@@ -2,17 +2,20 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_qconnect.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_qconnect.types.retrieve_error_list
     import capo_qconnect.types.retrieve_result_list
 
 
 class RetrieveResponse(TypedDict, closed=True):
     results: "capo_qconnect.types.retrieve_result_list.RetrieveResultList"
     """<p>The results of the content retrieval operation.</p>"""
+    errors: NotRequired["capo_qconnect.types.retrieve_error_list.RetrieveErrorList"]
+    """<p>The per-association errors returned when one or more knowledge base associations fail during a <code>Retrieve</code> operation that spans multiple assistant associations. The overall operation still succeeds and returns the results from the associations that were queried successfully. This list contains one entry for each association that failed, up to a maximum of five.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -23,6 +26,12 @@ def serialize_json(value: RetrieveResponse) -> dict:
     out["results"] = capo_qconnect.types.retrieve_result_list.serialize_json(
         value["results"]
     )
+    if "errors" in value:
+        import capo_qconnect.types.retrieve_error_list
+
+        out["errors"] = capo_qconnect.types.retrieve_error_list.serialize_json(
+            value["errors"]
+        )
     return out
 
 
@@ -36,4 +45,10 @@ def deserialize_json(data: dict) -> RetrieveResponse:
         )
     else:
         raise DeserializationError("RetrieveResponse.results required")
+    if data.get("errors") is not None:
+        import capo_qconnect.types.retrieve_error_list
+
+        out["errors"] = capo_qconnect.types.retrieve_error_list.deserialize_json(
+            data["errors"]
+        )
     return out

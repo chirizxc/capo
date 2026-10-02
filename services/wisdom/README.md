@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_wisdom import AsyncWisdomClient
+
+
+async def main():
+    async with AsyncWisdomClient() as wisdom:
+        # Example: paginate over list_assistants
+        async for item in wisdom.iter_list_assistants():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

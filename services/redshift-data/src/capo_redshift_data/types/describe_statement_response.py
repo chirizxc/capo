@@ -9,6 +9,7 @@ from capo_redshift_data.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_redshift_data.types.execution_mode
     import capo_redshift_data.types.long
     import capo_redshift_data.types.result_format_string
     import capo_redshift_data.types.secret_arn
@@ -74,6 +75,8 @@ class DescribeStatementResponse(TypedDict, closed=True):
     """<p>The data format of the result of the SQL statement.</p>"""
     session_id: NotRequired["capo_redshift_data.types.string.String"]
     """<p>The session identifier of the query.</p>"""
+    execution_mode: NotRequired["capo_redshift_data.types.execution_mode.ExecutionMode"]
+    """<p>The execution mode of the batch request. <code>TRANSACTION</code> indicates all SQL statements are run as a single transaction. <code>AUTO_COMMIT</code> indicates each SQL statement is committed individually.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -139,6 +142,8 @@ def serialize_aws_json_1_1(value: DescribeStatementResponse) -> dict:
         out["ResultFormat"] = value["result_format"]
     if "session_id" in value:
         out["SessionId"] = value["session_id"]
+    if "execution_mode" in value:
+        out["ExecutionMode"] = value["execution_mode"]
     return out
 
 
@@ -222,4 +227,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStatementResponse:
         out["result_format"] = data["ResultFormat"]
     if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
+    if data.get("ExecutionMode") is not None:
+        out["execution_mode"] = data["ExecutionMode"]
     return out

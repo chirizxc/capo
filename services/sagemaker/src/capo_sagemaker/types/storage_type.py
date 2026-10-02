@@ -4,6 +4,7 @@ from typing import Literal, TypeAlias, cast
 
 StorageType: TypeAlias = Literal[
     "Standard",
+    "Standard_V2",
     "InMemory",
 ]
 

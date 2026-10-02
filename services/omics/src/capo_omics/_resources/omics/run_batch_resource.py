@@ -65,7 +65,7 @@ class RunBatchResource:
         Args:
             batch_name: <p>An optional user-friendly name for the run batch.</p>
             request_id: <p>A client token used to deduplicate retry requests and prevent duplicate batches from being created.</p>
-            tags: <p>AWS tags to associate with the batch resource. These tags are not inherited by individual runs. To tag individual runs, use <code>defaultRunSetting.runTags</code>.</p>
+            tags: <p>Amazon Web Services tags to associate with the batch resource. These tags are not inherited by individual runs. To tag individual runs, use <code>defaultRunSetting.runTags</code>.</p>
             default_run_setting: <p>Shared configuration applied to all runs in the batch. See <code>DefaultRunSetting</code>.</p>
             batch_run_settings: <p>The individual run configurations. Specify exactly one of <code>inlineSettings</code> or <code>s3UriSettings</code>. See <code>BatchRunSettings</code>.</p>
 
@@ -77,7 +77,7 @@ class RunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -131,7 +131,7 @@ class RunBatchResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -164,7 +164,7 @@ class RunBatchResource:
         *,
         config_overrides: Optional[OmicsClientConfig] = None,
     ) -> None:
-        """<p>Deletes a run batch resource and its associated metadata. This operation does not delete the individual workflow runs. To delete the runs, call <code>DeleteRunBatch</code> before calling <code>DeleteBatch</code>.</p> <p> <code>DeleteBatch</code> requires the batch to be in a terminal state: <code>PROCESSED</code>, <code>FAILED</code>, <code>CANCELLED</code>, or <code>RUNS_DELETED</code>. After <code>DeleteBatch</code> completes, the batch metadata is no longer accessible. You cannot call <code>GetBatch</code>, <code>ListRunsInBatch</code>, <code>DeleteRunBatch</code>, or <code>CancelRunBatch</code> on a deleted batch.</p>
+        """<p>Deletes a run batch resource and its associated metadata. This operation does not delete the individual workflow runs. To delete the runs, call <code>DeleteRunBatch</code> before calling <code>DeleteBatch</code>.</p> <p> <code>DeleteBatch</code> requires the batch to be in a terminal state: <code>PROCESSED</code>, <code>FAILED</code>, <code>CANCELLED</code>, <code>RUNS_DELETE_FAILED</code>, or <code>RUNS_DELETED</code>. After <code>DeleteBatch</code> completes, the batch metadata is no longer accessible. You cannot call <code>GetBatch</code>, <code>ListRunsInBatch</code>, <code>DeleteRunBatch</code>, or <code>CancelRunBatch</code> on a deleted batch.</p>
 
         Args:
             batch_id: <p>The identifier portion of the run batch ARN.</p>
@@ -177,7 +177,7 @@ class RunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -230,7 +230,7 @@ class RunBatchResource:
             capo_omics.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred. Try the request again.</p>
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -286,7 +286,7 @@ class RunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -336,7 +336,7 @@ class RunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -398,7 +398,7 @@ class RunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -459,7 +459,7 @@ class AsyncRunBatchResource:
         Args:
             batch_name: <p>An optional user-friendly name for the run batch.</p>
             request_id: <p>A client token used to deduplicate retry requests and prevent duplicate batches from being created.</p>
-            tags: <p>AWS tags to associate with the batch resource. These tags are not inherited by individual runs. To tag individual runs, use <code>defaultRunSetting.runTags</code>.</p>
+            tags: <p>Amazon Web Services tags to associate with the batch resource. These tags are not inherited by individual runs. To tag individual runs, use <code>defaultRunSetting.runTags</code>.</p>
             default_run_setting: <p>Shared configuration applied to all runs in the batch. See <code>DefaultRunSetting</code>.</p>
             batch_run_settings: <p>The individual run configurations. Specify exactly one of <code>inlineSettings</code> or <code>s3UriSettings</code>. See <code>BatchRunSettings</code>.</p>
 
@@ -471,7 +471,7 @@ class AsyncRunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -526,7 +526,7 @@ class AsyncRunBatchResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -564,7 +564,7 @@ class AsyncRunBatchResource:
         *,
         config_overrides: Optional[AsyncOmicsClientConfig] = None,
     ) -> None:
-        """<p>Deletes a run batch resource and its associated metadata. This operation does not delete the individual workflow runs. To delete the runs, call <code>DeleteRunBatch</code> before calling <code>DeleteBatch</code>.</p> <p> <code>DeleteBatch</code> requires the batch to be in a terminal state: <code>PROCESSED</code>, <code>FAILED</code>, <code>CANCELLED</code>, or <code>RUNS_DELETED</code>. After <code>DeleteBatch</code> completes, the batch metadata is no longer accessible. You cannot call <code>GetBatch</code>, <code>ListRunsInBatch</code>, <code>DeleteRunBatch</code>, or <code>CancelRunBatch</code> on a deleted batch.</p>
+        """<p>Deletes a run batch resource and its associated metadata. This operation does not delete the individual workflow runs. To delete the runs, call <code>DeleteRunBatch</code> before calling <code>DeleteBatch</code>.</p> <p> <code>DeleteBatch</code> requires the batch to be in a terminal state: <code>PROCESSED</code>, <code>FAILED</code>, <code>CANCELLED</code>, <code>RUNS_DELETE_FAILED</code>, or <code>RUNS_DELETED</code>. After <code>DeleteBatch</code> completes, the batch metadata is no longer accessible. You cannot call <code>GetBatch</code>, <code>ListRunsInBatch</code>, <code>DeleteRunBatch</code>, or <code>CancelRunBatch</code> on a deleted batch.</p>
 
         Args:
             batch_id: <p>The identifier portion of the run batch ARN.</p>
@@ -577,7 +577,7 @@ class AsyncRunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -631,7 +631,7 @@ class AsyncRunBatchResource:
             capo_omics.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred. Try the request again.</p>
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -690,7 +690,7 @@ class AsyncRunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -741,7 +741,7 @@ class AsyncRunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -804,7 +804,7 @@ class AsyncRunBatchResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 

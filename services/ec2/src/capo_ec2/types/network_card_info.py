@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_ec2.types.maximum_ena_queue_count
     import capo_ec2.types.maximum_ena_queue_count_per_interface
     import capo_ec2.types.network_card_index
+    import capo_ec2.types.network_card_interface_type_list
     import capo_ec2.types.network_performance
     import capo_ec2.types.peak_bandwidth_in_gbps
 
@@ -55,6 +56,10 @@ class NetworkCardInfo(TypedDict, closed=True):
         "capo_ec2.types.maximum_ena_queue_count_per_interface.MaximumEnaQueueCountPerInterface"
     ]
     """<p>The maximum number of the ENA queues for each interface.</p>"""
+    interface_types: NotRequired[
+        "capo_ec2.types.network_card_interface_type_list.NetworkCardInterfaceTypeList"
+    ]
+    """<p>The supported interface types for the network card.</p>"""
 
 
 # --- ec2Query ser/de ---
@@ -134,6 +139,12 @@ def serialize_ec2_query(
                 str(value["maximum_ena_queue_count_per_interface"]),
             )
         )
+    if "interface_types" in value:
+        import capo_ec2.types.network_card_interface_type_list
+
+        capo_ec2.types.network_card_interface_type_list.serialize_ec2_query(
+            value["interface_types"], pairs, f"{key_prefix}InterfaceTypeSet"
+        )
 
 
 def deserialize_ec2_query(el: Element) -> NetworkCardInfo:
@@ -180,5 +191,14 @@ def deserialize_ec2_query(el: Element) -> NetworkCardInfo:
     if child_maximum_ena_queue_count_per_interface is not None:
         out["maximum_ena_queue_count_per_interface"] = int(
             child_maximum_ena_queue_count_per_interface.text or ""
+        )
+    child_interface_types = el.find("interfaceTypeSet")
+    if child_interface_types is not None:
+        import capo_ec2.types.network_card_interface_type_list
+
+        out["interface_types"] = (
+            capo_ec2.types.network_card_interface_type_list.deserialize_ec2_query(
+                child_interface_types
+            )
         )
     return out

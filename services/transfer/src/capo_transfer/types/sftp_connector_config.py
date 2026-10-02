@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_transfer.types.max_concurrent_connections
     import capo_transfer.types.secret_id
+    import capo_transfer.types.secret_version_stage_list
     import capo_transfer.types.sftp_connector_trusted_host_key_list
 
 
@@ -21,6 +22,10 @@ class SftpConnectorConfig(TypedDict, closed=True):
         "capo_transfer.types.max_concurrent_connections.MaxConcurrentConnections"
     )
     """<p>Specify the number of concurrent connections that your connector creates to the remote server. The default value is <code>1</code>. The maximum values is <code>5</code>.</p> <note> <p>If you are using the Amazon Web Services Management Console, the default value is <code>5</code>.</p> </note> <p>This parameter specifies the number of active connections that your connector can establish with the remote server at the same time. Increasing this value can enhance connector performance when transferring large file batches by enabling parallel operations.</p>"""
+    ordered_user_secret_version_stages: NotRequired[
+        "capo_transfer.types.secret_version_stage_list.SecretVersionStageList"
+    ]
+    """<p>An ordered list of Amazon Web Services Secrets Manager version stages (staging labels, such as <code>AWSCURRENT</code> and <code>AWSPREVIOUS</code>) for the secret identified by <code>UserSecretId</code>. When establishing a connection, the connector attempts to retrieve the SFTP user's credentials from each version stage in the order listed, and uses the first version it can successfully retrieve. This lets you rotate the user secret without interrupting connector operations.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -37,6 +42,14 @@ def serialize_aws_json_1_1(value: SftpConnectorConfig) -> dict:
             )
         )
     out["MaxConcurrentConnections"] = value.get("max_concurrent_connections", 1)
+    if "ordered_user_secret_version_stages" in value:
+        import capo_transfer.types.secret_version_stage_list
+
+        out["OrderedUserSecretVersionStages"] = (
+            capo_transfer.types.secret_version_stage_list.serialize_aws_json_1_1(
+                value["ordered_user_secret_version_stages"]
+            )
+        )
     return out
 
 
@@ -56,4 +69,12 @@ def deserialize_aws_json_1_1(data: dict) -> SftpConnectorConfig:
         out["max_concurrent_connections"] = data["MaxConcurrentConnections"]
     else:
         out["max_concurrent_connections"] = 1
+    if data.get("OrderedUserSecretVersionStages") is not None:
+        import capo_transfer.types.secret_version_stage_list
+
+        out["ordered_user_secret_version_stages"] = (
+            capo_transfer.types.secret_version_stage_list.deserialize_aws_json_1_1(
+                data["OrderedUserSecretVersionStages"]
+            )
+        )
     return out

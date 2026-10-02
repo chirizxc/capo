@@ -30,7 +30,7 @@ class CopyObjectResult(TypedDict, closed=True):
     checksum_type: NotRequired["capo_s3.types.checksum_type.ChecksumType"]
     r"""<p>The checksum type that is used to calculate the object’s checksum value. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"""
     checksum_crc32: NotRequired["capo_s3.types.checksum_crc32.ChecksumCRC32"]
-    r"""<p>The Base64 encoded, 32-bit <code>CRC32</code> checksum of the object. This checksum is only present if the object was uploaded with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"""
+    r"""<p>The Base64 encoded, 32-bit <code>CRC32</code> checksum of the object. This checksum is only present if the checksum was uploaded with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"""
     checksum_crc32_c: NotRequired["capo_s3.types.checksum_crc32_c.ChecksumCRC32C"]
     r"""<p>The Base64 encoded, 32-bit <code>CRC32C</code> checksum of the object. This checksum is only present if the checksum was uploaded with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"""
     checksum_crc64_nvme: NotRequired[

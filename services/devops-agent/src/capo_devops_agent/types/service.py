@@ -20,6 +20,8 @@ Service: TypeAlias = Literal[
     "mcpserversplunk",
     "azureidentity",
     "mcpserversigv4",
+    "remoteagent",
+    "remoteagentsigv4",
 ]
 
 

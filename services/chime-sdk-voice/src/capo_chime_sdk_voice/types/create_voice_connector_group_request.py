@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_chime_sdk_voice.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_chime_sdk_voice.types.call_distribution_type
     import capo_chime_sdk_voice.types.voice_connector_group_name
     import capo_chime_sdk_voice.types.voice_connector_item_list
 
@@ -20,6 +21,9 @@ class CreateVoiceConnectorGroupRequest(TypedDict, closed=True):
         "capo_chime_sdk_voice.types.voice_connector_item_list.VoiceConnectorItemList"
     ]
     """<p>Lists the Voice Connectors that inbound calls are routed to.</p>"""
+    call_distribution_type: NotRequired[
+        "capo_chime_sdk_voice.types.call_distribution_type.CallDistributionType"
+    ]
 
 
 # --- restJson1 ser/de ---
@@ -32,6 +36,14 @@ def serialize_json(value: CreateVoiceConnectorGroupRequest) -> dict:
         out["VoiceConnectorItems"] = (
             capo_chime_sdk_voice.types.voice_connector_item_list.serialize_json(
                 value["voice_connector_items"]
+            )
+        )
+    if "call_distribution_type" in value:
+        import capo_chime_sdk_voice.types.call_distribution_type
+
+        out["CallDistributionType"] = (
+            capo_chime_sdk_voice.types.call_distribution_type.serialize_json(
+                value["call_distribution_type"]
             )
         )
     return out
@@ -49,6 +61,14 @@ def deserialize_json(data: dict) -> CreateVoiceConnectorGroupRequest:
         out["voice_connector_items"] = (
             capo_chime_sdk_voice.types.voice_connector_item_list.deserialize_json(
                 data["VoiceConnectorItems"]
+            )
+        )
+    if data.get("CallDistributionType") is not None:
+        import capo_chime_sdk_voice.types.call_distribution_type
+
+        out["call_distribution_type"] = (
+            capo_chime_sdk_voice.types.call_distribution_type.deserialize_json(
+                data["CallDistributionType"]
             )
         )
     return out

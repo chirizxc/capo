@@ -16,6 +16,7 @@ RuntimeEnvironment: TypeAlias = Literal[
     "FLINK-1_19",
     "FLINK-1_20",
     "FLINK-2_2",
+    "FLINK-2_3",
 ]
 
 

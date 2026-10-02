@@ -12,8 +12,22 @@ GeocodeFilterPlaceTypeList: TypeAlias = list[
 
 # --- restJson1 ser/de ---
 def serialize_json(value: GeocodeFilterPlaceTypeList) -> list:
-    return list(value)
+    import capo_geo_places.types.geocode_filter_place_type
+
+    out: list = []
+    for item in value:
+        out.append(capo_geo_places.types.geocode_filter_place_type.serialize_json(item))
+    return out
 
 
 def deserialize_json(data: list) -> GeocodeFilterPlaceTypeList:
-    return [item for item in data if item is not None]
+    import capo_geo_places.types.geocode_filter_place_type
+
+    out: GeocodeFilterPlaceTypeList = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(
+            capo_geo_places.types.geocode_filter_place_type.deserialize_json(item)
+        )
+    return out

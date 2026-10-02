@@ -18,6 +18,7 @@ import capo_redshift_serverless.errors.validation_exception
 import capo_redshift_serverless.types.iam_role_arn_list
 import capo_redshift_serverless.types.log_export_list
 import capo_redshift_serverless.types.namespace
+import capo_redshift_serverless.types.s3_table_name_list
 import capo_redshift_serverless.types.update_namespace_request
 import capo_redshift_serverless.types.update_namespace_response
 from capo_redshift_serverless._protocol.errors import parse_error_metadata_json
@@ -28,6 +29,7 @@ from capo_redshift_serverless._rule_engine._endpoint_rule_set import (
 from capo_redshift_serverless._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_redshift_serverless.errors import UnknownServiceError
 
@@ -147,7 +149,7 @@ def update_namespace(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -165,7 +167,7 @@ async def async_update_namespace(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     import capo_sts.types.assumed_role_user
     import capo_sts.types.credentials
     import capo_sts.types.non_negative_integer_type
+    import capo_sts.types.session_token_size_type
+    import capo_sts.types.session_token_utilization_type
     import capo_sts.types.source_identity_type
 
 
@@ -26,6 +28,12 @@ class AssumeRoleResponse(TypedDict, closed=True):
         "capo_sts.types.source_identity_type.sourceIdentityType"
     ]
     r"""<p>The source identity specified by the principal that is calling the <code>AssumeRole</code> operation.</p> <p>You can require users to specify a source identity when they assume a role. You do this by using the <code>sts:SourceIdentity</code> condition key in a role trust policy. You can use source identity information in CloudTrail logs to determine who took actions with a role. You can use the <code>aws:SourceIdentity</code> condition key to further control access to Amazon Web Services resources based on the value of source identity. For more information about using source identity, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\">Monitor and control actions taken with assumed roles</a> in the <i>IAM User Guide</i>.</p> <p>The regex used to validate this parameter is a string of characters consisting of upper- and lower-case alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@-</p>"""
+    session_token_utilization: NotRequired[
+        "capo_sts.types.session_token_utilization_type.sessionTokenUtilizationType"
+    ]
+    session_token_size: NotRequired[
+        "capo_sts.types.session_token_size_type.sessionTokenSizeType"
+    ]
 
 
 # --- awsQuery ser/de ---
@@ -51,6 +59,17 @@ def serialize_query(
         )
     if "source_identity" in value:
         pairs.append((f"{key_prefix}SourceIdentity", str(value["source_identity"])))
+    if "session_token_utilization" in value:
+        pairs.append(
+            (
+                f"{key_prefix}SessionTokenUtilization",
+                str(value["session_token_utilization"]),
+            )
+        )
+    if "session_token_size" in value:
+        pairs.append(
+            (f"{key_prefix}SessionTokenSize", str(value["session_token_size"]))
+        )
 
 
 def deserialize_query(el: Element) -> AssumeRoleResponse:
@@ -75,4 +94,12 @@ def deserialize_query(el: Element) -> AssumeRoleResponse:
     child_source_identity = el.find("SourceIdentity")
     if child_source_identity is not None:
         out["source_identity"] = str(child_source_identity.text or "")
+    child_session_token_utilization = el.find("SessionTokenUtilization")
+    if child_session_token_utilization is not None:
+        out["session_token_utilization"] = int(
+            child_session_token_utilization.text or ""
+        )
+    child_session_token_size = el.find("SessionTokenSize")
+    if child_session_token_size is not None:
+        out["session_token_size"] = int(child_session_token_size.text or "")
     return out

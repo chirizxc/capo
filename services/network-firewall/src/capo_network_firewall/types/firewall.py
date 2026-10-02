@@ -13,13 +13,16 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.description
     import capo_network_firewall.types.enabled_analysis_types
     import capo_network_firewall.types.encryption_configuration
+    import capo_network_firewall.types.nat_gateway_mappings_list
     import capo_network_firewall.types.number_of_associations
+    import capo_network_firewall.types.proxy_settings
     import capo_network_firewall.types.resource_arn
     import capo_network_firewall.types.resource_id
     import capo_network_firewall.types.resource_name
     import capo_network_firewall.types.subnet_mappings
     import capo_network_firewall.types.tag_list
     import capo_network_firewall.types.transit_gateway_id
+    import capo_network_firewall.types.vpc_endpoint
     import capo_network_firewall.types.vpc_id
 
 
@@ -72,6 +75,18 @@ class Firewall(TypedDict, closed=True):
     """<p>The Availability Zones where the firewall endpoints are created for a transit gateway-attached firewall. Each mapping specifies an Availability Zone where the firewall processes traffic.</p>"""
     availability_zone_change_protection: "capo_network_firewall.types.boolean.Boolean"
     """<p>A setting indicating whether the firewall is protected against changes to its Availability Zone configuration. When set to <code>TRUE</code>, you must first disable this protection before adding or removing Availability Zones.</p>"""
+    nat_gateway_mappings: NotRequired[
+        "capo_network_firewall.types.nat_gateway_mappings_list.NatGatewayMappingsList"
+    ]
+    """<p>The NAT gateways that the firewall uses to proxy traffic. This is set for proxy mode firewalls, where <code>NoSourcePreservation</code> is <code>TRUE</code>. </p>"""
+    proxy_settings: NotRequired[
+        "capo_network_firewall.types.proxy_settings.ProxySettings"
+    ]
+    """<p>The listener configuration for the firewall's proxy. This is set for proxy mode firewalls, where <code>NoSourcePreservation</code> is <code>TRUE</code>. </p>"""
+    no_source_preservation: "capo_network_firewall.types.boolean.Boolean"
+    """<p>Indicates whether the firewall operates in proxy mode, in which the source IP address of the traffic is not preserved. When this value is <code>TRUE</code>, the firewall proxies traffic through a NAT gateway and uses the NAT gateway's IP address as the source for traffic reaching the destination. </p>"""
+    vpc_endpoint: NotRequired["capo_network_firewall.types.vpc_endpoint.VpcEndpoint"]
+    """<p>The VPC and subnets for the firewall endpoint. This is set for proxy mode firewalls, where <code>NoSourcePreservation</code> is <code>TRUE</code>. </p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -137,6 +152,31 @@ def serialize_aws_json_1_0(value: Firewall) -> dict:
     out["AvailabilityZoneChangeProtection"] = value.get(
         "availability_zone_change_protection", False
     )
+    if "nat_gateway_mappings" in value:
+        import capo_network_firewall.types.nat_gateway_mappings_list
+
+        out["NatGatewayMappings"] = (
+            capo_network_firewall.types.nat_gateway_mappings_list.serialize_aws_json_1_0(
+                value["nat_gateway_mappings"]
+            )
+        )
+    if "proxy_settings" in value:
+        import capo_network_firewall.types.proxy_settings
+
+        out["ProxySettings"] = (
+            capo_network_firewall.types.proxy_settings.serialize_aws_json_1_0(
+                value["proxy_settings"]
+            )
+        )
+    out["NoSourcePreservation"] = value.get("no_source_preservation", False)
+    if "vpc_endpoint" in value:
+        import capo_network_firewall.types.vpc_endpoint
+
+        out["VpcEndpoint"] = (
+            capo_network_firewall.types.vpc_endpoint.serialize_aws_json_1_0(
+                value["vpc_endpoint"]
+            )
+        )
     return out
 
 
@@ -226,4 +266,32 @@ def deserialize_aws_json_1_0(data: dict) -> Firewall:
         ]
     else:
         out["availability_zone_change_protection"] = False
+    if data.get("NatGatewayMappings") is not None:
+        import capo_network_firewall.types.nat_gateway_mappings_list
+
+        out["nat_gateway_mappings"] = (
+            capo_network_firewall.types.nat_gateway_mappings_list.deserialize_aws_json_1_0(
+                data["NatGatewayMappings"]
+            )
+        )
+    if data.get("ProxySettings") is not None:
+        import capo_network_firewall.types.proxy_settings
+
+        out["proxy_settings"] = (
+            capo_network_firewall.types.proxy_settings.deserialize_aws_json_1_0(
+                data["ProxySettings"]
+            )
+        )
+    if data.get("NoSourcePreservation") is not None:
+        out["no_source_preservation"] = data["NoSourcePreservation"]
+    else:
+        out["no_source_preservation"] = False
+    if data.get("VpcEndpoint") is not None:
+        import capo_network_firewall.types.vpc_endpoint
+
+        out["vpc_endpoint"] = (
+            capo_network_firewall.types.vpc_endpoint.deserialize_aws_json_1_0(
+                data["VpcEndpoint"]
+            )
+        )
     return out

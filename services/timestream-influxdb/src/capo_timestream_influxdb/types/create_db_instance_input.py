@@ -9,11 +9,13 @@ from capo_timestream_influxdb.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_timestream_influxdb.types.allocated_storage
     import capo_timestream_influxdb.types.bucket
+    import capo_timestream_influxdb.types.db_backup_configuration_input_list
     import capo_timestream_influxdb.types.db_instance_name
     import capo_timestream_influxdb.types.db_instance_type
     import capo_timestream_influxdb.types.db_parameter_group_identifier
     import capo_timestream_influxdb.types.db_storage_type
     import capo_timestream_influxdb.types.deployment_type
+    import capo_timestream_influxdb.types.kms_key_id
     import capo_timestream_influxdb.types.log_delivery_configuration
     import capo_timestream_influxdb.types.maintenance_schedule
     import capo_timestream_influxdb.types.network_type
@@ -77,6 +79,12 @@ class CreateDbInstanceInput(TypedDict, closed=True):
     """<p>The port number on which InfluxDB accepts connections.</p> <p>Valid Values: 1024-65535</p> <p>Default: 8086</p> <p>Constraints: The value can't be 2375-2376, 7788-7799, 8090, or 51678-51680</p>"""
     network_type: NotRequired["capo_timestream_influxdb.types.network_type.NetworkType"]
     """<p>Specifies whether the networkType of the Timestream for InfluxDB instance is IPV4, which can communicate over IPv4 protocol only, or DUAL, which can communicate over both IPv4 and IPv6 protocols.</p>"""
+    db_backup_configurations: NotRequired[
+        "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+    ]
+    """<p>A list of backup configurations to enable automated backups for the DB instance.</p>"""
+    kms_key_id: NotRequired["capo_timestream_influxdb.types.kms_key_id.KmsKeyId"]
+    """<p>The Amazon Web Services KMS key identifier to use for encryption of the DB instance. Can be a key ID, key ARN, alias name, or alias ARN.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -165,6 +173,16 @@ def serialize_aws_json_1_0(value: CreateDbInstanceInput) -> dict:
                 value["network_type"]
             )
         )
+    if "db_backup_configurations" in value:
+        import capo_timestream_influxdb.types.db_backup_configuration_input_list
+
+        out["dbBackupConfigurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_input_list.serialize_aws_json_1_0(
+                value["db_backup_configurations"]
+            )
+        )
+    if "kms_key_id" in value:
+        out["kmsKeyId"] = value["kms_key_id"]
     return out
 
 
@@ -276,4 +294,14 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
                 data["networkType"]
             )
         )
+    if data.get("dbBackupConfigurations") is not None:
+        import capo_timestream_influxdb.types.db_backup_configuration_input_list
+
+        out["db_backup_configurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_input_list.deserialize_aws_json_1_0(
+                data["dbBackupConfigurations"]
+            )
+        )
+    if data.get("kmsKeyId") is not None:
+        out["kms_key_id"] = data["kmsKeyId"]
     return out

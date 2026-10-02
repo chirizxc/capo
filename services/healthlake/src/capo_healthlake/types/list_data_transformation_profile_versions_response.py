@@ -1,0 +1,58 @@
+"""Generated from Smithy shape ``com.amazonaws.healthlake#ListDataTransformationProfileVersionsResponse``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+from capo_healthlake.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_healthlake.types.data_transformation_next_token
+    import capo_healthlake.types.data_transformation_profile_version_summary_list
+
+
+class ListDataTransformationProfileVersionsResponse(TypedDict, closed=True):
+    items: "capo_healthlake.types.data_transformation_profile_version_summary_list.DataTransformationProfileVersionSummaryList"
+    """<p>The list of data transformation profile version summaries.</p>"""
+    next_token: NotRequired[
+        "capo_healthlake.types.data_transformation_next_token.DataTransformationNextToken"
+    ]
+    """<p>The pagination token to use in the next request. If this value is <code>null</code>, there are no more results.</p>"""
+
+
+# --- awsJson1_0 ser/de ---
+def serialize_aws_json_1_0(
+    value: ListDataTransformationProfileVersionsResponse,
+) -> dict:
+    out: dict = {}
+    import capo_healthlake.types.data_transformation_profile_version_summary_list
+
+    out["Items"] = (
+        capo_healthlake.types.data_transformation_profile_version_summary_list.serialize_aws_json_1_0(
+            value["items"]
+        )
+    )
+    if "next_token" in value:
+        out["NextToken"] = value["next_token"]
+    return out
+
+
+def deserialize_aws_json_1_0(
+    data: dict,
+) -> ListDataTransformationProfileVersionsResponse:
+    out: ListDataTransformationProfileVersionsResponse = {}  # type: ignore[typeddict-item]
+    if data.get("Items") is not None:
+        import capo_healthlake.types.data_transformation_profile_version_summary_list
+
+        out["items"] = (
+            capo_healthlake.types.data_transformation_profile_version_summary_list.deserialize_aws_json_1_0(
+                data["Items"]
+            )
+        )
+    else:
+        raise DeserializationError(
+            "ListDataTransformationProfileVersionsResponse.items required"
+        )
+    if data.get("NextToken") is not None:
+        out["next_token"] = data["NextToken"]
+    return out

@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_gamelift.types.container_port_configuration
     import capo_gamelift.types.container_vcpu
     import capo_gamelift.types.image_uri_string
+    import capo_gamelift.types.linux_capabilities
     import capo_gamelift.types.non_zero_and128_max_ascii_string
     import capo_gamelift.types.sha256
 
@@ -55,6 +56,10 @@ class SupportContainerDefinition(TypedDict, closed=True):
     """<p>A unique and immutable identifier for the container image. The digest is a SHA 256 hash of the container image manifest. </p>"""
     vcpu: NotRequired["capo_gamelift.types.container_vcpu.ContainerVcpu"]
     r"""<p>The number of vCPU units that are reserved for the container. If no resources are reserved, the container shares the total vCPU limit for the container group.</p> <p> <b>Related data type: </b> <a href=\"https://docs.aws.amazon.com/gamelift/latest/apireference/API_ContainerGroupDefinition.html\">ContainerGroupDefinition TotalVcpuLimit</a> </p>"""
+    linux_capabilities: NotRequired[
+        "capo_gamelift.types.linux_capabilities.LinuxCapabilities"
+    ]
+    r"""<p>Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see <a href=\"https://docs.aws.amazon.com/gamelift/latest/apireference/API_LinuxCapabilities.html\">LinuxCapabilities</a>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -120,6 +125,14 @@ def serialize_aws_json_1_1(value: SupportContainerDefinition) -> dict:
             if value["vcpu"] == float("-inf")
             else value["vcpu"]
         )
+    if "linux_capabilities" in value:
+        import capo_gamelift.types.linux_capabilities
+
+        out["LinuxCapabilities"] = (
+            capo_gamelift.types.linux_capabilities.serialize_aws_json_1_1(
+                value["linux_capabilities"]
+            )
+        )
     return out
 
 
@@ -177,4 +190,12 @@ def deserialize_aws_json_1_1(data: dict) -> SupportContainerDefinition:
         out["resolved_image_digest"] = data["ResolvedImageDigest"]
     if data.get("Vcpu") is not None:
         out["vcpu"] = float(data["Vcpu"])
+    if data.get("LinuxCapabilities") is not None:
+        import capo_gamelift.types.linux_capabilities
+
+        out["linux_capabilities"] = (
+            capo_gamelift.types.linux_capabilities.deserialize_aws_json_1_1(
+                data["LinuxCapabilities"]
+            )
+        )
     return out

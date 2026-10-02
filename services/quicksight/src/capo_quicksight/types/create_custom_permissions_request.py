@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.aws_account_id
     import capo_quicksight.types.capabilities
     import capo_quicksight.types.custom_permissions_name
+    import capo_quicksight.types.governance
     import capo_quicksight.types.tag_list
 
 
@@ -22,6 +23,8 @@ class CreateCustomPermissionsRequest(TypedDict, closed=True):
     """<p>The name of the custom permissions profile that you want to create.</p>"""
     capabilities: NotRequired["capo_quicksight.types.capabilities.Capabilities"]
     """<p>A set of actions to include in the custom permissions profile.</p>"""
+    governance: NotRequired["capo_quicksight.types.governance.Governance"]
+    """<p>The governance configuration for the custom permissions profile. When governance controls are defined for a category, any capabilities in that category not explicitly set to <code>ALLOW</code> in <code>Capabilities</code> are denied. Even newly added capabilities in the category are implicitly disabled when Amazon Quick releases them.</p>"""
     tags: NotRequired["capo_quicksight.types.tag_list.TagList"]
     """<p>The tags to associate with the custom permissions profile.</p>"""
 
@@ -35,6 +38,12 @@ def serialize_json(value: CreateCustomPermissionsRequest) -> dict:
 
         out["Capabilities"] = capo_quicksight.types.capabilities.serialize_json(
             value["capabilities"]
+        )
+    if "governance" in value:
+        import capo_quicksight.types.governance
+
+        out["Governance"] = capo_quicksight.types.governance.serialize_json(
+            value["governance"]
         )
     if "tags" in value:
         import capo_quicksight.types.tag_list
@@ -56,6 +65,12 @@ def deserialize_json(data: dict) -> CreateCustomPermissionsRequest:
 
         out["capabilities"] = capo_quicksight.types.capabilities.deserialize_json(
             data["Capabilities"]
+        )
+    if data.get("Governance") is not None:
+        import capo_quicksight.types.governance
+
+        out["governance"] = capo_quicksight.types.governance.deserialize_json(
+            data["Governance"]
         )
     if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list

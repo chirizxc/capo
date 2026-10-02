@@ -31,6 +31,7 @@ from capo_quicksight._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_quicksight.types.access_control_configuration
     import capo_quicksight.types.account_customization
     import capo_quicksight.types.account_id
     import capo_quicksight.types.account_name
@@ -55,6 +56,12 @@ if TYPE_CHECKING:
     import capo_quicksight.types.analysis_summary
     import capo_quicksight.types.anonymous_user_embedding_experience_configuration
     import capo_quicksight.types.answer_ids
+    import capo_quicksight.types.app_id
+    import capo_quicksight.types.app_summary
+    import capo_quicksight.types.app_visibility
+    import capo_quicksight.types.applicable_to
+    import capo_quicksight.types.approval_group_list
+    import capo_quicksight.types.approval_policy
     import capo_quicksight.types.arn
     import capo_quicksight.types.arn_list
     import capo_quicksight.types.asset_bundle_cloud_formation_override_property_configuration
@@ -69,6 +76,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.asset_bundle_import_job_summary
     import capo_quicksight.types.asset_bundle_import_source
     import capo_quicksight.types.asset_bundle_resource_arns
+    import capo_quicksight.types.asset_type_list
     import capo_quicksight.types.assignment_status
     import capo_quicksight.types.auth_config
     import capo_quicksight.types.authentication_method_option
@@ -83,6 +91,9 @@ if TYPE_CHECKING:
     import capo_quicksight.types.batch_delete_knowledge_base_response
     import capo_quicksight.types.batch_delete_topic_reviewed_answer_request
     import capo_quicksight.types.batch_delete_topic_reviewed_answer_response
+    import capo_quicksight.types.batch_describe_user_limits_request
+    import capo_quicksight.types.batch_describe_user_limits_request_users_list
+    import capo_quicksight.types.batch_describe_user_limits_response
     import capo_quicksight.types.boolean
     import capo_quicksight.types.brand_definition
     import capo_quicksight.types.brand_summary
@@ -103,6 +114,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.create_agent_response
     import capo_quicksight.types.create_analysis_request
     import capo_quicksight.types.create_analysis_response
+    import capo_quicksight.types.create_approval_policy_request
+    import capo_quicksight.types.create_approval_policy_response
     import capo_quicksight.types.create_brand_request
     import capo_quicksight.types.create_brand_response
     import capo_quicksight.types.create_custom_permissions_request
@@ -113,6 +126,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.create_data_set_response
     import capo_quicksight.types.create_data_source_request
     import capo_quicksight.types.create_data_source_response
+    import capo_quicksight.types.create_dlp_setting_request
+    import capo_quicksight.types.create_dlp_setting_response
     import capo_quicksight.types.create_flow_request
     import capo_quicksight.types.create_flow_request_client_token_string
     import capo_quicksight.types.create_flow_response
@@ -128,6 +143,12 @@ if TYPE_CHECKING:
     import capo_quicksight.types.create_iam_policy_assignment_response
     import capo_quicksight.types.create_ingestion_request
     import capo_quicksight.types.create_ingestion_response
+    import capo_quicksight.types.create_knowledge_base_request
+    import capo_quicksight.types.create_knowledge_base_response
+    import capo_quicksight.types.create_limits_profile_request
+    import capo_quicksight.types.create_limits_profile_request_client_token_string
+    import capo_quicksight.types.create_limits_profile_request_resource_limits_map
+    import capo_quicksight.types.create_limits_profile_response
     import capo_quicksight.types.create_namespace_request
     import capo_quicksight.types.create_namespace_response
     import capo_quicksight.types.create_o_auth_client_application_request
@@ -151,6 +172,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.create_topic_request
     import capo_quicksight.types.create_topic_response
     import capo_quicksight.types.create_topic_reviewed_answers
+    import capo_quicksight.types.create_topic_v2_request
+    import capo_quicksight.types.create_topic_v2_response
     import capo_quicksight.types.create_vpc_connection_request
     import capo_quicksight.types.create_vpc_connection_response
     import capo_quicksight.types.custom_instructions
@@ -173,6 +196,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.data_set_usage_configuration
     import capo_quicksight.types.data_set_use_as
     import capo_quicksight.types.data_source
+    import capo_quicksight.types.data_source_arn
     import capo_quicksight.types.data_source_credentials
     import capo_quicksight.types.data_source_parameters
     import capo_quicksight.types.data_source_search_filter_list
@@ -191,6 +215,10 @@ if TYPE_CHECKING:
     import capo_quicksight.types.delete_agent_response
     import capo_quicksight.types.delete_analysis_request
     import capo_quicksight.types.delete_analysis_response
+    import capo_quicksight.types.delete_app_request
+    import capo_quicksight.types.delete_app_response
+    import capo_quicksight.types.delete_approval_policy_request
+    import capo_quicksight.types.delete_approval_policy_response
     import capo_quicksight.types.delete_brand_assignment_request
     import capo_quicksight.types.delete_brand_assignment_response
     import capo_quicksight.types.delete_brand_request
@@ -207,6 +235,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.delete_data_source_response
     import capo_quicksight.types.delete_default_q_business_application_request
     import capo_quicksight.types.delete_default_q_business_application_response
+    import capo_quicksight.types.delete_dlp_setting_request
+    import capo_quicksight.types.delete_dlp_setting_response
     import capo_quicksight.types.delete_flow_request
     import capo_quicksight.types.delete_flow_response
     import capo_quicksight.types.delete_folder_membership_request
@@ -223,6 +253,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.delete_identity_propagation_config_response
     import capo_quicksight.types.delete_knowledge_base_request
     import capo_quicksight.types.delete_knowledge_base_response
+    import capo_quicksight.types.delete_limits_profile_request
+    import capo_quicksight.types.delete_limits_profile_response
     import capo_quicksight.types.delete_namespace_request
     import capo_quicksight.types.delete_namespace_response
     import capo_quicksight.types.delete_o_auth_client_application_request
@@ -247,6 +279,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.delete_topic_refresh_schedule_response
     import capo_quicksight.types.delete_topic_request
     import capo_quicksight.types.delete_topic_response
+    import capo_quicksight.types.delete_topic_v2_request
+    import capo_quicksight.types.delete_topic_v2_response
     import capo_quicksight.types.delete_user_by_principal_id_request
     import capo_quicksight.types.delete_user_by_principal_id_response
     import capo_quicksight.types.delete_user_custom_permission_request
@@ -277,6 +311,12 @@ if TYPE_CHECKING:
     import capo_quicksight.types.describe_analysis_permissions_response
     import capo_quicksight.types.describe_analysis_request
     import capo_quicksight.types.describe_analysis_response
+    import capo_quicksight.types.describe_app_permissions_request
+    import capo_quicksight.types.describe_app_permissions_response
+    import capo_quicksight.types.describe_app_request
+    import capo_quicksight.types.describe_app_response
+    import capo_quicksight.types.describe_approval_policy_request
+    import capo_quicksight.types.describe_approval_policy_response
     import capo_quicksight.types.describe_asset_bundle_export_job_request
     import capo_quicksight.types.describe_asset_bundle_export_job_response
     import capo_quicksight.types.describe_asset_bundle_import_job_request
@@ -315,6 +355,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.describe_data_source_response
     import capo_quicksight.types.describe_default_q_business_application_request
     import capo_quicksight.types.describe_default_q_business_application_response
+    import capo_quicksight.types.describe_dlp_setting_request
+    import capo_quicksight.types.describe_dlp_setting_response
     import capo_quicksight.types.describe_flow_request
     import capo_quicksight.types.describe_flow_response
     import capo_quicksight.types.describe_folder_permissions_request
@@ -339,6 +381,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.describe_knowledge_base_permissions_response
     import capo_quicksight.types.describe_knowledge_base_request
     import capo_quicksight.types.describe_knowledge_base_response
+    import capo_quicksight.types.describe_limits_profile_request
+    import capo_quicksight.types.describe_limits_profile_response
     import capo_quicksight.types.describe_namespace_request
     import capo_quicksight.types.describe_namespace_response
     import capo_quicksight.types.describe_o_auth_client_application_request
@@ -373,16 +417,25 @@ if TYPE_CHECKING:
     import capo_quicksight.types.describe_theme_response
     import capo_quicksight.types.describe_topic_permissions_request
     import capo_quicksight.types.describe_topic_permissions_response
+    import capo_quicksight.types.describe_topic_permissions_v2_request
+    import capo_quicksight.types.describe_topic_permissions_v2_response
     import capo_quicksight.types.describe_topic_refresh_request
     import capo_quicksight.types.describe_topic_refresh_response
     import capo_quicksight.types.describe_topic_refresh_schedule_request
     import capo_quicksight.types.describe_topic_refresh_schedule_response
     import capo_quicksight.types.describe_topic_request
     import capo_quicksight.types.describe_topic_response
+    import capo_quicksight.types.describe_topic_v2_request
+    import capo_quicksight.types.describe_topic_v2_response
     import capo_quicksight.types.describe_user_request
     import capo_quicksight.types.describe_user_response
     import capo_quicksight.types.describe_vpc_connection_request
     import capo_quicksight.types.describe_vpc_connection_response
+    import capo_quicksight.types.dlp_action
+    import capo_quicksight.types.dlp_provider_type
+    import capo_quicksight.types.dlp_setting_id
+    import capo_quicksight.types.dlp_setting_name
+    import capo_quicksight.types.dlp_setting_summary
     import capo_quicksight.types.dns_resolver_list
     import capo_quicksight.types.edition
     import capo_quicksight.types.embedding_identity_type
@@ -414,6 +467,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.get_identity_context_response
     import capo_quicksight.types.get_session_embed_url_request
     import capo_quicksight.types.get_session_embed_url_response
+    import capo_quicksight.types.governance
+    import capo_quicksight.types.governed_action_list
     import capo_quicksight.types.group
     import capo_quicksight.types.group_description
     import capo_quicksight.types.group_member
@@ -437,11 +492,15 @@ if TYPE_CHECKING:
     import capo_quicksight.types.ip_restriction_rule_map
     import capo_quicksight.types.kb_aws_account_id
     import capo_quicksight.types.key_registration
+    import capo_quicksight.types.knowledge_base_configuration
+    import capo_quicksight.types.knowledge_base_description
     import capo_quicksight.types.knowledge_base_id
+    import capo_quicksight.types.knowledge_base_name
     import capo_quicksight.types.knowledge_base_search_filters
     import capo_quicksight.types.knowledge_base_sort_by
     import capo_quicksight.types.knowledge_base_summary
     import capo_quicksight.types.limited_string
+    import capo_quicksight.types.limits_profile
     import capo_quicksight.types.link_entity_arn_list
     import capo_quicksight.types.link_sharing_configuration
     import capo_quicksight.types.list_action_connectors_request
@@ -451,6 +510,10 @@ if TYPE_CHECKING:
     import capo_quicksight.types.list_agents_response
     import capo_quicksight.types.list_analyses_request
     import capo_quicksight.types.list_analyses_response
+    import capo_quicksight.types.list_approval_policies_request
+    import capo_quicksight.types.list_approval_policies_response
+    import capo_quicksight.types.list_apps_request
+    import capo_quicksight.types.list_apps_response
     import capo_quicksight.types.list_asset_bundle_export_jobs_request
     import capo_quicksight.types.list_asset_bundle_export_jobs_response
     import capo_quicksight.types.list_asset_bundle_import_jobs_request
@@ -467,6 +530,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.list_data_sets_response
     import capo_quicksight.types.list_data_sources_request
     import capo_quicksight.types.list_data_sources_response
+    import capo_quicksight.types.list_dlp_settings_request
+    import capo_quicksight.types.list_dlp_settings_response
     import capo_quicksight.types.list_flows_input
     import capo_quicksight.types.list_flows_output
     import capo_quicksight.types.list_folder_members_request
@@ -490,6 +555,9 @@ if TYPE_CHECKING:
     import capo_quicksight.types.list_ingestions_response
     import capo_quicksight.types.list_knowledge_bases_request
     import capo_quicksight.types.list_knowledge_bases_response
+    import capo_quicksight.types.list_limits_profiles_request
+    import capo_quicksight.types.list_limits_profiles_request_max_results_integer
+    import capo_quicksight.types.list_limits_profiles_response
     import capo_quicksight.types.list_namespaces_request
     import capo_quicksight.types.list_namespaces_response
     import capo_quicksight.types.list_o_auth_client_applications_request
@@ -524,6 +592,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.list_topic_reviewed_answers_response
     import capo_quicksight.types.list_topics_request
     import capo_quicksight.types.list_topics_response
+    import capo_quicksight.types.list_topics_v2_request
+    import capo_quicksight.types.list_topics_v2_response
     import capo_quicksight.types.list_user_groups_request
     import capo_quicksight.types.list_user_groups_response
     import capo_quicksight.types.list_users_index_capacity_request
@@ -537,6 +607,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.max_contributors
     import capo_quicksight.types.max_results
     import capo_quicksight.types.max_topics_to_consider
+    import capo_quicksight.types.media_extraction_configuration
     import capo_quicksight.types.member_id_arn_pair
     import capo_quicksight.types.member_type
     import capo_quicksight.types.namespace
@@ -551,13 +622,21 @@ if TYPE_CHECKING:
     import capo_quicksight.types.o_auth_client_secret
     import capo_quicksight.types.o_auth_scopes_string
     import capo_quicksight.types.o_auth_token_endpoint_url
+    import capo_quicksight.types.pagination_token
     import capo_quicksight.types.parameters
     import capo_quicksight.types.performance_configuration
     import capo_quicksight.types.permissions_list
     import capo_quicksight.types.personalization_mode
     import capo_quicksight.types.physical_table_map
+    import capo_quicksight.types.policy_description
+    import capo_quicksight.types.policy_id
+    import capo_quicksight.types.policy_name
     import capo_quicksight.types.predict_qa_results_request
     import capo_quicksight.types.predict_qa_results_response
+    import capo_quicksight.types.profile_description
+    import capo_quicksight.types.profile_id
+    import capo_quicksight.types.profile_name
+    import capo_quicksight.types.provider_config
     import capo_quicksight.types.public_space_id
     import capo_quicksight.types.purchase_mode
     import capo_quicksight.types.put_data_set_refresh_properties_request
@@ -571,9 +650,12 @@ if TYPE_CHECKING:
     import capo_quicksight.types.register_user_response
     import capo_quicksight.types.registered_user_embedding_experience_configuration
     import capo_quicksight.types.resource_id
+    import capo_quicksight.types.resource_limits_map
     import capo_quicksight.types.resource_name
     import capo_quicksight.types.resource_permission
     import capo_quicksight.types.resource_permission_list
+    import capo_quicksight.types.resource_type
+    import capo_quicksight.types.resource_type_list
     import capo_quicksight.types.restore_analysis_request
     import capo_quicksight.types.restore_analysis_response
     import capo_quicksight.types.restrictive_resource_id
@@ -590,6 +672,9 @@ if TYPE_CHECKING:
     import capo_quicksight.types.search_agents_response
     import capo_quicksight.types.search_analyses_request
     import capo_quicksight.types.search_analyses_response
+    import capo_quicksight.types.search_apps_filter_list
+    import capo_quicksight.types.search_apps_request
+    import capo_quicksight.types.search_apps_response
     import capo_quicksight.types.search_dashboards_request
     import capo_quicksight.types.search_dashboards_response
     import capo_quicksight.types.search_data_sets_request
@@ -609,6 +694,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.search_spaces_response
     import capo_quicksight.types.search_topics_request
     import capo_quicksight.types.search_topics_response
+    import capo_quicksight.types.search_topics_v2_request
+    import capo_quicksight.types.search_topics_v2_response
     import capo_quicksight.types.security_group_id_list
     import capo_quicksight.types.self_upgrade_admin_action
     import capo_quicksight.types.self_upgrade_status
@@ -663,6 +750,9 @@ if TYPE_CHECKING:
     import capo_quicksight.types.topic_refresh_schedule
     import capo_quicksight.types.topic_search_filter_list
     import capo_quicksight.types.topic_summary
+    import capo_quicksight.types.topic_v2_details
+    import capo_quicksight.types.topic_v2_publish_option
+    import capo_quicksight.types.topic_v2_summary
     import capo_quicksight.types.untag_resource_request
     import capo_quicksight.types.untag_resource_response
     import capo_quicksight.types.update_account_custom_permission_request
@@ -689,8 +779,12 @@ if TYPE_CHECKING:
     import capo_quicksight.types.update_analysis_permissions_response
     import capo_quicksight.types.update_analysis_request
     import capo_quicksight.types.update_analysis_response
+    import capo_quicksight.types.update_app_permissions_request
+    import capo_quicksight.types.update_app_permissions_response
     import capo_quicksight.types.update_application_with_token_exchange_grant_request
     import capo_quicksight.types.update_application_with_token_exchange_grant_response
+    import capo_quicksight.types.update_approval_policy_request
+    import capo_quicksight.types.update_approval_policy_response
     import capo_quicksight.types.update_brand_assignment_request
     import capo_quicksight.types.update_brand_assignment_response
     import capo_quicksight.types.update_brand_published_version_request
@@ -719,6 +813,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.update_data_source_response
     import capo_quicksight.types.update_default_q_business_application_request
     import capo_quicksight.types.update_default_q_business_application_response
+    import capo_quicksight.types.update_dlp_setting_request
+    import capo_quicksight.types.update_dlp_setting_response
     import capo_quicksight.types.update_flow_permissions_input
     import capo_quicksight.types.update_flow_permissions_input_grant_permissions_list
     import capo_quicksight.types.update_flow_permissions_input_revoke_permissions_list
@@ -742,6 +838,10 @@ if TYPE_CHECKING:
     import capo_quicksight.types.update_key_registration_response
     import capo_quicksight.types.update_knowledge_base_permissions_request
     import capo_quicksight.types.update_knowledge_base_permissions_response
+    import capo_quicksight.types.update_knowledge_base_request
+    import capo_quicksight.types.update_knowledge_base_response
+    import capo_quicksight.types.update_limits_profile_request
+    import capo_quicksight.types.update_limits_profile_response
     import capo_quicksight.types.update_link_permission_list
     import capo_quicksight.types.update_o_auth_client_application_request
     import capo_quicksight.types.update_o_auth_client_application_response
@@ -782,10 +882,14 @@ if TYPE_CHECKING:
     import capo_quicksight.types.update_theme_response
     import capo_quicksight.types.update_topic_permissions_request
     import capo_quicksight.types.update_topic_permissions_response
+    import capo_quicksight.types.update_topic_permissions_v2_request
+    import capo_quicksight.types.update_topic_permissions_v2_response
     import capo_quicksight.types.update_topic_refresh_schedule_request
     import capo_quicksight.types.update_topic_refresh_schedule_response
     import capo_quicksight.types.update_topic_request
     import capo_quicksight.types.update_topic_response
+    import capo_quicksight.types.update_topic_v2_request
+    import capo_quicksight.types.update_topic_v2_response
     import capo_quicksight.types.update_user_custom_permission_request
     import capo_quicksight.types.update_user_custom_permission_response
     import capo_quicksight.types.update_user_request
@@ -1054,6 +1158,64 @@ class QuickSightClient:
         }
         if answer_ids is not None:
             input_["answer_ids"] = answer_ids
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def batch_describe_user_limits(
+        self,
+        account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        users: Optional[
+            "capo_quicksight.types.batch_describe_user_limits_request_users_list.BatchDescribeUserLimitsRequestUsersList"
+        ] = None,
+        resource_types: Optional[
+            "capo_quicksight.types.resource_type_list.ResourceTypeList"
+        ] = None,
+    ) -> "capo_quicksight.types.batch_describe_user_limits_response.BatchDescribeUserLimitsResponse":
+        """<p>Describes the effective resource limits for one or more Amazon Quick Sight users, including the limits that apply to each user based on their profile assignments.</p>
+
+        Args:
+            account_id: <p>The ID of the Amazon Web Services account that contains the users.</p>
+            users: <p>A list of users to describe limits for. Each entry contains a user name and namespace.</p>
+            resource_types: <p>An optional filter that limits the results to specific resource types. If you don't specify a value, the operation returns limits for all resource types.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.batch_describe_user_limits_request.BatchDescribeUserLimitsRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.batch_describe_user_limits_response.BatchDescribeUserLimitsResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.batch_describe_user_limits
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.batch_describe_user_limits.batch_describe_user_limits(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.batch_describe_user_limits_request.BatchDescribeUserLimitsRequest = {
+            "account_id": account_id
+        }
+        if users is not None:
+            input_["users"] = users
+        if resource_types is not None:
+            input_["resource_types"] = resource_types
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1524,7 +1686,7 @@ class QuickSightClient:
             name: <p>A descriptive name for the analysis that you're creating. This name displays for the analysis in the Amazon Quick Sight console. </p>
             parameters: <p>The parameter names and override values that you want to use. An analysis can have any parameter type, and some parameters might accept multiple values. </p>
             permissions: <p>A structure that describes the principals and the resource-level permissions on an analysis. You can use the <code>Permissions</code> structure to grant permissions by providing a list of Identity and Access Management (IAM) action information for each principal listed by Amazon Resource Name (ARN). </p> <p>To specify no permissions, omit <code>Permissions</code>.</p>
-            source_entity: <p>A source entity to use for the analysis that you're creating. This metadata structure contains details that describe a source template and one or more datasets.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>
+            source_entity: <p>A source entity to use for the analysis that you're creating. This metadata structure contains details that describe a source template and one or more datasets or topics.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>
             theme_arn: <p>The ARN for the theme to apply to the analysis that you're creating. To see the theme in the Amazon Quick Sight console, make sure that you have access to it.</p>
             tags: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the analysis.</p>
             definition: <p>The definition of an analysis.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>
@@ -1579,6 +1741,76 @@ class QuickSightClient:
             input_["validation_strategy"] = validation_strategy
         if folder_arns is not None:
             input_["folder_arns"] = folder_arns
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_approval_policy(
+        self,
+        policy_id: "capo_quicksight.types.policy_id.PolicyId",
+        name: "capo_quicksight.types.policy_name.PolicyName",
+        actions: "capo_quicksight.types.governed_action_list.GovernedActionList",
+        asset_types: "capo_quicksight.types.asset_type_list.AssetTypeList",
+        applicable_to: "capo_quicksight.types.applicable_to.ApplicableTo",
+        approval_groups: "capo_quicksight.types.approval_group_list.ApprovalGroupList",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        description: Optional[
+            "capo_quicksight.types.policy_description.PolicyDescription"
+        ] = None,
+    ) -> "capo_quicksight.types.create_approval_policy_response.CreateApprovalPolicyResponse":
+        """<p>Creates an approval policy in Quick Sight.</p>
+
+        Args:
+            policy_id: <p>The unique identifier to assign to the approval policy. You cannot change this value after you create the policy.</p>
+            name: <p>The name of the approval policy.</p>
+            description: <p>A description of the approval policy.</p>
+            actions: <p>The list of governed actions that trigger the approval workflow.</p>
+            asset_types: <p>The list of asset types that the approval policy applies to.</p>
+            applicable_to: <p>The scoping configuration that determines who the approval policy applies to.</p>
+            approval_groups: <p>The list of group ARNs whose members can approve requests.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.limit_exceeded_exception.LimitExceededException: <p>A limit is exceeded.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.create_approval_policy_request.CreateApprovalPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.create_approval_policy_response.CreateApprovalPolicyResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.create_approval_policy
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.create_approval_policy.create_approval_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.create_approval_policy_request.CreateApprovalPolicyRequest = {
+            "policy_id": policy_id,
+            "name": name,
+            "actions": actions,
+            "asset_types": asset_types,
+            "applicable_to": applicable_to,
+            "approval_groups": approval_groups,
+        }
+        if description is not None:
+            input_["description"] = description
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1658,6 +1890,7 @@ class QuickSightClient:
         capabilities: Optional[
             "capo_quicksight.types.capabilities.Capabilities"
         ] = None,
+        governance: Optional["capo_quicksight.types.governance.Governance"] = None,
         tags: Optional["capo_quicksight.types.tag_list.TagList"] = None,
     ) -> "capo_quicksight.types.create_custom_permissions_response.CreateCustomPermissionsResponse":
         """<p>Creates a custom permissions profile.</p>
@@ -1666,6 +1899,7 @@ class QuickSightClient:
             aws_account_id: <p>The ID of the Amazon Web Services account that you want to create the custom permissions profile in.</p>
             custom_permissions_name: <p>The name of the custom permissions profile that you want to create.</p>
             capabilities: <p>A set of actions to include in the custom permissions profile.</p>
+            governance: <p>The governance configuration for the custom permissions profile. When governance controls are defined for a category, any capabilities in that category not explicitly set to <code>ALLOW</code> in <code>Capabilities</code> are denied. Even newly added capabilities in the category are implicitly disabled when Amazon Quick releases them.</p>
             tags: <p>The tags to associate with the custom permissions profile.</p>
 
         Raises:
@@ -1703,6 +1937,8 @@ class QuickSightClient:
         }
         if capabilities is not None:
             input_["capabilities"] = capabilities
+        if governance is not None:
+            input_["governance"] = governance
         if tags is not None:
             input_["tags"] = tags
 
@@ -1760,7 +1996,7 @@ class QuickSightClient:
             name: <p>The display name of the dashboard.</p>
             parameters: <p>The parameters for the creation of the dashboard, which you want to use to override the default settings. A dashboard can have any type of parameters, and some parameters might accept multiple values. </p>
             permissions: <p>A structure that contains the permissions of the dashboard. You can use this structure for granting permissions by providing a list of IAM action information for each principal ARN. </p> <p>To specify no permissions, omit the permissions list.</p>
-            source_entity: <p>The entity that you are using as a source when you create the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only create a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to create a dashboard from an analysis, first convert the analysis to a template by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code>ARN can contain any Amazon Web Services account and any Amazon Quick Sight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>
+            source_entity: <p>The entity that you are using as a source when you create the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only create a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to create a dashboard from an analysis, first convert the analysis to a template by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code>ARN can contain any Amazon Web Services account and any Amazon Quick Sight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. Use the <code>TopicReferences</code> entity to list the replacement topics for the topic placeholders listed in the original. The schema in each topic must match its placeholder.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>
             tags: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the dashboard.</p>
             version_description: <p>A description for the first version of the dashboard being created.</p>
             dashboard_publish_options: <p>Options for publishing the dashboard when you create it:</p> <ul> <li> <p> <code>AvailabilityStatus</code> for <code>AdHocFilteringOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. When this is set to <code>DISABLED</code>, Amazon Quick Sight disables the left filter pane on the published dashboard, which can be used for ad hoc (one-time) filtering. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExportToCSVOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to .CSV format isn't enabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>VisibilityState</code> for <code>SheetControlsOption</code> - This visibility state can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. This option is <code>COLLAPSED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>QuickSuiteActionsOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. Features related to Actions in Amazon Quick Suite on dashboards are disabled when this is set to <code>DISABLED</code>. This option is <code>DISABLED</code> by default.</p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExecutiveSummaryOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The option to build an executive summary is disabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default.</p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>DataStoriesSharingOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The option to share a data story is disabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default.</p> </li> </ul>
@@ -1887,7 +2123,7 @@ class QuickSightClient:
             "capo_quicksight.types.semantic_model_configuration.SemanticModelConfiguration"
         ] = None,
     ) -> "capo_quicksight.types.create_data_set_response.CreateDataSetResponse":
-        r"""<p>Creates a dataset. This operation doesn't support datasets that include uploaded files as a source.</p>
+        r"""<p>Creates a dataset.</p>
 
         Args:
             aws_account_id: <p>The Amazon Web Services account ID.</p>
@@ -2078,6 +2314,77 @@ class QuickSightClient:
             input_["tags"] = tags
         if folder_arns is not None:
             input_["folder_arns"] = folder_arns
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_dlp_setting(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        dlp_setting_id: "capo_quicksight.types.dlp_setting_id.DlpSettingId",
+        name: "capo_quicksight.types.dlp_setting_name.DlpSettingName",
+        provider_type: "capo_quicksight.types.dlp_provider_type.DlpProviderType",
+        provider_config: "capo_quicksight.types.provider_config.ProviderConfig",
+        provider_outage_action: "capo_quicksight.types.dlp_action.DlpAction",
+        enabled: "capo_quicksight.types.boolean.Boolean",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        tags: Optional["capo_quicksight.types.tag_list.TagList"] = None,
+    ) -> "capo_quicksight.types.create_dlp_setting_response.CreateDlpSettingResponse":
+        """<p>Creates a data loss prevention (DLP) setting configuration for an Amazon Web Services account. A DLP setting defines the DLP provider, the enforcement behavior, and the Quick capabilities that the setting applies to.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account in which to create the DLP setting.</p>
+            dlp_setting_id: <p>A unique identifier for the DLP setting.</p>
+            name: <p>A human-readable display name for the DLP setting.</p>
+            provider_type: <p>The type of external DLP provider to use for sensitivity label classification. Currently, the only supported value is <code>MICROSOFT_PURVIEW</code>.</p>
+            provider_config: <p>The provider-specific configuration for the DLP integration. This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>
+            provider_outage_action: <p>The behavior to apply when the DLP provider is unreachable. Valid values are <code>ALLOW</code>, <code>WARN</code>, and <code>BLOCK</code>.</p>
+            enabled: <p>Specifies whether DLP enforcement is active for this setting. Set to <code>true</code> to enable enforcement, or <code>false</code> to disable it at time of setting creation.</p>
+            tags: <p>A list of resource tags to apply to the DLP setting. You can use tags to manage access to your Amazon Web Services resources.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_request_exception.InvalidRequestException: <p>You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.</p>
+            capo_quicksight.errors.limit_exceeded_exception.LimitExceededException: <p>A limit is exceeded.</p>
+            capo_quicksight.errors.resource_exists_exception.ResourceExistsException: <p>The resource specified already exists. </p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.create_dlp_setting_request.CreateDlpSettingRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.create_dlp_setting_response.CreateDlpSettingResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.create_dlp_setting
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.create_dlp_setting.create_dlp_setting(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.create_dlp_setting_request.CreateDlpSettingRequest = {
+            "aws_account_id": aws_account_id,
+            "dlp_setting_id": dlp_setting_id,
+            "name": name,
+            "provider_type": provider_type,
+            "provider_config": provider_config,
+            "provider_outage_action": provider_outage_action,
+            "enabled": enabled,
+        }
+        if tags is not None:
+            input_["tags"] = tags
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2551,6 +2858,162 @@ class QuickSightClient:
         response.response.close()
         return response.output
 
+    def create_knowledge_base(
+        self,
+        aws_account_id: "capo_quicksight.types.kb_aws_account_id.KbAwsAccountId",
+        knowledge_base_id: "capo_quicksight.types.knowledge_base_id.KnowledgeBaseId",
+        name: "capo_quicksight.types.knowledge_base_name.KnowledgeBaseName",
+        data_source_arn: "capo_quicksight.types.data_source_arn.DataSourceArn",
+        knowledge_base_configuration: "capo_quicksight.types.knowledge_base_configuration.KnowledgeBaseConfiguration",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        description: Optional[
+            "capo_quicksight.types.knowledge_base_description.KnowledgeBaseDescription"
+        ] = None,
+        permissions: Optional[
+            "capo_quicksight.types.resource_permission_list.ResourcePermissionList"
+        ] = None,
+        media_extraction_configuration: Optional[
+            "capo_quicksight.types.media_extraction_configuration.MediaExtractionConfiguration"
+        ] = None,
+        access_control_configuration: Optional[
+            "capo_quicksight.types.access_control_configuration.AccessControlConfiguration"
+        ] = None,
+        primary_owner_arn: Optional["capo_quicksight.types.string.String"] = None,
+        tags: Optional["capo_quicksight.types.tag_list.TagList"] = None,
+    ) -> "capo_quicksight.types.create_knowledge_base_response.CreateKnowledgeBaseResponse":
+        """<p>Creates a knowledge base from a specified data source. Supported data source connector types include:</p> <ul> <li> <p> <code>S3_KNOWLEDGE_BASE</code> – Uses an Amazon S3 bucket as the data source.</p> </li> <li> <p> <code>WEB_CRAWLER</code> – Uses web pages indexed by the built-in web crawler as the data source.</p> </li> <li> <p> <code>GOOGLE_DRIVE</code> – Uses Google Drive as the data source. Supports service account authentication only.</p> </li> <li> <p> <code>SHAREPOINT</code> – Uses SharePoint as the data source. Supports two-legged OAuth only.</p> </li> <li> <p> <code>ONE_DRIVE</code> – Uses OneDrive as the data source. Supports two-legged OAuth only.</p> </li> </ul>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the knowledge base.</p>
+            knowledge_base_id: <p>The unique identifier for the knowledge base.</p>
+            name: <p>The name of the knowledge base.</p>
+            data_source_arn: <p>The Amazon Resource Name (ARN) of the data source for the knowledge base.</p>
+            description: <p>A description for the knowledge base. If you don't specify a description, the knowledge base is created without one.</p>
+            permissions: <p>A list of resource permissions on the knowledge base. Each entry grants a specified Amazon QuickSight principal either owner or viewer access. If you don't specify permissions, only the primary owner (if provided) receives owner access.</p>
+            access_control_configuration: <p>The access control configuration for the knowledge base. If you don't specify this parameter, document-level ACLs are disabled.</p>
+            primary_owner_arn: <p>The Amazon Resource Name (ARN) of the Amazon QuickSight user or group to set as the primary owner of the knowledge base. The specified principal is always granted owner access, regardless of what is specified in the <code>Permissions</code> field.</p> <p>This must be an Amazon QuickSight principal ARN, not an IAM user or role ARN. The API caller is never assigned as the owner automatically. If you don't specify a primary owner and don't grant owner access in <code>Permissions</code>, the knowledge base is created without an owner, even when you call the operation as an Amazon QuickSight user.</p> <p>When you call <code>CreateKnowledgeBase</code> as an IAM user or an assumed IAM role, specify <code>PrimaryOwnerArn</code> (as an Amazon QuickSight principal ARN) or an owner entry in <code>Permissions</code> so that the knowledge base has an owner. Although optional, specifying a primary owner is recommended.</p>
+            tags: <p>The tags to assign to the knowledge base. If you don't specify tags, the knowledge base is created without tags.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.invalid_request_exception.InvalidRequestException: <p>You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.</p>
+            capo_quicksight.errors.limit_exceeded_exception.LimitExceededException: <p>A limit is exceeded.</p>
+            capo_quicksight.errors.precondition_not_met_exception.PreconditionNotMetException: <p>One or more preconditions aren't met.</p>
+            capo_quicksight.errors.resource_exists_exception.ResourceExistsException: <p>The resource specified already exists. </p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.create_knowledge_base_request.CreateKnowledgeBaseRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.create_knowledge_base_response.CreateKnowledgeBaseResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.create_knowledge_base
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.create_knowledge_base.create_knowledge_base(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.create_knowledge_base_request.CreateKnowledgeBaseRequest = {
+            "aws_account_id": aws_account_id,
+            "knowledge_base_id": knowledge_base_id,
+            "name": name,
+            "data_source_arn": data_source_arn,
+            "knowledge_base_configuration": knowledge_base_configuration,
+        }
+        if description is not None:
+            input_["description"] = description
+        if permissions is not None:
+            input_["permissions"] = permissions
+        if media_extraction_configuration is not None:
+            input_["media_extraction_configuration"] = media_extraction_configuration
+        if access_control_configuration is not None:
+            input_["access_control_configuration"] = access_control_configuration
+        if primary_owner_arn is not None:
+            input_["primary_owner_arn"] = primary_owner_arn
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_limits_profile(
+        self,
+        account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        profile_name: "capo_quicksight.types.profile_name.ProfileName",
+        resource_limits: "capo_quicksight.types.create_limits_profile_request_resource_limits_map.CreateLimitsProfileRequestResourceLimitsMap",
+        client_token: "capo_quicksight.types.create_limits_profile_request_client_token_string.CreateLimitsProfileRequestClientTokenString",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        description: Optional[
+            "capo_quicksight.types.profile_description.ProfileDescription"
+        ] = None,
+    ) -> "capo_quicksight.types.create_limits_profile_response.CreateLimitsProfileResponse":
+        """<p>Creates a limits profile that defines resource usage limits for Amazon Quick Sight users.</p>
+
+        Args:
+            account_id: <p>The ID of the Amazon Web Services account that contains the limits profile.</p>
+            profile_name: <p>A display name for the limits profile.</p>
+            description: <p>A description for the limits profile.</p>
+            resource_limits: <p>A map of resource types to their limit values for this profile.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.limit_exceeded_exception.LimitExceededException: <p>A limit is exceeded.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.create_limits_profile_request.CreateLimitsProfileRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.create_limits_profile_response.CreateLimitsProfileResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.create_limits_profile
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.create_limits_profile.create_limits_profile(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.create_limits_profile_request.CreateLimitsProfileRequest = {
+            "account_id": account_id,
+            "profile_name": profile_name,
+            "resource_limits": resource_limits,
+            "client_token": client_token,
+        }
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_namespace(
         self,
         aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
@@ -2918,7 +3381,7 @@ class QuickSightClient:
             template_id: <p>An ID for the template that you want to create. This template is unique per Amazon Web Services Region; in each Amazon Web Services account.</p>
             name: <p>A display name for the template.</p>
             permissions: <p>A list of resource permissions to be set on the template. </p>
-            source_entity: <p>The entity that you are using as a source when you create the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>
+            source_entity: <p>The entity that you are using as a source when you create the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. Use the <code>TopicReferences</code> entity to list the replacement topics for the topic placeholders listed in the original. The schema in each topic must match its placeholder.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>
             tags: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>
             version_description: <p>A description of the current template version being created. This API operation creates the first version of the template. Every time <code>UpdateTemplate</code> is called, a new version is created. Each version of the template maintains a description of the version in the <code>VersionDescription</code> field.</p>
             definition: <p>The definition of a template.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>
@@ -3309,6 +3772,77 @@ class QuickSightClient:
         response.response.close()
         return response.output
 
+    def create_topic_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        topic_id: "capo_quicksight.types.topic_id.TopicId",
+        topic: "capo_quicksight.types.topic_v2_details.TopicV2Details",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        tags: Optional["capo_quicksight.types.tag_list.TagList"] = None,
+        folder_arns: Optional[
+            "capo_quicksight.types.folder_arn_list.FolderArnList"
+        ] = None,
+        custom_instructions: Optional[
+            "capo_quicksight.types.custom_instructions.CustomInstructions"
+        ] = None,
+    ) -> "capo_quicksight.types.create_topic_v2_response.CreateTopicV2Response":
+        """<p>Creates a new Q topic.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that you want to create a topic in.</p>
+            topic_id: <p>The ID for the topic that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>
+            topic: <p>The definition of a topic to create.</p>
+            tags: <p>Contains a map of the key-value pairs for the resource tag or tags that are assigned to the topic.</p>
+            folder_arns: <p>The Amazon Resource Names (ARNs) of the folders that you want the topic to reside in.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.limit_exceeded_exception.LimitExceededException: <p>A limit is exceeded.</p>
+            capo_quicksight.errors.resource_exists_exception.ResourceExistsException: <p>The resource specified already exists. </p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.create_topic_v2_request.CreateTopicV2Request]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.create_topic_v2_response.CreateTopicV2Response"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.create_topic_v2
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.create_topic_v2.create_topic_v2(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.create_topic_v2_request.CreateTopicV2Request = {
+            "aws_account_id": aws_account_id,
+            "topic_id": topic_id,
+            "topic": topic,
+        }
+        if tags is not None:
+            input_["tags"] = tags
+        if folder_arns is not None:
+            input_["folder_arns"] = folder_arns
+        if custom_instructions is not None:
+            input_["custom_instructions"] = custom_instructions
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_vpc_connection(
         self,
         aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
@@ -3690,6 +4224,103 @@ class QuickSightClient:
             input_["recovery_window_in_days"] = recovery_window_in_days
         if force_delete_without_recovery is not None:
             input_["force_delete_without_recovery"] = force_delete_without_recovery
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_app(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        app_id: "capo_quicksight.types.app_id.AppId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.delete_app_response.DeleteAppResponse":
+        """<p>Deletes an app.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the app.</p>
+            app_id: <p>The ID of the app that you want to delete.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameter has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.delete_app_request.DeleteAppRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.delete_app_response.DeleteAppResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.delete_app
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.delete_app.delete_app(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.delete_app_request.DeleteAppRequest = {
+            "aws_account_id": aws_account_id,
+            "app_id": app_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_approval_policy(
+        self,
+        policy_id: "capo_quicksight.types.policy_id.PolicyId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.delete_approval_policy_response.DeleteApprovalPolicyResponse":
+        """<p>Deletes an approval policy in Quick Sight.</p>
+
+        Args:
+            policy_id: <p>The unique identifier of the approval policy to delete.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.delete_approval_policy_request.DeleteApprovalPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.delete_approval_policy_response.DeleteApprovalPolicyResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.delete_approval_policy
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.delete_approval_policy.delete_approval_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.delete_approval_policy_request.DeleteApprovalPolicyRequest = {
+            "policy_id": policy_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -4103,6 +4734,56 @@ class QuickSightClient:
         }
         if namespace is not None:
             input_["namespace"] = namespace
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_dlp_setting(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        dlp_setting_id: "capo_quicksight.types.dlp_setting_id.DlpSettingId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.delete_dlp_setting_response.DeleteDlpSettingResponse":
+        """<p>Deletes a DLP setting configuration from an Amazon Web Services account.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the DLP setting that you want to delete.</p>
+            dlp_setting_id: <p>The ID of the DLP setting that you want to delete.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_request_exception.InvalidRequestException: <p>You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.delete_dlp_setting_request.DeleteDlpSettingRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.delete_dlp_setting_response.DeleteDlpSettingResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.delete_dlp_setting
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.delete_dlp_setting.delete_dlp_setting(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.delete_dlp_setting_request.DeleteDlpSettingRequest = {
+            "aws_account_id": aws_account_id,
+            "dlp_setting_id": dlp_setting_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -4535,6 +5216,57 @@ class QuickSightClient:
         input_: capo_quicksight.types.delete_knowledge_base_request.DeleteKnowledgeBaseRequest = {
             "aws_account_id": aws_account_id,
             "knowledge_base_id": knowledge_base_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_limits_profile(
+        self,
+        profile_id: "capo_quicksight.types.profile_id.ProfileId",
+        account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.delete_limits_profile_response.DeleteLimitsProfileResponse":
+        """<p>Deletes a limits profile.</p>
+
+        Args:
+            profile_id: <p>The unique identifier for the limits profile to delete.</p>
+            account_id: <p>The ID of the Amazon Web Services account that contains the limits profile.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.delete_limits_profile_request.DeleteLimitsProfileRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.delete_limits_profile_response.DeleteLimitsProfileResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.delete_limits_profile
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.delete_limits_profile.delete_limits_profile(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.delete_limits_profile_request.DeleteLimitsProfileRequest = {
+            "profile_id": profile_id,
+            "account_id": account_id,
         }
 
         response = execute_pipeline(
@@ -5185,6 +5917,57 @@ class QuickSightClient:
             "aws_account_id": aws_account_id,
             "topic_id": topic_id,
             "dataset_id": dataset_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_topic_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        topic_id: "capo_quicksight.types.topic_id.TopicId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.delete_topic_v2_response.DeleteTopicV2Response":
+        """<p>Deletes a Q topic.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the topic that you want to delete.</p>
+            topic_id: <p>The ID of the topic that you want to delete. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.delete_topic_v2_request.DeleteTopicV2Request]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.delete_topic_v2_response.DeleteTopicV2Response"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.delete_topic_v2
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.delete_topic_v2.delete_topic_v2(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.delete_topic_v2_request.DeleteTopicV2Request = {
+            "aws_account_id": aws_account_id,
+            "topic_id": topic_id,
         }
 
         response = execute_pipeline(
@@ -5968,6 +6751,153 @@ class QuickSightClient:
         response.response.close()
         return response.output
 
+    def describe_app(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        app_id: "capo_quicksight.types.app_id.AppId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.describe_app_response.DescribeAppResponse":
+        """<p>Describes an app.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the app.</p>
+            app_id: <p>The ID of the app that you want to describe.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameter has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.describe_app_request.DescribeAppRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.describe_app_response.DescribeAppResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.describe_app
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.describe_app.describe_app(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.describe_app_request.DescribeAppRequest = {
+            "aws_account_id": aws_account_id,
+            "app_id": app_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_app_permissions(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        app_id: "capo_quicksight.types.app_id.AppId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.describe_app_permissions_response.DescribeAppPermissionsResponse":
+        """<p>Describes the resource permissions for an app.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the app.</p>
+            app_id: <p>The ID of the app.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameter has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.describe_app_permissions_request.DescribeAppPermissionsRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.describe_app_permissions_response.DescribeAppPermissionsResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.describe_app_permissions
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.describe_app_permissions.describe_app_permissions(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.describe_app_permissions_request.DescribeAppPermissionsRequest = {
+            "aws_account_id": aws_account_id,
+            "app_id": app_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_approval_policy(
+        self,
+        policy_id: "capo_quicksight.types.policy_id.PolicyId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.describe_approval_policy_response.DescribeApprovalPolicyResponse":
+        """<p>Describes an approval policy in Quick Sight.</p>
+
+        Args:
+            policy_id: <p>The unique identifier of the approval policy to describe.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.describe_approval_policy_request.DescribeApprovalPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.describe_approval_policy_response.DescribeApprovalPolicyResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.describe_approval_policy
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.describe_approval_policy.describe_approval_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.describe_approval_policy_request.DescribeApprovalPolicyRequest = {
+            "policy_id": policy_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def describe_asset_bundle_export_job(
         self,
         aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
@@ -6675,7 +7605,7 @@ class QuickSightClient:
         *,
         config_overrides: Optional[QuickSightClientConfig] = None,
     ) -> "capo_quicksight.types.describe_data_set_response.DescribeDataSetResponse":
-        """<p>Describes a dataset. This operation doesn't support datasets that include uploaded files as a source.</p>
+        """<p>Describes a dataset.</p>
 
         Args:
             aws_account_id: <p>The Amazon Web Services account ID.</p>
@@ -6964,6 +7894,58 @@ class QuickSightClient:
         }
         if namespace is not None:
             input_["namespace"] = namespace
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_dlp_setting(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        dlp_setting_id: "capo_quicksight.types.dlp_setting_id.DlpSettingId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> (
+        "capo_quicksight.types.describe_dlp_setting_response.DescribeDlpSettingResponse"
+    ):
+        """<p>Describes the full configuration of a DLP setting in an Amazon Web Services account.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the DLP setting that you want to describe.</p>
+            dlp_setting_id: <p>The ID of the DLP setting that you want to describe.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_request_exception.InvalidRequestException: <p>You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.describe_dlp_setting_request.DescribeDlpSettingRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.describe_dlp_setting_response.DescribeDlpSettingResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.describe_dlp_setting
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.describe_dlp_setting.describe_dlp_setting(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.describe_dlp_setting_request.DescribeDlpSettingRequest = {
+            "aws_account_id": aws_account_id,
+            "dlp_setting_id": dlp_setting_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -7673,6 +8655,56 @@ class QuickSightClient:
         input_: capo_quicksight.types.describe_knowledge_base_permissions_request.DescribeKnowledgeBasePermissionsRequest = {
             "aws_account_id": aws_account_id,
             "knowledge_base_id": knowledge_base_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_limits_profile(
+        self,
+        profile_id: "capo_quicksight.types.profile_id.ProfileId",
+        account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.describe_limits_profile_response.DescribeLimitsProfileResponse":
+        """<p>Describes the properties of an existing limits profile.</p>
+
+        Args:
+            profile_id: <p>The unique identifier for the limits profile.</p>
+            account_id: <p>The ID of the Amazon Web Services account that contains the limits profile.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.describe_limits_profile_request.DescribeLimitsProfileRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.describe_limits_profile_response.DescribeLimitsProfileResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.describe_limits_profile
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.describe_limits_profile.describe_limits_profile(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.describe_limits_profile_request.DescribeLimitsProfileRequest = {
+            "profile_id": profile_id,
+            "account_id": account_id,
         }
 
         response = execute_pipeline(
@@ -8646,6 +9678,56 @@ class QuickSightClient:
         response.response.close()
         return response.output
 
+    def describe_topic_permissions_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        topic_id: "capo_quicksight.types.topic_id.TopicId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.describe_topic_permissions_v2_response.DescribeTopicPermissionsV2Response":
+        """<p>Describes the permissions of a topic.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the topic that you want described.</p>
+            topic_id: <p>The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.describe_topic_permissions_v2_request.DescribeTopicPermissionsV2Request]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.describe_topic_permissions_v2_response.DescribeTopicPermissionsV2Response"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.describe_topic_permissions_v2
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.describe_topic_permissions_v2.describe_topic_permissions_v2(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.describe_topic_permissions_v2_request.DescribeTopicPermissionsV2Request = {
+            "aws_account_id": aws_account_id,
+            "topic_id": topic_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def describe_topic_refresh(
         self,
         aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
@@ -8745,6 +9827,56 @@ class QuickSightClient:
             "aws_account_id": aws_account_id,
             "topic_id": topic_id,
             "dataset_id": dataset_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_topic_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        topic_id: "capo_quicksight.types.topic_id.TopicId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+    ) -> "capo_quicksight.types.describe_topic_v2_response.DescribeTopicV2Response":
+        """<p>Describes a Q topic.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the topic that you want to describe.</p>
+            topic_id: <p>The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.describe_topic_v2_request.DescribeTopicV2Request]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.describe_topic_v2_response.DescribeTopicV2Response"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.describe_topic_v2
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.describe_topic_v2.describe_topic_v2(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.describe_topic_v2_request.DescribeTopicV2Request = {
+            "aws_account_id": aws_account_id,
+            "topic_id": topic_id,
         }
 
         response = execute_pipeline(
@@ -9608,6 +10740,159 @@ class QuickSightClient:
             if not _token:
                 break
 
+    def list_approval_policies(
+        self,
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        next_token: Optional[
+            "capo_quicksight.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+    ) -> "capo_quicksight.types.list_approval_policies_response.ListApprovalPoliciesResponse":
+        """<p>Lists all approval policies in the specified Quick Sight account. The results are paginated. If the response includes a <code>NextToken</code> value, pass it in a subsequent call to retrieve the next set of results.</p>
+
+        Args:
+            next_token: <p>The token for the next set of results, or null if there are no more results.</p>
+            max_results: <p>The maximum number of results to return in a single call. If you don't specify a value, the service returns a default number of results. Use the <code>NextToken</code> value in the response to retrieve additional results.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.list_approval_policies_request.ListApprovalPoliciesRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.list_approval_policies_response.ListApprovalPoliciesResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.list_approval_policies
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.list_approval_policies.list_approval_policies(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.list_approval_policies_request.ListApprovalPoliciesRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_approval_policies(
+        self,
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        next_token: Optional[
+            "capo_quicksight.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_quicksight.types.approval_policy.ApprovalPolicy]":
+        _token = next_token
+        while True:
+            _response = self.list_approval_policies(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("policies",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_apps(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_quicksight.types.next_token.NextToken"] = None,
+    ) -> "capo_quicksight.types.list_apps_response.ListAppsResponse":
+        """<p>Lists the apps in an Amazon Web Services account. Results are paginated; use the <code>NextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the apps.</p>
+            max_results: <p>The maximum number of results to return in a single request. Valid range is 1 to 100. If you don't specify a value, the default is 20.</p>
+            next_token: <p>The token for the next set of results, or null if there are no more results.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameter has a value that isn't valid.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.list_apps_request.ListAppsRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.list_apps_response.ListAppsResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.list_apps
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.list_apps.list_apps(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.list_apps_request.ListAppsRequest = {
+            "aws_account_id": aws_account_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_apps(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_quicksight.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_quicksight.types.app_summary.AppSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_apps(
+                aws_account_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("app_summary_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def list_asset_bundle_export_jobs(
         self,
         aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
@@ -10232,6 +11517,87 @@ class QuickSightClient:
                 max_results=max_results,
             )
             _page = _resolve_path(_response, ("data_sources",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_dlp_settings(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        next_token: Optional[
+            "capo_quicksight.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+    ) -> "capo_quicksight.types.list_dlp_settings_response.ListDlpSettingsResponse":
+        """<p>Lists all DLP settings in an Amazon Web Services account.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the DLP settings that you want to list.</p>
+            next_token: <p>The token for the next set of results, or null if there are no more results.</p>
+            max_results: <p>The maximum number of results to return per request.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_request_exception.InvalidRequestException: <p>You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.list_dlp_settings_request.ListDlpSettingsRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.list_dlp_settings_response.ListDlpSettingsResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.list_dlp_settings
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.list_dlp_settings.list_dlp_settings(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.list_dlp_settings_request.ListDlpSettingsRequest = {
+            "aws_account_id": aws_account_id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_dlp_settings(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        next_token: Optional[
+            "capo_quicksight.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_quicksight.types.dlp_setting_summary.DlpSettingSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_dlp_settings(
+                aws_account_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("dlp_setting_summaries",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -11151,6 +12517,99 @@ class QuickSightClient:
                 next_token=_token,
             )
             _page = _resolve_path(_response, ("knowledge_base_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_limits_profiles(
+        self,
+        account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        resource_type: Optional[
+            "capo_quicksight.types.resource_type.ResourceType"
+        ] = None,
+        max_results: Optional[
+            "capo_quicksight.types.list_limits_profiles_request_max_results_integer.ListLimitsProfilesRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional[str] = None,
+    ) -> (
+        "capo_quicksight.types.list_limits_profiles_response.ListLimitsProfilesResponse"
+    ):
+        """<p>Lists all limits profiles in an Amazon Quick Sight account. Results are paginated. Use the <code>maxResults</code> parameter to limit the number of results returned in a single call, and use the <code>nextToken</code> parameter to retrieve the next page of results.</p>
+
+        Args:
+            account_id: <p>The ID of the Amazon Web Services account that contains the limits profiles.</p>
+            resource_type: <p>An optional filter that limits the results to profiles that contain the specified resource type. If you don't specify a value, the operation returns all profiles.</p>
+            max_results: <p>The maximum number of results to return in a single call. If you don't specify a value, the service uses the default maximum.</p>
+            next_token: <p>The token for the next set of results, or null if there are no more results.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.list_limits_profiles_request.ListLimitsProfilesRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.list_limits_profiles_response.ListLimitsProfilesResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.list_limits_profiles
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.list_limits_profiles.list_limits_profiles(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.list_limits_profiles_request.ListLimitsProfilesRequest = {
+            "account_id": account_id
+        }
+        if resource_type is not None:
+            input_["resource_type"] = resource_type
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_limits_profiles(
+        self,
+        account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        resource_type: Optional[
+            "capo_quicksight.types.resource_type.ResourceType"
+        ] = None,
+        max_results: Optional[
+            "capo_quicksight.types.list_limits_profiles_request_max_results_integer.ListLimitsProfilesRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional[str] = None,
+    ) -> "Iterator[capo_quicksight.types.limits_profile.LimitsProfile]":
+        _token = next_token
+        while True:
+            _response = self.list_limits_profiles(
+                account_id,
+                config_overrides=config_overrides,
+                resource_type=resource_type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("profiles",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -12334,6 +13793,84 @@ class QuickSightClient:
             if not _token:
                 break
 
+    def list_topics_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        next_token: Optional["capo_quicksight.types.string.String"] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+    ) -> "capo_quicksight.types.list_topics_v2_response.ListTopicsV2Response":
+        """<p>Lists all of the Q topics in the specified Amazon Web Services account in an Amazon Web Services Region.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the topics that you want to list.</p>
+            next_token: <p>The token for the next set of results, or null if there are no more results.</p>
+            max_results: <p>The maximum number of results to be returned per request.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> value isn't valid.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.list_topics_v2_request.ListTopicsV2Request]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.list_topics_v2_response.ListTopicsV2Response"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.list_topics_v2
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.list_topics_v2.list_topics_v2(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.list_topics_v2_request.ListTopicsV2Request = {
+            "aws_account_id": aws_account_id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_topics_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        next_token: Optional["capo_quicksight.types.string.String"] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_quicksight.types.topic_v2_summary.TopicV2Summary]":
+        _token = next_token
+        while True:
+            _response = self.list_topics_v2(
+                aws_account_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("topic_summary_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def list_user_groups(
         self,
         user_name: "capo_quicksight.types.user_name.UserName",
@@ -13185,6 +14722,88 @@ class QuickSightClient:
             if not _token:
                 break
 
+    def search_apps(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        filters: "capo_quicksight.types.search_apps_filter_list.SearchAppsFilterList",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_quicksight.types.next_token.NextToken"] = None,
+    ) -> "capo_quicksight.types.search_apps_response.SearchAppsResponse":
+        """<p>Searches for apps in an Amazon Web Services account using the specified filters. This operation is eventually consistent; the results might not reflect very recent updates. Results are paginated; use the <code>NextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the apps to search.</p>
+            filters: <p>The filters to apply to the search.</p>
+            max_results: <p>The maximum number of results to return in a single request. Valid range is 1 to 100. If you don't specify a value, the default is 20.</p>
+            next_token: <p>The token for the next set of results, or null if there are no more results.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameter has a value that isn't valid.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.search_apps_request.SearchAppsRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.search_apps_response.SearchAppsResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.search_apps
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.search_apps.search_apps(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.search_apps_request.SearchAppsRequest = {
+            "aws_account_id": aws_account_id,
+            "filters": filters,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_search_apps(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        filters: "capo_quicksight.types.search_apps_filter_list.SearchAppsFilterList",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_quicksight.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_quicksight.types.app_summary.AppSummary]":
+        _token = next_token
+        while True:
+            _response = self.search_apps(
+                aws_account_id,
+                filters,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("app_summary_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def search_dashboards(
         self,
         aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
@@ -13878,6 +15497,7 @@ class QuickSightClient:
             max_results: <p>The maximum number of results to be returned per request.</p>
 
         Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
             capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
             capo_quicksight.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> value isn't valid.</p>
             capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
@@ -13931,6 +15551,90 @@ class QuickSightClient:
         _token = next_token
         while True:
             _response = self.search_topics(
+                aws_account_id,
+                filters,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("topic_summary_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def search_topics_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        filters: "capo_quicksight.types.topic_search_filter_list.TopicSearchFilterList",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        next_token: Optional["capo_quicksight.types.string.String"] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+    ) -> "capo_quicksight.types.search_topics_v2_response.SearchTopicsV2Response":
+        """<p>Searches for any Q topic that exists in an Amazon Web Services account.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the topic that you want to search.</p>
+            filters: <p>The filters that you want to use to search for the topic.</p>
+            next_token: <p>The token for the next set of results, or null if there are no more results.</p>
+            max_results: <p>The maximum number of results to be returned per request.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> value isn't valid.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.search_topics_v2_request.SearchTopicsV2Request]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.search_topics_v2_response.SearchTopicsV2Response"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.search_topics_v2
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.search_topics_v2.search_topics_v2(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.search_topics_v2_request.SearchTopicsV2Request = {
+            "aws_account_id": aws_account_id,
+            "filters": filters,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_search_topics_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        filters: "capo_quicksight.types.topic_search_filter_list.TopicSearchFilterList",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        next_token: Optional["capo_quicksight.types.string.String"] = None,
+        max_results: Optional["capo_quicksight.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_quicksight.types.topic_v2_summary.TopicV2Summary]":
+        _token = next_token
+        while True:
+            _response = self.search_topics_v2(
                 aws_account_id,
                 filters,
                 config_overrides=config_overrides,
@@ -14910,7 +16614,7 @@ class QuickSightClient:
             analysis_id: <p>The ID for the analysis that you're updating. This ID displays in the URL of the analysis.</p>
             name: <p>A descriptive name for the analysis that you're updating. This name displays for the analysis in the Amazon Quick Sight console.</p>
             parameters: <p>The parameter names and override values that you want to use. An analysis can have any parameter type, and some parameters might accept multiple values. </p>
-            source_entity: <p>A source entity to use for the analysis that you're updating. This metadata structure contains details that describe a source template and one or more datasets.</p>
+            source_entity: <p>A source entity to use for the analysis that you're updating. This metadata structure contains details that describe a source template and one or more datasets or topics.</p>
             theme_arn: <p>The Amazon Resource Name (ARN) for the theme to apply to the analysis that you're creating. To see the theme in the Amazon Quick Sight console, make sure that you have access to it.</p>
             definition: <p>The definition of an analysis.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>
             validation_strategy: <p>The option to relax the validation needed to update an analysis with definition objects. This skips the validation step for specific errors.</p>
@@ -15072,6 +16776,157 @@ class QuickSightClient:
             "aws_account_id": aws_account_id,
             "namespace": namespace,
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_app_permissions(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        app_id: "capo_quicksight.types.app_id.AppId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        grant_permissions: Optional[
+            "capo_quicksight.types.resource_permission_list.ResourcePermissionList"
+        ] = None,
+        revoke_permissions: Optional[
+            "capo_quicksight.types.resource_permission_list.ResourcePermissionList"
+        ] = None,
+        visibility: Optional[
+            "capo_quicksight.types.app_visibility.AppVisibility"
+        ] = None,
+    ) -> "capo_quicksight.types.update_app_permissions_response.UpdateAppPermissionsResponse":
+        """<p>Updates the resource permissions for an app. You can grant or revoke permissions and, optionally, change the app's visibility.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the app.</p>
+            app_id: <p>The ID of the app.</p>
+            grant_permissions: <p>The permissions that you want to grant on the app.</p>
+            revoke_permissions: <p>The permissions that you want to revoke from the app.</p>
+            visibility: <p>The visibility to set for the app. Currently, only <code>PRIVATE</code> is accepted, which removes public (anonymous) access from the app. If you don't specify a value, the app's visibility is unchanged. Setting an app to <code>PUBLIC</code> through this operation is not supported.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameter has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.update_app_permissions_request.UpdateAppPermissionsRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.update_app_permissions_response.UpdateAppPermissionsResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.update_app_permissions
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.update_app_permissions.update_app_permissions(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.update_app_permissions_request.UpdateAppPermissionsRequest = {
+            "aws_account_id": aws_account_id,
+            "app_id": app_id,
+        }
+        if grant_permissions is not None:
+            input_["grant_permissions"] = grant_permissions
+        if revoke_permissions is not None:
+            input_["revoke_permissions"] = revoke_permissions
+        if visibility is not None:
+            input_["visibility"] = visibility
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_approval_policy(
+        self,
+        policy_id: "capo_quicksight.types.policy_id.PolicyId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        name: Optional["capo_quicksight.types.policy_name.PolicyName"] = None,
+        description: Optional[
+            "capo_quicksight.types.policy_description.PolicyDescription"
+        ] = None,
+        actions: Optional[
+            "capo_quicksight.types.governed_action_list.GovernedActionList"
+        ] = None,
+        asset_types: Optional[
+            "capo_quicksight.types.asset_type_list.AssetTypeList"
+        ] = None,
+        applicable_to: Optional[
+            "capo_quicksight.types.applicable_to.ApplicableTo"
+        ] = None,
+        approval_groups: Optional[
+            "capo_quicksight.types.approval_group_list.ApprovalGroupList"
+        ] = None,
+    ) -> "capo_quicksight.types.update_approval_policy_response.UpdateApprovalPolicyResponse":
+        """<p>Updates an approval policy in Quick Sight.</p>
+
+        Args:
+            policy_id: <p>The unique identifier of the approval policy to update.</p>
+            name: <p>The name of the approval policy.</p>
+            description: <p>A description of the approval policy.</p>
+            actions: <p>The list of governed actions that trigger the approval workflow.</p>
+            asset_types: <p>The list of asset types that the approval policy applies to.</p>
+            applicable_to: <p>The scoping configuration that determines who the approval policy applies to.</p>
+            approval_groups: <p>The list of group ARNs whose members can approve requests.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.update_approval_policy_request.UpdateApprovalPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.update_approval_policy_response.UpdateApprovalPolicyResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.update_approval_policy
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.update_approval_policy.update_approval_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.update_approval_policy_request.UpdateApprovalPolicyRequest = {
+            "policy_id": policy_id
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if actions is not None:
+            input_["actions"] = actions
+        if asset_types is not None:
+            input_["asset_types"] = asset_types
+        if applicable_to is not None:
+            input_["applicable_to"] = applicable_to
+        if approval_groups is not None:
+            input_["approval_groups"] = approval_groups
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -15252,6 +17107,7 @@ class QuickSightClient:
         capabilities: Optional[
             "capo_quicksight.types.capabilities.Capabilities"
         ] = None,
+        governance: Optional["capo_quicksight.types.governance.Governance"] = None,
     ) -> "capo_quicksight.types.update_custom_permissions_response.UpdateCustomPermissionsResponse":
         """<p>Updates a custom permissions profile.</p>
 
@@ -15259,6 +17115,7 @@ class QuickSightClient:
             aws_account_id: <p>The ID of the Amazon Web Services account that contains the custom permissions profile that you want to update.</p>
             custom_permissions_name: <p>The name of the custom permissions profile that you want to update.</p>
             capabilities: <p>A set of actions to include in the custom permissions profile.</p>
+            governance: <p>The governance configuration for the custom permissions profile. The <code>UpdateCustomPermissions</code> operation replaces all existing <code>Capabilities</code> and <code>Governance</code> values. If you omit this parameter, Amazon Quick removes governance from the profile and the existing custom permission behavior applies.</p>
 
         Raises:
             capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
@@ -15293,6 +17150,8 @@ class QuickSightClient:
         }
         if capabilities is not None:
             input_["capabilities"] = capabilities
+        if governance is not None:
+            input_["governance"] = governance
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -15333,7 +17192,7 @@ class QuickSightClient:
             aws_account_id: <p>The ID of the Amazon Web Services account that contains the dashboard that you're updating.</p>
             dashboard_id: <p>The ID for the dashboard.</p>
             name: <p>The display name of the dashboard.</p>
-            source_entity: <p>The entity that you are using as a source when you update the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only update a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to update a dashboard from an analysis, first convert the analysis to a template by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon Quick Sight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>
+            source_entity: <p>The entity that you are using as a source when you update the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only update a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to update a dashboard from an analysis, first convert the analysis to a template by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon Quick Sight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. Use the <code>TopicReferences</code> entity to list the replacement topics for the topic placeholders listed in the original. The schema in each topic must match its placeholder.</p>
             parameters: <p>A structure that contains the parameters of the dashboard. These are parameter overrides for a dashboard. A dashboard can have any type of parameters, and some parameters might accept multiple values.</p>
             version_description: <p>A description for the first version of the dashboard being created.</p>
             dashboard_publish_options: <p>Options for publishing the dashboard when you create it:</p> <ul> <li> <p> <code>AvailabilityStatus</code> for <code>AdHocFilteringOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. When this is set to <code>DISABLED</code>, Amazon Quick Sight disables the left filter pane on the published dashboard, which can be used for ad hoc (one-time) filtering. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExportToCSVOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to .CSV format isn't enabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>VisibilityState</code> for <code>SheetControlsOption</code> - This visibility state can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. This option is <code>COLLAPSED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>QuickSuiteActionsOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. Features related to Actions in Amazon Quick Suite on dashboards are disabled when this is set to <code>DISABLED</code>. This option is <code>DISABLED</code> by default.</p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExecutiveSummaryOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The option to build an executive summary is disabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default.</p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>DataStoriesSharingOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The option to share a data story is disabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default.</p> </li> </ul>
@@ -15674,7 +17533,7 @@ class QuickSightClient:
             "capo_quicksight.types.semantic_model_configuration.SemanticModelConfiguration"
         ] = None,
     ) -> "capo_quicksight.types.update_data_set_response.UpdateDataSetResponse":
-        r"""<p>Updates a dataset. This operation doesn't support datasets that include uploaded files as a source. Partial updates are not supported by this operation.</p>
+        r"""<p>Updates a dataset. Partial updates are not supported by this operation.</p>
 
         Args:
             aws_account_id: <p>The Amazon Web Services account ID.</p>
@@ -16012,6 +17871,83 @@ class QuickSightClient:
         }
         if namespace is not None:
             input_["namespace"] = namespace
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_dlp_setting(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        dlp_setting_id: "capo_quicksight.types.dlp_setting_id.DlpSettingId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        name: Optional["capo_quicksight.types.dlp_setting_name.DlpSettingName"] = None,
+        provider_type: Optional[
+            "capo_quicksight.types.dlp_provider_type.DlpProviderType"
+        ] = None,
+        provider_config: Optional[
+            "capo_quicksight.types.provider_config.ProviderConfig"
+        ] = None,
+        provider_outage_action: Optional[
+            "capo_quicksight.types.dlp_action.DlpAction"
+        ] = None,
+        enabled: Optional["capo_quicksight.types.boolean.Boolean"] = None,
+    ) -> "capo_quicksight.types.update_dlp_setting_response.UpdateDlpSettingResponse":
+        """<p>Updates an existing DLP setting configuration in an Amazon Web Services account. Fields that are omitted from the request retain their current values.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the DLP setting that you want to update.</p>
+            dlp_setting_id: <p>The ID of the DLP setting that you want to update.</p>
+            name: <p>An updated display name for the DLP setting.</p>
+            provider_type: <p>An updated DLP provider type. Currently, the only supported value is <code>MICROSOFT_PURVIEW</code>.</p>
+            provider_config: <p>An updated provider-specific configuration for the DLP integration. This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>
+            provider_outage_action: <p>An updated behavior to apply when the DLP provider is unreachable. Valid values are <code>ALLOW</code>, <code>WARN</code>, and <code>BLOCK</code>.</p>
+            enabled: <p>Specifies whether DLP enforcement is active for this setting. Set to <code>true</code> to enable enforcement, or <code>false</code> to disable it.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_request_exception.InvalidRequestException: <p>You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.update_dlp_setting_request.UpdateDlpSettingRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.update_dlp_setting_response.UpdateDlpSettingResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.update_dlp_setting
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.update_dlp_setting.update_dlp_setting(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.update_dlp_setting_request.UpdateDlpSettingRequest = {
+            "aws_account_id": aws_account_id,
+            "dlp_setting_id": dlp_setting_id,
+        }
+        if name is not None:
+            input_["name"] = name
+        if provider_type is not None:
+            input_["provider_type"] = provider_type
+        if provider_config is not None:
+            input_["provider_config"] = provider_config
+        if provider_outage_action is not None:
+            input_["provider_outage_action"] = provider_outage_action
+        if enabled is not None:
+            input_["enabled"] = enabled
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -16586,6 +18522,96 @@ class QuickSightClient:
         response.response.close()
         return response.output
 
+    def update_knowledge_base(
+        self,
+        aws_account_id: "capo_quicksight.types.kb_aws_account_id.KbAwsAccountId",
+        knowledge_base_id: "capo_quicksight.types.knowledge_base_id.KnowledgeBaseId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        name: Optional[
+            "capo_quicksight.types.knowledge_base_name.KnowledgeBaseName"
+        ] = None,
+        description: Optional[
+            "capo_quicksight.types.knowledge_base_description.KnowledgeBaseDescription"
+        ] = None,
+        knowledge_base_configuration: Optional[
+            "capo_quicksight.types.knowledge_base_configuration.KnowledgeBaseConfiguration"
+        ] = None,
+        media_extraction_configuration: Optional[
+            "capo_quicksight.types.media_extraction_configuration.MediaExtractionConfiguration"
+        ] = None,
+        is_email_notification_opted_for_ingestion_failures: Optional[
+            "capo_quicksight.types.boolean.Boolean"
+        ] = None,
+        access_control_configuration: Optional[
+            "capo_quicksight.types.access_control_configuration.AccessControlConfiguration"
+        ] = None,
+    ) -> "capo_quicksight.types.update_knowledge_base_response.UpdateKnowledgeBaseResponse":
+        """<p>Updates the properties of an existing knowledge base.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the knowledge base.</p>
+            knowledge_base_id: <p>The unique identifier for the knowledge base.</p>
+            name: <p>The name of the knowledge base. If you don't specify a name, the existing name is retained.</p>
+            description: <p>A description for the knowledge base. If you don't specify a description, the existing description is retained.</p>
+            is_email_notification_opted_for_ingestion_failures: <p>Specifies whether email notifications are enabled for ingestion failures.</p>
+            access_control_configuration: <p>The access control configuration for the knowledge base. If you don't specify this parameter, the existing setting is retained.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.invalid_request_exception.InvalidRequestException: <p>You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.</p>
+            capo_quicksight.errors.limit_exceeded_exception.LimitExceededException: <p>A limit is exceeded.</p>
+            capo_quicksight.errors.precondition_not_met_exception.PreconditionNotMetException: <p>One or more preconditions aren't met.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.update_knowledge_base_request.UpdateKnowledgeBaseRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.update_knowledge_base_response.UpdateKnowledgeBaseResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.update_knowledge_base
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.update_knowledge_base.update_knowledge_base(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.update_knowledge_base_request.UpdateKnowledgeBaseRequest = {
+            "aws_account_id": aws_account_id,
+            "knowledge_base_id": knowledge_base_id,
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if knowledge_base_configuration is not None:
+            input_["knowledge_base_configuration"] = knowledge_base_configuration
+        if media_extraction_configuration is not None:
+            input_["media_extraction_configuration"] = media_extraction_configuration
+        if is_email_notification_opted_for_ingestion_failures is not None:
+            input_["is_email_notification_opted_for_ingestion_failures"] = (
+                is_email_notification_opted_for_ingestion_failures
+            )
+        if access_control_configuration is not None:
+            input_["access_control_configuration"] = access_control_configuration
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def update_knowledge_base_permissions(
         self,
         aws_account_id: "capo_quicksight.types.kb_aws_account_id.KbAwsAccountId",
@@ -16643,6 +18669,73 @@ class QuickSightClient:
             input_["grant_permissions"] = grant_permissions
         if revoke_permissions is not None:
             input_["revoke_permissions"] = revoke_permissions
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_limits_profile(
+        self,
+        profile_id: "capo_quicksight.types.profile_id.ProfileId",
+        account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        profile_name: Optional["capo_quicksight.types.profile_name.ProfileName"] = None,
+        description: Optional[
+            "capo_quicksight.types.profile_description.ProfileDescription"
+        ] = None,
+        resource_limits: Optional[
+            "capo_quicksight.types.resource_limits_map.ResourceLimitsMap"
+        ] = None,
+    ) -> "capo_quicksight.types.update_limits_profile_response.UpdateLimitsProfileResponse":
+        """<p>Updates the properties of an existing limits profile.</p>
+
+        Args:
+            profile_id: <p>The unique identifier for the limits profile to update.</p>
+            account_id: <p>The ID of the Amazon Web Services account that contains the limits profile.</p>
+            profile_name: <p>A new display name for the limits profile.</p>
+            description: <p>A new description for the limits profile.</p>
+            resource_limits: <p>A map of resource types to their updated limit values.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.update_limits_profile_request.UpdateLimitsProfileRequest]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.update_limits_profile_response.UpdateLimitsProfileResponse"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.update_limits_profile
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.update_limits_profile.update_limits_profile(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.update_limits_profile_request.UpdateLimitsProfileRequest = {
+            "profile_id": profile_id,
+            "account_id": account_id,
+        }
+        if profile_name is not None:
+            input_["profile_name"] = profile_name
+        if description is not None:
+            input_["description"] = description
+        if resource_limits is not None:
+            input_["resource_limits"] = resource_limits
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -17404,7 +19497,7 @@ class QuickSightClient:
         Args:
             aws_account_id: <p>The ID of the Amazon Web Services account that contains the template that you're updating.</p>
             template_id: <p>The ID for the template.</p>
-            source_entity: <p>The entity that you are using as a source when you update the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region;. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>
+            source_entity: <p>The entity that you are using as a source when you update the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region;. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. Use the <code>TopicReferences</code> entity to list the replacement topics for the topic placeholders listed in the original. The schema in each topic must match its placeholder.</p>
             version_description: <p>A description of the current template version that is being updated. Every time you call <code>UpdateTemplate</code>, you create a new version of the template. Each version of the template maintains a description of the version in the <code>VersionDescription</code> field.</p>
             name: <p>The name for the template.</p>
             definition: <p>The definition of a template.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>
@@ -17901,6 +19994,71 @@ class QuickSightClient:
         response.response.close()
         return response.output
 
+    def update_topic_permissions_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        topic_id: "capo_quicksight.types.topic_id.TopicId",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        grant_permissions: Optional[
+            "capo_quicksight.types.update_resource_permission_list.UpdateResourcePermissionList"
+        ] = None,
+        revoke_permissions: Optional[
+            "capo_quicksight.types.update_resource_permission_list.UpdateResourcePermissionList"
+        ] = None,
+    ) -> "capo_quicksight.types.update_topic_permissions_v2_response.UpdateTopicPermissionsV2Response":
+        """<p>Updates the permissions of a topic.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the topic that you want to update the permissions for.</p>
+            topic_id: <p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>
+            grant_permissions: <p>The resource permissions that you want to grant to the topic.</p>
+            revoke_permissions: <p>The resource permissions that you want to revoke from the topic.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.limit_exceeded_exception.LimitExceededException: <p>A limit is exceeded.</p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.unsupported_user_edition_exception.UnsupportedUserEditionException: <p>This error indicates that you are calling an operation on an Amazon Quick Suite subscription where the edition doesn't include support for that operation. Amazon Quick Suite currently has Standard Edition and Enterprise Edition. Not every operation and capability is available in every edition.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.update_topic_permissions_v2_request.UpdateTopicPermissionsV2Request]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.update_topic_permissions_v2_response.UpdateTopicPermissionsV2Response"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.update_topic_permissions_v2
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.update_topic_permissions_v2.update_topic_permissions_v2(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.update_topic_permissions_v2_request.UpdateTopicPermissionsV2Request = {
+            "aws_account_id": aws_account_id,
+            "topic_id": topic_id,
+        }
+        if grant_permissions is not None:
+            input_["grant_permissions"] = grant_permissions
+        if revoke_permissions is not None:
+            input_["revoke_permissions"] = revoke_permissions
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def update_topic_refresh_schedule(
         self,
         aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
@@ -17951,6 +20109,73 @@ class QuickSightClient:
             "dataset_id": dataset_id,
             "refresh_schedule": refresh_schedule,
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_topic_v2(
+        self,
+        aws_account_id: "capo_quicksight.types.aws_account_id.AwsAccountId",
+        topic_id: "capo_quicksight.types.topic_id.TopicId",
+        topic: "capo_quicksight.types.topic_v2_details.TopicV2Details",
+        *,
+        config_overrides: Optional[QuickSightClientConfig] = None,
+        custom_instructions: Optional[
+            "capo_quicksight.types.custom_instructions.CustomInstructions"
+        ] = None,
+        publish_option: Optional[
+            "capo_quicksight.types.topic_v2_publish_option.TopicV2PublishOption"
+        ] = None,
+    ) -> "capo_quicksight.types.update_topic_v2_response.UpdateTopicV2Response":
+        """<p>Updates the definition of a Q topic.</p>
+
+        Args:
+            aws_account_id: <p>The ID of the Amazon Web Services account that contains the topic that you want to update.</p>
+            topic_id: <p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>
+            topic: <p>The definition of the topic that you want to update.</p>
+            publish_option: <p>The publish option for the topic that you want to update.</p>
+
+        Raises:
+            capo_quicksight.errors.access_denied_exception.AccessDeniedException: <p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon Quick Sight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>
+            capo_quicksight.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_quicksight.errors.internal_failure_exception.InternalFailureException: <p>An internal failure occurred.</p>
+            capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One or more parameters has a value that isn't valid.</p>
+            capo_quicksight.errors.limit_exceeded_exception.LimitExceededException: <p>A limit is exceeded.</p>
+            capo_quicksight.errors.resource_exists_exception.ResourceExistsException: <p>The resource specified already exists. </p>
+            capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException: <p>One or more resources can't be found.</p>
+            capo_quicksight.errors.throttling_exception.ThrottlingException: <p>Access is throttled.</p>
+            capo_quicksight.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_quicksight.types.update_topic_v2_request.UpdateTopicV2Request]",
+        ) -> OperationResponse[
+            "capo_quicksight.types.update_topic_v2_response.UpdateTopicV2Response"
+        ]:
+            import capo_quicksight._operations.quick_sight_20180401.update_topic_v2
+
+            output, http_response = (
+                capo_quicksight._operations.quick_sight_20180401.update_topic_v2.update_topic_v2(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_quicksight.types.update_topic_v2_request.UpdateTopicV2Request = {
+            "aws_account_id": aws_account_id,
+            "topic_id": topic_id,
+            "topic": topic,
+        }
+        if custom_instructions is not None:
+            input_["custom_instructions"] = custom_instructions
+        if publish_option is not None:
+            input_["publish_option"] = publish_option
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     import capo_redshift.types.endpoint
     import capo_redshift.types.hsm_status
     import capo_redshift.types.integer
+    import capo_redshift.types.logging_publish_status
     import capo_redshift.types.long_optional
     import capo_redshift.types.pending_actions_list
     import capo_redshift.types.pending_modified_values
@@ -209,6 +210,10 @@ class Cluster(TypedDict, closed=True):
         "capo_redshift.types.string.String"
     ]
     """<p>A boolean value that, if <code>true</code>, indicates that the cluster allocates additional compute resources to run automatic optimization operations.</p> <p>Default: false</p>"""
+    logging_publish_status: NotRequired[
+        "capo_redshift.types.logging_publish_status.LoggingPublishStatus"
+    ]
+    """<p>The status of system table publishing for the cluster. This field is present only when system table publishing is configured.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -564,6 +569,12 @@ def serialize_query(value: Cluster, pairs: list[tuple[str, str]], prefix: str) -
                 f"{key_prefix}ExtraComputeForAutomaticOptimization",
                 str(value["extra_compute_for_automatic_optimization"]),
             )
+        )
+    if "logging_publish_status" in value:
+        import capo_redshift.types.logging_publish_status
+
+        capo_redshift.types.logging_publish_status.serialize_query(
+            value["logging_publish_status"], pairs, f"{key_prefix}LoggingPublishStatus"
         )
 
 
@@ -933,5 +944,14 @@ def deserialize_query(el: Element) -> Cluster:
     if child_extra_compute_for_automatic_optimization is not None:
         out["extra_compute_for_automatic_optimization"] = str(
             child_extra_compute_for_automatic_optimization.text or ""
+        )
+    child_logging_publish_status = el.find("LoggingPublishStatus")
+    if child_logging_publish_status is not None:
+        import capo_redshift.types.logging_publish_status
+
+        out["logging_publish_status"] = (
+            capo_redshift.types.logging_publish_status.deserialize_query(
+                child_logging_publish_status
+            )
         )
     return out

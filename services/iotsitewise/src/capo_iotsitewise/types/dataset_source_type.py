@@ -2,7 +2,10 @@
 
 from typing import Literal, TypeAlias, cast
 
-DatasetSourceType: TypeAlias = Literal["KENDRA",]
+DatasetSourceType: TypeAlias = Literal[
+    "KENDRA",
+    "SITEWISE",
+]
 
 
 # --- restJson1 ser/de ---

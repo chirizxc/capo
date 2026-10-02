@@ -11,11 +11,21 @@ if TYPE_CHECKING:
     import capo_outposts.types.outpost_identifier
     import capo_outposts.types.payment_option
     import capo_outposts.types.payment_term
+    import capo_outposts.types.quote_identifier
+    import capo_outposts.types.quote_option_identifier
 
 
 class CreateOrderInput(TypedDict, closed=True):
     outpost_identifier: "capo_outposts.types.outpost_identifier.OutpostIdentifier"
     """<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>"""
+    quote_identifier: NotRequired[
+        "capo_outposts.types.quote_identifier.QuoteIdentifier"
+    ]
+    """<p>The ID of the quote to use for the order.</p>"""
+    quote_option_identifier: NotRequired[
+        "capo_outposts.types.quote_option_identifier.QuoteOptionIdentifier"
+    ]
+    """<p>The ID of the quote option to use for the order.</p>"""
     line_items: NotRequired[
         "capo_outposts.types.line_item_request_list_definition.LineItemRequestListDefinition"
     ]
@@ -30,6 +40,10 @@ class CreateOrderInput(TypedDict, closed=True):
 def serialize_json(value: CreateOrderInput) -> dict:
     out: dict = {}
     out["OutpostIdentifier"] = value["outpost_identifier"]
+    if "quote_identifier" in value:
+        out["QuoteIdentifier"] = value["quote_identifier"]
+    if "quote_option_identifier" in value:
+        out["QuoteOptionIdentifier"] = value["quote_option_identifier"]
     if "line_items" in value:
         import capo_outposts.types.line_item_request_list_definition
 
@@ -58,6 +72,10 @@ def deserialize_json(data: dict) -> CreateOrderInput:
         out["outpost_identifier"] = data["OutpostIdentifier"]
     else:
         raise DeserializationError("CreateOrderInput.outpost_identifier required")
+    if data.get("QuoteIdentifier") is not None:
+        out["quote_identifier"] = data["QuoteIdentifier"]
+    if data.get("QuoteOptionIdentifier") is not None:
+        out["quote_option_identifier"] = data["QuoteOptionIdentifier"]
     if data.get("LineItems") is not None:
         import capo_outposts.types.line_item_request_list_definition
 

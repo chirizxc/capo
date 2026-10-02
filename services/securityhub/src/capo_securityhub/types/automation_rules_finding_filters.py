@@ -150,6 +150,18 @@ class AutomationRulesFindingFilters(TypedDict, closed=True):
         "capo_securityhub.types.string_filter_list.StringFilterList"
     ]
     """<p>The name of the Amazon Web Services account in which a finding was generated. </p> <p> Array Members: Minimum number of 1 item. Maximum number of 20 items. </p>"""
+    resource_provider: NotRequired[
+        "capo_securityhub.types.string_filter_list.StringFilterList"
+    ]
+    """<p>The cloud provider that the resource belongs to. Valid values are <code>AWS</code> and <code>Azure</code>.</p>"""
+    resource_owner_account_id: NotRequired[
+        "capo_securityhub.types.string_filter_list.StringFilterList"
+    ]
+    """<p>The unique identifier of the account that owns the resource that the finding applies to, for example, Azure Subscription Id or Amazon Web Services Account Id</p>"""
+    resource_owner_org_id: NotRequired[
+        "capo_securityhub.types.string_filter_list.StringFilterList"
+    ]
+    """<p>The unique identifier of the organization that owns the resource that the finding applies to, for example, Azure Tenant Id</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -409,6 +421,30 @@ def serialize_json(value: AutomationRulesFindingFilters) -> dict:
         out["AwsAccountName"] = (
             capo_securityhub.types.string_filter_list.serialize_json(
                 value["aws_account_name"]
+            )
+        )
+    if "resource_provider" in value:
+        import capo_securityhub.types.string_filter_list
+
+        out["ResourceProvider"] = (
+            capo_securityhub.types.string_filter_list.serialize_json(
+                value["resource_provider"]
+            )
+        )
+    if "resource_owner_account_id" in value:
+        import capo_securityhub.types.string_filter_list
+
+        out["ResourceOwnerAccountId"] = (
+            capo_securityhub.types.string_filter_list.serialize_json(
+                value["resource_owner_account_id"]
+            )
+        )
+    if "resource_owner_org_id" in value:
+        import capo_securityhub.types.string_filter_list
+
+        out["ResourceOwnerOrgId"] = (
+            capo_securityhub.types.string_filter_list.serialize_json(
+                value["resource_owner_org_id"]
             )
         )
     return out
@@ -692,6 +728,30 @@ def deserialize_json(data: dict) -> AutomationRulesFindingFilters:
         out["aws_account_name"] = (
             capo_securityhub.types.string_filter_list.deserialize_json(
                 data["AwsAccountName"]
+            )
+        )
+    if data.get("ResourceProvider") is not None:
+        import capo_securityhub.types.string_filter_list
+
+        out["resource_provider"] = (
+            capo_securityhub.types.string_filter_list.deserialize_json(
+                data["ResourceProvider"]
+            )
+        )
+    if data.get("ResourceOwnerAccountId") is not None:
+        import capo_securityhub.types.string_filter_list
+
+        out["resource_owner_account_id"] = (
+            capo_securityhub.types.string_filter_list.deserialize_json(
+                data["ResourceOwnerAccountId"]
+            )
+        )
+    if data.get("ResourceOwnerOrgId") is not None:
+        import capo_securityhub.types.string_filter_list
+
+        out["resource_owner_org_id"] = (
+            capo_securityhub.types.string_filter_list.deserialize_json(
+                data["ResourceOwnerOrgId"]
             )
         )
     return out

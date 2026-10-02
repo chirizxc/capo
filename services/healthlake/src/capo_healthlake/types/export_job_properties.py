@@ -8,13 +8,13 @@ from capo_healthlake.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_healthlake.types.datastore_id
+    import capo_healthlake.types.health_lake_timestamp
     import capo_healthlake.types.iam_role_arn
     import capo_healthlake.types.job_id
     import capo_healthlake.types.job_name
     import capo_healthlake.types.job_status
     import capo_healthlake.types.message
     import capo_healthlake.types.output_data_config
-    import capo_healthlake.types.timestamp
 
 
 class ExportJobProperties(TypedDict, closed=True):
@@ -24,9 +24,11 @@ class ExportJobProperties(TypedDict, closed=True):
     """<p>The export job name.</p>"""
     job_status: "capo_healthlake.types.job_status.JobStatus"
     """<p>The export job status.</p>"""
-    submit_time: "capo_healthlake.types.timestamp.Timestamp"
+    submit_time: "capo_healthlake.types.health_lake_timestamp.HealthLakeTimestamp"
     """<p>The time the export job was initiated.</p>"""
-    end_time: NotRequired["capo_healthlake.types.timestamp.Timestamp"]
+    end_time: NotRequired[
+        "capo_healthlake.types.health_lake_timestamp.HealthLakeTimestamp"
+    ]
     """<p>The time the export job completed.</p>"""
     datastore_id: "capo_healthlake.types.datastore_id.DatastoreId"
     """<p>The data store identifier from which files are being exported.</p>"""
@@ -49,16 +51,20 @@ def serialize_aws_json_1_0(value: ExportJobProperties) -> dict:
     out["JobStatus"] = capo_healthlake.types.job_status.serialize_aws_json_1_0(
         value["job_status"]
     )
-    import capo_healthlake.types.timestamp
+    import capo_healthlake.types.health_lake_timestamp
 
-    out["SubmitTime"] = capo_healthlake.types.timestamp.serialize_aws_json_1_0(
-        value["submit_time"]
+    out["SubmitTime"] = (
+        capo_healthlake.types.health_lake_timestamp.serialize_aws_json_1_0(
+            value["submit_time"]
+        )
     )
     if "end_time" in value:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["EndTime"] = capo_healthlake.types.timestamp.serialize_aws_json_1_0(
-            value["end_time"]
+        out["EndTime"] = (
+            capo_healthlake.types.health_lake_timestamp.serialize_aws_json_1_0(
+                value["end_time"]
+            )
         )
     out["DatastoreId"] = value["datastore_id"]
     import capo_healthlake.types.output_data_config
@@ -92,18 +98,22 @@ def deserialize_aws_json_1_0(data: dict) -> ExportJobProperties:
     else:
         raise DeserializationError("ExportJobProperties.job_status required")
     if data.get("SubmitTime") is not None:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["submit_time"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
-            data["SubmitTime"]
+        out["submit_time"] = (
+            capo_healthlake.types.health_lake_timestamp.deserialize_aws_json_1_0(
+                data["SubmitTime"]
+            )
         )
     else:
         raise DeserializationError("ExportJobProperties.submit_time required")
     if data.get("EndTime") is not None:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["end_time"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
-            data["EndTime"]
+        out["end_time"] = (
+            capo_healthlake.types.health_lake_timestamp.deserialize_aws_json_1_0(
+                data["EndTime"]
+            )
         )
     if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]

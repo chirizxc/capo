@@ -6,6 +6,7 @@ from typing import Literal, TypeAlias, cast
 NewRelicRegion: TypeAlias = Literal[
     "US",
     "EU",
+    "JP",
 ]
 
 

@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.delete_payment_manager_response
     import capo_bedrock_agentcore_control.types.get_payment_manager_request
     import capo_bedrock_agentcore_control.types.get_payment_manager_response
+    import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.list_payment_managers_request
     import capo_bedrock_agentcore_control.types.list_payment_managers_response
     import capo_bedrock_agentcore_control.types.max_results
@@ -67,6 +68,9 @@ class PaymentManagerResource:
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_payment_manager_response.CreatePaymentManagerResponse":
         r"""<p>Creates a new payment manager in your Amazon Web Services account. A payment manager serves as the top-level resource for managing payment processing capabilities, including payment connectors that integrate with supported payment providers.</p> <p>If you specify <code>CUSTOM_JWT</code> as the <code>authorizerType</code>, you must provide an <code>authorizerConfiguration</code>.</p>
 
@@ -78,6 +82,7 @@ class PaymentManagerResource:
             role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that the payment manager assumes to access resources on your behalf.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             tags: <p>A map of tag keys and values to assign to the payment manager.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the customer managed KMS key to use for encrypting sensitive payment manager data at rest. If you don't specify a key, the data is encrypted with an Amazon Web Services owned key.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -118,6 +123,8 @@ class PaymentManagerResource:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -194,6 +201,9 @@ class PaymentManagerResource:
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_payment_manager_response.UpdatePaymentManagerResponse":
         r"""<p>Updates an existing payment manager. This operation uses PATCH semantics, so you only need to specify the fields you want to change.</p>
 
@@ -204,6 +214,7 @@ class PaymentManagerResource:
             authorizer_configuration: <p>The updated authorizer configuration for the payment manager.</p>
             role_arn: <p>The updated Amazon Resource Name (ARN) of the IAM role for the payment manager.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            kms_key_arn: <p>The updated Amazon Resource Name (ARN) of the customer managed KMS key used to encrypt sensitive payment manager data at rest.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -245,6 +256,8 @@ class PaymentManagerResource:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -384,6 +397,9 @@ class AsyncPaymentManagerResource:
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_payment_manager_response.CreatePaymentManagerResponse":
         r"""<p>Creates a new payment manager in your Amazon Web Services account. A payment manager serves as the top-level resource for managing payment processing capabilities, including payment connectors that integrate with supported payment providers.</p> <p>If you specify <code>CUSTOM_JWT</code> as the <code>authorizerType</code>, you must provide an <code>authorizerConfiguration</code>.</p>
 
@@ -395,6 +411,7 @@ class AsyncPaymentManagerResource:
             role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that the payment manager assumes to access resources on your behalf.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             tags: <p>A map of tag keys and values to assign to the payment manager.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the customer managed KMS key to use for encrypting sensitive payment manager data at rest. If you don't specify a key, the data is encrypted with an Amazon Web Services owned key.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -436,6 +453,8 @@ class AsyncPaymentManagerResource:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -513,6 +532,9 @@ class AsyncPaymentManagerResource:
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_payment_manager_response.UpdatePaymentManagerResponse":
         r"""<p>Updates an existing payment manager. This operation uses PATCH semantics, so you only need to specify the fields you want to change.</p>
 
@@ -523,6 +545,7 @@ class AsyncPaymentManagerResource:
             authorizer_configuration: <p>The updated authorizer configuration for the payment manager.</p>
             role_arn: <p>The updated Amazon Resource Name (ARN) of the IAM role for the payment manager.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            kms_key_arn: <p>The updated Amazon Resource Name (ARN) of the customer managed KMS key used to encrypt sensitive payment manager data at rest.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -565,6 +588,8 @@ class AsyncPaymentManagerResource:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

@@ -7,13 +7,13 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_ssm.types.accounts
     import capo_ssm.types.alarm_configuration
+    import capo_ssm.types.automation_targets
     import capo_ssm.types.boolean
     import capo_ssm.types.exclude_accounts
     import capo_ssm.types.execution_role_name
     import capo_ssm.types.max_concurrency
     import capo_ssm.types.max_errors
     import capo_ssm.types.regions
-    import capo_ssm.types.targets
 
 
 class TargetLocation(TypedDict, closed=True):
@@ -35,10 +35,10 @@ class TargetLocation(TypedDict, closed=True):
         "capo_ssm.types.alarm_configuration.AlarmConfiguration"
     ]
     include_child_organization_units: "capo_ssm.types.boolean.Boolean"
-    """<p>Indicates whether to include child organizational units (OUs) that are children of the targeted OUs. The default is <code>false</code>.</p> <note> <p>This parameter is not supported by State Manager.</p> </note>"""
+    """<p>Indicates whether to include child organizational units (OUs) that are children of the targeted OUs. The default is <code>false</code>.</p>"""
     exclude_accounts: NotRequired["capo_ssm.types.exclude_accounts.ExcludeAccounts"]
     """<p>Amazon Web Services accounts or organizational units to exclude as expanded targets.</p>"""
-    targets: NotRequired["capo_ssm.types.targets.Targets"]
+    targets: NotRequired["capo_ssm.types.automation_targets.AutomationTargets"]
     """<p>A list of key-value mappings to target resources. If you specify values for this data type, you must also specify a value for <code>TargetParameterName</code>.</p> <p>This <code>Targets</code> parameter takes precedence over the <code>StartAutomationExecution:Targets</code> parameter if both are supplied.</p>"""
     targets_max_concurrency: NotRequired[
         "capo_ssm.types.max_concurrency.MaxConcurrency"
@@ -85,9 +85,11 @@ def serialize_aws_json_1_1(value: TargetLocation) -> dict:
             value["exclude_accounts"]
         )
     if "targets" in value:
-        import capo_ssm.types.targets
+        import capo_ssm.types.automation_targets
 
-        out["Targets"] = capo_ssm.types.targets.serialize_aws_json_1_1(value["targets"])
+        out["Targets"] = capo_ssm.types.automation_targets.serialize_aws_json_1_1(
+            value["targets"]
+        )
     if "targets_max_concurrency" in value:
         out["TargetsMaxConcurrency"] = value["targets_max_concurrency"]
     if "targets_max_errors" in value:
@@ -136,9 +138,9 @@ def deserialize_aws_json_1_1(data: dict) -> TargetLocation:
             )
         )
     if data.get("Targets") is not None:
-        import capo_ssm.types.targets
+        import capo_ssm.types.automation_targets
 
-        out["targets"] = capo_ssm.types.targets.deserialize_aws_json_1_1(
+        out["targets"] = capo_ssm.types.automation_targets.deserialize_aws_json_1_1(
             data["Targets"]
         )
     if data.get("TargetsMaxConcurrency") is not None:

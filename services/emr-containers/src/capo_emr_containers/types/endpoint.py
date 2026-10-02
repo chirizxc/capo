@@ -56,6 +56,8 @@ class Endpoint(TypedDict, closed=True):
     """<p>The configuration settings that are used to override existing configurations for endpoints.</p>"""
     server_url: NotRequired["capo_emr_containers.types.uri_string.UriString"]
     """<p>The server URL of the endpoint.</p>"""
+    auth_proxy_url: NotRequired["capo_emr_containers.types.uri_string.UriString"]
+    """<p>The authentication proxy URL of the endpoint.</p>"""
     created_at: NotRequired["capo_emr_containers.types.date.Date"]
     """<p>The date and time when the endpoint was created.</p>"""
     security_group: NotRequired["capo_emr_containers.types.string256.String256"]
@@ -115,6 +117,8 @@ def serialize_json(value: Endpoint) -> dict:
         )
     if "server_url" in value:
         out["serverUrl"] = value["server_url"]
+    if "auth_proxy_url" in value:
+        out["authProxyUrl"] = value["auth_proxy_url"]
     if "created_at" in value:
         import capo_emr_containers.types.date
 
@@ -186,6 +190,8 @@ def deserialize_json(data: dict) -> Endpoint:
         )
     if data.get("serverUrl") is not None:
         out["server_url"] = data["serverUrl"]
+    if data.get("authProxyUrl") is not None:
+        out["auth_proxy_url"] = data["authProxyUrl"]
     if data.get("createdAt") is not None:
         import capo_emr_containers.types.date
 

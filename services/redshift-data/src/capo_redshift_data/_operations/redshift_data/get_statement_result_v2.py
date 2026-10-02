@@ -11,6 +11,7 @@ from typing_extensions import Never
 import capo_redshift_data._auth._signers
 import capo_redshift_data._auth._sigv4
 import capo_redshift_data._protocol.eventstream
+import capo_redshift_data.errors.active_waiting_requests_exceeded_exception
 import capo_redshift_data.errors.internal_server_exception
 import capo_redshift_data.errors.resource_not_found_exception
 import capo_redshift_data.errors.validation_exception
@@ -23,6 +24,7 @@ from capo_redshift_data._rule_engine._endpoint_rule_set import EndpointParams, r
 from capo_redshift_data._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_redshift_data.errors import UnknownServiceError
 
@@ -31,6 +33,10 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "ActiveWaitingRequestsExceededException":
+            raise capo_redshift_data.errors.active_waiting_requests_exceeded_exception.ActiveWaitingRequestsExceededException.from_aws_json_1_1(
+                data, message
+            )
         case "InternalServerException":
             raise capo_redshift_data.errors.internal_server_exception.InternalServerException.from_aws_json_1_1(
                 data, message
@@ -136,7 +142,7 @@ def get_statement_result_v2(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -154,7 +160,7 @@ async def async_get_statement_result_v2(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

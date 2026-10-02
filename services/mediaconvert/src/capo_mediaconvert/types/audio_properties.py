@@ -13,9 +13,11 @@ if TYPE_CHECKING:
 
 class AudioProperties(TypedDict, closed=True):
     bit_depth: NotRequired["capo_mediaconvert.types.__integer.__integer"]
-    """The bit depth of the audio track."""
+    """The bit depth of the audio track. This value is exact for PCM and FLAC audio. For lossy codecs, such as AAC, AC-3, and E-AC-3, it is a nominal value and should be treated as approximate."""
     bit_rate: NotRequired["capo_mediaconvert.types.__long.__long"]
     """The bit rate of the audio track, in bits per second."""
+    channel_layout: NotRequired["capo_mediaconvert.types.__string.__string"]
+    r"""The audio channel layout of the track, such as \"mono\", \"stereo\", \"5.1\", or \"7.1\". Object-based or immersive audio is reported as \"5.1.4\" or \"7.1.4\". The layout is exact for AC-3 and E-AC-3 audio. For other codecs, it is inferred from the channel count and should be treated as approximate."""
     channels: NotRequired["capo_mediaconvert.types.__integer.__integer"]
     """The number of audio channels in the audio track."""
     frame_rate: NotRequired["capo_mediaconvert.types.frame_rate.FrameRate"]
@@ -35,6 +37,8 @@ def serialize_json(value: AudioProperties) -> dict:
         out["bitDepth"] = value["bit_depth"]
     if "bit_rate" in value:
         out["bitRate"] = value["bit_rate"]
+    if "channel_layout" in value:
+        out["channelLayout"] = value["channel_layout"]
     if "channels" in value:
         out["channels"] = value["channels"]
     if "frame_rate" in value:
@@ -58,6 +62,8 @@ def deserialize_json(data: dict) -> AudioProperties:
         out["bit_depth"] = data["bitDepth"]
     if data.get("bitRate") is not None:
         out["bit_rate"] = data["bitRate"]
+    if data.get("channelLayout") is not None:
+        out["channel_layout"] = data["channelLayout"]
     if data.get("channels") is not None:
         out["channels"] = data["channels"]
     if data.get("frameRate") is not None:

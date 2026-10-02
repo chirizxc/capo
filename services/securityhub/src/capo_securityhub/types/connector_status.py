@@ -4,9 +4,11 @@ from typing import Literal, TypeAlias, cast
 
 ConnectorStatus: TypeAlias = Literal[
     "CONNECTED",
+    "DEGRADED",
     "FAILED_TO_CONNECT",
-    "PENDING_CONFIGURATION",
     "PENDING_AUTHORIZATION",
+    "PENDING_CONFIGURATION",
+    "UNKNOWN",
 ]
 
 

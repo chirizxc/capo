@@ -12,7 +12,10 @@ if TYPE_CHECKING:
     import capo_securityagent.types.assets
     import capo_securityagent.types.cloud_watch_log
     import capo_securityagent.types.code_remediation_strategy
+    import capo_securityagent.types.report_destination
+    import capo_securityagent.types.report_filters
     import capo_securityagent.types.service_role
+    import capo_securityagent.types.validation_mode
 
 
 class CodeReview(TypedDict, closed=True):
@@ -32,6 +35,18 @@ class CodeReview(TypedDict, closed=True):
         "capo_securityagent.types.code_remediation_strategy.CodeRemediationStrategy"
     ]
     """<p>The code remediation strategy for the code review.</p>"""
+    validation_mode: NotRequired[
+        "capo_securityagent.types.validation_mode.ValidationMode"
+    ]
+    """<p>The validation mode for the code review. Valid values are SIMULATED and DISABLED.</p>"""
+    max_task_hours: NotRequired["float"]
+    """<p>The maximum number of billable task hours allowed for jobs started from this code review. If a job reaches the configured limit, it is gracefully stopped. If not set, jobs run to completion with no budget cap.</p>"""
+    report_destination: NotRequired[
+        "capo_securityagent.types.report_destination.ReportDestination"
+    ]
+    """<p>The destination for publishing scan reports to an integrated document provider.</p>"""
+    report_filters: NotRequired["capo_securityagent.types.report_filters.ReportFilters"]
+    """<p>The report-generation filters applied when the report is exported.</p>"""
     created_at: NotRequired["datetime.datetime"]
     """<p>The date and time the code review was created, in UTC format.</p>"""
     updated_at: NotRequired["datetime.datetime"]
@@ -62,6 +77,36 @@ def serialize_json(value: CodeReview) -> dict:
             capo_securityagent.types.code_remediation_strategy.serialize_json(
                 value["code_remediation_strategy"]
             )
+        )
+    if "validation_mode" in value:
+        import capo_securityagent.types.validation_mode
+
+        out["validationMode"] = capo_securityagent.types.validation_mode.serialize_json(
+            value["validation_mode"]
+        )
+    if "max_task_hours" in value:
+        out["maxTaskHours"] = (
+            "NaN"
+            if value["max_task_hours"] != value["max_task_hours"]
+            else "Infinity"
+            if value["max_task_hours"] == float("inf")
+            else "-Infinity"
+            if value["max_task_hours"] == float("-inf")
+            else value["max_task_hours"]
+        )
+    if "report_destination" in value:
+        import capo_securityagent.types.report_destination
+
+        out["reportDestination"] = (
+            capo_securityagent.types.report_destination.serialize_json(
+                value["report_destination"]
+            )
+        )
+    if "report_filters" in value:
+        import capo_securityagent.types.report_filters
+
+        out["reportFilters"] = capo_securityagent.types.report_filters.serialize_json(
+            value["report_filters"]
         )
     if "created_at" in value:
         import capo_securityagent._protocol.serialize
@@ -112,6 +157,32 @@ def deserialize_json(data: dict) -> CodeReview:
         out["code_remediation_strategy"] = (
             capo_securityagent.types.code_remediation_strategy.deserialize_json(
                 data["codeRemediationStrategy"]
+            )
+        )
+    if data.get("validationMode") is not None:
+        import capo_securityagent.types.validation_mode
+
+        out["validation_mode"] = (
+            capo_securityagent.types.validation_mode.deserialize_json(
+                data["validationMode"]
+            )
+        )
+    if data.get("maxTaskHours") is not None:
+        out["max_task_hours"] = float(data["maxTaskHours"])
+    if data.get("reportDestination") is not None:
+        import capo_securityagent.types.report_destination
+
+        out["report_destination"] = (
+            capo_securityagent.types.report_destination.deserialize_json(
+                data["reportDestination"]
+            )
+        )
+    if data.get("reportFilters") is not None:
+        import capo_securityagent.types.report_filters
+
+        out["report_filters"] = (
+            capo_securityagent.types.report_filters.deserialize_json(
+                data["reportFilters"]
             )
         )
     if data.get("createdAt") is not None:

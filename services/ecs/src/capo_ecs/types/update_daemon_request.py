@@ -8,6 +8,7 @@ from capo_ecs.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_ecs.types.boolean
+    import capo_ecs.types.boxed_boolean
     import capo_ecs.types.daemon_deployment_configuration
     import capo_ecs.types.daemon_propagate_tags
     import capo_ecs.types.string
@@ -33,6 +34,8 @@ class UpdateDaemonRequest(TypedDict, closed=True):
     r"""<p>Specifies whether to turn on Amazon ECS managed tags for the tasks in the daemon. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html\">Tagging your Amazon ECS resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>"""
     enable_execute_command: "capo_ecs.types.boolean.Boolean"
     """<p>If <code>true</code>, the execute command functionality is turned on for all tasks in the daemon. If <code>false</code>, the execute command functionality is turned off.</p>"""
+    critical: NotRequired["capo_ecs.types.boxed_boolean.BoxedBoolean"]
+    """<p>If the <code>critical</code> parameter of a daemon is <code>true</code>, and the daemon task fails, stops, or becomes unhealthy, Amazon ECS drains the container instance and stops the other tasks running on it. If the <code>critical</code> parameter is <code>false</code>, the daemon task failure doesn't affect the other tasks on the instance. The default value is <code>true</code>.</p> <p>A non-critical daemon doesn't block instance registration. The container instance becomes active and continues to run your other tasks, whether the daemon task fails during scale-out or during a deployment.</p> <p>Amazon ECS emits an EventBridge event when a daemon task fails to start, for both critical and non-critical daemons.</p> <p>Daemon task launch failures during a deployment are still counted by the deployment circuit breaker. The circuit breaker can roll back an unstable target revision.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -63,6 +66,8 @@ def serialize_aws_json_1_1(value: UpdateDaemonRequest) -> dict:
         )
     out["enableECSManagedTags"] = value.get("enable_ecs_managed_tags", False)
     out["enableExecuteCommand"] = value.get("enable_execute_command", False)
+    if "critical" in value:
+        out["critical"] = value["critical"]
     return out
 
 
@@ -114,4 +119,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDaemonRequest:
         out["enable_execute_command"] = data["enableExecuteCommand"]
     else:
         out["enable_execute_command"] = False
+    if data.get("critical") is not None:
+        out["critical"] = data["critical"]
     return out

@@ -33,6 +33,8 @@ class StartPlanExecutionRequest(TypedDict, closed=True):
         "capo_arc_region_switch.types.recovery_execution_id.RecoveryExecutionId"
     ]
     """<p>The execution identifier of the recovery execution that ran in the opposite region post-recovery is ran in. Required when starting a post-recovery execution.</p>"""
+    client_token: NotRequired["str"]
+    r"""<p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request and returns the result of the original successful request. If you don't provide a client token, the service automatically generates one. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -58,6 +60,8 @@ def serialize_aws_json_1_0(value: StartPlanExecutionRequest) -> dict:
         out["latestVersion"] = value["latest_version"]
     if "recovery_execution_id" in value:
         out["recoveryExecutionId"] = value["recovery_execution_id"]
+    if "client_token" in value:
+        out["clientToken"] = value["client_token"]
     return out
 
 
@@ -97,4 +101,6 @@ def deserialize_aws_json_1_0(data: dict) -> StartPlanExecutionRequest:
         out["latest_version"] = data["latestVersion"]
     if data.get("recoveryExecutionId") is not None:
         out["recovery_execution_id"] = data["recoveryExecutionId"]
+    if data.get("clientToken") is not None:
+        out["client_token"] = data["clientToken"]
     return out

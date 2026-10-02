@@ -5,8 +5,8 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_wellarchitected.types.get_consolidated_report_max_results
     import capo_wellarchitected.types.include_shared_resources
+    import capo_wellarchitected.types.max_results
     import capo_wellarchitected.types.next_token
     import capo_wellarchitected.types.report_format
 
@@ -19,9 +19,7 @@ class GetConsolidatedReportInput(TypedDict, closed=True):
     ]
     """<p>Set to <code>true</code> to have shared resources included in the report.</p>"""
     next_token: NotRequired["capo_wellarchitected.types.next_token.NextToken"]
-    max_results: NotRequired[
-        "capo_wellarchitected.types.get_consolidated_report_max_results.GetConsolidatedReportMaxResults"
-    ]
+    max_results: NotRequired["capo_wellarchitected.types.max_results.MaxResults"]
     """<p>The maximum number of results to return for this request.</p>"""
 
 

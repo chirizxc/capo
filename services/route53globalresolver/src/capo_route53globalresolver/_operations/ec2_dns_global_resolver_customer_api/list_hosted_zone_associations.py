@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 from typing import Any
-from urllib.parse import quote
 
 import zapros
 from typing_extensions import Never
@@ -28,6 +27,7 @@ from capo_route53globalresolver._rule_engine._endpoint_rule_set import (
 from capo_route53globalresolver._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_route53globalresolver.errors import UnknownServiceError
 
@@ -117,16 +117,14 @@ def build_request(
             UseFIPS=options.use_fips, Endpoint=options.endpoint, Region=options.region
         )
     )  # noqa: F841
-    url = (
-        endpoint.url.rstrip("/")
-        + "/hosted-zone-associations/resource-arn/{resourceArn+}"
-    )
-    url = url.replace("{resourceArn+}", quote(input_["resource_arn"], safe="/"))
+    url = endpoint.url.rstrip("/") + "/hosted-zone-associations"
     params: list[tuple[str, str]] = []
     if "max_results" in input_:
         params.append(("max_results", str(input_["max_results"])))
     if "next_token" in input_:
         params.append(("next_token", input_["next_token"]))
+    if "resource_arn" in input_:
+        params.append(("resourceArn", input_["resource_arn"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
@@ -149,7 +147,7 @@ def list_hosted_zone_associations(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -167,7 +165,7 @@ async def async_list_hosted_zone_associations(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

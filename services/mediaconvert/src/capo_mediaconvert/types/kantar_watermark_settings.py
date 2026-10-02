@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     import capo_mediaconvert.types.__string_min1_max50
     import capo_mediaconvert.types.__string_min1_max50_pattern_azaz09
     import capo_mediaconvert.types.__string_min1_max2048_pattern_arn_az_secretsmanager_wd12_secret_azaz09
-    import capo_mediaconvert.types.__string_pattern_https_kantarmedia
+    import capo_mediaconvert.types.__string_pattern_https_kantarmedia55_prod
     import capo_mediaconvert.types.__string_pattern_s3
 
 
@@ -35,7 +35,7 @@ class KantarWatermarkSettings(TypedDict, closed=True):
     ]
     """Provide your Kantar license ID number. You should get this number from Kantar."""
     kantar_server_url: NotRequired[
-        "capo_mediaconvert.types.__string_pattern_https_kantarmedia.__stringPatternHttpsKantarmedia"
+        "capo_mediaconvert.types.__string_pattern_https_kantarmedia55_prod.__stringPatternHttpsKantarmedia55Prod"
     ]
     """Provide the HTTPS endpoint to the Kantar server. You should get this endpoint from Kantar."""
     log_destination: NotRequired[

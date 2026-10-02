@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.harness_arn
     import capo_bedrock_agentcore_control.types.harness_environment_artifact
     import capo_bedrock_agentcore_control.types.harness_environment_provider
+    import capo_bedrock_agentcore_control.types.harness_hooks
     import capo_bedrock_agentcore_control.types.harness_id
     import capo_bedrock_agentcore_control.types.harness_memory_configuration
     import capo_bedrock_agentcore_control.types.harness_model_configuration
@@ -23,38 +24,43 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.harness_system_prompt
     import capo_bedrock_agentcore_control.types.harness_tools
     import capo_bedrock_agentcore_control.types.harness_truncation_configuration
+    import capo_bedrock_agentcore_control.types.harness_version
     import capo_bedrock_agentcore_control.types.role_arn
 
 
 class Harness(TypedDict, closed=True):
     harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId"
-    """<p>The ID of the Harness.</p>"""
+    """<p>The ID of the harness.</p>"""
     harness_name: "capo_bedrock_agentcore_control.types.harness_name.HarnessName"
-    """<p>The name of the Harness.</p>"""
+    """<p>The name of the harness.</p>"""
     arn: "capo_bedrock_agentcore_control.types.harness_arn.HarnessArn"
-    """<p>The ARN of the Harness.</p>"""
+    """<p>The ARN of the harness.</p>"""
     status: "capo_bedrock_agentcore_control.types.harness_status.HarnessStatus"
-    """<p>The status of the Harness.</p>"""
+    """<p>The status of the harness.</p>"""
+    harness_version: NotRequired[
+        "capo_bedrock_agentcore_control.types.harness_version.HarnessVersion"
+    ]
+    """<p>The version of the harness. Incremented on every successful UpdateHarness.</p>"""
     execution_role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn"
-    """<p>IAM role the Harness assumes when running.</p>"""
+    """<p>IAM role the harness assumes when running.</p>"""
     created_at: "capo_bedrock_agentcore_control.types.date_timestamp.DateTimestamp"
-    """<p>The createdAt time of the Harness.</p>"""
+    """<p>The createdAt time of the harness.</p>"""
     updated_at: "capo_bedrock_agentcore_control.types.date_timestamp.DateTimestamp"
-    """<p>The updatedAt time of the Harness.</p>"""
+    """<p>The updatedAt time of the harness.</p>"""
     model: "capo_bedrock_agentcore_control.types.harness_model_configuration.HarnessModelConfiguration"
     """<p>The configuration of the default model used by the Harness.</p>"""
     system_prompt: (
         "capo_bedrock_agentcore_control.types.harness_system_prompt.HarnessSystemPrompt"
     )
-    """<p>The system prompt of the Harness.</p>"""
+    """<p>The system prompt of the harness.</p>"""
     tools: "capo_bedrock_agentcore_control.types.harness_tools.HarnessTools"
-    """<p>The tools of the Harness.</p>"""
+    """<p>The tools of the harness.</p>"""
     skills: "capo_bedrock_agentcore_control.types.harness_skills.HarnessSkills"
-    """<p>The skills of the Harness.</p>"""
+    """<p>The skills of the harness.</p>"""
     allowed_tools: (
         "capo_bedrock_agentcore_control.types.harness_allowed_tools.HarnessAllowedTools"
     )
-    """<p>The allowed tools of the Harness. All tools are allowed by default.</p>"""
+    """<p>The allowed tools of the harness. All tools are allowed by default.</p>"""
     truncation: "capo_bedrock_agentcore_control.types.harness_truncation_configuration.HarnessTruncationConfiguration"
     """<p>Configuration for truncating model context.</p>"""
     environment: "capo_bedrock_agentcore_control.types.harness_environment_provider.HarnessEnvironmentProvider"
@@ -66,7 +72,7 @@ class Harness(TypedDict, closed=True):
     environment_variables: NotRequired[
         "capo_bedrock_agentcore_control.types.environment_variables_map.EnvironmentVariablesMap"
     ]
-    """<p>Environment variables exposed in the environment in which the Harness operates.</p>"""
+    """<p>Environment variables exposed in the environment in which the harness operates.</p>"""
     authorizer_configuration: NotRequired[
         "capo_bedrock_agentcore_control.types.authorizer_configuration.AuthorizerConfiguration"
     ]
@@ -74,6 +80,10 @@ class Harness(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.harness_memory_configuration.HarnessMemoryConfiguration"
     ]
     """<p>AgentCore Memory instance configuration for short and long term memory.</p>"""
+    hooks: NotRequired[
+        "capo_bedrock_agentcore_control.types.harness_hooks.HarnessHooks"
+    ]
+    """<p>The lifecycle hooks configured for the harness.</p>"""
     max_iterations: NotRequired["int"]
     """<p>The maximum number of iterations in the agent loop allowed before exiting per invocation.</p>"""
     max_tokens: NotRequired["int"]
@@ -95,6 +105,8 @@ def serialize_json(value: Harness) -> dict:
     out["status"] = capo_bedrock_agentcore_control.types.harness_status.serialize_json(
         value["status"]
     )
+    if "harness_version" in value:
+        out["harnessVersion"] = value["harness_version"]
     out["executionRoleArn"] = value["execution_role_arn"]
     import capo_bedrock_agentcore_control.types.date_timestamp
 
@@ -187,6 +199,14 @@ def serialize_json(value: Harness) -> dict:
                 value["memory"]
             )
         )
+    if "hooks" in value:
+        import capo_bedrock_agentcore_control.types.harness_hooks
+
+        out["hooks"] = (
+            capo_bedrock_agentcore_control.types.harness_hooks.serialize_json(
+                value["hooks"]
+            )
+        )
     if "max_iterations" in value:
         out["maxIterations"] = value["max_iterations"]
     if "max_tokens" in value:
@@ -222,6 +242,8 @@ def deserialize_json(data: dict) -> Harness:
         )
     else:
         raise DeserializationError("Harness.status required")
+    if data.get("harnessVersion") is not None:
+        out["harness_version"] = data["harnessVersion"]
     if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
@@ -346,6 +368,14 @@ def deserialize_json(data: dict) -> Harness:
         out["memory"] = (
             capo_bedrock_agentcore_control.types.harness_memory_configuration.deserialize_json(
                 data["memory"]
+            )
+        )
+    if data.get("hooks") is not None:
+        import capo_bedrock_agentcore_control.types.harness_hooks
+
+        out["hooks"] = (
+            capo_bedrock_agentcore_control.types.harness_hooks.deserialize_json(
+                data["hooks"]
             )
         )
     if data.get("maxIterations") is not None:

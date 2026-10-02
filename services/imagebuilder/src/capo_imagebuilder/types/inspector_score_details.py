@@ -12,7 +12,7 @@ class InspectorScoreDetails(TypedDict, closed=True):
     adjusted_cvss: NotRequired[
         "capo_imagebuilder.types.cvss_score_details.CvssScoreDetails"
     ]
-    """<p>An object that contains details about an adjustment that Amazon Inspector made to the CVSS score for the finding.</p>"""
+    """<p>The CVSS score that Amazon Inspector assigned to the finding after applying its adjustments. It includes the score source, CVSS version, scoring vector, and the adjustments applied.</p>"""
 
 
 # --- restJson1 ser/de ---

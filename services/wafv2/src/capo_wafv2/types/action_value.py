@@ -8,6 +8,7 @@ ActionValue: TypeAlias = Literal[
     "COUNT",
     "CAPTCHA",
     "CHALLENGE",
+    "MONETIZE",
     "EXCLUDED_AS_COUNT",
 ]
 

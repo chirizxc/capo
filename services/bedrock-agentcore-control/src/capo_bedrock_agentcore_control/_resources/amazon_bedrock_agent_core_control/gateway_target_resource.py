@@ -57,10 +57,12 @@ class GatewayTargetResource:
     def create_gateway_target(
         self,
         gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
-        name: "capo_bedrock_agentcore_control.types.target_name.TargetName",
         target_configuration: "capo_bedrock_agentcore_control.types.target_configuration.TargetConfiguration",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        name: Optional[
+            "capo_bedrock_agentcore_control.types.target_name.TargetName"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.target_description.TargetDescription"
         ] = None,
@@ -117,9 +119,10 @@ class GatewayTargetResource:
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_bedrock_agentcore_control.types.create_gateway_target_request.CreateGatewayTargetRequest = {
             "gateway_identifier": gateway_identifier,
-            "name": name,
             "target_configuration": target_configuration,
         }
+        if name is not None:
+            input_["name"] = name
         if description is not None:
             input_["description"] = description
         if client_token is None:
@@ -265,6 +268,7 @@ class GatewayTargetResource:
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
             capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
             capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
             capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
             capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -357,10 +361,12 @@ class GatewayTargetResource:
         self,
         gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
         target_id: "capo_bedrock_agentcore_control.types.target_id.TargetId",
-        name: "capo_bedrock_agentcore_control.types.target_name.TargetName",
         target_configuration: "capo_bedrock_agentcore_control.types.target_configuration.TargetConfiguration",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        name: Optional[
+            "capo_bedrock_agentcore_control.types.target_name.TargetName"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.target_description.TargetDescription"
         ] = None,
@@ -414,9 +420,10 @@ class GatewayTargetResource:
         input_: capo_bedrock_agentcore_control.types.update_gateway_target_request.UpdateGatewayTargetRequest = {
             "gateway_identifier": gateway_identifier,
             "target_id": target_id,
-            "name": name,
             "target_configuration": target_configuration,
         }
+        if name is not None:
+            input_["name"] = name
         if description is not None:
             input_["description"] = description
         if credential_provider_configurations is not None:
@@ -444,10 +451,12 @@ class AsyncGatewayTargetResource:
     async def create_gateway_target(
         self,
         gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
-        name: "capo_bedrock_agentcore_control.types.target_name.TargetName",
         target_configuration: "capo_bedrock_agentcore_control.types.target_configuration.TargetConfiguration",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreControlClientConfig] = None,
+        name: Optional[
+            "capo_bedrock_agentcore_control.types.target_name.TargetName"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.target_description.TargetDescription"
         ] = None,
@@ -505,9 +514,10 @@ class AsyncGatewayTargetResource:
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_bedrock_agentcore_control.types.create_gateway_target_request.CreateGatewayTargetRequest = {
             "gateway_identifier": gateway_identifier,
-            "name": name,
             "target_configuration": target_configuration,
         }
+        if name is not None:
+            input_["name"] = name
         if description is not None:
             input_["description"] = description
         if client_token is None:
@@ -655,6 +665,7 @@ class AsyncGatewayTargetResource:
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
             capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
             capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
             capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
             capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -749,10 +760,12 @@ class AsyncGatewayTargetResource:
         self,
         gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
         target_id: "capo_bedrock_agentcore_control.types.target_id.TargetId",
-        name: "capo_bedrock_agentcore_control.types.target_name.TargetName",
         target_configuration: "capo_bedrock_agentcore_control.types.target_configuration.TargetConfiguration",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreControlClientConfig] = None,
+        name: Optional[
+            "capo_bedrock_agentcore_control.types.target_name.TargetName"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.target_description.TargetDescription"
         ] = None,
@@ -807,9 +820,10 @@ class AsyncGatewayTargetResource:
         input_: capo_bedrock_agentcore_control.types.update_gateway_target_request.UpdateGatewayTargetRequest = {
             "gateway_identifier": gateway_identifier,
             "target_id": target_id,
-            "name": name,
             "target_configuration": target_configuration,
         }
+        if name is not None:
+            input_["name"] = name
         if description is not None:
             input_["description"] = description
         if credential_provider_configurations is not None:

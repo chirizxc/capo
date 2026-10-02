@@ -21,7 +21,11 @@ import capo_opensearch.types.describe_domain_config_response
 import capo_opensearch.types.domain_config
 from capo_opensearch._protocol.errors import parse_error_metadata_json
 from capo_opensearch._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_opensearch._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_opensearch._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_opensearch.errors import UnknownServiceError
 
 
@@ -132,7 +136,7 @@ def describe_domain_config(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -150,7 +154,7 @@ async def async_describe_domain_config(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

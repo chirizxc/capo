@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_eventbridge.types.event_bus_description
+    import capo_eventbridge.types.managed_by
     import capo_eventbridge.types.string
     import capo_eventbridge.types.timestamp
 
@@ -25,6 +26,8 @@ class EventBus(TypedDict, closed=True):
     """<p>The time the event bus was created.</p>"""
     last_modified_time: NotRequired["capo_eventbridge.types.timestamp.Timestamp"]
     """<p>The time the event bus was last modified.</p>"""
+    managed_by: NotRequired["capo_eventbridge.types.managed_by.ManagedBy"]
+    """<p>If the event bus was created on behalf of your account by an Amazon Web Services service, this field displays the principal name of the service that created the event bus.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -52,6 +55,8 @@ def serialize_aws_json_1_1(value: EventBus) -> dict:
                 value["last_modified_time"]
             )
         )
+    if "managed_by" in value:
+        out["ManagedBy"] = value["managed_by"]
     return out
 
 
@@ -81,4 +86,6 @@ def deserialize_aws_json_1_1(data: dict) -> EventBus:
                 data["LastModifiedTime"]
             )
         )
+    if data.get("ManagedBy") is not None:
+        out["managed_by"] = data["ManagedBy"]
     return out

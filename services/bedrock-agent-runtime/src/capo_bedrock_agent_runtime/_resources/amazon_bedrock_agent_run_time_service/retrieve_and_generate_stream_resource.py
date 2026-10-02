@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.retrieve_and_generate_stream_request
     import capo_bedrock_agent_runtime.types.retrieve_and_generate_stream_response
     import capo_bedrock_agent_runtime.types.session_id
+    import capo_bedrock_agent_runtime.types.user_context
     from capo_bedrock_agent_runtime._services.async_bedrock_agent_runtime import (
         AsyncBedrockAgentRuntimeClient,
         AsyncBedrockAgentRuntimeClientConfig,
@@ -51,14 +52,18 @@ class RetrieveAndGenerateStreamResource:
         session_configuration: Optional[
             "capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configuration.RetrieveAndGenerateSessionConfiguration"
         ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
     ) -> "Generator[capo_bedrock_agent_runtime.types.retrieve_and_generate_stream_response.RetrieveAndGenerateStreamResponse]":
-        r"""<p>Queries a knowledge base and generates responses based on the retrieved results, with output in streaming format.</p> <note> <p>The CLI doesn't support streaming operations in Amazon Bedrock, including <code>InvokeModelWithResponseStream</code>.</p> </note> <p>This operation requires permission for the <code> bedrock:RetrieveAndGenerate</code> action.</p>
+        r"""<p>Queries a knowledge base and generates responses based on the retrieved results, with output in streaming format.</p> <note> <p>This API cannot be used with managed knowledge bases. Use <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_AgenticRetrieveStream.html\">AgenticRetrieveStream</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html\">Retrieve</a> with managed knowledge bases.</p> </note> <note> <p>The CLI doesn't support streaming operations in Amazon Bedrock, including <code>InvokeModelWithResponseStream</code>.</p> </note> <p>This operation requires permission for the <code> bedrock:RetrieveAndGenerate</code> action.</p>
 
         Args:
             session_id: <p>The unique identifier of the session. When you first make a <code>RetrieveAndGenerate</code> request, Amazon Bedrock automatically generates this value. You must reuse this value for all subsequent requests in the same conversational session. This value allows Amazon Bedrock to maintain context and knowledge from previous interactions. You can't explicitly set the <code>sessionId</code> yourself.</p>
             input: <p>Contains the query to be made to the knowledge base.</p>
             retrieve_and_generate_configuration: <p>Contains configurations for the knowledge base query and retrieval process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p>
             session_configuration: <p>Contains details about the session with the knowledge base.</p>
+            user_context: <p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>
 
         Raises:
             capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
@@ -99,6 +104,8 @@ class RetrieveAndGenerateStreamResource:
             )
         if session_configuration is not None:
             input_["session_configuration"] = session_configuration
+        if user_context is not None:
+            input_["user_context"] = user_context
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -130,14 +137,18 @@ class AsyncRetrieveAndGenerateStreamResource:
         session_configuration: Optional[
             "capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configuration.RetrieveAndGenerateSessionConfiguration"
         ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
     ) -> "AsyncGenerator[capo_bedrock_agent_runtime.types.retrieve_and_generate_stream_response.RetrieveAndGenerateStreamResponse]":
-        r"""<p>Queries a knowledge base and generates responses based on the retrieved results, with output in streaming format.</p> <note> <p>The CLI doesn't support streaming operations in Amazon Bedrock, including <code>InvokeModelWithResponseStream</code>.</p> </note> <p>This operation requires permission for the <code> bedrock:RetrieveAndGenerate</code> action.</p>
+        r"""<p>Queries a knowledge base and generates responses based on the retrieved results, with output in streaming format.</p> <note> <p>This API cannot be used with managed knowledge bases. Use <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_AgenticRetrieveStream.html\">AgenticRetrieveStream</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html\">Retrieve</a> with managed knowledge bases.</p> </note> <note> <p>The CLI doesn't support streaming operations in Amazon Bedrock, including <code>InvokeModelWithResponseStream</code>.</p> </note> <p>This operation requires permission for the <code> bedrock:RetrieveAndGenerate</code> action.</p>
 
         Args:
             session_id: <p>The unique identifier of the session. When you first make a <code>RetrieveAndGenerate</code> request, Amazon Bedrock automatically generates this value. You must reuse this value for all subsequent requests in the same conversational session. This value allows Amazon Bedrock to maintain context and knowledge from previous interactions. You can't explicitly set the <code>sessionId</code> yourself.</p>
             input: <p>Contains the query to be made to the knowledge base.</p>
             retrieve_and_generate_configuration: <p>Contains configurations for the knowledge base query and retrieval process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p>
             session_configuration: <p>Contains details about the session with the knowledge base.</p>
+            user_context: <p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>
 
         Raises:
             capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
@@ -179,6 +190,8 @@ class AsyncRetrieveAndGenerateStreamResource:
             )
         if session_configuration is not None:
             input_["session_configuration"] = session_configuration
+        if user_context is not None:
+            input_["user_context"] = user_context
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

@@ -14,7 +14,7 @@ class ListEnabledControlsInput(TypedDict, closed=True):
     target_identifier: NotRequired[
         "capo_controltower.types.target_identifier.TargetIdentifier"
     ]
-    r"""<p>The ARN of the organizational unit. For information on how to find the <code>targetIdentifier</code>, see <a href=\"https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html\">the overview page</a>.</p>"""
+    r"""<p>The ARN of the target. The value depends on the target type:</p> <ul> <li> <p>Organizational unit (OU) – Specify the ARN of the OU.</p> </li> <li> <p>Account – Specify the ARN of the account.</p> </li> </ul> <p>For information on how to find the <code>targetIdentifier</code>, see <a href=\"https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html\">the overview page</a>.</p>"""
     next_token: NotRequired["str"]
     """<p>The token to continue the list from a previous API call with the same parameters.</p>"""
     max_results: NotRequired["capo_controltower.types.max_results.MaxResults"]
@@ -24,7 +24,7 @@ class ListEnabledControlsInput(TypedDict, closed=True):
     ]
     """<p>An input filter for the <code>ListEnabledControls</code> API that lets you select the types of control operations to view.</p>"""
     include_children: "bool"
-    """<p>A boolean value that determines whether to include enabled controls from child organizational units in the response.</p>"""
+    """<p>Specifies whether to include enabled controls from child organizational units and child accounts in the response.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     import capo_lex_models_v2.types.locale_id
     import capo_lex_models_v2.types.locale_name
     import capo_lex_models_v2.types.recommended_actions
+    import capo_lex_models_v2.types.speaker_diarization_settings
     import capo_lex_models_v2.types.speech_detection_sensitivity
     import capo_lex_models_v2.types.speech_recognition_settings
     import capo_lex_models_v2.types.timestamp
@@ -78,6 +79,10 @@ class UpdateBotLocaleResponse(TypedDict, closed=True):
         "capo_lex_models_v2.types.speech_detection_sensitivity.SpeechDetectionSensitivity"
     ]
     """<p>The updated sensitivity level for voice activity detection (VAD) in the bot locale.</p>"""
+    speaker_diarization_settings: NotRequired[
+        "capo_lex_models_v2.types.speaker_diarization_settings.SpeakerDiarizationSettings"
+    ]
+    """<p>The updated speaker diarization settings for the bot locale.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -184,6 +189,14 @@ def serialize_json(value: UpdateBotLocaleResponse) -> dict:
                 value["speech_detection_sensitivity"]
             )
         )
+    if "speaker_diarization_settings" in value:
+        import capo_lex_models_v2.types.speaker_diarization_settings
+
+        out["speakerDiarizationSettings"] = (
+            capo_lex_models_v2.types.speaker_diarization_settings.serialize_json(
+                value["speaker_diarization_settings"]
+            )
+        )
     return out
 
 
@@ -287,6 +300,14 @@ def deserialize_json(data: dict) -> UpdateBotLocaleResponse:
         out["speech_detection_sensitivity"] = (
             capo_lex_models_v2.types.speech_detection_sensitivity.deserialize_json(
                 data["speechDetectionSensitivity"]
+            )
+        )
+    if data.get("speakerDiarizationSettings") is not None:
+        import capo_lex_models_v2.types.speaker_diarization_settings
+
+        out["speaker_diarization_settings"] = (
+            capo_lex_models_v2.types.speaker_diarization_settings.deserialize_json(
+                data["speakerDiarizationSettings"]
             )
         )
     return out

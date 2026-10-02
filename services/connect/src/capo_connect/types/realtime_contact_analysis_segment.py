@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_connect.types.real_time_contact_analysis_segment_attachments
     import capo_connect.types.real_time_contact_analysis_segment_categories
     import capo_connect.types.real_time_contact_analysis_segment_event
+    import capo_connect.types.real_time_contact_analysis_segment_extracted_information
     import capo_connect.types.real_time_contact_analysis_segment_issues
     import capo_connect.types.real_time_contact_analysis_segment_post_contact_summary
     import capo_connect.types.real_time_contact_analysis_segment_transcript
@@ -39,6 +40,10 @@ class _RealtimeContactAnalysisSegment_PostContactSummary(TypedDict, closed=True)
     PostContactSummary: "capo_connect.types.real_time_contact_analysis_segment_post_contact_summary.RealTimeContactAnalysisSegmentPostContactSummary"
 
 
+class _RealtimeContactAnalysisSegment_ExtractedInformation(TypedDict, closed=True):
+    ExtractedInformation: "capo_connect.types.real_time_contact_analysis_segment_extracted_information.RealTimeContactAnalysisSegmentExtractedInformation"
+
+
 RealtimeContactAnalysisSegment: TypeAlias = (
     _RealtimeContactAnalysisSegment_Transcript
     | _RealtimeContactAnalysisSegment_Categories
@@ -46,6 +51,7 @@ RealtimeContactAnalysisSegment: TypeAlias = (
     | _RealtimeContactAnalysisSegment_Event
     | _RealtimeContactAnalysisSegment_Attachments
     | _RealtimeContactAnalysisSegment_PostContactSummary
+    | _RealtimeContactAnalysisSegment_ExtractedInformation
 )
 
 
@@ -99,6 +105,14 @@ def serialize_json(value: RealtimeContactAnalysisSegment) -> dict:
                 value["PostContactSummary"]
             )
         }
+    elif "ExtractedInformation" in value:
+        import capo_connect.types.real_time_contact_analysis_segment_extracted_information
+
+        return {
+            "ExtractedInformation": capo_connect.types.real_time_contact_analysis_segment_extracted_information.serialize_json(
+                value["ExtractedInformation"]
+            )
+        }
     else:
         raise SerializationError("RealtimeContactAnalysisSegment: no variant present")
 
@@ -150,6 +164,14 @@ def deserialize_json(data: dict) -> RealtimeContactAnalysisSegment:
         return {
             "PostContactSummary": capo_connect.types.real_time_contact_analysis_segment_post_contact_summary.deserialize_json(
                 data["PostContactSummary"]
+            )
+        }
+    elif data.get("ExtractedInformation") is not None:
+        import capo_connect.types.real_time_contact_analysis_segment_extracted_information
+
+        return {
+            "ExtractedInformation": capo_connect.types.real_time_contact_analysis_segment_extracted_information.deserialize_json(
+                data["ExtractedInformation"]
             )
         }
     else:

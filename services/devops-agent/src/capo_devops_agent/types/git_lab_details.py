@@ -8,7 +8,7 @@ from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_devops_agent.types.git_lab_token_type
-    import capo_devops_agent.types.token_value
+    import capo_devops_agent.types.git_lab_token_value
 
 
 class GitLabDetails(TypedDict, closed=True):
@@ -16,7 +16,7 @@ class GitLabDetails(TypedDict, closed=True):
     """<p>GitLab instance URL (e.g., https://gitlab.com or self-hosted instance).</p>"""
     token_type: "capo_devops_agent.types.git_lab_token_type.GitLabTokenType"
     """<p>Type of GitLab access token</p>"""
-    token_value: "capo_devops_agent.types.token_value.TokenValue"
+    token_value: "capo_devops_agent.types.git_lab_token_value.GitLabTokenValue"
     """<p>GitLab access token value</p>"""
     group_id: NotRequired["str"]
     """<p>Optional GitLab group ID for group-level access tokens</p>"""

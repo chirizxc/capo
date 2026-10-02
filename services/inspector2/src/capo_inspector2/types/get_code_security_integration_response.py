@@ -34,12 +34,12 @@ class GetCodeSecurityIntegrationResponse(TypedDict, closed=True):
     """<p>The timestamp when the code security integration was created.</p>"""
     last_update_on: "datetime.datetime"
     """<p>The timestamp when the code security integration was last updated.</p>"""
-    tags: NotRequired["capo_inspector2.types.tag_map.TagMap"]
-    """<p>The tags associated with the code security integration.</p>"""
     authorization_url: NotRequired[
         "capo_inspector2.types.authorization_url.AuthorizationUrl"
     ]
     """<p>The URL used to authorize the integration with the repository provider. This is only returned if reauthorization is required to fix a connection issue. Otherwise, it is null.</p>"""
+    tags: NotRequired["capo_inspector2.types.tag_map.TagMap"]
+    """<p>The tags associated with the code security integration.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -66,12 +66,12 @@ def serialize_json(value: GetCodeSecurityIntegrationResponse) -> dict:
     out["lastUpdateOn"] = capo_inspector2.types._prelude.timestamp.serialize_json(
         value["last_update_on"]
     )
+    if "authorization_url" in value:
+        out["authorizationUrl"] = value["authorization_url"]
     if "tags" in value:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.serialize_json(value["tags"])
-    if "authorization_url" in value:
-        out["authorizationUrl"] = value["authorization_url"]
     return out
 
 
@@ -131,10 +131,10 @@ def deserialize_json(data: dict) -> GetCodeSecurityIntegrationResponse:
         raise DeserializationError(
             "GetCodeSecurityIntegrationResponse.last_update_on required"
         )
+    if data.get("authorizationUrl") is not None:
+        out["authorization_url"] = data["authorizationUrl"]
     if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])
-    if data.get("authorizationUrl") is not None:
-        out["authorization_url"] = data["authorizationUrl"]
     return out

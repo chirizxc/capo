@@ -8,6 +8,7 @@ from capo_securityagent.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_securityagent.types.kms_key_id
+    import capo_securityagent.types.private_connection_name
     import capo_securityagent.types.provider
     import capo_securityagent.types.provider_input
     import capo_securityagent.types.tag_map
@@ -24,6 +25,10 @@ class CreateIntegrationInput(TypedDict, closed=True):
     """<p>The identifier of the AWS KMS key to use for encrypting data associated with the integration.</p>"""
     tags: NotRequired["capo_securityagent.types.tag_map.TagMap"]
     """<p>The tags to associate with the integration.</p>"""
+    private_connection_name: NotRequired[
+        "capo_securityagent.types.private_connection_name.PrivateConnectionName"
+    ]
+    """<p>The name of an active private connection used to reach a self-hosted provider instance over private networking. Specify this when the instance is not publicly reachable.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -46,6 +51,8 @@ def serialize_json(value: CreateIntegrationInput) -> dict:
         import capo_securityagent.types.tag_map
 
         out["tags"] = capo_securityagent.types.tag_map.serialize_json(value["tags"])
+    if "private_connection_name" in value:
+        out["privateConnectionName"] = value["private_connection_name"]
     return out
 
 
@@ -79,4 +86,6 @@ def deserialize_json(data: dict) -> CreateIntegrationInput:
         import capo_securityagent.types.tag_map
 
         out["tags"] = capo_securityagent.types.tag_map.deserialize_json(data["tags"])
+    if data.get("privateConnectionName") is not None:
+        out["private_connection_name"] = data["privateConnectionName"]
     return out

@@ -102,6 +102,7 @@ if TYPE_CHECKING:
     import capo_codebuild.types.get_resource_policy_output
     import capo_codebuild.types.git_clone_depth
     import capo_codebuild.types.git_submodules_config
+    import capo_codebuild.types.host_kernel
     import capo_codebuild.types.image_pull_credentials_type
     import capo_codebuild.types.import_source_credentials_input
     import capo_codebuild.types.import_source_credentials_output
@@ -3411,6 +3412,9 @@ class AsyncCodeBuildClient:
         auto_retry_limit_override: Optional[
             "capo_codebuild.types.wrapper_int.WrapperInt"
         ] = None,
+        host_kernel_override: Optional[
+            "capo_codebuild.types.host_kernel.HostKernel"
+        ] = None,
     ) -> "capo_codebuild.types.start_build_output.StartBuildOutput":
         r"""<p>Starts running a build with the settings defined in the project. These setting include: how to run a build, where to get the source code, which build environment to use, which build commands to run, and where to store the build output.</p> <p>You can also start a build run by overriding some of the build settings in the project. The overrides only apply for that specific start build request. The settings in the project are unaltered.</p>
 
@@ -3448,6 +3452,7 @@ class AsyncCodeBuildClient:
             debug_session_enabled: <p>Specifies if session debugging is enabled for this build. For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html\">Viewing a running build in Session Manager</a>.</p>
             fleet_override: <p>A ProjectFleet object specified for this build that overrides the one defined in the build project.</p>
             auto_retry_limit_override: <p>The maximum number of additional automatic retries after a failed build. For example, if the auto-retry limit is set to 2, CodeBuild will call the <code>RetryBuild</code> API to automatically retry your build for up to 2 additional times.</p>
+            host_kernel_override: <p>The host operating system kernel for this build that overrides the one specified in the build project.</p>
 
         Raises:
             capo_codebuild.errors.account_limit_exceeded_exception.AccountLimitExceededException: <p>An Amazon Web Services service limit was exceeded for the calling Amazon Web Services account.</p>
@@ -3545,6 +3550,8 @@ class AsyncCodeBuildClient:
             input_["fleet_override"] = fleet_override
         if auto_retry_limit_override is not None:
             input_["auto_retry_limit_override"] = auto_retry_limit_override
+        if host_kernel_override is not None:
+            input_["host_kernel_override"] = host_kernel_override
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_securityhub.types.non_empty_string
     import capo_securityhub.types.standards_controls_updatable
     import capo_securityhub.types.standards_input_parameter_map
+    import capo_securityhub.types.standards_provider
     import capo_securityhub.types.standards_status
     import capo_securityhub.types.standards_status_reason
 
@@ -35,6 +36,8 @@ class StandardsSubscription(TypedDict, closed=True):
         "capo_securityhub.types.standards_status_reason.StandardsStatusReason"
     ]
     """<p>The reason for the current status.</p>"""
+    provider: NotRequired["capo_securityhub.types.standards_provider.StandardsProvider"]
+    """<p>The cloud provider whose resources the standard evaluates. For example, <code>AWS</code> or <code>Azure</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -73,6 +76,12 @@ def serialize_json(value: StandardsSubscription) -> dict:
             capo_securityhub.types.standards_status_reason.serialize_json(
                 value["standards_status_reason"]
             )
+        )
+    if "provider" in value:
+        import capo_securityhub.types.standards_provider
+
+        out["Provider"] = capo_securityhub.types.standards_provider.serialize_json(
+            value["provider"]
         )
     return out
 
@@ -114,5 +123,11 @@ def deserialize_json(data: dict) -> StandardsSubscription:
             capo_securityhub.types.standards_status_reason.deserialize_json(
                 data["StandardsStatusReason"]
             )
+        )
+    if data.get("Provider") is not None:
+        import capo_securityhub.types.standards_provider
+
+        out["provider"] = capo_securityhub.types.standards_provider.deserialize_json(
+            data["Provider"]
         )
     return out

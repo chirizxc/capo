@@ -53,6 +53,8 @@ class StepExecution(TypedDict, closed=True):
     """<p>A message associated with the response code for an execution.</p>"""
     failure_message: NotRequired["capo_ssm.types.string.String"]
     """<p>If a step failed, this message explains why the execution failed.</p>"""
+    warning_message: NotRequired["capo_ssm.types.string.String"]
+    """<p>A message that describes a non-critical issue that occurred during the step execution. Present only if the step status includes a warning.</p>"""
     failure_details: NotRequired["capo_ssm.types.failure_details.FailureDetails"]
     """<p>Information about the Automation failure.</p>"""
     step_execution_id: NotRequired["capo_ssm.types.string.String"]
@@ -136,6 +138,8 @@ def serialize_aws_json_1_1(value: StepExecution) -> dict:
         out["Response"] = value["response"]
     if "failure_message" in value:
         out["FailureMessage"] = value["failure_message"]
+    if "warning_message" in value:
+        out["WarningMessage"] = value["warning_message"]
     if "failure_details" in value:
         import capo_ssm.types.failure_details
 
@@ -247,6 +251,8 @@ def deserialize_aws_json_1_1(data: dict) -> StepExecution:
         out["response"] = data["Response"]
     if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
+    if data.get("WarningMessage") is not None:
+        out["warning_message"] = data["WarningMessage"]
     if data.get("FailureDetails") is not None:
         import capo_ssm.types.failure_details
 

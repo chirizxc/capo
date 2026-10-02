@@ -20,7 +20,7 @@ class S3KnowledgeBaseParameters(TypedDict, closed=True):
     metadata_files_location: NotRequired[
         "capo_quicksight.types.metadata_files_location.MetadataFilesLocation"
     ]
-    """<p>The location of metadata files within the S3 bucket that describe the structure and content of the knowledge base.</p>"""
+    """<p>The Amazon S3 location (prefix) of per-document metadata files. Each metadata file describes a single source document and its indexable attributes, such as title, category, and version. This is not the global ACL configuration file. To apply a single global ACL file to the entire knowledge base, use the access control configuration instead.</p>"""
 
 
 # --- restJson1 ser/de ---

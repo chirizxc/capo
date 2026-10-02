@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_notifications.errors import DeserializationError
 
@@ -16,6 +16,8 @@ class AssociateManagedNotificationAdditionalChannelRequest(TypedDict, closed=Tru
     """<p>The Amazon Resource Name (ARN) of the Channel to associate with the <code>ManagedNotificationConfiguration</code>.</p> <p>Supported ARNs include Amazon Q Developer in chat applications, the Console Mobile Application, and email (notifications-contacts).</p>"""
     managed_notification_configuration_arn: "capo_notifications.types.managed_notification_configuration_os_arn.ManagedNotificationConfigurationOsArn"
     """<p>The Amazon Resource Name (ARN) of the <code>ManagedNotificationConfiguration</code> to associate with the additional Channel.</p>"""
+    is_sensitive_events_subscribed: NotRequired["bool"]
+    """<p>Specifies whether this channel is subscribed to sensitive events. The <code>notifications:SubscribeSensitiveEvents</code> permission controls access to sensitive events. Defaults to false.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -24,6 +26,8 @@ def serialize_json(value: AssociateManagedNotificationAdditionalChannelRequest) 
     out["managedNotificationConfigurationArn"] = value[
         "managed_notification_configuration_arn"
     ]
+    if "is_sensitive_events_subscribed" in value:
+        out["isSensitiveEventsSubscribed"] = value["is_sensitive_events_subscribed"]
     return out
 
 
@@ -39,4 +43,6 @@ def deserialize_json(
         raise DeserializationError(
             "AssociateManagedNotificationAdditionalChannelRequest.managed_notification_configuration_arn required"
         )
+    if data.get("isSensitiveEventsSubscribed") is not None:
+        out["is_sensitive_events_subscribed"] = data["isSensitiveEventsSubscribed"]
     return out

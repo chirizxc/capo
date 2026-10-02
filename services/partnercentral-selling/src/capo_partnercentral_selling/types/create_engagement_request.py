@@ -19,11 +19,13 @@ class CreateEngagementRequest(TypedDict, closed=True):
     """<p>The <code>CreateEngagementRequest$Catalog</code> parameter specifies the catalog related to the engagement. Accepted values are <code>AWS</code> and <code>Sandbox</code>, which determine the environment in which the engagement is managed.</p>"""
     client_token: "capo_partnercentral_selling.types.client_token.ClientToken"
     """<p>The <code>CreateEngagementRequest$ClientToken</code> parameter specifies a unique, case-sensitive identifier to ensure that the request is handled exactly once. The value must not exceed sixty-four alphanumeric characters.</p>"""
-    title: "capo_partnercentral_selling.types.engagement_title.EngagementTitle"
+    title: NotRequired[
+        "capo_partnercentral_selling.types.engagement_title.EngagementTitle"
+    ]
     """<p>Specifies the title of the <code>Engagement</code>.</p>"""
-    description: (
+    description: NotRequired[
         "capo_partnercentral_selling.types.engagement_description.EngagementDescription"
-    )
+    ]
     """<p>Provides a description of the <code>Engagement</code>.</p>"""
     contexts: NotRequired[
         "capo_partnercentral_selling.types.engagement_contexts.EngagementContexts"
@@ -36,8 +38,10 @@ def serialize_aws_json_1_0(value: CreateEngagementRequest) -> dict:
     out: dict = {}
     out["Catalog"] = value["catalog"]
     out["ClientToken"] = value["client_token"]
-    out["Title"] = value["title"]
-    out["Description"] = value["description"]
+    if "title" in value:
+        out["Title"] = value["title"]
+    if "description" in value:
+        out["Description"] = value["description"]
     if "contexts" in value:
         import capo_partnercentral_selling.types.engagement_contexts
 
@@ -61,12 +65,8 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEngagementRequest:
         raise DeserializationError("CreateEngagementRequest.client_token required")
     if data.get("Title") is not None:
         out["title"] = data["Title"]
-    else:
-        raise DeserializationError("CreateEngagementRequest.title required")
     if data.get("Description") is not None:
         out["description"] = data["Description"]
-    else:
-        raise DeserializationError("CreateEngagementRequest.description required")
     if data.get("Contexts") is not None:
         import capo_partnercentral_selling.types.engagement_contexts
 

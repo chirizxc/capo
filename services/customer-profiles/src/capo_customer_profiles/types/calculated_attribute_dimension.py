@@ -18,7 +18,7 @@ class CalculatedAttributeDimension(TypedDict, closed=True):
     )
     """<p>The action to segment with.</p>"""
     values: "capo_customer_profiles.types.values.Values"
-    """<p>The values to apply the DimensionType with.</p>"""
+    """<p>The values to apply the DimensionType with. To reference a calculated attribute or profile attribute as a dynamic value, use handlebar notation: <code>{{_profile.ProfileAttributeName}}</code> or <code>{{_calculated_attribute.CalculatedAttributeName}}</code>.</p>"""
     condition_overrides: NotRequired[
         "capo_customer_profiles.types.condition_overrides.ConditionOverrides"
     ]

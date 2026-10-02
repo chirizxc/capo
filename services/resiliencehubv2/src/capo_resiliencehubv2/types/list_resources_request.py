@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.entity_id
     import capo_resiliencehubv2.types.max_results
     import capo_resiliencehubv2.types.next_token
+    import capo_resiliencehubv2.types.resource_type_filter_list
 
 
 class ListResourcesRequest(TypedDict, closed=True):
@@ -18,6 +19,12 @@ class ListResourcesRequest(TypedDict, closed=True):
     """<p>Filter resources by service function identifier.</p>"""
     aws_region: NotRequired["capo_resiliencehubv2.types.aws_region.AwsRegion"]
     """<p>Filter resources by AWS Region.</p>"""
+    resource_types: NotRequired[
+        "capo_resiliencehubv2.types.resource_type_filter_list.ResourceTypeFilterList"
+    ]
+    """<p>The CloudFormation resource types to include in the response.</p>"""
+    billable: "bool"
+    """<p>Specifies whether to filter non-billable resources. When true (the default), the operation returns only billable resources.</p>"""
     max_results: "capo_resiliencehubv2.types.max_results.MaxResults"
     next_token: NotRequired["capo_resiliencehubv2.types.next_token.NextToken"]
 

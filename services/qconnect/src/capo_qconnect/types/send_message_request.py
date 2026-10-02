@@ -50,7 +50,7 @@ class SendMessageRequest(TypedDict, closed=True):
     origin_request_id: NotRequired[
         "capo_qconnect.types.non_empty_string.NonEmptyString"
     ]
-    """Request identifier from the origin system, used for end-to-end tracing across spans."""
+    """<p>Request identifier from the origin system, used for end-to-end tracing across spans.</p>"""
 
 
 # --- restJson1 ser/de ---

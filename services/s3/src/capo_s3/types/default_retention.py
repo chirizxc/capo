@@ -8,6 +8,7 @@ from capo_s3._protocol.xml import Element, SubElement
 
 if TYPE_CHECKING:
     import capo_s3.types.days
+    import capo_s3.types.event_hold_duration
     import capo_s3.types.object_lock_retention_mode
     import capo_s3.types.years
 
@@ -21,6 +22,10 @@ class DefaultRetention(TypedDict, closed=True):
     """<p>The number of days that you want to specify for the default retention period. Must be used with <code>Mode</code>.</p>"""
     years: NotRequired["capo_s3.types.years.Years"]
     """<p>The number of years that you want to specify for the default retention period. Must be used with <code>Mode</code>.</p>"""
+    default_event_hold: NotRequired[
+        "capo_s3.types.event_hold_duration.EventHoldDuration"
+    ]
+    """<p>The default event hold duration to be applied to new objects placed in the specified bucket. When configured, new objects will automatically have an event hold enabled with this duration.</p>"""
 
 
 # --- restXml ser/de ---
@@ -36,6 +41,12 @@ def serialize_xml(value: DefaultRetention, parent: Element, tag: str) -> None:
         SubElement(el, "Days").text = str(value["days"])
     if "years" in value:
         SubElement(el, "Years").text = str(value["years"])
+    if "default_event_hold" in value:
+        import capo_s3.types.event_hold_duration
+
+        capo_s3.types.event_hold_duration.serialize_xml(
+            value["default_event_hold"], el, "DefaultEventHold"
+        )
 
 
 def deserialize_xml(el: Element) -> DefaultRetention:
@@ -53,4 +64,11 @@ def deserialize_xml(el: Element) -> DefaultRetention:
     child_years = el.find("Years")
     if child_years is not None:
         out["years"] = int(child_years.text or "")
+    child_default_event_hold = el.find("DefaultEventHold")
+    if child_default_event_hold is not None:
+        import capo_s3.types.event_hold_duration
+
+        out["default_event_hold"] = capo_s3.types.event_hold_duration.deserialize_xml(
+            child_default_event_hold
+        )
     return out

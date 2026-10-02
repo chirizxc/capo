@@ -34,6 +34,8 @@ class UpdatePolicyRequest(TypedDict, closed=True):
         "capo_resiliencehubv2.types.data_recovery_targets.DataRecoveryTargets"
     ]
     """<p>The updated data recovery targets for the policy.</p>"""
+    sharing_enabled: NotRequired["bool"]
+    """<p>Specifies whether cross-account sharing is enabled for the policy. Disabling sharing stops member services from using the policy.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -72,6 +74,8 @@ def serialize_json(value: UpdatePolicyRequest) -> dict:
                 value["data_recovery"]
             )
         )
+    if "sharing_enabled" in value:
+        out["sharingEnabled"] = value["sharing_enabled"]
     return out
 
 
@@ -113,4 +117,6 @@ def deserialize_json(data: dict) -> UpdatePolicyRequest:
                 data["dataRecovery"]
             )
         )
+    if data.get("sharingEnabled") is not None:
+        out["sharing_enabled"] = data["sharingEnabled"]
     return out

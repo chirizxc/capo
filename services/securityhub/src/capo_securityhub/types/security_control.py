@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_securityhub.types.control_status
     import capo_securityhub.types.non_empty_string
     import capo_securityhub.types.parameters
+    import capo_securityhub.types.security_controls_provider
     import capo_securityhub.types.severity_rating
     import capo_securityhub.types.update_status
 
@@ -46,6 +47,10 @@ class SecurityControl(TypedDict, closed=True):
         "capo_securityhub.types.alpha_numeric_non_empty_string.AlphaNumericNonEmptyString"
     ]
     r"""<p> The most recent reason for updating the customizable properties of a security control. This differs from the <code>UpdateReason</code> field of the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateStandardsControlAssociations.html\"> <code>BatchUpdateStandardsControlAssociations</code> </a> API, which tracks the reason for updating the enablement status of a control. This field accepts alphanumeric characters in addition to white spaces, dashes, and underscores. </p>"""
+    provider: NotRequired[
+        "capo_securityhub.types.security_controls_provider.SecurityControlsProvider"
+    ]
+    """<p>The cloud provider whose resources the security control evaluates. For example, <code>AWS</code> or <code>Azure</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -89,6 +94,14 @@ def serialize_json(value: SecurityControl) -> dict:
         )
     if "last_update_reason" in value:
         out["LastUpdateReason"] = value["last_update_reason"]
+    if "provider" in value:
+        import capo_securityhub.types.security_controls_provider
+
+        out["Provider"] = (
+            capo_securityhub.types.security_controls_provider.serialize_json(
+                value["provider"]
+            )
+        )
     return out
 
 
@@ -134,4 +147,12 @@ def deserialize_json(data: dict) -> SecurityControl:
         )
     if data.get("LastUpdateReason") is not None:
         out["last_update_reason"] = data["LastUpdateReason"]
+    if data.get("Provider") is not None:
+        import capo_securityhub.types.security_controls_provider
+
+        out["provider"] = (
+            capo_securityhub.types.security_controls_provider.deserialize_json(
+                data["Provider"]
+            )
+        )
     return out

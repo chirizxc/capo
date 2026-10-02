@@ -30,7 +30,7 @@ class InfrastructureConfigurationSummary(TypedDict, closed=True):
     resource_tags: NotRequired[
         "capo_imagebuilder.types.resource_tag_map.ResourceTagMap"
     ]
-    """<p>The tags attached to the image created by Image Builder.</p>"""
+    """<p>The metadata tags assigned to the Amazon EC2 build and test instances that Image Builder launches during image creation.</p>"""
     tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
     """<p>The tags of the infrastructure configuration.</p>"""
     instance_types: NotRequired[
@@ -42,7 +42,7 @@ class InfrastructureConfigurationSummary(TypedDict, closed=True):
     ]
     """<p>The instance profile of the infrastructure configuration.</p>"""
     placement: NotRequired["capo_imagebuilder.types.placement.Placement"]
-    """<p>The instance placement settings that define where the instances that are launched from your image will run.</p>"""
+    """<p>The instance placement settings that define where the build and test instances that Image Builder launches during image creation run. These settings don't affect instances that you launch from the output image.</p>"""
 
 
 # --- restJson1 ser/de ---

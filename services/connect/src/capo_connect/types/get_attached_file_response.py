@@ -33,7 +33,7 @@ class GetAttachedFileResponse(TypedDict, closed=True):
     file_size_in_bytes: "capo_connect.types.file_size_in_bytes.FileSizeInBytes"
     """<p>The size of the attached file in bytes.</p>"""
     associated_resource_arn: NotRequired["capo_connect.types.arn.ARN"]
-    r"""<p>The resource to which the attached file is (being) uploaded to. <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html\">Cases</a> are the only current supported resource.</p>"""
+    r"""<p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a>, <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>, and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-getting-started-tasks.html\">Task</a>.</p>"""
     file_use_case_type: NotRequired[
         "capo_connect.types.file_use_case_type.FileUseCaseType"
     ]

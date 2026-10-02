@@ -10,9 +10,9 @@ if TYPE_CHECKING:
 
 class ImportTaskSummaryWaves(TypedDict, closed=True):
     created_count: "capo_mgn.types.positive_integer.PositiveInteger"
-    """<p>Import task summery waves created count.</p>"""
+    """<p>Import task summary waves created count.</p>"""
     modified_count: "capo_mgn.types.positive_integer.PositiveInteger"
-    """<p>Import task summery waves modified count.</p>"""
+    """<p>Import task summary waves modified count.</p>"""
 
 
 # --- restJson1 ser/de ---

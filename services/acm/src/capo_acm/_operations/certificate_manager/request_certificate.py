@@ -29,7 +29,11 @@ import capo_acm.types.tag_list
 import capo_acm.types.validation_method
 from capo_acm._protocol.errors import parse_error_metadata_json
 from capo_acm._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_acm._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_acm._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_acm.errors import UnknownServiceError
 
 
@@ -126,9 +130,10 @@ def build_request(
     endpoint = resolve(
         EndpointParams(
             Region=options.region,
-            UseDualStack=options.use_dual_stack,
-            UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            UseFIPS=options.use_fips,
+            UseDualStack=options.use_dual_stack,
+            ServiceType="ACM",
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
@@ -160,7 +165,7 @@ def request_certificate(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -178,7 +183,7 @@ async def async_request_certificate(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

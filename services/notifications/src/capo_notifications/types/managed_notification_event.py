@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_notifications.types.aggregation_summary
     import capo_notifications.types.event_status
     import capo_notifications.types.message_components
+    import capo_notifications.types.notification_event_attachment_list
     import capo_notifications.types.notification_event_id
     import capo_notifications.types.notification_type
     import capo_notifications.types.organizational_unit_id
@@ -52,6 +53,10 @@ class ManagedNotificationEvent(TypedDict, closed=True):
         "capo_notifications.types.organizational_unit_id.OrganizationalUnitId"
     ]
     """<p>The Organizational Unit Id that an Amazon Web Services account belongs to.</p>"""
+    attachments: NotRequired[
+        "capo_notifications.types.notification_event_attachment_list.NotificationEventAttachmentList"
+    ]
+    """<p>A list of files attached to the notification event.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -104,6 +109,14 @@ def serialize_json(value: ManagedNotificationEvent) -> dict:
     )
     if "organizational_unit_id" in value:
         out["organizationalUnitId"] = value["organizational_unit_id"]
+    if "attachments" in value:
+        import capo_notifications.types.notification_event_attachment_list
+
+        out["attachments"] = (
+            capo_notifications.types.notification_event_attachment_list.serialize_json(
+                value["attachments"]
+            )
+        )
     return out
 
 
@@ -175,4 +188,12 @@ def deserialize_json(data: dict) -> ManagedNotificationEvent:
         raise DeserializationError("ManagedNotificationEvent.text_parts required")
     if data.get("organizationalUnitId") is not None:
         out["organizational_unit_id"] = data["organizationalUnitId"]
+    if data.get("attachments") is not None:
+        import capo_notifications.types.notification_event_attachment_list
+
+        out["attachments"] = (
+            capo_notifications.types.notification_event_attachment_list.deserialize_json(
+                data["attachments"]
+            )
+        )
     return out

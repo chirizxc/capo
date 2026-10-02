@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.arn
     import capo_quicksight.types.capabilities
     import capo_quicksight.types.custom_permissions_name
+    import capo_quicksight.types.governance
 
 
 class CustomPermissions(TypedDict, closed=True):
@@ -19,6 +20,8 @@ class CustomPermissions(TypedDict, closed=True):
     """<p>The name of the custom permissions profile.</p>"""
     capabilities: NotRequired["capo_quicksight.types.capabilities.Capabilities"]
     """<p>A set of actions in the custom permissions profile.</p>"""
+    governance: NotRequired["capo_quicksight.types.governance.Governance"]
+    """<p>The governance configuration for the custom permissions profile. When you enable governance for a category, Amazon Quick denies access to any current or new capability in that category unless you explicitly set that capability to <code>ALLOW</code> in <code>Capabilities</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -34,6 +37,12 @@ def serialize_json(value: CustomPermissions) -> dict:
         out["Capabilities"] = capo_quicksight.types.capabilities.serialize_json(
             value["capabilities"]
         )
+    if "governance" in value:
+        import capo_quicksight.types.governance
+
+        out["Governance"] = capo_quicksight.types.governance.serialize_json(
+            value["governance"]
+        )
     return out
 
 
@@ -48,5 +57,11 @@ def deserialize_json(data: dict) -> CustomPermissions:
 
         out["capabilities"] = capo_quicksight.types.capabilities.deserialize_json(
             data["Capabilities"]
+        )
+    if data.get("Governance") is not None:
+        import capo_quicksight.types.governance
+
+        out["governance"] = capo_quicksight.types.governance.deserialize_json(
+            data["Governance"]
         )
     return out

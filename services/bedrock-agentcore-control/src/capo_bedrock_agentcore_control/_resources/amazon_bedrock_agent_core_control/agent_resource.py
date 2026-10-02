@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.agent_runtime_name
     import capo_bedrock_agentcore_control.types.agent_runtime_version
     import capo_bedrock_agentcore_control.types.authorizer_configuration
+    import capo_bedrock_agentcore_control.types.capacity_provider_configuration
     import capo_bedrock_agentcore_control.types.client_token
     import capo_bedrock_agentcore_control.types.create_agent_runtime_request
     import capo_bedrock_agentcore_control.types.create_agent_runtime_response
@@ -39,6 +40,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.max_results
     import capo_bedrock_agentcore_control.types.network_configuration
     import capo_bedrock_agentcore_control.types.next_token
+    import capo_bedrock_agentcore_control.types.platform_version
     import capo_bedrock_agentcore_control.types.protocol_configuration
     import capo_bedrock_agentcore_control.types.request_header_configuration
     import capo_bedrock_agentcore_control.types.role_arn
@@ -65,9 +67,11 @@ class AgentResource:
         agent_runtime_name: "capo_bedrock_agentcore_control.types.agent_runtime_name.AgentRuntimeName",
         agent_runtime_artifact: "capo_bedrock_agentcore_control.types.agent_runtime_artifact.AgentRuntimeArtifact",
         role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn",
-        network_configuration: "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        network_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -92,7 +96,13 @@ class AgentResource:
         filesystem_configurations: Optional[
             "capo_bedrock_agentcore_control.types.filesystem_configurations.FilesystemConfigurations"
         ] = None,
+        capacity_provider_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.capacity_provider_configuration.CapacityProviderConfiguration"
+        ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
+        platform_version: Optional[
+            "capo_bedrock_agentcore_control.types.platform_version.PlatformVersion"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_agent_runtime_response.CreateAgentRuntimeResponse":
         """<p>Creates an Amazon Bedrock AgentCore Runtime.</p>
 
@@ -108,7 +118,9 @@ class AgentResource:
             lifecycle_configuration: <p>The life cycle configuration for the AgentCore Runtime.</p>
             environment_variables: <p>Environment variables to set in the AgentCore Runtime environment.</p>
             filesystem_configurations: <p>The filesystem configurations to mount into the AgentCore Runtime. Use filesystem configurations to provide persistent storage to your AgentCore Runtime sessions.</p>
+            capacity_provider_configuration: <p>The capacity provider configuration for the AgentCore Runtime. Use a capacity provider to run the AgentCore Runtime on the Instances compute type, which provisions Amazon Web Services managed compute in your account.</p>
             tags: <p>A map of tag keys and values to assign to the agent runtime. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
+            platform_version: <p>The version of the runtime platform to use for the AgentCore Runtime.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -139,8 +151,9 @@ class AgentResource:
             "agent_runtime_name": agent_runtime_name,
             "agent_runtime_artifact": agent_runtime_artifact,
             "role_arn": role_arn,
-            "network_configuration": network_configuration,
         }
+        if network_configuration is not None:
+            input_["network_configuration"] = network_configuration
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -158,8 +171,12 @@ class AgentResource:
             input_["environment_variables"] = environment_variables
         if filesystem_configurations is not None:
             input_["filesystem_configurations"] = filesystem_configurations
+        if capacity_provider_configuration is not None:
+            input_["capacity_provider_configuration"] = capacity_provider_configuration
         if tags is not None:
             input_["tags"] = tags
+        if platform_version is not None:
+            input_["platform_version"] = platform_version
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -227,9 +244,11 @@ class AgentResource:
         agent_runtime_id: "capo_bedrock_agentcore_control.types.agent_runtime_id.AgentRuntimeId",
         agent_runtime_artifact: "capo_bedrock_agentcore_control.types.agent_runtime_artifact.AgentRuntimeArtifact",
         role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn",
-        network_configuration: "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        network_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.description.Description"
         ] = None,
@@ -254,6 +273,12 @@ class AgentResource:
         filesystem_configurations: Optional[
             "capo_bedrock_agentcore_control.types.filesystem_configurations.FilesystemConfigurations"
         ] = None,
+        capacity_provider_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.capacity_provider_configuration.CapacityProviderConfiguration"
+        ] = None,
+        platform_version: Optional[
+            "capo_bedrock_agentcore_control.types.platform_version.PlatformVersion"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -272,6 +297,8 @@ class AgentResource:
             metadata_configuration: <p>The updated configuration for microVM Metadata Service (MMDS) settings for the AgentCore Runtime.</p>
             environment_variables: <p>Updated environment variables to set in the AgentCore Runtime environment.</p>
             filesystem_configurations: <p>The updated filesystem configurations to mount into the AgentCore Runtime.</p>
+            capacity_provider_configuration: <p>The updated capacity provider configuration for the AgentCore Runtime.</p>
+            platform_version: <p>The updated version of the runtime platform to use for the AgentCore Runtime.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
 
         Raises:
@@ -304,8 +331,9 @@ class AgentResource:
             "agent_runtime_id": agent_runtime_id,
             "agent_runtime_artifact": agent_runtime_artifact,
             "role_arn": role_arn,
-            "network_configuration": network_configuration,
         }
+        if network_configuration is not None:
+            input_["network_configuration"] = network_configuration
         if description is not None:
             input_["description"] = description
         if authorizer_configuration is not None:
@@ -322,6 +350,10 @@ class AgentResource:
             input_["environment_variables"] = environment_variables
         if filesystem_configurations is not None:
             input_["filesystem_configurations"] = filesystem_configurations
+        if capacity_provider_configuration is not None:
+            input_["capacity_provider_configuration"] = capacity_provider_configuration
+        if platform_version is not None:
+            input_["platform_version"] = platform_version
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -339,14 +371,18 @@ class AgentResource:
         agent_runtime_id: "capo_bedrock_agentcore_control.types.agent_runtime_id.AgentRuntimeId",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        agent_runtime_version: Optional[
+            "capo_bedrock_agentcore_control.types.agent_runtime_version.AgentRuntimeVersion"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_agent_runtime_response.DeleteAgentRuntimeResponse":
-        """<p>Deletes an Amazon Bedrock AgentCore Runtime.</p>
+        """<p>Deletes an Amazon Bedrock AgentCore Runtime, or a single version of an AgentCore Runtime when you provide the version qualifier.</p>
 
         Args:
             agent_runtime_id: <p>The unique identifier of the AgentCore Runtime to delete.</p>
+            agent_runtime_version: <p>The version of the AgentCore Runtime to delete. When you provide this value, only that version is deleted. When you omit it, the entire AgentCore Runtime and all of its versions are deleted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.</p>
 
         Raises:
@@ -376,6 +412,8 @@ class AgentResource:
         input_: capo_bedrock_agentcore_control.types.delete_agent_runtime_request.DeleteAgentRuntimeRequest = {
             "agent_runtime_id": agent_runtime_id
         }
+        if agent_runtime_version is not None:
+            input_["agent_runtime_version"] = agent_runtime_version
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -511,9 +549,11 @@ class AsyncAgentResource:
         agent_runtime_name: "capo_bedrock_agentcore_control.types.agent_runtime_name.AgentRuntimeName",
         agent_runtime_artifact: "capo_bedrock_agentcore_control.types.agent_runtime_artifact.AgentRuntimeArtifact",
         role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn",
-        network_configuration: "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreControlClientConfig] = None,
+        network_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -538,7 +578,13 @@ class AsyncAgentResource:
         filesystem_configurations: Optional[
             "capo_bedrock_agentcore_control.types.filesystem_configurations.FilesystemConfigurations"
         ] = None,
+        capacity_provider_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.capacity_provider_configuration.CapacityProviderConfiguration"
+        ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
+        platform_version: Optional[
+            "capo_bedrock_agentcore_control.types.platform_version.PlatformVersion"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_agent_runtime_response.CreateAgentRuntimeResponse":
         """<p>Creates an Amazon Bedrock AgentCore Runtime.</p>
 
@@ -554,7 +600,9 @@ class AsyncAgentResource:
             lifecycle_configuration: <p>The life cycle configuration for the AgentCore Runtime.</p>
             environment_variables: <p>Environment variables to set in the AgentCore Runtime environment.</p>
             filesystem_configurations: <p>The filesystem configurations to mount into the AgentCore Runtime. Use filesystem configurations to provide persistent storage to your AgentCore Runtime sessions.</p>
+            capacity_provider_configuration: <p>The capacity provider configuration for the AgentCore Runtime. Use a capacity provider to run the AgentCore Runtime on the Instances compute type, which provisions Amazon Web Services managed compute in your account.</p>
             tags: <p>A map of tag keys and values to assign to the agent runtime. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
+            platform_version: <p>The version of the runtime platform to use for the AgentCore Runtime.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -586,8 +634,9 @@ class AsyncAgentResource:
             "agent_runtime_name": agent_runtime_name,
             "agent_runtime_artifact": agent_runtime_artifact,
             "role_arn": role_arn,
-            "network_configuration": network_configuration,
         }
+        if network_configuration is not None:
+            input_["network_configuration"] = network_configuration
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -605,8 +654,12 @@ class AsyncAgentResource:
             input_["environment_variables"] = environment_variables
         if filesystem_configurations is not None:
             input_["filesystem_configurations"] = filesystem_configurations
+        if capacity_provider_configuration is not None:
+            input_["capacity_provider_configuration"] = capacity_provider_configuration
         if tags is not None:
             input_["tags"] = tags
+        if platform_version is not None:
+            input_["platform_version"] = platform_version
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -675,9 +728,11 @@ class AsyncAgentResource:
         agent_runtime_id: "capo_bedrock_agentcore_control.types.agent_runtime_id.AgentRuntimeId",
         agent_runtime_artifact: "capo_bedrock_agentcore_control.types.agent_runtime_artifact.AgentRuntimeArtifact",
         role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn",
-        network_configuration: "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreControlClientConfig] = None,
+        network_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.description.Description"
         ] = None,
@@ -702,6 +757,12 @@ class AsyncAgentResource:
         filesystem_configurations: Optional[
             "capo_bedrock_agentcore_control.types.filesystem_configurations.FilesystemConfigurations"
         ] = None,
+        capacity_provider_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.capacity_provider_configuration.CapacityProviderConfiguration"
+        ] = None,
+        platform_version: Optional[
+            "capo_bedrock_agentcore_control.types.platform_version.PlatformVersion"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -720,6 +781,8 @@ class AsyncAgentResource:
             metadata_configuration: <p>The updated configuration for microVM Metadata Service (MMDS) settings for the AgentCore Runtime.</p>
             environment_variables: <p>Updated environment variables to set in the AgentCore Runtime environment.</p>
             filesystem_configurations: <p>The updated filesystem configurations to mount into the AgentCore Runtime.</p>
+            capacity_provider_configuration: <p>The updated capacity provider configuration for the AgentCore Runtime.</p>
+            platform_version: <p>The updated version of the runtime platform to use for the AgentCore Runtime.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
 
         Raises:
@@ -753,8 +816,9 @@ class AsyncAgentResource:
             "agent_runtime_id": agent_runtime_id,
             "agent_runtime_artifact": agent_runtime_artifact,
             "role_arn": role_arn,
-            "network_configuration": network_configuration,
         }
+        if network_configuration is not None:
+            input_["network_configuration"] = network_configuration
         if description is not None:
             input_["description"] = description
         if authorizer_configuration is not None:
@@ -771,6 +835,10 @@ class AsyncAgentResource:
             input_["environment_variables"] = environment_variables
         if filesystem_configurations is not None:
             input_["filesystem_configurations"] = filesystem_configurations
+        if capacity_provider_configuration is not None:
+            input_["capacity_provider_configuration"] = capacity_provider_configuration
+        if platform_version is not None:
+            input_["platform_version"] = platform_version
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -788,14 +856,18 @@ class AsyncAgentResource:
         agent_runtime_id: "capo_bedrock_agentcore_control.types.agent_runtime_id.AgentRuntimeId",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreControlClientConfig] = None,
+        agent_runtime_version: Optional[
+            "capo_bedrock_agentcore_control.types.agent_runtime_version.AgentRuntimeVersion"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_agent_runtime_response.DeleteAgentRuntimeResponse":
-        """<p>Deletes an Amazon Bedrock AgentCore Runtime.</p>
+        """<p>Deletes an Amazon Bedrock AgentCore Runtime, or a single version of an AgentCore Runtime when you provide the version qualifier.</p>
 
         Args:
             agent_runtime_id: <p>The unique identifier of the AgentCore Runtime to delete.</p>
+            agent_runtime_version: <p>The version of the AgentCore Runtime to delete. When you provide this value, only that version is deleted. When you omit it, the entire AgentCore Runtime and all of its versions are deleted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.</p>
 
         Raises:
@@ -826,6 +898,8 @@ class AsyncAgentResource:
         input_: capo_bedrock_agentcore_control.types.delete_agent_runtime_request.DeleteAgentRuntimeRequest = {
             "agent_runtime_id": agent_runtime_id
         }
+        if agent_runtime_version is not None:
+            input_["agent_runtime_version"] = agent_runtime_version
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token

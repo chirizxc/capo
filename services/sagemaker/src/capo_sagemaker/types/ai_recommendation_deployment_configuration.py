@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.ai_recommendation_deployment_s3_channel_list
     import capo_sagemaker.types.ai_recommendation_instance_count
     import capo_sagemaker.types.ai_recommendation_instance_type
+    import capo_sagemaker.types.ai_recommendation_min_cpu_memory_required_in_mb
     import capo_sagemaker.types.environment_map
     import capo_sagemaker.types.string
 
@@ -36,6 +37,10 @@ class AIRecommendationDeploymentConfiguration(TypedDict, closed=True):
         "capo_sagemaker.types.environment_map.EnvironmentMap"
     ]
     """<p>The environment variables for the deployment.</p>"""
+    min_cpu_memory_required_in_mb: NotRequired[
+        "capo_sagemaker.types.ai_recommendation_min_cpu_memory_required_in_mb.AIRecommendationMinCpuMemoryRequiredInMb"
+    ]
+    """<p>The minimum host (CPU) memory, in MiB, to reserve for each model copy when deploying the recommendation as an Inference Component. This value maps to the Inference Component's <code>ComputeResourceRequirements$MinMemoryRequiredInMb</code> field.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -71,6 +76,8 @@ def serialize_aws_json_1_1(value: AIRecommendationDeploymentConfiguration) -> di
                 value["environment_variables"]
             )
         )
+    if "min_cpu_memory_required_in_mb" in value:
+        out["MinCpuMemoryRequiredInMb"] = value["min_cpu_memory_required_in_mb"]
     return out
 
 
@@ -106,4 +113,6 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendationDeploymentConfigurat
                 data["EnvironmentVariables"]
             )
         )
+    if data.get("MinCpuMemoryRequiredInMb") is not None:
+        out["min_cpu_memory_required_in_mb"] = data["MinCpuMemoryRequiredInMb"]
     return out

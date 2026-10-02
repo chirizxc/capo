@@ -17,7 +17,7 @@ class StopProductSubscriptionRequest(TypedDict, closed=True):
     ]
     """<p>An object that specifies details for the identity provider.</p>"""
     product: NotRequired["str"]
-    """<p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>"""
+    """<p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>OFFICE_STANDARD</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>"""
     product_user_arn: NotRequired[
         "capo_license_manager_user_subscriptions.types.arn.Arn"
     ]

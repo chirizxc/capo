@@ -24,7 +24,9 @@ class ResponseOutputItem(TypedDict, closed=True):
     manifest_name: "capo_mediatailor.types.__string.__string"
     """<p>The name of the manifest for the channel that will appear in the channel output's playback URL.</p>"""
     playback_url: "capo_mediatailor.types.__string.__string"
-    """<p>The URL used for playback by content players.</p>"""
+    """<p>The URL that your player uses for playback.</p>"""
+    dual_stack_playback_url: NotRequired["capo_mediatailor.types.__string.__string"]
+    """<p>The dual-stack (IPv4 and IPv6) URL that your player uses for playback.</p>"""
     source_group: "capo_mediatailor.types.__string.__string"
     """<p>A string used to associate a package configuration source group with a channel output.</p>"""
 
@@ -50,6 +52,8 @@ def serialize_json(value: ResponseOutputItem) -> dict:
         )
     out["ManifestName"] = value["manifest_name"]
     out["PlaybackUrl"] = value["playback_url"]
+    if "dual_stack_playback_url" in value:
+        out["DualStackPlaybackUrl"] = value["dual_stack_playback_url"]
     out["SourceGroup"] = value["source_group"]
     return out
 
@@ -80,6 +84,8 @@ def deserialize_json(data: dict) -> ResponseOutputItem:
         out["playback_url"] = data["PlaybackUrl"]
     else:
         raise DeserializationError("ResponseOutputItem.playback_url required")
+    if data.get("DualStackPlaybackUrl") is not None:
+        out["dual_stack_playback_url"] = data["DualStackPlaybackUrl"]
     if data.get("SourceGroup") is not None:
         out["source_group"] = data["SourceGroup"]
     else:

@@ -14,9 +14,9 @@ from capo_sesv2 import AsyncSESv2Client
 
 async def main():
     async with AsyncSESv2Client() as se_sv2:
-        # Example: call the batch_get_metric_data operation
-        response = await se_sv2.batch_get_metric_data()
-        print(response["results"])
+        # Example: call the associate_email_identity_certificate operation
+        response = await se_sv2.associate_email_identity_certificate()
+        print(response)
 ```
 
 ## Pagination
@@ -40,14 +40,14 @@ The SDK raises exceptions for errors returned by the API. Catch them to handle f
 
 ```python
 from capo_sesv2 import AsyncSESv2Client
-from capo_sesv2.error import BadRequestException
+from capo_sesv2.error import AlreadyExistsException
 
 
 async def main():
     async with AsyncSESv2Client() as se_sv2:
         try:
-            await se_sv2.batch_get_metric_data()
-        except BadRequestException as e:
+            await se_sv2.associate_email_identity_certificate()
+        except AlreadyExistsException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
 ```
@@ -65,11 +65,11 @@ from capo_sesv2 import AsyncSESv2Client
 async def main():
     async with AsyncSESv2Client() as se_sv2:
         # Default: 3 attempts for every operation
-        response = await se_sv2.batch_get_metric_data()
+        response = await se_sv2.associate_email_identity_certificate()
 
         # Override per operation
-        response = await se_sv2.batch_get_metric_data(config_overrides={"retry_max_attempts": 5})
+        response = await se_sv2.associate_email_identity_certificate(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await se_sv2.batch_get_metric_data(config_overrides={"retry_max_attempts": 1})
+        response = await se_sv2.associate_email_identity_certificate(config_overrides={"retry_max_attempts": 1})
 ```

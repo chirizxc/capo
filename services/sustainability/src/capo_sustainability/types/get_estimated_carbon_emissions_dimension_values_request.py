@@ -15,11 +15,11 @@ if TYPE_CHECKING:
 
 class GetEstimatedCarbonEmissionsDimensionValuesRequest(TypedDict, closed=True):
     time_period: "capo_sustainability.types.time_period.TimePeriod"
-    """<p>The date range for fetching the dimension values.</p>"""
+    """<p> The date range for fetching the dimension values. The range must include the start date of a month for that month's dimensions to be included in the response. </p>"""
     dimensions: "capo_sustainability.types.dimension_list.DimensionList"
     """<p>The dimensions available for grouping estimated carbon emissions.</p>"""
     max_results: "capo_sustainability.types.max_results.MaxResults"
-    """<p>The maximum number of results to return in a single call. Default is 40.</p>"""
+    """<p>The maximum number of results to return in a single call. Default is 1000.</p>"""
     next_token: NotRequired["capo_sustainability.types.next_token.NextToken"]
     """<p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p>"""
 

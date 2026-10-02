@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     import capo_geo_places.types.place_type
     import capo_geo_places.types.position
     import capo_geo_places.types.postal_code_details_list
+    import capo_geo_places.types.related_place
     import capo_geo_places.types.sensitive_boolean
     import capo_geo_places.types.sensitive_string
     import capo_geo_places.types.time_zone
@@ -62,13 +63,23 @@ class ReverseGeocodeResultItem(TypedDict, closed=True):
         "capo_geo_places.types.intersection_list.IntersectionList"
     ]
     r"""<p> All Intersections that are near the provided address. Not available in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>"""
+    main_address: NotRequired["capo_geo_places.types.related_place.RelatedPlace"]
+    """<p>The main address corresponding to a place of type Secondary Address.</p>"""
+    estimated_point_address: NotRequired[
+        "capo_geo_places.types.sensitive_boolean.SensitiveBoolean"
+    ]
+    """<p>If <code>true</code>, indicates that the coordinates of the position and access points of the point address are estimated.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: ReverseGeocodeResultItem) -> dict:
     out: dict = {}
     out["PlaceId"] = value["place_id"]
-    out["PlaceType"] = value["place_type"]
+    import capo_geo_places.types.place_type
+
+    out["PlaceType"] = capo_geo_places.types.place_type.serialize_json(
+        value["place_type"]
+    )
     out["Title"] = value["title"]
     if "address" in value:
         import capo_geo_places.types.address
@@ -129,6 +140,14 @@ def serialize_json(value: ReverseGeocodeResultItem) -> dict:
         out["Intersections"] = capo_geo_places.types.intersection_list.serialize_json(
             value["intersections"]
         )
+    if "main_address" in value:
+        import capo_geo_places.types.related_place
+
+        out["MainAddress"] = capo_geo_places.types.related_place.serialize_json(
+            value["main_address"]
+        )
+    if "estimated_point_address" in value:
+        out["EstimatedPointAddress"] = value["estimated_point_address"]
     return out
 
 
@@ -139,7 +158,11 @@ def deserialize_json(data: dict) -> ReverseGeocodeResultItem:
     else:
         raise DeserializationError("ReverseGeocodeResultItem.place_id required")
     if data.get("PlaceType") is not None:
-        out["place_type"] = data["PlaceType"]
+        import capo_geo_places.types.place_type
+
+        out["place_type"] = capo_geo_places.types.place_type.deserialize_json(
+            data["PlaceType"]
+        )
     else:
         raise DeserializationError("ReverseGeocodeResultItem.place_type required")
     if data.get("Title") is not None:
@@ -208,4 +231,12 @@ def deserialize_json(data: dict) -> ReverseGeocodeResultItem:
         out["intersections"] = capo_geo_places.types.intersection_list.deserialize_json(
             data["Intersections"]
         )
+    if data.get("MainAddress") is not None:
+        import capo_geo_places.types.related_place
+
+        out["main_address"] = capo_geo_places.types.related_place.deserialize_json(
+            data["MainAddress"]
+        )
+    if data.get("EstimatedPointAddress") is not None:
+        out["estimated_point_address"] = data["EstimatedPointAddress"]
     return out

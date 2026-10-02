@@ -2,4 +2,5 @@
 
 from typing import TypeAlias
 
+"""A long integer value."""
 GenericLong: TypeAlias = int

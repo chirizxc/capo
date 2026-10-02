@@ -8,6 +8,7 @@ from capo_ecs.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_ecs.types.boolean
+    import capo_ecs.types.boxed_boolean
     import capo_ecs.types.daemon_deployment_configuration
     import capo_ecs.types.daemon_propagate_tags
     import capo_ecs.types.string
@@ -40,6 +41,8 @@ class CreateDaemonRequest(TypedDict, closed=True):
     """<p>Determines whether the execute command functionality is turned on for the daemon. If <code>true</code>, the execute command functionality is turned on for all tasks in the daemon.</p>"""
     client_token: NotRequired["capo_ecs.types.string.String"]
     """<p>An identifier that you provide to ensure the idempotency of the request. It must be unique and is case sensitive. Up to 36 ASCII characters in the range of 33-126 (inclusive) are allowed.</p>"""
+    critical: NotRequired["capo_ecs.types.boxed_boolean.BoxedBoolean"]
+    """<p>If the <code>critical</code> parameter of a daemon is <code>true</code>, and the daemon task fails, stops, or becomes unhealthy, Amazon ECS drains the container instance and stops the other tasks running on it. If the <code>critical</code> parameter is <code>false</code>, the daemon task failure doesn't affect the other tasks on the instance. The default value is <code>true</code>.</p> <p>A non-critical daemon doesn't block instance registration. The container instance becomes active and continues to run your other tasks, whether the daemon task fails during scale-out or during a deployment.</p> <p>Amazon ECS emits an EventBridge event when a daemon task fails to start, for both critical and non-critical daemons.</p> <p>Daemon task launch failures during a deployment are still counted by the deployment circuit breaker. The circuit breaker can roll back an unstable target revision.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -78,6 +81,8 @@ def serialize_aws_json_1_1(value: CreateDaemonRequest) -> dict:
     out["enableExecuteCommand"] = value.get("enable_execute_command", False)
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
+    if "critical" in value:
+        out["critical"] = value["critical"]
     return out
 
 
@@ -137,4 +142,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDaemonRequest:
         out["enable_execute_command"] = False
     if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
+    if data.get("critical") is not None:
+        out["critical"] = data["critical"]
     return out

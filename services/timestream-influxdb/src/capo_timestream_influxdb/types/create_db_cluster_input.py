@@ -10,11 +10,13 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.allocated_storage
     import capo_timestream_influxdb.types.bucket
     import capo_timestream_influxdb.types.cluster_deployment_type
+    import capo_timestream_influxdb.types.db_backup_configuration_input_list
     import capo_timestream_influxdb.types.db_cluster_name
     import capo_timestream_influxdb.types.db_instance_type
     import capo_timestream_influxdb.types.db_parameter_group_identifier
     import capo_timestream_influxdb.types.db_storage_type
     import capo_timestream_influxdb.types.failover_mode
+    import capo_timestream_influxdb.types.kms_key_id
     import capo_timestream_influxdb.types.log_delivery_configuration
     import capo_timestream_influxdb.types.maintenance_schedule
     import capo_timestream_influxdb.types.network_type
@@ -80,6 +82,12 @@ class CreateDbClusterInput(TypedDict, closed=True):
         "capo_timestream_influxdb.types.maintenance_schedule.MaintenanceSchedule"
     ]
     """<p>Specifies the maintenance schedule for the DB cluster, including the preferred maintenance window and timezone.</p>"""
+    db_backup_configurations: NotRequired[
+        "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+    ]
+    """<p>A list of backup configurations to enable automated backups for the DB cluster.</p>"""
+    kms_key_id: NotRequired["capo_timestream_influxdb.types.kms_key_id.KmsKeyId"]
+    """<p>The Amazon Web Services KMS key identifier to use for encryption of the DB cluster. Can be a key ID, key ARN, alias name, or alias ARN.</p>"""
     tags: NotRequired["capo_timestream_influxdb.types.request_tag_map.RequestTagMap"]
     """<p>A list of key-value pairs to associate with the DB instance.</p>"""
 
@@ -173,6 +181,16 @@ def serialize_aws_json_1_0(value: CreateDbClusterInput) -> dict:
                 value["maintenance_schedule"]
             )
         )
+    if "db_backup_configurations" in value:
+        import capo_timestream_influxdb.types.db_backup_configuration_input_list
+
+        out["dbBackupConfigurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_input_list.serialize_aws_json_1_0(
+                value["db_backup_configurations"]
+            )
+        )
+    if "kms_key_id" in value:
+        out["kmsKeyId"] = value["kms_key_id"]
     if "tags" in value:
         import capo_timestream_influxdb.types.request_tag_map
 
@@ -286,6 +304,16 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbClusterInput:
                 data["maintenanceSchedule"]
             )
         )
+    if data.get("dbBackupConfigurations") is not None:
+        import capo_timestream_influxdb.types.db_backup_configuration_input_list
+
+        out["db_backup_configurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_input_list.deserialize_aws_json_1_0(
+                data["dbBackupConfigurations"]
+            )
+        )
+    if data.get("kmsKeyId") is not None:
+        out["kms_key_id"] = data["kmsKeyId"]
     if data.get("tags") is not None:
         import capo_timestream_influxdb.types.request_tag_map
 

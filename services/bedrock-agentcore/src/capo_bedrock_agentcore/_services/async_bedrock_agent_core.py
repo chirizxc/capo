@@ -30,6 +30,9 @@ from capo_bedrock_agentcore._resources.amazon_bedrock_agent_core.browser_profile
 from capo_bedrock_agentcore._resources.amazon_bedrock_agent_core.browser_session_resource import (
     AsyncBrowserSessionResource,
 )
+from capo_bedrock_agentcore._resources.amazon_bedrock_agent_core.capacity_provider_resource import (
+    AsyncCapacityProviderResource,
+)
 from capo_bedrock_agentcore._resources.amazon_bedrock_agent_core.code_interpreter_session_resource import (
     AsyncCodeInterpreterSessionResource,
 )
@@ -92,6 +95,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.browser_session_id
     import capo_bedrock_agentcore.types.browser_session_status
     import capo_bedrock_agentcore.types.browser_session_timeout
+    import capo_bedrock_agentcore.types.capacity_provider_id
     import capo_bedrock_agentcore.types.certificates
     import capo_bedrock_agentcore.types.client_token
     import capo_bedrock_agentcore.types.code_interpreter_session_id
@@ -99,6 +103,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.code_interpreter_session_timeout
     import capo_bedrock_agentcore.types.complete_resource_token_auth_request
     import capo_bedrock_agentcore.types.complete_resource_token_auth_response
+    import capo_bedrock_agentcore.types.content_source
     import capo_bedrock_agentcore.types.create_ab_test_request
     import capo_bedrock_agentcore.types.create_ab_test_response
     import capo_bedrock_agentcore.types.create_event_input
@@ -114,6 +119,8 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.delete_ab_test_response
     import capo_bedrock_agentcore.types.delete_batch_evaluation_request
     import capo_bedrock_agentcore.types.delete_batch_evaluation_response
+    import capo_bedrock_agentcore.types.delete_capacity_provider_session_request
+    import capo_bedrock_agentcore.types.delete_capacity_provider_session_response
     import capo_bedrock_agentcore.types.delete_event_input
     import capo_bedrock_agentcore.types.delete_event_output
     import capo_bedrock_agentcore.types.delete_memory_record_input
@@ -134,9 +141,11 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.evaluator_list
     import capo_bedrock_agentcore.types.event
     import capo_bedrock_agentcore.types.event_id
+    import capo_bedrock_agentcore.types.extraction_config
     import capo_bedrock_agentcore.types.extraction_job
     import capo_bedrock_agentcore.types.extraction_job_filter_input
     import capo_bedrock_agentcore.types.extraction_job_metadata
+    import capo_bedrock_agentcore.types.extraction_mode
     import capo_bedrock_agentcore.types.filter_input
     import capo_bedrock_agentcore.types.gateway_arn
     import capo_bedrock_agentcore.types.gateway_filter
@@ -176,11 +185,15 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.get_workload_access_token_response
     import capo_bedrock_agentcore.types.harness_allowed_tools
     import capo_bedrock_agentcore.types.harness_arn
+    import capo_bedrock_agentcore.types.harness_endpoint_name
     import capo_bedrock_agentcore.types.harness_messages
     import capo_bedrock_agentcore.types.harness_model_configuration
     import capo_bedrock_agentcore.types.harness_skills
     import capo_bedrock_agentcore.types.harness_system_prompt
     import capo_bedrock_agentcore.types.harness_tools
+    import capo_bedrock_agentcore.types.ingest_data_input
+    import capo_bedrock_agentcore.types.ingest_data_output
+    import capo_bedrock_agentcore.types.insight_list
     import capo_bedrock_agentcore.types.instrument_balance_token
     import capo_bedrock_agentcore.types.invoke_agent_runtime_command_request
     import capo_bedrock_agentcore.types.invoke_agent_runtime_command_request_body
@@ -193,6 +206,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.invoke_code_interpreter_response
     import capo_bedrock_agentcore.types.invoke_harness_request
     import capo_bedrock_agentcore.types.invoke_harness_response
+    import capo_bedrock_agentcore.types.kms_key_arn
     import capo_bedrock_agentcore.types.list_ab_tests_request
     import capo_bedrock_agentcore.types.list_ab_tests_response
     import capo_bedrock_agentcore.types.list_actors_input
@@ -233,6 +247,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.namespace
     import capo_bedrock_agentcore.types.next_token
     import capo_bedrock_agentcore.types.oauth2_flow_type
+    import capo_bedrock_agentcore.types.output_config
     import capo_bedrock_agentcore.types.pagination_token
     import capo_bedrock_agentcore.types.payload_type_list
     import capo_bedrock_agentcore.types.payment_agent_name
@@ -296,8 +311,10 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.stop_runtime_session_response
     import capo_bedrock_agentcore.types.stream_update
     import capo_bedrock_agentcore.types.string_type
+    import capo_bedrock_agentcore.types.tags_map
     import capo_bedrock_agentcore.types.tool_arguments
     import capo_bedrock_agentcore.types.tool_name
+    import capo_bedrock_agentcore.types.tools_file_system_configurations
     import capo_bedrock_agentcore.types.update_ab_test_request
     import capo_bedrock_agentcore.types.update_ab_test_response
     import capo_bedrock_agentcore.types.update_browser_stream_request
@@ -381,6 +398,7 @@ class AsyncBedrockAgentCoreClient:
         self.agentic_resource = AsyncAgenticResource(self)
         self.browser_profile_resource = AsyncBrowserProfileResource(self)
         self.browser_session_resource = AsyncBrowserSessionResource(self)
+        self.capacity_provider_resource = AsyncCapacityProviderResource(self)
         self.code_interpreter_session_resource = AsyncCodeInterpreterSessionResource(
             self
         )
@@ -911,7 +929,14 @@ class AsyncBedrockAgentCoreClient:
         messages: "capo_bedrock_agentcore.types.harness_messages.HarnessMessages",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreClientConfig] = None,
+        qualifier: Optional[
+            "capo_bedrock_agentcore.types.harness_endpoint_name.HarnessEndpointName"
+        ] = None,
         runtime_user_id: Optional[str] = None,
+        trace_parent: Optional[str] = None,
+        trace_state: Optional[str] = None,
+        trace_id: Optional[str] = None,
+        baggage: Optional[str] = None,
         model: Optional[
             "capo_bedrock_agentcore.types.harness_model_configuration.HarnessModelConfiguration"
         ] = None,
@@ -936,8 +961,13 @@ class AsyncBedrockAgentCoreClient:
 
         Args:
             harness_arn: <p>The ARN of the harness to invoke.</p>
+            qualifier: <p>The endpoint name to invoke. If omitted, the DEFAULT endpoint is used.</p>
             runtime_session_id: <p>The session ID for the invocation. Use the same session ID across requests to continue a conversation.</p>
             runtime_user_id: <p>An identifier for the end user making the request. This value is passed through to the runtime container.</p>
+            trace_parent: <p>W3C trace context parent header containing version, trace ID, parent span ID, and trace flags.</p>
+            trace_state: <p>W3C trace context state header for vendor-specific trace information.</p>
+            trace_id: <p>Trace ID for maintaining observability through the operation.</p>
+            baggage: <p>W3C Baggage header for user-defined context propagation. Format: key1=value1,key2=value2</p>
             messages: <p>The messages to send to the agent.</p>
             model: <p>The model configuration to use for this invocation. If specified, overrides the harness default.</p>
             system_prompt: <p>The system prompt to use for this invocation. If specified, overrides the harness default.</p>
@@ -954,6 +984,7 @@ class AsyncBedrockAgentCoreClient:
             capo_bedrock_agentcore.errors.internal_server_exception.InternalServerException: <p>The exception that occurs when the service encounters an unexpected internal error. This is a temporary condition that will resolve itself with retries. We recommend implementing exponential backoff retry logic in your application.</p>
             capo_bedrock_agentcore.errors.resource_not_found_exception.ResourceNotFoundException: <p>The exception that occurs when the specified resource does not exist. This can happen when using an invalid identifier or when trying to access a resource that has been deleted.</p>
             capo_bedrock_agentcore.errors.runtime_client_error.RuntimeClientError: <p>The exception that occurs when there is an error in the runtime client. This can happen due to network issues, invalid configuration, or other client-side problems. Check the error message for specific details about the error.</p>
+            capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The exception that occurs when the request would cause a service quota to be exceeded. Review your service quotas and either reduce your request rate or request a quota increase.</p>
             capo_bedrock_agentcore.errors.throttling_exception.ThrottlingException: <p>The exception that occurs when the request was denied due to request throttling. This happens when you exceed the allowed request rate for an operation. Reduce the frequency of requests or implement exponential backoff retry logic in your application.</p>
             capo_bedrock_agentcore.errors.validation_exception.ValidationException: <p>The exception that occurs when the input fails to satisfy the constraints specified by the service. Check the error message for details about which input parameter is invalid and correct your request.</p>
             capo_bedrock_agentcore.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -980,8 +1011,18 @@ class AsyncBedrockAgentCoreClient:
             "runtime_session_id": runtime_session_id,
             "messages": messages,
         }
+        if qualifier is not None:
+            input_["qualifier"] = qualifier
         if runtime_user_id is not None:
             input_["runtime_user_id"] = runtime_user_id
+        if trace_parent is not None:
+            input_["trace_parent"] = trace_parent
+        if trace_state is not None:
+            input_["trace_state"] = trace_state
+        if trace_id is not None:
+            input_["trace_id"] = trace_id
+        if baggage is not None:
+            input_["baggage"] = baggage
         if model is not None:
             input_["model"] = model
         if system_prompt is not None:
@@ -1093,6 +1134,12 @@ class AsyncBedrockAgentCoreClient:
         mcp_protocol_version: Optional[
             "capo_bedrock_agentcore.types.string_type.StringType"
         ] = None,
+        mcp_method: Optional[
+            "capo_bedrock_agentcore.types.string_type.StringType"
+        ] = None,
+        mcp_name: Optional[
+            "capo_bedrock_agentcore.types.string_type.StringType"
+        ] = None,
         runtime_user_id: Optional[
             "capo_bedrock_agentcore.types.string_type.StringType"
         ] = None,
@@ -1111,6 +1158,8 @@ class AsyncBedrockAgentCoreClient:
             mcp_session_id: <p>The identifier of the MCP session.</p>
             runtime_session_id: <p>The identifier of the runtime session.</p>
             mcp_protocol_version: <p>The version of the MCP protocol being used.</p>
+            mcp_method: <p>The MCP method being invoked. For example, <code>tools/call</code>, <code>resources/read</code>, or <code>prompts/get</code>.</p>
+            mcp_name: <p>The name of the MCP resource, tool, or prompt being accessed. The value depends on the method:</p> <ul> <li> <p> <code>tools/call</code> – The tool name.</p> </li> <li> <p> <code>resources/read</code> – The resource URI.</p> </li> <li> <p> <code>prompts/get</code> – The prompt name.</p> </li> </ul>
             runtime_user_id: <p>The identifier of the runtime user.</p>
             trace_id: <p>The trace identifier for request tracking.</p>
             trace_parent: <p>The parent trace information for distributed tracing.</p>
@@ -1164,6 +1213,10 @@ class AsyncBedrockAgentCoreClient:
         input_["runtime_session_id"] = runtime_session_id
         if mcp_protocol_version is not None:
             input_["mcp_protocol_version"] = mcp_protocol_version
+        if mcp_method is not None:
+            input_["mcp_method"] = mcp_method
+        if mcp_name is not None:
+            input_["mcp_name"] = mcp_name
         if runtime_user_id is not None:
             input_["runtime_user_id"] = runtime_user_id
         if trace_id is not None:
@@ -1623,6 +1676,9 @@ class AsyncBedrockAgentCoreClient:
         certificates: Optional[
             "capo_bedrock_agentcore.types.certificates.Certificates"
         ] = None,
+        filesystem_configurations: Optional[
+            "capo_bedrock_agentcore.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
@@ -1641,6 +1697,7 @@ class AsyncBedrockAgentCoreClient:
             proxy_configuration: <p>Optional proxy configuration for routing browser traffic through customer-specified proxy servers. When provided, enables HTTP Basic authentication via Amazon Web Services Secrets Manager and domain-based routing rules. Requires <code>secretsmanager:GetSecretValue</code> IAM permission for the specified secret ARNs.</p>
             enterprise_policies: <p>A list of files containing enterprise policies for the browser.</p>
             certificates: <p>A list of certificates to install in the browser session.</p>
+            filesystem_configurations: <p>The file system configurations to mount into the browser session. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your session can then read and write your data. If you don't specify this field, no additional file systems are mounted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request, but does not return an error. This parameter helps prevent the creation of duplicate sessions if there are temporary network issues.</p>
 
         Raises:
@@ -1693,6 +1750,8 @@ class AsyncBedrockAgentCoreClient:
             input_["enterprise_policies"] = enterprise_policies
         if certificates is not None:
             input_["certificates"] = certificates
+        if filesystem_configurations is not None:
+            input_["filesystem_configurations"] = filesystem_configurations
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -1836,6 +1895,57 @@ class AsyncBedrockAgentCoreClient:
         await response.response.aclose()
         return response.output
 
+    async def delete_capacity_provider_session(
+        self,
+        capacity_provider_id: "capo_bedrock_agentcore.types.capacity_provider_id.CapacityProviderId",
+        session_id: "capo_bedrock_agentcore.types.session_id.SessionId",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentCoreClientConfig] = None,
+    ) -> "capo_bedrock_agentcore.types.delete_capacity_provider_session_response.DeleteCapacityProviderSessionResponse":
+        """<p>Deletes a session associated with a capacity provider in Amazon Bedrock AgentCore and makes the session unavailable for further use. To delete a capacity provider session, specify both the capacity provider identifier and the session ID. After you delete a session, you cannot restart it.</p>
+
+        Args:
+            capacity_provider_id: <p>The unique identifier of the capacity provider associated with the session.</p>
+            session_id: <p>The unique identifier of the capacity provider session to delete.</p>
+
+        Raises:
+            capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
+            capo_bedrock_agentcore.errors.internal_server_exception.InternalServerException: <p>The exception that occurs when the service encounters an unexpected internal error. This is a temporary condition that will resolve itself with retries. We recommend implementing exponential backoff retry logic in your application.</p>
+            capo_bedrock_agentcore.errors.resource_not_found_exception.ResourceNotFoundException: <p>The exception that occurs when the specified resource does not exist. This can happen when using an invalid identifier or when trying to access a resource that has been deleted.</p>
+            capo_bedrock_agentcore.errors.throttling_exception.ThrottlingException: <p>The exception that occurs when the request was denied due to request throttling. This happens when you exceed the allowed request rate for an operation. Reduce the frequency of requests or implement exponential backoff retry logic in your application.</p>
+            capo_bedrock_agentcore.errors.validation_exception.ValidationException: <p>The exception that occurs when the input fails to satisfy the constraints specified by the service. Check the error message for details about which input parameter is invalid and correct your request.</p>
+            capo_bedrock_agentcore.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agentcore.types.delete_capacity_provider_session_request.DeleteCapacityProviderSessionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agentcore.types.delete_capacity_provider_session_response.DeleteCapacityProviderSessionResponse"
+        ]:
+            import capo_bedrock_agentcore._operations.amazon_bedrock_agent_core.delete_capacity_provider_session
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agentcore._operations.amazon_bedrock_agent_core.delete_capacity_provider_session.async_delete_capacity_provider_session(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore.types.delete_capacity_provider_session_request.DeleteCapacityProviderSessionRequest = {
+            "capacity_provider_id": capacity_provider_id,
+            "session_id": session_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_code_interpreter_session(
         self,
         code_interpreter_identifier: str,
@@ -1967,6 +2077,9 @@ class AsyncBedrockAgentCoreClient:
         certificates: Optional[
             "capo_bedrock_agentcore.types.certificates.Certificates"
         ] = None,
+        filesystem_configurations: Optional[
+            "capo_bedrock_agentcore.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
@@ -1980,6 +2093,7 @@ class AsyncBedrockAgentCoreClient:
             name: <p>The name of the code interpreter session. This name helps you identify and manage the session. The name does not need to be unique.</p>
             session_timeout_seconds: <p>The duration in seconds (time-to-live) after which the session automatically terminates, regardless of ongoing activity. Defaults to 900 seconds (15 minutes). Recommended minimum: 60 seconds. Maximum allowed: 28,800 seconds (8 hours).</p>
             certificates: <p>A list of certificates to install in the code interpreter session.</p>
+            filesystem_configurations: <p>The file system configurations to mount into the code interpreter session. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your session can then read and write your data. If you don't specify this field, no additional file systems are mounted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request, but does not return an error. This parameter helps prevent the creation of duplicate sessions if there are temporary network issues.</p>
 
         Raises:
@@ -2022,6 +2136,8 @@ class AsyncBedrockAgentCoreClient:
             input_["session_timeout_seconds"] = session_timeout_seconds
         if certificates is not None:
             input_["certificates"] = certificates
+        if filesystem_configurations is not None:
+            input_["filesystem_configurations"] = filesystem_configurations
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -2121,6 +2237,7 @@ class AsyncBedrockAgentCoreClient:
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
+        tags: Optional["capo_bedrock_agentcore.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore.types.create_ab_test_response.CreateABTestResponse":
         """<p>Creates an A/B test for comparing agent configurations. A/B tests split traffic between a control variant and a treatment variant through a gateway, then evaluate performance using online evaluation configurations to determine which variant performs better.</p>
 
@@ -2134,6 +2251,7 @@ class AsyncBedrockAgentCoreClient:
             role_arn: <p>The IAM role ARN that grants permissions for the A/B test to access gateway and evaluation resources.</p>
             enable_on_create: <p>Whether to enable the A/B test immediately upon creation. If true, traffic splitting begins automatically.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
+            tags: <p>A map of tag keys and values to associate with the A/B test.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -2178,6 +2296,8 @@ class AsyncBedrockAgentCoreClient:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2790,14 +2910,24 @@ class AsyncBedrockAgentCoreClient:
         evaluators: Optional[
             "capo_bedrock_agentcore.types.evaluator_list.EvaluatorList"
         ] = None,
+        insights: Optional[
+            "capo_bedrock_agentcore.types.insight_list.InsightList"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
         evaluation_metadata: Optional[
             "capo_bedrock_agentcore.types.evaluation_metadata.EvaluationMetadata"
         ] = None,
+        tags: Optional["capo_bedrock_agentcore.types.tags_map.TagsMap"] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore.types.batch_evaluation_description.BatchEvaluationDescription"
+        ] = None,
+        output_config: Optional[
+            "capo_bedrock_agentcore.types.output_config.OutputConfig"
         ] = None,
     ) -> "capo_bedrock_agentcore.types.start_batch_evaluation_response.StartBatchEvaluationResponse":
         """<p>Starts a batch evaluation job that evaluates agent performance across multiple sessions. Batch evaluations pull agent traces from CloudWatch Logs or an existing online evaluation configuration and run specified evaluators and insights against them.</p>
@@ -2805,9 +2935,12 @@ class AsyncBedrockAgentCoreClient:
         Args:
             batch_evaluation_name: <p>The name of the batch evaluation. Must be unique within your account.</p>
             evaluators: <p>The list of evaluators to apply during the batch evaluation. Can include both built-in evaluators and custom evaluators. Maximum of 10 evaluators.</p>
+            insights: <p>The list of insight analyses to run against sessions during the batch evaluation. Maximum of 10 insights.</p>
             data_source_config: <p>The data source configuration that specifies where to pull agent session traces from for evaluation.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
             evaluation_metadata: <p>Optional metadata for the evaluation, including session-specific ground truth data and test scenario identifiers.</p>
+            tags: <p>A map of tag keys and values to associate with the batch evaluation.</p>
+            kms_key_arn: <p>The ARN of the KMS key used to encrypt evaluation data. If provided, customer data is encrypted at rest with the specified key.</p>
             description: <p>The description of the batch evaluation.</p>
 
         Raises:
@@ -2843,13 +2976,21 @@ class AsyncBedrockAgentCoreClient:
         }
         if evaluators is not None:
             input_["evaluators"] = evaluators
+        if insights is not None:
+            input_["insights"] = insights
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
         if evaluation_metadata is not None:
             input_["evaluation_metadata"] = evaluation_metadata
+        if tags is not None:
+            input_["tags"] = tags
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
         if description is not None:
             input_["description"] = description
+        if output_config is not None:
+            input_["output_config"] = output_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2869,9 +3010,13 @@ class AsyncBedrockAgentCoreClient:
         description: Optional[
             "capo_bedrock_agentcore.types.recommendation_description.RecommendationDescription"
         ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
+        tags: Optional["capo_bedrock_agentcore.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore.types.start_recommendation_response.StartRecommendationResponse":
         """<p>Starts a recommendation job that analyzes agent traces and generates optimization suggestions for system prompts or tool descriptions to improve agent performance.</p>
 
@@ -2880,7 +3025,9 @@ class AsyncBedrockAgentCoreClient:
             description: <p>The description of the recommendation.</p>
             type: <p>The type of recommendation to generate. Valid values are <code>SYSTEM_PROMPT_RECOMMENDATION</code> for system prompt optimization or <code>TOOL_DESCRIPTION_RECOMMENDATION</code> for tool description optimization.</p>
             recommendation_config: <p>The configuration for the recommendation, including the input to optimize, agent traces to analyze, and evaluation settings.</p>
+            kms_key_arn: <p>The ARN of the KMS key used to encrypt recommendation data. If provided, customer data is encrypted at rest with the specified key.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
+            tags: <p>A map of tag keys and values to associate with the recommendation.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -2915,9 +3062,13 @@ class AsyncBedrockAgentCoreClient:
         }
         if description is not None:
             input_["description"] = description
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3250,6 +3401,12 @@ class AsyncBedrockAgentCoreClient:
         metadata: Optional[
             "capo_bedrock_agentcore.types.metadata_map.MetadataMap"
         ] = None,
+        extraction_mode: Optional[
+            "capo_bedrock_agentcore.types.extraction_mode.ExtractionMode"
+        ] = None,
+        extraction_config: Optional[
+            "capo_bedrock_agentcore.types.extraction_config.ExtractionConfig"
+        ] = None,
     ) -> "capo_bedrock_agentcore.types.create_event_output.CreateEventOutput":
         """<p>Creates an event in an AgentCore Memory resource. Events represent interactions or activities that occur within a session and are associated with specific actors.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:CreateEvent</code> permission.</p> <p>This operation is subject to request rate limiting.</p>
 
@@ -3258,10 +3415,12 @@ class AsyncBedrockAgentCoreClient:
             actor_id: <p>The identifier of the actor associated with this event. An actor represents an entity that participates in sessions and generates events.</p>
             session_id: <p>The identifier of the session in which this event occurs. A session represents a sequence of related events.</p>
             event_timestamp: <p>The timestamp when the event occurred. If not specified, the current time is used.</p>
-            payload: <p>The content payload of the event. This can include conversational data or binary content.</p>
+            payload: <p>The content payload of the event. This can include conversational data, JSON data, or binary content.</p>
             branch: <p>The branch information for this event. Branches allow for organizing events into different conversation threads or paths.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, AgentCore ignores the request, but does not return an error.</p>
             metadata: <p>The key-value metadata to attach to the event.</p>
+            extraction_mode: <p>Controls long-term memory extraction for this event. When set to <code>SKIP</code>, the event is stored in short-term memory but is excluded from long-term memory extraction. If not specified, the event is processed for extraction as usual.</p>
+            extraction_config: <p>The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -3306,6 +3465,10 @@ class AsyncBedrockAgentCoreClient:
         input_["client_token"] = client_token
         if metadata is not None:
             input_["metadata"] = metadata
+        if extraction_mode is not None:
+            input_["extraction_mode"] = extraction_mode
+        if extraction_config is not None:
+            input_["extraction_config"] = extraction_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3380,12 +3543,14 @@ class AsyncBedrockAgentCoreClient:
         memory_record_id: "capo_bedrock_agentcore.types.memory_record_id.MemoryRecordId",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreClientConfig] = None,
+        namespace: Optional["capo_bedrock_agentcore.types.namespace.Namespace"] = None,
     ) -> "capo_bedrock_agentcore.types.delete_memory_record_output.DeleteMemoryRecordOutput":
         """<p>Deletes a memory record from an AgentCore Memory resource. When you delete a memory record, it is permanently removed.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:DeleteMemoryRecord</code> permission.</p>
 
         Args:
             memory_id: <p>The identifier of the AgentCore Memory resource from which to delete the memory record.</p>
             memory_record_id: <p>The identifier of the memory record to delete.</p>
+            namespace: <p>The namespace of the memory record to delete. This value is used for IAM condition key authorization.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -3418,6 +3583,8 @@ class AsyncBedrockAgentCoreClient:
             "memory_id": memory_id,
             "memory_record_id": memory_record_id,
         }
+        if namespace is not None:
+            input_["namespace"] = namespace
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3492,12 +3659,14 @@ class AsyncBedrockAgentCoreClient:
         memory_record_id: "capo_bedrock_agentcore.types.memory_record_id.MemoryRecordId",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreClientConfig] = None,
+        namespace: Optional["capo_bedrock_agentcore.types.namespace.Namespace"] = None,
     ) -> "capo_bedrock_agentcore.types.get_memory_record_output.GetMemoryRecordOutput":
         """<p>Retrieves a specific memory record from an AgentCore Memory resource.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:GetMemoryRecord</code> permission.</p>
 
         Args:
             memory_id: <p>The identifier of the AgentCore Memory resource containing the memory record.</p>
             memory_record_id: <p>The identifier of the memory record to retrieve.</p>
+            namespace: <p>The namespace of the memory record to retrieve. This value is used for IAM condition key authorization.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -3530,6 +3699,89 @@ class AsyncBedrockAgentCoreClient:
             "memory_id": memory_id,
             "memory_record_id": memory_record_id,
         }
+        if namespace is not None:
+            input_["namespace"] = namespace
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def ingest_data(
+        self,
+        memory_id: "capo_bedrock_agentcore.types.memory_id.MemoryId",
+        source: "capo_bedrock_agentcore.types.content_source.ContentSource",
+        content_timestamp: datetime.datetime,
+        actor_id: "capo_bedrock_agentcore.types.actor_id.ActorId",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentCoreClientConfig] = None,
+        session_id: Optional[
+            "capo_bedrock_agentcore.types.session_id.SessionId"
+        ] = None,
+        extraction_config: Optional[
+            "capo_bedrock_agentcore.types.extraction_config.ExtractionConfig"
+        ] = None,
+        metadata: Optional[
+            "capo_bedrock_agentcore.types.metadata_map.MetadataMap"
+        ] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_bedrock_agentcore.types.ingest_data_output.IngestDataOutput":
+        """<p>Submits content directly for ingestion to generate long-term memory records in a AgentCore Memory resource.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:IngestData</code> permission.</p>
+
+        Args:
+            memory_id: <p>The identifier of the AgentCore Memory resource to ingest content into.</p>
+            source: <p>The content to ingest. Only inline content is supported.</p>
+            content_timestamp: <p>The timestamp of when the content occurred.</p>
+            actor_id: <p>The identifier of the actor associated with this content. An actor represents an entity that participates in sessions and generates content.</p>
+            session_id: <p>The identifier of the session that the content belongs to. If not provided, a session identifier is generated and returned in the response.</p>
+            extraction_config: <p>The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.</p>
+            metadata: <p>The key-value metadata to attach to the content.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, AgentCore ignores the request, but does not return an error.</p>
+
+        Raises:
+            capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
+            capo_bedrock_agentcore.errors.resource_not_found_exception.ResourceNotFoundException: <p>The exception that occurs when the specified resource does not exist. This can happen when using an invalid identifier or when trying to access a resource that has been deleted.</p>
+            capo_bedrock_agentcore.errors.service_exception.ServiceException: <p>The service encountered an internal error. Try your request again later.</p>
+            capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The exception that occurs when the request would cause a service quota to be exceeded. Review your service quotas and either reduce your request rate or request a quota increase.</p>
+            capo_bedrock_agentcore.errors.throttled_exception.ThrottledException: <p>The request was denied due to request throttling. Reduce the frequency of requests and try again.</p>
+            capo_bedrock_agentcore.errors.validation_exception.ValidationException: <p>The exception that occurs when the input fails to satisfy the constraints specified by the service. Check the error message for details about which input parameter is invalid and correct your request.</p>
+            capo_bedrock_agentcore.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agentcore.types.ingest_data_input.IngestDataInput]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agentcore.types.ingest_data_output.IngestDataOutput"
+        ]:
+            import capo_bedrock_agentcore._operations.amazon_bedrock_agent_core.ingest_data
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agentcore._operations.amazon_bedrock_agent_core.ingest_data.async_ingest_data(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore.types.ingest_data_input.IngestDataInput = {
+            "memory_id": memory_id,
+            "source": source,
+            "content_timestamp": content_timestamp,
+            "actor_id": actor_id,
+        }
+        if session_id is not None:
+            input_["session_id"] = session_id
+        if extraction_config is not None:
+            input_["extraction_config"] = extraction_config
+        if metadata is not None:
+            input_["metadata"] = metadata
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -4264,7 +4516,9 @@ class AsyncBedrockAgentCoreClient:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
             capo_bedrock_agentcore.errors.conflict_exception.ConflictException: <p>The exception that occurs when the request conflicts with the current state of the resource. This can happen when trying to modify a resource that is currently being modified by another request, or when trying to create a resource that already exists.</p>
             capo_bedrock_agentcore.errors.internal_server_exception.InternalServerException: <p>The exception that occurs when the service encounters an unexpected internal error. This is a temporary condition that will resolve itself with retries. We recommend implementing exponential backoff retry logic in your application.</p>
+            capo_bedrock_agentcore.errors.resource_not_found_exception.ResourceNotFoundException: <p>The exception that occurs when the specified resource does not exist. This can happen when using an invalid identifier or when trying to access a resource that has been deleted.</p>
             capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The exception that occurs when the request would cause a service quota to be exceeded. Review your service quotas and either reduce your request rate or request a quota increase.</p>
+            capo_bedrock_agentcore.errors.subscription_required_exception.SubscriptionRequiredException: <p>Returned when you attempt a wallet operation against a Coinbase Marketplace connector whose account does not hold an active Marketplace subscription and is not within the legacy exception period. Subscribe to the Marketplace listing before you retry the operation.</p>
             capo_bedrock_agentcore.errors.throttling_exception.ThrottlingException: <p>The exception that occurs when the request was denied due to request throttling. This happens when you exceed the allowed request rate for an operation. Reduce the frequency of requests or implement exponential backoff retry logic in your application.</p>
             capo_bedrock_agentcore.errors.validation_exception.ValidationException: <p>The exception that occurs when the input fails to satisfy the constraints specified by the service. Check the error message for details about which input parameter is invalid and correct your request.</p>
             capo_bedrock_agentcore.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -4643,6 +4897,7 @@ class AsyncBedrockAgentCoreClient:
             capo_bedrock_agentcore.errors.conflict_exception.ConflictException: <p>The exception that occurs when the request conflicts with the current state of the resource. This can happen when trying to modify a resource that is currently being modified by another request, or when trying to create a resource that already exists.</p>
             capo_bedrock_agentcore.errors.internal_server_exception.InternalServerException: <p>The exception that occurs when the service encounters an unexpected internal error. This is a temporary condition that will resolve itself with retries. We recommend implementing exponential backoff retry logic in your application.</p>
             capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The exception that occurs when the request would cause a service quota to be exceeded. Review your service quotas and either reduce your request rate or request a quota increase.</p>
+            capo_bedrock_agentcore.errors.subscription_required_exception.SubscriptionRequiredException: <p>Returned when you attempt a wallet operation against a Coinbase Marketplace connector whose account does not hold an active Marketplace subscription and is not within the legacy exception period. Subscribe to the Marketplace listing before you retry the operation.</p>
             capo_bedrock_agentcore.errors.throttling_exception.ThrottlingException: <p>The exception that occurs when the request was denied due to request throttling. This happens when you exceed the allowed request rate for an operation. Reduce the frequency of requests or implement exponential backoff retry logic in your application.</p>
             capo_bedrock_agentcore.errors.validation_exception.ValidationException: <p>The exception that occurs when the input fails to satisfy the constraints specified by the service. Check the error message for details about which input parameter is invalid and correct your request.</p>
             capo_bedrock_agentcore.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -4933,7 +5188,9 @@ class AsyncBedrockAgentCoreClient:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
             capo_bedrock_agentcore.errors.conflict_exception.ConflictException: <p>The exception that occurs when the request conflicts with the current state of the resource. This can happen when trying to modify a resource that is currently being modified by another request, or when trying to create a resource that already exists.</p>
             capo_bedrock_agentcore.errors.internal_server_exception.InternalServerException: <p>The exception that occurs when the service encounters an unexpected internal error. This is a temporary condition that will resolve itself with retries. We recommend implementing exponential backoff retry logic in your application.</p>
+            capo_bedrock_agentcore.errors.resource_not_found_exception.ResourceNotFoundException: <p>The exception that occurs when the specified resource does not exist. This can happen when using an invalid identifier or when trying to access a resource that has been deleted.</p>
             capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The exception that occurs when the request would cause a service quota to be exceeded. Review your service quotas and either reduce your request rate or request a quota increase.</p>
+            capo_bedrock_agentcore.errors.subscription_required_exception.SubscriptionRequiredException: <p>Returned when you attempt a wallet operation against a Coinbase Marketplace connector whose account does not hold an active Marketplace subscription and is not within the legacy exception period. Subscribe to the Marketplace listing before you retry the operation.</p>
             capo_bedrock_agentcore.errors.throttling_exception.ThrottlingException: <p>The exception that occurs when the request was denied due to request throttling. This happens when you exceed the allowed request rate for an operation. Reduce the frequency of requests or implement exponential backoff retry logic in your application.</p>
             capo_bedrock_agentcore.errors.validation_exception.ValidationException: <p>The exception that occurs when the input fails to satisfy the constraints specified by the service. Check the error message for details about which input parameter is invalid and correct your request.</p>
             capo_bedrock_agentcore.errors.UnknownServiceError: The service returned an error code this client does not model.

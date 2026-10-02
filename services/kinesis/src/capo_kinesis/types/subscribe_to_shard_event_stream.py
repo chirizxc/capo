@@ -6,6 +6,9 @@ from typing_extensions import TypedDict
 
 from capo_kinesis._iter import AnyIterator
 from capo_kinesis._protocol.eventstream import Message
+from capo_kinesis.errors import (
+    UnknownServiceError,
+)
 
 if TYPE_CHECKING:
     import capo_kinesis.errors.internal_failure_exception
@@ -165,84 +168,101 @@ def serialize_event_aws_json_1_1(value: _SubscribeToShardEventStream) -> bytes:
 
 def deserialize_event_aws_json_1_1(message: Message) -> _SubscribeToShardEventStream:
     headers = message.headers
-    message_type = headers.get(":message-type", "event")  # noqa: F841
-    if message_type == "error":
-        error_type = headers.get(":error-type")
-        match error_type:
+    message_type = headers.get(":message-type", "event")
+    if message_type == "exception":
+        exception_type = headers.get(":exception-type")
+        match exception_type:
             case "ResourceNotFoundException":
                 import capo_kinesis.errors.resource_not_found_exception
 
+                data = capo_kinesis.errors.resource_not_found_exception.deserialize_event_aws_json_1_1(
+                    message
+                )
                 raise capo_kinesis.errors.resource_not_found_exception.ResourceNotFoundException(
-                    capo_kinesis.errors.resource_not_found_exception.deserialize_event_aws_json_1_1(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "ResourceInUseException":
                 import capo_kinesis.errors.resource_in_use_exception
 
+                data = capo_kinesis.errors.resource_in_use_exception.deserialize_event_aws_json_1_1(
+                    message
+                )
                 raise capo_kinesis.errors.resource_in_use_exception.ResourceInUseException(
-                    capo_kinesis.errors.resource_in_use_exception.deserialize_event_aws_json_1_1(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "KMSDisabledException":
                 import capo_kinesis.errors.kms_disabled_exception
 
+                data = capo_kinesis.errors.kms_disabled_exception.deserialize_event_aws_json_1_1(
+                    message
+                )
                 raise capo_kinesis.errors.kms_disabled_exception.KMSDisabledException(
-                    capo_kinesis.errors.kms_disabled_exception.deserialize_event_aws_json_1_1(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "KMSInvalidStateException":
                 import capo_kinesis.errors.kms_invalid_state_exception
 
+                data = capo_kinesis.errors.kms_invalid_state_exception.deserialize_event_aws_json_1_1(
+                    message
+                )
                 raise capo_kinesis.errors.kms_invalid_state_exception.KMSInvalidStateException(
-                    capo_kinesis.errors.kms_invalid_state_exception.deserialize_event_aws_json_1_1(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "KMSAccessDeniedException":
                 import capo_kinesis.errors.kms_access_denied_exception
 
+                data = capo_kinesis.errors.kms_access_denied_exception.deserialize_event_aws_json_1_1(
+                    message
+                )
                 raise capo_kinesis.errors.kms_access_denied_exception.KMSAccessDeniedException(
-                    capo_kinesis.errors.kms_access_denied_exception.deserialize_event_aws_json_1_1(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "KMSNotFoundException":
                 import capo_kinesis.errors.kms_not_found_exception
 
+                data = capo_kinesis.errors.kms_not_found_exception.deserialize_event_aws_json_1_1(
+                    message
+                )
                 raise capo_kinesis.errors.kms_not_found_exception.KMSNotFoundException(
-                    capo_kinesis.errors.kms_not_found_exception.deserialize_event_aws_json_1_1(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "KMSOptInRequired":
                 import capo_kinesis.errors.kms_opt_in_required
 
+                data = capo_kinesis.errors.kms_opt_in_required.deserialize_event_aws_json_1_1(
+                    message
+                )
                 raise capo_kinesis.errors.kms_opt_in_required.KMSOptInRequired(
-                    capo_kinesis.errors.kms_opt_in_required.deserialize_event_aws_json_1_1(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "KMSThrottlingException":
                 import capo_kinesis.errors.kms_throttling_exception
 
+                data = capo_kinesis.errors.kms_throttling_exception.deserialize_event_aws_json_1_1(
+                    message
+                )
                 raise capo_kinesis.errors.kms_throttling_exception.KMSThrottlingException(
-                    capo_kinesis.errors.kms_throttling_exception.deserialize_event_aws_json_1_1(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "InternalFailureException":
                 import capo_kinesis.errors.internal_failure_exception
 
-                raise capo_kinesis.errors.internal_failure_exception.InternalFailureException(
-                    capo_kinesis.errors.internal_failure_exception.deserialize_event_aws_json_1_1(
-                        message
-                    )
+                data = capo_kinesis.errors.internal_failure_exception.deserialize_event_aws_json_1_1(
+                    message
                 )
-        raise ValueError(
-            f"SubscribeToShardEventStream: unrecognized error-type {error_type!r}"
+                raise capo_kinesis.errors.internal_failure_exception.InternalFailureException(
+                    data, message=data.get("message")
+                )
+        raise UnknownServiceError(
+            code=str(exception_type), message=None, response=message
+        )
+    if message_type == "error":
+        error_code = headers.get(":error-code")
+        error_message = headers.get(":error-message")
+        raise UnknownServiceError(
+            code=None if error_code is None else str(error_code),
+            message=None if error_message is None else str(error_message),
+            response=message,
         )
     event_type = headers.get(":event-type")
     match event_type:

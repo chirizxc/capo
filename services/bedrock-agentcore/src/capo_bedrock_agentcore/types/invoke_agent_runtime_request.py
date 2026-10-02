@@ -28,6 +28,10 @@ class InvokeAgentRuntimeRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore.types.string_type.StringType"
     ]
     """<p>The version of the MCP protocol being used.</p>"""
+    mcp_method: NotRequired["capo_bedrock_agentcore.types.string_type.StringType"]
+    """<p>The MCP method being invoked. For example, <code>tools/call</code>, <code>resources/read</code>, or <code>prompts/get</code>.</p>"""
+    mcp_name: NotRequired["capo_bedrock_agentcore.types.string_type.StringType"]
+    """<p>The name of the MCP resource, tool, or prompt being accessed. The value depends on the method:</p> <ul> <li> <p> <code>tools/call</code> – The tool name.</p> </li> <li> <p> <code>resources/read</code> – The resource URI.</p> </li> <li> <p> <code>prompts/get</code> – The prompt name.</p> </li> </ul>"""
     runtime_user_id: NotRequired["capo_bedrock_agentcore.types.string_type.StringType"]
     """<p>The identifier of the runtime user.</p>"""
     trace_id: NotRequired["str"]

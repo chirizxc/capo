@@ -15,11 +15,16 @@ import capo_gamelift.errors.internal_service_exception
 import capo_gamelift.errors.invalid_request_exception
 import capo_gamelift.errors.not_found_exception
 import capo_gamelift.errors.unauthorized_exception
+import capo_gamelift.errors.unsupported_region_exception
 import capo_gamelift.types.deregister_compute_input
 import capo_gamelift.types.deregister_compute_output
 from capo_gamelift._protocol.errors import parse_error_metadata_json
 from capo_gamelift._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_gamelift._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_gamelift._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_gamelift.errors import UnknownServiceError
 
 
@@ -41,6 +46,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "UnauthorizedException":
             raise capo_gamelift.errors.unauthorized_exception.UnauthorizedException.from_aws_json_1_1(
+                data, message
+            )
+        case "UnsupportedRegionException":
+            raise capo_gamelift.errors.unsupported_region_exception.UnsupportedRegionException.from_aws_json_1_1(
                 data, message
             )
         case _:
@@ -130,7 +139,7 @@ def deregister_compute(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -148,7 +157,7 @@ async def async_deregister_compute(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

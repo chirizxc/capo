@@ -6,7 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_wellarchitected.types.lens_name_prefix
-    import capo_wellarchitected.types.list_share_invitations_max_results
+    import capo_wellarchitected.types.max_results
     import capo_wellarchitected.types.next_token
     import capo_wellarchitected.types.profile_name_prefix
     import capo_wellarchitected.types.share_resource_type
@@ -27,9 +27,7 @@ class ListShareInvitationsInput(TypedDict, closed=True):
     ]
     """<p>The type of share invitations to be returned.</p>"""
     next_token: NotRequired["capo_wellarchitected.types.next_token.NextToken"]
-    max_results: NotRequired[
-        "capo_wellarchitected.types.list_share_invitations_max_results.ListShareInvitationsMaxResults"
-    ]
+    max_results: NotRequired["capo_wellarchitected.types.max_results.MaxResults"]
     """<p>The maximum number of results to return for this request.</p>"""
     profile_name_prefix: NotRequired[
         "capo_wellarchitected.types.profile_name_prefix.ProfileNamePrefix"

@@ -6,6 +6,9 @@ MediaEncoding: TypeAlias = Literal[
     "pcm",
     "ogg-opus",
     "flac",
+    "g711-alaw",
+    "g711-ulaw",
+    "g729",
 ]
 
 

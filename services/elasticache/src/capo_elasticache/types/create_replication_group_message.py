@@ -141,7 +141,7 @@ class CreateReplicationGroupMessage(TypedDict, closed=True):
     serverless_cache_snapshot_name: NotRequired["capo_elasticache.types.string.String"]
     """<p>The name of the snapshot used to create a replication group. Available for Valkey, Redis OSS only.</p>"""
     durability: NotRequired["capo_elasticache.types.durability.Durability"]
-    r"""<p>Specifies the durability setting for the replication group. When set to <code>default</code>, the service determines the effective durability based on the engine version, cluster mode, and other parameters. The resolved setting is reflected in the <code>EffectiveDurability</code> property of the replication group. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Durability.html\">Durability</a>.</p>"""
+    r"""<p>Specifies the durability setting for the replication group. When set to <code>default</code>, the service determines the effective durability based on the engine version, cluster mode, and other parameters. The resolved setting is reflected in the <code>EffectiveDurability</code> property of the replication group. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/durability.html\">Durability</a>.</p>"""
 
 
 # --- awsQuery ser/de ---

@@ -5,22 +5,22 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_connect.types.acgr_traffic_distribution_group_arn
+    import capo_connect.types.acgr_traffic_distribution_group_id
     import capo_connect.types.agent_config
     import capo_connect.types.sign_in_config
     import capo_connect.types.telephony_config
-    import capo_connect.types.traffic_distribution_group_arn
-    import capo_connect.types.traffic_distribution_group_id
 
 
 class GetTrafficDistributionResponse(TypedDict, closed=True):
     telephony_config: NotRequired["capo_connect.types.telephony_config.TelephonyConfig"]
     """<p>The distribution of traffic between the instance and its replicas.</p>"""
     id: NotRequired[
-        "capo_connect.types.traffic_distribution_group_id.TrafficDistributionGroupId"
+        "capo_connect.types.acgr_traffic_distribution_group_id.ACGRTrafficDistributionGroupId"
     ]
     """<p>The identifier of the traffic distribution group. This can be the ID or the ARN if the API is being called in the Region where the traffic distribution group was created. The ARN must be provided if the call is from the replicated Region.</p>"""
     arn: NotRequired[
-        "capo_connect.types.traffic_distribution_group_arn.TrafficDistributionGroupArn"
+        "capo_connect.types.acgr_traffic_distribution_group_arn.ACGRTrafficDistributionGroupArn"
     ]
     """<p>The Amazon Resource Name (ARN) of the traffic distribution group.</p>"""
     sign_in_config: NotRequired["capo_connect.types.sign_in_config.SignInConfig"]

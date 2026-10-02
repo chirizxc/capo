@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_gamelift.types.container_mount_point_list
     import capo_gamelift.types.container_port_configuration
     import capo_gamelift.types.image_uri_string
+    import capo_gamelift.types.linux_capabilities
     import capo_gamelift.types.non_zero_and128_max_ascii_string
     import capo_gamelift.types.server_sdk_version
     import capo_gamelift.types.sha256
@@ -44,6 +45,10 @@ class GameServerContainerDefinition(TypedDict, closed=True):
         "capo_gamelift.types.server_sdk_version.ServerSdkVersion"
     ]
     """<p>The Amazon GameLift Servers server SDK version that the game server is integrated with. Only game servers using 5.2.0 or higher are compatible with container fleets.</p>"""
+    linux_capabilities: NotRequired[
+        "capo_gamelift.types.linux_capabilities.LinuxCapabilities"
+    ]
+    r"""<p>Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see <a href=\"https://docs.aws.amazon.com/gamelift/latest/apireference/API_LinuxCapabilities.html\">LinuxCapabilities</a>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -89,6 +94,14 @@ def serialize_aws_json_1_1(value: GameServerContainerDefinition) -> dict:
         out["ResolvedImageDigest"] = value["resolved_image_digest"]
     if "server_sdk_version" in value:
         out["ServerSdkVersion"] = value["server_sdk_version"]
+    if "linux_capabilities" in value:
+        import capo_gamelift.types.linux_capabilities
+
+        out["LinuxCapabilities"] = (
+            capo_gamelift.types.linux_capabilities.serialize_aws_json_1_1(
+                value["linux_capabilities"]
+            )
+        )
     return out
 
 
@@ -134,4 +147,12 @@ def deserialize_aws_json_1_1(data: dict) -> GameServerContainerDefinition:
         out["resolved_image_digest"] = data["ResolvedImageDigest"]
     if data.get("ServerSdkVersion") is not None:
         out["server_sdk_version"] = data["ServerSdkVersion"]
+    if data.get("LinuxCapabilities") is not None:
+        import capo_gamelift.types.linux_capabilities
+
+        out["linux_capabilities"] = (
+            capo_gamelift.types.linux_capabilities.deserialize_aws_json_1_1(
+                data["LinuxCapabilities"]
+            )
+        )
     return out

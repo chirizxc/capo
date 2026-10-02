@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.sheet_definition_list
     import capo_quicksight.types.static_file_list
     import capo_quicksight.types.tooltip_sheet_definition_list
+    import capo_quicksight.types.topic_configuration_list
 
 
 class TemplateVersionDefinition(TypedDict, closed=True):
@@ -25,6 +26,10 @@ class TemplateVersionDefinition(TypedDict, closed=True):
         "capo_quicksight.types.data_set_configuration_list.DataSetConfigurationList"
     )
     """<p>An array of dataset configurations. These configurations define the required columns for each dataset used within a template.</p>"""
+    topic_configurations: NotRequired[
+        "capo_quicksight.types.topic_configuration_list.TopicConfigurationList"
+    ]
+    """<p>An array of topic configurations. These configurations define the required columns for each topic used within a template.</p>"""
     sheets: NotRequired[
         "capo_quicksight.types.sheet_definition_list.SheetDefinitionList"
     ]
@@ -71,6 +76,14 @@ def serialize_json(value: TemplateVersionDefinition) -> dict:
             value["data_set_configurations"]
         )
     )
+    if "topic_configurations" in value:
+        import capo_quicksight.types.topic_configuration_list
+
+        out["TopicConfigurations"] = (
+            capo_quicksight.types.topic_configuration_list.serialize_json(
+                value["topic_configurations"]
+            )
+        )
     if "sheets" in value:
         import capo_quicksight.types.sheet_definition_list
 
@@ -159,6 +172,14 @@ def deserialize_json(data: dict) -> TemplateVersionDefinition:
     else:
         raise DeserializationError(
             "TemplateVersionDefinition.data_set_configurations required"
+        )
+    if data.get("TopicConfigurations") is not None:
+        import capo_quicksight.types.topic_configuration_list
+
+        out["topic_configurations"] = (
+            capo_quicksight.types.topic_configuration_list.deserialize_json(
+                data["TopicConfigurations"]
+            )
         )
     if data.get("Sheets") is not None:
         import capo_quicksight.types.sheet_definition_list

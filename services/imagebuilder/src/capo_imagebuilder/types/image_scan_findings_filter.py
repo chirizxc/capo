@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class ImageScanFindingsFilter(TypedDict, closed=True):
     name: NotRequired["capo_imagebuilder.types.filter_name.FilterName"]
-    """<p>The name of the image scan finding filter. Filter names are case-sensitive.</p>"""
+    """<p>The name of the image scan finding filter. Filter names are case-sensitive. Valid filter names are:</p> <ul> <li> <p> <code>imageBuildVersionArn</code> – Filters findings by the image build version that was scanned.</p> </li> <li> <p> <code>imagePipelineArn</code> – Filters findings by the pipeline that created the scanned image.</p> </li> <li> <p> <code>vulnerabilityId</code> – Filters findings by vulnerability ID, for example a CVE ID.</p> </li> <li> <p> <code>severity</code> – Filters findings by severity level.</p> </li> </ul>"""
     values: NotRequired[
         "capo_imagebuilder.types.image_scan_findings_filter_values.ImageScanFindingsFilterValues"
     ]

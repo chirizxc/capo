@@ -8,6 +8,7 @@ from capo_amp.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_amp.types.destination
+    import capo_amp.types.exporter_list
     import capo_amp.types.idempotency_token
     import capo_amp.types.role_configuration
     import capo_amp.types.scrape_configuration
@@ -24,7 +25,7 @@ class CreateScraperRequest(TypedDict, closed=True):
     source: "capo_amp.types.source.Source"
     """<p>The Amazon EKS or Amazon Web Services cluster from which the scraper will collect metrics.</p>"""
     destination: "capo_amp.types.destination.Destination"
-    """<p>The Amazon Managed Service for Prometheus workspace to send metrics to.</p>"""
+    """<p>The destination where the scraper sends the collected metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.</p>"""
     role_configuration: NotRequired[
         "capo_amp.types.role_configuration.RoleConfiguration"
     ]
@@ -33,6 +34,8 @@ class CreateScraperRequest(TypedDict, closed=True):
     """<p>(Optional) A unique, case-sensitive identifier that you can provide to ensure the idempotency of the request.</p>"""
     tags: NotRequired["capo_amp.types.tag_map.TagMap"]
     """<p>(Optional) The list of tag keys and values to associate with the scraper.</p>"""
+    exporters: NotRequired["capo_amp.types.exporter_list.ExporterList"]
+    """<p>The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the scraper is created without an exporter configuration.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -63,6 +66,12 @@ def serialize_json(value: CreateScraperRequest) -> dict:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.serialize_json(value["tags"])
+    if "exporters" in value:
+        import capo_amp.types.exporter_list
+
+        out["exporters"] = capo_amp.types.exporter_list.serialize_json(
+            value["exporters"]
+        )
     return out
 
 
@@ -106,4 +115,10 @@ def deserialize_json(data: dict) -> CreateScraperRequest:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])
+    if data.get("exporters") is not None:
+        import capo_amp.types.exporter_list
+
+        out["exporters"] = capo_amp.types.exporter_list.deserialize_json(
+            data["exporters"]
+        )
     return out

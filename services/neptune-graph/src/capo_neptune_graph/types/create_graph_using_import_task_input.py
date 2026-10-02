@@ -34,7 +34,7 @@ class CreateGraphUsingImportTaskInput(TypedDict, closed=True):
     ]
     """<p>Specifies the number of dimensions for vector embeddings that will be loaded into the graph. The value is specified as <code>dimension=</code>value. Max = 65,535 </p>"""
     replica_count: NotRequired["capo_neptune_graph.types.replica_count.ReplicaCount"]
-    """<p>The number of replicas in other AZs to provision on the new graph after import. Default = 0, Min = 0, Max = 2.</p> <important> <p> Additional charges equivalent to the m-NCUs selected for the graph apply for each replica. </p> </important>"""
+    """<p>The number of replicas in other AZs to provision on the new graph after import. Default = 1, Min = 0, Max = 2.</p> <important> <p> Additional charges equivalent to the m-NCUs selected for the graph apply for each replica. </p> </important>"""
     deletion_protection: NotRequired["bool"]
     """<p>Indicates whether or not to enable deletion protection on the graph. The graph can’t be deleted when deletion protection is enabled. (<code>true</code> or <code>false</code>).</p>"""
     import_options: NotRequired["capo_neptune_graph.types.import_options.ImportOptions"]

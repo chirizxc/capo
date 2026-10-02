@@ -7,20 +7,22 @@ from typing_extensions import NotRequired, TypedDict
 from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
-    import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.asset_content
     import capo_devops_agent.types.asset_type
 
 
 class CreateAssetRequest(TypedDict, closed=True):
-    agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
+    agent_space_id: (
+        "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier"
+    )
     """<p>The unique identifier for the agent space where the asset will be created</p>"""
     asset_type: "capo_devops_agent.types.asset_type.AssetType"
     """<p>The type of asset to create</p>"""
     metadata: NotRequired["object"]
     """<p>The metadata describing this asset</p>"""
     content: "capo_devops_agent.types.asset_content.AssetContent"
-    """<p>The content for the asset. Provide a single file or a zip bundle.</p>"""
+    """<p>The content for the asset. Provide a single file, a zip bundle, or a sourceUrl to import from an external source.</p>"""
     client_token: NotRequired["str"]
     """<p>A unique, case-sensitive identifier used for idempotent asset creation</p>"""
 

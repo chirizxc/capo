@@ -8,6 +8,7 @@ from capo_elasticache._protocol.xml import Element
 
 if TYPE_CHECKING:
     import capo_elasticache.types.string
+    import capo_elasticache.types.tag_list
 
 
 class CreateGlobalReplicationGroupMessage(TypedDict, closed=True):
@@ -21,6 +22,8 @@ class CreateGlobalReplicationGroupMessage(TypedDict, closed=True):
     """<p>Provides details of the Global datastore</p>"""
     primary_replication_group_id: NotRequired["capo_elasticache.types.string.String"]
     """<p>The name of the primary cluster that accepts writes and will replicate updates to the secondary cluster. This value is stored as a lowercase string.</p>"""
+    tags: NotRequired["capo_elasticache.types.tag_list.TagList"]
+    """<p>A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -51,6 +54,12 @@ def serialize_query(
                 str(value["primary_replication_group_id"]),
             )
         )
+    if "tags" in value:
+        import capo_elasticache.types.tag_list
+
+        capo_elasticache.types.tag_list.serialize_query(
+            value["tags"], pairs, f"{key_prefix}Tags"
+        )
 
 
 def deserialize_query(el: Element) -> CreateGlobalReplicationGroupMessage:
@@ -72,4 +81,9 @@ def deserialize_query(el: Element) -> CreateGlobalReplicationGroupMessage:
         out["primary_replication_group_id"] = str(
             child_primary_replication_group_id.text or ""
         )
+    child_tags = el.find("Tags")
+    if child_tags is not None:
+        import capo_elasticache.types.tag_list
+
+        out["tags"] = capo_elasticache.types.tag_list.deserialize_query(child_tags)
     return out

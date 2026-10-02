@@ -13,7 +13,7 @@ class QuoteConstraint(TypedDict, closed=True):
     quote_constraint_type: NotRequired[
         "capo_outposts.types.quote_constraint_type.QuoteConstraintType"
     ]
-    """<p>The type of constraint. Valid values are <code>RACK_MAXIMUM</code>, <code>RACK_MAX_POWER_KVA</code>, and <code>RACK_MAX_WEIGHT_LBS</code>.</p>"""
+    """<p>The type of constraint. Valid values are <code>RACK_MAXIMUM</code>, <code>RACK_MAX_POWER_KVA</code>, <code>RACK_MAX_WEIGHT_LBS</code>, and <code>RACK_SPACE_CONSTRAINED</code>.</p>"""
     value: NotRequired["capo_outposts.types.constraint_value.ConstraintValue"]
     """<p>The value of the constraint.</p>"""
 

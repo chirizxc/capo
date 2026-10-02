@@ -15,6 +15,7 @@ import capo_bedrock_agentcore.errors.access_denied_exception
 import capo_bedrock_agentcore.errors.conflict_exception
 import capo_bedrock_agentcore.errors.internal_server_exception
 import capo_bedrock_agentcore.errors.service_quota_exceeded_exception
+import capo_bedrock_agentcore.errors.subscription_required_exception
 import capo_bedrock_agentcore.errors.throttling_exception
 import capo_bedrock_agentcore.errors.validation_exception
 import capo_bedrock_agentcore.types.create_payment_session_request
@@ -29,6 +30,7 @@ from capo_bedrock_agentcore._rule_engine._endpoint_rule_set import (
 from capo_bedrock_agentcore._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agentcore.errors import UnknownServiceError
 
@@ -51,6 +53,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ServiceQuotaExceededException":
             raise capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException.from_json(
+                data, message
+            )
+        case "SubscriptionRequiredException":
+            raise capo_bedrock_agentcore.errors.subscription_required_exception.SubscriptionRequiredException.from_json(
                 data, message
             )
         case "ThrottlingException":
@@ -157,7 +163,7 @@ def create_payment_session(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -175,7 +181,7 @@ async def async_create_payment_session(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

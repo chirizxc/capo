@@ -43,6 +43,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.add_tags_output
     import capo_sagemaker.types.additional_code_repository_names_or_urls
     import capo_sagemaker.types.additional_inference_specifications
+    import capo_sagemaker.types.ai_adapter_source
     import capo_sagemaker.types.ai_benchmark_job_status
     import capo_sagemaker.types.ai_benchmark_job_summary
     import capo_sagemaker.types.ai_benchmark_network_config
@@ -87,6 +88,8 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.association_entity_arn
     import capo_sagemaker.types.association_summary
     import capo_sagemaker.types.async_inference_config
+    import capo_sagemaker.types.attach_cluster_node_network_interface_request
+    import capo_sagemaker.types.attach_cluster_node_network_interface_response
     import capo_sagemaker.types.attach_cluster_node_volume_request
     import capo_sagemaker.types.attach_cluster_node_volume_response
     import capo_sagemaker.types.auth_mode
@@ -140,6 +143,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.cluster_instance_groups_to_delete
     import capo_sagemaker.types.cluster_name
     import capo_sagemaker.types.cluster_name_or_arn
+    import capo_sagemaker.types.cluster_network_interface_id
     import capo_sagemaker.types.cluster_node_id
     import capo_sagemaker.types.cluster_node_ids
     import capo_sagemaker.types.cluster_node_logical_id
@@ -701,6 +705,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.hyper_parameter_tuning_job_summary
     import capo_sagemaker.types.hyper_parameter_tuning_job_warm_start_config
     import capo_sagemaker.types.hyper_parameters
+    import capo_sagemaker.types.idc_config_input
     import capo_sagemaker.types.idempotency_token
     import capo_sagemaker.types.image
     import capo_sagemaker.types.image_base_image
@@ -1093,6 +1098,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.optimization_job_output_config
     import capo_sagemaker.types.optimization_job_status
     import capo_sagemaker.types.optimization_job_summary
+    import capo_sagemaker.types.optimization_job_training_plan_arns
     import capo_sagemaker.types.optimization_vpc_config
     import capo_sagemaker.types.order_key
     import capo_sagemaker.types.output_config
@@ -1703,6 +1709,62 @@ class SageMakerClient:
         response.response.close()
         return response.output
 
+    def attach_cluster_node_network_interface(
+        self,
+        *,
+        config_overrides: Optional[SageMakerClientConfig] = None,
+        cluster_name: Optional[
+            "capo_sagemaker.types.cluster_name_or_arn.ClusterNameOrArn"
+        ] = None,
+        node_id: Optional["capo_sagemaker.types.cluster_node_id.ClusterNodeId"] = None,
+        network_interface_id: Optional[
+            "capo_sagemaker.types.cluster_network_interface_id.ClusterNetworkInterfaceId"
+        ] = None,
+    ) -> "capo_sagemaker.types.attach_cluster_node_network_interface_response.AttachClusterNodeNetworkInterfaceResponse":
+        """<p> Attaches an elastic network interface (ENI) to a node in a HyperPod cluster. </p> <p> To use this operation, you must have the <code>sagemaker:AttachClusterNodeNetworkInterface</code> permission. </p>
+
+        Args:
+            cluster_name: <p> The name or Amazon Resource Name (ARN) of the SageMaker HyperPod cluster that contains the target node. </p>
+            node_id: <p> The unique identifier of the cluster node to which you want to attach the network interface. The node must belong to your specified HyperPod cluster and cannot be part of a Restricted Instance Group (RIG). </p>
+            network_interface_id: <p> The unique identifier of the elastic network interface (ENI) to attach. </p>
+
+        Raises:
+            capo_sagemaker.errors.resource_limit_exceeded.ResourceLimitExceeded: <p> You have exceeded an SageMaker resource limit. For example, you might have too many training jobs created. </p>
+            capo_sagemaker.errors.resource_not_found.ResourceNotFound: <p>Resource being access is not found.</p>
+            capo_sagemaker.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_sagemaker.types.attach_cluster_node_network_interface_request.AttachClusterNodeNetworkInterfaceRequest]",
+        ) -> OperationResponse[
+            "capo_sagemaker.types.attach_cluster_node_network_interface_response.AttachClusterNodeNetworkInterfaceResponse"
+        ]:
+            import capo_sagemaker._operations.sage_maker.attach_cluster_node_network_interface
+
+            output, http_response = (
+                capo_sagemaker._operations.sage_maker.attach_cluster_node_network_interface.attach_cluster_node_network_interface(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sagemaker.types.attach_cluster_node_network_interface_request.AttachClusterNodeNetworkInterfaceRequest = {}
+        if cluster_name is not None:
+            input_["cluster_name"] = cluster_name
+        if node_id is not None:
+            input_["node_id"] = node_id
+        if network_interface_id is not None:
+            input_["network_interface_id"] = network_interface_id
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def attach_cluster_node_volume(
         self,
         *,
@@ -2210,6 +2272,9 @@ class SageMakerClient:
         compute_spec: Optional[
             "capo_sagemaker.types.ai_recommendation_compute_spec.AIRecommendationComputeSpec"
         ] = None,
+        adapter_source: Optional[
+            "capo_sagemaker.types.ai_adapter_source.AIAdapterSource"
+        ] = None,
         tags: Optional["capo_sagemaker.types.tag_list.TagList"] = None,
     ) -> "capo_sagemaker.types.create_ai_recommendation_job_response.CreateAIRecommendationJobResponse":
         """<p>Creates a recommendation job that generates intelligent optimization recommendations for generative AI inference deployments. The job analyzes your model, workload configuration, and performance targets to recommend optimal instance types, model optimization techniques (such as quantization and speculative decoding), and deployment configurations.</p>
@@ -2224,6 +2289,7 @@ class SageMakerClient:
             inference_specification: <p>The inference framework configuration. Specify the framework (such as LMI or vLLM) for the recommendation job.</p>
             optimize_model: <p>Whether to allow model optimization techniques such as quantization, speculative decoding, and kernel tuning. The default is <code>true</code>.</p>
             compute_spec: <p>The compute resource specification for the recommendation job. You can specify up to 3 instance types to consider, and optionally provide capacity reservation configuration.</p>
+            adapter_source: <p>The LoRA adapter source for the recommendation job. Specify either a list of model package ARNs or Amazon S3 URIs for your LoRA adapters. When this parameter is absent, the recommendation job runs without LoRA adapter support.</p>
             tags: <p>The metadata that you apply to Amazon Web Services resources to help you categorize and organize them.</p>
 
         Raises:
@@ -2267,6 +2333,8 @@ class SageMakerClient:
             input_["optimize_model"] = optimize_model
         if compute_spec is not None:
             input_["compute_spec"] = compute_spec
+        if adapter_source is not None:
+            input_["adapter_source"] = adapter_source
         if tags is not None:
             input_["tags"] = tags
 
@@ -5121,6 +5189,7 @@ class SageMakerClient:
         name: Optional["capo_sagemaker.types.mlflow_app_name.MlflowAppName"] = None,
         artifact_store_uri: Optional["capo_sagemaker.types.s3_uri.S3Uri"] = None,
         role_arn: Optional["capo_sagemaker.types.role_arn.RoleArn"] = None,
+        kms_key_id: Optional["capo_sagemaker.types.kms_key_id.KmsKeyId"] = None,
         model_registration_mode: Optional[
             "capo_sagemaker.types.model_registration_mode.ModelRegistrationMode"
         ] = None,
@@ -5141,6 +5210,7 @@ class SageMakerClient:
             name: <p>A string identifying the MLflow app name. This string is not part of the tracking server ARN.</p>
             artifact_store_uri: <p>The S3 URI for a general purpose bucket to use as the MLflow App artifact store.</p>
             role_arn: <p>The Amazon Resource Name (ARN) for an IAM role in your account that the MLflow App uses to access the artifact store in Amazon S3. The role should have the <code>AmazonS3FullAccess</code> permission.</p>
+            kms_key_id: <p>The ID of the Amazon Web Services KMS key used to encrypt the data at rest associated with the MLflow App. If you don't specify a value, the MLflow App is not encrypted with a customer-managed key.</p>
             model_registration_mode: <p>Whether to enable or disable automatic registration of new MLflow models to the SageMaker Model Registry. To enable automatic model registration, set this value to <code>AutoModelRegistrationEnabled</code>. To disable automatic model registration, set this value to <code>AutoModelRegistrationDisabled</code>. If not specified, <code>AutomaticModelRegistration</code> defaults to <code>AutoModelRegistrationDisabled</code>.</p>
             weekly_maintenance_window_start: <p>The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard time that weekly maintenance updates are scheduled. For example: TUE:03:30.</p>
             account_default_status: <p>Indicates whether this MLflow app is the default for the entire account.</p>
@@ -5174,6 +5244,8 @@ class SageMakerClient:
             input_["artifact_store_uri"] = artifact_store_uri
         if role_arn is not None:
             input_["role_arn"] = role_arn
+        if kms_key_id is not None:
+            input_["kms_key_id"] = kms_key_id
         if model_registration_mode is not None:
             input_["model_registration_mode"] = model_registration_mode
         if weekly_maintenance_window_start is not None:
@@ -6307,6 +6379,9 @@ class SageMakerClient:
         vpc_config: Optional[
             "capo_sagemaker.types.optimization_vpc_config.OptimizationVpcConfig"
         ] = None,
+        training_plan_arns: Optional[
+            "capo_sagemaker.types.optimization_job_training_plan_arns.OptimizationJobTrainingPlanArns"
+        ] = None,
     ) -> "capo_sagemaker.types.create_optimization_job_response.CreateOptimizationJobResponse":
         r"""<p>Creates a job that optimizes a model for inference performance. To create the job, you provide the location of a source model, and you provide the settings for the optimization techniques that you want the job to apply. When the job completes successfully, SageMaker uploads the new optimized model to the output destination that you specify.</p> <p>For more information about how to use this action, and about the supported optimization techniques, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-optimize.html\">Optimize model inference with Amazon SageMaker</a>.</p>
 
@@ -6321,6 +6396,7 @@ class SageMakerClient:
             output_config: <p>Details for where to store the optimized model that you create with the optimization job.</p>
             tags: <p>A list of key-value pairs associated with the optimization job. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference Guide</i>.</p>
             vpc_config: <p>A VPC in Amazon VPC that your optimized model has access to.</p>
+            training_plan_arns: <p>The Amazon Resource Name (ARN) of the training plan to use for this optimization job.</p> <p>When you use reserved capacity from a training plan, the optimization job runs on that reserved capacity instead of on-demand capacity. If you omit this field, the job uses on-demand capacity. You can specify at most one training plan.</p> <p>For more information about how to reserve GPU capacity for your optimization jobs using Amazon SageMaker Training Plans, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/reserve-capacity-with-training-plans.html\">Reserve capacity with training plans</a>.</p>
 
         Raises:
             capo_sagemaker.errors.resource_in_use.ResourceInUse: <p>Resource being accessed is in use.</p>
@@ -6366,6 +6442,8 @@ class SageMakerClient:
             input_["tags"] = tags
         if vpc_config is not None:
             input_["vpc_config"] = vpc_config
+        if training_plan_arns is not None:
+            input_["training_plan_arns"] = training_plan_arns
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -6392,6 +6470,9 @@ class SageMakerClient:
         application_config: Optional[
             "capo_sagemaker.types.partner_app_config.PartnerAppConfig"
         ] = None,
+        idc_config: Optional[
+            "capo_sagemaker.types.idc_config_input.IdcConfigInput"
+        ] = None,
         auth_type: Optional[
             "capo_sagemaker.types.partner_app_auth_type.PartnerAppAuthType"
         ] = None,
@@ -6414,7 +6495,8 @@ class SageMakerClient:
             maintenance_config: <p>Maintenance configuration settings for the SageMaker Partner AI App.</p>
             tier: <p>Indicates the instance type and size of the cluster attached to the SageMaker Partner AI App.</p>
             application_config: <p>Configuration settings for the SageMaker Partner AI App.</p>
-            auth_type: <p>The authorization type that users use to access the SageMaker Partner AI App.</p>
+            idc_config: <p>Specifies the Amazon Web Services IAM Identity Center configuration for the SageMaker Partner AI App. Specify this parameter when <code>AuthType</code> is <code>IDC</code>. Apps that use <code>IAM</code> authorization don't use this parameter.</p>
+            auth_type: <p>The authorization type that users use to access the SageMaker Partner AI App. Valid values:</p> <ul> <li> <p> <code>IAM</code>: Users access the SageMaker Partner AI App with their Amazon Web Services IAM identity.</p> </li> <li> <p> <code>IDC</code>: Users access the SageMaker Partner AI App with their Amazon Web Services IAM Identity Center identity. Specify the Identity Center instance to use in <code>IdcConfig</code>.</p> </li> </ul>
             enable_iam_session_based_identity: <p>When set to <code>TRUE</code>, the SageMaker Partner AI App sets the Amazon Web Services IAM session name or the authenticated IAM user as the identity of the SageMaker Partner AI App user.</p>
             enable_auto_minor_version_upgrade: <p>When set to <code>TRUE</code>, the SageMaker Partner AI App is automatically upgraded to the latest minor version during the next scheduled maintenance window, if one is available. Default is <code>FALSE</code>.</p>
             client_token: <p>A unique token that guarantees that the call to this API is idempotent.</p>
@@ -6456,6 +6538,8 @@ class SageMakerClient:
             input_["tier"] = tier
         if application_config is not None:
             input_["application_config"] = application_config
+        if idc_config is not None:
+            input_["idc_config"] = idc_config
         if auth_type is not None:
             input_["auth_type"] = auth_type
         if enable_iam_session_based_identity is not None:
@@ -29966,6 +30050,12 @@ class SageMakerClient:
         application_config: Optional[
             "capo_sagemaker.types.partner_app_config.PartnerAppConfig"
         ] = None,
+        idc_config: Optional[
+            "capo_sagemaker.types.idc_config_input.IdcConfigInput"
+        ] = None,
+        auth_type: Optional[
+            "capo_sagemaker.types.partner_app_auth_type.PartnerAppAuthType"
+        ] = None,
         enable_iam_session_based_identity: Optional[
             "capo_sagemaker.types.boolean.Boolean"
         ] = None,
@@ -29985,6 +30075,8 @@ class SageMakerClient:
             maintenance_config: <p>Maintenance configuration settings for the SageMaker Partner AI App.</p>
             tier: <p>Indicates the instance type and size of the cluster attached to the SageMaker Partner AI App.</p>
             application_config: <p>Configuration settings for the SageMaker Partner AI App.</p>
+            idc_config: <p>Specifies the Amazon Web Services IAM Identity Center configuration for the SageMaker Partner AI App. Specify this parameter when <code>AuthType</code> is <code>IDC</code>. Apps that use <code>IAM</code> authorization don't use this parameter.</p>
+            auth_type: <p>The authorization type that users use to access the SageMaker Partner AI App. Use this parameter to migrate an existing SageMaker Partner AI App from <code>IAM</code> authorization to <code>IDC</code> authorization. Valid values:</p> <ul> <li> <p> <code>IAM</code>: Users access the SageMaker Partner AI App with their Amazon Web Services IAM identity.</p> </li> <li> <p> <code>IDC</code>: Users access the SageMaker Partner AI App with their Amazon Web Services IAM Identity Center identity. Specify the Identity Center instance to use in <code>IdcConfig</code>.</p> </li> </ul>
             enable_iam_session_based_identity: <p>When set to <code>TRUE</code>, the SageMaker Partner AI App sets the Amazon Web Services IAM session name or the authenticated IAM user as the identity of the SageMaker Partner AI App user.</p>
             enable_auto_minor_version_upgrade: <p>When set to <code>TRUE</code>, the SageMaker Partner AI App is automatically upgraded to the latest minor version during the next scheduled maintenance window, if one is available.</p>
             app_version: <p>The semantic version to upgrade the SageMaker Partner AI App to. Must be the same semantic version returned in the <code>AvailableUpgrade</code> field from <code>DescribePartnerApp</code>. Version skipping and downgrades are not supported.</p>
@@ -30021,6 +30113,10 @@ class SageMakerClient:
             input_["tier"] = tier
         if application_config is not None:
             input_["application_config"] = application_config
+        if idc_config is not None:
+            input_["idc_config"] = idc_config
+        if auth_type is not None:
+            input_["auth_type"] = auth_type
         if enable_iam_session_based_identity is not None:
             input_["enable_iam_session_based_identity"] = (
                 enable_iam_session_based_identity

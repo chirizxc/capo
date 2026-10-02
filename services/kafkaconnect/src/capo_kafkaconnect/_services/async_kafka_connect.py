@@ -29,6 +29,7 @@ from capo_kafkaconnect._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_kafkaconnect.types.__boolean
     import capo_kafkaconnect.types.__list_of_plugin
     import capo_kafkaconnect.types.__sensitive_string
     import capo_kafkaconnect.types.__string
@@ -79,6 +80,8 @@ if TYPE_CHECKING:
     import capo_kafkaconnect.types.log_delivery
     import capo_kafkaconnect.types.max_results
     import capo_kafkaconnect.types.network_type
+    import capo_kafkaconnect.types.restart_connector_request
+    import capo_kafkaconnect.types.restart_connector_response
     import capo_kafkaconnect.types.tag_key_list
     import capo_kafkaconnect.types.tag_resource_request
     import capo_kafkaconnect.types.tag_resource_response
@@ -1153,6 +1156,62 @@ class AsyncKafkaConnectClient:
             _token = _resolve_path(_response, ("next_token",))
             if not _token:
                 break
+
+    async def restart_connector(
+        self,
+        connector_arn: "capo_kafkaconnect.types.__string.__string",
+        *,
+        config_overrides: Optional[AsyncKafkaConnectClientConfig] = None,
+        only_failed_tasks: Optional[
+            "capo_kafkaconnect.types.__boolean.__boolean"
+        ] = None,
+    ) -> "capo_kafkaconnect.types.restart_connector_response.RestartConnectorResponse":
+        """<p>Restarts the specified connector. By default, this operation restarts the connector and all of its tasks. This operation is asynchronous and returns a connector operation ARN that you can pass to <code>DescribeConnectorOperation</code> to track the state of the restart.</p>
+
+        Args:
+            connector_arn: <p>The Amazon Resource Name (ARN) of the connector that you want to restart.</p>
+            only_failed_tasks: <p>Specifies whether to restart only the connector's failed tasks. If <code>true</code>, the operation restarts only the tasks that are currently in a failed state, and healthy tasks continue running. If <code>false</code> or not specified, the operation restarts the connector and all of its tasks.</p>
+
+        Raises:
+            capo_kafkaconnect.errors.bad_request_exception.BadRequestException: <p>HTTP Status Code 400: Bad request due to incorrect input. Correct your request and then retry it.</p>
+            capo_kafkaconnect.errors.forbidden_exception.ForbiddenException: <p>HTTP Status Code 403: Access forbidden. Correct your credentials and then retry your request.</p>
+            capo_kafkaconnect.errors.internal_server_error_exception.InternalServerErrorException: <p>HTTP Status Code 500: Unexpected internal server error. Retrying your request might resolve the issue.</p>
+            capo_kafkaconnect.errors.not_found_exception.NotFoundException: <p>HTTP Status Code 404: Resource not found due to incorrect input. Correct your request and then retry it.</p>
+            capo_kafkaconnect.errors.service_unavailable_exception.ServiceUnavailableException: <p>HTTP Status Code 503: Service Unavailable. Retrying your request in some time might resolve the issue.</p>
+            capo_kafkaconnect.errors.too_many_requests_exception.TooManyRequestsException: <p>HTTP Status Code 429: Limit exceeded. Resource limit reached.</p>
+            capo_kafkaconnect.errors.unauthorized_exception.UnauthorizedException: <p>HTTP Status Code 401: Unauthorized request. The provided credentials couldn't be validated.</p>
+            capo_kafkaconnect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_kafkaconnect.types.restart_connector_request.RestartConnectorRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_kafkaconnect.types.restart_connector_response.RestartConnectorResponse"
+        ]:
+            import capo_kafkaconnect._operations.kafka_connect.restart_connector
+
+            (
+                output,
+                http_response,
+            ) = await capo_kafkaconnect._operations.kafka_connect.restart_connector.async_restart_connector(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kafkaconnect.types.restart_connector_request.RestartConnectorRequest = {
+            "connector_arn": connector_arn
+        }
+        if only_failed_tasks is not None:
+            input_["only_failed_tasks"] = only_failed_tasks
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     async def tag_resource(
         self,

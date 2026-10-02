@@ -27,7 +27,7 @@ class StreetComponents(TypedDict, closed=True):
     direction: NotRequired["capo_geo_places.types.sensitive_string.SensitiveString"]
     """<p>Indicates the official directional identifiers assigned to highways.</p>"""
     language: NotRequired["capo_geo_places.types.language_tag.LanguageTag"]
-    r"""<p>A <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>"""
+    r"""<p>A <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -38,7 +38,11 @@ def serialize_json(value: StreetComponents) -> dict:
     if "type" in value:
         out["Type"] = value["type"]
     if "type_placement" in value:
-        out["TypePlacement"] = value["type_placement"]
+        import capo_geo_places.types.type_placement
+
+        out["TypePlacement"] = capo_geo_places.types.type_placement.serialize_json(
+            value["type_placement"]
+        )
     if "type_separator" in value:
         out["TypeSeparator"] = value["type_separator"]
     if "prefix" in value:
@@ -59,7 +63,11 @@ def deserialize_json(data: dict) -> StreetComponents:
     if data.get("Type") is not None:
         out["type"] = data["Type"]
     if data.get("TypePlacement") is not None:
-        out["type_placement"] = data["TypePlacement"]
+        import capo_geo_places.types.type_placement
+
+        out["type_placement"] = capo_geo_places.types.type_placement.deserialize_json(
+            data["TypePlacement"]
+        )
     if data.get("TypeSeparator") is not None:
         out["type_separator"] = data["TypeSeparator"]
     if data.get("Prefix") is not None:

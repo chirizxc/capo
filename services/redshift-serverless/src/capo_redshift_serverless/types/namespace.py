@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_redshift_serverless.types.log_export_list
     import capo_redshift_serverless.types.namespace_name
     import capo_redshift_serverless.types.namespace_status
+    import capo_redshift_serverless.types.s3_table_publish_status
 
 
 class Namespace(TypedDict, closed=True):
@@ -56,6 +57,10 @@ class Namespace(TypedDict, closed=True):
     """<p>The status of the lakehouse registration for the namespace. Indicates whether the namespace is successfully registered with Amazon Redshift federated permissions.</p>"""
     catalog_arn: NotRequired["str"]
     """<p>The Amazon Resource Name (ARN) of the Glue Data Catalog associated with the namespace enabled with Amazon Redshift federated permissions.</p>"""
+    s3_table_publish_status: NotRequired[
+        "capo_redshift_serverless.types.s3_table_publish_status.S3TablePublishStatus"
+    ]
+    """<p>The current Amazon S3 Tables log-publishing status for the namespace. Not returned when S3 Tables publishing has never been configured for the namespace.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -109,6 +114,14 @@ def serialize_aws_json_1_1(value: Namespace) -> dict:
         out["lakehouseRegistrationStatus"] = value["lakehouse_registration_status"]
     if "catalog_arn" in value:
         out["catalogArn"] = value["catalog_arn"]
+    if "s3_table_publish_status" in value:
+        import capo_redshift_serverless.types.s3_table_publish_status
+
+        out["s3TablePublishStatus"] = (
+            capo_redshift_serverless.types.s3_table_publish_status.serialize_aws_json_1_1(
+                value["s3_table_publish_status"]
+            )
+        )
     return out
 
 
@@ -160,4 +173,12 @@ def deserialize_aws_json_1_1(data: dict) -> Namespace:
         out["lakehouse_registration_status"] = data["lakehouseRegistrationStatus"]
     if data.get("catalogArn") is not None:
         out["catalog_arn"] = data["catalogArn"]
+    if data.get("s3TablePublishStatus") is not None:
+        import capo_redshift_serverless.types.s3_table_publish_status
+
+        out["s3_table_publish_status"] = (
+            capo_redshift_serverless.types.s3_table_publish_status.deserialize_aws_json_1_1(
+                data["s3TablePublishStatus"]
+            )
+        )
     return out

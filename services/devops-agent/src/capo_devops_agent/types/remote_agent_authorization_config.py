@@ -1,0 +1,94 @@
+"""Generated from Smithy shape ``com.amazonaws.devopsagent#RemoteAgentAuthorizationConfig``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+from typing_extensions import TypedDict
+
+from capo_devops_agent.errors import DeserializationError, SerializationError
+
+if TYPE_CHECKING:
+    import capo_devops_agent.types.remote_agent_api_key_config
+    import capo_devops_agent.types.remote_agent_bearer_token_config
+    import capo_devops_agent.types.remote_agent_o_auth_client_credentials_config
+
+
+class _RemoteAgentAuthorizationConfig_apiKey(TypedDict, closed=True):
+    apiKey: (
+        "capo_devops_agent.types.remote_agent_api_key_config.RemoteAgentAPIKeyConfig"
+    )
+
+
+class _RemoteAgentAuthorizationConfig_oAuthClientCredentials(TypedDict, closed=True):
+    oAuthClientCredentials: "capo_devops_agent.types.remote_agent_o_auth_client_credentials_config.RemoteAgentOAuthClientCredentialsConfig"
+
+
+class _RemoteAgentAuthorizationConfig_bearerToken(TypedDict, closed=True):
+    bearerToken: "capo_devops_agent.types.remote_agent_bearer_token_config.RemoteAgentBearerTokenConfig"
+
+
+RemoteAgentAuthorizationConfig: TypeAlias = (
+    _RemoteAgentAuthorizationConfig_apiKey
+    | _RemoteAgentAuthorizationConfig_oAuthClientCredentials
+    | _RemoteAgentAuthorizationConfig_bearerToken
+)
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: RemoteAgentAuthorizationConfig) -> dict:
+    if "apiKey" in value:
+        import capo_devops_agent.types.remote_agent_api_key_config
+
+        return {
+            "apiKey": capo_devops_agent.types.remote_agent_api_key_config.serialize_json(
+                value["apiKey"]
+            )
+        }
+    elif "oAuthClientCredentials" in value:
+        import capo_devops_agent.types.remote_agent_o_auth_client_credentials_config
+
+        return {
+            "oAuthClientCredentials": capo_devops_agent.types.remote_agent_o_auth_client_credentials_config.serialize_json(
+                value["oAuthClientCredentials"]
+            )
+        }
+    elif "bearerToken" in value:
+        import capo_devops_agent.types.remote_agent_bearer_token_config
+
+        return {
+            "bearerToken": capo_devops_agent.types.remote_agent_bearer_token_config.serialize_json(
+                value["bearerToken"]
+            )
+        }
+    else:
+        raise SerializationError("RemoteAgentAuthorizationConfig: no variant present")
+
+
+def deserialize_json(data: dict) -> RemoteAgentAuthorizationConfig:
+    if data.get("apiKey") is not None:
+        import capo_devops_agent.types.remote_agent_api_key_config
+
+        return {
+            "apiKey": capo_devops_agent.types.remote_agent_api_key_config.deserialize_json(
+                data["apiKey"]
+            )
+        }
+    elif data.get("oAuthClientCredentials") is not None:
+        import capo_devops_agent.types.remote_agent_o_auth_client_credentials_config
+
+        return {
+            "oAuthClientCredentials": capo_devops_agent.types.remote_agent_o_auth_client_credentials_config.deserialize_json(
+                data["oAuthClientCredentials"]
+            )
+        }
+    elif data.get("bearerToken") is not None:
+        import capo_devops_agent.types.remote_agent_bearer_token_config
+
+        return {
+            "bearerToken": capo_devops_agent.types.remote_agent_bearer_token_config.deserialize_json(
+                data["bearerToken"]
+            )
+        }
+    else:
+        raise DeserializationError(
+            "RemoteAgentAuthorizationConfig: no recognized variant key"
+        )

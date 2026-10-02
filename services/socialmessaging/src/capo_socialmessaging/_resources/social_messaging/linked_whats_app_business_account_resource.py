@@ -16,6 +16,8 @@ from capo_socialmessaging._services._pipeline import (
 if TYPE_CHECKING:
     import capo_socialmessaging.types.associate_whats_app_business_account_input
     import capo_socialmessaging.types.associate_whats_app_business_account_output
+    import capo_socialmessaging.types.create_whats_app_dataset_input
+    import capo_socialmessaging.types.create_whats_app_dataset_output
     import capo_socialmessaging.types.create_whats_app_flow_input
     import capo_socialmessaging.types.create_whats_app_flow_output
     import capo_socialmessaging.types.create_whats_app_message_template_from_library_input
@@ -54,7 +56,9 @@ if TYPE_CHECKING:
     import capo_socialmessaging.types.list_whats_app_template_library_input
     import capo_socialmessaging.types.list_whats_app_template_library_output
     import capo_socialmessaging.types.max_results
+    import capo_socialmessaging.types.meta_flow_application_id
     import capo_socialmessaging.types.meta_flow_category_list
+    import capo_socialmessaging.types.meta_flow_endpoint_uri
     import capo_socialmessaging.types.meta_flow_id
     import capo_socialmessaging.types.meta_flow_json_blob
     import capo_socialmessaging.types.meta_flow_name
@@ -73,6 +77,8 @@ if TYPE_CHECKING:
     import capo_socialmessaging.types.put_whats_app_business_account_event_destinations_input
     import capo_socialmessaging.types.put_whats_app_business_account_event_destinations_output
     import capo_socialmessaging.types.s3_file
+    import capo_socialmessaging.types.send_whats_app_conversion_event_input
+    import capo_socialmessaging.types.send_whats_app_conversion_event_output
     import capo_socialmessaging.types.update_whats_app_flow_assets_input
     import capo_socialmessaging.types.update_whats_app_flow_assets_output
     import capo_socialmessaging.types.update_whats_app_flow_input
@@ -80,6 +86,8 @@ if TYPE_CHECKING:
     import capo_socialmessaging.types.update_whats_app_message_template_input
     import capo_socialmessaging.types.update_whats_app_message_template_output
     import capo_socialmessaging.types.whats_app_business_account_event_destinations
+    import capo_socialmessaging.types.whats_app_conversion_event_blob
+    import capo_socialmessaging.types.whats_app_dataset_id
     import capo_socialmessaging.types.whats_app_setup_finalization
     import capo_socialmessaging.types.whats_app_signup_callback
     from capo_socialmessaging._services.async_social_messaging import (
@@ -303,6 +311,56 @@ class LinkedWhatsAppBusinessAccountResource:
         response.response.close()
         return response.output
 
+    def create_whats_app_dataset(
+        self,
+        id: "capo_socialmessaging.types.linked_whats_app_business_account_id.LinkedWhatsAppBusinessAccountId",
+        *,
+        config_overrides: Optional[SocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.create_whats_app_dataset_output.CreateWhatsAppDatasetOutput":
+        """<p>Creates a Meta Conversions API dataset for a WhatsApp Business Account.</p>
+
+        Args:
+            id: <p>The ID of the WhatsApp Business Account to create a dataset for, formatted as <code>waba-01234567890123456789012345678901</code>.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_socialmessaging.types.create_whats_app_dataset_input.CreateWhatsAppDatasetInput]",
+        ) -> OperationResponse[
+            "capo_socialmessaging.types.create_whats_app_dataset_output.CreateWhatsAppDatasetOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.create_whats_app_dataset
+
+            output, http_response = (
+                capo_socialmessaging._operations.social_messaging.create_whats_app_dataset.create_whats_app_dataset(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.create_whats_app_dataset_input.CreateWhatsAppDatasetInput = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_whats_app_flow(
         self,
         id: "capo_socialmessaging.types.linked_whats_app_business_account_id.LinkedWhatsAppBusinessAccountId",
@@ -317,6 +375,9 @@ class LinkedWhatsAppBusinessAccountResource:
         clone_flow_id: Optional[
             "capo_socialmessaging.types.meta_flow_id.MetaFlowId"
         ] = None,
+        endpoint_uri: Optional[
+            "capo_socialmessaging.types.meta_flow_endpoint_uri.MetaFlowEndpointUri"
+        ] = None,
     ) -> "capo_socialmessaging.types.create_whats_app_flow_output.CreateWhatsAppFlowOutput":
         """<p>Creates a new WhatsApp Flow. Flows enable businesses to create rich, interactive forms and experiences that users can complete without leaving WhatsApp. The Flow is created in DRAFT status. If <code>publish</code> is set to <code>true</code> and a valid <code>flowJson</code> is provided, the Flow is published immediately.</p>
 
@@ -327,6 +388,7 @@ class LinkedWhatsAppBusinessAccountResource:
             flow_json: <p>The Flow JSON definition that describes the screens, components, and logic of the Flow. Maximum size is 10 MB.</p>
             publish: <p>Set to <code>true</code> to publish the Flow immediately after creation. Requires a valid <code>flowJson</code> that passes Meta's validation.</p>
             clone_flow_id: <p>The ID of an existing Flow within the same WhatsApp Business Account to clone.</p>
+            endpoint_uri: <p>The HTTPS endpoint that Meta calls for a data exchange Flow.</p>
 
         Raises:
             capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -366,6 +428,8 @@ class LinkedWhatsAppBusinessAccountResource:
             input_["publish"] = publish
         if clone_flow_id is not None:
             input_["clone_flow_id"] = clone_flow_id
+        if endpoint_uri is not None:
+            input_["endpoint_uri"] = endpoint_uri
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1235,6 +1299,62 @@ class LinkedWhatsAppBusinessAccountResource:
         response.response.close()
         return response.output
 
+    def send_whats_app_conversion_event(
+        self,
+        id: "capo_socialmessaging.types.linked_whats_app_business_account_id.LinkedWhatsAppBusinessAccountId",
+        dataset_id: "capo_socialmessaging.types.whats_app_dataset_id.WhatsAppDatasetId",
+        event_data: "capo_socialmessaging.types.whats_app_conversion_event_blob.WhatsAppConversionEventBlob",
+        *,
+        config_overrides: Optional[SocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.send_whats_app_conversion_event_output.SendWhatsAppConversionEventOutput":
+        r"""<p>Sends a conversion event to Meta's Conversions API for the specified WhatsApp Business Account dataset.</p>
+
+        Args:
+            id: <p>The ID of the WhatsApp Business Account associated with the dataset, formatted as <code>waba-01234567890123456789012345678901</code>.</p>
+            dataset_id: <p>The Meta-generated dataset ID to send the event to.</p>
+            event_data: <p>The raw Meta Conversions API event payload as a JSON blob. See <a href=\"https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/server-event\">Meta's server event parameters</a> for the supported format.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_socialmessaging.types.send_whats_app_conversion_event_input.SendWhatsAppConversionEventInput]",
+        ) -> OperationResponse[
+            "capo_socialmessaging.types.send_whats_app_conversion_event_output.SendWhatsAppConversionEventOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.send_whats_app_conversion_event
+
+            output, http_response = (
+                capo_socialmessaging._operations.social_messaging.send_whats_app_conversion_event.send_whats_app_conversion_event(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.send_whats_app_conversion_event_input.SendWhatsAppConversionEventInput = {
+            "id": id,
+            "dataset_id": dataset_id,
+            "event_data": event_data,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def update_whats_app_flow(
         self,
         id: "capo_socialmessaging.types.linked_whats_app_business_account_id.LinkedWhatsAppBusinessAccountId",
@@ -1247,6 +1367,12 @@ class LinkedWhatsAppBusinessAccountResource:
         categories: Optional[
             "capo_socialmessaging.types.meta_flow_category_list.MetaFlowCategoryList"
         ] = None,
+        endpoint_uri: Optional[
+            "capo_socialmessaging.types.meta_flow_endpoint_uri.MetaFlowEndpointUri"
+        ] = None,
+        meta_app_id: Optional[
+            "capo_socialmessaging.types.meta_flow_application_id.MetaFlowApplicationId"
+        ] = None,
     ) -> "capo_socialmessaging.types.update_whats_app_flow_output.UpdateWhatsAppFlowOutput":
         r"""<p>Updates the metadata of a WhatsApp Flow, such as its name or categories. This does not update the Flow JSON definition. Use <a href=\"https://docs.aws.amazon.com/social-messaging/latest/APIReference/API_UpdateWhatsAppFlowAssets.html\">UpdateWhatsAppFlowAssets</a> to update the Flow JSON.</p>
 
@@ -1255,6 +1381,8 @@ class LinkedWhatsAppBusinessAccountResource:
             flow_id: <p>The unique identifier of the Flow to update.</p>
             flow_name: <p>The updated name for the Flow.</p>
             categories: <p>The updated categories for the Flow.</p>
+            endpoint_uri: <p>The updated HTTPS endpoint for a data exchange Flow.</p>
+            meta_app_id: <p>The ID of the Meta application to attach to the Flow.</p>
 
         Raises:
             capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -1291,6 +1419,10 @@ class LinkedWhatsAppBusinessAccountResource:
             input_["flow_name"] = flow_name
         if categories is not None:
             input_["categories"] = categories
+        if endpoint_uri is not None:
+            input_["endpoint_uri"] = endpoint_uri
+        if meta_app_id is not None:
+            input_["meta_app_id"] = meta_app_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1664,6 +1796,57 @@ class AsyncLinkedWhatsAppBusinessAccountResource:
         await response.response.aclose()
         return response.output
 
+    async def create_whats_app_dataset(
+        self,
+        id: "capo_socialmessaging.types.linked_whats_app_business_account_id.LinkedWhatsAppBusinessAccountId",
+        *,
+        config_overrides: Optional[AsyncSocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.create_whats_app_dataset_output.CreateWhatsAppDatasetOutput":
+        """<p>Creates a Meta Conversions API dataset for a WhatsApp Business Account.</p>
+
+        Args:
+            id: <p>The ID of the WhatsApp Business Account to create a dataset for, formatted as <code>waba-01234567890123456789012345678901</code>.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_socialmessaging.types.create_whats_app_dataset_input.CreateWhatsAppDatasetInput]",
+        ) -> AsyncOperationResponse[
+            "capo_socialmessaging.types.create_whats_app_dataset_output.CreateWhatsAppDatasetOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.create_whats_app_dataset
+
+            (
+                output,
+                http_response,
+            ) = await capo_socialmessaging._operations.social_messaging.create_whats_app_dataset.async_create_whats_app_dataset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.create_whats_app_dataset_input.CreateWhatsAppDatasetInput = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def create_whats_app_flow(
         self,
         id: "capo_socialmessaging.types.linked_whats_app_business_account_id.LinkedWhatsAppBusinessAccountId",
@@ -1678,6 +1861,9 @@ class AsyncLinkedWhatsAppBusinessAccountResource:
         clone_flow_id: Optional[
             "capo_socialmessaging.types.meta_flow_id.MetaFlowId"
         ] = None,
+        endpoint_uri: Optional[
+            "capo_socialmessaging.types.meta_flow_endpoint_uri.MetaFlowEndpointUri"
+        ] = None,
     ) -> "capo_socialmessaging.types.create_whats_app_flow_output.CreateWhatsAppFlowOutput":
         """<p>Creates a new WhatsApp Flow. Flows enable businesses to create rich, interactive forms and experiences that users can complete without leaving WhatsApp. The Flow is created in DRAFT status. If <code>publish</code> is set to <code>true</code> and a valid <code>flowJson</code> is provided, the Flow is published immediately.</p>
 
@@ -1688,6 +1874,7 @@ class AsyncLinkedWhatsAppBusinessAccountResource:
             flow_json: <p>The Flow JSON definition that describes the screens, components, and logic of the Flow. Maximum size is 10 MB.</p>
             publish: <p>Set to <code>true</code> to publish the Flow immediately after creation. Requires a valid <code>flowJson</code> that passes Meta's validation.</p>
             clone_flow_id: <p>The ID of an existing Flow within the same WhatsApp Business Account to clone.</p>
+            endpoint_uri: <p>The HTTPS endpoint that Meta calls for a data exchange Flow.</p>
 
         Raises:
             capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -1728,6 +1915,8 @@ class AsyncLinkedWhatsAppBusinessAccountResource:
             input_["publish"] = publish
         if clone_flow_id is not None:
             input_["clone_flow_id"] = clone_flow_id
+        if endpoint_uri is not None:
+            input_["endpoint_uri"] = endpoint_uri
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2612,6 +2801,63 @@ class AsyncLinkedWhatsAppBusinessAccountResource:
         await response.response.aclose()
         return response.output
 
+    async def send_whats_app_conversion_event(
+        self,
+        id: "capo_socialmessaging.types.linked_whats_app_business_account_id.LinkedWhatsAppBusinessAccountId",
+        dataset_id: "capo_socialmessaging.types.whats_app_dataset_id.WhatsAppDatasetId",
+        event_data: "capo_socialmessaging.types.whats_app_conversion_event_blob.WhatsAppConversionEventBlob",
+        *,
+        config_overrides: Optional[AsyncSocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.send_whats_app_conversion_event_output.SendWhatsAppConversionEventOutput":
+        r"""<p>Sends a conversion event to Meta's Conversions API for the specified WhatsApp Business Account dataset.</p>
+
+        Args:
+            id: <p>The ID of the WhatsApp Business Account associated with the dataset, formatted as <code>waba-01234567890123456789012345678901</code>.</p>
+            dataset_id: <p>The Meta-generated dataset ID to send the event to.</p>
+            event_data: <p>The raw Meta Conversions API event payload as a JSON blob. See <a href=\"https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/server-event\">Meta's server event parameters</a> for the supported format.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_socialmessaging.types.send_whats_app_conversion_event_input.SendWhatsAppConversionEventInput]",
+        ) -> AsyncOperationResponse[
+            "capo_socialmessaging.types.send_whats_app_conversion_event_output.SendWhatsAppConversionEventOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.send_whats_app_conversion_event
+
+            (
+                output,
+                http_response,
+            ) = await capo_socialmessaging._operations.social_messaging.send_whats_app_conversion_event.async_send_whats_app_conversion_event(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.send_whats_app_conversion_event_input.SendWhatsAppConversionEventInput = {
+            "id": id,
+            "dataset_id": dataset_id,
+            "event_data": event_data,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def update_whats_app_flow(
         self,
         id: "capo_socialmessaging.types.linked_whats_app_business_account_id.LinkedWhatsAppBusinessAccountId",
@@ -2624,6 +2870,12 @@ class AsyncLinkedWhatsAppBusinessAccountResource:
         categories: Optional[
             "capo_socialmessaging.types.meta_flow_category_list.MetaFlowCategoryList"
         ] = None,
+        endpoint_uri: Optional[
+            "capo_socialmessaging.types.meta_flow_endpoint_uri.MetaFlowEndpointUri"
+        ] = None,
+        meta_app_id: Optional[
+            "capo_socialmessaging.types.meta_flow_application_id.MetaFlowApplicationId"
+        ] = None,
     ) -> "capo_socialmessaging.types.update_whats_app_flow_output.UpdateWhatsAppFlowOutput":
         r"""<p>Updates the metadata of a WhatsApp Flow, such as its name or categories. This does not update the Flow JSON definition. Use <a href=\"https://docs.aws.amazon.com/social-messaging/latest/APIReference/API_UpdateWhatsAppFlowAssets.html\">UpdateWhatsAppFlowAssets</a> to update the Flow JSON.</p>
 
@@ -2632,6 +2884,8 @@ class AsyncLinkedWhatsAppBusinessAccountResource:
             flow_id: <p>The unique identifier of the Flow to update.</p>
             flow_name: <p>The updated name for the Flow.</p>
             categories: <p>The updated categories for the Flow.</p>
+            endpoint_uri: <p>The updated HTTPS endpoint for a data exchange Flow.</p>
+            meta_app_id: <p>The ID of the Meta application to attach to the Flow.</p>
 
         Raises:
             capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -2669,6 +2923,10 @@ class AsyncLinkedWhatsAppBusinessAccountResource:
             input_["flow_name"] = flow_name
         if categories is not None:
             input_["categories"] = categories
+        if endpoint_uri is not None:
+            input_["endpoint_uri"] = endpoint_uri
+        if meta_app_id is not None:
+            input_["meta_app_id"] = meta_app_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

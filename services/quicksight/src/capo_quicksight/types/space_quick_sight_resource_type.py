@@ -6,10 +6,8 @@ SpaceQuickSightResourceType: TypeAlias = Literal[
     "TOPIC",
     "DASHBOARD",
     "KNOWLEDGE_BASE",
-    "SPACE",
     "ACTION_CONNECTOR",
     "DATA_SET",
-    "ARTIFACT",
 ]
 
 

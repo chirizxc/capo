@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.long_description
     import capo_resiliencehubv2.types.multi_az_targets
     import capo_resiliencehubv2.types.multi_region_targets
+    import capo_resiliencehubv2.types.organization_id
     import capo_resiliencehubv2.types.tag_map
 
 
@@ -40,6 +41,12 @@ class Policy(TypedDict, closed=True):
         "capo_resiliencehubv2.types.data_recovery_targets.DataRecoveryTargets"
     ]
     """<p>The data recovery targets defined in the policy.</p>"""
+    sharing_enabled: NotRequired["bool"]
+    """<p>Specifies whether cross-account sharing is enabled.</p>"""
+    organization_id: NotRequired[
+        "capo_resiliencehubv2.types.organization_id.OrganizationId"
+    ]
+    """<p>The identifier of the organization this policy is shared with.</p>"""
     kms_key_id: NotRequired["capo_resiliencehubv2.types.kms_key_id.KmsKeyId"]
     tags: NotRequired["capo_resiliencehubv2.types.tag_map.TagMap"]
     associated_service_count: NotRequired["int"]
@@ -87,6 +94,10 @@ def serialize_json(value: Policy) -> dict:
                 value["data_recovery"]
             )
         )
+    if "sharing_enabled" in value:
+        out["sharingEnabled"] = value["sharing_enabled"]
+    if "organization_id" in value:
+        out["organizationId"] = value["organization_id"]
     if "kms_key_id" in value:
         out["kmsKeyId"] = value["kms_key_id"]
     if "tags" in value:
@@ -152,6 +163,10 @@ def deserialize_json(data: dict) -> Policy:
                 data["dataRecovery"]
             )
         )
+    if data.get("sharingEnabled") is not None:
+        out["sharing_enabled"] = data["sharingEnabled"]
+    if data.get("organizationId") is not None:
+        out["organization_id"] = data["organizationId"]
     if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     if data.get("tags") is not None:

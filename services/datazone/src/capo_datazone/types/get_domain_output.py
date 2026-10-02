@@ -8,10 +8,12 @@ from capo_datazone.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_datazone.types.created_at
+    import capo_datazone.types.delete_progress
     import capo_datazone.types.domain_id
     import capo_datazone.types.domain_status
     import capo_datazone.types.domain_unit_id
     import capo_datazone.types.domain_version
+    import capo_datazone.types.failure_reasons_list
     import capo_datazone.types.kms_key_arn
     import capo_datazone.types.role_arn
     import capo_datazone.types.single_sign_on
@@ -50,6 +52,12 @@ class GetDomainOutput(TypedDict, closed=True):
     """<p>The version of the domain.</p>"""
     service_role: NotRequired["capo_datazone.types.role_arn.RoleArn"]
     """<p>The service role of the domain.</p>"""
+    failure_reasons: NotRequired[
+        "capo_datazone.types.failure_reasons_list.FailureReasonsList"
+    ]
+    """<p>The list of failure reasons for resources that Amazon DataZone could not delete during a cascade deletion of the domain.</p>"""
+    delete_progress: NotRequired["capo_datazone.types.delete_progress.DeleteProgress"]
+    """<p>The progress of the current domain deletion, including the number of projects that Amazon DataZone successfully deleted.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -102,6 +110,18 @@ def serialize_json(value: GetDomainOutput) -> dict:
         )
     if "service_role" in value:
         out["serviceRole"] = value["service_role"]
+    if "failure_reasons" in value:
+        import capo_datazone.types.failure_reasons_list
+
+        out["failureReasons"] = capo_datazone.types.failure_reasons_list.serialize_json(
+            value["failure_reasons"]
+        )
+    if "delete_progress" in value:
+        import capo_datazone.types.delete_progress
+
+        out["deleteProgress"] = capo_datazone.types.delete_progress.serialize_json(
+            value["delete_progress"]
+        )
     return out
 
 
@@ -165,4 +185,18 @@ def deserialize_json(data: dict) -> GetDomainOutput:
         )
     if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
+    if data.get("failureReasons") is not None:
+        import capo_datazone.types.failure_reasons_list
+
+        out["failure_reasons"] = (
+            capo_datazone.types.failure_reasons_list.deserialize_json(
+                data["failureReasons"]
+            )
+        )
+    if data.get("deleteProgress") is not None:
+        import capo_datazone.types.delete_progress
+
+        out["delete_progress"] = capo_datazone.types.delete_progress.deserialize_json(
+            data["deleteProgress"]
+        )
     return out

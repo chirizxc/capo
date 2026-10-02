@@ -8,6 +8,7 @@ from capo_cloudwatch_logs.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.destination_configuration
+    import capo_cloudwatch_logs.types.end_time_offset
     import capo_cloudwatch_logs.types.query_language
     import capo_cloudwatch_logs.types.query_string
     import capo_cloudwatch_logs.types.role_arn
@@ -24,7 +25,7 @@ if TYPE_CHECKING:
 
 class CreateScheduledQueryRequest(TypedDict, closed=True):
     name: "capo_cloudwatch_logs.types.scheduled_query_name.ScheduledQueryName"
-    """<p>The name of the scheduled query. The name must be unique within your account and region. Valid characters are alphanumeric characters, hyphens, underscores, and periods. Length must be between 1 and 255 characters.</p>"""
+    """<p>The name of the scheduled query. The name must be unique within your account and region. Length must be between 1 and 300 characters.</p>"""
     description: NotRequired[
         "capo_cloudwatch_logs.types.scheduled_query_description.ScheduledQueryDescription"
     ]
@@ -49,10 +50,14 @@ class CreateScheduledQueryRequest(TypedDict, closed=True):
         "capo_cloudwatch_logs.types.start_time_offset.StartTimeOffset"
     ]
     """<p>The time offset in seconds that defines the lookback period for the query. This determines how far back in time the query searches from the execution time.</p>"""
+    end_time_offset: NotRequired[
+        "capo_cloudwatch_logs.types.end_time_offset.EndTimeOffset"
+    ]
+    """<p>The time offset in seconds that defines the end of the lookback period for the query. Together with <code>startTimeOffset</code>, this determines the time window relative to the execution time over which the query runs.</p>"""
     destination_configuration: NotRequired[
         "capo_cloudwatch_logs.types.destination_configuration.DestinationConfiguration"
     ]
-    """<p>Configuration for where to deliver query results. Currently supports Amazon S3 destinations for storing query output.</p>"""
+    """<p>Configuration for where to deliver query results. Supports Amazon S3 destinations for storing query output and lookup table destinations for automatically refreshing lookup tables with query results. You can configure one or both destination types.</p>"""
     schedule_start_time: NotRequired["capo_cloudwatch_logs.types.timestamp.Timestamp"]
     """<p>The start time for the scheduled query in Unix epoch format. The query will not execute before this time.</p>"""
     schedule_end_time: NotRequired["capo_cloudwatch_logs.types.timestamp.Timestamp"]
@@ -94,6 +99,8 @@ def serialize_aws_json_1_1(value: CreateScheduledQueryRequest) -> dict:
         out["timezone"] = value["timezone"]
     if "start_time_offset" in value:
         out["startTimeOffset"] = value["start_time_offset"]
+    if "end_time_offset" in value:
+        out["endTimeOffset"] = value["end_time_offset"]
     if "destination_configuration" in value:
         import capo_cloudwatch_logs.types.destination_configuration
 
@@ -166,6 +173,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateScheduledQueryRequest:
         out["timezone"] = data["timezone"]
     if data.get("startTimeOffset") is not None:
         out["start_time_offset"] = data["startTimeOffset"]
+    if data.get("endTimeOffset") is not None:
+        out["end_time_offset"] = data["endTimeOffset"]
     if data.get("destinationConfiguration") is not None:
         import capo_cloudwatch_logs.types.destination_configuration
 

@@ -8,6 +8,7 @@ from capo_license_manager.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_license_manager.types.arn
+    import capo_license_manager.types.boolean
     import capo_license_manager.types.client_token
     import capo_license_manager.types.consumption_configuration
     import capo_license_manager.types.datetime_range
@@ -47,6 +48,8 @@ class CreateLicenseVersionRequest(TypedDict, closed=True):
     """<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"""
     source_version: NotRequired["capo_license_manager.types.string.String"]
     """<p>Current version of the license.</p>"""
+    reset_usage: "capo_license_manager.types.boolean.Boolean"
+    """<p>Specifies whether to reset the license usage for the new license version. If you don't specify a value, the license usage is not reset.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -96,6 +99,7 @@ def serialize_aws_json_1_1(value: CreateLicenseVersionRequest) -> dict:
     out["ClientToken"] = value["client_token"]
     if "source_version" in value:
         out["SourceVersion"] = value["source_version"]
+    out["ResetUsage"] = value.get("reset_usage", False)
     return out
 
 
@@ -181,4 +185,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseVersionRequest:
         raise DeserializationError("CreateLicenseVersionRequest.client_token required")
     if data.get("SourceVersion") is not None:
         out["source_version"] = data["SourceVersion"]
+    if data.get("ResetUsage") is not None:
+        out["reset_usage"] = data["ResetUsage"]
+    else:
+        out["reset_usage"] = False
     return out

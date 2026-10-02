@@ -6,7 +6,6 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_emr.types.arn_type
-    import capo_emr.types.certificate_authority
     import capo_emr.types.cluster_id
     import capo_emr.types.configuration_list
     import capo_emr.types.date
@@ -61,10 +60,6 @@ class Session(TypedDict, closed=True):
     """<p>The monitoring configuration for the session.</p>"""
     session_idle_timeout_in_minutes: NotRequired["capo_emr.types.long.Long"]
     """<p>The idle timeout, in minutes. If the session is idle for this duration, Amazon EMR automatically terminates it.</p>"""
-    certificate_authority: NotRequired[
-        "capo_emr.types.certificate_authority.CertificateAuthority"
-    ]
-    """<p>The certificate authority used to establish an mTLS connection to the Spark Connect server when connecting directly over VPC peering.</p>"""
     server_url: NotRequired["capo_emr.types.xml_string.XmlString"]
     """<p>The Spark Connect server URL for the session. Use this URL with the <code>Credentials</code> returned by <code>GetSessionEndpoint</code> to connect directly to the session over VPC peering.</p>"""
     tags: NotRequired["capo_emr.types.tag_list.TagList"]
@@ -142,14 +137,6 @@ def serialize_aws_json_1_1(value: Session) -> dict:
         )
     if "session_idle_timeout_in_minutes" in value:
         out["SessionIdleTimeoutInMinutes"] = value["session_idle_timeout_in_minutes"]
-    if "certificate_authority" in value:
-        import capo_emr.types.certificate_authority
-
-        out["CertificateAuthority"] = (
-            capo_emr.types.certificate_authority.serialize_aws_json_1_1(
-                value["certificate_authority"]
-            )
-        )
     if "server_url" in value:
         out["ServerUrl"] = value["server_url"]
     if "tags" in value:
@@ -229,14 +216,6 @@ def deserialize_aws_json_1_1(data: dict) -> Session:
         )
     if data.get("SessionIdleTimeoutInMinutes") is not None:
         out["session_idle_timeout_in_minutes"] = data["SessionIdleTimeoutInMinutes"]
-    if data.get("CertificateAuthority") is not None:
-        import capo_emr.types.certificate_authority
-
-        out["certificate_authority"] = (
-            capo_emr.types.certificate_authority.deserialize_aws_json_1_1(
-                data["CertificateAuthority"]
-            )
-        )
     if data.get("ServerUrl") is not None:
         out["server_url"] = data["ServerUrl"]
     if data.get("Tags") is not None:

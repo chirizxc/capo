@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_appstream.types.s3_bucket_arn
     import capo_appstream.types.screen_image_format
     import capo_appstream.types.screen_resolution
+    import capo_appstream.types.user_control_mode
 
 
 class AgentAccessConfigForUpdate(TypedDict, closed=True):
@@ -31,6 +32,10 @@ class AgentAccessConfigForUpdate(TypedDict, closed=True):
         "capo_appstream.types.screen_image_format.ScreenImageFormat"
     ]
     """<p>The image format for agent screen captures.</p>"""
+    user_control_mode: NotRequired[
+        "capo_appstream.types.user_control_mode.UserControlMode"
+    ]
+    """<p>The user control mode for agent sessions. This setting determines how users can interact with agent sessions.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -64,6 +69,14 @@ def serialize_aws_json_1_1(value: AgentAccessConfigForUpdate) -> dict:
                 value["screen_image_format"]
             )
         )
+    if "user_control_mode" in value:
+        import capo_appstream.types.user_control_mode
+
+        out["UserControlMode"] = (
+            capo_appstream.types.user_control_mode.serialize_aws_json_1_1(
+                value["user_control_mode"]
+            )
+        )
     return out
 
 
@@ -95,6 +108,14 @@ def deserialize_aws_json_1_1(data: dict) -> AgentAccessConfigForUpdate:
         out["screen_image_format"] = (
             capo_appstream.types.screen_image_format.deserialize_aws_json_1_1(
                 data["ScreenImageFormat"]
+            )
+        )
+    if data.get("UserControlMode") is not None:
+        import capo_appstream.types.user_control_mode
+
+        out["user_control_mode"] = (
+            capo_appstream.types.user_control_mode.deserialize_aws_json_1_1(
+                data["UserControlMode"]
             )
         )
     return out

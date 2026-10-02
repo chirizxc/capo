@@ -1,0 +1,73 @@
+"""Generated from Smithy shape ``com.amazonaws.securityagent#ThreatModelSummary``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+from capo_securityagent.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import datetime
+
+
+class ThreatModelSummary(TypedDict, closed=True):
+    threat_model_id: "str"
+    """<p>The unique identifier of the threat model.</p>"""
+    agent_space_id: "str"
+    """<p>The unique identifier of the agent space that contains the threat model.</p>"""
+    title: "str"
+    """<p>The title of the threat model.</p>"""
+    created_at: NotRequired["datetime.datetime"]
+    """<p>The date and time the threat model was created, in UTC format.</p>"""
+    updated_at: NotRequired["datetime.datetime"]
+    """<p>The date and time the threat model was last updated, in UTC format.</p>"""
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: ThreatModelSummary) -> dict:
+    out: dict = {}
+    out["threatModelId"] = value["threat_model_id"]
+    out["agentSpaceId"] = value["agent_space_id"]
+    out["title"] = value["title"]
+    if "created_at" in value:
+        import capo_securityagent._protocol.serialize
+
+        out["createdAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
+            value["created_at"]
+        )
+    if "updated_at" in value:
+        import capo_securityagent._protocol.serialize
+
+        out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
+            value["updated_at"]
+        )
+    return out
+
+
+def deserialize_json(data: dict) -> ThreatModelSummary:
+    out: ThreatModelSummary = {}  # type: ignore[typeddict-item]
+    if data.get("threatModelId") is not None:
+        out["threat_model_id"] = data["threatModelId"]
+    else:
+        raise DeserializationError("ThreatModelSummary.threat_model_id required")
+    if data.get("agentSpaceId") is not None:
+        out["agent_space_id"] = data["agentSpaceId"]
+    else:
+        raise DeserializationError("ThreatModelSummary.agent_space_id required")
+    if data.get("title") is not None:
+        out["title"] = data["title"]
+    else:
+        raise DeserializationError("ThreatModelSummary.title required")
+    if data.get("createdAt") is not None:
+        import datetime
+
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
+        )
+    if data.get("updatedAt") is not None:
+        import datetime
+
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
+        )
+    return out

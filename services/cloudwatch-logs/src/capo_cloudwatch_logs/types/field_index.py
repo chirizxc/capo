@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.field_index_name
+    import capo_cloudwatch_logs.types.index_category
     import capo_cloudwatch_logs.types.index_type
     import capo_cloudwatch_logs.types.log_group_identifier
     import capo_cloudwatch_logs.types.timestamp
@@ -28,6 +29,10 @@ class FieldIndex(TypedDict, closed=True):
     """<p>The time and date of the most recent log event that matches this field index. </p>"""
     type: NotRequired["capo_cloudwatch_logs.types.index_type.IndexType"]
     """<p>The type of index. Specify <code>FACET</code> for facet-based indexing or <code>FIELD_INDEX</code> for field-based indexing. This determines how the field is indexed and can be queried.</p>"""
+    index_category: NotRequired[
+        "capo_cloudwatch_logs.types.index_category.IndexCategory"
+    ]
+    r"""<p>The category of the field index:</p> <ul> <li> <p> <code>DEFAULT</code>: Fields that CloudWatch Logs indexes by default. Examples include <code>@logStream</code> and <code>@data_format</code>.</p> </li> <li> <p> <code>CUSTOM</code>: Fields that you added manually to the field index policy. CloudWatch Logs always indexes these fields. These fields count toward the quota of 20 fields for each log group.</p> </li> <li> <p> <code>AUTO</code>: Fields that CloudWatch Logs indexes automatically based on your query patterns and usage. These fields do not count toward the field index quota. CloudWatch Logs might update these fields based on changes in your query patterns. To keep a field indexed permanently, add it to an account-level or log-group level field index policy.</p> </li> <li> <p> <code>INACTIVE</code>: Fields that CloudWatch Logs indexed before but does not index now. This happens if you remove a field from the field index policy or if CloudWatch Logs automatically selects a different field based on your queries.</p> </li> </ul> <p>For more information about automatically indexed fields, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing-Automatic.html\">Automatically indexed fields</a>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -49,6 +54,14 @@ def serialize_aws_json_1_1(value: FieldIndex) -> dict:
         out["type"] = capo_cloudwatch_logs.types.index_type.serialize_aws_json_1_1(
             value["type"]
         )
+    if "index_category" in value:
+        import capo_cloudwatch_logs.types.index_category
+
+        out["indexCategory"] = (
+            capo_cloudwatch_logs.types.index_category.serialize_aws_json_1_1(
+                value["index_category"]
+            )
+        )
     return out
 
 
@@ -69,5 +82,13 @@ def deserialize_aws_json_1_1(data: dict) -> FieldIndex:
 
         out["type"] = capo_cloudwatch_logs.types.index_type.deserialize_aws_json_1_1(
             data["type"]
+        )
+    if data.get("indexCategory") is not None:
+        import capo_cloudwatch_logs.types.index_category
+
+        out["index_category"] = (
+            capo_cloudwatch_logs.types.index_category.deserialize_aws_json_1_1(
+                data["indexCategory"]
+            )
         )
     return out

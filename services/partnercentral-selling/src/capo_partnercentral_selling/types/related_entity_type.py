@@ -7,6 +7,8 @@ RelatedEntityType: TypeAlias = Literal[
     "AwsProducts",
     "AwsMarketplaceOffers",
     "AwsMarketplaceOfferSets",
+    "AwsMarketplaceSolutions",
+    "AwsMarketplaceProducts",
 ]
 
 

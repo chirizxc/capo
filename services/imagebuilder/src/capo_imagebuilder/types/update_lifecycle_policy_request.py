@@ -23,23 +23,23 @@ class UpdateLifecyclePolicyRequest(TypedDict, closed=True):
     )
     """<p>The Amazon Resource Name (ARN) of the lifecycle policy resource.</p>"""
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>Optional description for the lifecycle policy.</p>"""
+    """<p>Optional description for the lifecycle policy. Because the update replaces the entire configuration, omitting this property removes any existing description.</p>"""
     status: NotRequired[
         "capo_imagebuilder.types.lifecycle_policy_status.LifecyclePolicyStatus"
     ]
-    """<p>Indicates whether the lifecycle policy resource is enabled.</p>"""
+    """<p>Indicates whether the lifecycle policy resource is enabled. Defaults to <code>ENABLED</code> when omitted, so updating a disabled policy without setting this property re-enables it.</p>"""
     execution_role: "capo_imagebuilder.types.role_name_or_arn.RoleNameOrArn"
-    """<p>The name or Amazon Resource Name (ARN) of the IAM role that Image Builder uses to update the lifecycle policy.</p>"""
+    """<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to run lifecycle actions.</p>"""
     resource_type: "capo_imagebuilder.types.lifecycle_policy_resource_type.LifecyclePolicyResourceType"
-    """<p>The type of image resource that the lifecycle policy applies to.</p>"""
+    """<p>The type of image resource that the lifecycle policy applies to. The value must match the policy's existing resource type. You can't change the resource type of an existing lifecycle policy.</p>"""
     policy_details: (
         "capo_imagebuilder.types.lifecycle_policy_details.LifecyclePolicyDetails"
     )
     """<p>The configuration details for a lifecycle policy resource.</p>"""
     resource_selection: "capo_imagebuilder.types.lifecycle_policy_resource_selection.LifecyclePolicyResourceSelection"
-    """<p>Selection criteria for resources that the lifecycle policy applies to.</p>"""
+    """<p>Selection criteria for resources that the lifecycle policy applies to. You must specify exactly one selection criteria: either recipes or a tag map, not both.</p>"""
     client_token: "capo_imagebuilder.types.client_token.ClientToken"
-    r"""<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
+    r"""<p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
 
 
 # --- restJson1 ser/de ---

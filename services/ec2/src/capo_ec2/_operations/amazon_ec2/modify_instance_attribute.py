@@ -13,16 +13,20 @@ import capo_ec2._auth._sigv4
 import capo_ec2._protocol.eventstream
 import capo_ec2.types.attribute_boolean_value
 import capo_ec2.types.attribute_value
-import capo_ec2.types.blob_attribute_value
 import capo_ec2.types.enclave_options_request
 import capo_ec2.types.group_id_string_list
 import capo_ec2.types.instance_attribute_name
 import capo_ec2.types.instance_block_device_mapping_specification_list
 import capo_ec2.types.modify_instance_attribute_request
+import capo_ec2.types.secure_blob_attribute_value
 from capo_ec2._protocol.errors import parse_error_metadata
 from capo_ec2._protocol.xml import fromstring
 from capo_ec2._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_ec2._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_ec2._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_ec2.errors import UnknownServiceError
 
 
@@ -102,7 +106,7 @@ def modify_instance_attribute(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -117,7 +121,7 @@ async def async_modify_instance_attribute(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

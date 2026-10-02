@@ -18,7 +18,7 @@ class LaunchTemplateConfiguration(TypedDict, closed=True):
     account_id: NotRequired["capo_imagebuilder.types.account_id.AccountId"]
     """<p>The account ID that this configuration applies to.</p>"""
     set_default_version: "capo_imagebuilder.types.boolean.Boolean"
-    """<p>Set the specified Amazon EC2 launch template as the default launch template for the specified account.</p>"""
+    """<p>Specifies whether to make the new launch template version that Image Builder creates the default version of the launch template. If you don't set a value, Image Builder treats it as <code>true</code>.</p>"""
 
 
 # --- restJson1 ser/de ---

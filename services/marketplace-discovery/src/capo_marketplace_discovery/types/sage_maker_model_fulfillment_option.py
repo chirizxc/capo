@@ -8,7 +8,9 @@ from capo_marketplace_discovery.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_marketplace_discovery.types.fulfillment_option_type
+    import capo_marketplace_discovery.types.sage_maker_model_content_type_list
     import capo_marketplace_discovery.types.sage_maker_model_recommendation
+    import capo_marketplace_discovery.types.sage_maker_model_response_mime_type_list
 
 
 class SageMakerModelFulfillmentOption(TypedDict, closed=True):
@@ -30,6 +32,14 @@ class SageMakerModelFulfillmentOption(TypedDict, closed=True):
         "capo_marketplace_discovery.types.sage_maker_model_recommendation.SageMakerModelRecommendation"
     ]
     """<p>Recommended instance types for inference with this model.</p>"""
+    supported_content_types: NotRequired[
+        "capo_marketplace_discovery.types.sage_maker_model_content_type_list.SageMakerModelContentTypeList"
+    ]
+    """<p>The MIME types that this model accepts as input.</p>"""
+    supported_response_mime_types: NotRequired[
+        "capo_marketplace_discovery.types.sage_maker_model_response_mime_type_list.SageMakerModelResponseMimeTypeList"
+    ]
+    """<p>The MIME types that this model returns as output.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -56,6 +66,22 @@ def serialize_json(value: SageMakerModelFulfillmentOption) -> dict:
         out["recommendation"] = (
             capo_marketplace_discovery.types.sage_maker_model_recommendation.serialize_json(
                 value["recommendation"]
+            )
+        )
+    if "supported_content_types" in value:
+        import capo_marketplace_discovery.types.sage_maker_model_content_type_list
+
+        out["supportedContentTypes"] = (
+            capo_marketplace_discovery.types.sage_maker_model_content_type_list.serialize_json(
+                value["supported_content_types"]
+            )
+        )
+    if "supported_response_mime_types" in value:
+        import capo_marketplace_discovery.types.sage_maker_model_response_mime_type_list
+
+        out["supportedResponseMimeTypes"] = (
+            capo_marketplace_discovery.types.sage_maker_model_response_mime_type_list.serialize_json(
+                value["supported_response_mime_types"]
             )
         )
     return out
@@ -99,6 +125,22 @@ def deserialize_json(data: dict) -> SageMakerModelFulfillmentOption:
         out["recommendation"] = (
             capo_marketplace_discovery.types.sage_maker_model_recommendation.deserialize_json(
                 data["recommendation"]
+            )
+        )
+    if data.get("supportedContentTypes") is not None:
+        import capo_marketplace_discovery.types.sage_maker_model_content_type_list
+
+        out["supported_content_types"] = (
+            capo_marketplace_discovery.types.sage_maker_model_content_type_list.deserialize_json(
+                data["supportedContentTypes"]
+            )
+        )
+    if data.get("supportedResponseMimeTypes") is not None:
+        import capo_marketplace_discovery.types.sage_maker_model_response_mime_type_list
+
+        out["supported_response_mime_types"] = (
+            capo_marketplace_discovery.types.sage_maker_model_response_mime_type_list.deserialize_json(
+                data["supportedResponseMimeTypes"]
             )
         )
     return out

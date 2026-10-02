@@ -1,7 +1,7 @@
 [project]
 name = "capo-sso-oidc"
-version = "0.8.0"
-description = "Python SDK for SSO Oidc."
+version = "0.11.0"
+description = "Python SDK for AWS SSO Oidc."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
@@ -21,6 +21,10 @@ classifiers = [
 dependencies = [
     "zapros>=0.13.0",
 ]
+
+[project.optional-dependencies]
+# Async file request bodies via Body.async_from_path
+anyio = ["anyio>=3.0"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

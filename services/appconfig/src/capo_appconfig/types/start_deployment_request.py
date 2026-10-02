@@ -10,22 +10,24 @@ if TYPE_CHECKING:
     import capo_appconfig.types.deployment_strategy_id
     import capo_appconfig.types.description
     import capo_appconfig.types.dynamic_parameter_map
-    import capo_appconfig.types.id
+    import capo_appconfig.types.integer
     import capo_appconfig.types.kms_key_identifier
+    import capo_appconfig.types.long_name
+    import capo_appconfig.types.name
     import capo_appconfig.types.tag_map
     import capo_appconfig.types.version
 
 
 class StartDeploymentRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
-    environment_id: "capo_appconfig.types.id.Id"
+    environment_id: "capo_appconfig.types.name.Name"
     """<p>The environment ID.</p>"""
     deployment_strategy_id: (
         "capo_appconfig.types.deployment_strategy_id.DeploymentStrategyId"
     )
     """<p>The deployment strategy ID.</p>"""
-    configuration_profile_id: "capo_appconfig.types.id.Id"
+    configuration_profile_id: "capo_appconfig.types.long_name.LongName"
     """<p>The configuration profile ID.</p>"""
     configuration_version: "capo_appconfig.types.version.Version"
     """<p>The configuration version to deploy. If deploying an AppConfig hosted configuration version, you can specify either the version number or version label. For all other configurations, you must specify the version number.</p>"""
@@ -41,6 +43,8 @@ class StartDeploymentRequest(TypedDict, closed=True):
         "capo_appconfig.types.dynamic_parameter_map.DynamicParameterMap"
     ]
     """<p>A map of dynamic extension parameter names to values to pass to associated extensions with <code>PRE_START_DEPLOYMENT</code> actions.</p>"""
+    latest_deployment_number: NotRequired["capo_appconfig.types.integer.Integer"]
+    """<p>The number of the latest deployment. Use this value to ensure that the deployment starts from the expected state and to prevent conflicting updates.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -65,6 +69,8 @@ def serialize_json(value: StartDeploymentRequest) -> dict:
                 value["dynamic_extension_parameters"]
             )
         )
+    if "latest_deployment_number" in value:
+        out["LatestDeploymentNumber"] = value["latest_deployment_number"]
     return out
 
 
@@ -104,4 +110,6 @@ def deserialize_json(data: dict) -> StartDeploymentRequest:
                 data["DynamicExtensionParameters"]
             )
         )
+    if data.get("LatestDeploymentNumber") is not None:
+        out["latest_deployment_number"] = data["LatestDeploymentNumber"]
     return out

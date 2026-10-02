@@ -19,6 +19,37 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_sagemaker_geospatial import AsyncSageMakerGeospatialClient
+
+
+async def main():
+    async with AsyncSageMakerGeospatialClient() as sage_maker_geospatial:
+        # Example: paginate over list_earth_observation_jobs
+        async for item in sage_maker_geospatial.iter_list_earth_observation_jobs():
+            print(item)
+```
+
+## Streaming Response
+
+Some operations return a streaming response body. Use the operation as an async context manager and iterate over the response field to read chunks.
+
+```python
+from capo_sagemaker_geospatial import AsyncSageMakerGeospatialClient
+
+
+async def main():
+    async with AsyncSageMakerGeospatialClient() as sage_maker_geospatial:
+        # Example: call get_tile and read the streaming response
+        async with sage_maker_geospatial.get_tile() as response:
+            async for chunk in response["binary_file"]:
+                print(chunk)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

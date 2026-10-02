@@ -14,6 +14,7 @@ from capo_mgn._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_mgn.types.cidr_mappings_list
     import capo_mgn.types.code_generation_output_format_types
     import capo_mgn.types.construct_id
     import capo_mgn.types.create_network_migration_definition_request
@@ -100,6 +101,7 @@ if TYPE_CHECKING:
     import capo_mgn.types.target_s3_configuration_update
     import capo_mgn.types.update_network_migration_definition_request
     import capo_mgn.types.update_network_migration_mapper_segment_request
+    import capo_mgn.types.vpc_provisioning_strategy
     from capo_mgn._services.async_mgn import AsyncmgnClient, AsyncmgnClientConfig
     from capo_mgn._services.mgn import mgnClient, mgnClientConfig
 
@@ -124,6 +126,12 @@ class NetworkMigrationDefinitionResource:
         target_deployment: Optional[
             "capo_mgn.types.target_deployment.TargetDeployment"
         ] = None,
+        vpc_provisioning_strategy: Optional[
+            "capo_mgn.types.vpc_provisioning_strategy.VpcProvisioningStrategy"
+        ] = None,
+        cidr_mappings: Optional[
+            "capo_mgn.types.cidr_mappings_list.CidrMappingsList"
+        ] = None,
         tags: Optional["capo_mgn.types.tags_map.TagsMap"] = None,
         scope_tags: Optional["capo_mgn.types.scope_tags_map.ScopeTagsMap"] = None,
     ) -> "capo_mgn.types.network_migration_definition.NetworkMigrationDefinition":
@@ -136,11 +144,13 @@ class NetworkMigrationDefinitionResource:
             target_s3_configuration: <p>The S3 configuration for storing the target network artifacts.</p>
             target_network: <p>The target network configuration including topology and CIDR ranges.</p>
             target_deployment: <p>The target deployment configuration for the migrated network.</p>
+            vpc_provisioning_strategy: <p>Specifies whether to create new target VPCs or use existing ones. Set to <code>CREATE_NEW</code> to provision new target VPCs as part of the migration, or <code>USE_EXISTING</code> to migrate into existing VPCs in the target account.</p>
+            cidr_mappings: <p>A list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when <code>vpcProvisioningStrategy</code> is set to <code>USE_EXISTING</code>.</p>
             tags: <p>Tags to assign to the network migration definition.</p>
             scope_tags: <p>Scope tags for the network migration definition to control access and organization.</p>
 
         Raises:
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
 
@@ -176,6 +186,10 @@ class NetworkMigrationDefinitionResource:
             input_["source_configurations"] = source_configurations
         if target_deployment is not None:
             input_["target_deployment"] = target_deployment
+        if vpc_provisioning_strategy is not None:
+            input_["vpc_provisioning_strategy"] = vpc_provisioning_strategy
+        if cidr_mappings is not None:
+            input_["cidr_mappings"] = cidr_mappings
         if tags is not None:
             input_["tags"] = tags
         if scope_tags is not None:
@@ -212,6 +226,12 @@ class NetworkMigrationDefinitionResource:
         target_deployment: Optional[
             "capo_mgn.types.target_deployment.TargetDeployment"
         ] = None,
+        vpc_provisioning_strategy: Optional[
+            "capo_mgn.types.vpc_provisioning_strategy.VpcProvisioningStrategy"
+        ] = None,
+        cidr_mappings: Optional[
+            "capo_mgn.types.cidr_mappings_list.CidrMappingsList"
+        ] = None,
         scope_tags: Optional["capo_mgn.types.scope_tags_map.ScopeTagsMap"] = None,
     ) -> "capo_mgn.types.network_migration_definition.NetworkMigrationDefinition":
         """<p>Updates an existing network migration definition with new source or target configurations.</p>
@@ -224,10 +244,12 @@ class NetworkMigrationDefinitionResource:
             target_s3_configuration: <p>The updated S3 configuration for storing the target network artifacts.</p>
             target_network: <p>The updated target network configuration.</p>
             target_deployment: <p>The updated target deployment configuration.</p>
+            vpc_provisioning_strategy: <p>Updates whether the migration creates new target VPCs or uses existing ones. Set to <code>USE_EXISTING</code> to migrate into existing VPCs in the target account, or to <code>CREATE_NEW</code> to provision new target VPCs.</p>
+            cidr_mappings: <p>The updated list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when <code>vpcProvisioningStrategy</code> is set to <code>USE_EXISTING</code>.</p>
             scope_tags: <p>The updated scope tags for the network migration definition.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -268,6 +290,10 @@ class NetworkMigrationDefinitionResource:
             input_["target_network"] = target_network
         if target_deployment is not None:
             input_["target_deployment"] = target_deployment
+        if vpc_provisioning_strategy is not None:
+            input_["vpc_provisioning_strategy"] = vpc_provisioning_strategy
+        if cidr_mappings is not None:
+            input_["cidr_mappings"] = cidr_mappings
         if scope_tags is not None:
             input_["scope_tags"] = scope_tags
 
@@ -291,7 +317,7 @@ class NetworkMigrationDefinitionResource:
             network_migration_definition_id: <p>The unique identifier of the network migration definition to delete.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -347,7 +373,7 @@ class NetworkMigrationDefinitionResource:
             max_results: <p>The maximum number of results to return in a single call.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -399,7 +425,7 @@ class NetworkMigrationDefinitionResource:
             network_migration_definition_id: <p>The unique identifier of the network migration definition to retrieve.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
 
@@ -454,7 +480,7 @@ class NetworkMigrationDefinitionResource:
             construct_id: <p>The unique identifier of the construct within the segment.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -517,7 +543,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -585,7 +611,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -653,7 +679,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -721,7 +747,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -785,7 +811,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -851,7 +877,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -917,7 +943,7 @@ class NetworkMigrationDefinitionResource:
             max_results: <p>The maximum number of results to return in a single call.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
 
@@ -984,7 +1010,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -1056,7 +1082,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -1124,7 +1150,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -1192,7 +1218,7 @@ class NetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -1252,10 +1278,10 @@ class NetworkMigrationDefinitionResource:
             network_migration_definition_id: <p>The unique identifier of the network migration definition.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1312,10 +1338,10 @@ class NetworkMigrationDefinitionResource:
             code_generation_output_format_types: <p>The output format types for code generation, such as CloudFormation or Terraform.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1372,10 +1398,10 @@ class NetworkMigrationDefinitionResource:
             network_migration_definition_id: <p>The unique identifier of the network migration definition.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1432,10 +1458,10 @@ class NetworkMigrationDefinitionResource:
             security_group_mapping_strategy: <p>The security group mapping strategy to use.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1498,10 +1524,10 @@ class NetworkMigrationDefinitionResource:
             segments: <p>A list of segment updates to apply.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1564,7 +1590,7 @@ class NetworkMigrationDefinitionResource:
             scope_tags: <p>The updated scope tags for the segment.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1627,6 +1653,12 @@ class AsyncNetworkMigrationDefinitionResource:
         target_deployment: Optional[
             "capo_mgn.types.target_deployment.TargetDeployment"
         ] = None,
+        vpc_provisioning_strategy: Optional[
+            "capo_mgn.types.vpc_provisioning_strategy.VpcProvisioningStrategy"
+        ] = None,
+        cidr_mappings: Optional[
+            "capo_mgn.types.cidr_mappings_list.CidrMappingsList"
+        ] = None,
         tags: Optional["capo_mgn.types.tags_map.TagsMap"] = None,
         scope_tags: Optional["capo_mgn.types.scope_tags_map.ScopeTagsMap"] = None,
     ) -> "capo_mgn.types.network_migration_definition.NetworkMigrationDefinition":
@@ -1639,11 +1671,13 @@ class AsyncNetworkMigrationDefinitionResource:
             target_s3_configuration: <p>The S3 configuration for storing the target network artifacts.</p>
             target_network: <p>The target network configuration including topology and CIDR ranges.</p>
             target_deployment: <p>The target deployment configuration for the migrated network.</p>
+            vpc_provisioning_strategy: <p>Specifies whether to create new target VPCs or use existing ones. Set to <code>CREATE_NEW</code> to provision new target VPCs as part of the migration, or <code>USE_EXISTING</code> to migrate into existing VPCs in the target account.</p>
+            cidr_mappings: <p>A list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when <code>vpcProvisioningStrategy</code> is set to <code>USE_EXISTING</code>.</p>
             tags: <p>Tags to assign to the network migration definition.</p>
             scope_tags: <p>Scope tags for the network migration definition to control access and organization.</p>
 
         Raises:
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
 
@@ -1680,6 +1714,10 @@ class AsyncNetworkMigrationDefinitionResource:
             input_["source_configurations"] = source_configurations
         if target_deployment is not None:
             input_["target_deployment"] = target_deployment
+        if vpc_provisioning_strategy is not None:
+            input_["vpc_provisioning_strategy"] = vpc_provisioning_strategy
+        if cidr_mappings is not None:
+            input_["cidr_mappings"] = cidr_mappings
         if tags is not None:
             input_["tags"] = tags
         if scope_tags is not None:
@@ -1716,6 +1754,12 @@ class AsyncNetworkMigrationDefinitionResource:
         target_deployment: Optional[
             "capo_mgn.types.target_deployment.TargetDeployment"
         ] = None,
+        vpc_provisioning_strategy: Optional[
+            "capo_mgn.types.vpc_provisioning_strategy.VpcProvisioningStrategy"
+        ] = None,
+        cidr_mappings: Optional[
+            "capo_mgn.types.cidr_mappings_list.CidrMappingsList"
+        ] = None,
         scope_tags: Optional["capo_mgn.types.scope_tags_map.ScopeTagsMap"] = None,
     ) -> "capo_mgn.types.network_migration_definition.NetworkMigrationDefinition":
         """<p>Updates an existing network migration definition with new source or target configurations.</p>
@@ -1728,10 +1772,12 @@ class AsyncNetworkMigrationDefinitionResource:
             target_s3_configuration: <p>The updated S3 configuration for storing the target network artifacts.</p>
             target_network: <p>The updated target network configuration.</p>
             target_deployment: <p>The updated target deployment configuration.</p>
+            vpc_provisioning_strategy: <p>Updates whether the migration creates new target VPCs or uses existing ones. Set to <code>USE_EXISTING</code> to migrate into existing VPCs in the target account, or to <code>CREATE_NEW</code> to provision new target VPCs.</p>
+            cidr_mappings: <p>The updated list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when <code>vpcProvisioningStrategy</code> is set to <code>USE_EXISTING</code>.</p>
             scope_tags: <p>The updated scope tags for the network migration definition.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1773,6 +1819,10 @@ class AsyncNetworkMigrationDefinitionResource:
             input_["target_network"] = target_network
         if target_deployment is not None:
             input_["target_deployment"] = target_deployment
+        if vpc_provisioning_strategy is not None:
+            input_["vpc_provisioning_strategy"] = vpc_provisioning_strategy
+        if cidr_mappings is not None:
+            input_["cidr_mappings"] = cidr_mappings
         if scope_tags is not None:
             input_["scope_tags"] = scope_tags
 
@@ -1796,7 +1846,7 @@ class AsyncNetworkMigrationDefinitionResource:
             network_migration_definition_id: <p>The unique identifier of the network migration definition to delete.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1853,7 +1903,7 @@ class AsyncNetworkMigrationDefinitionResource:
             max_results: <p>The maximum number of results to return in a single call.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -1906,7 +1956,7 @@ class AsyncNetworkMigrationDefinitionResource:
             network_migration_definition_id: <p>The unique identifier of the network migration definition to retrieve.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
 
@@ -1962,7 +2012,7 @@ class AsyncNetworkMigrationDefinitionResource:
             construct_id: <p>The unique identifier of the construct within the segment.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2026,7 +2076,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2095,7 +2145,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2164,7 +2214,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2233,7 +2283,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2298,7 +2348,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2365,7 +2415,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2432,7 +2482,7 @@ class AsyncNetworkMigrationDefinitionResource:
             max_results: <p>The maximum number of results to return in a single call.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
 
@@ -2500,7 +2550,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2573,7 +2623,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2642,7 +2692,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2711,7 +2761,7 @@ class AsyncNetworkMigrationDefinitionResource:
             next_token: <p>The token for the next page of results.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -2772,10 +2822,10 @@ class AsyncNetworkMigrationDefinitionResource:
             network_migration_definition_id: <p>The unique identifier of the network migration definition.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2833,10 +2883,10 @@ class AsyncNetworkMigrationDefinitionResource:
             code_generation_output_format_types: <p>The output format types for code generation, such as CloudFormation or Terraform.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2894,10 +2944,10 @@ class AsyncNetworkMigrationDefinitionResource:
             network_migration_definition_id: <p>The unique identifier of the network migration definition.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2955,10 +3005,10 @@ class AsyncNetworkMigrationDefinitionResource:
             security_group_mapping_strategy: <p>The security group mapping strategy to use.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -3022,10 +3072,10 @@ class AsyncNetworkMigrationDefinitionResource:
             segments: <p>A list of segment updates to apply.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.throttling_exception.ThrottlingException: <p>Reached throttling quota exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -3089,7 +3139,7 @@ class AsyncNetworkMigrationDefinitionResource:
             scope_tags: <p>The updated scope tags for the segment.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.

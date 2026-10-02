@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_ec2.types.boolean
     import capo_ec2.types.capacity_reservation_id
     import capo_ec2.types.integer
+    import capo_ec2.types.zero_size_preference
 
 
 class UpdateInterruptibleCapacityReservationAllocationRequest(TypedDict, closed=True):
@@ -21,6 +22,10 @@ class UpdateInterruptibleCapacityReservationAllocationRequest(TypedDict, closed=
     """<p> The new number of instances to allocate. Enter a higher number to add more capacity to share, or a lower number to reclaim capacity to your source Capacity Reservation. </p>"""
     dry_run: NotRequired["capo_ec2.types.boolean.Boolean"]
     """<p> Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. </p>"""
+    zero_size_preference: NotRequired[
+        "capo_ec2.types.zero_size_preference.ZeroSizePreference"
+    ]
+    """<p> Specifies the updated behavior for the interruptible Capacity Reservation when you reduce its allocation to zero instances. Specify <code>retain</code> to keep the interruptible Capacity Reservation active at zero capacity so that you can allocate instances to it again later. Specify <code>default</code> to cancel the interruptible Capacity Reservation and return the capacity to your source Capacity Reservation. </p>"""
 
 
 # --- ec2Query ser/de ---
@@ -43,6 +48,12 @@ def serialize_ec2_query(
         )
     if "dry_run" in value:
         pairs.append((f"{key_prefix}DryRun", "true" if value["dry_run"] else "false"))
+    if "zero_size_preference" in value:
+        import capo_ec2.types.zero_size_preference
+
+        capo_ec2.types.zero_size_preference.serialize_ec2_query(
+            value["zero_size_preference"], pairs, f"{key_prefix}ZeroSizePreference"
+        )
 
 
 def deserialize_ec2_query(
@@ -58,4 +69,13 @@ def deserialize_ec2_query(
     child_dry_run = el.find("DryRun")
     if child_dry_run is not None:
         out["dry_run"] = (child_dry_run.text or "").lower() == "true"
+    child_zero_size_preference = el.find("ZeroSizePreference")
+    if child_zero_size_preference is not None:
+        import capo_ec2.types.zero_size_preference
+
+        out["zero_size_preference"] = (
+            capo_ec2.types.zero_size_preference.deserialize_ec2_query(
+                child_zero_size_preference
+            )
+        )
     return out

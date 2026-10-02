@@ -12,6 +12,7 @@ from typing_extensions import Never
 import capo_quicksight._auth._signers
 import capo_quicksight._auth._sigv4
 import capo_quicksight._protocol.eventstream
+import capo_quicksight.errors.access_denied_exception
 import capo_quicksight.errors.internal_failure_exception
 import capo_quicksight.errors.invalid_next_token_exception
 import capo_quicksight.errors.invalid_parameter_value_exception
@@ -24,7 +25,11 @@ import capo_quicksight.types.topic_search_filter_list
 import capo_quicksight.types.topic_summaries
 from capo_quicksight._protocol.errors import parse_error_metadata_json
 from capo_quicksight._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_quicksight._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_quicksight._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_quicksight.errors import UnknownServiceError
 
 
@@ -32,6 +37,10 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "AccessDeniedException":
+            raise capo_quicksight.errors.access_denied_exception.AccessDeniedException.from_json(
+                data, message
+            )
         case "InternalFailureException":
             raise capo_quicksight.errors.internal_failure_exception.InternalFailureException.from_json(
                 data, message
@@ -152,7 +161,7 @@ def search_topics(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -169,7 +178,7 @@ async def async_search_topics(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

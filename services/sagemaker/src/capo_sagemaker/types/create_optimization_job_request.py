@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.optimization_job_max_instance_count
     import capo_sagemaker.types.optimization_job_model_source
     import capo_sagemaker.types.optimization_job_output_config
+    import capo_sagemaker.types.optimization_job_training_plan_arns
     import capo_sagemaker.types.optimization_vpc_config
     import capo_sagemaker.types.role_arn
     import capo_sagemaker.types.stopping_condition
@@ -56,6 +57,10 @@ class CreateOptimizationJobRequest(TypedDict, closed=True):
         "capo_sagemaker.types.optimization_vpc_config.OptimizationVpcConfig"
     ]
     """<p>A VPC in Amazon VPC that your optimized model has access to.</p>"""
+    training_plan_arns: NotRequired[
+        "capo_sagemaker.types.optimization_job_training_plan_arns.OptimizationJobTrainingPlanArns"
+    ]
+    r"""<p>The Amazon Resource Name (ARN) of the training plan to use for this optimization job.</p> <p>When you use reserved capacity from a training plan, the optimization job runs on that reserved capacity instead of on-demand capacity. If you omit this field, the job uses on-demand capacity. You can specify at most one training plan.</p> <p>For more information about how to reserve GPU capacity for your optimization jobs using Amazon SageMaker Training Plans, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/reserve-capacity-with-training-plans.html\">Reserve capacity with training plans</a>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -129,6 +134,14 @@ def serialize_aws_json_1_1(value: CreateOptimizationJobRequest) -> dict:
                 value["vpc_config"]
             )
         )
+    if "training_plan_arns" in value:
+        import capo_sagemaker.types.optimization_job_training_plan_arns
+
+        out["TrainingPlanArns"] = (
+            capo_sagemaker.types.optimization_job_training_plan_arns.serialize_aws_json_1_1(
+                value["training_plan_arns"]
+            )
+        )
     return out
 
 
@@ -200,6 +213,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateOptimizationJobRequest:
         out["vpc_config"] = (
             capo_sagemaker.types.optimization_vpc_config.deserialize_aws_json_1_1(
                 data["VpcConfig"]
+            )
+        )
+    if data.get("TrainingPlanArns") is not None:
+        import capo_sagemaker.types.optimization_job_training_plan_arns
+
+        out["training_plan_arns"] = (
+            capo_sagemaker.types.optimization_job_training_plan_arns.deserialize_aws_json_1_1(
+                data["TrainingPlanArns"]
             )
         )
     return out

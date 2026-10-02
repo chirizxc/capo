@@ -7,6 +7,7 @@ ResourceConfigurationType: TypeAlias = Literal[
     "CHILD",
     "SINGLE",
     "ARN",
+    "CIDR",
 ]
 
 

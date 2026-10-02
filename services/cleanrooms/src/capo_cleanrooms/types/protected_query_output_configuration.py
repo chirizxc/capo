@@ -7,6 +7,7 @@ from typing_extensions import TypedDict
 from capo_cleanrooms.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
+    import capo_cleanrooms.types.intermediate_table_output_configuration
     import capo_cleanrooms.types.protected_query_distribute_output_configuration
     import capo_cleanrooms.types.protected_query_member_output_configuration
     import capo_cleanrooms.types.protected_query_s3_output_configuration
@@ -24,10 +25,15 @@ class _ProtectedQueryOutputConfiguration_distribute(TypedDict, closed=True):
     distribute: "capo_cleanrooms.types.protected_query_distribute_output_configuration.ProtectedQueryDistributeOutputConfiguration"
 
 
+class _ProtectedQueryOutputConfiguration_intermediateTable(TypedDict, closed=True):
+    intermediateTable: "capo_cleanrooms.types.intermediate_table_output_configuration.IntermediateTableOutputConfiguration"
+
+
 ProtectedQueryOutputConfiguration: TypeAlias = (
     _ProtectedQueryOutputConfiguration_s3
     | _ProtectedQueryOutputConfiguration_member
     | _ProtectedQueryOutputConfiguration_distribute
+    | _ProtectedQueryOutputConfiguration_intermediateTable
 )
 
 
@@ -55,6 +61,14 @@ def serialize_json(value: ProtectedQueryOutputConfiguration) -> dict:
         return {
             "distribute": capo_cleanrooms.types.protected_query_distribute_output_configuration.serialize_json(
                 value["distribute"]
+            )
+        }
+    elif "intermediateTable" in value:
+        import capo_cleanrooms.types.intermediate_table_output_configuration
+
+        return {
+            "intermediateTable": capo_cleanrooms.types.intermediate_table_output_configuration.serialize_json(
+                value["intermediateTable"]
             )
         }
     else:
@@ -86,6 +100,14 @@ def deserialize_json(data: dict) -> ProtectedQueryOutputConfiguration:
         return {
             "distribute": capo_cleanrooms.types.protected_query_distribute_output_configuration.deserialize_json(
                 data["distribute"]
+            )
+        }
+    elif data.get("intermediateTable") is not None:
+        import capo_cleanrooms.types.intermediate_table_output_configuration
+
+        return {
+            "intermediateTable": capo_cleanrooms.types.intermediate_table_output_configuration.deserialize_json(
+                data["intermediateTable"]
             )
         }
     else:

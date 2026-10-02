@@ -2,12 +2,13 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.association_capabilities
     import capo_devops_agent.types.service_configuration
     import capo_devops_agent.types.service_id
 
@@ -19,6 +20,10 @@ class AssociateServiceInput(TypedDict, closed=True):
     """<p>The unique identifier of the service.</p>"""
     configuration: "capo_devops_agent.types.service_configuration.ServiceConfiguration"
     """<p>The configuration that directs how AgentSpace interacts with the given service.</p>"""
+    capabilities: NotRequired[
+        "capo_devops_agent.types.association_capabilities.AssociationCapabilities"
+    ]
+    """<p>Enabled capabilities for this association.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -30,6 +35,14 @@ def serialize_json(value: AssociateServiceInput) -> dict:
     out["configuration"] = capo_devops_agent.types.service_configuration.serialize_json(
         value["configuration"]
     )
+    if "capabilities" in value:
+        import capo_devops_agent.types.association_capabilities
+
+        out["capabilities"] = (
+            capo_devops_agent.types.association_capabilities.serialize_json(
+                value["capabilities"]
+            )
+        )
     return out
 
 
@@ -49,4 +62,12 @@ def deserialize_json(data: dict) -> AssociateServiceInput:
         )
     else:
         raise DeserializationError("AssociateServiceInput.configuration required")
+    if data.get("capabilities") is not None:
+        import capo_devops_agent.types.association_capabilities
+
+        out["capabilities"] = (
+            capo_devops_agent.types.association_capabilities.deserialize_json(
+                data["capabilities"]
+            )
+        )
     return out

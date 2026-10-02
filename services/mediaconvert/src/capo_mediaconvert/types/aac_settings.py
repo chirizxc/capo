@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_mediaconvert.types.aac_codec_profile
     import capo_mediaconvert.types.aac_coding_mode
     import capo_mediaconvert.types.aac_loudness_measurement_mode
+    import capo_mediaconvert.types.aac_passthrough_control
     import capo_mediaconvert.types.aac_rate_control_mode
     import capo_mediaconvert.types.aac_raw_format
     import capo_mediaconvert.types.aac_specification
@@ -38,6 +39,10 @@ class AacSettings(TypedDict, closed=True):
         "capo_mediaconvert.types.aac_loudness_measurement_mode.AacLoudnessMeasurementMode"
     ]
     """Choose the loudness measurement mode for your audio content. For music or advertisements: We recommend that you keep the default value, Program. For speech or other content: We recommend that you choose Anchor. When you do, MediaConvert optimizes the loudness of your output for clarify by applying speech gates."""
+    passthrough_control: NotRequired[
+        "capo_mediaconvert.types.aac_passthrough_control.AacPassthroughControl"
+    ]
+    """When set to WHEN_POSSIBLE, input AAC audio will be passed through if it is present on the input. This detection is dynamic over the life of the transcode. Inputs that alternate between AAC and non-AAC content will have a consistent AAC output as the system alternates between passthrough and encoding."""
     rap_interval: NotRequired[
         "capo_mediaconvert.types.__integer_min2000_max30000.__integerMin2000Max30000"
     ]
@@ -95,6 +100,14 @@ def serialize_json(value: AacSettings) -> dict:
         out["loudnessMeasurementMode"] = (
             capo_mediaconvert.types.aac_loudness_measurement_mode.serialize_json(
                 value["loudness_measurement_mode"]
+            )
+        )
+    if "passthrough_control" in value:
+        import capo_mediaconvert.types.aac_passthrough_control
+
+        out["passthroughControl"] = (
+            capo_mediaconvert.types.aac_passthrough_control.serialize_json(
+                value["passthrough_control"]
             )
         )
     if "rap_interval" in value:
@@ -164,6 +177,14 @@ def deserialize_json(data: dict) -> AacSettings:
         out["loudness_measurement_mode"] = (
             capo_mediaconvert.types.aac_loudness_measurement_mode.deserialize_json(
                 data["loudnessMeasurementMode"]
+            )
+        )
+    if data.get("passthroughControl") is not None:
+        import capo_mediaconvert.types.aac_passthrough_control
+
+        out["passthrough_control"] = (
+            capo_mediaconvert.types.aac_passthrough_control.deserialize_json(
+                data["passthroughControl"]
             )
         )
     if data.get("rapInterval") is not None:

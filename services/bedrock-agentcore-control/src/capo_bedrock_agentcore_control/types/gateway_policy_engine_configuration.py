@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 class GatewayPolicyEngineConfiguration(TypedDict, closed=True):
     arn: "capo_bedrock_agentcore_control.types.gateway_policy_engine_arn.GatewayPolicyEngineArn"
-    """<p>The ARN of the policy engine. The policy engine contains Cedar policies that define fine-grained authorization rules specifying who can perform what actions on which resources as agents interact through the gateway.</p>"""
+    """<p>The ARN of the policy engine. The policy engine contains Cedar or Dogwood policies that define fine-grained authorization rules specifying who can perform what actions on which resources as agents interact through the gateway.</p>"""
     mode: "capo_bedrock_agentcore_control.types.gateway_policy_engine_mode.GatewayPolicyEngineMode"
     """<p>The enforcement mode for the policy engine. Valid values include:</p> <ul> <li> <p> <code>LOG_ONLY</code> - The policy engine evaluates each action against your policies and adds traces on whether tool calls would be allowed or denied, but does not enforce the decision. Use this mode to test and validate policies before enabling enforcement.</p> </li> <li> <p> <code>ENFORCE</code> - The policy engine evaluates actions against your policies and enforces decisions by allowing or denying agent operations. Test and validate policies in <code>LOG_ONLY</code> mode before enabling enforcement to avoid unintended denials or adversely affecting production traffic.</p> </li> </ul>"""
 

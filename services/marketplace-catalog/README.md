@@ -29,8 +29,8 @@ from capo_marketplace_catalog import AsyncMarketplaceCatalogClient
 
 async def main():
     async with AsyncMarketplaceCatalogClient() as marketplace_catalog:
-        # Example: paginate over list_change_sets
-        async for item in marketplace_catalog.iter_list_change_sets():
+        # Example: paginate over describe_assessment
+        async for item in marketplace_catalog.iter_describe_assessment():
             print(item)
 ```
 

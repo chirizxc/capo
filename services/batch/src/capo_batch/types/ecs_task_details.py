@@ -42,11 +42,13 @@ class EcsTaskDetails(TypedDict, closed=True):
     ]
     """<p>The network configuration for jobs that are running on Fargate resources. Jobs that are running on Amazon EC2 resources must not specify this parameter.</p>"""
     runtime_platform: NotRequired["capo_batch.types.runtime_platform.RuntimePlatform"]
-    """<p>An object that represents the compute environment architecture for Batch jobs on Fargate.</p>"""
+    """<p>An object that represents the compute environment architecture for Batch jobs on Fargate or Amazon ECS Managed Instances. Contains the operating system family and CPU architecture of the task.</p>"""
     volumes: NotRequired["capo_batch.types.volumes.Volumes"]
     """<p>A list of data volumes used in a job.</p>"""
     enable_execute_command: NotRequired["capo_batch.types.boolean.Boolean"]
     """<p>Determines whether execute command functionality is turned on for this task. If <code>true</code>, execute command functionality is turned on all the containers in the task.</p>"""
+    network_mode: NotRequired["capo_batch.types.string.String"]
+    """<p>The network mode configured for the task. This field is populated for jobs running on Amazon ECS Managed Instances (<code>MANAGED_INSTANCES</code> platform capability) and always returns <code>host</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -98,6 +100,8 @@ def serialize_json(value: EcsTaskDetails) -> dict:
         out["volumes"] = capo_batch.types.volumes.serialize_json(value["volumes"])
     if "enable_execute_command" in value:
         out["enableExecuteCommand"] = value["enable_execute_command"]
+    if "network_mode" in value:
+        out["networkMode"] = value["network_mode"]
     return out
 
 
@@ -151,4 +155,6 @@ def deserialize_json(data: dict) -> EcsTaskDetails:
         out["volumes"] = capo_batch.types.volumes.deserialize_json(data["volumes"])
     if data.get("enableExecuteCommand") is not None:
         out["enable_execute_command"] = data["enableExecuteCommand"]
+    if data.get("networkMode") is not None:
+        out["network_mode"] = data["networkMode"]
     return out

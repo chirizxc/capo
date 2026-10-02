@@ -14,6 +14,10 @@ class DaemonDeploymentCapacityProvider(TypedDict, closed=True):
     """<p>The Amazon Resource Name (ARN) of the capacity provider.</p>"""
     running_instance_count: NotRequired["capo_ecs.types.boxed_integer.BoxedInteger"]
     """<p>The number of instances running daemon tasks on this capacity provider.</p>"""
+    without_daemon_instance_count: NotRequired[
+        "capo_ecs.types.boxed_integer.BoxedInteger"
+    ]
+    """<p>The number of instances on this capacity provider that are running without the daemon task. This applies to daemons that aren't critical, where the instance remains available for your other tasks even if the daemon task can't start or stops. These instances aren't included in <code>runningInstanceCount</code>.</p>"""
     draining_instance_count: NotRequired["capo_ecs.types.boxed_integer.BoxedInteger"]
     """<p>The number of instances being drained on this capacity provider during the deployment.</p>"""
 
@@ -25,6 +29,8 @@ def serialize_aws_json_1_1(value: DaemonDeploymentCapacityProvider) -> dict:
         out["arn"] = value["arn"]
     if "running_instance_count" in value:
         out["runningInstanceCount"] = value["running_instance_count"]
+    if "without_daemon_instance_count" in value:
+        out["withoutDaemonInstanceCount"] = value["without_daemon_instance_count"]
     if "draining_instance_count" in value:
         out["drainingInstanceCount"] = value["draining_instance_count"]
     return out
@@ -36,6 +42,8 @@ def deserialize_aws_json_1_1(data: dict) -> DaemonDeploymentCapacityProvider:
         out["arn"] = data["arn"]
     if data.get("runningInstanceCount") is not None:
         out["running_instance_count"] = data["runningInstanceCount"]
+    if data.get("withoutDaemonInstanceCount") is not None:
+        out["without_daemon_instance_count"] = data["withoutDaemonInstanceCount"]
     if data.get("drainingInstanceCount") is not None:
         out["draining_instance_count"] = data["drainingInstanceCount"]
     return out

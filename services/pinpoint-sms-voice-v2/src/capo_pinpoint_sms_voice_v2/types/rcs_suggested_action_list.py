@@ -1,0 +1,39 @@
+"""Generated from Smithy shape ``com.amazonaws.pinpointsmsvoicev2#RcsSuggestedActionList``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_pinpoint_sms_voice_v2.types.rcs_suggested_action
+
+RcsSuggestedActionList: TypeAlias = list[
+    "capo_pinpoint_sms_voice_v2.types.rcs_suggested_action.RcsSuggestedAction"
+]
+
+
+# --- awsJson1_0 ser/de ---
+def serialize_aws_json_1_0(value: RcsSuggestedActionList) -> list:
+    import capo_pinpoint_sms_voice_v2.types.rcs_suggested_action
+
+    out: list = []
+    for item in value:
+        out.append(
+            capo_pinpoint_sms_voice_v2.types.rcs_suggested_action.serialize_aws_json_1_0(
+                item
+            )
+        )
+    return out
+
+
+def deserialize_aws_json_1_0(data: list) -> RcsSuggestedActionList:
+    import capo_pinpoint_sms_voice_v2.types.rcs_suggested_action
+
+    out: RcsSuggestedActionList = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(
+            capo_pinpoint_sms_voice_v2.types.rcs_suggested_action.deserialize_aws_json_1_0(
+                item
+            )
+        )
+    return out

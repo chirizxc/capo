@@ -6,6 +6,7 @@ from typing import Literal, TypeAlias, cast
 Scte35Type: TypeAlias = Literal[
     "NONE",
     "SCTE_35_WITHOUT_SEGMENTATION",
+    "SCTE_35_WITHOUT_IDR",
 ]
 
 

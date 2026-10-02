@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.sagemakerfeaturestoreruntime#AmazonSageMakerFeatureStoreRuntime``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,9 @@ from capo_sagemaker_featurestore_runtime._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_sagemaker_featurestore_runtime._auth._zapros_handler import AuthMiddleware
+from capo_sagemaker_featurestore_runtime._pagination import (
+    resolve_path as _resolve_path,
+)
 from capo_sagemaker_featurestore_runtime._services._aws_config import aaws_config
 from capo_sagemaker_featurestore_runtime._services._pipeline import (
     AsyncInterceptor,
@@ -30,6 +34,10 @@ if TYPE_CHECKING:
     import capo_sagemaker_featurestore_runtime.types.batch_get_record_identifiers
     import capo_sagemaker_featurestore_runtime.types.batch_get_record_request
     import capo_sagemaker_featurestore_runtime.types.batch_get_record_response
+    import capo_sagemaker_featurestore_runtime.types.batch_write_record_entries
+    import capo_sagemaker_featurestore_runtime.types.batch_write_record_request
+    import capo_sagemaker_featurestore_runtime.types.batch_write_record_response
+    import capo_sagemaker_featurestore_runtime.types.boolean
     import capo_sagemaker_featurestore_runtime.types.delete_record_request
     import capo_sagemaker_featurestore_runtime.types.deletion_mode
     import capo_sagemaker_featurestore_runtime.types.expiration_time_response
@@ -37,10 +45,15 @@ if TYPE_CHECKING:
     import capo_sagemaker_featurestore_runtime.types.feature_names
     import capo_sagemaker_featurestore_runtime.types.get_record_request
     import capo_sagemaker_featurestore_runtime.types.get_record_response
+    import capo_sagemaker_featurestore_runtime.types.list_records_max_results
+    import capo_sagemaker_featurestore_runtime.types.list_records_next_token
+    import capo_sagemaker_featurestore_runtime.types.list_records_request
+    import capo_sagemaker_featurestore_runtime.types.list_records_response
     import capo_sagemaker_featurestore_runtime.types.put_record_request
     import capo_sagemaker_featurestore_runtime.types.record
     import capo_sagemaker_featurestore_runtime.types.target_stores
     import capo_sagemaker_featurestore_runtime.types.ttl_duration
+    import capo_sagemaker_featurestore_runtime.types.update_record_request
     import capo_sagemaker_featurestore_runtime.types.value_as_string
 
 
@@ -201,6 +214,69 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
         await response.response.aclose()
         return response.output
 
+    async def batch_write_record(
+        self,
+        *,
+        config_overrides: Optional[
+            AsyncSageMakerFeatureStoreRuntimeClientConfig
+        ] = None,
+        entries: Optional[
+            "capo_sagemaker_featurestore_runtime.types.batch_write_record_entries.BatchWriteRecordEntries"
+        ] = None,
+        ttl_duration: Optional[
+            "capo_sagemaker_featurestore_runtime.types.ttl_duration.TtlDuration"
+        ] = None,
+    ) -> "capo_sagemaker_featurestore_runtime.types.batch_write_record_response.BatchWriteRecordResponse":
+        r"""<p>Writes a batch of <code>Records</code> to one or more <code>FeatureGroup</code>s. Use this API for bulk ingestion of records into the <code>OnlineStore</code> and <code>OfflineStore</code>.</p> <p>You can set the ingested records to expire at a given time to live (TTL) duration after the record's event time by specifying the <code>TtlDuration</code> parameter. A request level <code>TtlDuration</code> applies to all entries that do not specify their own <code>TtlDuration</code>.</p>
+
+        Args:
+            entries: <p>A list of records to write. Each entry specifies the <code>FeatureGroup</code>, the record data, and optionally target stores and a TTL duration.</p>
+            ttl_duration: <p>Time to live duration applied to all entries in the batch that do not specify their own <code>TtlDuration</code>; <code>ExpiresAt</code> = <code>EventTime</code> + <code>TtlDuration</code>. For information on HardDelete, see the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_DeleteRecord.html\">DeleteRecord</a> API in the Amazon SageMaker API Reference guide.</p>
+
+        Raises:
+            capo_sagemaker_featurestore_runtime.errors.access_forbidden.AccessForbidden: <p>You do not have permission to perform an action.</p>
+            capo_sagemaker_featurestore_runtime.errors.internal_failure.InternalFailure: <p>An internal failure occurred. Try your request again. If the problem persists, contact Amazon Web Services customer support.</p>
+            capo_sagemaker_featurestore_runtime.errors.resource_not_found.ResourceNotFound: <p>A resource that is required to perform an action was not found.</p>
+            capo_sagemaker_featurestore_runtime.errors.service_unavailable.ServiceUnavailable: <p>The service is currently unavailable.</p>
+            capo_sagemaker_featurestore_runtime.errors.validation_error.ValidationError: <p>There was an error validating your request.</p>
+            capo_sagemaker_featurestore_runtime.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Write records to multiple feature groups
+
+            >>> await client.batch_write_record(entries=[{'FeatureGroupName': 'my-feature-group', 'Record': [{'FeatureName': 'customer_id', 'ValueAsString': 'cust-001'}, {'FeatureName': 'age', 'ValueAsString': '25'}]}])
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sagemaker_featurestore_runtime.types.batch_write_record_request.BatchWriteRecordRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sagemaker_featurestore_runtime.types.batch_write_record_response.BatchWriteRecordResponse"
+        ]:
+            import capo_sagemaker_featurestore_runtime._operations.amazon_sage_maker_feature_store_runtime.batch_write_record
+
+            (
+                output,
+                http_response,
+            ) = await capo_sagemaker_featurestore_runtime._operations.amazon_sage_maker_feature_store_runtime.batch_write_record.async_batch_write_record(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sagemaker_featurestore_runtime.types.batch_write_record_request.BatchWriteRecordRequest = {}
+        if entries is not None:
+            input_["entries"] = entries
+        if ttl_duration is not None:
+            input_["ttl_duration"] = ttl_duration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_record(
         self,
         feature_group_name: "capo_sagemaker_featurestore_runtime.types.feature_group_name_or_arn.FeatureGroupNameOrArn",
@@ -221,7 +297,7 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
             "capo_sagemaker_featurestore_runtime.types.deletion_mode.DeletionMode"
         ] = None,
     ) -> None:
-        r"""<p>Deletes a <code>Record</code> from a <code>FeatureGroup</code> in the <code>OnlineStore</code>. Feature Store supports both <code>SoftDelete</code> and <code>HardDelete</code>. For <code>SoftDelete</code> (default), feature columns are set to <code>null</code> and the record is no longer retrievable by <code>GetRecord</code> or <code>BatchGetRecord</code>. For <code>HardDelete</code>, the complete <code>Record</code> is removed from the <code>OnlineStore</code>. In both cases, Feature Store appends the deleted record marker to the <code>OfflineStore</code>. The deleted record marker is a record with the same <code>RecordIdentifer</code> as the original, but with <code>is_deleted</code> value set to <code>True</code>, <code>EventTime</code> set to the delete input <code>EventTime</code>, and other feature values set to <code>null</code>.</p> <p>Note that the <code>EventTime</code> specified in <code>DeleteRecord</code> should be set later than the <code>EventTime</code> of the existing record in the <code>OnlineStore</code> for that <code>RecordIdentifer</code>. If it is not, the deletion does not occur:</p> <ul> <li> <p>For <code>SoftDelete</code>, the existing (not deleted) record remains in the <code>OnlineStore</code>, though the delete record marker is still written to the <code>OfflineStore</code>.</p> </li> <li> <p> <code>HardDelete</code> returns <code>EventTime</code>: <code>400 ValidationException</code> to indicate that the delete operation failed. No delete record marker is written to the <code>OfflineStore</code>.</p> </li> </ul> <p>When a record is deleted from the <code>OnlineStore</code>, the deleted record marker is appended to the <code>OfflineStore</code>. If you have the Iceberg table format enabled for your <code>OfflineStore</code>, you can remove all history of a record from the <code>OfflineStore</code> using Amazon Athena or Apache Spark. For information on how to hard delete a record from the <code>OfflineStore</code> with the Iceberg table format enabled, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/feature-store-delete-records-offline-store.html#feature-store-delete-records-offline-store\">Delete records from the offline store</a>.</p>
+        r"""<p>Deletes a <code>Record</code> from a <code>FeatureGroup</code> in the <code>OnlineStore</code>. Feature Store supports both <code>SoftDelete</code> and <code>HardDelete</code>. For <code>SoftDelete</code> (default), feature columns are set to <code>null</code> and the record is no longer retrievable by <code>GetRecord</code> or <code>BatchGetRecord</code>. For <code>HardDelete</code>, the complete <code>Record</code> is removed from the <code>OnlineStore</code>. In both cases, Feature Store appends the deleted record marker to the <code>OfflineStore</code>. The deleted record marker is a record with the same <code>RecordIdentifer</code> as the original, but with <code>is_deleted</code> value set to <code>True</code>, <code>EventTime</code> set to the delete input <code>EventTime</code>, and other feature values set to <code>null</code>.</p> <p>Note that the <code>EventTime</code> specified in <code>DeleteRecord</code> should be set later than the <code>EventTime</code> of the existing record in the <code>OnlineStore</code> for that <code>RecordIdentifer</code>. If it is not, the deletion does not occur:</p> <ul> <li> <p>For <code>SoftDelete</code>, the existing (not deleted) record remains in the <code>OnlineStore</code>, though the delete record marker is still written to the <code>OfflineStore</code>.</p> </li> <li> <p> <code>HardDelete</code> returns <code>EventTime</code>: <code>400 ValidationException</code> to indicate that the delete operation failed. No delete record marker is written to the <code>OfflineStore</code>.</p> </li> </ul> <p>When a record is deleted from the <code>OnlineStore</code>, the deleted record marker is appended to the <code>OfflineStore</code>. If you have the Iceberg table format enabled for your <code>OfflineStore</code>, you can remove all history of a record from the <code>OfflineStore</code> using Amazon Athena or Apache Spark. For information on how to hard delete a record from the <code>OfflineStore</code> with the Iceberg table format enabled, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/feature-store-delete-records.html#feature-store-delete-records-offline-store\">Delete records from the offline store</a>.</p>
 
         Args:
             feature_group_name: <p>The name or Amazon Resource Name (ARN) of the feature group to delete the record from. </p>
@@ -344,6 +420,112 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
         await response.response.aclose()
         return response.output
 
+    async def list_records(
+        self,
+        feature_group_name: "capo_sagemaker_featurestore_runtime.types.feature_group_name_or_arn.FeatureGroupNameOrArn",
+        *,
+        config_overrides: Optional[
+            AsyncSageMakerFeatureStoreRuntimeClientConfig
+        ] = None,
+        max_results: Optional[
+            "capo_sagemaker_featurestore_runtime.types.list_records_max_results.ListRecordsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_sagemaker_featurestore_runtime.types.list_records_next_token.ListRecordsNextToken"
+        ] = None,
+        include_soft_deleted_records: Optional[
+            "capo_sagemaker_featurestore_runtime.types.boolean.Boolean"
+        ] = None,
+    ) -> "capo_sagemaker_featurestore_runtime.types.list_records_response.ListRecordsResponse":
+        """<p>Lists the <code>RecordIdentifier</code> values of all records stored in a <code>FeatureGroup</code>'s <code>OnlineStore</code>. This enables you to discover which records exist without retrieving the full record data.</p>
+
+        Args:
+            feature_group_name: <p>The name or Amazon Resource Name (ARN) of the feature group to list records from.</p>
+            max_results: <p>The maximum number of record identifiers to return in a single page of results. For the <code>InMemory</code> tier, this value is a hint and not a strict requirement. The response may contain more or fewer results than the specified <code>MaxResults</code>.</p>
+            next_token: <p>A token to resume pagination of <code>ListRecords</code> results.</p>
+            include_soft_deleted_records: <p>If set to <code>true</code>, the result includes records that have been soft deleted.</p>
+
+        Raises:
+            capo_sagemaker_featurestore_runtime.errors.access_forbidden.AccessForbidden: <p>You do not have permission to perform an action.</p>
+            capo_sagemaker_featurestore_runtime.errors.internal_failure.InternalFailure: <p>An internal failure occurred. Try your request again. If the problem persists, contact Amazon Web Services customer support.</p>
+            capo_sagemaker_featurestore_runtime.errors.resource_not_found.ResourceNotFound: <p>A resource that is required to perform an action was not found.</p>
+            capo_sagemaker_featurestore_runtime.errors.service_unavailable.ServiceUnavailable: <p>The service is currently unavailable.</p>
+            capo_sagemaker_featurestore_runtime.errors.validation_error.ValidationError: <p>There was an error validating your request.</p>
+            capo_sagemaker_featurestore_runtime.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List record identifiers from a feature group
+
+            >>> await client.list_records(feature_group_name='my-feature-group', max_results=10)
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sagemaker_featurestore_runtime.types.list_records_request.ListRecordsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sagemaker_featurestore_runtime.types.list_records_response.ListRecordsResponse"
+        ]:
+            import capo_sagemaker_featurestore_runtime._operations.amazon_sage_maker_feature_store_runtime.list_records
+
+            (
+                output,
+                http_response,
+            ) = await capo_sagemaker_featurestore_runtime._operations.amazon_sage_maker_feature_store_runtime.list_records.async_list_records(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sagemaker_featurestore_runtime.types.list_records_request.ListRecordsRequest = {
+            "feature_group_name": feature_group_name
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if include_soft_deleted_records is not None:
+            input_["include_soft_deleted_records"] = include_soft_deleted_records
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_records(
+        self,
+        feature_group_name: "capo_sagemaker_featurestore_runtime.types.feature_group_name_or_arn.FeatureGroupNameOrArn",
+        *,
+        config_overrides: Optional[
+            AsyncSageMakerFeatureStoreRuntimeClientConfig
+        ] = None,
+        max_results: Optional[
+            "capo_sagemaker_featurestore_runtime.types.list_records_max_results.ListRecordsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_sagemaker_featurestore_runtime.types.list_records_next_token.ListRecordsNextToken"
+        ] = None,
+        include_soft_deleted_records: Optional[
+            "capo_sagemaker_featurestore_runtime.types.boolean.Boolean"
+        ] = None,
+    ) -> "AsyncIterator[capo_sagemaker_featurestore_runtime.types.value_as_string.ValueAsString]":
+        _token = next_token
+        while True:
+            _response = await self.list_records(
+                feature_group_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                include_soft_deleted_records=include_soft_deleted_records,
+            )
+            _page = _resolve_path(_response, ("record_identifiers",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def put_record(
         self,
         feature_group_name: "capo_sagemaker_featurestore_runtime.types.feature_group_name_or_arn.FeatureGroupNameOrArn",
@@ -396,6 +578,89 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
         }
         if record is not None:
             input_["record"] = record
+        if target_stores is not None:
+            input_["target_stores"] = target_stores
+        if ttl_duration is not None:
+            input_["ttl_duration"] = ttl_duration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_record(
+        self,
+        feature_group_name: "capo_sagemaker_featurestore_runtime.types.feature_group_name_or_arn.FeatureGroupNameOrArn",
+        *,
+        config_overrides: Optional[
+            AsyncSageMakerFeatureStoreRuntimeClientConfig
+        ] = None,
+        record_identifier_value_as_string: Optional[
+            "capo_sagemaker_featurestore_runtime.types.value_as_string.ValueAsString"
+        ] = None,
+        features: Optional[
+            "capo_sagemaker_featurestore_runtime.types.record.Record"
+        ] = None,
+        target_stores: Optional[
+            "capo_sagemaker_featurestore_runtime.types.target_stores.TargetStores"
+        ] = None,
+        ttl_duration: Optional[
+            "capo_sagemaker_featurestore_runtime.types.ttl_duration.TtlDuration"
+        ] = None,
+    ) -> None:
+        r"""<p>Updates one or more feature values for an existing record in the specified feature group. Features that you do not include in the request remain unchanged. You can update up to 100 features per call.</p> <important> <p>This operation is available only for feature groups that use the <code>Standard_V2</code> or <code>InMemory</code> online store type.</p> </important> <p>The record must already exist. If the record does not exist or has been soft-deleted, the operation returns a <code>ResourceNotFound</code> error. To create a record, use <code>PutRecord</code>.</p> <p>If you provide an <code>EventTime</code> that is older than the record's current <code>EventTime</code>, the service rejects the update with a <code>ConflictException</code>. If the <code>EventTime</code> is equal to or newer than the current value, the service applies the update. If you omit <code>EventTime</code>, the service keeps the record's existing <code>EventTime</code> and applies the update.</p> <p>If you specify a <code>TtlDuration</code>, you must also provide an <code>EventTime</code> in the request. Otherwise, the operation returns a <code>ValidationError</code>.</p>
+
+        Args:
+            feature_group_name: <p>The identifier for the feature group that contains the record to update. You can specify one of the following:</p> <ul> <li> <p>The feature group name.</p> </li> <li> <p>The feature group Amazon Resource Name (ARN).</p> </li> </ul>
+            record_identifier_value_as_string: <p>The value that uniquely identifies the record in the feature group. This must match the value defined by the feature group's record identifier feature.</p>
+            features: <p>The feature values to write to the record.</p>
+            target_stores: <p>The target stores for the record update. By default, Amazon SageMaker Feature Store updates the record in all stores associated with the <code>FeatureGroup</code>.</p>
+            ttl_duration: <p>The time-to-live (TTL) duration for the record. Amazon SageMaker Feature Store deletes the record when <code>EventTime</code> + <code>TtlDuration</code> elapses. If you omit this parameter, the record's existing TTL setting remains unchanged. For information about <code>HardDelete</code>, see the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_DeleteRecord.html\">DeleteRecord</a> operation in the Amazon SageMaker API Reference.</p>
+
+        Raises:
+            capo_sagemaker_featurestore_runtime.errors.access_forbidden.AccessForbidden: <p>You do not have permission to perform an action.</p>
+            capo_sagemaker_featurestore_runtime.errors.conflict_exception.ConflictException: <p>The service rejected the update because the provided <code>EventTime</code> is older than the record's current <code>EventTime</code>. To persist the update, retrieve the record's latest <code>EventTime</code> and resubmit the request with an <code>EventTime</code> that is equal to or newer than the current value.</p>
+            capo_sagemaker_featurestore_runtime.errors.internal_failure.InternalFailure: <p>An internal failure occurred. Try your request again. If the problem persists, contact Amazon Web Services customer support.</p>
+            capo_sagemaker_featurestore_runtime.errors.resource_not_found.ResourceNotFound: <p>A resource that is required to perform an action was not found.</p>
+            capo_sagemaker_featurestore_runtime.errors.service_unavailable.ServiceUnavailable: <p>The service is currently unavailable.</p>
+            capo_sagemaker_featurestore_runtime.errors.validation_error.ValidationError: <p>There was an error validating your request.</p>
+            capo_sagemaker_featurestore_runtime.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Update specific features in a record
+
+            >>> await client.update_record(feature_group_name='my-feature-group', record_identifier_value_as_string='cust-001', features=[{'FeatureName': 'age', 'ValueAsString': '26'}, {'FeatureName': 'membership_tier', 'ValueAsString': 'gold'}, {'FeatureName': 'event_time', 'ValueAsString': '2026-07-26T12:00:00Z'}])
+            Update features and set a time-to-live (TTL) duration
+
+            >>> await client.update_record(feature_group_name='my-feature-group', record_identifier_value_as_string='cust-001', features=[{'FeatureName': 'age', 'ValueAsString': '26'}, {'FeatureName': 'event_time', 'ValueAsString': '2026-07-26T12:00:00Z'}], ttl_duration={'Unit': 'Weeks', 'Value': 4})
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sagemaker_featurestore_runtime.types.update_record_request.UpdateRecordRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_sagemaker_featurestore_runtime._operations.amazon_sage_maker_feature_store_runtime.update_record
+
+            (
+                output,
+                http_response,
+            ) = await capo_sagemaker_featurestore_runtime._operations.amazon_sage_maker_feature_store_runtime.update_record.async_update_record(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sagemaker_featurestore_runtime.types.update_record_request.UpdateRecordRequest = {
+            "feature_group_name": feature_group_name
+        }
+        if record_identifier_value_as_string is not None:
+            input_["record_identifier_value_as_string"] = (
+                record_identifier_value_as_string
+            )
+        if features is not None:
+            input_["features"] = features
         if target_stores is not None:
             input_["target_stores"] = target_stores
         if ttl_duration is not None:

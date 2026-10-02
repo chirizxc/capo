@@ -44,8 +44,9 @@ jobs:
         run: git checkout --force --quiet "$GITHUB_SHA"
 
       # Non-empty only on the push that merges the version PR: that push is what
-      # rewrites the root changelog. aggregate_changelog.py always prepends a
-      # fresh dated section, so the first section is exactly this release.
+      # prepends a fresh dated section to the root changelog, so the first
+      # section is exactly this release. Gating on the section count (not on
+      # the file changing) keeps manual changelog edits from cutting a release.
       - name: Detect released services
         id: changed
         env:
@@ -54,9 +55,10 @@ jobs:
           set -euo pipefail
           # github.event.before is the all-zero SHA for a new branch or force push.
           base=$(git rev-parse --verify --quiet "$BEFORE^{commit}" || echo "HEAD^")
-          if git diff --quiet "$base" HEAD -- CHANGELOG.md; then
+          sections() { git show "$1:CHANGELOG.md" 2>/dev/null | grep -c '^## ' || true; }
+          if [ "$(sections HEAD)" -le "$(sections "$base")" ]; then
             echo "services=" >> "$GITHUB_OUTPUT"
-            echo "Root changelog unchanged; nothing to publish."
+            echo "No new release section in root changelog; nothing to publish."
             exit 0
           fi
           python3 - >> "$GITHUB_OUTPUT" <<'EOF'

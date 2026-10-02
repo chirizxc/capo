@@ -18,7 +18,7 @@ class ListMaterializedViewRefreshTaskRunsRequest(TypedDict, closed=True):
     database_name: NotRequired["capo_glue.types.name_string.NameString"]
     """<p>The database where the table resides.</p>"""
     table_name: NotRequired["capo_glue.types.name_string.NameString"]
-    """<p>The name of the table for which statistics is generated.</p>"""
+    """<p>The name of the materialized view.</p>"""
     max_results: NotRequired["capo_glue.types.page_size.PageSize"]
     """<p>The maximum size of the response.</p>"""
     next_token: NotRequired["capo_glue.types.token.Token"]

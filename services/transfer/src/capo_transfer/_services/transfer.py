@@ -46,25 +46,86 @@ from capo_transfer._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_transfer.types.agreement_id
+    import capo_transfer.types.agreement_status_type
     import capo_transfer.types.arn
+    import capo_transfer.types.as2_connector_config
+    import capo_transfer.types.as2_id
     import capo_transfer.types.callback_token
+    import capo_transfer.types.cert_date
+    import capo_transfer.types.certificate
+    import capo_transfer.types.certificate_body_type
+    import capo_transfer.types.certificate_chain_type
+    import capo_transfer.types.certificate_id
+    import capo_transfer.types.certificate_ids
+    import capo_transfer.types.certificate_usage_type
+    import capo_transfer.types.connector_egress_config
     import capo_transfer.types.connector_file_transfer_result
     import capo_transfer.types.connector_id
+    import capo_transfer.types.connector_security_policy_name
+    import capo_transfer.types.connectors_ip_address_type
     import capo_transfer.types.create_access_request
     import capo_transfer.types.create_access_response
+    import capo_transfer.types.create_agreement_request
+    import capo_transfer.types.create_agreement_response
+    import capo_transfer.types.create_connector_request
+    import capo_transfer.types.create_connector_response
+    import capo_transfer.types.create_profile_request
+    import capo_transfer.types.create_profile_response
+    import capo_transfer.types.create_server_request
+    import capo_transfer.types.create_server_response
+    import capo_transfer.types.create_user_request
+    import capo_transfer.types.create_user_response
+    import capo_transfer.types.create_web_app_request
+    import capo_transfer.types.create_web_app_response
+    import capo_transfer.types.create_workflow_request
+    import capo_transfer.types.create_workflow_response
+    import capo_transfer.types.custom_directories_type
     import capo_transfer.types.custom_http_headers
     import capo_transfer.types.custom_step_status
     import capo_transfer.types.delete_access_request
+    import capo_transfer.types.delete_agreement_request
+    import capo_transfer.types.delete_certificate_request
+    import capo_transfer.types.delete_connector_request
     import capo_transfer.types.delete_host_key_request
+    import capo_transfer.types.delete_profile_request
+    import capo_transfer.types.delete_server_request
     import capo_transfer.types.delete_ssh_public_key_request
+    import capo_transfer.types.delete_user_request
+    import capo_transfer.types.delete_web_app_customization_request
+    import capo_transfer.types.delete_web_app_request
+    import capo_transfer.types.delete_workflow_request
     import capo_transfer.types.describe_access_request
     import capo_transfer.types.describe_access_response
+    import capo_transfer.types.describe_agreement_request
+    import capo_transfer.types.describe_agreement_response
+    import capo_transfer.types.describe_certificate_request
+    import capo_transfer.types.describe_certificate_response
+    import capo_transfer.types.describe_connector_request
+    import capo_transfer.types.describe_connector_response
     import capo_transfer.types.describe_execution_request
     import capo_transfer.types.describe_execution_response
     import capo_transfer.types.describe_host_key_request
     import capo_transfer.types.describe_host_key_response
+    import capo_transfer.types.describe_profile_request
+    import capo_transfer.types.describe_profile_response
     import capo_transfer.types.describe_security_policy_request
     import capo_transfer.types.describe_security_policy_response
+    import capo_transfer.types.describe_server_request
+    import capo_transfer.types.describe_server_response
+    import capo_transfer.types.describe_user_request
+    import capo_transfer.types.describe_user_response
+    import capo_transfer.types.describe_web_app_customization_request
+    import capo_transfer.types.describe_web_app_customization_response
+    import capo_transfer.types.describe_web_app_request
+    import capo_transfer.types.describe_web_app_response
+    import capo_transfer.types.describe_workflow_request
+    import capo_transfer.types.describe_workflow_response
+    import capo_transfer.types.description
+    import capo_transfer.types.domain
+    import capo_transfer.types.endpoint_details
+    import capo_transfer.types.endpoint_type
+    import capo_transfer.types.enforce_message_signing_type
     import capo_transfer.types.execution_id
     import capo_transfer.types.external_id
     import capo_transfer.types.file_path
@@ -75,35 +136,75 @@ if TYPE_CHECKING:
     import capo_transfer.types.host_key
     import capo_transfer.types.host_key_description
     import capo_transfer.types.host_key_id
+    import capo_transfer.types.identity_provider_details
+    import capo_transfer.types.identity_provider_type
+    import capo_transfer.types.import_certificate_request
+    import capo_transfer.types.import_certificate_response
     import capo_transfer.types.import_host_key_request
     import capo_transfer.types.import_host_key_response
     import capo_transfer.types.import_ssh_public_key_request
     import capo_transfer.types.import_ssh_public_key_response
+    import capo_transfer.types.ip_address_type
     import capo_transfer.types.list_accesses_request
     import capo_transfer.types.list_accesses_response
+    import capo_transfer.types.list_agreements_request
+    import capo_transfer.types.list_agreements_response
+    import capo_transfer.types.list_certificates_request
+    import capo_transfer.types.list_certificates_response
+    import capo_transfer.types.list_connectors_request
+    import capo_transfer.types.list_connectors_response
     import capo_transfer.types.list_executions_request
     import capo_transfer.types.list_executions_response
     import capo_transfer.types.list_file_transfer_results_request
     import capo_transfer.types.list_file_transfer_results_response
     import capo_transfer.types.list_host_keys_request
     import capo_transfer.types.list_host_keys_response
+    import capo_transfer.types.list_profiles_request
+    import capo_transfer.types.list_profiles_response
     import capo_transfer.types.list_security_policies_request
     import capo_transfer.types.list_security_policies_response
+    import capo_transfer.types.list_servers_request
+    import capo_transfer.types.list_servers_response
     import capo_transfer.types.list_tags_for_resource_request
     import capo_transfer.types.list_tags_for_resource_response
+    import capo_transfer.types.list_users_request
+    import capo_transfer.types.list_users_response
+    import capo_transfer.types.list_web_apps_request
+    import capo_transfer.types.list_web_apps_response
+    import capo_transfer.types.list_workflows_request
+    import capo_transfer.types.list_workflows_response
     import capo_transfer.types.listed_access
+    import capo_transfer.types.listed_agreement
+    import capo_transfer.types.listed_certificate
+    import capo_transfer.types.listed_connector
     import capo_transfer.types.listed_execution
+    import capo_transfer.types.listed_profile
+    import capo_transfer.types.listed_server
+    import capo_transfer.types.listed_user
+    import capo_transfer.types.listed_web_app
+    import capo_transfer.types.listed_workflow
     import capo_transfer.types.max_items
     import capo_transfer.types.max_results
     import capo_transfer.types.next_token
+    import capo_transfer.types.nullable_role
     import capo_transfer.types.policy
     import capo_transfer.types.posix_profile
+    import capo_transfer.types.post_authentication_login_banner
+    import capo_transfer.types.pre_authentication_login_banner
+    import capo_transfer.types.preserve_filename_type
+    import capo_transfer.types.private_key_type
+    import capo_transfer.types.profile_id
+    import capo_transfer.types.profile_type
     import capo_transfer.types.protocol
+    import capo_transfer.types.protocol_details
+    import capo_transfer.types.protocols
     import capo_transfer.types.role
+    import capo_transfer.types.s3_storage_options
     import capo_transfer.types.security_policy_name
     import capo_transfer.types.send_workflow_step_state_request
     import capo_transfer.types.send_workflow_step_state_response
     import capo_transfer.types.server_id
+    import capo_transfer.types.sftp_connector_config
     import capo_transfer.types.source_ip
     import capo_transfer.types.ssh_public_key_body
     import capo_transfer.types.ssh_public_key_id
@@ -117,6 +218,7 @@ if TYPE_CHECKING:
     import capo_transfer.types.start_remote_move_response
     import capo_transfer.types.start_server_request
     import capo_transfer.types.stop_server_request
+    import capo_transfer.types.structured_log_destinations
     import capo_transfer.types.tag
     import capo_transfer.types.tag_keys
     import capo_transfer.types.tag_resource_request
@@ -129,11 +231,43 @@ if TYPE_CHECKING:
     import capo_transfer.types.untag_resource_request
     import capo_transfer.types.update_access_request
     import capo_transfer.types.update_access_response
+    import capo_transfer.types.update_agreement_request
+    import capo_transfer.types.update_agreement_response
+    import capo_transfer.types.update_certificate_request
+    import capo_transfer.types.update_certificate_response
+    import capo_transfer.types.update_connector_egress_config
+    import capo_transfer.types.update_connector_request
+    import capo_transfer.types.update_connector_response
     import capo_transfer.types.update_host_key_request
     import capo_transfer.types.update_host_key_response
+    import capo_transfer.types.update_profile_request
+    import capo_transfer.types.update_profile_response
+    import capo_transfer.types.update_server_request
+    import capo_transfer.types.update_server_response
+    import capo_transfer.types.update_user_request
+    import capo_transfer.types.update_user_response
+    import capo_transfer.types.update_web_app_customization_request
+    import capo_transfer.types.update_web_app_customization_response
+    import capo_transfer.types.update_web_app_endpoint_details
+    import capo_transfer.types.update_web_app_identity_provider_details
+    import capo_transfer.types.update_web_app_request
+    import capo_transfer.types.update_web_app_response
+    import capo_transfer.types.url
     import capo_transfer.types.user_name
     import capo_transfer.types.user_password
+    import capo_transfer.types.web_app_access_endpoint
+    import capo_transfer.types.web_app_endpoint_details
+    import capo_transfer.types.web_app_endpoint_policy
+    import capo_transfer.types.web_app_favicon_file
+    import capo_transfer.types.web_app_id
+    import capo_transfer.types.web_app_identity_provider_details
+    import capo_transfer.types.web_app_logo_file
+    import capo_transfer.types.web_app_title
+    import capo_transfer.types.web_app_units
+    import capo_transfer.types.workflow_description
+    import capo_transfer.types.workflow_details
     import capo_transfer.types.workflow_id
+    import capo_transfer.types.workflow_steps
 
 
 class TransferClientConfig(TypedDict, total=False, closed=True):
@@ -1934,6 +2068,2776 @@ class TransferClient:
         )
         response.response.close()
         return response.output
+
+    def create_agreement(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        local_profile_id: "capo_transfer.types.profile_id.ProfileId",
+        partner_profile_id: "capo_transfer.types.profile_id.ProfileId",
+        access_role: "capo_transfer.types.role.Role",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        description: Optional["capo_transfer.types.description.Description"] = None,
+        base_directory: Optional[
+            "capo_transfer.types.home_directory.HomeDirectory"
+        ] = None,
+        status: Optional[
+            "capo_transfer.types.agreement_status_type.AgreementStatusType"
+        ] = None,
+        tags: Optional["capo_transfer.types.tags.Tags"] = None,
+        preserve_filename: Optional[
+            "capo_transfer.types.preserve_filename_type.PreserveFilenameType"
+        ] = None,
+        enforce_message_signing: Optional[
+            "capo_transfer.types.enforce_message_signing_type.EnforceMessageSigningType"
+        ] = None,
+        custom_directories: Optional[
+            "capo_transfer.types.custom_directories_type.CustomDirectoriesType"
+        ] = None,
+    ) -> "capo_transfer.types.create_agreement_response.CreateAgreementResponse":
+        r"""<p>Creates an agreement. An agreement is a bilateral trading partner agreement, or partnership, between an Transfer Family server and an AS2 process. The agreement defines the file and message transfer relationship between the server and the AS2 process. To define an agreement, Transfer Family combines a server, local profile, partner profile, certificate, and other attributes.</p> <p>The partner is identified with the <code>PartnerProfileId</code>, and the AS2 process is identified with the <code>LocalProfileId</code>.</p> <note> <p>Specify <i>either</i> <code>BaseDirectory</code> or <code>CustomDirectories</code>, but not both. Specifying both causes the command to fail.</p> </note>
+
+        Args:
+            description: <p>A name or short description to identify the agreement. </p>
+            server_id: <p>A system-assigned unique identifier for a server instance. This is the specific server that the agreement uses.</p>
+            local_profile_id: <p>A unique identifier for the AS2 local profile.</p>
+            partner_profile_id: <p>A unique identifier for the partner profile used in the agreement.</p>
+            base_directory: <p>The landing directory (folder) for files transferred by using the AS2 protocol.</p> <p>A <code>BaseDirectory</code> example is <code>/<i>amzn-s3-demo-bucket</i>/home/mydirectory</code>.</p>
+            access_role: <p>Connectors are used to send files using either the AS2 or SFTP protocol. For the access role, provide the Amazon Resource Name (ARN) of the Identity and Access Management role to use.</p> <p> <b>For AS2 connectors</b> </p> <p>With AS2, you can send files by calling <code>StartFileTransfer</code> and specifying the file paths in the request parameter, <code>SendFilePaths</code>. We use the file’s parent directory (for example, for <code>--send-file-paths /bucket/dir/file.txt</code>, parent directory is <code>/bucket/dir/</code>) to temporarily store a processed AS2 message file, store the MDN when we receive them from the partner, and write a final JSON file containing relevant metadata of the transmission. So, the <code>AccessRole</code> needs to provide read and write access to the parent directory of the file location used in the <code>StartFileTransfer</code> request. Additionally, you need to provide read and write access to the parent directory of the files that you intend to send with <code>StartFileTransfer</code>.</p> <p>If you are using Basic authentication for your AS2 connector, the access role requires the <code>secretsmanager:GetSecretValue</code> permission for the secret. If the secret is encrypted using a customer-managed key instead of the Amazon Web Services managed key in Secrets Manager, then the role also needs the <code>kms:Decrypt</code> permission for that key.</p> <p> <b>For SFTP connectors</b> </p> <p>Make sure that the access role provides read and write access to the parent directory of the file location that's used in the <code>StartFileTransfer</code> request. Additionally, make sure that the role provides <code>secretsmanager:GetSecretValue</code> permission to Secrets Manager.</p>
+            status: <p>The status of the agreement. The agreement can be either <code>ACTIVE</code> or <code>INACTIVE</code>.</p>
+            tags: <p>Key-value pairs that can be used to group and search for agreements.</p>
+            preserve_filename: <p> Determines whether or not Transfer Family appends a unique string of characters to the end of the AS2 message payload filename when saving it. </p> <ul> <li> <p> <code>ENABLED</code>: the filename provided by your trading parter is preserved when the file is saved.</p> </li> <li> <p> <code>DISABLED</code> (default value): when Transfer Family saves the file, the filename is adjusted, as described in <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/send-as2-messages.html#file-names-as2\">File names and locations</a>.</p> </li> </ul>
+            enforce_message_signing: <p> Determines whether or not unsigned messages from your trading partners will be accepted. </p> <ul> <li> <p> <code>ENABLED</code>: Transfer Family rejects unsigned messages from your trading partner.</p> </li> <li> <p> <code>DISABLED</code> (default value): Transfer Family accepts unsigned messages from your trading partner.</p> </li> </ul>
+            custom_directories: <p>A <code>CustomDirectoriesType</code> structure. This structure specifies custom directories for storing various AS2 message files. You can specify directories for the following types of files.</p> <ul> <li> <p>Failed files</p> </li> <li> <p>MDN files</p> </li> <li> <p>Payload files</p> </li> <li> <p>Status files</p> </li> <li> <p>Temporary files</p> </li> </ul>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_exists_exception.ResourceExistsException: <p>The requested resource does not exist, or exists in a region other than the one specified for the command.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.create_agreement_request.CreateAgreementRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.create_agreement_response.CreateAgreementResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.create_agreement
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.create_agreement.create_agreement(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.create_agreement_request.CreateAgreementRequest = {
+            "server_id": server_id,
+            "local_profile_id": local_profile_id,
+            "partner_profile_id": partner_profile_id,
+            "access_role": access_role,
+        }
+        if description is not None:
+            input_["description"] = description
+        if base_directory is not None:
+            input_["base_directory"] = base_directory
+        if status is not None:
+            input_["status"] = status
+        if tags is not None:
+            input_["tags"] = tags
+        if preserve_filename is not None:
+            input_["preserve_filename"] = preserve_filename
+        if enforce_message_signing is not None:
+            input_["enforce_message_signing"] = enforce_message_signing
+        if custom_directories is not None:
+            input_["custom_directories"] = custom_directories
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_agreement(
+        self,
+        agreement_id: "capo_transfer.types.agreement_id.AgreementId",
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> "capo_transfer.types.describe_agreement_response.DescribeAgreementResponse":
+        """<p>Describes the agreement that's identified by the <code>AgreementId</code>.</p>
+
+        Args:
+            agreement_id: <p>A unique identifier for the agreement. This identifier is returned when you create an agreement.</p>
+            server_id: <p>The server identifier that's associated with the agreement.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.describe_agreement_request.DescribeAgreementRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.describe_agreement_response.DescribeAgreementResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.describe_agreement
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.describe_agreement.describe_agreement(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.describe_agreement_request.DescribeAgreementRequest = {
+            "agreement_id": agreement_id,
+            "server_id": server_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_agreement(
+        self,
+        agreement_id: "capo_transfer.types.agreement_id.AgreementId",
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        description: Optional["capo_transfer.types.description.Description"] = None,
+        status: Optional[
+            "capo_transfer.types.agreement_status_type.AgreementStatusType"
+        ] = None,
+        local_profile_id: Optional["capo_transfer.types.profile_id.ProfileId"] = None,
+        partner_profile_id: Optional["capo_transfer.types.profile_id.ProfileId"] = None,
+        base_directory: Optional[
+            "capo_transfer.types.home_directory.HomeDirectory"
+        ] = None,
+        access_role: Optional["capo_transfer.types.role.Role"] = None,
+        preserve_filename: Optional[
+            "capo_transfer.types.preserve_filename_type.PreserveFilenameType"
+        ] = None,
+        enforce_message_signing: Optional[
+            "capo_transfer.types.enforce_message_signing_type.EnforceMessageSigningType"
+        ] = None,
+        custom_directories: Optional[
+            "capo_transfer.types.custom_directories_type.CustomDirectoriesType"
+        ] = None,
+    ) -> "capo_transfer.types.update_agreement_response.UpdateAgreementResponse":
+        r"""<p>Updates some of the parameters for an existing agreement. Provide the <code>AgreementId</code> and the <code>ServerId</code> for the agreement that you want to update, along with the new values for the parameters to update.</p> <note> <p>Specify <i>either</i> <code>BaseDirectory</code> or <code>CustomDirectories</code>, but not both. Specifying both causes the command to fail.</p> <p>If you update an agreement from using base directory to custom directories, the base directory is no longer used. Similarly, if you change from custom directories to a base directory, the custom directories are no longer used.</p> </note>
+
+        Args:
+            agreement_id: <p>A unique identifier for the agreement. This identifier is returned when you create an agreement.</p>
+            server_id: <p>A system-assigned unique identifier for a server instance. This is the specific server that the agreement uses.</p>
+            description: <p>To replace the existing description, provide a short description for the agreement. </p>
+            status: <p>You can update the status for the agreement, either activating an inactive agreement or the reverse.</p>
+            local_profile_id: <p>A unique identifier for the AS2 local profile.</p> <p>To change the local profile identifier, provide a new value here.</p>
+            partner_profile_id: <p>A unique identifier for the partner profile. To change the partner profile identifier, provide a new value here.</p>
+            base_directory: <p>To change the landing directory (folder) for files that are transferred, provide the bucket folder that you want to use; for example, <code>/<i>amzn-s3-demo-bucket</i>/<i>home</i>/<i>mydirectory</i> </code>.</p>
+            access_role: <p>Connectors are used to send files using either the AS2 or SFTP protocol. For the access role, provide the Amazon Resource Name (ARN) of the Identity and Access Management role to use.</p> <p> <b>For AS2 connectors</b> </p> <p>With AS2, you can send files by calling <code>StartFileTransfer</code> and specifying the file paths in the request parameter, <code>SendFilePaths</code>. We use the file’s parent directory (for example, for <code>--send-file-paths /bucket/dir/file.txt</code>, parent directory is <code>/bucket/dir/</code>) to temporarily store a processed AS2 message file, store the MDN when we receive them from the partner, and write a final JSON file containing relevant metadata of the transmission. So, the <code>AccessRole</code> needs to provide read and write access to the parent directory of the file location used in the <code>StartFileTransfer</code> request. Additionally, you need to provide read and write access to the parent directory of the files that you intend to send with <code>StartFileTransfer</code>.</p> <p>If you are using Basic authentication for your AS2 connector, the access role requires the <code>secretsmanager:GetSecretValue</code> permission for the secret. If the secret is encrypted using a customer-managed key instead of the Amazon Web Services managed key in Secrets Manager, then the role also needs the <code>kms:Decrypt</code> permission for that key.</p> <p> <b>For SFTP connectors</b> </p> <p>Make sure that the access role provides read and write access to the parent directory of the file location that's used in the <code>StartFileTransfer</code> request. Additionally, make sure that the role provides <code>secretsmanager:GetSecretValue</code> permission to Secrets Manager.</p>
+            preserve_filename: <p> Determines whether or not Transfer Family appends a unique string of characters to the end of the AS2 message payload filename when saving it. </p> <ul> <li> <p> <code>ENABLED</code>: the filename provided by your trading parter is preserved when the file is saved.</p> </li> <li> <p> <code>DISABLED</code> (default value): when Transfer Family saves the file, the filename is adjusted, as described in <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/send-as2-messages.html#file-names-as2\">File names and locations</a>.</p> </li> </ul>
+            enforce_message_signing: <p> Determines whether or not unsigned messages from your trading partners will be accepted. </p> <ul> <li> <p> <code>ENABLED</code>: Transfer Family rejects unsigned messages from your trading partner.</p> </li> <li> <p> <code>DISABLED</code> (default value): Transfer Family accepts unsigned messages from your trading partner.</p> </li> </ul>
+            custom_directories: <p>A <code>CustomDirectoriesType</code> structure. This structure specifies custom directories for storing various AS2 message files. You can specify directories for the following types of files.</p> <ul> <li> <p>Failed files</p> </li> <li> <p>MDN files</p> </li> <li> <p>Payload files</p> </li> <li> <p>Status files</p> </li> <li> <p>Temporary files</p> </li> </ul>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_exists_exception.ResourceExistsException: <p>The requested resource does not exist, or exists in a region other than the one specified for the command.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.update_agreement_request.UpdateAgreementRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.update_agreement_response.UpdateAgreementResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.update_agreement
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.update_agreement.update_agreement(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.update_agreement_request.UpdateAgreementRequest = {
+            "agreement_id": agreement_id,
+            "server_id": server_id,
+        }
+        if description is not None:
+            input_["description"] = description
+        if status is not None:
+            input_["status"] = status
+        if local_profile_id is not None:
+            input_["local_profile_id"] = local_profile_id
+        if partner_profile_id is not None:
+            input_["partner_profile_id"] = partner_profile_id
+        if base_directory is not None:
+            input_["base_directory"] = base_directory
+        if access_role is not None:
+            input_["access_role"] = access_role
+        if preserve_filename is not None:
+            input_["preserve_filename"] = preserve_filename
+        if enforce_message_signing is not None:
+            input_["enforce_message_signing"] = enforce_message_signing
+        if custom_directories is not None:
+            input_["custom_directories"] = custom_directories
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_agreement(
+        self,
+        agreement_id: "capo_transfer.types.agreement_id.AgreementId",
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> None:
+        """<p>Delete the agreement that's specified in the provided <code>AgreementId</code>.</p>
+
+        Args:
+            agreement_id: <p>A unique identifier for the agreement. This identifier is returned when you create an agreement.</p>
+            server_id: <p>The server identifier associated with the agreement that you are deleting.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.delete_agreement_request.DeleteAgreementRequest]",
+        ) -> OperationResponse[None]:
+            import capo_transfer._operations.transfer_service.delete_agreement
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.delete_agreement.delete_agreement(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.delete_agreement_request.DeleteAgreementRequest = {
+            "agreement_id": agreement_id,
+            "server_id": server_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_agreements(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "capo_transfer.types.list_agreements_response.ListAgreementsResponse":
+        """<p>Returns a list of the agreements for the server that's identified by the <code>ServerId</code> that you supply. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for <code>NextToken</code>, you can supply that value to continue listing agreements from where you left off.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to return.</p>
+            next_token: <p>When you can get additional results from the <code>ListAgreements</code> call, a <code>NextToken</code> parameter is returned in the output. You can then pass in a subsequent command to the <code>NextToken</code> parameter to continue listing additional agreements.</p>
+            server_id: <p>The identifier of the server for which you want a list of agreements.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> parameter that was passed is invalid.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.list_agreements_request.ListAgreementsRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.list_agreements_response.ListAgreementsResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.list_agreements
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.list_agreements.list_agreements(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.list_agreements_request.ListAgreementsRequest = {
+            "server_id": server_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_agreements(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_transfer.types.listed_agreement.ListedAgreement]":
+        _token = next_token
+        while True:
+            _response = self.list_agreements(
+                server_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("agreements",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def import_certificate(
+        self,
+        usage: "capo_transfer.types.certificate_usage_type.CertificateUsageType",
+        certificate: "capo_transfer.types.certificate_body_type.CertificateBodyType",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        certificate_chain: Optional[
+            "capo_transfer.types.certificate_chain_type.CertificateChainType"
+        ] = None,
+        private_key: Optional[
+            "capo_transfer.types.private_key_type.PrivateKeyType"
+        ] = None,
+        active_date: Optional["capo_transfer.types.cert_date.CertDate"] = None,
+        inactive_date: Optional["capo_transfer.types.cert_date.CertDate"] = None,
+        description: Optional["capo_transfer.types.description.Description"] = None,
+        tags: Optional["capo_transfer.types.tags.Tags"] = None,
+    ) -> "capo_transfer.types.import_certificate_response.ImportCertificateResponse":
+        r"""<p>Imports the signing and encryption certificates that you need to create local (AS2) profiles and partner profiles.</p> <p>You can import both the certificate and its chain in the <code>Certificate</code> parameter.</p> <p>After importing a certificate, Transfer Family automatically creates a Amazon CloudWatch metric called <code>DaysUntilExpiry</code> that tracks the number of days until the certificate expires. The metric is based on the <code>InactiveDate</code> parameter and is published daily in the <code>AWS/Transfer</code> namespace.</p> <important> <p>It can take up to a full day after importing a certificate for Transfer Family to emit the <code>DaysUntilExpiry</code> metric to your account.</p> </important> <note> <p>If you use the <code>Certificate</code> parameter to upload both the certificate and its chain, don't use the <code>CertificateChain</code> parameter.</p> </note> <p> <b>CloudWatch monitoring</b> </p> <p>The <code>DaysUntilExpiry</code> metric includes the following specifications:</p> <ul> <li> <p> <b>Units:</b> Count (days)</p> </li> <li> <p> <b>Dimensions:</b> <code>CertificateId</code> (always present), <code>Description</code> (if provided during certificate import)</p> </li> <li> <p> <b>Statistics:</b> Minimum, Maximum, Average</p> </li> <li> <p> <b>Frequency:</b> Published daily</p> </li> </ul>
+
+        Args:
+            usage: <p>Specifies how this certificate is used. It can be used in the following ways:</p> <ul> <li> <p> <code>SIGNING</code>: For signing AS2 messages</p> </li> <li> <p> <code>ENCRYPTION</code>: For encrypting AS2 messages</p> </li> <li> <p> <code>TLS</code>: For securing AS2 communications sent over HTTPS</p> </li> </ul>
+            certificate: <ul> <li> <p>For the CLI, provide a file path for a certificate in URI format. For example, <code>--certificate file://encryption-cert.pem</code>. Alternatively, you can provide the raw content.</p> </li> <li> <p>For the SDK, specify the raw content of a certificate file. For example, <code>--certificate \"`cat encryption-cert.pem`\"</code>.</p> </li> </ul> <note> <p>You can provide both the certificate and its chain in this parameter, without needing to use the <code>CertificateChain</code> parameter. If you use this parameter for both the certificate and its chain, do not use the <code>CertificateChain</code> parameter.</p> </note>
+            certificate_chain: <p>An optional list of certificates that make up the chain for the certificate that's being imported.</p>
+            private_key: <ul> <li> <p>For the CLI, provide a file path for a private key in URI format. For example, <code>--private-key file://encryption-key.pem</code>. Alternatively, you can provide the raw content of the private key file.</p> </li> <li> <p>For the SDK, specify the raw content of a private key file. For example, <code>--private-key \"`cat encryption-key.pem`\"</code> </p> </li> </ul>
+            active_date: <p>An optional date that specifies when the certificate becomes active. If you do not specify a value, <code>ActiveDate</code> takes the same value as <code>NotBeforeDate</code>, which is specified by the CA. </p>
+            inactive_date: <p>An optional date that specifies when the certificate becomes inactive. If you do not specify a value, <code>InactiveDate</code> takes the same value as <code>NotAfterDate</code>, which is specified by the CA.</p>
+            description: <p>A short description that helps identify the certificate. </p>
+            tags: <p>Key-value pairs that can be used to group and search for certificates.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.import_certificate_request.ImportCertificateRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.import_certificate_response.ImportCertificateResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.import_certificate
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.import_certificate.import_certificate(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.import_certificate_request.ImportCertificateRequest = {
+            "usage": usage,
+            "certificate": certificate,
+        }
+        if certificate_chain is not None:
+            input_["certificate_chain"] = certificate_chain
+        if private_key is not None:
+            input_["private_key"] = private_key
+        if active_date is not None:
+            input_["active_date"] = active_date
+        if inactive_date is not None:
+            input_["inactive_date"] = inactive_date
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_certificate(
+        self,
+        certificate_id: "capo_transfer.types.certificate_id.CertificateId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> (
+        "capo_transfer.types.describe_certificate_response.DescribeCertificateResponse"
+    ):
+        """<p>Describes the certificate that's identified by the <code>CertificateId</code>.</p> <note> <p>Transfer Family automatically publishes a Amazon CloudWatch metric called <code>DaysUntilExpiry</code> for imported certificates. This metric tracks the number of days until the certificate expires based on the <code>InactiveDate</code>. The metric is available in the <code>AWS/Transfer</code> namespace and includes the <code>CertificateId</code> as a dimension.</p> </note>
+
+        Args:
+            certificate_id: <p>An array of identifiers for the imported certificates. You use this identifier for working with profiles and partner profiles.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.describe_certificate_request.DescribeCertificateRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.describe_certificate_response.DescribeCertificateResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.describe_certificate
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.describe_certificate.describe_certificate(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.describe_certificate_request.DescribeCertificateRequest = {
+            "certificate_id": certificate_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_certificate(
+        self,
+        certificate_id: "capo_transfer.types.certificate_id.CertificateId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        active_date: Optional["capo_transfer.types.cert_date.CertDate"] = None,
+        inactive_date: Optional["capo_transfer.types.cert_date.CertDate"] = None,
+        description: Optional["capo_transfer.types.description.Description"] = None,
+    ) -> "capo_transfer.types.update_certificate_response.UpdateCertificateResponse":
+        """<p>Updates the active and inactive dates for a certificate.</p>
+
+        Args:
+            certificate_id: <p>The identifier of the certificate object that you are updating.</p>
+            active_date: <p>An optional date that specifies when the certificate becomes active. If you do not specify a value, <code>ActiveDate</code> takes the same value as <code>NotBeforeDate</code>, which is specified by the CA. </p>
+            inactive_date: <p>An optional date that specifies when the certificate becomes inactive. If you do not specify a value, <code>InactiveDate</code> takes the same value as <code>NotAfterDate</code>, which is specified by the CA.</p>
+            description: <p>A short description to help identify the certificate.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.update_certificate_request.UpdateCertificateRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.update_certificate_response.UpdateCertificateResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.update_certificate
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.update_certificate.update_certificate(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.update_certificate_request.UpdateCertificateRequest = {
+            "certificate_id": certificate_id
+        }
+        if active_date is not None:
+            input_["active_date"] = active_date
+        if inactive_date is not None:
+            input_["inactive_date"] = inactive_date
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_certificate(
+        self,
+        certificate_id: "capo_transfer.types.certificate_id.CertificateId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the certificate that's specified in the <code>CertificateId</code> parameter.</p>
+
+        Args:
+            certificate_id: <p>The identifier of the certificate object that you are deleting.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.delete_certificate_request.DeleteCertificateRequest]",
+        ) -> OperationResponse[None]:
+            import capo_transfer._operations.transfer_service.delete_certificate
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.delete_certificate.delete_certificate(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.delete_certificate_request.DeleteCertificateRequest = {
+            "certificate_id": certificate_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_certificates(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "capo_transfer.types.list_certificates_response.ListCertificatesResponse":
+        """<p>Returns a list of the current certificates that have been imported into Transfer Family. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for the <code>NextToken</code> parameter, you can supply that value to continue listing certificates from where you left off.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to return.</p>
+            next_token: <p>When you can get additional results from the <code>ListCertificates</code> call, a <code>NextToken</code> parameter is returned in the output. You can then pass in a subsequent command to the <code>NextToken</code> parameter to continue listing additional certificates.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> parameter that was passed is invalid.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.list_certificates_request.ListCertificatesRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.list_certificates_response.ListCertificatesResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.list_certificates
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.list_certificates.list_certificates(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.list_certificates_request.ListCertificatesRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_certificates(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_transfer.types.listed_certificate.ListedCertificate]":
+        _token = next_token
+        while True:
+            _response = self.list_certificates(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("certificates",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_connector(
+        self,
+        access_role: "capo_transfer.types.role.Role",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        url: Optional["capo_transfer.types.url.Url"] = None,
+        as2_config: Optional[
+            "capo_transfer.types.as2_connector_config.As2ConnectorConfig"
+        ] = None,
+        logging_role: Optional["capo_transfer.types.role.Role"] = None,
+        tags: Optional["capo_transfer.types.tags.Tags"] = None,
+        sftp_config: Optional[
+            "capo_transfer.types.sftp_connector_config.SftpConnectorConfig"
+        ] = None,
+        security_policy_name: Optional[
+            "capo_transfer.types.connector_security_policy_name.ConnectorSecurityPolicyName"
+        ] = None,
+        egress_config: Optional[
+            "capo_transfer.types.connector_egress_config.ConnectorEgressConfig"
+        ] = None,
+        ip_address_type: Optional[
+            "capo_transfer.types.connectors_ip_address_type.ConnectorsIpAddressType"
+        ] = None,
+    ) -> "capo_transfer.types.create_connector_response.CreateConnectorResponse":
+        r"""<p>Creates the connector, which captures the parameters for a connection for the AS2 or SFTP protocol. For AS2, the connector is required for sending files to an externally hosted AS2 server. For SFTP, the connector is required when sending files to an SFTP server or receiving files from an SFTP server. For more details about connectors, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/configure-as2-connector.html\">Configure AS2 connectors</a> and <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/configure-sftp-connector.html\">Create SFTP connectors</a>.</p> <note> <p>You must specify exactly one configuration object: either for AS2 (<code>As2Config</code>) or SFTP (<code>SftpConfig</code>).</p> </note>
+
+        Args:
+            url: <p>The URL of the partner's AS2 or SFTP endpoint.</p> <p>When creating AS2 connectors or service-managed SFTP connectors (connectors without egress configuration), you must provide a URL to specify the remote server endpoint. For VPC Lattice type connectors, the URL must be null.</p>
+            as2_config: <p>A structure that contains the parameters for an AS2 connector object.</p>
+            access_role: <p>Connectors are used to send files using either the AS2 or SFTP protocol. For the access role, provide the Amazon Resource Name (ARN) of the Identity and Access Management role to use.</p> <p> <b>For AS2 connectors</b> </p> <p>With AS2, you can send files by calling <code>StartFileTransfer</code> and specifying the file paths in the request parameter, <code>SendFilePaths</code>. We use the file’s parent directory (for example, for <code>--send-file-paths /bucket/dir/file.txt</code>, parent directory is <code>/bucket/dir/</code>) to temporarily store a processed AS2 message file, store the MDN when we receive them from the partner, and write a final JSON file containing relevant metadata of the transmission. So, the <code>AccessRole</code> needs to provide read and write access to the parent directory of the file location used in the <code>StartFileTransfer</code> request. Additionally, you need to provide read and write access to the parent directory of the files that you intend to send with <code>StartFileTransfer</code>.</p> <p>If you are using Basic authentication for your AS2 connector, the access role requires the <code>secretsmanager:GetSecretValue</code> permission for the secret. If the secret is encrypted using a customer-managed key instead of the Amazon Web Services managed key in Secrets Manager, then the role also needs the <code>kms:Decrypt</code> permission for that key.</p> <p> <b>For SFTP connectors</b> </p> <p>Make sure that the access role provides read and write access to the parent directory of the file location that's used in the <code>StartFileTransfer</code> request. Additionally, make sure that the role provides <code>secretsmanager:GetSecretValue</code> permission to Secrets Manager.</p>
+            logging_role: <p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that allows a connector to turn on CloudWatch logging for Amazon S3 events. When set, you can view connector activity in your CloudWatch logs.</p>
+            tags: <p>Key-value pairs that can be used to group and search for connectors. Tags are metadata attached to connectors for any purpose.</p>
+            sftp_config: <p>A structure that contains the parameters for an SFTP connector object.</p>
+            security_policy_name: <p>Specifies the name of the security policy for the connector.</p>
+            egress_config: <p>Specifies the egress configuration for the connector, which determines how traffic is routed from the connector to the SFTP server. When set to VPC, enables routing through customer VPCs using VPC_LATTICE for private connectivity.</p>
+            ip_address_type: <p>Specifies the IP address type for the connector's network connections. When set to <code>IPV4</code>, the connector uses IPv4 addresses only. When set to <code>DUALSTACK</code>, the connector supports both IPv4 and IPv6 addresses, with IPv6 preferred when available.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_exists_exception.ResourceExistsException: <p>The requested resource does not exist, or exists in a region other than the one specified for the command.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.create_connector_request.CreateConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.create_connector_response.CreateConnectorResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.create_connector
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.create_connector.create_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.create_connector_request.CreateConnectorRequest = {
+            "access_role": access_role
+        }
+        if url is not None:
+            input_["url"] = url
+        if as2_config is not None:
+            input_["as2_config"] = as2_config
+        if logging_role is not None:
+            input_["logging_role"] = logging_role
+        if tags is not None:
+            input_["tags"] = tags
+        if sftp_config is not None:
+            input_["sftp_config"] = sftp_config
+        if security_policy_name is not None:
+            input_["security_policy_name"] = security_policy_name
+        if egress_config is not None:
+            input_["egress_config"] = egress_config
+        if ip_address_type is not None:
+            input_["ip_address_type"] = ip_address_type
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_connector(
+        self,
+        connector_id: "capo_transfer.types.connector_id.ConnectorId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> "capo_transfer.types.describe_connector_response.DescribeConnectorResponse":
+        """<p>Describes the connector that's identified by the <code>ConnectorId.</code> </p>
+
+        Args:
+            connector_id: <p>The unique identifier for the connector.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.describe_connector_request.DescribeConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.describe_connector_response.DescribeConnectorResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.describe_connector
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.describe_connector.describe_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.describe_connector_request.DescribeConnectorRequest = {
+            "connector_id": connector_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_connector(
+        self,
+        connector_id: "capo_transfer.types.connector_id.ConnectorId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        url: Optional["capo_transfer.types.url.Url"] = None,
+        as2_config: Optional[
+            "capo_transfer.types.as2_connector_config.As2ConnectorConfig"
+        ] = None,
+        access_role: Optional["capo_transfer.types.role.Role"] = None,
+        logging_role: Optional["capo_transfer.types.role.Role"] = None,
+        sftp_config: Optional[
+            "capo_transfer.types.sftp_connector_config.SftpConnectorConfig"
+        ] = None,
+        security_policy_name: Optional[
+            "capo_transfer.types.connector_security_policy_name.ConnectorSecurityPolicyName"
+        ] = None,
+        egress_config: Optional[
+            "capo_transfer.types.update_connector_egress_config.UpdateConnectorEgressConfig"
+        ] = None,
+        ip_address_type: Optional[
+            "capo_transfer.types.connectors_ip_address_type.ConnectorsIpAddressType"
+        ] = None,
+    ) -> "capo_transfer.types.update_connector_response.UpdateConnectorResponse":
+        """<p>Updates some of the parameters for an existing connector. Provide the <code>ConnectorId</code> for the connector that you want to update, along with the new values for the parameters to update.</p>
+
+        Args:
+            connector_id: <p>The unique identifier for the connector.</p>
+            url: <p>The URL of the partner's AS2 or SFTP endpoint.</p> <p>When creating AS2 connectors or service-managed SFTP connectors (connectors without egress configuration), you must provide a URL to specify the remote server endpoint. For VPC Lattice type connectors, the URL must be null.</p>
+            as2_config: <p>A structure that contains the parameters for an AS2 connector object.</p>
+            access_role: <p>Connectors are used to send files using either the AS2 or SFTP protocol. For the access role, provide the Amazon Resource Name (ARN) of the Identity and Access Management role to use.</p> <p> <b>For AS2 connectors</b> </p> <p>With AS2, you can send files by calling <code>StartFileTransfer</code> and specifying the file paths in the request parameter, <code>SendFilePaths</code>. We use the file’s parent directory (for example, for <code>--send-file-paths /bucket/dir/file.txt</code>, parent directory is <code>/bucket/dir/</code>) to temporarily store a processed AS2 message file, store the MDN when we receive them from the partner, and write a final JSON file containing relevant metadata of the transmission. So, the <code>AccessRole</code> needs to provide read and write access to the parent directory of the file location used in the <code>StartFileTransfer</code> request. Additionally, you need to provide read and write access to the parent directory of the files that you intend to send with <code>StartFileTransfer</code>.</p> <p>If you are using Basic authentication for your AS2 connector, the access role requires the <code>secretsmanager:GetSecretValue</code> permission for the secret. If the secret is encrypted using a customer-managed key instead of the Amazon Web Services managed key in Secrets Manager, then the role also needs the <code>kms:Decrypt</code> permission for that key.</p> <p> <b>For SFTP connectors</b> </p> <p>Make sure that the access role provides read and write access to the parent directory of the file location that's used in the <code>StartFileTransfer</code> request. Additionally, make sure that the role provides <code>secretsmanager:GetSecretValue</code> permission to Secrets Manager.</p>
+            logging_role: <p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that allows a connector to turn on CloudWatch logging for Amazon S3 events. When set, you can view connector activity in your CloudWatch logs.</p>
+            sftp_config: <p>A structure that contains the parameters for an SFTP connector object.</p>
+            security_policy_name: <p>Specifies the name of the security policy for the connector.</p>
+            egress_config: <p>Updates the egress configuration for the connector, allowing you to modify how traffic is routed from the connector to the SFTP server. Changes to VPC configuration may require connector restart.</p>
+            ip_address_type: <p>Specifies the IP address type for the connector's network connections. When set to <code>IPV4</code>, the connector uses IPv4 addresses only. When set to <code>DUALSTACK</code>, the connector supports both IPv4 and IPv6 addresses, with IPv6 preferred when available.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_exists_exception.ResourceExistsException: <p>The requested resource does not exist, or exists in a region other than the one specified for the command.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.update_connector_request.UpdateConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.update_connector_response.UpdateConnectorResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.update_connector
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.update_connector.update_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.update_connector_request.UpdateConnectorRequest = {
+            "connector_id": connector_id
+        }
+        if url is not None:
+            input_["url"] = url
+        if as2_config is not None:
+            input_["as2_config"] = as2_config
+        if access_role is not None:
+            input_["access_role"] = access_role
+        if logging_role is not None:
+            input_["logging_role"] = logging_role
+        if sftp_config is not None:
+            input_["sftp_config"] = sftp_config
+        if security_policy_name is not None:
+            input_["security_policy_name"] = security_policy_name
+        if egress_config is not None:
+            input_["egress_config"] = egress_config
+        if ip_address_type is not None:
+            input_["ip_address_type"] = ip_address_type
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_connector(
+        self,
+        connector_id: "capo_transfer.types.connector_id.ConnectorId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the connector that's specified in the provided <code>ConnectorId</code>.</p>
+
+        Args:
+            connector_id: <p>The unique identifier for the connector.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.delete_connector_request.DeleteConnectorRequest]",
+        ) -> OperationResponse[None]:
+            import capo_transfer._operations.transfer_service.delete_connector
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.delete_connector.delete_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.delete_connector_request.DeleteConnectorRequest = {
+            "connector_id": connector_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_connectors(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "capo_transfer.types.list_connectors_response.ListConnectorsResponse":
+        """<p>Lists the connectors for the specified Region.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to return.</p>
+            next_token: <p>When you can get additional results from the <code>ListConnectors</code> call, a <code>NextToken</code> parameter is returned in the output. You can then pass in a subsequent command to the <code>NextToken</code> parameter to continue listing additional connectors.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> parameter that was passed is invalid.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.list_connectors_request.ListConnectorsRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.list_connectors_response.ListConnectorsResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.list_connectors
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.list_connectors.list_connectors(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.list_connectors_request.ListConnectorsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_connectors(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_transfer.types.listed_connector.ListedConnector]":
+        _token = next_token
+        while True:
+            _response = self.list_connectors(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("connectors",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_profile(
+        self,
+        as2_id: "capo_transfer.types.as2_id.As2Id",
+        profile_type: "capo_transfer.types.profile_type.ProfileType",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        certificate_ids: Optional[
+            "capo_transfer.types.certificate_ids.CertificateIds"
+        ] = None,
+        tags: Optional["capo_transfer.types.tags.Tags"] = None,
+    ) -> "capo_transfer.types.create_profile_response.CreateProfileResponse":
+        r"""<p>Creates the local or partner profile to use for AS2 transfers.</p>
+
+        Args:
+            as2_id: <p>The <code>As2Id</code> is the <i>AS2-name</i>, as defined in the <a href=\"https://datatracker.ietf.org/doc/html/rfc4130\">RFC 4130</a>. For inbound transfers, this is the <code>AS2-From</code> header for the AS2 messages sent from the partner. For outbound connectors, this is the <code>AS2-To</code> header for the AS2 messages sent to the partner using the <code>StartFileTransfer</code> API operation. This ID cannot include spaces.</p>
+            profile_type: <p>Determines the type of profile to create:</p> <ul> <li> <p>Specify <code>LOCAL</code> to create a local profile. A local profile represents the AS2-enabled Transfer Family server organization or party.</p> </li> <li> <p>Specify <code>PARTNER</code> to create a partner profile. A partner profile represents a remote organization, external to Transfer Family.</p> </li> </ul>
+            certificate_ids: <p>An array of identifiers for the imported certificates. You use this identifier for working with profiles and partner profiles.</p>
+            tags: <p>Key-value pairs that can be used to group and search for AS2 profiles.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.create_profile_request.CreateProfileRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.create_profile_response.CreateProfileResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.create_profile
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.create_profile.create_profile(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.create_profile_request.CreateProfileRequest = {
+            "as2_id": as2_id,
+            "profile_type": profile_type,
+        }
+        if certificate_ids is not None:
+            input_["certificate_ids"] = certificate_ids
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_profile(
+        self,
+        profile_id: "capo_transfer.types.profile_id.ProfileId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> "capo_transfer.types.describe_profile_response.DescribeProfileResponse":
+        """<p>Returns the details of the profile that's specified by the <code>ProfileId</code>.</p>
+
+        Args:
+            profile_id: <p>The identifier of the profile that you want described.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.describe_profile_request.DescribeProfileRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.describe_profile_response.DescribeProfileResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.describe_profile
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.describe_profile.describe_profile(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.describe_profile_request.DescribeProfileRequest = {
+            "profile_id": profile_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_profile(
+        self,
+        profile_id: "capo_transfer.types.profile_id.ProfileId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        certificate_ids: Optional[
+            "capo_transfer.types.certificate_ids.CertificateIds"
+        ] = None,
+    ) -> "capo_transfer.types.update_profile_response.UpdateProfileResponse":
+        """<p>Updates some of the parameters for an existing profile. Provide the <code>ProfileId</code> for the profile that you want to update, along with the new values for the parameters to update.</p>
+
+        Args:
+            profile_id: <p>The identifier of the profile object that you are updating.</p>
+            certificate_ids: <p>An array of identifiers for the imported certificates. You use this identifier for working with profiles and partner profiles.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.update_profile_request.UpdateProfileRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.update_profile_response.UpdateProfileResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.update_profile
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.update_profile.update_profile(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.update_profile_request.UpdateProfileRequest = {
+            "profile_id": profile_id
+        }
+        if certificate_ids is not None:
+            input_["certificate_ids"] = certificate_ids
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_profile(
+        self,
+        profile_id: "capo_transfer.types.profile_id.ProfileId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the profile that's specified in the <code>ProfileId</code> parameter.</p>
+
+        Args:
+            profile_id: <p>The identifier of the profile that you are deleting.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.delete_profile_request.DeleteProfileRequest]",
+        ) -> OperationResponse[None]:
+            import capo_transfer._operations.transfer_service.delete_profile
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.delete_profile.delete_profile(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.delete_profile_request.DeleteProfileRequest = {
+            "profile_id": profile_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_profiles(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+        profile_type: Optional["capo_transfer.types.profile_type.ProfileType"] = None,
+    ) -> "capo_transfer.types.list_profiles_response.ListProfilesResponse":
+        """<p>Returns a list of the profiles for your system. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for <code>NextToken</code>, you can supply that value to continue listing profiles from where you left off.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to return.</p>
+            next_token: <p>When there are additional results that were not returned, a <code>NextToken</code> parameter is returned. You can use that value for a subsequent call to <code>ListProfiles</code> to continue listing results.</p>
+            profile_type: <p>Indicates whether to list only <code>LOCAL</code> type profiles or only <code>PARTNER</code> type profiles. If not supplied in the request, the command lists all types of profiles.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> parameter that was passed is invalid.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.list_profiles_request.ListProfilesRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.list_profiles_response.ListProfilesResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.list_profiles
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.list_profiles.list_profiles(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.list_profiles_request.ListProfilesRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if profile_type is not None:
+            input_["profile_type"] = profile_type
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_profiles(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+        profile_type: Optional["capo_transfer.types.profile_type.ProfileType"] = None,
+    ) -> "Iterator[capo_transfer.types.listed_profile.ListedProfile]":
+        _token = next_token
+        while True:
+            _response = self.list_profiles(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                profile_type=profile_type,
+            )
+            _page = _resolve_path(_response, ("profiles",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_server(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        certificate: Optional["capo_transfer.types.certificate.Certificate"] = None,
+        domain: Optional["capo_transfer.types.domain.Domain"] = None,
+        endpoint_details: Optional[
+            "capo_transfer.types.endpoint_details.EndpointDetails"
+        ] = None,
+        endpoint_type: Optional[
+            "capo_transfer.types.endpoint_type.EndpointType"
+        ] = None,
+        host_key: Optional["capo_transfer.types.host_key.HostKey"] = None,
+        identity_provider_details: Optional[
+            "capo_transfer.types.identity_provider_details.IdentityProviderDetails"
+        ] = None,
+        identity_provider_type: Optional[
+            "capo_transfer.types.identity_provider_type.IdentityProviderType"
+        ] = None,
+        logging_role: Optional["capo_transfer.types.nullable_role.NullableRole"] = None,
+        post_authentication_login_banner: Optional[
+            "capo_transfer.types.post_authentication_login_banner.PostAuthenticationLoginBanner"
+        ] = None,
+        pre_authentication_login_banner: Optional[
+            "capo_transfer.types.pre_authentication_login_banner.PreAuthenticationLoginBanner"
+        ] = None,
+        protocols: Optional["capo_transfer.types.protocols.Protocols"] = None,
+        protocol_details: Optional[
+            "capo_transfer.types.protocol_details.ProtocolDetails"
+        ] = None,
+        security_policy_name: Optional[
+            "capo_transfer.types.security_policy_name.SecurityPolicyName"
+        ] = None,
+        tags: Optional["capo_transfer.types.tags.Tags"] = None,
+        workflow_details: Optional[
+            "capo_transfer.types.workflow_details.WorkflowDetails"
+        ] = None,
+        structured_log_destinations: Optional[
+            "capo_transfer.types.structured_log_destinations.StructuredLogDestinations"
+        ] = None,
+        s3_storage_options: Optional[
+            "capo_transfer.types.s3_storage_options.S3StorageOptions"
+        ] = None,
+        ip_address_type: Optional[
+            "capo_transfer.types.ip_address_type.IpAddressType"
+        ] = None,
+    ) -> "capo_transfer.types.create_server_response.CreateServerResponse":
+        r"""<p>Instantiates an auto-scaling virtual server based on the selected file transfer protocol in Amazon Web Services. When you make updates to your file transfer protocol-enabled server or when you work with users, use the service-generated <code>ServerId</code> property that is assigned to the newly created server.</p>
+
+        Args:
+            certificate: <p>The Amazon Resource Name (ARN) of the Certificate Manager (ACM) certificate. Required when <code>Protocols</code> is set to <code>FTPS</code>.</p> <p>To request a new public certificate, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html\">Request a public certificate</a> in the <i>Certificate Manager User Guide</i>.</p> <p>To import an existing certificate into ACM, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html\">Importing certificates into ACM</a> in the <i>Certificate Manager User Guide</i>.</p> <p>To request a private certificate to use FTPS through private IP addresses, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-private.html\">Request a private certificate</a> in the <i>Certificate Manager User Guide</i>.</p> <p>Certificates with the following cryptographic algorithms and key sizes are supported:</p> <ul> <li> <p>2048-bit RSA (RSA_2048)</p> </li> <li> <p>4096-bit RSA (RSA_4096)</p> </li> <li> <p>Elliptic Prime Curve 256 bit (EC_prime256v1)</p> </li> <li> <p>Elliptic Prime Curve 384 bit (EC_secp384r1)</p> </li> <li> <p>Elliptic Prime Curve 521 bit (EC_secp521r1)</p> </li> </ul> <note> <p>The certificate must be a valid SSL/TLS X.509 version 3 certificate with FQDN or IP address specified and information about the issuer.</p> </note>
+            domain: <p>The domain of the storage system that is used for file transfers. There are two domains available: Amazon Simple Storage Service (Amazon S3) and Amazon Elastic File System (Amazon EFS). The default value is S3.</p> <note> <p>After the server is created, the domain cannot be changed.</p> </note>
+            endpoint_details: <p>The virtual private cloud (VPC) endpoint settings that are configured for your server. When you host your endpoint within your VPC, you can make your endpoint accessible only to resources within your VPC, or you can attach Elastic IP addresses and make your endpoint accessible to clients over the internet. Your VPC's default security groups are automatically assigned to your endpoint.</p>
+            endpoint_type: <p>The type of endpoint that you want your server to use. You can choose to make your server's endpoint publicly accessible (PUBLIC) or host it inside your VPC. With an endpoint that is hosted in a VPC, you can restrict access to your server and resources only within your VPC or choose to make it internet facing by attaching Elastic IP addresses directly to it.</p> <note> <p> After May 19, 2021, you won't be able to create a server using <code>EndpointType=VPC_ENDPOINT</code> in your Amazon Web Services account if your account hasn't already done so before May 19, 2021. If you have already created servers with <code>EndpointType=VPC_ENDPOINT</code> in your Amazon Web Services account on or before May 19, 2021, you will not be affected. After this date, use <code>EndpointType</code>=<code>VPC</code>.</p> <p>For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.</p> <p>It is recommended that you use <code>VPC</code> as the <code>EndpointType</code>. With this endpoint type, you have the option to directly associate up to three Elastic IPv4 addresses (BYO IP included) with your server's endpoint and use VPC security groups to restrict traffic by the client's public IP address. This is not possible with <code>EndpointType</code> set to <code>VPC_ENDPOINT</code>.</p> </note>
+            host_key: <p>The RSA, ECDSA, or ED25519 private key to use for your SFTP-enabled server. You can add multiple host keys, in case you want to rotate keys, or have a set of active keys that use different algorithms.</p> <p>Use the following command to generate an RSA 2048 bit key with no passphrase:</p> <p> <code>ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Use a minimum value of 2048 for the <code>-b</code> option. You can create a stronger key by using 3072 or 4096.</p> <p>Use the following command to generate an ECDSA 256 bit key with no passphrase:</p> <p> <code>ssh-keygen -t ecdsa -b 256 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Valid values for the <code>-b</code> option for ECDSA are 256, 384, and 521.</p> <p>Use the following command to generate an ED25519 key with no passphrase:</p> <p> <code>ssh-keygen -t ed25519 -N \"\" -f my-new-server-key</code>.</p> <p>For all of these commands, you can replace <i>my-new-server-key</i> with a string of your choice.</p> <important> <p>If you aren't planning to migrate existing users from an existing SFTP-enabled server to a new server, don't update the host key. Accidentally changing a server's host key can be disruptive.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key\">Manage host keys for your SFTP-enabled server</a> in the <i>Transfer Family User Guide</i>.</p>
+            identity_provider_details: <p>Required when <code>IdentityProviderType</code> is set to <code>AWS_DIRECTORY_SERVICE</code>, <code>Amazon Web Services_LAMBDA</code> or <code>API_GATEWAY</code>. Accepts an array containing all of the information required to use a directory in <code>AWS_DIRECTORY_SERVICE</code> or invoke a customer-supplied authentication API, including the API Gateway URL. Cannot be specified when <code>IdentityProviderType</code> is set to <code>SERVICE_MANAGED</code>.</p>
+            identity_provider_type: <p>The mode of authentication for a server. The default value is <code>SERVICE_MANAGED</code>, which allows you to store and access user credentials within the Transfer Family service.</p> <p>Use <code>AWS_DIRECTORY_SERVICE</code> to provide access to Active Directory groups in Directory Service for Microsoft Active Directory or Microsoft Active Directory in your on-premises environment or in Amazon Web Services using AD Connector. This option also requires you to provide a Directory ID by using the <code>IdentityProviderDetails</code> parameter.</p> <p>Use the <code>API_GATEWAY</code> value to integrate with an identity provider of your choosing. The <code>API_GATEWAY</code> setting requires you to provide an Amazon API Gateway endpoint URL to call for authentication by using the <code>IdentityProviderDetails</code> parameter.</p> <p>Use the <code>AWS_LAMBDA</code> value to directly use an Lambda function as your identity provider. If you choose this value, you must specify the ARN for the Lambda function in the <code>Function</code> parameter for the <code>IdentityProviderDetails</code> data type.</p>
+            logging_role: <p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch logging for Amazon S3 or Amazon EFS events. When set, you can view user activity in your CloudWatch logs.</p>
+            post_authentication_login_banner: <p>Specifies a string to display when users connect to a server. This string is displayed after the user authenticates.</p> <note> <p>The SFTP protocol does not support post-authentication display banners.</p> </note>
+            pre_authentication_login_banner: <p>Specifies a string to display when users connect to a server. This string is displayed before the user authenticates. For example, the following banner displays details about using the system:</p> <p> <code>This system is for the use of authorized users only. Individuals using this computer system without authority, or in excess of their authority, are subject to having all of their activities on this system monitored and recorded by system personnel.</code> </p>
+            protocols: <p>Specifies the file transfer protocol or protocols over which your file transfer protocol client can connect to your server's endpoint. The available protocols are:</p> <ul> <li> <p> <code>SFTP</code> (Secure Shell (SSH) File Transfer Protocol): File transfer over SSH</p> </li> <li> <p> <code>FTPS</code> (File Transfer Protocol Secure): File transfer with TLS encryption</p> </li> <li> <p> <code>FTP</code> (File Transfer Protocol): Unencrypted file transfer</p> </li> <li> <p> <code>AS2</code> (Applicability Statement 2): used for transporting structured business-to-business data</p> </li> </ul> <note> <ul> <li> <p>If you select <code>FTPS</code>, you must choose a certificate stored in Certificate Manager (ACM) which is used to identify your server when clients connect to it over FTPS.</p> </li> <li> <p>If <code>Protocol</code> includes either <code>FTP</code> or <code>FTPS</code>, then the <code>EndpointType</code> must be <code>VPC</code> and the <code>IdentityProviderType</code> must be either <code>AWS_DIRECTORY_SERVICE</code>, <code>AWS_LAMBDA</code>, or <code>API_GATEWAY</code>.</p> </li> <li> <p>If <code>Protocol</code> includes <code>FTP</code>, then <code>AddressAllocationIds</code> cannot be associated.</p> </li> <li> <p>If <code>Protocol</code> is set only to <code>SFTP</code>, the <code>EndpointType</code> can be set to <code>PUBLIC</code> and the <code>IdentityProviderType</code> can be set any of the supported identity types: <code>SERVICE_MANAGED</code>, <code>AWS_DIRECTORY_SERVICE</code>, <code>AWS_LAMBDA</code>, or <code>API_GATEWAY</code>.</p> </li> <li> <p>If <code>Protocol</code> includes <code>AS2</code>, then the <code>EndpointType</code> must be <code>VPC</code>, and domain must be Amazon S3.</p> </li> </ul> </note>
+            protocol_details: <p>The protocol settings that are configured for your server.</p> <note> <p>Avoid placing Network Load Balancers (NLBs) or NAT gateways in front of Transfer Family servers, as this increases costs and can cause performance issues, including reduced connection limits for FTPS. For more details, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/infrastructure-security.html#nlb-considerations\"> Avoid placing NLBs and NATs in front of Transfer Family</a>.</p> </note> <ul> <li> <p> To indicate passive mode (for FTP and FTPS protocols), use the <code>PassiveIp</code> parameter. Enter a single dotted-quad IPv4 address, such as the external IP address of a firewall, router, or load balancer. </p> </li> <li> <p>To ignore the error that is generated when the client attempts to use the <code>SETSTAT</code> command on a file that you are uploading to an Amazon S3 bucket, use the <code>SetStatOption</code> parameter. To have the Transfer Family server ignore the <code>SETSTAT</code> command and upload files without needing to make any changes to your SFTP client, set the value to <code>ENABLE_NO_OP</code>. If you set the <code>SetStatOption</code> parameter to <code>ENABLE_NO_OP</code>, Transfer Family generates a log entry to Amazon CloudWatch Logs, so that you can determine when the client is making a <code>SETSTAT</code> call.</p> </li> <li> <p>To determine whether your Transfer Family server resumes recent, negotiated sessions through a unique session ID, use the <code>TlsSessionResumptionMode</code> parameter.</p> </li> <li> <p> <code>As2Transports</code> indicates the transport method for the AS2 messages. Currently, only HTTP is supported.</p> </li> </ul>
+            security_policy_name: <p>Specifies the name of the security policy for the server.</p>
+            tags: <p>Key-value pairs that can be used to group and search for servers.</p>
+            workflow_details: <p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In addition to a workflow to execute when a file is uploaded completely, <code>WorkflowDetails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when the server session disconnects while the file is still being uploaded.</p>
+            structured_log_destinations: <p>Specifies the log groups to which your server logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p> <p>If you have previously specified a log group for a server, you can clear it, and in effect turn off structured logging, by providing an empty value for this parameter in an <code>update-server</code> call. For example:</p> <p> <code>update-server --server-id s-1234567890abcdef0 --structured-log-destinations</code> </p>
+            s3_storage_options: <p>Specifies whether or not performance for your Amazon S3 directories is optimized.</p> <ul> <li> <p>If using the console, this is enabled by default.</p> </li> <li> <p>If using the API or CLI, this is disabled by default.</p> </li> </ul> <p>By default, home directory mappings have a <code>TYPE</code> of <code>DIRECTORY</code>. If you enable this option, you would then need to explicitly set the <code>HomeDirectoryMapEntry</code> <code>Type</code> to <code>FILE</code> if you want a mapping to have a file target.</p>
+            ip_address_type: <p>Specifies whether to use IPv4 only, or to use dual-stack (IPv4 and IPv6) for your Transfer Family endpoint. The default value is <code>IPV4</code>.</p> <important> <p>The <code>IpAddressType</code> parameter has the following limitations:</p> <ul> <li> <p>It cannot be changed while the server is online. You must stop the server before modifying this parameter.</p> </li> <li> <p>It cannot be updated to <code>DUALSTACK</code> if the server has <code>AddressAllocationIds</code> specified.</p> </li> </ul> </important> <note> <p>When using <code>DUALSTACK</code> as the <code>IpAddressType</code>, you cannot set the <code>AddressAllocationIds</code> parameter for the <a href=\"https://docs.aws.amazon.com/transfer/latest/APIReference/API_EndpointDetails.html\">EndpointDetails</a> for the server.</p> </note>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_exists_exception.ResourceExistsException: <p>The requested resource does not exist, or exists in a region other than the one specified for the command.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.create_server_request.CreateServerRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.create_server_response.CreateServerResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.create_server
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.create_server.create_server(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.create_server_request.CreateServerRequest = {}
+        if certificate is not None:
+            input_["certificate"] = certificate
+        if domain is not None:
+            input_["domain"] = domain
+        if endpoint_details is not None:
+            input_["endpoint_details"] = endpoint_details
+        if endpoint_type is not None:
+            input_["endpoint_type"] = endpoint_type
+        if host_key is not None:
+            input_["host_key"] = host_key
+        if identity_provider_details is not None:
+            input_["identity_provider_details"] = identity_provider_details
+        if identity_provider_type is not None:
+            input_["identity_provider_type"] = identity_provider_type
+        if logging_role is not None:
+            input_["logging_role"] = logging_role
+        if post_authentication_login_banner is not None:
+            input_["post_authentication_login_banner"] = (
+                post_authentication_login_banner
+            )
+        if pre_authentication_login_banner is not None:
+            input_["pre_authentication_login_banner"] = pre_authentication_login_banner
+        if protocols is not None:
+            input_["protocols"] = protocols
+        if protocol_details is not None:
+            input_["protocol_details"] = protocol_details
+        if security_policy_name is not None:
+            input_["security_policy_name"] = security_policy_name
+        if tags is not None:
+            input_["tags"] = tags
+        if workflow_details is not None:
+            input_["workflow_details"] = workflow_details
+        if structured_log_destinations is not None:
+            input_["structured_log_destinations"] = structured_log_destinations
+        if s3_storage_options is not None:
+            input_["s3_storage_options"] = s3_storage_options
+        if ip_address_type is not None:
+            input_["ip_address_type"] = ip_address_type
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_server(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> "capo_transfer.types.describe_server_response.DescribeServerResponse":
+        """<p>Describes a file transfer protocol-enabled server that you specify by passing the <code>ServerId</code> parameter.</p> <p>The response contains a description of a server's properties. When you set <code>EndpointType</code> to VPC, the response will contain the <code>EndpointDetails</code>.</p>
+
+        Args:
+            server_id: <p>A system-assigned unique identifier for a server.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.describe_server_request.DescribeServerRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.describe_server_response.DescribeServerResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.describe_server
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.describe_server.describe_server(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.describe_server_request.DescribeServerRequest = {
+            "server_id": server_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_server(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        certificate: Optional["capo_transfer.types.certificate.Certificate"] = None,
+        protocol_details: Optional[
+            "capo_transfer.types.protocol_details.ProtocolDetails"
+        ] = None,
+        endpoint_details: Optional[
+            "capo_transfer.types.endpoint_details.EndpointDetails"
+        ] = None,
+        endpoint_type: Optional[
+            "capo_transfer.types.endpoint_type.EndpointType"
+        ] = None,
+        host_key: Optional["capo_transfer.types.host_key.HostKey"] = None,
+        identity_provider_details: Optional[
+            "capo_transfer.types.identity_provider_details.IdentityProviderDetails"
+        ] = None,
+        logging_role: Optional["capo_transfer.types.nullable_role.NullableRole"] = None,
+        post_authentication_login_banner: Optional[
+            "capo_transfer.types.post_authentication_login_banner.PostAuthenticationLoginBanner"
+        ] = None,
+        pre_authentication_login_banner: Optional[
+            "capo_transfer.types.pre_authentication_login_banner.PreAuthenticationLoginBanner"
+        ] = None,
+        protocols: Optional["capo_transfer.types.protocols.Protocols"] = None,
+        security_policy_name: Optional[
+            "capo_transfer.types.security_policy_name.SecurityPolicyName"
+        ] = None,
+        workflow_details: Optional[
+            "capo_transfer.types.workflow_details.WorkflowDetails"
+        ] = None,
+        structured_log_destinations: Optional[
+            "capo_transfer.types.structured_log_destinations.StructuredLogDestinations"
+        ] = None,
+        s3_storage_options: Optional[
+            "capo_transfer.types.s3_storage_options.S3StorageOptions"
+        ] = None,
+        ip_address_type: Optional[
+            "capo_transfer.types.ip_address_type.IpAddressType"
+        ] = None,
+        identity_provider_type: Optional[
+            "capo_transfer.types.identity_provider_type.IdentityProviderType"
+        ] = None,
+    ) -> "capo_transfer.types.update_server_response.UpdateServerResponse":
+        r"""<p>Updates the file transfer protocol-enabled server's properties after that server has been created.</p> <p>The <code>UpdateServer</code> call returns the <code>ServerId</code> of the server you updated.</p>
+
+        Args:
+            certificate: <p>The Amazon Resource Name (ARN) of the Amazon Web ServicesCertificate Manager (ACM) certificate. Required when <code>Protocols</code> is set to <code>FTPS</code>.</p> <p>To request a new public certificate, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html\">Request a public certificate</a> in the <i> Amazon Web ServicesCertificate Manager User Guide</i>.</p> <p>To import an existing certificate into ACM, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html\">Importing certificates into ACM</a> in the <i> Amazon Web ServicesCertificate Manager User Guide</i>.</p> <p>To request a private certificate to use FTPS through private IP addresses, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-private.html\">Request a private certificate</a> in the <i> Amazon Web ServicesCertificate Manager User Guide</i>.</p> <p>Certificates with the following cryptographic algorithms and key sizes are supported:</p> <ul> <li> <p>2048-bit RSA (RSA_2048)</p> </li> <li> <p>4096-bit RSA (RSA_4096)</p> </li> <li> <p>Elliptic Prime Curve 256 bit (EC_prime256v1)</p> </li> <li> <p>Elliptic Prime Curve 384 bit (EC_secp384r1)</p> </li> <li> <p>Elliptic Prime Curve 521 bit (EC_secp521r1)</p> </li> </ul> <note> <p>The certificate must be a valid SSL/TLS X.509 version 3 certificate with FQDN or IP address specified and information about the issuer.</p> </note>
+            protocol_details: <p>The protocol settings that are configured for your server.</p> <note> <p>Avoid placing Network Load Balancers (NLBs) or NAT gateways in front of Transfer Family servers, as this increases costs and can cause performance issues, including reduced connection limits for FTPS. For more details, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/infrastructure-security.html#nlb-considerations\"> Avoid placing NLBs and NATs in front of Transfer Family</a>.</p> </note> <ul> <li> <p> To indicate passive mode (for FTP and FTPS protocols), use the <code>PassiveIp</code> parameter. Enter a single dotted-quad IPv4 address, such as the external IP address of a firewall, router, or load balancer. </p> </li> <li> <p>To ignore the error that is generated when the client attempts to use the <code>SETSTAT</code> command on a file that you are uploading to an Amazon S3 bucket, use the <code>SetStatOption</code> parameter. To have the Transfer Family server ignore the <code>SETSTAT</code> command and upload files without needing to make any changes to your SFTP client, set the value to <code>ENABLE_NO_OP</code>. If you set the <code>SetStatOption</code> parameter to <code>ENABLE_NO_OP</code>, Transfer Family generates a log entry to Amazon CloudWatch Logs, so that you can determine when the client is making a <code>SETSTAT</code> call.</p> </li> <li> <p>To determine whether your Transfer Family server resumes recent, negotiated sessions through a unique session ID, use the <code>TlsSessionResumptionMode</code> parameter.</p> </li> <li> <p> <code>As2Transports</code> indicates the transport method for the AS2 messages. Currently, only HTTP is supported.</p> </li> </ul>
+            endpoint_details: <p>The virtual private cloud (VPC) endpoint settings that are configured for your server. When you host your endpoint within your VPC, you can make your endpoint accessible only to resources within your VPC, or you can attach Elastic IP addresses and make your endpoint accessible to clients over the internet. Your VPC's default security groups are automatically assigned to your endpoint.</p>
+            endpoint_type: <p>The type of endpoint that you want your server to use. You can choose to make your server's endpoint publicly accessible (PUBLIC) or host it inside your VPC. With an endpoint that is hosted in a VPC, you can restrict access to your server and resources only within your VPC or choose to make it internet facing by attaching Elastic IP addresses directly to it.</p> <note> <p> After May 19, 2021, you won't be able to create a server using <code>EndpointType=VPC_ENDPOINT</code> in your Amazon Web Services account if your account hasn't already done so before May 19, 2021. If you have already created servers with <code>EndpointType=VPC_ENDPOINT</code> in your Amazon Web Services account on or before May 19, 2021, you will not be affected. After this date, use <code>EndpointType</code>=<code>VPC</code>.</p> <p>For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.</p> <p>It is recommended that you use <code>VPC</code> as the <code>EndpointType</code>. With this endpoint type, you have the option to directly associate up to three Elastic IPv4 addresses (BYO IP included) with your server's endpoint and use VPC security groups to restrict traffic by the client's public IP address. This is not possible with <code>EndpointType</code> set to <code>VPC_ENDPOINT</code>.</p> </note>
+            host_key: <p>The RSA, ECDSA, or ED25519 private key to use for your SFTP-enabled server. You can add multiple host keys, in case you want to rotate keys, or have a set of active keys that use different algorithms.</p> <p>Use the following command to generate an RSA 2048 bit key with no passphrase:</p> <p> <code>ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Use a minimum value of 2048 for the <code>-b</code> option. You can create a stronger key by using 3072 or 4096.</p> <p>Use the following command to generate an ECDSA 256 bit key with no passphrase:</p> <p> <code>ssh-keygen -t ecdsa -b 256 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Valid values for the <code>-b</code> option for ECDSA are 256, 384, and 521.</p> <p>Use the following command to generate an ED25519 key with no passphrase:</p> <p> <code>ssh-keygen -t ed25519 -N \"\" -f my-new-server-key</code>.</p> <p>For all of these commands, you can replace <i>my-new-server-key</i> with a string of your choice.</p> <important> <p>If you aren't planning to migrate existing users from an existing SFTP-enabled server to a new server, don't update the host key. Accidentally changing a server's host key can be disruptive.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key\">Manage host keys for your SFTP-enabled server</a> in the <i>Transfer Family User Guide</i>.</p>
+            identity_provider_details: <p>An array containing all of the information required to call a customer's authentication API method.</p>
+            logging_role: <p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch logging for Amazon S3 or Amazon EFS events. When set, you can view user activity in your CloudWatch logs.</p>
+            post_authentication_login_banner: <p>Specifies a string to display when users connect to a server. This string is displayed after the user authenticates.</p> <note> <p>The SFTP protocol does not support post-authentication display banners.</p> </note>
+            pre_authentication_login_banner: <p>Specifies a string to display when users connect to a server. This string is displayed before the user authenticates. For example, the following banner displays details about using the system:</p> <p> <code>This system is for the use of authorized users only. Individuals using this computer system without authority, or in excess of their authority, are subject to having all of their activities on this system monitored and recorded by system personnel.</code> </p>
+            protocols: <p>Specifies the file transfer protocol or protocols over which your file transfer protocol client can connect to your server's endpoint. The available protocols are:</p> <ul> <li> <p> <code>SFTP</code> (Secure Shell (SSH) File Transfer Protocol): File transfer over SSH</p> </li> <li> <p> <code>FTPS</code> (File Transfer Protocol Secure): File transfer with TLS encryption</p> </li> <li> <p> <code>FTP</code> (File Transfer Protocol): Unencrypted file transfer</p> </li> <li> <p> <code>AS2</code> (Applicability Statement 2): used for transporting structured business-to-business data</p> </li> </ul> <note> <ul> <li> <p>If you select <code>FTPS</code>, you must choose a certificate stored in Certificate Manager (ACM) which is used to identify your server when clients connect to it over FTPS.</p> </li> <li> <p>If <code>Protocol</code> includes either <code>FTP</code> or <code>FTPS</code>, then the <code>EndpointType</code> must be <code>VPC</code> and the <code>IdentityProviderType</code> must be either <code>AWS_DIRECTORY_SERVICE</code>, <code>AWS_LAMBDA</code>, or <code>API_GATEWAY</code>.</p> </li> <li> <p>If <code>Protocol</code> includes <code>FTP</code>, then <code>AddressAllocationIds</code> cannot be associated.</p> </li> <li> <p>If <code>Protocol</code> is set only to <code>SFTP</code>, the <code>EndpointType</code> can be set to <code>PUBLIC</code> and the <code>IdentityProviderType</code> can be set any of the supported identity types: <code>SERVICE_MANAGED</code>, <code>AWS_DIRECTORY_SERVICE</code>, <code>AWS_LAMBDA</code>, or <code>API_GATEWAY</code>.</p> </li> <li> <p>If <code>Protocol</code> includes <code>AS2</code>, then the <code>EndpointType</code> must be <code>VPC</code>, and domain must be Amazon S3.</p> </li> </ul> </note>
+            security_policy_name: <p>Specifies the name of the security policy for the server.</p>
+            server_id: <p>A system-assigned unique identifier for a server instance that the Transfer Family user is assigned to.</p>
+            workflow_details: <p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In addition to a workflow to execute when a file is uploaded completely, <code>WorkflowDetails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when the server session disconnects while the file is still being uploaded.</p> <p>To remove an associated workflow from a server, you can provide an empty <code>OnUpload</code> object, as in the following example.</p> <p> <code>aws transfer update-server --server-id s-01234567890abcdef --workflow-details '{\"OnUpload\":[]}'</code> </p>
+            structured_log_destinations: <p>Specifies the log groups to which your server logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p> <p>If you have previously specified a log group for a server, you can clear it, and in effect turn off structured logging, by providing an empty value for this parameter in an <code>update-server</code> call. For example:</p> <p> <code>update-server --server-id s-1234567890abcdef0 --structured-log-destinations</code> </p>
+            s3_storage_options: <p>Specifies whether or not performance for your Amazon S3 directories is optimized.</p> <ul> <li> <p>If using the console, this is enabled by default.</p> </li> <li> <p>If using the API or CLI, this is disabled by default.</p> </li> </ul> <p>By default, home directory mappings have a <code>TYPE</code> of <code>DIRECTORY</code>. If you enable this option, you would then need to explicitly set the <code>HomeDirectoryMapEntry</code> <code>Type</code> to <code>FILE</code> if you want a mapping to have a file target.</p>
+            ip_address_type: <p>Specifies whether to use IPv4 only, or to use dual-stack (IPv4 and IPv6) for your Transfer Family endpoint. The default value is <code>IPV4</code>.</p> <important> <p>The <code>IpAddressType</code> parameter has the following limitations:</p> <ul> <li> <p>It cannot be changed while the server is online. You must stop the server before modifying this parameter.</p> </li> <li> <p>It cannot be updated to <code>DUALSTACK</code> if the server has <code>AddressAllocationIds</code> specified.</p> </li> </ul> </important> <note> <p>When using <code>DUALSTACK</code> as the <code>IpAddressType</code>, you cannot set the <code>AddressAllocationIds</code> parameter for the <a href=\"https://docs.aws.amazon.com/transfer/latest/APIReference/API_EndpointDetails.html\">EndpointDetails</a> for the server.</p> </note>
+            identity_provider_type: <p>The mode of authentication for a server. The default value is <code>SERVICE_MANAGED</code>, which allows you to store and access user credentials within the Transfer Family service.</p> <p>Use <code>AWS_DIRECTORY_SERVICE</code> to provide access to Active Directory groups in Directory Service for Microsoft Active Directory or Microsoft Active Directory in your on-premises environment or in Amazon Web Services using AD Connector. This option also requires you to provide a Directory ID by using the <code>IdentityProviderDetails</code> parameter.</p> <p>Use the <code>API_GATEWAY</code> value to integrate with an identity provider of your choosing. The <code>API_GATEWAY</code> setting requires you to provide an Amazon API Gateway endpoint URL to call for authentication by using the <code>IdentityProviderDetails</code> parameter.</p> <p>Use the <code>AWS_LAMBDA</code> value to directly use an Lambda function as your identity provider. If you choose this value, you must specify the ARN for the Lambda function in the <code>Function</code> parameter for the <code>IdentityProviderDetails</code> data type.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.conflict_exception.ConflictException: <p>This exception is thrown when the <code>UpdateServer</code> is called for a file transfer protocol-enabled server that has VPC as the endpoint type and the server's <code>VpcEndpointID</code> is not in the available state.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_exists_exception.ResourceExistsException: <p>The requested resource does not exist, or exists in a region other than the one specified for the command.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.update_server_request.UpdateServerRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.update_server_response.UpdateServerResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.update_server
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.update_server.update_server(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.update_server_request.UpdateServerRequest = {
+            "server_id": server_id
+        }
+        if certificate is not None:
+            input_["certificate"] = certificate
+        if protocol_details is not None:
+            input_["protocol_details"] = protocol_details
+        if endpoint_details is not None:
+            input_["endpoint_details"] = endpoint_details
+        if endpoint_type is not None:
+            input_["endpoint_type"] = endpoint_type
+        if host_key is not None:
+            input_["host_key"] = host_key
+        if identity_provider_details is not None:
+            input_["identity_provider_details"] = identity_provider_details
+        if logging_role is not None:
+            input_["logging_role"] = logging_role
+        if post_authentication_login_banner is not None:
+            input_["post_authentication_login_banner"] = (
+                post_authentication_login_banner
+            )
+        if pre_authentication_login_banner is not None:
+            input_["pre_authentication_login_banner"] = pre_authentication_login_banner
+        if protocols is not None:
+            input_["protocols"] = protocols
+        if security_policy_name is not None:
+            input_["security_policy_name"] = security_policy_name
+        if workflow_details is not None:
+            input_["workflow_details"] = workflow_details
+        if structured_log_destinations is not None:
+            input_["structured_log_destinations"] = structured_log_destinations
+        if s3_storage_options is not None:
+            input_["s3_storage_options"] = s3_storage_options
+        if ip_address_type is not None:
+            input_["ip_address_type"] = ip_address_type
+        if identity_provider_type is not None:
+            input_["identity_provider_type"] = identity_provider_type
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_server(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the file transfer protocol-enabled server that you specify.</p> <p>No response returns from this operation.</p>
+
+        Args:
+            server_id: <p>A unique system-assigned identifier for a server instance.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.delete_server_request.DeleteServerRequest]",
+        ) -> OperationResponse[None]:
+            import capo_transfer._operations.transfer_service.delete_server
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.delete_server.delete_server(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.delete_server_request.DeleteServerRequest = {
+            "server_id": server_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_servers(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "capo_transfer.types.list_servers_response.ListServersResponse":
+        """<p>Lists the file transfer protocol-enabled servers that are associated with your Amazon Web Services account.</p>
+
+        Args:
+            max_results: <p>Specifies the number of servers to return as a response to the <code>ListServers</code> query.</p>
+            next_token: <p>When additional results are obtained from the <code>ListServers</code> command, a <code>NextToken</code> parameter is returned in the output. You can then pass the <code>NextToken</code> parameter in a subsequent command to continue listing additional servers.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> parameter that was passed is invalid.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.list_servers_request.ListServersRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.list_servers_response.ListServersResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.list_servers
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.list_servers.list_servers(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.list_servers_request.ListServersRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_servers(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_transfer.types.listed_server.ListedServer]":
+        _token = next_token
+        while True:
+            _response = self.list_servers(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("servers",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_user(
+        self,
+        role: "capo_transfer.types.role.Role",
+        server_id: "capo_transfer.types.server_id.ServerId",
+        user_name: "capo_transfer.types.user_name.UserName",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        home_directory: Optional[
+            "capo_transfer.types.home_directory.HomeDirectory"
+        ] = None,
+        home_directory_type: Optional[
+            "capo_transfer.types.home_directory_type.HomeDirectoryType"
+        ] = None,
+        home_directory_mappings: Optional[
+            "capo_transfer.types.home_directory_mappings.HomeDirectoryMappings"
+        ] = None,
+        policy: Optional["capo_transfer.types.policy.Policy"] = None,
+        posix_profile: Optional[
+            "capo_transfer.types.posix_profile.PosixProfile"
+        ] = None,
+        ssh_public_key_body: Optional[
+            "capo_transfer.types.ssh_public_key_body.SshPublicKeyBody"
+        ] = None,
+        tags: Optional["capo_transfer.types.tags.Tags"] = None,
+    ) -> "capo_transfer.types.create_user_response.CreateUserResponse":
+        r"""<p>Creates a user and associates them with an existing file transfer protocol-enabled server. You can only create and associate users with servers that have the <code>IdentityProviderType</code> set to <code>SERVICE_MANAGED</code>. Using parameters for <code>CreateUser</code>, you can specify the user name, set the home directory, store the user's public key, and assign the user's Identity and Access Management (IAM) role. You can also optionally add a session policy, and assign metadata with tags that can be used to group and search for users.</p>
+
+        Args:
+            home_directory: <p>The landing directory (folder) for a user when they log in to the server using the client.</p> <p>A <code>HomeDirectory</code> example is <code>/bucket_name/home/mydirectory</code>.</p> <note> <p>You can use the <code>HomeDirectory</code> parameter for <code>HomeDirectoryType</code> when it is set to either <code>PATH</code> or <code>LOGICAL</code>.</p> </note>
+            home_directory_type: <p>The type of landing directory (folder) that you want your users' home directory to be when they log in to the server. If you set it to <code>PATH</code>, the user will see the absolute Amazon S3 bucket or Amazon EFS path as is in their file transfer protocol clients. If you set it to <code>LOGICAL</code>, you need to provide mappings in the <code>HomeDirectoryMappings</code> for how you want to make Amazon S3 or Amazon EFS paths visible to your users.</p> <note> <p>If <code>HomeDirectoryType</code> is <code>LOGICAL</code>, you must provide mappings, using the <code>HomeDirectoryMappings</code> parameter. If, on the other hand, <code>HomeDirectoryType</code> is <code>PATH</code>, you provide an absolute path using the <code>HomeDirectory</code> parameter. You cannot have both <code>HomeDirectory</code> and <code>HomeDirectoryMappings</code> in your template.</p> </note>
+            home_directory_mappings: <p>Logical directory mappings that specify what Amazon S3 or Amazon EFS paths and keys should be visible to your user and how you want to make them visible. You must specify the <code>Entry</code> and <code>Target</code> pair, where <code>Entry</code> shows how the path is made visible and <code>Target</code> is the actual Amazon S3 or Amazon EFS path. If you only specify a target, it is displayed as is. You also must ensure that your Identity and Access Management (IAM) role provides access to paths in <code>Target</code>. This value can be set only when <code>HomeDirectoryType</code> is set to <i>LOGICAL</i>.</p> <p>The following is an <code>Entry</code> and <code>Target</code> pair example.</p> <p> <code>[ { \"Entry\": \"/directory1\", \"Target\": \"/bucket_name/home/mydirectory\" } ]</code> </p> <p>In most cases, you can use this value instead of the session policy to lock your user down to the designated home directory (\"<code>chroot</code>\"). To do this, you can set <code>Entry</code> to <code>/</code> and set <code>Target</code> to the value the user should see for their home directory when they log in.</p> <p>The following is an <code>Entry</code> and <code>Target</code> pair example for <code>chroot</code>.</p> <p> <code>[ { \"Entry\": \"/\", \"Target\": \"/bucket_name/home/mydirectory\" } ]</code> </p>
+            policy: <p>A session policy for your user so that you can use the same Identity and Access Management (IAM) role across multiple users. This policy scopes down a user's access to portions of their Amazon S3 bucket. Variables that you can use inside this policy include <code>${Transfer:UserName}</code>, <code>${Transfer:HomeDirectory}</code>, and <code>${Transfer:HomeBucket}</code>.</p> <note> <p>This policy applies only when the domain of <code>ServerId</code> is Amazon S3. Amazon EFS does not use session policies.</p> <p>For session policies, Transfer Family stores the policy as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy. You save the policy as a JSON blob and pass it in the <code>Policy</code> argument.</p> <p>For an example of a session policy, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/session-policy.html\">Example session policy</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html\">AssumeRole</a> in the <i>Amazon Web Services Security Token Service API Reference</i>.</p> </note>
+            posix_profile: <p>Specifies the full POSIX identity, including user ID (<code>Uid</code>), group ID (<code>Gid</code>), and any secondary groups IDs (<code>SecondaryGids</code>), that controls your users' access to your Amazon EFS file systems. The POSIX permissions that are set on files and directories in Amazon EFS determine the level of access your users get when transferring files into and out of your Amazon EFS file systems.</p>
+            role: <p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that controls your users' access to your Amazon S3 bucket or Amazon EFS file system. The policies attached to this role determine the level of access that you want to provide your users when transferring files into and out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should also contain a trust relationship that allows the server to access your resources when servicing your users' transfer requests.</p>
+            server_id: <p>A system-assigned unique identifier for a server instance. This is the specific server that you added your user to.</p>
+            ssh_public_key_body: <p>The public portion of the Secure Shell (SSH) key used to authenticate the user to the server.</p> <p>The three standard SSH public key format elements are <code>&lt;key type&gt;</code>, <code>&lt;body base64&gt;</code>, and an optional <code>&lt;comment&gt;</code>, with spaces between each element.</p> <p>Transfer Family accepts RSA, ECDSA, and ED25519 keys.</p> <ul> <li> <p>For RSA keys, the key type is <code>ssh-rsa</code>.</p> </li> <li> <p>For ED25519 keys, the key type is <code>ssh-ed25519</code>.</p> </li> <li> <p>For ECDSA keys, the key type is either <code>ecdsa-sha2-nistp256</code>, <code>ecdsa-sha2-nistp384</code>, or <code>ecdsa-sha2-nistp521</code>, depending on the size of the key you generated.</p> </li> </ul>
+            tags: <p>Key-value pairs that can be used to group and search for users. Tags are metadata attached to users for any purpose.</p>
+            user_name: <p>A unique string that identifies a user and is associated with a <code>ServerId</code>. This user name must be a minimum of 3 and a maximum of 100 characters long. The following are valid characters: a-z, A-Z, 0-9, underscore '_', hyphen '-', period '.', and at sign '@'. The user name can't start with a hyphen, period, or at sign.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_exists_exception.ResourceExistsException: <p>The requested resource does not exist, or exists in a region other than the one specified for the command.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.create_user_request.CreateUserRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.create_user_response.CreateUserResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.create_user
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.create_user.create_user(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.create_user_request.CreateUserRequest = {
+            "role": role,
+            "server_id": server_id,
+            "user_name": user_name,
+        }
+        if home_directory is not None:
+            input_["home_directory"] = home_directory
+        if home_directory_type is not None:
+            input_["home_directory_type"] = home_directory_type
+        if home_directory_mappings is not None:
+            input_["home_directory_mappings"] = home_directory_mappings
+        if policy is not None:
+            input_["policy"] = policy
+        if posix_profile is not None:
+            input_["posix_profile"] = posix_profile
+        if ssh_public_key_body is not None:
+            input_["ssh_public_key_body"] = ssh_public_key_body
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_user(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        user_name: "capo_transfer.types.user_name.UserName",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> "capo_transfer.types.describe_user_response.DescribeUserResponse":
+        """<p>Describes the user assigned to the specific file transfer protocol-enabled server, as identified by its <code>ServerId</code> property.</p> <p>The response from this call returns the properties of the user associated with the <code>ServerId</code> value that was specified.</p>
+
+        Args:
+            server_id: <p>A system-assigned unique identifier for a server that has this user assigned.</p>
+            user_name: <p>The name of the user assigned to one or more servers. User names are part of the sign-in credentials to use the Transfer Family service and perform file transfer tasks.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.describe_user_request.DescribeUserRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.describe_user_response.DescribeUserResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.describe_user
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.describe_user.describe_user(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.describe_user_request.DescribeUserRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_user(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        user_name: "capo_transfer.types.user_name.UserName",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        home_directory: Optional[
+            "capo_transfer.types.home_directory.HomeDirectory"
+        ] = None,
+        home_directory_type: Optional[
+            "capo_transfer.types.home_directory_type.HomeDirectoryType"
+        ] = None,
+        home_directory_mappings: Optional[
+            "capo_transfer.types.home_directory_mappings.HomeDirectoryMappings"
+        ] = None,
+        policy: Optional["capo_transfer.types.policy.Policy"] = None,
+        posix_profile: Optional[
+            "capo_transfer.types.posix_profile.PosixProfile"
+        ] = None,
+        role: Optional["capo_transfer.types.role.Role"] = None,
+    ) -> "capo_transfer.types.update_user_response.UpdateUserResponse":
+        r"""<p>Assigns new properties to a user. Parameters you pass modify any or all of the following: the home directory, role, and policy for the <code>UserName</code> and <code>ServerId</code> you specify.</p> <p>The response returns the <code>ServerId</code> and the <code>UserName</code> for the updated user.</p> <p>In the console, you can select <i>Restricted</i> when you create or update a user. This ensures that the user can't access anything outside of their home directory. The programmatic way to configure this behavior is to update the user. Set their <code>HomeDirectoryType</code> to <code>LOGICAL</code>, and specify <code>HomeDirectoryMappings</code> with <code>Entry</code> as root (<code>/</code>) and <code>Target</code> as their home directory.</p> <p>For example, if the user's home directory is <code>/test/admin-user</code>, the following command updates the user so that their configuration in the console shows the <i>Restricted</i> flag as selected.</p> <p> <code> aws transfer update-user --server-id &lt;server-id&gt; --user-name admin-user --home-directory-type LOGICAL --home-directory-mappings \"[{\\"Entry\\":\\"/\\", \\"Target\\":\\"/test/admin-user\\"}]\"</code> </p>
+
+        Args:
+            home_directory: <p>The landing directory (folder) for a user when they log in to the server using the client.</p> <p>A <code>HomeDirectory</code> example is <code>/bucket_name/home/mydirectory</code>.</p> <note> <p>You can use the <code>HomeDirectory</code> parameter for <code>HomeDirectoryType</code> when it is set to either <code>PATH</code> or <code>LOGICAL</code>.</p> </note>
+            home_directory_type: <p>The type of landing directory (folder) that you want your users' home directory to be when they log in to the server. If you set it to <code>PATH</code>, the user will see the absolute Amazon S3 bucket or Amazon EFS path as is in their file transfer protocol clients. If you set it to <code>LOGICAL</code>, you need to provide mappings in the <code>HomeDirectoryMappings</code> for how you want to make Amazon S3 or Amazon EFS paths visible to your users.</p> <note> <p>If <code>HomeDirectoryType</code> is <code>LOGICAL</code>, you must provide mappings, using the <code>HomeDirectoryMappings</code> parameter. If, on the other hand, <code>HomeDirectoryType</code> is <code>PATH</code>, you provide an absolute path using the <code>HomeDirectory</code> parameter. You cannot have both <code>HomeDirectory</code> and <code>HomeDirectoryMappings</code> in your template.</p> </note>
+            home_directory_mappings: <p>Logical directory mappings that specify what Amazon S3 or Amazon EFS paths and keys should be visible to your user and how you want to make them visible. You must specify the <code>Entry</code> and <code>Target</code> pair, where <code>Entry</code> shows how the path is made visible and <code>Target</code> is the actual Amazon S3 or Amazon EFS path. If you only specify a target, it is displayed as is. You also must ensure that your Identity and Access Management (IAM) role provides access to paths in <code>Target</code>. This value can be set only when <code>HomeDirectoryType</code> is set to <i>LOGICAL</i>.</p> <p>The following is an <code>Entry</code> and <code>Target</code> pair example.</p> <p> <code>[ { \"Entry\": \"/directory1\", \"Target\": \"/bucket_name/home/mydirectory\" } ]</code> </p> <p>In most cases, you can use this value instead of the session policy to lock down your user to the designated home directory (\"<code>chroot</code>\"). To do this, you can set <code>Entry</code> to '/' and set <code>Target</code> to the HomeDirectory parameter value.</p> <p>The following is an <code>Entry</code> and <code>Target</code> pair example for <code>chroot</code>.</p> <p> <code>[ { \"Entry\": \"/\", \"Target\": \"/bucket_name/home/mydirectory\" } ]</code> </p>
+            policy: <p>A session policy for your user so that you can use the same Identity and Access Management (IAM) role across multiple users. This policy scopes down a user's access to portions of their Amazon S3 bucket. Variables that you can use inside this policy include <code>${Transfer:UserName}</code>, <code>${Transfer:HomeDirectory}</code>, and <code>${Transfer:HomeBucket}</code>.</p> <note> <p>This policy applies only when the domain of <code>ServerId</code> is Amazon S3. Amazon EFS does not use session policies.</p> <p>For session policies, Transfer Family stores the policy as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy. You save the policy as a JSON blob and pass it in the <code>Policy</code> argument.</p> <p>For an example of a session policy, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/session-policy\">Creating a session policy</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html\">AssumeRole</a> in the <i>Amazon Web Services Security Token Service API Reference</i>.</p> </note>
+            posix_profile: <p>Specifies the full POSIX identity, including user ID (<code>Uid</code>), group ID (<code>Gid</code>), and any secondary groups IDs (<code>SecondaryGids</code>), that controls your users' access to your Amazon Elastic File Systems (Amazon EFS). The POSIX permissions that are set on files and directories in your file system determines the level of access your users get when transferring files into and out of your Amazon EFS file systems.</p>
+            role: <p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that controls your users' access to your Amazon S3 bucket or Amazon EFS file system. The policies attached to this role determine the level of access that you want to provide your users when transferring files into and out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should also contain a trust relationship that allows the server to access your resources when servicing your users' transfer requests.</p>
+            server_id: <p>A system-assigned unique identifier for a Transfer Family server instance that the user is assigned to.</p>
+            user_name: <p>A unique string that identifies a user and is associated with a server as specified by the <code>ServerId</code>. This user name must be a minimum of 3 and a maximum of 100 characters long. The following are valid characters: a-z, A-Z, 0-9, underscore '_', hyphen '-', period '.', and at sign '@'. The user name can't start with a hyphen, period, or at sign.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.update_user_request.UpdateUserRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.update_user_response.UpdateUserResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.update_user
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.update_user.update_user(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.update_user_request.UpdateUserRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
+        if home_directory is not None:
+            input_["home_directory"] = home_directory
+        if home_directory_type is not None:
+            input_["home_directory_type"] = home_directory_type
+        if home_directory_mappings is not None:
+            input_["home_directory_mappings"] = home_directory_mappings
+        if policy is not None:
+            input_["policy"] = policy
+        if posix_profile is not None:
+            input_["posix_profile"] = posix_profile
+        if role is not None:
+            input_["role"] = role
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_user(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        user_name: "capo_transfer.types.user_name.UserName",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the user belonging to a file transfer protocol-enabled server you specify.</p> <p>No response returns from this operation.</p> <note> <p>When you delete a user from a server, the user's information is lost.</p> </note>
+
+        Args:
+            server_id: <p>A system-assigned unique identifier for a server instance that has the user assigned to it.</p>
+            user_name: <p>A unique string that identifies a user that is being deleted from a server.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.delete_user_request.DeleteUserRequest]",
+        ) -> OperationResponse[None]:
+            import capo_transfer._operations.transfer_service.delete_user
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.delete_user.delete_user(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.delete_user_request.DeleteUserRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_users(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "capo_transfer.types.list_users_response.ListUsersResponse":
+        """<p>Lists the users for a file transfer protocol-enabled server that you specify by passing the <code>ServerId</code> parameter.</p>
+
+        Args:
+            max_results: <p>Specifies the number of users to return as a response to the <code>ListUsers</code> request.</p>
+            next_token: <p>If there are additional results from the <code>ListUsers</code> call, a <code>NextToken</code> parameter is returned in the output. You can then pass the <code>NextToken</code> to a subsequent <code>ListUsers</code> command, to continue listing additional users.</p>
+            server_id: <p>A system-assigned unique identifier for a server that has users assigned to it.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> parameter that was passed is invalid.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.list_users_request.ListUsersRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.list_users_response.ListUsersResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.list_users
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.list_users.list_users(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.list_users_request.ListUsersRequest = {
+            "server_id": server_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_users(
+        self,
+        server_id: "capo_transfer.types.server_id.ServerId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_transfer.types.listed_user.ListedUser]":
+        _token = next_token
+        while True:
+            _response = self.list_users(
+                server_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("users",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def describe_web_app_customization(
+        self,
+        web_app_id: "capo_transfer.types.web_app_id.WebAppId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> "capo_transfer.types.describe_web_app_customization_response.DescribeWebAppCustomizationResponse":
+        """<p>Describes the web app customization object that's identified by <code>WebAppId</code>.</p>
+
+        Args:
+            web_app_id: <p>Provide the unique identifier for the web app.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.describe_web_app_customization_request.DescribeWebAppCustomizationRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.describe_web_app_customization_response.DescribeWebAppCustomizationResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.describe_web_app_customization
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.describe_web_app_customization.describe_web_app_customization(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.describe_web_app_customization_request.DescribeWebAppCustomizationRequest = {
+            "web_app_id": web_app_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_web_app_customization(
+        self,
+        web_app_id: "capo_transfer.types.web_app_id.WebAppId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        title: Optional["capo_transfer.types.web_app_title.WebAppTitle"] = None,
+        logo_file: Optional[
+            "capo_transfer.types.web_app_logo_file.WebAppLogoFile"
+        ] = None,
+        favicon_file: Optional[
+            "capo_transfer.types.web_app_favicon_file.WebAppFaviconFile"
+        ] = None,
+    ) -> "capo_transfer.types.update_web_app_customization_response.UpdateWebAppCustomizationResponse":
+        """<p>Assigns new customization properties to a web app. You can modify the icon file, logo file, and title.</p>
+
+        Args:
+            web_app_id: <p>Provide the identifier of the web app that you are updating.</p>
+            title: <p>Provide an updated title.</p>
+            logo_file: <p>Specify logo file data string (in base64 encoding).</p>
+            favicon_file: <p>Specify an icon file data string (in base64 encoding).</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.conflict_exception.ConflictException: <p>This exception is thrown when the <code>UpdateServer</code> is called for a file transfer protocol-enabled server that has VPC as the endpoint type and the server's <code>VpcEndpointID</code> is not in the available state.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.update_web_app_customization_request.UpdateWebAppCustomizationRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.update_web_app_customization_response.UpdateWebAppCustomizationResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.update_web_app_customization
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.update_web_app_customization.update_web_app_customization(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.update_web_app_customization_request.UpdateWebAppCustomizationRequest = {
+            "web_app_id": web_app_id
+        }
+        if title is not None:
+            input_["title"] = title
+        if logo_file is not None:
+            input_["logo_file"] = logo_file
+        if favicon_file is not None:
+            input_["favicon_file"] = favicon_file
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_web_app_customization(
+        self,
+        web_app_id: "capo_transfer.types.web_app_id.WebAppId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the <code>WebAppCustomization</code> object that corresponds to the web app ID specified.</p>
+
+        Args:
+            web_app_id: <p>Provide the unique identifier for the web app that contains the customizations that you are deleting.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.conflict_exception.ConflictException: <p>This exception is thrown when the <code>UpdateServer</code> is called for a file transfer protocol-enabled server that has VPC as the endpoint type and the server's <code>VpcEndpointID</code> is not in the available state.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.delete_web_app_customization_request.DeleteWebAppCustomizationRequest]",
+        ) -> OperationResponse[None]:
+            import capo_transfer._operations.transfer_service.delete_web_app_customization
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.delete_web_app_customization.delete_web_app_customization(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.delete_web_app_customization_request.DeleteWebAppCustomizationRequest = {
+            "web_app_id": web_app_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_web_app(
+        self,
+        identity_provider_details: "capo_transfer.types.web_app_identity_provider_details.WebAppIdentityProviderDetails",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        access_endpoint: Optional[
+            "capo_transfer.types.web_app_access_endpoint.WebAppAccessEndpoint"
+        ] = None,
+        web_app_units: Optional["capo_transfer.types.web_app_units.WebAppUnits"] = None,
+        tags: Optional["capo_transfer.types.tags.Tags"] = None,
+        web_app_endpoint_policy: Optional[
+            "capo_transfer.types.web_app_endpoint_policy.WebAppEndpointPolicy"
+        ] = None,
+        endpoint_details: Optional[
+            "capo_transfer.types.web_app_endpoint_details.WebAppEndpointDetails"
+        ] = None,
+    ) -> "capo_transfer.types.create_web_app_response.CreateWebAppResponse":
+        r"""<p>Creates a web app based on specified parameters, and returns the ID for the new web app. You can configure the web app to be publicly accessible or hosted within a VPC.</p> <p>For more information about using VPC endpoints with Transfer Family, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/create-webapp-in-vpc.html\">Create a Transfer Family web app in a VPC</a>.</p>
+
+        Args:
+            identity_provider_details: <p>You can provide a structure that contains the details for the identity provider to use with your web app.</p> <p>For more details about this parameter, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/webapp-identity-center.html\">Configure your identity provider for Transfer Family web apps</a>.</p>
+            access_endpoint: <p>The <code>AccessEndpoint</code> is the URL that you provide to your users for them to interact with the Transfer Family web app. You can specify a custom URL or use the default value.</p> <p>Before you enter a custom URL for this parameter, follow the steps described in <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/webapp-customize.html\">Update your access endpoint with a custom URL</a>.</p>
+            web_app_units: <p>A union that contains the value for number of concurrent connections or the user sessions on your web app.</p>
+            tags: <p>Key-value pairs that can be used to group and search for web apps.</p>
+            web_app_endpoint_policy: <p> Setting for the type of endpoint policy for the web app. The default value is <code>STANDARD</code>. </p> <p>If you are creating the web app in an Amazon Web Services GovCloud (US) Region, you can set this parameter to <code>FIPS</code>.</p>
+            endpoint_details: <p>The endpoint configuration for the web app. You can specify whether the web app endpoint is publicly accessible or hosted within a VPC.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.create_web_app_request.CreateWebAppRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.create_web_app_response.CreateWebAppResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.create_web_app
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.create_web_app.create_web_app(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.create_web_app_request.CreateWebAppRequest = {
+            "identity_provider_details": identity_provider_details
+        }
+        if access_endpoint is not None:
+            input_["access_endpoint"] = access_endpoint
+        if web_app_units is not None:
+            input_["web_app_units"] = web_app_units
+        if tags is not None:
+            input_["tags"] = tags
+        if web_app_endpoint_policy is not None:
+            input_["web_app_endpoint_policy"] = web_app_endpoint_policy
+        if endpoint_details is not None:
+            input_["endpoint_details"] = endpoint_details
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_web_app(
+        self,
+        web_app_id: "capo_transfer.types.web_app_id.WebAppId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> "capo_transfer.types.describe_web_app_response.DescribeWebAppResponse":
+        r"""<p>Describes the web app that's identified by <code>WebAppId</code>. The response includes endpoint configuration details such as whether the web app is publicly accessible or VPC hosted.</p> <p>For more information about using VPC endpoints with Transfer Family, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/create-webapp-in-vpc.html\">Create a Transfer Family web app in a VPC</a>.</p>
+
+        Args:
+            web_app_id: <p>Provide the unique identifier for the web app.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.describe_web_app_request.DescribeWebAppRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.describe_web_app_response.DescribeWebAppResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.describe_web_app
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.describe_web_app.describe_web_app(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.describe_web_app_request.DescribeWebAppRequest = {
+            "web_app_id": web_app_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_web_app(
+        self,
+        web_app_id: "capo_transfer.types.web_app_id.WebAppId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        identity_provider_details: Optional[
+            "capo_transfer.types.update_web_app_identity_provider_details.UpdateWebAppIdentityProviderDetails"
+        ] = None,
+        access_endpoint: Optional[
+            "capo_transfer.types.web_app_access_endpoint.WebAppAccessEndpoint"
+        ] = None,
+        web_app_units: Optional["capo_transfer.types.web_app_units.WebAppUnits"] = None,
+        endpoint_details: Optional[
+            "capo_transfer.types.update_web_app_endpoint_details.UpdateWebAppEndpointDetails"
+        ] = None,
+    ) -> "capo_transfer.types.update_web_app_response.UpdateWebAppResponse":
+        r"""<p>Assigns new properties to a web app. You can modify the access point, identity provider details, endpoint configuration, and the web app units.</p> <p>For more information about using VPC endpoints with Transfer Family, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/create-webapp-in-vpc.html\">Create a Transfer Family web app in a VPC</a>.</p>
+
+        Args:
+            web_app_id: <p>Provide the identifier of the web app that you are updating.</p>
+            identity_provider_details: <p>Provide updated identity provider values in a <code>WebAppIdentityProviderDetails</code> object.</p>
+            access_endpoint: <p>The <code>AccessEndpoint</code> is the URL that you provide to your users for them to interact with the Transfer Family web app. You can specify a custom URL or use the default value.</p>
+            web_app_units: <p>A union that contains the value for number of concurrent connections or the user sessions on your web app.</p>
+            endpoint_details: <p>The updated endpoint configuration for the web app. You can modify the endpoint type and VPC configuration settings.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.conflict_exception.ConflictException: <p>This exception is thrown when the <code>UpdateServer</code> is called for a file transfer protocol-enabled server that has VPC as the endpoint type and the server's <code>VpcEndpointID</code> is not in the available state.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.update_web_app_request.UpdateWebAppRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.update_web_app_response.UpdateWebAppResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.update_web_app
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.update_web_app.update_web_app(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.update_web_app_request.UpdateWebAppRequest = {
+            "web_app_id": web_app_id
+        }
+        if identity_provider_details is not None:
+            input_["identity_provider_details"] = identity_provider_details
+        if access_endpoint is not None:
+            input_["access_endpoint"] = access_endpoint
+        if web_app_units is not None:
+            input_["web_app_units"] = web_app_units
+        if endpoint_details is not None:
+            input_["endpoint_details"] = endpoint_details
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_web_app(
+        self,
+        web_app_id: "capo_transfer.types.web_app_id.WebAppId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the specified web app.</p>
+
+        Args:
+            web_app_id: <p>Provide the unique identifier for the web app that you are deleting.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.delete_web_app_request.DeleteWebAppRequest]",
+        ) -> OperationResponse[None]:
+            import capo_transfer._operations.transfer_service.delete_web_app
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.delete_web_app.delete_web_app(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.delete_web_app_request.DeleteWebAppRequest = {
+            "web_app_id": web_app_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_web_apps(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "capo_transfer.types.list_web_apps_response.ListWebAppsResponse":
+        r"""<p>Lists all web apps associated with your Amazon Web Services account for your current region. The response includes the endpoint type for each web app, showing whether it is publicly accessible or VPC hosted.</p> <p>For more information about using VPC endpoints with Transfer Family, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/create-webapp-in-vpc.html\">Create a Transfer Family web app in a VPC</a>.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to return.</p>
+            next_token: <p>Returns the <code>NextToken</code> parameter in the output. You can then pass the <code>NextToken</code> parameter in a subsequent command to continue listing additional web apps.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> parameter that was passed is invalid.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.list_web_apps_request.ListWebAppsRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.list_web_apps_response.ListWebAppsResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.list_web_apps
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.list_web_apps.list_web_apps(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.list_web_apps_request.ListWebAppsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_web_apps(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_transfer.types.listed_web_app.ListedWebApp]":
+        _token = next_token
+        while True:
+            _response = self.list_web_apps(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("web_apps",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_workflow(
+        self,
+        steps: "capo_transfer.types.workflow_steps.WorkflowSteps",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        description: Optional[
+            "capo_transfer.types.workflow_description.WorkflowDescription"
+        ] = None,
+        on_exception_steps: Optional[
+            "capo_transfer.types.workflow_steps.WorkflowSteps"
+        ] = None,
+        tags: Optional["capo_transfer.types.tags.Tags"] = None,
+    ) -> "capo_transfer.types.create_workflow_response.CreateWorkflowResponse":
+        """<p> Allows you to create a workflow with specified steps and step details the workflow invokes after file transfer completes. After creating a workflow, you can associate the workflow created with any transfer servers by specifying the <code>workflow-details</code> field in <code>CreateServer</code> and <code>UpdateServer</code> operations. </p>
+
+        Args:
+            description: <p>A textual description for the workflow.</p>
+            steps: <p>Specifies the details for the steps that are in the specified workflow.</p> <p> The <code>TYPE</code> specifies which of the following actions is being taken for this step. </p> <ul> <li> <p> <b> <code>COPY</code> </b> - Copy the file to another location.</p> </li> <li> <p> <b> <code>CUSTOM</code> </b> - Perform a custom step with an Lambda function target.</p> </li> <li> <p> <b> <code>DECRYPT</code> </b> - Decrypt a file that was encrypted before it was uploaded.</p> </li> <li> <p> <b> <code>DELETE</code> </b> - Delete the file.</p> </li> <li> <p> <b> <code>TAG</code> </b> - Add a tag to the file.</p> </li> </ul> <note> <p> Currently, copying and tagging are supported only on S3. </p> </note> <p> For file location, you specify either the Amazon S3 bucket and key, or the Amazon EFS file system ID and path. </p>
+            on_exception_steps: <p>Specifies the steps (actions) to take if errors are encountered during execution of the workflow.</p> <note> <p>For custom steps, the Lambda function needs to send <code>FAILURE</code> to the call back API to kick off the exception steps. Additionally, if the Lambda does not send <code>SUCCESS</code> before it times out, the exception steps are executed.</p> </note>
+            tags: <p>Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_exists_exception.ResourceExistsException: <p>The requested resource does not exist, or exists in a region other than the one specified for the command.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.create_workflow_request.CreateWorkflowRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.create_workflow_response.CreateWorkflowResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.create_workflow
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.create_workflow.create_workflow(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.create_workflow_request.CreateWorkflowRequest = {
+            "steps": steps
+        }
+        if description is not None:
+            input_["description"] = description
+        if on_exception_steps is not None:
+            input_["on_exception_steps"] = on_exception_steps
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_workflow(
+        self,
+        workflow_id: "capo_transfer.types.workflow_id.WorkflowId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> "capo_transfer.types.describe_workflow_response.DescribeWorkflowResponse":
+        """<p>Describes the specified workflow.</p>
+
+        Args:
+            workflow_id: <p>A unique identifier for the workflow.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.describe_workflow_request.DescribeWorkflowRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.describe_workflow_response.DescribeWorkflowResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.describe_workflow
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.describe_workflow.describe_workflow(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.describe_workflow_request.DescribeWorkflowRequest = {
+            "workflow_id": workflow_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_workflow(
+        self,
+        workflow_id: "capo_transfer.types.workflow_id.WorkflowId",
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the specified workflow.</p>
+
+        Args:
+            workflow_id: <p>A unique identifier for the workflow.</p>
+
+        Raises:
+            capo_transfer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer Family service.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.delete_workflow_request.DeleteWorkflowRequest]",
+        ) -> OperationResponse[None]:
+            import capo_transfer._operations.transfer_service.delete_workflow
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.delete_workflow.delete_workflow(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "workflow_id": workflow_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_workflows(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "capo_transfer.types.list_workflows_response.ListWorkflowsResponse":
+        """<p>Lists all workflows associated with your Amazon Web Services account for your current region.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to return.</p>
+            next_token: <p> <code>ListWorkflows</code> returns the <code>NextToken</code> parameter in the output. You can then pass the <code>NextToken</code> parameter in a subsequent command to continue listing additional workflows.</p>
+
+        Raises:
+            capo_transfer.errors.internal_service_error.InternalServiceError: <p>This exception is thrown when an error occurs in the Transfer Family service.</p>
+            capo_transfer.errors.invalid_next_token_exception.InvalidNextTokenException: <p>The <code>NextToken</code> parameter that was passed is invalid.</p>
+            capo_transfer.errors.invalid_request_exception.InvalidRequestException: <p>This exception is thrown when the client submits a malformed request.</p>
+            capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request has failed because the Amazon Web ServicesTransfer Family service is not available.</p>
+            capo_transfer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transfer.types.list_workflows_request.ListWorkflowsRequest]",
+        ) -> OperationResponse[
+            "capo_transfer.types.list_workflows_response.ListWorkflowsResponse"
+        ]:
+            import capo_transfer._operations.transfer_service.list_workflows
+
+            output, http_response = (
+                capo_transfer._operations.transfer_service.list_workflows.list_workflows(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transfer.types.list_workflows_request.ListWorkflowsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_workflows(
+        self,
+        *,
+        config_overrides: Optional[TransferClientConfig] = None,
+        max_results: Optional["capo_transfer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_transfer.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_transfer.types.listed_workflow.ListedWorkflow]":
+        _token = next_token
+        while True:
+            _response = self.list_workflows(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("workflows",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def __enter__(self) -> Self:
         return self

@@ -8,7 +8,6 @@ from ._endpoint_runtime import (
     EndpointError,
     get_attr,
     interpolate,
-    string_equals,
 )
 
 
@@ -18,13 +17,13 @@ class EndpointParams:
         *,
         UseDualStack: bool | None = None,
         UseFIPS: bool | None = None,
-        Region: str | None = None,
         Endpoint: str | None = None,
+        Region: str | None = None,
     ):
         self.UseDualStack = UseDualStack if UseDualStack is not None else False
         self.UseFIPS = UseFIPS if UseFIPS is not None else False
-        self.Region = Region if Region is not None else None
         self.Endpoint = Endpoint if Endpoint is not None else None
+        self.Region = Region if Region is not None else None
 
 
 def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
@@ -79,95 +78,52 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                         )
                     )
             if p.UseFIPS is True:
-                if (
-                    get_attr(
+                if p.UseDualStack is False:
+                    if (
+                        get_attr(
+                            _locals["PartitionResult"],
+                            interpolate("supportsFIPS", p, _locals),
+                        )
+                        is True
+                    ):
+                        return Endpoint(
+                            url=interpolate(
+                                "https://servicediscovery-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                p,
+                                _locals,
+                            ),
+                            properties={},
+                            headers={},
+                        )
+                    raise EndpointError(
+                        interpolate(
+                            "FIPS is enabled but this partition does not support FIPS",
+                            p,
+                            _locals,
+                        )
+                    )
+            if p.UseFIPS is False:
+                if p.UseDualStack is True:
+                    if True is get_attr(
                         _locals["PartitionResult"],
-                        interpolate("supportsFIPS", p, _locals),
-                    )
-                    is True
-                ):
-                    return Endpoint(
-                        url=interpolate(
-                            "https://servicediscovery-fips.{Region}.{PartitionResult#dnsSuffix}",
+                        interpolate("supportsDualStack", p, _locals),
+                    ):
+                        return Endpoint(
+                            url=interpolate(
+                                "https://servicediscovery.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                p,
+                                _locals,
+                            ),
+                            properties={},
+                            headers={},
+                        )
+                    raise EndpointError(
+                        interpolate(
+                            "DualStack is enabled but this partition does not support DualStack",
                             p,
                             _locals,
-                        ),
-                        properties={},
-                        headers={},
-                    )
-                raise EndpointError(
-                    interpolate(
-                        "FIPS is enabled but this partition does not support FIPS",
-                        p,
-                        _locals,
-                    )
-                )
-            if p.UseDualStack is True:
-                if True is get_attr(
-                    _locals["PartitionResult"],
-                    interpolate("supportsDualStack", p, _locals),
-                ):
-                    if string_equals(
-                        interpolate("aws", p, _locals),
-                        get_attr(
-                            _locals["PartitionResult"], interpolate("name", p, _locals)
-                        ),
-                    ):
-                        return Endpoint(
-                            url=interpolate(
-                                "https://servicediscovery.{Region}.amazonaws.com",
-                                p,
-                                _locals,
-                            ),
-                            properties={},
-                            headers={},
                         )
-                    if string_equals(
-                        interpolate("aws-cn", p, _locals),
-                        get_attr(
-                            _locals["PartitionResult"], interpolate("name", p, _locals)
-                        ),
-                    ):
-                        return Endpoint(
-                            url=interpolate(
-                                "https://servicediscovery.{Region}.amazonaws.com.cn",
-                                p,
-                                _locals,
-                            ),
-                            properties={},
-                            headers={},
-                        )
-                    if string_equals(
-                        interpolate("aws-us-gov", p, _locals),
-                        get_attr(
-                            _locals["PartitionResult"], interpolate("name", p, _locals)
-                        ),
-                    ):
-                        return Endpoint(
-                            url=interpolate(
-                                "https://servicediscovery.{Region}.amazonaws.com",
-                                p,
-                                _locals,
-                            ),
-                            properties={},
-                            headers={},
-                        )
-                    return Endpoint(
-                        url=interpolate(
-                            "https://servicediscovery.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                            p,
-                            _locals,
-                        ),
-                        properties={},
-                        headers={},
                     )
-                raise EndpointError(
-                    interpolate(
-                        "DualStack is enabled but this partition does not support DualStack",
-                        p,
-                        _locals,
-                    )
-                )
             return Endpoint(
                 url=interpolate(
                     "https://servicediscovery.{Region}.{PartitionResult#dnsSuffix}",
@@ -177,7 +133,6 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                 properties={},
                 headers={},
             )
-    _locals: dict[str, Any] = {}
     raise EndpointError(
         interpolate("Invalid Configuration: Missing Region", p, _locals)
     )

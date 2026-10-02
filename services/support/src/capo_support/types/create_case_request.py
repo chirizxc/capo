@@ -13,9 +13,11 @@ if TYPE_CHECKING:
     import capo_support.types.communication_body
     import capo_support.types.issue_type
     import capo_support.types.language
+    import capo_support.types.nullable_boolean_type
     import capo_support.types.service_code2
     import capo_support.types.severity_code
     import capo_support.types.subject
+    import capo_support.types.upload_ids
 
 
 class CreateCaseRequest(TypedDict, closed=True):
@@ -34,13 +36,17 @@ class CreateCaseRequest(TypedDict, closed=True):
     ]
     r"""<p>A list of email addresses that Amazon Web Services Support copies on case correspondence. Amazon Web Services Support identifies the account that creates the case when you specify your Amazon Web Services credentials in an HTTP POST method or use the <a href=\"http://aws.amazon.com/tools/\">Amazon Web Services SDKs</a>. </p>"""
     language: NotRequired["capo_support.types.language.Language"]
-    r"""<p>The language in which Amazon Web Services Support handles the case. Amazon Web Services Support currently supports Chinese (“zh”), English (\"en\"), Japanese (\"ja\") and Korean (“ko”). You must specify the ISO 639-1 code for the <code>language</code> parameter if you want support in that language.</p>"""
+    r"""<p>The language in which Amazon Web Services Support handles the case. Amazon Web Services Support currently supports Chinese (“zh”), English (\"en\"), Japanese (\"ja\") , Chinese (\"zh\"), Spanish (\"es\"), Portuguese (\"pt\"), French (\"fr\"), Korean (“ko”), and Turkish (\"tr\"). You must specify the ISO 639-1 code for the <code>language</code> parameter if you want support in that language.</p>"""
     issue_type: NotRequired["capo_support.types.issue_type.IssueType"]
     """<p>The type of issue for the case. You can specify <code>customer-service</code> or <code>technical</code>. If you don't specify a value, the default is <code>technical</code>.</p>"""
     attachment_set_id: NotRequired[
         "capo_support.types.attachment_set_id.AttachmentSetId"
     ]
-    """<p>The ID of a set of one or more attachments for the case. Create the set by using the <a>AddAttachmentsToSet</a> operation.</p>"""
+    """<p>The ID of a set of one or more attachments for the case. Create the set by using the <a>AddAttachmentsToSet</a> operation. Each attachment in the set must be 5 MB or smaller. To attach files larger than 5 MB, use <code>uploadIds</code>.</p>"""
+    upload_ids: NotRequired["capo_support.types.upload_ids.UploadIds"]
+    """<p>A list of upload IDs that identify attachments to add to the case. Each <code>uploadId</code> is returned by the <a>GetAttachmentUploadLinks</a> operation. The upload must reach the <code>attachment-ready</code> state by calling <a>CompleteAttachmentUpload</a> before it can be passed here. Use <code>uploadIds</code> to attach files of any supported size, including files larger than 5 MB.</p>"""
+    dry_run: NotRequired["capo_support.types.nullable_boolean_type.NullableBooleanType"]
+    """<p>Specifies whether to validate the request without actually creating the case. When set to <code>true</code>, the request is validated but no case is created, and the operation returns a <code>DryRunOperationException</code>. When omitted or set to <code>false</code>, the request runs normally.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -68,6 +74,14 @@ def serialize_aws_json_1_1(value: CreateCaseRequest) -> dict:
         out["issueType"] = value["issue_type"]
     if "attachment_set_id" in value:
         out["attachmentSetId"] = value["attachment_set_id"]
+    if "upload_ids" in value:
+        import capo_support.types.upload_ids
+
+        out["uploadIds"] = capo_support.types.upload_ids.serialize_aws_json_1_1(
+            value["upload_ids"]
+        )
+    if "dry_run" in value:
+        out["dryRun"] = value["dry_run"]
     return out
 
 
@@ -101,4 +115,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCaseRequest:
         out["issue_type"] = data["issueType"]
     if data.get("attachmentSetId") is not None:
         out["attachment_set_id"] = data["attachmentSetId"]
+    if data.get("uploadIds") is not None:
+        import capo_support.types.upload_ids
+
+        out["upload_ids"] = capo_support.types.upload_ids.deserialize_aws_json_1_1(
+            data["uploadIds"]
+        )
+    if data.get("dryRun") is not None:
+        out["dry_run"] = data["dryRun"]
     return out

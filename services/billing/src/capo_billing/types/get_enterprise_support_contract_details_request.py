@@ -1,0 +1,33 @@
+"""Generated from Smithy shape ``com.amazonaws.billing#GetEnterpriseSupportContractDetailsRequest``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import TypedDict
+
+from capo_billing.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_billing.types.enterprise_support_billing_month
+
+
+class GetEnterpriseSupportContractDetailsRequest(TypedDict, closed=True):
+    billing_month: "capo_billing.types.enterprise_support_billing_month.EnterpriseSupportBillingMonth"
+    """<p>The billing month in YYYY-MM format. This must be a month in the past.</p>"""
+
+
+# --- awsJson1_0 ser/de ---
+def serialize_aws_json_1_0(value: GetEnterpriseSupportContractDetailsRequest) -> dict:
+    out: dict = {}
+    out["billingMonth"] = value["billing_month"]
+    return out
+
+
+def deserialize_aws_json_1_0(data: dict) -> GetEnterpriseSupportContractDetailsRequest:
+    out: GetEnterpriseSupportContractDetailsRequest = {}  # type: ignore[typeddict-item]
+    if data.get("billingMonth") is not None:
+        out["billing_month"] = data["billingMonth"]
+    else:
+        raise DeserializationError(
+            "GetEnterpriseSupportContractDetailsRequest.billing_month required"
+        )
+    return out

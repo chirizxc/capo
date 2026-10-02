@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_simspaceweaver import AsyncSimSpaceWeaverClient
+
+
+async def main():
+    async with AsyncSimSpaceWeaverClient() as sim_space_weaver:
+        # Example: paginate over list_simulations
+        async for item in sim_space_weaver.iter_list_simulations():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

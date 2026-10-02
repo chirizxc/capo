@@ -22,7 +22,11 @@ def serialize_json(value: SuggestQueryResult) -> dict:
     if "query_id" in value:
         out["QueryId"] = value["query_id"]
     if "query_type" in value:
-        out["QueryType"] = value["query_type"]
+        import capo_geo_places.types.query_type
+
+        out["QueryType"] = capo_geo_places.types.query_type.serialize_json(
+            value["query_type"]
+        )
     return out
 
 
@@ -31,5 +35,9 @@ def deserialize_json(data: dict) -> SuggestQueryResult:
     if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     if data.get("QueryType") is not None:
-        out["query_type"] = data["QueryType"]
+        import capo_geo_places.types.query_type
+
+        out["query_type"] = capo_geo_places.types.query_type.deserialize_json(
+            data["QueryType"]
+        )
     return out

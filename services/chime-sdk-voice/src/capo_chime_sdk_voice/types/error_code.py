@@ -19,6 +19,7 @@ ErrorCode: TypeAlias = Literal[
     "VoiceConnectorGroupAssociationsExist",
     "PhoneNumberAssociationsExist",
     "Gone",
+    "Validation",
 ]
 
 

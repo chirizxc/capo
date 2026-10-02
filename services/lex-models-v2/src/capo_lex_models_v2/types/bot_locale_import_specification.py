@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_lex_models_v2.types.draft_bot_version
     import capo_lex_models_v2.types.id
     import capo_lex_models_v2.types.locale_id
+    import capo_lex_models_v2.types.speaker_diarization_settings
     import capo_lex_models_v2.types.speech_detection_sensitivity
     import capo_lex_models_v2.types.speech_recognition_settings
     import capo_lex_models_v2.types.unified_speech_settings
@@ -46,6 +47,10 @@ class BotLocaleImportSpecification(TypedDict, closed=True):
         "capo_lex_models_v2.types.audio_filler_settings.AudioFillerSettings"
     ]
     """<p>Audio filler settings to apply when importing the bot locale configuration. Audio filler requires <code>unifiedSpeechSettings</code> (speech-to-speech) to be enabled when <code>enabled</code> is <code>true</code>.</p>"""
+    speaker_diarization_settings: NotRequired[
+        "capo_lex_models_v2.types.speaker_diarization_settings.SpeakerDiarizationSettings"
+    ]
+    """<p>The speaker diarization settings to apply when importing the bot locale configuration.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -101,6 +106,14 @@ def serialize_json(value: BotLocaleImportSpecification) -> dict:
         out["audioFillerSettings"] = (
             capo_lex_models_v2.types.audio_filler_settings.serialize_json(
                 value["audio_filler_settings"]
+            )
+        )
+    if "speaker_diarization_settings" in value:
+        import capo_lex_models_v2.types.speaker_diarization_settings
+
+        out["speakerDiarizationSettings"] = (
+            capo_lex_models_v2.types.speaker_diarization_settings.serialize_json(
+                value["speaker_diarization_settings"]
             )
         )
     return out
@@ -162,6 +175,14 @@ def deserialize_json(data: dict) -> BotLocaleImportSpecification:
         out["audio_filler_settings"] = (
             capo_lex_models_v2.types.audio_filler_settings.deserialize_json(
                 data["audioFillerSettings"]
+            )
+        )
+    if data.get("speakerDiarizationSettings") is not None:
+        import capo_lex_models_v2.types.speaker_diarization_settings
+
+        out["speaker_diarization_settings"] = (
+            capo_lex_models_v2.types.speaker_diarization_settings.deserialize_json(
+                data["speakerDiarizationSettings"]
             )
         )
     return out

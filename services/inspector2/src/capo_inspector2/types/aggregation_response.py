@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_inspector2.types.ami_aggregation_response
     import capo_inspector2.types.aws_ecr_container_aggregation_response
     import capo_inspector2.types.code_repository_aggregation_response
+    import capo_inspector2.types.container_image_aggregation_response
     import capo_inspector2.types.ec2_instance_aggregation_response
     import capo_inspector2.types.finding_type_aggregation_response
     import capo_inspector2.types.image_layer_aggregation_response
@@ -18,7 +19,9 @@ if TYPE_CHECKING:
     import capo_inspector2.types.lambda_layer_aggregation_response
     import capo_inspector2.types.package_aggregation_response
     import capo_inspector2.types.repository_aggregation_response
+    import capo_inspector2.types.serverless_function_aggregation_response
     import capo_inspector2.types.title_aggregation_response
+    import capo_inspector2.types.vm_instance_aggregation_response
 
 
 class _AggregationResponse_accountAggregation(TypedDict, closed=True):
@@ -77,6 +80,18 @@ class _AggregationResponse_codeRepositoryAggregation(TypedDict, closed=True):
     codeRepositoryAggregation: "capo_inspector2.types.code_repository_aggregation_response.CodeRepositoryAggregationResponse"
 
 
+class _AggregationResponse_vmInstanceAggregation(TypedDict, closed=True):
+    vmInstanceAggregation: "capo_inspector2.types.vm_instance_aggregation_response.VmInstanceAggregationResponse"
+
+
+class _AggregationResponse_containerImageAggregation(TypedDict, closed=True):
+    containerImageAggregation: "capo_inspector2.types.container_image_aggregation_response.ContainerImageAggregationResponse"
+
+
+class _AggregationResponse_serverlessFunctionAggregation(TypedDict, closed=True):
+    serverlessFunctionAggregation: "capo_inspector2.types.serverless_function_aggregation_response.ServerlessFunctionAggregationResponse"
+
+
 AggregationResponse: TypeAlias = (
     _AggregationResponse_accountAggregation
     | _AggregationResponse_amiAggregation
@@ -90,6 +105,9 @@ AggregationResponse: TypeAlias = (
     | _AggregationResponse_lambdaLayerAggregation
     | _AggregationResponse_lambdaFunctionAggregation
     | _AggregationResponse_codeRepositoryAggregation
+    | _AggregationResponse_vmInstanceAggregation
+    | _AggregationResponse_containerImageAggregation
+    | _AggregationResponse_serverlessFunctionAggregation
 )
 
 
@@ -191,6 +209,30 @@ def serialize_json(value: AggregationResponse) -> dict:
                 value["codeRepositoryAggregation"]
             )
         }
+    elif "vmInstanceAggregation" in value:
+        import capo_inspector2.types.vm_instance_aggregation_response
+
+        return {
+            "vmInstanceAggregation": capo_inspector2.types.vm_instance_aggregation_response.serialize_json(
+                value["vmInstanceAggregation"]
+            )
+        }
+    elif "containerImageAggregation" in value:
+        import capo_inspector2.types.container_image_aggregation_response
+
+        return {
+            "containerImageAggregation": capo_inspector2.types.container_image_aggregation_response.serialize_json(
+                value["containerImageAggregation"]
+            )
+        }
+    elif "serverlessFunctionAggregation" in value:
+        import capo_inspector2.types.serverless_function_aggregation_response
+
+        return {
+            "serverlessFunctionAggregation": capo_inspector2.types.serverless_function_aggregation_response.serialize_json(
+                value["serverlessFunctionAggregation"]
+            )
+        }
     else:
         raise SerializationError("AggregationResponse: no variant present")
 
@@ -290,6 +332,30 @@ def deserialize_json(data: dict) -> AggregationResponse:
         return {
             "codeRepositoryAggregation": capo_inspector2.types.code_repository_aggregation_response.deserialize_json(
                 data["codeRepositoryAggregation"]
+            )
+        }
+    elif data.get("vmInstanceAggregation") is not None:
+        import capo_inspector2.types.vm_instance_aggregation_response
+
+        return {
+            "vmInstanceAggregation": capo_inspector2.types.vm_instance_aggregation_response.deserialize_json(
+                data["vmInstanceAggregation"]
+            )
+        }
+    elif data.get("containerImageAggregation") is not None:
+        import capo_inspector2.types.container_image_aggregation_response
+
+        return {
+            "containerImageAggregation": capo_inspector2.types.container_image_aggregation_response.deserialize_json(
+                data["containerImageAggregation"]
+            )
+        }
+    elif data.get("serverlessFunctionAggregation") is not None:
+        import capo_inspector2.types.serverless_function_aggregation_response
+
+        return {
+            "serverlessFunctionAggregation": capo_inspector2.types.serverless_function_aggregation_response.deserialize_json(
+                data["serverlessFunctionAggregation"]
             )
         }
     else:

@@ -21,7 +21,7 @@ class LifecycleExecutionResource(TypedDict, closed=True):
     state: NotRequired[
         "capo_imagebuilder.types.lifecycle_execution_resource_state.LifecycleExecutionResourceState"
     ]
-    """<p>The runtime state for the lifecycle execution.</p>"""
+    """<p>The runtime state of the lifecycle action for this resource.</p>"""
     action: NotRequired[
         "capo_imagebuilder.types.lifecycle_execution_resource_action.LifecycleExecutionResourceAction"
     ]

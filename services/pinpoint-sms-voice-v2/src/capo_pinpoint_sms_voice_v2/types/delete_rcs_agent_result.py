@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.iam_role_arn
     import capo_pinpoint_sms_voice_v2.types.opt_out_list_name
     import capo_pinpoint_sms_voice_v2.types.rcs_agent_status
+    import capo_pinpoint_sms_voice_v2.types.rcs_event_type_list
     import capo_pinpoint_sms_voice_v2.types.two_way_channel_arn
 
 
@@ -42,6 +43,10 @@ class DeleteRcsAgentResult(TypedDict, closed=True):
     """<p>An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.</p>"""
     two_way_enabled: "bool"
     """<p>By default this is set to false. When set to true you can receive incoming text messages from your end recipients.</p>"""
+    two_way_rcs_events_enabled: NotRequired[
+        "capo_pinpoint_sms_voice_v2.types.rcs_event_type_list.RcsEventTypeList"
+    ]
+    """<p>The list of RCS event types that were enabled for two-way messaging on the deleted agent.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -66,6 +71,14 @@ def serialize_aws_json_1_0(value: DeleteRcsAgentResult) -> dict:
     if "two_way_channel_role" in value:
         out["TwoWayChannelRole"] = value["two_way_channel_role"]
     out["TwoWayEnabled"] = value.get("two_way_enabled", False)
+    if "two_way_rcs_events_enabled" in value:
+        import capo_pinpoint_sms_voice_v2.types.rcs_event_type_list
+
+        out["TwoWayRcsEventsEnabled"] = (
+            capo_pinpoint_sms_voice_v2.types.rcs_event_type_list.serialize_aws_json_1_0(
+                value["two_way_rcs_events_enabled"]
+            )
+        )
     return out
 
 
@@ -111,4 +124,12 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteRcsAgentResult:
         out["two_way_enabled"] = data["TwoWayEnabled"]
     else:
         out["two_way_enabled"] = False
+    if data.get("TwoWayRcsEventsEnabled") is not None:
+        import capo_pinpoint_sms_voice_v2.types.rcs_event_type_list
+
+        out["two_way_rcs_events_enabled"] = (
+            capo_pinpoint_sms_voice_v2.types.rcs_event_type_list.deserialize_aws_json_1_0(
+                data["TwoWayRcsEventsEnabled"]
+            )
+        )
     return out

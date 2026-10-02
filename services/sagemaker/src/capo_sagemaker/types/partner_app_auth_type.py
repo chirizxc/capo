@@ -2,7 +2,10 @@
 
 from typing import Literal, TypeAlias, cast
 
-PartnerAppAuthType: TypeAlias = Literal["IAM",]
+PartnerAppAuthType: TypeAlias = Literal[
+    "IAM",
+    "IDC",
+]
 
 
 # --- awsJson1_1 ser/de ---

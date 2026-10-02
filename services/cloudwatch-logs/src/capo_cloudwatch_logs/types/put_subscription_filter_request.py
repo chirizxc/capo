@@ -42,7 +42,7 @@ class PutSubscriptionFilterRequest(TypedDict, closed=True):
     emit_system_fields: NotRequired[
         "capo_cloudwatch_logs.types.emit_system_fields.EmitSystemFields"
     ]
-    """<p>A list of system fields to include in the log events sent to the subscription destination. Valid values are <code>@aws.account</code> and <code>@aws.region</code>. These fields provide source information for centralized log data in the forwarded payload.</p>"""
+    """<p>A list of system fields to include in the log events sent to the subscription destination. Valid values are <code>@aws.account</code>, <code>@aws.region</code>, and <code>@source.log</code>. These fields provide source information for centralized log data in the forwarded payload.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

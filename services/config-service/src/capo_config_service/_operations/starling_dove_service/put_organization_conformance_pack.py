@@ -23,11 +23,13 @@ import capo_config_service.types.conformance_pack_input_parameters
 import capo_config_service.types.excluded_accounts
 import capo_config_service.types.put_organization_conformance_pack_request
 import capo_config_service.types.put_organization_conformance_pack_response
+import capo_config_service.types.tags_list
 from capo_config_service._protocol.errors import parse_error_metadata_json
 from capo_config_service._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_config_service._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_config_service.errors import UnknownServiceError
 
@@ -161,7 +163,7 @@ def put_organization_conformance_pack(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -179,7 +181,7 @@ async def async_put_organization_conformance_pack(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

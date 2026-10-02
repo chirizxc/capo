@@ -36,6 +36,9 @@ if TYPE_CHECKING:
     import capo_s3.types.metadata_directive
     import capo_s3.types.object_canned_acl
     import capo_s3.types.object_key
+    import capo_s3.types.object_lock_event_hold
+    import capo_s3.types.object_lock_event_hold_duration_days
+    import capo_s3.types.object_lock_event_hold_duration_years
     import capo_s3.types.object_lock_legal_hold_status
     import capo_s3.types.object_lock_mode
     import capo_s3.types.object_lock_retain_until_date
@@ -172,6 +175,18 @@ class CopyObjectRequest(TypedDict, closed=True):
         "capo_s3.types.object_lock_legal_hold_status.ObjectLockLegalHoldStatus"
     ]
     """<p>Specifies whether you want to apply a legal hold to the object copy.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
+    object_lock_event_hold: NotRequired[
+        "capo_s3.types.object_lock_event_hold.ObjectLockEventHold"
+    ]
+    """<p>The event hold status to apply to the object copy. Set to <code>ON</code> to enable or <code>OFF</code> to disable.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
+    object_lock_event_hold_duration_days: NotRequired[
+        "capo_s3.types.object_lock_event_hold_duration_days.ObjectLockEventHoldDurationDays"
+    ]
+    """<p>The event hold duration in days to apply to the object copy. You cannot specify a duration in both days and years.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
+    object_lock_event_hold_duration_years: NotRequired[
+        "capo_s3.types.object_lock_event_hold_duration_years.ObjectLockEventHoldDurationYears"
+    ]
+    """<p>The event hold duration in years to apply to the object copy. You cannot specify a duration in both days and years.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
     expected_bucket_owner: NotRequired["capo_s3.types.account_id.AccountId"]
     """<p>The account ID of the expected destination bucket owner. If the account ID that you provide does not match the actual owner of the destination bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"""
     expected_source_bucket_owner: NotRequired["capo_s3.types.account_id.AccountId"]

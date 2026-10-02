@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class DeleteV2LoggingLevelRequest(TypedDict, closed=True):
     target_type: "capo_iot.types.log_target_type.LogTargetType"
-    """<p>The type of resource for which you are configuring logging. Must be <code>THING_Group</code>.</p>"""
+    """<p>The type of resource for which you are configuring logging. Must be <code>DEFAULT</code>, <code>THING_GROUP</code>, <code>CLIENT_ID</code>, <code>SOURCE_IP</code>, or <code>PRINCIPAL_ID</code>.</p>"""
     target_name: "capo_iot.types.log_target_name.LogTargetName"
     """<p>The name of the resource for which you are configuring logging.</p>"""
 

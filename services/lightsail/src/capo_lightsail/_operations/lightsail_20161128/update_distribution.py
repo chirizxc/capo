@@ -20,6 +20,7 @@ import capo_lightsail.errors.unauthenticated_exception
 import capo_lightsail.types.cache_behavior
 import capo_lightsail.types.cache_behavior_list
 import capo_lightsail.types.cache_settings
+import capo_lightsail.types.distribution_custom_error_response_list
 import capo_lightsail.types.input_origin
 import capo_lightsail.types.operation
 import capo_lightsail.types.update_distribution_request
@@ -27,7 +28,11 @@ import capo_lightsail.types.update_distribution_result
 import capo_lightsail.types.viewer_minimum_tls_protocol_version_enum
 from capo_lightsail._protocol.errors import parse_error_metadata_json
 from capo_lightsail._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_lightsail._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_lightsail._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_lightsail.errors import UnknownServiceError
 
 
@@ -154,7 +159,7 @@ def update_distribution(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -172,7 +177,7 @@ async def async_update_distribution(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

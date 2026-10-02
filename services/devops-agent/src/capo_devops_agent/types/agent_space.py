@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 
     import capo_devops_agent.types.agent_space_id
     import capo_devops_agent.types.agent_space_name
+    import capo_devops_agent.types.agent_space_preferences
     import capo_devops_agent.types.description
     import capo_devops_agent.types.kms_key_arn
     import capo_devops_agent.types.locale
@@ -31,6 +32,10 @@ class AgentSpace(TypedDict, closed=True):
     """<p>The ARN of the AWS Key Management Service (AWS KMS) customer managed key that's used to encrypt resources.</p>"""
     agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
     """<p>The unique identifier of the AgentSpace</p>"""
+    preferences: NotRequired[
+        "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+    ]
+    """<p>The preferences configured on the agent space. Preferences that are not set take their default values.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -54,6 +59,14 @@ def serialize_json(value: AgentSpace) -> dict:
     if "kms_key_arn" in value:
         out["kmsKeyArn"] = value["kms_key_arn"]
     out["agentSpaceId"] = value["agent_space_id"]
+    if "preferences" in value:
+        import capo_devops_agent.types.agent_space_preferences
+
+        out["preferences"] = (
+            capo_devops_agent.types.agent_space_preferences.serialize_json(
+                value["preferences"]
+            )
+        )
     return out
 
 
@@ -89,4 +102,12 @@ def deserialize_json(data: dict) -> AgentSpace:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("AgentSpace.agent_space_id required")
+    if data.get("preferences") is not None:
+        import capo_devops_agent.types.agent_space_preferences
+
+        out["preferences"] = (
+            capo_devops_agent.types.agent_space_preferences.deserialize_json(
+                data["preferences"]
+            )
+        )
     return out

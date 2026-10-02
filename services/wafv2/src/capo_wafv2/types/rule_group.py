@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_wafv2.types.entity_name
     import capo_wafv2.types.label_name
     import capo_wafv2.types.label_summaries
+    import capo_wafv2.types.monetization_config
     import capo_wafv2.types.resource_arn
     import capo_wafv2.types.rules
     import capo_wafv2.types.visibility_config
@@ -44,6 +45,10 @@ class RuleGroup(TypedDict, closed=True):
     """<p>The labels that one or more rules in this rule group add to matching web requests. These labels are defined in the <code>RuleLabels</code> for a <a>Rule</a>.</p>"""
     consumed_labels: NotRequired["capo_wafv2.types.label_summaries.LabelSummaries"]
     """<p>The labels that one or more rules in this rule group match against in label match statements. These labels are defined in a <code>LabelMatchStatement</code> specification, in the <a>Statement</a> definition of a rule. </p>"""
+    monetization_config: NotRequired[
+        "capo_wafv2.types.monetization_config.MonetizationConfig"
+    ]
+    """<p>The monetization configuration for the rule group. Required when any rule in the rule group uses the <code>Monetize</code> action. When a rule group with a <code>MonetizationConfig</code> is used in a web ACL, the rule group's configuration applies to rules within that group unless overridden at the web ACL level.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -87,6 +92,14 @@ def serialize_aws_json_1_1(value: RuleGroup) -> dict:
 
         out["ConsumedLabels"] = capo_wafv2.types.label_summaries.serialize_aws_json_1_1(
             value["consumed_labels"]
+        )
+    if "monetization_config" in value:
+        import capo_wafv2.types.monetization_config
+
+        out["MonetizationConfig"] = (
+            capo_wafv2.types.monetization_config.serialize_aws_json_1_1(
+                value["monetization_config"]
+            )
         )
     return out
 
@@ -149,6 +162,14 @@ def deserialize_aws_json_1_1(data: dict) -> RuleGroup:
         out["consumed_labels"] = (
             capo_wafv2.types.label_summaries.deserialize_aws_json_1_1(
                 data["ConsumedLabels"]
+            )
+        )
+    if data.get("MonetizationConfig") is not None:
+        import capo_wafv2.types.monetization_config
+
+        out["monetization_config"] = (
+            capo_wafv2.types.monetization_config.deserialize_aws_json_1_1(
+                data["MonetizationConfig"]
             )
         )
     return out

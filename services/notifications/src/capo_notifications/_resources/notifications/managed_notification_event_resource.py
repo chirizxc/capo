@@ -107,6 +107,7 @@ class ManagedNotificationEventResource:
         related_account: Optional[
             "capo_notifications.types.account_id.AccountId"
         ] = None,
+        include_sensitive_events: Optional[bool] = None,
     ) -> "capo_notifications.types.list_managed_notification_events_response.ListManagedNotificationEventsResponse":
         """<p>Returns a list of Managed Notification Events according to specified filters, ordered by creation time in reverse chronological order (newest first).</p>
 
@@ -119,6 +120,7 @@ class ManagedNotificationEventResource:
             next_token: <p>The start token for paginated calls. Retrieved from the response of a previous <code>ListManagedNotificationChannelAssociations</code> call. Next token uses Base64 encoding.</p>
             organizational_unit_id: <p>The Organizational Unit Id that an Amazon Web Services account belongs to.</p>
             related_account: <p>The Amazon Web Services account ID associated with the Managed Notification Events.</p>
+            include_sensitive_events: <p>Specifies whether to include sensitive events in the result. By default, only non-sensitive events are returned. The <code>notifications:AccessSensitiveEvents</code> permission controls access to sensitive events.</p>
 
         Raises:
             capo_notifications.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
@@ -160,6 +162,8 @@ class ManagedNotificationEventResource:
             input_["organizational_unit_id"] = organizational_unit_id
         if related_account is not None:
             input_["related_account"] = related_account
+        if include_sensitive_events is not None:
+            input_["include_sensitive_events"] = include_sensitive_events
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -242,6 +246,7 @@ class AsyncManagedNotificationEventResource:
         related_account: Optional[
             "capo_notifications.types.account_id.AccountId"
         ] = None,
+        include_sensitive_events: Optional[bool] = None,
     ) -> "capo_notifications.types.list_managed_notification_events_response.ListManagedNotificationEventsResponse":
         """<p>Returns a list of Managed Notification Events according to specified filters, ordered by creation time in reverse chronological order (newest first).</p>
 
@@ -254,6 +259,7 @@ class AsyncManagedNotificationEventResource:
             next_token: <p>The start token for paginated calls. Retrieved from the response of a previous <code>ListManagedNotificationChannelAssociations</code> call. Next token uses Base64 encoding.</p>
             organizational_unit_id: <p>The Organizational Unit Id that an Amazon Web Services account belongs to.</p>
             related_account: <p>The Amazon Web Services account ID associated with the Managed Notification Events.</p>
+            include_sensitive_events: <p>Specifies whether to include sensitive events in the result. By default, only non-sensitive events are returned. The <code>notifications:AccessSensitiveEvents</code> permission controls access to sensitive events.</p>
 
         Raises:
             capo_notifications.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
@@ -296,6 +302,8 @@ class AsyncManagedNotificationEventResource:
             input_["organizational_unit_id"] = organizational_unit_id
         if related_account is not None:
             input_["related_account"] = related_account
+        if include_sensitive_events is not None:
+            input_["include_sensitive_events"] = include_sensitive_events
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

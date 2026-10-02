@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     import capo_transcribe_streaming.types.request_id
     import capo_transcribe_streaming.types.session_id
     import capo_transcribe_streaming.types.session_resume_window
+    import capo_transcribe_streaming.types.transcript_format
     import capo_transcribe_streaming.types.transcript_result_stream
     import capo_transcribe_streaming.types.vocabulary_filter_method
     import capo_transcribe_streaming.types.vocabulary_filter_name
@@ -116,3 +117,7 @@ class StartStreamTranscriptionResponse(TypedDict, closed=True):
         "capo_transcribe_streaming.types.session_resume_window.SessionResumeWindow"
     ]
     """<p>Provides the session resume window, in minutes, that you specified in your request.</p>"""
+    transcript_format: NotRequired[
+        "capo_transcribe_streaming.types.transcript_format.TranscriptFormat"
+    ]
+    """<p>Provides the transcript format that you specified in your request.</p>"""

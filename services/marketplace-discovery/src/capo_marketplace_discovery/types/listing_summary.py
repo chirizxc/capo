@@ -28,6 +28,8 @@ class ListingSummary(TypedDict, closed=True):
     """<p>The human-readable display name of the listing.</p>"""
     publisher: "capo_marketplace_discovery.types.seller_information.SellerInformation"
     """<p>The entity who created and published the listing.</p>"""
+    fulfillment_option_summaries: "capo_marketplace_discovery.types.fulfillment_option_summary_list.FulfillmentOptionSummaryList"
+    """<p>A summary of fulfillment options available for the listing.</p>"""
     catalog: "capo_marketplace_discovery.types.catalog.Catalog"
     """<p>The name of the catalog that the listing belongs to.</p>"""
     short_description: (
@@ -38,8 +40,6 @@ class ListingSummary(TypedDict, closed=True):
     """<p>The URL of the logo thumbnail image for the listing.</p>"""
     categories: "capo_marketplace_discovery.types.category_list.CategoryList"
     """<p>The categories used to classify this listing into logical groups.</p>"""
-    fulfillment_option_summaries: "capo_marketplace_discovery.types.fulfillment_option_summary_list.FulfillmentOptionSummaryList"
-    """<p>A summary of fulfillment options available for the listing.</p>"""
     badges: "capo_marketplace_discovery.types.listing_badge_list.ListingBadgeList"
     """<p>Badges indicating special attributes of the listing.</p>"""
     review_summary: "capo_marketplace_discovery.types.review_summary.ReviewSummary"
@@ -66,6 +66,13 @@ def serialize_json(value: ListingSummary) -> dict:
             value["publisher"]
         )
     )
+    import capo_marketplace_discovery.types.fulfillment_option_summary_list
+
+    out["fulfillmentOptionSummaries"] = (
+        capo_marketplace_discovery.types.fulfillment_option_summary_list.serialize_json(
+            value["fulfillment_option_summaries"]
+        )
+    )
     out["catalog"] = value["catalog"]
     out["shortDescription"] = value["short_description"]
     out["logoThumbnailUrl"] = value["logo_thumbnail_url"]
@@ -73,13 +80,6 @@ def serialize_json(value: ListingSummary) -> dict:
 
     out["categories"] = capo_marketplace_discovery.types.category_list.serialize_json(
         value["categories"]
-    )
-    import capo_marketplace_discovery.types.fulfillment_option_summary_list
-
-    out["fulfillmentOptionSummaries"] = (
-        capo_marketplace_discovery.types.fulfillment_option_summary_list.serialize_json(
-            value["fulfillment_option_summaries"]
-        )
     )
     import capo_marketplace_discovery.types.listing_badge_list
 
@@ -137,6 +137,18 @@ def deserialize_json(data: dict) -> ListingSummary:
         )
     else:
         raise DeserializationError("ListingSummary.publisher required")
+    if data.get("fulfillmentOptionSummaries") is not None:
+        import capo_marketplace_discovery.types.fulfillment_option_summary_list
+
+        out["fulfillment_option_summaries"] = (
+            capo_marketplace_discovery.types.fulfillment_option_summary_list.deserialize_json(
+                data["fulfillmentOptionSummaries"]
+            )
+        )
+    else:
+        raise DeserializationError(
+            "ListingSummary.fulfillment_option_summaries required"
+        )
     if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
@@ -159,18 +171,6 @@ def deserialize_json(data: dict) -> ListingSummary:
         )
     else:
         raise DeserializationError("ListingSummary.categories required")
-    if data.get("fulfillmentOptionSummaries") is not None:
-        import capo_marketplace_discovery.types.fulfillment_option_summary_list
-
-        out["fulfillment_option_summaries"] = (
-            capo_marketplace_discovery.types.fulfillment_option_summary_list.deserialize_json(
-                data["fulfillmentOptionSummaries"]
-            )
-        )
-    else:
-        raise DeserializationError(
-            "ListingSummary.fulfillment_option_summaries required"
-        )
     if data.get("badges") is not None:
         import capo_marketplace_discovery.types.listing_badge_list
 

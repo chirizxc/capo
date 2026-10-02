@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.aws_device_v2
     import capo_direct_connect.types.aws_logical_device_id
     import capo_direct_connect.types.bandwidth
+    import capo_direct_connect.types.billing_mode
     import capo_direct_connect.types.boolean_flag
     import capo_direct_connect.types.connection_list
     import capo_direct_connect.types.count
@@ -22,7 +23,10 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.mac_sec_capable
     import capo_direct_connect.types.mac_sec_key_list
     import capo_direct_connect.types.owner_account
+    import capo_direct_connect.types.prefix_pool_size
+    import capo_direct_connect.types.prefix_pool_unallocated_count
     import capo_direct_connect.types.provider_name
+    import capo_direct_connect.types.rate_limiter_status
     import capo_direct_connect.types.region
     import capo_direct_connect.types.tag_list
 
@@ -82,6 +86,28 @@ class Lag(TypedDict, closed=True):
         "capo_direct_connect.types.mac_sec_key_list.MacSecKeyList"
     ]
     """<p>The MAC Security (MACsec) security keys associated with the LAG.</p>"""
+    prefix_pool_size_ipv4: NotRequired[
+        "capo_direct_connect.types.prefix_pool_size.PrefixPoolSize"
+    ]
+    """<p>The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.</p>"""
+    prefix_pool_size_ipv6: NotRequired[
+        "capo_direct_connect.types.prefix_pool_size.PrefixPoolSize"
+    ]
+    """<p>The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.</p>"""
+    prefix_pool_unallocated_count_ipv4: NotRequired[
+        "capo_direct_connect.types.prefix_pool_unallocated_count.PrefixPoolUnallocatedCount"
+    ]
+    """<p>The number of inbound IPv4 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.</p>"""
+    prefix_pool_unallocated_count_ipv6: NotRequired[
+        "capo_direct_connect.types.prefix_pool_unallocated_count.PrefixPoolUnallocatedCount"
+    ]
+    """<p>The number of inbound IPv6 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.</p>"""
+    rate_limiter_status: NotRequired[
+        "capo_direct_connect.types.rate_limiter_status.RateLimiterStatus"
+    ]
+    """<p>The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.</p>"""
+    billing_mode: NotRequired["capo_direct_connect.types.billing_mode.BillingMode"]
+    """<p>The billing mode of the LAG.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -150,6 +176,34 @@ def serialize_aws_json_1_1(value: Lag) -> dict:
         out["macSecKeys"] = (
             capo_direct_connect.types.mac_sec_key_list.serialize_aws_json_1_1(
                 value["mac_sec_keys"]
+            )
+        )
+    if "prefix_pool_size_ipv4" in value:
+        out["prefixPoolSizeIpv4"] = value["prefix_pool_size_ipv4"]
+    if "prefix_pool_size_ipv6" in value:
+        out["prefixPoolSizeIpv6"] = value["prefix_pool_size_ipv6"]
+    if "prefix_pool_unallocated_count_ipv4" in value:
+        out["prefixPoolUnallocatedCountIpv4"] = value[
+            "prefix_pool_unallocated_count_ipv4"
+        ]
+    if "prefix_pool_unallocated_count_ipv6" in value:
+        out["prefixPoolUnallocatedCountIpv6"] = value[
+            "prefix_pool_unallocated_count_ipv6"
+        ]
+    if "rate_limiter_status" in value:
+        import capo_direct_connect.types.rate_limiter_status
+
+        out["rateLimiterStatus"] = (
+            capo_direct_connect.types.rate_limiter_status.serialize_aws_json_1_1(
+                value["rate_limiter_status"]
+            )
+        )
+    if "billing_mode" in value:
+        import capo_direct_connect.types.billing_mode
+
+        out["billingMode"] = (
+            capo_direct_connect.types.billing_mode.serialize_aws_json_1_1(
+                value["billing_mode"]
             )
         )
     return out
@@ -229,6 +283,34 @@ def deserialize_aws_json_1_1(data: dict) -> Lag:
         out["mac_sec_keys"] = (
             capo_direct_connect.types.mac_sec_key_list.deserialize_aws_json_1_1(
                 data["macSecKeys"]
+            )
+        )
+    if data.get("prefixPoolSizeIpv4") is not None:
+        out["prefix_pool_size_ipv4"] = data["prefixPoolSizeIpv4"]
+    if data.get("prefixPoolSizeIpv6") is not None:
+        out["prefix_pool_size_ipv6"] = data["prefixPoolSizeIpv6"]
+    if data.get("prefixPoolUnallocatedCountIpv4") is not None:
+        out["prefix_pool_unallocated_count_ipv4"] = data[
+            "prefixPoolUnallocatedCountIpv4"
+        ]
+    if data.get("prefixPoolUnallocatedCountIpv6") is not None:
+        out["prefix_pool_unallocated_count_ipv6"] = data[
+            "prefixPoolUnallocatedCountIpv6"
+        ]
+    if data.get("rateLimiterStatus") is not None:
+        import capo_direct_connect.types.rate_limiter_status
+
+        out["rate_limiter_status"] = (
+            capo_direct_connect.types.rate_limiter_status.deserialize_aws_json_1_1(
+                data["rateLimiterStatus"]
+            )
+        )
+    if data.get("billingMode") is not None:
+        import capo_direct_connect.types.billing_mode
+
+        out["billing_mode"] = (
+            capo_direct_connect.types.billing_mode.deserialize_aws_json_1_1(
+                data["billingMode"]
             )
         )
     return out

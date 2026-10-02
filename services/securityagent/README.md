@@ -29,8 +29,8 @@ from capo_securityagent import AsyncSecurityAgentClient
 
 async def main():
     async with AsyncSecurityAgentClient() as security_agent:
-        # Example: paginate over list_artifacts
-        async for item in security_agent.iter_list_artifacts():
+        # Example: paginate over list_actor_messages
+        async for item in security_agent.iter_list_actor_messages():
             print(item)
 ```
 

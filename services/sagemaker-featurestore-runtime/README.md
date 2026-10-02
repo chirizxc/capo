@@ -19,6 +19,21 @@ async def main():
         print(response["records"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_sagemaker_featurestore_runtime import AsyncSageMakerFeatureStoreRuntimeClient
+
+
+async def main():
+    async with AsyncSageMakerFeatureStoreRuntimeClient() as sage_maker_feature_store_runtime:
+        # Example: paginate over list_records
+        async for item in sage_maker_feature_store_runtime.iter_list_records():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

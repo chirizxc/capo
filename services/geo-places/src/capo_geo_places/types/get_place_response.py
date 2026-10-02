@@ -15,9 +15,11 @@ if TYPE_CHECKING:
     import capo_geo_places.types.category_list
     import capo_geo_places.types.contacts
     import capo_geo_places.types.country_code3
+    import capo_geo_places.types.cross_reference_list
     import capo_geo_places.types.food_type_list
     import capo_geo_places.types.opening_hours_list
     import capo_geo_places.types.phoneme_details
+    import capo_geo_places.types.place_attribute_list
     import capo_geo_places.types.place_type
     import capo_geo_places.types.position
     import capo_geo_places.types.postal_code_details_list
@@ -85,13 +87,29 @@ class GetPlaceResponse(TypedDict, closed=True):
         "capo_geo_places.types.related_place_list.RelatedPlaceList"
     ]
     r"""<p> All secondary addresses that are associated with a main address. A secondary address is one that includes secondary designators, such as a Suite or Unit Number, Building, or Floor information. Not available in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p> <note> <p>Coverage for this functionality is available in the following countries: AUS, CAN, NZL, USA, PRI.</p> </note>"""
+    place_attributes: NotRequired[
+        "capo_geo_places.types.place_attribute_list.PlaceAttributeList"
+    ]
+    """<p>A list of place attributes for the result, such as whether the business offers drive-through service.</p>"""
+    estimated_point_address: NotRequired[
+        "capo_geo_places.types.sensitive_boolean.SensitiveBoolean"
+    ]
+    """<p>If <code>true</code>, indicates that the coordinates of the position and access points of the point address are estimated.</p>"""
+    cross_references: NotRequired[
+        "capo_geo_places.types.cross_reference_list.CrossReferenceList"
+    ]
+    """<p>The list of supplier references available for this place. Requires the <code>CrossReferences</code> additional feature to be enabled.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: GetPlaceResponse) -> dict:
     out: dict = {}
     out["PlaceId"] = value["place_id"]
-    out["PlaceType"] = value["place_type"]
+    import capo_geo_places.types.place_type
+
+    out["PlaceType"] = capo_geo_places.types.place_type.serialize_json(
+        value["place_type"]
+    )
     out["Title"] = value["title"]
     if "address" in value:
         import capo_geo_places.types.address
@@ -193,6 +211,24 @@ def serialize_json(value: GetPlaceResponse) -> dict:
                 value["secondary_addresses"]
             )
         )
+    if "place_attributes" in value:
+        import capo_geo_places.types.place_attribute_list
+
+        out["PlaceAttributes"] = (
+            capo_geo_places.types.place_attribute_list.serialize_json(
+                value["place_attributes"]
+            )
+        )
+    if "estimated_point_address" in value:
+        out["EstimatedPointAddress"] = value["estimated_point_address"]
+    if "cross_references" in value:
+        import capo_geo_places.types.cross_reference_list
+
+        out["CrossReferences"] = (
+            capo_geo_places.types.cross_reference_list.serialize_json(
+                value["cross_references"]
+            )
+        )
     return out
 
 
@@ -203,7 +239,11 @@ def deserialize_json(data: dict) -> GetPlaceResponse:
     else:
         raise DeserializationError("GetPlaceResponse.place_id required")
     if data.get("PlaceType") is not None:
-        out["place_type"] = data["PlaceType"]
+        import capo_geo_places.types.place_type
+
+        out["place_type"] = capo_geo_places.types.place_type.deserialize_json(
+            data["PlaceType"]
+        )
     else:
         raise DeserializationError("GetPlaceResponse.place_type required")
     if data.get("Title") is not None:
@@ -310,6 +350,24 @@ def deserialize_json(data: dict) -> GetPlaceResponse:
         out["secondary_addresses"] = (
             capo_geo_places.types.related_place_list.deserialize_json(
                 data["SecondaryAddresses"]
+            )
+        )
+    if data.get("PlaceAttributes") is not None:
+        import capo_geo_places.types.place_attribute_list
+
+        out["place_attributes"] = (
+            capo_geo_places.types.place_attribute_list.deserialize_json(
+                data["PlaceAttributes"]
+            )
+        )
+    if data.get("EstimatedPointAddress") is not None:
+        out["estimated_point_address"] = data["EstimatedPointAddress"]
+    if data.get("CrossReferences") is not None:
+        import capo_geo_places.types.cross_reference_list
+
+        out["cross_references"] = (
+            capo_geo_places.types.cross_reference_list.deserialize_json(
+                data["CrossReferences"]
             )
         )
     return out

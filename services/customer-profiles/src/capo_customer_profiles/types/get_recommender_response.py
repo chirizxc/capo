@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.recommender_recipe_name
     import capo_customer_profiles.types.recommender_status
     import capo_customer_profiles.types.recommender_update
+    import capo_customer_profiles.types.recommender_version_name
     import capo_customer_profiles.types.sensitive_text
     import capo_customer_profiles.types.tag_map
     import capo_customer_profiles.types.timestamp
@@ -49,6 +50,10 @@ class GetRecommenderResponse(TypedDict, closed=True):
         "capo_customer_profiles.types.recommender_update.RecommenderUpdate"
     ]
     """<p>Information about the most recent update performed on the recommender, including status and timestamp.</p>"""
+    active_recommender_version_name: NotRequired[
+        "capo_customer_profiles.types.recommender_version_name.RecommenderVersionName"
+    ]
+    """<p>The name of the recommender version currently serving recommendations. Omitted when no active recommender version is set.</p>"""
     training_metrics: NotRequired[
         "capo_customer_profiles.types.training_metrics_list.TrainingMetricsList"
     ]
@@ -108,6 +113,8 @@ def serialize_json(value: GetRecommenderResponse) -> dict:
                 value["latest_recommender_update"]
             )
         )
+    if "active_recommender_version_name" in value:
+        out["ActiveRecommenderVersionName"] = value["active_recommender_version_name"]
     if "training_metrics" in value:
         import capo_customer_profiles.types.training_metrics_list
 
@@ -185,6 +192,8 @@ def deserialize_json(data: dict) -> GetRecommenderResponse:
                 data["LatestRecommenderUpdate"]
             )
         )
+    if data.get("ActiveRecommenderVersionName") is not None:
+        out["active_recommender_version_name"] = data["ActiveRecommenderVersionName"]
     if data.get("TrainingMetrics") is not None:
         import capo_customer_profiles.types.training_metrics_list
 

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 class SchemaConversionRequest(TypedDict, closed=True):
     status: NotRequired["capo_database_migration_service.types.string.String"]
-    """<p>The schema conversion action status.</p>"""
+    """<p>The schema conversion operation status. Possible values:</p> <ul> <li> <p> <code>RECEIVED</code> – The operation is received but not yet queued for processing.</p> </li> <li> <p> <code>IN_PROGRESS</code> – The operation is queued or actively running.</p> </li> <li> <p> <code>SUCCESS</code> – The operation completed successfully.</p> </li> <li> <p> <code>FAILED</code> – The operation did not complete.</p> </li> <li> <p> <code>CANCELING</code> – The operation is being canceled. The operation might still succeed or fail before cancellation takes effect.</p> </li> <li> <p> <code>CANCELED</code> – The operation was canceled before completion.</p> </li> </ul>"""
     request_identifier: NotRequired[
         "capo_database_migration_service.types.string.String"
     ]
@@ -28,6 +28,7 @@ class SchemaConversionRequest(TypedDict, closed=True):
     export_sql_details: NotRequired[
         "capo_database_migration_service.types.export_sql_details.ExportSqlDetails"
     ]
+    """<p>The Amazon S3 location of the ZIP archive that contains the exported data definition language (DDL) scripts.</p> <note> <p>DMS populates this field only for the <code>DescribeMetadataModelExportsAsScript</code> operation.</p> </note>"""
     progress: NotRequired["capo_database_migration_service.types.progress.Progress"]
 
 

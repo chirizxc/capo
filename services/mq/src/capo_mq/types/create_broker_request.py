@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_mq.types.__boolean
+    import capo_mq.types.__integer
     import capo_mq.types.__list_of__string
     import capo_mq.types.__list_of_user
     import capo_mq.types.__map_of__string
@@ -61,6 +62,8 @@ class CreateBrokerRequest(TypedDict, closed=True):
     """<p>Enables connections from applications outside of the VPC that hosts the broker's subnets. Set to false by default, if no value is provided.</p>"""
     security_groups: NotRequired["capo_mq.types.__list_of__string.__listOf__string"]
     """<p>The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.</p>"""
+    storage_size: NotRequired["capo_mq.types.__integer.__integer"]
+    """<p>The broker's storage size in GB.</p>"""
     storage_type: NotRequired["capo_mq.types.broker_storage_type.BrokerStorageType"]
     """<p>The broker's storage type.</p>"""
     subnet_ids: NotRequired["capo_mq.types.__list_of__string.__listOf__string"]
@@ -150,6 +153,8 @@ def serialize_json(value: CreateBrokerRequest) -> dict:
         out["securityGroups"] = capo_mq.types.__list_of__string.serialize_json(
             value["security_groups"]
         )
+    if "storage_size" in value:
+        out["storageSize"] = value["storage_size"]
     if "storage_type" in value:
         import capo_mq.types.broker_storage_type
 
@@ -255,6 +260,8 @@ def deserialize_json(data: dict) -> CreateBrokerRequest:
         out["security_groups"] = capo_mq.types.__list_of__string.deserialize_json(
             data["securityGroups"]
         )
+    if data.get("storageSize") is not None:
+        out["storage_size"] = data["storageSize"]
     if data.get("storageType") is not None:
         import capo_mq.types.broker_storage_type
 

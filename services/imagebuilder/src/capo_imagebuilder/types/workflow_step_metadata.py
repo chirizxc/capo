@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_imagebuilder.types.date_time
     import capo_imagebuilder.types.workflow_step_action
+    import capo_imagebuilder.types.workflow_step_attempt_count
     import capo_imagebuilder.types.workflow_step_description
     import capo_imagebuilder.types.workflow_step_execution_id
     import capo_imagebuilder.types.workflow_step_execution_rollback_status
@@ -47,15 +48,23 @@ class WorkflowStepMetadata(TypedDict, closed=True):
     inputs: NotRequired[
         "capo_imagebuilder.types.workflow_step_inputs.WorkflowStepInputs"
     ]
-    """<p>Input parameters that Image Builder provides for the workflow step.</p>"""
+    """<p>Input parameters that Image Builder provides for the workflow step, as a JSON-encoded string.</p>"""
     outputs: NotRequired[
         "capo_imagebuilder.types.workflow_step_outputs.WorkflowStepOutputs"
     ]
-    """<p>The file names that the workflow step created as output for this runtime instance of the workflow.</p>"""
+    """<p>The output values that the workflow step produced for this runtime instance of the workflow, as a JSON-encoded string. For example, a step that launches an instance outputs the instance ID. If the step failed, this field contains the error message.</p>"""
     start_time: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
     """<p>The timestamp when the workflow step started.</p>"""
     end_time: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
     """<p>The timestamp when the workflow step finished.</p>"""
+    attempt_number: NotRequired[
+        "capo_imagebuilder.types.workflow_step_attempt_count.WorkflowStepAttemptCount"
+    ]
+    """<p>The current attempt number for the workflow step. The first run is attempt one. The number increases by one for each retry.</p>"""
+    max_attempts: NotRequired[
+        "capo_imagebuilder.types.workflow_step_attempt_count.WorkflowStepAttemptCount"
+    ]
+    """<p>The maximum number of attempts allowed for the workflow step, based on the retry configuration in the workflow document. If the step doesn't configure retries, the maximum is one attempt.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -95,6 +104,10 @@ def serialize_json(value: WorkflowStepMetadata) -> dict:
         out["startTime"] = value["start_time"]
     if "end_time" in value:
         out["endTime"] = value["end_time"]
+    if "attempt_number" in value:
+        out["attemptNumber"] = value["attempt_number"]
+    if "max_attempts" in value:
+        out["maxAttempts"] = value["max_attempts"]
     return out
 
 
@@ -134,4 +147,8 @@ def deserialize_json(data: dict) -> WorkflowStepMetadata:
         out["start_time"] = data["startTime"]
     if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
+    if data.get("attemptNumber") is not None:
+        out["attempt_number"] = data["attemptNumber"]
+    if data.get("maxAttempts") is not None:
+        out["max_attempts"] = data["maxAttempts"]
     return out

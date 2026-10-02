@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_lightsail.types.boolean
     import capo_lightsail.types.integer
     import capo_lightsail.types.origin_ip_address_type_enum
     import capo_lightsail.types.origin_protocol_policy_enum
@@ -30,6 +31,10 @@ class Origin(TypedDict, closed=True):
         "capo_lightsail.types.origin_ip_address_type_enum.OriginIpAddressTypeEnum"
     ]
     """<p>The IP address type that the distribution uses when connecting to the origin.</p> <p>The possible values are <code>ipv4</code> for IPv4 only, <code>ipv6</code> for IPv6 only, and <code>dualstack</code> for IPv4 and IPv6.</p>"""
+    is_private_origin_access_enabled: NotRequired[
+        "capo_lightsail.types.boolean.boolean"
+    ]
+    """<p>Specifies whether private origin access is enabled for the distribution's origin. With private origin access, the distribution can serve objects that aren't publicly accessible from a Lightsail bucket.</p> <p>This applies when you set the bucket's <code>getObject</code> access rule to <code>private</code>. It also applies when you set <code>getObject</code> to <code>public</code> but set individual objects to private.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -67,6 +72,8 @@ def serialize_aws_json_1_1(value: Origin) -> dict:
                 value["ip_address_type"]
             )
         )
+    if "is_private_origin_access_enabled" in value:
+        out["isPrivateOriginAccessEnabled"] = value["is_private_origin_access_enabled"]
     return out
 
 
@@ -106,4 +113,6 @@ def deserialize_aws_json_1_1(data: dict) -> Origin:
                 data["ipAddressType"]
             )
         )
+    if data.get("isPrivateOriginAccessEnabled") is not None:
+        out["is_private_origin_access_enabled"] = data["isPrivateOriginAccessEnabled"]
     return out

@@ -1,11 +1,14 @@
 """Generated from Smithy shape ``com.amazonaws.ssmguiconnect#SSMGuiConnect``."""
 
+import uuid
 import warnings
-from typing import Any, Iterable, Optional
+from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
 from zapros import BaseHandler, Client
 
+import capo_ssm_guiconnect._auth._signers
+import capo_ssm_guiconnect._auth._sigv4
 from capo_ssm_guiconnect._auth._identity import Credentials
 from capo_ssm_guiconnect._auth._providers import (
     CredentialsProvider,
@@ -37,8 +40,20 @@ from capo_ssm_guiconnect._services._aws_config import aws_config
 from capo_ssm_guiconnect._services._pipeline import (
     Interceptor,
     OperationOptions,
+    OperationRequest,
+    OperationResponse,
+    execute_pipeline,
     retry,
 )
+
+if TYPE_CHECKING:
+    import capo_ssm_guiconnect.types.client_token
+    import capo_ssm_guiconnect.types.connection_recording_preferences
+    import capo_ssm_guiconnect.types.delete_connection_recording_preferences_request
+    import capo_ssm_guiconnect.types.delete_connection_recording_preferences_response
+    import capo_ssm_guiconnect.types.get_connection_recording_preferences_response
+    import capo_ssm_guiconnect.types.update_connection_recording_preferences_request
+    import capo_ssm_guiconnect.types.update_connection_recording_preferences_response
 
 
 class SSMGuiConnectClientConfig(TypedDict, total=False, closed=True):
@@ -142,6 +157,169 @@ class SSMGuiConnectClient:
             ),
         )
         return interceptors_, options_
+
+    def get_connection_recording_preferences(
+        self, *, config_overrides: Optional[SSMGuiConnectClientConfig] = None
+    ) -> "capo_ssm_guiconnect.types.get_connection_recording_preferences_response.GetConnectionRecordingPreferencesResponse":
+        """<p>Returns the preferences specified for recording RDP connections in the requesting Amazon Web Services account and Amazon Web Services Region.</p>
+
+        Raises:
+            capo_ssm_guiconnect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_ssm_guiconnect.errors.conflict_exception.ConflictException: <p>An error occurred due to a conflict.</p>
+            capo_ssm_guiconnect.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_ssm_guiconnect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource could not be found.</p>
+            capo_ssm_guiconnect.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Your request exceeds a service quota.</p>
+            capo_ssm_guiconnect.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_ssm_guiconnect.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_ssm_guiconnect.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Retrieves the connection recording preferences for the account
+
+            >>> client.get_connection_recording_preferences()
+        """
+
+        def _handler(
+            req: "OperationRequest[None]",
+        ) -> OperationResponse[
+            "capo_ssm_guiconnect.types.get_connection_recording_preferences_response.GetConnectionRecordingPreferencesResponse"
+        ]:
+            import capo_ssm_guiconnect._operations.ssm_gui_connect.get_connection_recording_preferences
+
+            output, http_response = (
+                capo_ssm_guiconnect._operations.ssm_gui_connect.get_connection_recording_preferences.get_connection_recording_preferences(
+                    req.options
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+
+        response = execute_pipeline(
+            OperationRequest(input=None, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_connection_recording_preferences(
+        self,
+        *,
+        config_overrides: Optional[SSMGuiConnectClientConfig] = None,
+        client_token: Optional[
+            "capo_ssm_guiconnect.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_ssm_guiconnect.types.delete_connection_recording_preferences_response.DeleteConnectionRecordingPreferencesResponse":
+        """<p>Deletes the preferences for recording RDP connections.</p>
+
+        Args:
+            client_token: <p>User-provided idempotency token.</p>
+
+        Raises:
+            capo_ssm_guiconnect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_ssm_guiconnect.errors.conflict_exception.ConflictException: <p>An error occurred due to a conflict.</p>
+            capo_ssm_guiconnect.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_ssm_guiconnect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource could not be found.</p>
+            capo_ssm_guiconnect.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Your request exceeds a service quota.</p>
+            capo_ssm_guiconnect.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_ssm_guiconnect.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_ssm_guiconnect.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete the connection recording preferences for the account
+
+            >>> client.delete_connection_recording_preferences()
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ssm_guiconnect.types.delete_connection_recording_preferences_request.DeleteConnectionRecordingPreferencesRequest]",
+        ) -> OperationResponse[
+            "capo_ssm_guiconnect.types.delete_connection_recording_preferences_response.DeleteConnectionRecordingPreferencesResponse"
+        ]:
+            import capo_ssm_guiconnect._operations.ssm_gui_connect.delete_connection_recording_preferences
+
+            output, http_response = (
+                capo_ssm_guiconnect._operations.ssm_gui_connect.delete_connection_recording_preferences.delete_connection_recording_preferences(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ssm_guiconnect.types.delete_connection_recording_preferences_request.DeleteConnectionRecordingPreferencesRequest = {}
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_connection_recording_preferences(
+        self,
+        connection_recording_preferences: "capo_ssm_guiconnect.types.connection_recording_preferences.ConnectionRecordingPreferences",
+        *,
+        config_overrides: Optional[SSMGuiConnectClientConfig] = None,
+        client_token: Optional[
+            "capo_ssm_guiconnect.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_ssm_guiconnect.types.update_connection_recording_preferences_response.UpdateConnectionRecordingPreferencesResponse":
+        """<p>Updates the preferences for recording RDP connections.</p>
+
+        Args:
+            connection_recording_preferences: <p>The set of preferences used for recording RDP connections in the requesting Amazon Web Services account and Amazon Web Services Region. This includes details such as which S3 bucket recordings are stored in.</p>
+            client_token: <p>User-provided idempotency token.</p>
+
+        Raises:
+            capo_ssm_guiconnect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_ssm_guiconnect.errors.conflict_exception.ConflictException: <p>An error occurred due to a conflict.</p>
+            capo_ssm_guiconnect.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_ssm_guiconnect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource could not be found.</p>
+            capo_ssm_guiconnect.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Your request exceeds a service quota.</p>
+            capo_ssm_guiconnect.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_ssm_guiconnect.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_ssm_guiconnect.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Updates the connection recording preferences for the account
+
+            >>> client.update_connection_recording_preferences(connection_recording_preferences={'RecordingDestinations': {'S3Buckets': [{'BucketOwner': '123456789012', 'BucketName': 'sample-connection-recording-bucket'}]}, 'KMSKeyArn': 'arn:aws:kms:region:account_id:key/sample_key_id'})
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ssm_guiconnect.types.update_connection_recording_preferences_request.UpdateConnectionRecordingPreferencesRequest]",
+        ) -> OperationResponse[
+            "capo_ssm_guiconnect.types.update_connection_recording_preferences_response.UpdateConnectionRecordingPreferencesResponse"
+        ]:
+            import capo_ssm_guiconnect._operations.ssm_gui_connect.update_connection_recording_preferences
+
+            output, http_response = (
+                capo_ssm_guiconnect._operations.ssm_gui_connect.update_connection_recording_preferences.update_connection_recording_preferences(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ssm_guiconnect.types.update_connection_recording_preferences_request.UpdateConnectionRecordingPreferencesRequest = {
+            "connection_recording_preferences": connection_recording_preferences
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
 
     def __enter__(self) -> Self:
         return self

@@ -20,20 +20,20 @@ class CoinbaseCdpConfigurationOutput(TypedDict, closed=True):
     api_key_secret_json_key: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_json_key_type.SecretJsonKeyType"
     ]
-    """<p>The JSON key used to extract the API key secret value from the AWS Secrets Manager secret.</p>"""
+    """<p>The JSON key used to extract the API key secret value from the Amazon Web Services Secrets Manager secret.</p>"""
     api_key_secret_source: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_source_type.SecretSourceType"
     ]
-    """<p>The source type of the API key secret. Either <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if managed by the user in AWS Secrets Manager.</p>"""
+    """<p>The source type of the API key secret. Either <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if managed by the user in Amazon Web Services Secrets Manager.</p>"""
     wallet_secret_arn: "capo_bedrock_agentcore_control.types.secret.Secret"
     wallet_secret_json_key: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_json_key_type.SecretJsonKeyType"
     ]
-    """<p>The JSON key used to extract the wallet secret value from the AWS Secrets Manager secret.</p>"""
+    """<p>The JSON key used to extract the wallet secret value from the Amazon Web Services Secrets Manager secret.</p>"""
     wallet_secret_source: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_source_type.SecretSourceType"
     ]
-    """<p>The source type of the wallet secret. Either <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if managed by the user in AWS Secrets Manager.</p>"""
+    """<p>The source type of the wallet secret. Either <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if managed by the user in Amazon Web Services Secrets Manager.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -22,7 +22,7 @@ class ContainerRecipeSummary(TypedDict, closed=True):
     name: NotRequired["capo_imagebuilder.types.resource_name.ResourceName"]
     """<p>The name of the container recipe.</p>"""
     platform: NotRequired["capo_imagebuilder.types.platform.Platform"]
-    """<p>The system platform for the container, such as Windows or Linux.</p>"""
+    """<p>The system platform for the container. Container recipes support only the Linux and Windows platforms.</p>"""
     owner: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The owner of the container recipe.</p>"""
     parent_image: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]

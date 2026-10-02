@@ -40,6 +40,9 @@ if TYPE_CHECKING:
     import capo_guardduty.types.admin_account
     import capo_guardduty.types.archive_findings_request
     import capo_guardduty.types.archive_findings_response
+    import capo_guardduty.types.association_id
+    import capo_guardduty.types.association_mode
+    import capo_guardduty.types.association_summary
     import capo_guardduty.types.auto_enable_members
     import capo_guardduty.types.boolean
     import capo_guardduty.types.client_token
@@ -47,10 +50,16 @@ if TYPE_CHECKING:
     import capo_guardduty.types.coverage_resource
     import capo_guardduty.types.coverage_sort_criteria
     import capo_guardduty.types.coverage_statistics_type_list
+    import capo_guardduty.types.create_custom_detection_rule_association_request
+    import capo_guardduty.types.create_custom_detection_rule_association_response
+    import capo_guardduty.types.create_custom_detection_rule_org_configuration_request
+    import capo_guardduty.types.create_custom_detection_rule_org_configuration_response
     import capo_guardduty.types.create_detector_request
     import capo_guardduty.types.create_detector_response
     import capo_guardduty.types.create_filter_request
     import capo_guardduty.types.create_filter_response
+    import capo_guardduty.types.create_investigation_request
+    import capo_guardduty.types.create_investigation_response
     import capo_guardduty.types.create_ip_set_request
     import capo_guardduty.types.create_ip_set_response
     import capo_guardduty.types.create_malware_protection_plan_request
@@ -71,6 +80,10 @@ if TYPE_CHECKING:
     import capo_guardduty.types.data_source_configurations
     import capo_guardduty.types.decline_invitations_request
     import capo_guardduty.types.decline_invitations_response
+    import capo_guardduty.types.delete_custom_detection_rule_association_request
+    import capo_guardduty.types.delete_custom_detection_rule_association_response
+    import capo_guardduty.types.delete_custom_detection_rule_org_configuration_request
+    import capo_guardduty.types.delete_custom_detection_rule_org_configuration_response
     import capo_guardduty.types.delete_detector_request
     import capo_guardduty.types.delete_detector_response
     import capo_guardduty.types.delete_filter_request
@@ -98,6 +111,11 @@ if TYPE_CHECKING:
     import capo_guardduty.types.describe_publishing_destination_response
     import capo_guardduty.types.destination_properties
     import capo_guardduty.types.destination_type
+    import capo_guardduty.types.detection_rule_account_ids
+    import capo_guardduty.types.detection_rule_configuration_status
+    import capo_guardduty.types.detection_rule_filter_list
+    import capo_guardduty.types.detection_rule_max_results
+    import capo_guardduty.types.detection_rule_org_configuration_summary
     import capo_guardduty.types.detector_feature_configurations
     import capo_guardduty.types.detector_id
     import capo_guardduty.types.disable_organization_admin_account_request
@@ -128,6 +146,12 @@ if TYPE_CHECKING:
     import capo_guardduty.types.get_administrator_account_response
     import capo_guardduty.types.get_coverage_statistics_request
     import capo_guardduty.types.get_coverage_statistics_response
+    import capo_guardduty.types.get_custom_detection_rule_association_request
+    import capo_guardduty.types.get_custom_detection_rule_association_response
+    import capo_guardduty.types.get_custom_detection_rule_org_configuration_request
+    import capo_guardduty.types.get_custom_detection_rule_org_configuration_response
+    import capo_guardduty.types.get_custom_detection_rule_request
+    import capo_guardduty.types.get_custom_detection_rule_response
     import capo_guardduty.types.get_detector_request
     import capo_guardduty.types.get_detector_response
     import capo_guardduty.types.get_filter_request
@@ -136,6 +160,8 @@ if TYPE_CHECKING:
     import capo_guardduty.types.get_findings_response
     import capo_guardduty.types.get_findings_statistics_request
     import capo_guardduty.types.get_findings_statistics_response
+    import capo_guardduty.types.get_investigation_request
+    import capo_guardduty.types.get_investigation_response
     import capo_guardduty.types.get_invitations_count_request
     import capo_guardduty.types.get_invitations_count_response
     import capo_guardduty.types.get_ip_set_request
@@ -166,18 +192,29 @@ if TYPE_CHECKING:
     import capo_guardduty.types.group_by_type
     import capo_guardduty.types.guard_duty_arn
     import capo_guardduty.types.integer_value_with_max
+    import capo_guardduty.types.investigation_id
+    import capo_guardduty.types.investigation_sort_criteria
+    import capo_guardduty.types.investigation_summary
     import capo_guardduty.types.invitation
     import capo_guardduty.types.invite_members_request
     import capo_guardduty.types.invite_members_response
     import capo_guardduty.types.ip_set_format
     import capo_guardduty.types.list_coverage_request
     import capo_guardduty.types.list_coverage_response
+    import capo_guardduty.types.list_custom_detection_rule_associations_request
+    import capo_guardduty.types.list_custom_detection_rule_associations_response
+    import capo_guardduty.types.list_custom_detection_rule_org_configurations_request
+    import capo_guardduty.types.list_custom_detection_rule_org_configurations_response
+    import capo_guardduty.types.list_custom_detection_rules_request
+    import capo_guardduty.types.list_custom_detection_rules_response
     import capo_guardduty.types.list_detectors_request
     import capo_guardduty.types.list_detectors_response
     import capo_guardduty.types.list_filters_request
     import capo_guardduty.types.list_filters_response
     import capo_guardduty.types.list_findings_request
     import capo_guardduty.types.list_findings_response
+    import capo_guardduty.types.list_investigations_request
+    import capo_guardduty.types.list_investigations_response
     import capo_guardduty.types.list_invitations_request
     import capo_guardduty.types.list_invitations_response
     import capo_guardduty.types.list_ip_sets_request
@@ -209,10 +246,13 @@ if TYPE_CHECKING:
     import capo_guardduty.types.member
     import capo_guardduty.types.member_features_configurations
     import capo_guardduty.types.name
+    import capo_guardduty.types.next_token
     import capo_guardduty.types.order_by
     import capo_guardduty.types.organization_data_source_configurations
     import capo_guardduty.types.organization_features_configurations
     import capo_guardduty.types.resource_arn
+    import capo_guardduty.types.rule_id
+    import capo_guardduty.types.rule_summary
     import capo_guardduty.types.s3_object_for_send_object_malware_scan
     import capo_guardduty.types.scan
     import capo_guardduty.types.scan_resource_criteria
@@ -234,11 +274,16 @@ if TYPE_CHECKING:
     import capo_guardduty.types.tag_resource_response
     import capo_guardduty.types.threat_entity_set_format
     import capo_guardduty.types.threat_intel_set_format
+    import capo_guardduty.types.trigger_prompt
     import capo_guardduty.types.trusted_entity_set_format
     import capo_guardduty.types.unarchive_findings_request
     import capo_guardduty.types.unarchive_findings_response
     import capo_guardduty.types.untag_resource_request
     import capo_guardduty.types.untag_resource_response
+    import capo_guardduty.types.update_custom_detection_rule_association_request
+    import capo_guardduty.types.update_custom_detection_rule_association_response
+    import capo_guardduty.types.update_custom_detection_rule_org_configuration_request
+    import capo_guardduty.types.update_custom_detection_rule_org_configuration_response
     import capo_guardduty.types.update_detector_request
     import capo_guardduty.types.update_detector_response
     import capo_guardduty.types.update_filter_request
@@ -512,6 +557,134 @@ class GuardDutyClient:
         response.response.close()
         return response.output
 
+    def create_custom_detection_rule_association(
+        self,
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        rule_id: Optional["capo_guardduty.types.rule_id.RuleId"] = None,
+        mode: Optional["capo_guardduty.types.association_mode.AssociationMode"] = None,
+        client_token: Optional["capo_guardduty.types.client_token.ClientToken"] = None,
+        tags: Optional["capo_guardduty.types.tag_map.TagMap"] = None,
+    ) -> "capo_guardduty.types.create_custom_detection_rule_association_response.CreateCustomDetectionRuleAssociationResponse":
+        """<p>Enables a custom detection rule for your account by creating an association. You specify the rule and the mode in which it operates.</p>
+
+        Args:
+            rule_id: <p>The unique identifier for the custom detection rule.</p>
+            mode: <p>The rule execution mode. Valid values: <code>LIVE</code> | <code>DRY_RUN</code>.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. Maximum 64 characters.</p>
+            tags: <p>The tags to be added to the new custom detection rule association resource.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.conflict_exception.ConflictException: <p>A request conflict exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.create_custom_detection_rule_association_request.CreateCustomDetectionRuleAssociationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.create_custom_detection_rule_association_response.CreateCustomDetectionRuleAssociationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.create_custom_detection_rule_association
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.create_custom_detection_rule_association.create_custom_detection_rule_association(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.create_custom_detection_rule_association_request.CreateCustomDetectionRuleAssociationRequest = {}
+        if rule_id is not None:
+            input_["rule_id"] = rule_id
+        if mode is not None:
+            input_["mode"] = mode
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_custom_detection_rule_org_configuration(
+        self,
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        rule_id: Optional["capo_guardduty.types.rule_id.RuleId"] = None,
+        mode: Optional["capo_guardduty.types.association_mode.AssociationMode"] = None,
+        include_account_ids: Optional[
+            "capo_guardduty.types.detection_rule_account_ids.DetectionRuleAccountIds"
+        ] = None,
+        exclude_account_ids: Optional[
+            "capo_guardduty.types.detection_rule_account_ids.DetectionRuleAccountIds"
+        ] = None,
+        client_token: Optional["capo_guardduty.types.client_token.ClientToken"] = None,
+    ) -> "capo_guardduty.types.create_custom_detection_rule_org_configuration_response.CreateCustomDetectionRuleOrgConfigurationResponse":
+        """<p>Creates an organization-level configuration that enables a custom detection rule across your organization. This operation is available only to the delegated administrator account.</p>
+
+        Args:
+            rule_id: <p>The unique identifier for the custom detection rule.</p>
+            mode: <p>The execution mode of the organization configuration. Valid values: <code>LIVE</code> | <code>DRY_RUN</code>.</p>
+            include_account_ids: <p>The account IDs to include in the organization configuration. Mutually exclusive with <code>ExcludeAccountIds</code>.</p>
+            exclude_account_ids: <p>The account IDs to exclude from the organization configuration. Mutually exclusive with <code>IncludeAccountIds</code>.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.conflict_exception.ConflictException: <p>A request conflict exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.create_custom_detection_rule_org_configuration_request.CreateCustomDetectionRuleOrgConfigurationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.create_custom_detection_rule_org_configuration_response.CreateCustomDetectionRuleOrgConfigurationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.create_custom_detection_rule_org_configuration
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.create_custom_detection_rule_org_configuration.create_custom_detection_rule_org_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.create_custom_detection_rule_org_configuration_request.CreateCustomDetectionRuleOrgConfigurationRequest = {}
+        if rule_id is not None:
+            input_["rule_id"] = rule_id
+        if mode is not None:
+            input_["mode"] = mode
+        if include_account_ids is not None:
+            input_["include_account_ids"] = include_account_ids
+        if exclude_account_ids is not None:
+            input_["exclude_account_ids"] = exclude_account_ids
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_detector(
         self,
         *,
@@ -651,6 +824,64 @@ class GuardDutyClient:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_investigation(
+        self,
+        detector_id: "capo_guardduty.types.detector_id.DetectorId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        trigger_prompt: Optional[
+            "capo_guardduty.types.trigger_prompt.TriggerPrompt"
+        ] = None,
+        client_token: Optional["capo_guardduty.types.client_token.ClientToken"] = None,
+    ) -> (
+        "capo_guardduty.types.create_investigation_response.CreateInvestigationResponse"
+    ):
+        r"""<p>This API is currently available as a preview. During the preview, you can initiate up to 10 investigations per account per day, with a total limit of 100 investigations per account. This feature is available in the following Amazon Web Services Regions: US East (N. Virginia), US East (Ohio), US West (Oregon), Canada (Central), Europe (Frankfurt), Europe (Ireland), Europe (London), Europe (Paris), Europe (Stockholm), and Asia Pacific (Tokyo).</p> <p>Initiates a GuardDuty investigation that automatically analyzes security findings, correlates related activity, performs account-level analysis, and produces a structured investigation summary with recommended next steps.</p> <p>Only the administrator account can create an investigation. Member accounts don't have permission to create investigations from their accounts.</p> <p>To use this operation, the <code>AI_ANALYST</code> feature must be enabled on your detector.</p> <p>This feature uses Amazon Bedrock models that leverage Cross-Region Inference (CRIS), which automatically selects the optimal Amazon Web Services Region within your geography to process the investigation analysis and generate the investigation report. This maximizes available compute resources, model availability, and delivers the best customer experience. Your data remains stored only in the Region where the investigation request originates, however, investigation data and summary results may be processed outside that Region. All data is transmitted encrypted across Amazon's secure network. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty-investigation.html\">GuardDuty Investigation</a>.</p>
+
+        Args:
+            detector_id: <p>The unique ID of the GuardDuty detector for the account in which the investigation is created.</p> <p>To find the <code>detectorId</code> in the current Region, see the Settings page in the GuardDuty console, or run the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html\">ListDetectors</a> API.</p>
+            trigger_prompt: <p>A natural-language description of what to investigate. For example:</p> <ul> <li> <p> <code>\"Investigate finding 1ab2c3d4e5f6a7b8c9d0e1f2a3b4c5d6 in account 123456789012\"</code> </p> </li> <li> <p> <code>\"Analyze findings in account with id 123456789012\"</code> </p> </li> <li> <p> <code>\"Analyze findings in my organization\"</code> </p> </li> </ul>
+            client_token: <p>The idempotency token for the create request.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.create_investigation_request.CreateInvestigationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.create_investigation_response.CreateInvestigationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.create_investigation
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.create_investigation.create_investigation(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.create_investigation_request.CreateInvestigationRequest = {
+            "detector_id": detector_id
+        }
+        if trigger_prompt is not None:
+            input_["trigger_prompt"] = trigger_prompt
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1235,6 +1466,106 @@ class GuardDutyClient:
         input_: capo_guardduty.types.decline_invitations_request.DeclineInvitationsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_custom_detection_rule_association(
+        self,
+        rule_id: "capo_guardduty.types.rule_id.RuleId",
+        association_id: "capo_guardduty.types.association_id.AssociationId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+    ) -> "capo_guardduty.types.delete_custom_detection_rule_association_response.DeleteCustomDetectionRuleAssociationResponse":
+        """<p>Disables a custom detection rule by deleting its association. This operation is idempotent.</p>
+
+        Args:
+            rule_id: <p>The unique identifier for the custom detection rule.</p>
+            association_id: <p>The unique identifier for the association to delete.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.delete_custom_detection_rule_association_request.DeleteCustomDetectionRuleAssociationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.delete_custom_detection_rule_association_response.DeleteCustomDetectionRuleAssociationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.delete_custom_detection_rule_association
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.delete_custom_detection_rule_association.delete_custom_detection_rule_association(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.delete_custom_detection_rule_association_request.DeleteCustomDetectionRuleAssociationRequest = {
+            "rule_id": rule_id,
+            "association_id": association_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_custom_detection_rule_org_configuration(
+        self,
+        rule_id: "capo_guardduty.types.rule_id.RuleId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        mode: Optional["capo_guardduty.types.association_mode.AssociationMode"] = None,
+    ) -> "capo_guardduty.types.delete_custom_detection_rule_org_configuration_response.DeleteCustomDetectionRuleOrgConfigurationResponse":
+        """<p>Deletes the organization-level configuration for a custom detection rule. This operation is available only to the delegated administrator account.</p>
+
+        Args:
+            rule_id: <p>The unique identifier for the custom detection rule.</p>
+            mode: <p>The execution mode of the organization configuration to delete. Valid values: <code>LIVE</code> | <code>DRY_RUN</code>.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.conflict_exception.ConflictException: <p>A request conflict exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.delete_custom_detection_rule_org_configuration_request.DeleteCustomDetectionRuleOrgConfigurationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.delete_custom_detection_rule_org_configuration_response.DeleteCustomDetectionRuleOrgConfigurationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.delete_custom_detection_rule_org_configuration
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.delete_custom_detection_rule_org_configuration.delete_custom_detection_rule_org_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.delete_custom_detection_rule_org_configuration_request.DeleteCustomDetectionRuleOrgConfigurationRequest = {
+            "rule_id": rule_id
+        }
+        if mode is not None:
+            input_["mode"] = mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2251,6 +2582,151 @@ class GuardDutyClient:
         response.response.close()
         return response.output
 
+    def get_custom_detection_rule(
+        self,
+        rule_id: "capo_guardduty.types.rule_id.RuleId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+    ) -> "capo_guardduty.types.get_custom_detection_rule_response.GetCustomDetectionRuleResponse":
+        """<p>Returns details for a custom detection rule in GuardDuty, including its detection logic.</p>
+
+        Args:
+            rule_id: <p>The unique identifier for the custom detection rule.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.get_custom_detection_rule_request.GetCustomDetectionRuleRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.get_custom_detection_rule_response.GetCustomDetectionRuleResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.get_custom_detection_rule
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.get_custom_detection_rule.get_custom_detection_rule(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.get_custom_detection_rule_request.GetCustomDetectionRuleRequest = {
+            "rule_id": rule_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_custom_detection_rule_association(
+        self,
+        rule_id: "capo_guardduty.types.rule_id.RuleId",
+        association_id: "capo_guardduty.types.association_id.AssociationId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+    ) -> "capo_guardduty.types.get_custom_detection_rule_association_response.GetCustomDetectionRuleAssociationResponse":
+        """<p>Returns details for a custom detection rule association.</p>
+
+        Args:
+            rule_id: <p>The unique identifier for the custom detection rule.</p>
+            association_id: <p>The unique identifier for the association.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.get_custom_detection_rule_association_request.GetCustomDetectionRuleAssociationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.get_custom_detection_rule_association_response.GetCustomDetectionRuleAssociationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.get_custom_detection_rule_association
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.get_custom_detection_rule_association.get_custom_detection_rule_association(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.get_custom_detection_rule_association_request.GetCustomDetectionRuleAssociationRequest = {
+            "rule_id": rule_id,
+            "association_id": association_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_custom_detection_rule_org_configuration(
+        self,
+        rule_id: "capo_guardduty.types.rule_id.RuleId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        mode: Optional["capo_guardduty.types.association_mode.AssociationMode"] = None,
+    ) -> "capo_guardduty.types.get_custom_detection_rule_org_configuration_response.GetCustomDetectionRuleOrgConfigurationResponse":
+        """<p>Returns the organization-level configuration for a custom detection rule.</p>
+
+        Args:
+            rule_id: <p>The unique identifier for the custom detection rule.</p>
+            mode: <p>The execution mode of the organization configuration to retrieve. Valid values: <code>LIVE</code> | <code>DRY_RUN</code>.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.get_custom_detection_rule_org_configuration_request.GetCustomDetectionRuleOrgConfigurationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.get_custom_detection_rule_org_configuration_response.GetCustomDetectionRuleOrgConfigurationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.get_custom_detection_rule_org_configuration
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.get_custom_detection_rule_org_configuration.get_custom_detection_rule_org_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.get_custom_detection_rule_org_configuration_request.GetCustomDetectionRuleOrgConfigurationRequest = {
+            "rule_id": rule_id
+        }
+        if mode is not None:
+            input_["mode"] = mode
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def get_detector(
         self,
         detector_id: "capo_guardduty.types.detector_id.DetectorId",
@@ -2457,6 +2933,55 @@ class GuardDutyClient:
             input_["order_by"] = order_by
         if max_results is not None:
             input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_investigation(
+        self,
+        detector_id: "capo_guardduty.types.detector_id.DetectorId",
+        investigation_id: "capo_guardduty.types.investigation_id.InvestigationId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+    ) -> "capo_guardduty.types.get_investigation_response.GetInvestigationResponse":
+        r"""<p>This API is currently available as a preview. This feature is available in the following Amazon Web Services Regions: US East (N. Virginia), US East (Ohio), US West (Oregon), Canada (Central), Europe (Frankfurt), Europe (Ireland), Europe (London), Europe (Paris), Europe (Stockholm), and Asia Pacific (Tokyo).</p> <p>Retrieves the results and status of a specific GuardDuty investigation.</p> <p>An administrator account can retrieve any investigation within the organization. Member accounts can only retrieve investigations that belong to them.</p>
+
+        Args:
+            detector_id: <p>The unique ID of the GuardDuty detector associated with the investigation.</p> <p>To find the <code>detectorId</code> in the current Region, see the Settings page in the GuardDuty console, or run the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html\">ListDetectors</a> API.</p>
+            investigation_id: <p>The unique identifier of the investigation to retrieve.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.get_investigation_request.GetInvestigationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.get_investigation_response.GetInvestigationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.get_investigation
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.get_investigation.get_investigation(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.get_investigation_request.GetInvestigationRequest = {
+            "detector_id": detector_id,
+            "investigation_id": investigation_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3305,6 +3830,260 @@ class GuardDutyClient:
             if not _token:
                 break
 
+    def list_custom_detection_rule_associations(
+        self,
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        max_results: Optional[
+            "capo_guardduty.types.detection_rule_max_results.DetectionRuleMaxResults"
+        ] = None,
+        next_token: Optional["capo_guardduty.types.string.String"] = None,
+        rule_id: Optional["capo_guardduty.types.rule_id.RuleId"] = None,
+        mode: Optional["capo_guardduty.types.association_mode.AssociationMode"] = None,
+    ) -> "capo_guardduty.types.list_custom_detection_rule_associations_response.ListCustomDetectionRuleAssociationsResponse":
+        """<p>Returns all custom detection rule associations for your account. You can filter by rule ID and mode.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return in a single page. Minimum value of 1, maximum value of 100.</p>
+            next_token: <p>A pagination token from a previous response. Use this token to retrieve the next page of results.</p>
+            rule_id: <p>The unique identifier for the custom detection rule to filter associations by.</p>
+            mode: <p>The rule execution mode to filter associations by.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.list_custom_detection_rule_associations_request.ListCustomDetectionRuleAssociationsRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.list_custom_detection_rule_associations_response.ListCustomDetectionRuleAssociationsResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.list_custom_detection_rule_associations
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.list_custom_detection_rule_associations.list_custom_detection_rule_associations(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.list_custom_detection_rule_associations_request.ListCustomDetectionRuleAssociationsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if rule_id is not None:
+            input_["rule_id"] = rule_id
+        if mode is not None:
+            input_["mode"] = mode
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_custom_detection_rule_associations(
+        self,
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        max_results: Optional[
+            "capo_guardduty.types.detection_rule_max_results.DetectionRuleMaxResults"
+        ] = None,
+        next_token: Optional["capo_guardduty.types.string.String"] = None,
+        rule_id: Optional["capo_guardduty.types.rule_id.RuleId"] = None,
+        mode: Optional["capo_guardduty.types.association_mode.AssociationMode"] = None,
+    ) -> "Iterator[capo_guardduty.types.association_summary.AssociationSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_custom_detection_rule_associations(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                rule_id=rule_id,
+                mode=mode,
+            )
+            _page = _resolve_path(_response, ("rule_associations",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_custom_detection_rule_org_configurations(
+        self,
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        max_results: Optional[
+            "capo_guardduty.types.detection_rule_max_results.DetectionRuleMaxResults"
+        ] = None,
+        next_token: Optional["capo_guardduty.types.string.String"] = None,
+        status: Optional[
+            "capo_guardduty.types.detection_rule_configuration_status.DetectionRuleConfigurationStatus"
+        ] = None,
+    ) -> "capo_guardduty.types.list_custom_detection_rule_org_configurations_response.ListCustomDetectionRuleOrgConfigurationsResponse":
+        """<p>Returns all organization-level configurations for custom detection rules. You can filter the results by status.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return in a single page. Minimum value of 1, maximum value of 100.</p>
+            next_token: <p>A pagination token from a previous response. Use this token to retrieve the next page of results.</p>
+            status: <p>The configuration status to filter by.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.list_custom_detection_rule_org_configurations_request.ListCustomDetectionRuleOrgConfigurationsRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.list_custom_detection_rule_org_configurations_response.ListCustomDetectionRuleOrgConfigurationsResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.list_custom_detection_rule_org_configurations
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.list_custom_detection_rule_org_configurations.list_custom_detection_rule_org_configurations(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.list_custom_detection_rule_org_configurations_request.ListCustomDetectionRuleOrgConfigurationsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if status is not None:
+            input_["status"] = status
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_custom_detection_rule_org_configurations(
+        self,
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        max_results: Optional[
+            "capo_guardduty.types.detection_rule_max_results.DetectionRuleMaxResults"
+        ] = None,
+        next_token: Optional["capo_guardduty.types.string.String"] = None,
+        status: Optional[
+            "capo_guardduty.types.detection_rule_configuration_status.DetectionRuleConfigurationStatus"
+        ] = None,
+    ) -> "Iterator[capo_guardduty.types.detection_rule_org_configuration_summary.DetectionRuleOrgConfigurationSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_custom_detection_rule_org_configurations(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                status=status,
+            )
+            _page = _resolve_path(_response, ("configurations",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_custom_detection_rules(
+        self,
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        max_results: Optional[
+            "capo_guardduty.types.detection_rule_max_results.DetectionRuleMaxResults"
+        ] = None,
+        next_token: Optional["capo_guardduty.types.string.String"] = None,
+        filters: Optional[
+            "capo_guardduty.types.detection_rule_filter_list.DetectionRuleFilterList"
+        ] = None,
+    ) -> "capo_guardduty.types.list_custom_detection_rules_response.ListCustomDetectionRulesResponse":
+        """<p>Returns all available custom detection rules in GuardDuty. You can filter the results by data source, severity, tactic, technique, and service.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return in a single page. Minimum value of 1, maximum value of 100.</p>
+            next_token: <p>A pagination token from a previous response. Use this token to retrieve the next page of results.</p>
+            filters: <p>A list of filter criteria to apply when listing custom detection rules.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.list_custom_detection_rules_request.ListCustomDetectionRulesRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.list_custom_detection_rules_response.ListCustomDetectionRulesResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.list_custom_detection_rules
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.list_custom_detection_rules.list_custom_detection_rules(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.list_custom_detection_rules_request.ListCustomDetectionRulesRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if filters is not None:
+            input_["filters"] = filters
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_custom_detection_rules(
+        self,
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        max_results: Optional[
+            "capo_guardduty.types.detection_rule_max_results.DetectionRuleMaxResults"
+        ] = None,
+        next_token: Optional["capo_guardduty.types.string.String"] = None,
+        filters: Optional[
+            "capo_guardduty.types.detection_rule_filter_list.DetectionRuleFilterList"
+        ] = None,
+    ) -> "Iterator[capo_guardduty.types.rule_summary.RuleSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_custom_detection_rules(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                filters=filters,
+            )
+            _page = _resolve_path(_response, ("rules",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def list_detectors(
         self,
         *,
@@ -3538,6 +4317,92 @@ class GuardDutyClient:
                 next_token=_token,
             )
             _page = _resolve_path(_response, ("finding_ids",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_investigations(
+        self,
+        detector_id: "capo_guardduty.types.detector_id.DetectorId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        sort_criteria: Optional[
+            "capo_guardduty.types.investigation_sort_criteria.InvestigationSortCriteria"
+        ] = None,
+        max_results: Optional["capo_guardduty.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_guardduty.types.next_token.NextToken"] = None,
+    ) -> "capo_guardduty.types.list_investigations_response.ListInvestigationsResponse":
+        r"""<p>This API is currently available as a preview. This feature is available in the following Amazon Web Services Regions: US East (N. Virginia), US East (Ohio), US West (Oregon), Canada (Central), Europe (Frankfurt), Europe (Ireland), Europe (London), Europe (Paris), Europe (Stockholm), and Asia Pacific (Tokyo).</p> <p>Returns a list of investigations associated with the specified GuardDuty detector.</p> <p>An administrator account sees all investigations across the organization. Member accounts see only the investigations that belong to them.</p>
+
+        Args:
+            detector_id: <p>The unique ID of the GuardDuty detector whose investigations you want to list.</p> <p>To find the <code>detectorId</code> in the current Region, see the Settings page in the GuardDuty console, or run the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html\">ListDetectors</a> API.</p>
+            sort_criteria: <p>Represents the criteria used for sorting investigations.</p>
+            max_results: <p>You can use this parameter to indicate the maximum number of items you want in the response. The default value is 50.</p>
+            next_token: <p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.list_investigations_request.ListInvestigationsRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.list_investigations_response.ListInvestigationsResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.list_investigations
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.list_investigations.list_investigations(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.list_investigations_request.ListInvestigationsRequest = {
+            "detector_id": detector_id
+        }
+        if sort_criteria is not None:
+            input_["sort_criteria"] = sort_criteria
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_investigations(
+        self,
+        detector_id: "capo_guardduty.types.detector_id.DetectorId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        sort_criteria: Optional[
+            "capo_guardduty.types.investigation_sort_criteria.InvestigationSortCriteria"
+        ] = None,
+        max_results: Optional["capo_guardduty.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_guardduty.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_guardduty.types.investigation_summary.InvestigationSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_investigations(
+                detector_id,
+                config_overrides=config_overrides,
+                sort_criteria=sort_criteria,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("investigations",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -4650,6 +5515,123 @@ class GuardDutyClient:
         }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_custom_detection_rule_association(
+        self,
+        rule_id: "capo_guardduty.types.rule_id.RuleId",
+        association_id: "capo_guardduty.types.association_id.AssociationId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        mode: Optional["capo_guardduty.types.association_mode.AssociationMode"] = None,
+    ) -> "capo_guardduty.types.update_custom_detection_rule_association_response.UpdateCustomDetectionRuleAssociationResponse":
+        """<p>Updates the mode of an existing custom detection rule association.</p>
+
+        Args:
+            rule_id: <p>The unique identifier for the custom detection rule.</p>
+            association_id: <p>The unique identifier for the association to update.</p>
+            mode: <p>The rule execution mode. Valid values: <code>LIVE</code> | <code>DRY_RUN</code>.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.conflict_exception.ConflictException: <p>A request conflict exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.update_custom_detection_rule_association_request.UpdateCustomDetectionRuleAssociationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.update_custom_detection_rule_association_response.UpdateCustomDetectionRuleAssociationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.update_custom_detection_rule_association
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.update_custom_detection_rule_association.update_custom_detection_rule_association(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.update_custom_detection_rule_association_request.UpdateCustomDetectionRuleAssociationRequest = {
+            "rule_id": rule_id,
+            "association_id": association_id,
+        }
+        if mode is not None:
+            input_["mode"] = mode
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_custom_detection_rule_org_configuration(
+        self,
+        rule_id: "capo_guardduty.types.rule_id.RuleId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        mode: Optional["capo_guardduty.types.association_mode.AssociationMode"] = None,
+        include_account_ids: Optional[
+            "capo_guardduty.types.detection_rule_account_ids.DetectionRuleAccountIds"
+        ] = None,
+        exclude_account_ids: Optional[
+            "capo_guardduty.types.detection_rule_account_ids.DetectionRuleAccountIds"
+        ] = None,
+    ) -> "capo_guardduty.types.update_custom_detection_rule_org_configuration_response.UpdateCustomDetectionRuleOrgConfigurationResponse":
+        """<p>Updates the organization-level configuration for a custom detection rule, including the mode and include/exclude account lists.</p>
+
+        Args:
+            rule_id: <p>The unique identifier for the custom detection rule.</p>
+            mode: <p>The execution mode of the organization configuration. Valid values: <code>LIVE</code> | <code>DRY_RUN</code>.</p>
+            include_account_ids: <p>The account IDs to include in the organization configuration. Mutually exclusive with <code>ExcludeAccountIds</code>.</p>
+            exclude_account_ids: <p>The account IDs to exclude from the organization configuration. Mutually exclusive with <code>IncludeAccountIds</code>.</p>
+
+        Raises:
+            capo_guardduty.errors.access_denied_exception.AccessDeniedException: <p>An access denied exception object.</p>
+            capo_guardduty.errors.bad_request_exception.BadRequestException: <p>A bad request exception object.</p>
+            capo_guardduty.errors.conflict_exception.ConflictException: <p>A request conflict exception object.</p>
+            capo_guardduty.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error exception object.</p>
+            capo_guardduty.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_guardduty.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_guardduty.types.update_custom_detection_rule_org_configuration_request.UpdateCustomDetectionRuleOrgConfigurationRequest]",
+        ) -> OperationResponse[
+            "capo_guardduty.types.update_custom_detection_rule_org_configuration_response.UpdateCustomDetectionRuleOrgConfigurationResponse"
+        ]:
+            import capo_guardduty._operations.guard_duty_api_service.update_custom_detection_rule_org_configuration
+
+            output, http_response = (
+                capo_guardduty._operations.guard_duty_api_service.update_custom_detection_rule_org_configuration.update_custom_detection_rule_org_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_guardduty.types.update_custom_detection_rule_org_configuration_request.UpdateCustomDetectionRuleOrgConfigurationRequest = {
+            "rule_id": rule_id
+        }
+        if mode is not None:
+            input_["mode"] = mode
+        if include_account_ids is not None:
+            input_["include_account_ids"] = include_account_ids
+        if exclude_account_ids is not None:
+            input_["exclude_account_ids"] = exclude_account_ids
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

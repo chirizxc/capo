@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 Category: TypeAlias = Literal[
     "UPGRADE_READINESS",
     "MISCONFIGURATION",
+    "ROLLBACK_READINESS",
 ]
 
 

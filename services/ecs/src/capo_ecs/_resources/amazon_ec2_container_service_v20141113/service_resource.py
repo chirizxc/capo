@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     import capo_ecs.types.describe_express_gateway_service_response
     import capo_ecs.types.describe_services_request
     import capo_ecs.types.describe_services_response
+    import capo_ecs.types.express_cpu_architecture
     import capo_ecs.types.express_gateway_container
     import capo_ecs.types.express_gateway_scaling_target
     import capo_ecs.types.express_gateway_service_include_list
@@ -156,6 +157,9 @@ class ServiceResource:
         ] = None,
         cpu: Optional["capo_ecs.types.string.String"] = None,
         memory: Optional["capo_ecs.types.string.String"] = None,
+        cpu_architecture: Optional[
+            "capo_ecs.types.express_cpu_architecture.ExpressCpuArchitecture"
+        ] = None,
         scaling_target: Optional[
             "capo_ecs.types.express_gateway_scaling_target.ExpressGatewayScalingTarget"
         ] = None,
@@ -175,9 +179,10 @@ class ServiceResource:
             network_configuration: <p>The network configuration for the Express service tasks. This specifies the VPC subnets and security groups for the tasks.</p> <p>For Express services, you can specify custom security groups and subnets. If not provided, Amazon ECS will use the default VPC configuration and create appropriate security groups automatically. The network configuration determines how your service integrates with your VPC and what network access it has.</p>
             cpu: <p>The number of CPU units used by the task. This parameter determines the CPU allocation for each task in the Express service. The default value for an Express service is 256 (.25 vCPU).</p>
             memory: <p>The amount of memory (in MiB) used by the task. This parameter determines the memory allocation for each task in the Express service. The default value for an express service is 512 MiB.</p>
+            cpu_architecture: <p>The CPU architecture that the tasks in the Express service run on. Amazon ECS applies this value to the task definition revision that it registers for the service. If you don't specify a value, the default is <code>X86_64</code>.</p> <p>Valid values:</p> <ul> <li> <p> <code>X86_64</code> - The x86 64-bit architecture.</p> </li> <li> <p> <code>ARM64</code> - The 64-bit ARM architecture.</p> </li> </ul> <p>Make sure that the container image that you specify supports the architecture that you choose. The operating system family for an Express service is always <code>LINUX</code>.</p> <p>You can't specify <code>cpuArchitecture</code> when you also specify <code>taskDefinitionArn</code>, because this value applies only to a task definition that Amazon ECS registers on your behalf.</p>
             scaling_target: <p>The auto-scaling configuration for the Express service. This defines how the service automatically adjusts the number of running tasks based on demand.</p> <p>You can specify the minimum and maximum number of tasks, the scaling metric (CPU utilization, memory utilization, or request count per target), and the target value for the metric. If not specified, the default target value for an Express service is 60.</p>
             tags: <p>The metadata that you apply to the Express service to help categorize and organize it. Each tag consists of a key and an optional value. You can apply up to 50 tags to a service.</p>
-            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to create the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, or <code>memory</code>.</p>
+            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to create the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, <code>memory</code>, or <code>cpuArchitecture</code>.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -227,6 +232,8 @@ class ServiceResource:
             input_["cpu"] = cpu
         if memory is not None:
             input_["memory"] = memory
+        if cpu_architecture is not None:
+            input_["cpu_architecture"] = cpu_architecture
         if scaling_target is not None:
             input_["scaling_target"] = scaling_target
         if tags is not None:
@@ -910,6 +917,9 @@ class ServiceResource:
         ] = None,
         cpu: Optional["capo_ecs.types.string.String"] = None,
         memory: Optional["capo_ecs.types.string.String"] = None,
+        cpu_architecture: Optional[
+            "capo_ecs.types.express_cpu_architecture.ExpressCpuArchitecture"
+        ] = None,
         scaling_target: Optional[
             "capo_ecs.types.express_gateway_scaling_target.ExpressGatewayScalingTarget"
         ] = None,
@@ -926,8 +936,9 @@ class ServiceResource:
             network_configuration: <p>The network configuration for the Express service tasks. By default, the network configuration for an Express service uses the default VPC.</p>
             cpu: <p>The number of CPU units used by the task.</p>
             memory: <p>The amount of memory (in MiB) used by the task.</p>
+            cpu_architecture: <p>The CPU architecture that the tasks in the Express service run on. Amazon ECS applies this value to the task definition revision that it registers for the service. If you don't specify a value, the service keeps the architecture that it currently runs on.</p> <p>Valid values:</p> <ul> <li> <p> <code>X86_64</code> - The x86 64-bit architecture.</p> </li> <li> <p> <code>ARM64</code> - The 64-bit ARM architecture.</p> </li> </ul> <p>Changing the architecture starts a new deployment that replaces the running tasks. Make sure that the container image that the service uses supports the architecture that you choose. The operating system family for an Express service is always <code>LINUX</code>.</p> <p>You can't specify <code>cpuArchitecture</code> when you also specify <code>taskDefinitionArn</code>, because this value applies only to a task definition that Amazon ECS registers on your behalf.</p>
             scaling_target: <p>The auto-scaling configuration for the Express service.</p>
-            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, or <code>memory</code>.</p>
+            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, <code>memory</code>, or <code>cpuArchitecture</code>.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -973,6 +984,8 @@ class ServiceResource:
             input_["cpu"] = cpu
         if memory is not None:
             input_["memory"] = memory
+        if cpu_architecture is not None:
+            input_["cpu_architecture"] = cpu_architecture
         if scaling_target is not None:
             input_["scaling_target"] = scaling_target
         if task_definition_arn is not None:
@@ -1263,6 +1276,9 @@ class AsyncServiceResource:
         ] = None,
         cpu: Optional["capo_ecs.types.string.String"] = None,
         memory: Optional["capo_ecs.types.string.String"] = None,
+        cpu_architecture: Optional[
+            "capo_ecs.types.express_cpu_architecture.ExpressCpuArchitecture"
+        ] = None,
         scaling_target: Optional[
             "capo_ecs.types.express_gateway_scaling_target.ExpressGatewayScalingTarget"
         ] = None,
@@ -1282,9 +1298,10 @@ class AsyncServiceResource:
             network_configuration: <p>The network configuration for the Express service tasks. This specifies the VPC subnets and security groups for the tasks.</p> <p>For Express services, you can specify custom security groups and subnets. If not provided, Amazon ECS will use the default VPC configuration and create appropriate security groups automatically. The network configuration determines how your service integrates with your VPC and what network access it has.</p>
             cpu: <p>The number of CPU units used by the task. This parameter determines the CPU allocation for each task in the Express service. The default value for an Express service is 256 (.25 vCPU).</p>
             memory: <p>The amount of memory (in MiB) used by the task. This parameter determines the memory allocation for each task in the Express service. The default value for an express service is 512 MiB.</p>
+            cpu_architecture: <p>The CPU architecture that the tasks in the Express service run on. Amazon ECS applies this value to the task definition revision that it registers for the service. If you don't specify a value, the default is <code>X86_64</code>.</p> <p>Valid values:</p> <ul> <li> <p> <code>X86_64</code> - The x86 64-bit architecture.</p> </li> <li> <p> <code>ARM64</code> - The 64-bit ARM architecture.</p> </li> </ul> <p>Make sure that the container image that you specify supports the architecture that you choose. The operating system family for an Express service is always <code>LINUX</code>.</p> <p>You can't specify <code>cpuArchitecture</code> when you also specify <code>taskDefinitionArn</code>, because this value applies only to a task definition that Amazon ECS registers on your behalf.</p>
             scaling_target: <p>The auto-scaling configuration for the Express service. This defines how the service automatically adjusts the number of running tasks based on demand.</p> <p>You can specify the minimum and maximum number of tasks, the scaling metric (CPU utilization, memory utilization, or request count per target), and the target value for the metric. If not specified, the default target value for an Express service is 60.</p>
             tags: <p>The metadata that you apply to the Express service to help categorize and organize it. Each tag consists of a key and an optional value. You can apply up to 50 tags to a service.</p>
-            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to create the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, or <code>memory</code>.</p>
+            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to create the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, <code>memory</code>, or <code>cpuArchitecture</code>.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -1335,6 +1352,8 @@ class AsyncServiceResource:
             input_["cpu"] = cpu
         if memory is not None:
             input_["memory"] = memory
+        if cpu_architecture is not None:
+            input_["cpu_architecture"] = cpu_architecture
         if scaling_target is not None:
             input_["scaling_target"] = scaling_target
         if tags is not None:
@@ -2026,6 +2045,9 @@ class AsyncServiceResource:
         ] = None,
         cpu: Optional["capo_ecs.types.string.String"] = None,
         memory: Optional["capo_ecs.types.string.String"] = None,
+        cpu_architecture: Optional[
+            "capo_ecs.types.express_cpu_architecture.ExpressCpuArchitecture"
+        ] = None,
         scaling_target: Optional[
             "capo_ecs.types.express_gateway_scaling_target.ExpressGatewayScalingTarget"
         ] = None,
@@ -2042,8 +2064,9 @@ class AsyncServiceResource:
             network_configuration: <p>The network configuration for the Express service tasks. By default, the network configuration for an Express service uses the default VPC.</p>
             cpu: <p>The number of CPU units used by the task.</p>
             memory: <p>The amount of memory (in MiB) used by the task.</p>
+            cpu_architecture: <p>The CPU architecture that the tasks in the Express service run on. Amazon ECS applies this value to the task definition revision that it registers for the service. If you don't specify a value, the service keeps the architecture that it currently runs on.</p> <p>Valid values:</p> <ul> <li> <p> <code>X86_64</code> - The x86 64-bit architecture.</p> </li> <li> <p> <code>ARM64</code> - The 64-bit ARM architecture.</p> </li> </ul> <p>Changing the architecture starts a new deployment that replaces the running tasks. Make sure that the container image that the service uses supports the architecture that you choose. The operating system family for an Express service is always <code>LINUX</code>.</p> <p>You can't specify <code>cpuArchitecture</code> when you also specify <code>taskDefinitionArn</code>, because this value applies only to a task definition that Amazon ECS registers on your behalf.</p>
             scaling_target: <p>The auto-scaling configuration for the Express service.</p>
-            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, or <code>memory</code>.</p>
+            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, <code>memory</code>, or <code>cpuArchitecture</code>.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -2090,6 +2113,8 @@ class AsyncServiceResource:
             input_["cpu"] = cpu
         if memory is not None:
             input_["memory"] = memory
+        if cpu_architecture is not None:
+            input_["cpu_architecture"] = cpu_architecture
         if scaling_target is not None:
             input_["scaling_target"] = scaling_target
         if task_definition_arn is not None:

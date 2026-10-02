@@ -38,24 +38,36 @@ if TYPE_CHECKING:
     import capo_observabilityadmin.types.centralization_rule_summary
     import capo_observabilityadmin.types.create_centralization_rule_for_organization_input
     import capo_observabilityadmin.types.create_centralization_rule_for_organization_output
+    import capo_observabilityadmin.types.create_dataset_integration_input
+    import capo_observabilityadmin.types.create_dataset_integration_output
     import capo_observabilityadmin.types.create_s3_table_integration_input
     import capo_observabilityadmin.types.create_s3_table_integration_output
+    import capo_observabilityadmin.types.create_telemetry_pipeline_input
+    import capo_observabilityadmin.types.create_telemetry_pipeline_output
     import capo_observabilityadmin.types.create_telemetry_rule_for_organization_input
     import capo_observabilityadmin.types.create_telemetry_rule_for_organization_output
     import capo_observabilityadmin.types.create_telemetry_rule_input
     import capo_observabilityadmin.types.create_telemetry_rule_output
+    import capo_observabilityadmin.types.dataset_integration_summary
     import capo_observabilityadmin.types.delete_centralization_rule_for_organization_input
+    import capo_observabilityadmin.types.delete_dataset_integration_input
     import capo_observabilityadmin.types.delete_s3_table_integration_input
+    import capo_observabilityadmin.types.delete_telemetry_pipeline_input
+    import capo_observabilityadmin.types.delete_telemetry_pipeline_output
     import capo_observabilityadmin.types.delete_telemetry_rule_for_organization_input
     import capo_observabilityadmin.types.delete_telemetry_rule_input
     import capo_observabilityadmin.types.encryption
     import capo_observabilityadmin.types.get_centralization_rule_for_organization_input
     import capo_observabilityadmin.types.get_centralization_rule_for_organization_output
+    import capo_observabilityadmin.types.get_dataset_integration_input
+    import capo_observabilityadmin.types.get_dataset_integration_output
     import capo_observabilityadmin.types.get_s3_table_integration_input
     import capo_observabilityadmin.types.get_s3_table_integration_output
     import capo_observabilityadmin.types.get_telemetry_enrichment_status_output
     import capo_observabilityadmin.types.get_telemetry_evaluation_status_for_organization_output
     import capo_observabilityadmin.types.get_telemetry_evaluation_status_output
+    import capo_observabilityadmin.types.get_telemetry_pipeline_input
+    import capo_observabilityadmin.types.get_telemetry_pipeline_output
     import capo_observabilityadmin.types.get_telemetry_rule_for_organization_input
     import capo_observabilityadmin.types.get_telemetry_rule_for_organization_output
     import capo_observabilityadmin.types.get_telemetry_rule_input
@@ -64,6 +76,9 @@ if TYPE_CHECKING:
     import capo_observabilityadmin.types.list_centralization_rules_for_organization_input
     import capo_observabilityadmin.types.list_centralization_rules_for_organization_max_results
     import capo_observabilityadmin.types.list_centralization_rules_for_organization_output
+    import capo_observabilityadmin.types.list_dataset_integrations_input
+    import capo_observabilityadmin.types.list_dataset_integrations_max_results
+    import capo_observabilityadmin.types.list_dataset_integrations_output
     import capo_observabilityadmin.types.list_resource_telemetry_for_organization_input
     import capo_observabilityadmin.types.list_resource_telemetry_for_organization_max_results
     import capo_observabilityadmin.types.list_resource_telemetry_for_organization_output
@@ -75,6 +90,9 @@ if TYPE_CHECKING:
     import capo_observabilityadmin.types.list_s3_table_integrations_output
     import capo_observabilityadmin.types.list_tags_for_resource_input
     import capo_observabilityadmin.types.list_tags_for_resource_output
+    import capo_observabilityadmin.types.list_telemetry_pipelines_input
+    import capo_observabilityadmin.types.list_telemetry_pipelines_max_results
+    import capo_observabilityadmin.types.list_telemetry_pipelines_output
     import capo_observabilityadmin.types.list_telemetry_rules_for_organization_input
     import capo_observabilityadmin.types.list_telemetry_rules_for_organization_max_results
     import capo_observabilityadmin.types.list_telemetry_rules_for_organization_output
@@ -90,6 +108,7 @@ if TYPE_CHECKING:
     import capo_observabilityadmin.types.resource_types
     import capo_observabilityadmin.types.rule_identifier
     import capo_observabilityadmin.types.rule_name
+    import capo_observabilityadmin.types.signal_type
     import capo_observabilityadmin.types.start_telemetry_enrichment_output
     import capo_observabilityadmin.types.start_telemetry_evaluation_for_organization_input
     import capo_observabilityadmin.types.start_telemetry_evaluation_input
@@ -100,6 +119,9 @@ if TYPE_CHECKING:
     import capo_observabilityadmin.types.telemetry_configuration
     import capo_observabilityadmin.types.telemetry_configuration_state
     import capo_observabilityadmin.types.telemetry_pipeline_configuration
+    import capo_observabilityadmin.types.telemetry_pipeline_identifier
+    import capo_observabilityadmin.types.telemetry_pipeline_name
+    import capo_observabilityadmin.types.telemetry_pipeline_summary
     import capo_observabilityadmin.types.telemetry_rule
     import capo_observabilityadmin.types.telemetry_rule_summary
     import capo_observabilityadmin.types.test_telemetry_pipeline_input
@@ -107,6 +129,10 @@ if TYPE_CHECKING:
     import capo_observabilityadmin.types.untag_resource_input
     import capo_observabilityadmin.types.update_centralization_rule_for_organization_input
     import capo_observabilityadmin.types.update_centralization_rule_for_organization_output
+    import capo_observabilityadmin.types.update_dataset_integration_input
+    import capo_observabilityadmin.types.update_dataset_integration_output
+    import capo_observabilityadmin.types.update_telemetry_pipeline_input
+    import capo_observabilityadmin.types.update_telemetry_pipeline_output
     import capo_observabilityadmin.types.update_telemetry_rule_for_organization_input
     import capo_observabilityadmin.types.update_telemetry_rule_for_organization_output
     import capo_observabilityadmin.types.update_telemetry_rule_input
@@ -257,6 +283,60 @@ class AsyncObservabilityAdminClient:
         input_: capo_observabilityadmin.types.create_centralization_rule_for_organization_input.CreateCentralizationRuleForOrganizationInput = {
             "rule_name": rule_name,
             "rule": rule,
+        }
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_dataset_integration(
+        self,
+        role_arn: "capo_observabilityadmin.types.resource_arn.ResourceArn",
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+        tags: Optional[
+            "capo_observabilityadmin.types.tag_map_input.TagMapInput"
+        ] = None,
+    ) -> "capo_observabilityadmin.types.create_dataset_integration_output.CreateDatasetIntegrationOutput":
+        """<p>Creates a dataset integration for the caller's account in the current region and returns its ARN.</p> <p>To use this operation, you must have permission to access the dataset integration resources through the IAM role specified in the <code>RoleArn</code> parameter.</p> <p>If a dataset integration already exists for the account, this operation fails with a <code>ConflictException</code>.</p>
+
+        Args:
+            role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that grants Amazon CloudWatch permission to access the resources needed for the dataset integration.</p>
+            tags: <p>The key-value pairs to associate with the dataset integration resource for categorization and management purposes.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.conflict_exception.ConflictException: <p> The requested operation conflicts with the current state of the specified resource or with another request. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.create_dataset_integration_input.CreateDatasetIntegrationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_observabilityadmin.types.create_dataset_integration_output.CreateDatasetIntegrationOutput"
+        ]:
+            import capo_observabilityadmin._operations.observability_admin.create_dataset_integration
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.create_dataset_integration.async_create_dataset_integration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.create_dataset_integration_input.CreateDatasetIntegrationInput = {
+            "role_arn": role_arn
         }
         if tags is not None:
             input_["tags"] = tags
@@ -489,6 +569,52 @@ class AsyncObservabilityAdminClient:
         await response.response.aclose()
         return response.output
 
+    async def delete_dataset_integration(
+        self,
+        arn: "capo_observabilityadmin.types.resource_arn.ResourceArn",
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a dataset integration for the caller's account in the current region. This operation is idempotent; if you submit the same delete more than once, each call succeeds.</p>
+
+        Args:
+            arn: <p>The Amazon Resource Name (ARN) of the dataset integration to delete.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified resource (such as a telemetry rule) could not be found. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.delete_dataset_integration_input.DeleteDatasetIntegrationInput]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_observabilityadmin._operations.observability_admin.delete_dataset_integration
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.delete_dataset_integration.async_delete_dataset_integration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.delete_dataset_integration_input.DeleteDatasetIntegrationInput = {
+            "arn": arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_s3_table_integration(
         self,
         arn: "capo_observabilityadmin.types.resource_arn.ResourceArn",
@@ -666,6 +792,54 @@ class AsyncObservabilityAdminClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_observabilityadmin.types.get_centralization_rule_for_organization_input.GetCentralizationRuleForOrganizationInput = {
             "rule_identifier": rule_identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_dataset_integration(
+        self,
+        arn: "capo_observabilityadmin.types.resource_arn.ResourceArn",
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+    ) -> "capo_observabilityadmin.types.get_dataset_integration_output.GetDatasetIntegrationOutput":
+        """<p>Returns the dataset integration for the caller's account in the current region.</p>
+
+        Args:
+            arn: <p>The Amazon Resource Name (ARN) of the dataset integration to retrieve.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified resource (such as a telemetry rule) could not be found. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.get_dataset_integration_input.GetDatasetIntegrationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_observabilityadmin.types.get_dataset_integration_output.GetDatasetIntegrationOutput"
+        ]:
+            import capo_observabilityadmin._operations.observability_admin.get_dataset_integration
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.get_dataset_integration.async_get_dataset_integration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.get_dataset_integration_input.GetDatasetIntegrationInput = {
+            "arn": arn
         }
 
         response = await aexecute_pipeline(
@@ -1027,6 +1201,86 @@ class AsyncObservabilityAdminClient:
             if not _token:
                 break
 
+    async def list_dataset_integrations(
+        self,
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+        max_results: Optional[
+            "capo_observabilityadmin.types.list_dataset_integrations_max_results.ListDatasetIntegrationsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_observabilityadmin.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_observabilityadmin.types.list_dataset_integrations_output.ListDatasetIntegrationsOutput":
+        """<p>Returns the dataset integrations in your account.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return in a single call.</p>
+            next_token: <p>The token for the next set of results. A previous call generates this token.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.list_dataset_integrations_input.ListDatasetIntegrationsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_observabilityadmin.types.list_dataset_integrations_output.ListDatasetIntegrationsOutput"
+        ]:
+            import capo_observabilityadmin._operations.observability_admin.list_dataset_integrations
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.list_dataset_integrations.async_list_dataset_integrations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.list_dataset_integrations_input.ListDatasetIntegrationsInput = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_dataset_integrations(
+        self,
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+        max_results: Optional[
+            "capo_observabilityadmin.types.list_dataset_integrations_max_results.ListDatasetIntegrationsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_observabilityadmin.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_observabilityadmin.types.dataset_integration_summary.DatasetIntegrationSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_dataset_integrations(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("dataset_integration_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_resource_telemetry(
         self,
         *,
@@ -1054,7 +1308,7 @@ class AsyncObservabilityAdminClient:
 
         Args:
             resource_identifier_prefix: <p> A string used to filter resources which have a <code>ResourceIdentifier</code> starting with the <code>ResourceIdentifierPrefix</code>. </p>
-            resource_types: <p> A list of resource types used to filter resources supported by telemetry config. If this parameter is provided, the resources will be returned in the same order used in the request. </p>
+            resource_types: <p> A list of resource types used to filter resources supported by telemetry config. If this parameter is provided, the service returns the resources in the same order as specified in the request. Currently supported resource types for discovery are:</p> <ul> <li> <p> <code>AWS::EC2::Instance</code> </p> </li> <li> <p> <code>AWS::EC2::VPC</code> </p> </li> <li> <p> <code>AWS::Lambda::Function</code> </p> </li> <li> <p> <code>AWS::EKS::Cluster</code> </p> </li> <li> <p> <code>AWS::WAFv2::WebACL</code> </p> </li> <li> <p> <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code> (Network Load Balancers only)</p> </li> </ul>
             telemetry_configuration_state: <p> A key-value pair to filter resources based on the telemetry type and the state of the telemetry configuration. The key is the telemetry type and the value is the state. </p>
             resource_tags: <p> A key-value pair to filter resources based on tags associated with the resource. For more information about tags, see <a href=\"https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html\">What are tags?</a> </p>
             max_results: <p> A number field used to limit the number of results within the returned list. </p>
@@ -1178,7 +1432,7 @@ class AsyncObservabilityAdminClient:
         Args:
             account_identifiers: <p> A list of Amazon Web Services accounts used to filter the resources to those associated with the specified accounts. </p>
             resource_identifier_prefix: <p> A string used to filter resources in the organization which have a <code>ResourceIdentifier</code> starting with the <code>ResourceIdentifierPrefix</code>. </p>
-            resource_types: <p> A list of resource types used to filter resources in the organization. If this parameter is provided, the resources will be returned in the same order used in the request. </p>
+            resource_types: <p> A list of resource types used to filter resources in the organization. If this parameter is provided, the service returns the resources in the same order as specified in the request. Currently supported resource types for discovery are:</p> <ul> <li> <p> <code>AWS::EC2::Instance</code> </p> </li> <li> <p> <code>AWS::EC2::VPC</code> </p> </li> <li> <p> <code>AWS::Lambda::Function</code> </p> </li> <li> <p> <code>AWS::EKS::Cluster</code> </p> </li> <li> <p> <code>AWS::WAFv2::WebACL</code> </p> </li> <li> <p> <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code> (Network Load Balancers only)</p> </li> </ul>
             telemetry_configuration_state: <p> A key-value pair to filter resources in the organization based on the telemetry type and the state of the telemetry configuration. The key is the telemetry type and the value is the state. </p>
             resource_tags: <p> A key-value pair to filter resources in the organization based on tags associated with the resource. Fore more information about tags, see <a href=\"https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html\">What are tags?</a> </p>
             max_results: <p> A number field used to limit the number of results within the returned list. </p>
@@ -1903,12 +2157,16 @@ class AsyncObservabilityAdminClient:
         configuration: "capo_observabilityadmin.types.telemetry_pipeline_configuration.TelemetryPipelineConfiguration",
         *,
         config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+        signal_type: Optional[
+            "capo_observabilityadmin.types.signal_type.SignalType"
+        ] = None,
     ) -> "capo_observabilityadmin.types.test_telemetry_pipeline_output.TestTelemetryPipelineOutput":
         """<p>Tests a pipeline configuration with sample records to validate data processing before deployment. This operation helps ensure your pipeline configuration works as expected. </p>
 
         Args:
             records: <p>The sample records to process through the pipeline configuration for testing purposes.</p>
             configuration: <p>The pipeline configuration to test with the provided sample records.</p>
+            signal_type: <p>The type of telemetry signal to test. If not specified, defaults to log processing.</p>
 
         Raises:
             capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
@@ -1938,6 +2196,8 @@ class AsyncObservabilityAdminClient:
             "records": records,
             "configuration": configuration,
         }
+        if signal_type is not None:
+            input_["signal_type"] = signal_type
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2038,6 +2298,57 @@ class AsyncObservabilityAdminClient:
         input_: capo_observabilityadmin.types.update_centralization_rule_for_organization_input.UpdateCentralizationRuleForOrganizationInput = {
             "rule_identifier": rule_identifier,
             "rule": rule,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_dataset_integration(
+        self,
+        arn: "capo_observabilityadmin.types.resource_arn.ResourceArn",
+        role_arn: "capo_observabilityadmin.types.resource_arn.ResourceArn",
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+    ) -> "capo_observabilityadmin.types.update_dataset_integration_output.UpdateDatasetIntegrationOutput":
+        """<p>Updates a dataset integration for the caller's account in the current region. This operation is idempotent; if you submit the same update more than once, each call succeeds.</p>
+
+        Args:
+            arn: <p>The Amazon Resource Name (ARN) of the dataset integration to update.</p>
+            role_arn: <p>The Amazon Resource Name (ARN) of the IAM role to associate with the dataset integration.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified resource (such as a telemetry rule) could not be found. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.update_dataset_integration_input.UpdateDatasetIntegrationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_observabilityadmin.types.update_dataset_integration_output.UpdateDatasetIntegrationOutput"
+        ]:
+            import capo_observabilityadmin._operations.observability_admin.update_dataset_integration
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.update_dataset_integration.async_update_dataset_integration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.update_dataset_integration_input.UpdateDatasetIntegrationInput = {
+            "arn": arn,
+            "role_arn": role_arn,
         }
 
         response = await aexecute_pipeline(
@@ -2199,6 +2510,292 @@ class AsyncObservabilityAdminClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def create_telemetry_pipeline(
+        self,
+        name: "capo_observabilityadmin.types.telemetry_pipeline_name.TelemetryPipelineName",
+        configuration: "capo_observabilityadmin.types.telemetry_pipeline_configuration.TelemetryPipelineConfiguration",
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+        tags: Optional[
+            "capo_observabilityadmin.types.tag_map_input.TagMapInput"
+        ] = None,
+    ) -> "capo_observabilityadmin.types.create_telemetry_pipeline_output.CreateTelemetryPipelineOutput":
+        r"""<p>Creates a telemetry pipeline for processing and transforming telemetry data. The pipeline defines how data flows from sources through processors to destinations, enabling data transformation and delivering capabilities. </p>
+
+        Args:
+            name: <p>The name of the telemetry pipeline to create. The name must be unique within your account.</p>
+            configuration: <p>The configuration that defines how the telemetry pipeline processes data, including sources, processors, and destinations. For more information about pipeline components, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/pipeline-components-reference.html\">Amazon CloudWatch User Guide</a> </p>
+            tags: <p>The key-value pairs to associate with the telemetry pipeline resource for categorization and management purposes.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.conflict_exception.ConflictException: <p> The requested operation conflicts with the current state of the specified resource or with another request. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p> The requested operation would exceed the allowed quota for the specified resource type. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.create_telemetry_pipeline_input.CreateTelemetryPipelineInput]",
+        ) -> AsyncOperationResponse[
+            "capo_observabilityadmin.types.create_telemetry_pipeline_output.CreateTelemetryPipelineOutput"
+        ]:
+            import capo_observabilityadmin._operations.observability_admin.create_telemetry_pipeline
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.create_telemetry_pipeline.async_create_telemetry_pipeline(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.create_telemetry_pipeline_input.CreateTelemetryPipelineInput = {
+            "name": name,
+            "configuration": configuration,
+        }
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_telemetry_pipeline(
+        self,
+        pipeline_identifier: "capo_observabilityadmin.types.telemetry_pipeline_identifier.TelemetryPipelineIdentifier",
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+    ) -> "capo_observabilityadmin.types.get_telemetry_pipeline_output.GetTelemetryPipelineOutput":
+        """<p>Retrieves information about a specific telemetry pipeline, including its configuration, status, and metadata.</p>
+
+        Args:
+            pipeline_identifier: <p>The identifier (name or ARN) of the telemetry pipeline to retrieve.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified resource (such as a telemetry rule) could not be found. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.get_telemetry_pipeline_input.GetTelemetryPipelineInput]",
+        ) -> AsyncOperationResponse[
+            "capo_observabilityadmin.types.get_telemetry_pipeline_output.GetTelemetryPipelineOutput"
+        ]:
+            import capo_observabilityadmin._operations.observability_admin.get_telemetry_pipeline
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.get_telemetry_pipeline.async_get_telemetry_pipeline(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.get_telemetry_pipeline_input.GetTelemetryPipelineInput = {
+            "pipeline_identifier": pipeline_identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_telemetry_pipeline(
+        self,
+        pipeline_identifier: "capo_observabilityadmin.types.telemetry_pipeline_identifier.TelemetryPipelineIdentifier",
+        configuration: "capo_observabilityadmin.types.telemetry_pipeline_configuration.TelemetryPipelineConfiguration",
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+    ) -> "capo_observabilityadmin.types.update_telemetry_pipeline_output.UpdateTelemetryPipelineOutput":
+        """<p>Updates the configuration of an existing telemetry pipeline.</p> <note> <p>The following attributes cannot be updated after pipeline creation:</p> <ul> <li> <p> <b>Pipeline name</b> - The pipeline name is immutable</p> </li> <li> <p> <b>Pipeline ARN</b> - The ARN is automatically generated and cannot be changed</p> </li> <li> <p> <b>Source type</b> - Once a pipeline is created with a specific source type (such as S3, CloudWatch Logs, GitHub, or third-party sources), it cannot be changed to a different source type</p> </li> </ul> <p>Processors can be added, removed, or modified. However, some processors are not supported for third-party pipelines and cannot be added through updates.</p> </note> <p> <b>Source-Specific Update Rules</b> </p> <dl> <dt>CloudWatch Logs Sources (Vended and Custom)</dt> <dd> <p> <b>Updatable:</b> <code>sts_role_arn</code> </p> <p> <b>Fixed:</b> <code>data_source_name</code>, <code>data_source_type</code>, sink (must remain <code>@original</code>)</p> </dd> <dt>S3 Sources (Crowdstrike, Zscaler, SentinelOne, Custom)</dt> <dd> <p> <b>Updatable:</b> All SQS configuration parameters, <code>sts_role_arn</code>, codec settings, compression type, bucket ownership settings, sink log group</p> <p> <b>Fixed:</b> <code>notification_type</code>, <code>aws.region</code> </p> </dd> <dt>GitHub Audit Logs</dt> <dd> <p> <b>Updatable:</b> All Amazon Web Services Secrets Manager attributes, <code>scope</code> (can switch between ORGANIZATION/ENTERPRISE), <code>organization</code> or <code>enterprise</code> name, <code>range</code>, authentication credentials (PAT or GitHub App)</p> </dd> <dt>Microsoft Sources (Entra ID, Office365, Windows)</dt> <dd> <p> <b>Updatable:</b> All Amazon Web Services Secrets Manager attributes, <code>tenant_id</code>, <code>workspace_id</code> (Windows only), OAuth2 credentials (<code>client_id</code>, <code>client_secret</code>)</p> </dd> <dt>Okta Sources (SSO, Auth0)</dt> <dd> <p> <b>Updatable:</b> All Amazon Web Services Secrets Manager attributes, <code>domain</code>, <code>range</code>, OAuth2 credentials (<code>client_id</code>, <code>client_secret</code>)</p> </dd> <dt>Palo Alto Networks</dt> <dd> <p> <b>Updatable:</b> All Amazon Web Services Secrets Manager attributes, <code>hostname</code>, basic authentication credentials (<code>username</code>, <code>password</code>)</p> </dd> <dt>ServiceNow CMDB</dt> <dd> <p> <b>Updatable:</b> All Amazon Web Services Secrets Manager attributes, <code>instance_url</code>, <code>range</code>, OAuth2 credentials (<code>client_id</code>, <code>client_secret</code>)</p> </dd> <dt>Wiz CNAPP</dt> <dd> <p> <b>Updatable:</b> All Amazon Web Services Secrets Manager attributes, <code>region</code>, <code>range</code>, OAuth2 credentials (<code>client_id</code>, <code>client_secret</code>)</p> </dd> </dl>
+
+        Args:
+            pipeline_identifier: <p>The ARN of the telemetry pipeline to update.</p>
+            configuration: <p>The new configuration for the telemetry pipeline, including updated sources, processors, and destinations.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified resource (such as a telemetry rule) could not be found. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.update_telemetry_pipeline_input.UpdateTelemetryPipelineInput]",
+        ) -> AsyncOperationResponse[
+            "capo_observabilityadmin.types.update_telemetry_pipeline_output.UpdateTelemetryPipelineOutput"
+        ]:
+            import capo_observabilityadmin._operations.observability_admin.update_telemetry_pipeline
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.update_telemetry_pipeline.async_update_telemetry_pipeline(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.update_telemetry_pipeline_input.UpdateTelemetryPipelineInput = {
+            "pipeline_identifier": pipeline_identifier,
+            "configuration": configuration,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_telemetry_pipeline(
+        self,
+        pipeline_identifier: "capo_observabilityadmin.types.telemetry_pipeline_identifier.TelemetryPipelineIdentifier",
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+    ) -> "capo_observabilityadmin.types.delete_telemetry_pipeline_output.DeleteTelemetryPipelineOutput":
+        """<p>Deletes a telemetry pipeline and its associated resources. This operation stops data processing and removes the pipeline configuration.</p>
+
+        Args:
+            pipeline_identifier: <p>The ARN of the telemetry pipeline to delete.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.conflict_exception.ConflictException: <p> The requested operation conflicts with the current state of the specified resource or with another request. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified resource (such as a telemetry rule) could not be found. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.delete_telemetry_pipeline_input.DeleteTelemetryPipelineInput]",
+        ) -> AsyncOperationResponse[
+            "capo_observabilityadmin.types.delete_telemetry_pipeline_output.DeleteTelemetryPipelineOutput"
+        ]:
+            import capo_observabilityadmin._operations.observability_admin.delete_telemetry_pipeline
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.delete_telemetry_pipeline.async_delete_telemetry_pipeline(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.delete_telemetry_pipeline_input.DeleteTelemetryPipelineInput = {
+            "pipeline_identifier": pipeline_identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_telemetry_pipelines(
+        self,
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+        max_results: Optional[
+            "capo_observabilityadmin.types.list_telemetry_pipelines_max_results.ListTelemetryPipelinesMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_observabilityadmin.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_observabilityadmin.types.list_telemetry_pipelines_output.ListTelemetryPipelinesOutput":
+        """<p>Returns a list of telemetry pipelines in your account. Returns up to 100 results. If more than 100 telemetry pipelines exist, include the <code>NextToken</code> value from the response to retrieve the next set of results.</p>
+
+        Args:
+            max_results: <p>The maximum number of telemetry pipelines to return in a single call.</p>
+            next_token: <p>The token for the next set of results. A previous call generates this token.</p>
+
+        Raises:
+            capo_observabilityadmin.errors.access_denied_exception.AccessDeniedException: <p> Indicates you don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management for Amazon Web Services resources</a> in the IAM user guide. </p>
+            capo_observabilityadmin.errors.internal_server_exception.InternalServerException: <p> Indicates the request has failed to process because of an unknown server error, exception, or failure. </p>
+            capo_observabilityadmin.errors.too_many_requests_exception.TooManyRequestsException: <p> The request throughput limit was exceeded. </p>
+            capo_observabilityadmin.errors.validation_exception.ValidationException: <p> Indicates input validation failed. Check your request parameters and retry the request. </p>
+            capo_observabilityadmin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_observabilityadmin.types.list_telemetry_pipelines_input.ListTelemetryPipelinesInput]",
+        ) -> AsyncOperationResponse[
+            "capo_observabilityadmin.types.list_telemetry_pipelines_output.ListTelemetryPipelinesOutput"
+        ]:
+            import capo_observabilityadmin._operations.observability_admin.list_telemetry_pipelines
+
+            (
+                output,
+                http_response,
+            ) = await capo_observabilityadmin._operations.observability_admin.list_telemetry_pipelines.async_list_telemetry_pipelines(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_observabilityadmin.types.list_telemetry_pipelines_input.ListTelemetryPipelinesInput = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_telemetry_pipelines(
+        self,
+        *,
+        config_overrides: Optional[AsyncObservabilityAdminClientConfig] = None,
+        max_results: Optional[
+            "capo_observabilityadmin.types.list_telemetry_pipelines_max_results.ListTelemetryPipelinesMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_observabilityadmin.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_observabilityadmin.types.telemetry_pipeline_summary.TelemetryPipelineSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_telemetry_pipelines(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("pipeline_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def __aenter__(self) -> Self:
         return self

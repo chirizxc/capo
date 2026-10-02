@@ -13,6 +13,10 @@ FindingsTrendsStringField: TypeAlias = Literal[
     "finding_class_name",
     "finding_provider",
     "finding_activity_name",
+    "resource_cloud_providers",
+    "resource_regions",
+    "resource_owner_ids",
+    "resource_owner_organization_ids",
 ]
 
 

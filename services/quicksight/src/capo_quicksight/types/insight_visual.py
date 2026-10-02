@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.insight_configuration
     import capo_quicksight.types.long_plain_text
     import capo_quicksight.types.short_restrictive_resource_id
+    import capo_quicksight.types.topic_identifier
     import capo_quicksight.types.visual_custom_action_list
     import capo_quicksight.types.visual_subtitle_label_options
     import capo_quicksight.types.visual_title_label_options
@@ -39,6 +40,10 @@ class InsightVisual(TypedDict, closed=True):
     """<p>The list of custom actions that are configured for a visual.</p>"""
     data_set_identifier: "capo_quicksight.types.data_set_identifier.DataSetIdentifier"
     """<p>The dataset that is used in the insight visual.</p>"""
+    topic_identifier: NotRequired[
+        "capo_quicksight.types.topic_identifier.TopicIdentifier"
+    ]
+    """<p>The topic that is used in the insight visual.</p>"""
     visual_content_alt_text: NotRequired[
         "capo_quicksight.types.long_plain_text.LongPlainText"
     ]
@@ -77,7 +82,9 @@ def serialize_json(value: InsightVisual) -> dict:
         out["Actions"] = capo_quicksight.types.visual_custom_action_list.serialize_json(
             value["actions"]
         )
-    out["DataSetIdentifier"] = value["data_set_identifier"]
+    out["DataSetIdentifier"] = value.get("data_set_identifier", "")
+    if "topic_identifier" in value:
+        out["TopicIdentifier"] = value["topic_identifier"]
     if "visual_content_alt_text" in value:
         out["VisualContentAltText"] = value["visual_content_alt_text"]
     return out
@@ -124,7 +131,9 @@ def deserialize_json(data: dict) -> InsightVisual:
     if data.get("DataSetIdentifier") is not None:
         out["data_set_identifier"] = data["DataSetIdentifier"]
     else:
-        raise DeserializationError("InsightVisual.data_set_identifier required")
+        out["data_set_identifier"] = ""
+    if data.get("TopicIdentifier") is not None:
+        out["topic_identifier"] = data["TopicIdentifier"]
     if data.get("VisualContentAltText") is not None:
         out["visual_content_alt_text"] = data["VisualContentAltText"]
     return out

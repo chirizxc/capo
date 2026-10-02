@@ -13,9 +13,9 @@ if TYPE_CHECKING:
 
 class LaunchPermissionConfiguration(TypedDict, closed=True):
     user_ids: NotRequired["capo_imagebuilder.types.account_list.AccountList"]
-    """<p>The Amazon Web Services account ID.</p>"""
+    """<p>The Amazon Web Services account IDs to grant launch permission to. Each listed account can use the distributed AMI to launch instances.</p>"""
     user_groups: NotRequired["capo_imagebuilder.types.string_list.StringList"]
-    """<p>The name of the group.</p>"""
+    """<p>The name of the group that you want to grant launch permission to. The only supported value is <code>all</code>, which makes the distributed AMI public.</p>"""
     organization_arns: NotRequired[
         "capo_imagebuilder.types.organization_arn_list.OrganizationArnList"
     ]

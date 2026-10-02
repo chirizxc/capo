@@ -15,6 +15,8 @@ InventoryOptionalField: TypeAlias = Literal[
     "ObjectLockRetainUntilDate",
     "ObjectLockMode",
     "ObjectLockLegalHoldStatus",
+    "ObjectLockEventHoldStatus",
+    "ObjectLockEventHoldDuration",
     "IntelligentTieringAccessTier",
     "BucketKeyStatus",
     "ChecksumAlgorithm",

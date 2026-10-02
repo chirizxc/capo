@@ -42,17 +42,17 @@ class InfrastructureConfiguration(TypedDict, closed=True):
     subnet_id: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The subnet ID of the infrastructure configuration.</p>"""
     logging: NotRequired["capo_imagebuilder.types.logging.Logging"]
-    """<p>The logging configuration of the infrastructure configuration.</p>"""
+    """<p>The logging configuration of the infrastructure configuration. When you configure S3 logs, Image Builder writes logs from the build and test process to the specified bucket under the key prefix.</p>"""
     key_pair: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The Amazon EC2 key pair of the infrastructure configuration.</p>"""
     terminate_instance_on_failure: NotRequired[
         "capo_imagebuilder.types.nullable_boolean.NullableBoolean"
     ]
-    """<p>The terminate instance on failure configuration of the infrastructure configuration.</p>"""
+    """<p>Indicates whether Image Builder terminates the build and test instances when the image build fails. When <code>false</code>, Image Builder retains the instance so that you can debug it.</p>"""
     sns_topic_arn: NotRequired[
         "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     ]
-    """<p>The Amazon Resource Name (ARN) for the SNS topic to which we send image build event notifications.</p> <note> <p>EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys from other accounts. The key that is used to encrypt the SNS topic must reside in the account that the Image Builder service runs under.</p> </note>"""
+    """<p>The Amazon Resource Name (ARN) of the SNS topic to which Image Builder sends image build event notifications. Specify a standard topic. Image Builder doesn't support FIFO topics.</p> <note> <p>EC2 Image Builder can't send notifications to SNS topics that are encrypted using keys from other accounts. If your SNS topic is encrypted, the key must be owned by the same account that owns your Image Builder resources.</p> </note>"""
     date_created: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
     """<p>The date on which the infrastructure configuration was created.</p>"""
     date_updated: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
@@ -60,7 +60,7 @@ class InfrastructureConfiguration(TypedDict, closed=True):
     resource_tags: NotRequired[
         "capo_imagebuilder.types.resource_tag_map.ResourceTagMap"
     ]
-    """<p>The tags attached to the resource created by Image Builder.</p>"""
+    """<p>The metadata tags assigned to the Amazon EC2 build and test instances that Image Builder launches during image creation.</p>"""
     instance_metadata_options: NotRequired[
         "capo_imagebuilder.types.instance_metadata_options.InstanceMetadataOptions"
     ]
@@ -68,7 +68,7 @@ class InfrastructureConfiguration(TypedDict, closed=True):
     tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
     """<p>The tags of the infrastructure configuration.</p>"""
     placement: NotRequired["capo_imagebuilder.types.placement.Placement"]
-    """<p>The instance placement settings that define where the instances that are launched from your image will run.</p>"""
+    """<p>The instance placement settings that define where the build and test instances that Image Builder launches during image creation run. These settings don't affect instances that you launch from the output image.</p>"""
 
 
 # --- restJson1 ser/de ---

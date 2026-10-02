@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_securityhub.types.max_results
     import capo_securityhub.types.next_token
+    import capo_securityhub.types.standards_providers
     import capo_securityhub.types.standards_subscription_arns
 
 
@@ -19,6 +20,10 @@ class GetEnabledStandardsRequest(TypedDict, closed=True):
     """<p>The token that is required for pagination. On your first call to the <code>GetEnabledStandards</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>"""
     max_results: NotRequired["capo_securityhub.types.max_results.MaxResults"]
     """<p>The maximum number of results to return in the response.</p>"""
+    providers: NotRequired[
+        "capo_securityhub.types.standards_providers.StandardsProviders"
+    ]
+    """<p>A list of cloud providers to filter the enabled standards by. For example, specify <code>Azure</code> to return only enabled standards that evaluate Azure resources.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -36,6 +41,12 @@ def serialize_json(value: GetEnabledStandardsRequest) -> dict:
         out["NextToken"] = value["next_token"]
     if "max_results" in value:
         out["MaxResults"] = value["max_results"]
+    if "providers" in value:
+        import capo_securityhub.types.standards_providers
+
+        out["Providers"] = capo_securityhub.types.standards_providers.serialize_json(
+            value["providers"]
+        )
     return out
 
 
@@ -53,4 +64,10 @@ def deserialize_json(data: dict) -> GetEnabledStandardsRequest:
         out["next_token"] = data["NextToken"]
     if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
+    if data.get("Providers") is not None:
+        import capo_securityhub.types.standards_providers
+
+        out["providers"] = capo_securityhub.types.standards_providers.deserialize_json(
+            data["Providers"]
+        )
     return out

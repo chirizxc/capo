@@ -30,6 +30,8 @@ if TYPE_CHECKING:
     import capo_omics.types.run_status_message
     import capo_omics.types.run_timestamp
     import capo_omics.types.run_uuid
+    import capo_omics.types.scratch_storage_mode
+    import capo_omics.types.session_policy
     import capo_omics.types.storage_type
     import capo_omics.types.tag_map
     import capo_omics.types.vpc_config_response
@@ -123,6 +125,10 @@ class GetRunResponse(TypedDict, closed=True):
     """<p>The universally unique identifier (UUID) value for the workflow.</p>"""
     networking_mode: NotRequired["capo_omics.types.networking_mode.NetworkingMode"]
     """<p>Configuration for run networking behavior. If absent, this will default to RESTRICTED.</p>"""
+    scratch_storage_mode: NotRequired[
+        "capo_omics.types.scratch_storage_mode.ScratchStorageMode"
+    ]
+    """<p>Optional configuration for enabling scratch ephemeral storage mounted at /tmp. If absent, this will default to SHARED. This configuration is applicable only for CPU tasks. For tasks using GPUs, scratch storage is always LOCAL.</p>"""
     configuration: NotRequired[
         "capo_omics.types.configuration_details.ConfigurationDetails"
     ]
@@ -131,6 +137,8 @@ class GetRunResponse(TypedDict, closed=True):
     """<p>VPC configuration for the workflow run.</p>"""
     engine_settings: NotRequired["capo_omics.types.engine_settings.EngineSettings"]
     """<p>The engine-specific settings for the workflow run.</p>"""
+    session_policy: NotRequired["capo_omics.types.session_policy.SessionPolicy"]
+    """Inline policy json for scoping down permissions via a session policy on the IAM role."""
 
 
 # --- restJson1 ser/de ---
@@ -234,6 +242,8 @@ def serialize_json(value: GetRunResponse) -> dict:
         out["workflowUuid"] = value["workflow_uuid"]
     if "networking_mode" in value:
         out["networkingMode"] = value["networking_mode"]
+    if "scratch_storage_mode" in value:
+        out["scratchStorageMode"] = value["scratch_storage_mode"]
     if "configuration" in value:
         import capo_omics.types.configuration_details
 
@@ -248,6 +258,8 @@ def serialize_json(value: GetRunResponse) -> dict:
         )
     if "engine_settings" in value:
         out["engineSettings"] = value["engine_settings"]
+    if "session_policy" in value:
+        out["sessionPolicy"] = value["session_policy"]
     return out
 
 
@@ -353,6 +365,8 @@ def deserialize_json(data: dict) -> GetRunResponse:
         out["workflow_uuid"] = data["workflowUuid"]
     if data.get("networkingMode") is not None:
         out["networking_mode"] = data["networkingMode"]
+    if data.get("scratchStorageMode") is not None:
+        out["scratch_storage_mode"] = data["scratchStorageMode"]
     if data.get("configuration") is not None:
         import capo_omics.types.configuration_details
 
@@ -367,4 +381,6 @@ def deserialize_json(data: dict) -> GetRunResponse:
         )
     if data.get("engineSettings") is not None:
         out["engine_settings"] = data["engineSettings"]
+    if data.get("sessionPolicy") is not None:
+        out["session_policy"] = data["sessionPolicy"]
     return out

@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import datetime
 
     import capo_amp.types.destination
+    import capo_amp.types.exporter_list
     import capo_amp.types.iam_role_arn
     import capo_amp.types.role_configuration
     import capo_amp.types.scraper_alias
@@ -43,11 +44,13 @@ class ScraperSummary(TypedDict, closed=True):
     source: "capo_amp.types.source.Source"
     """<p>The Amazon EKS cluster from which the scraper collects metrics.</p>"""
     destination: "capo_amp.types.destination.Destination"
-    """<p>The Amazon Managed Service for Prometheus workspace the scraper sends metrics to.</p>"""
+    """<p>The destination where the scraper sends metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.</p>"""
     role_configuration: NotRequired[
         "capo_amp.types.role_configuration.RoleConfiguration"
     ]
     """<p>This structure displays information about the IAM roles used for cross-account scraping configuration.</p>"""
+    exporters: NotRequired["capo_amp.types.exporter_list.ExporterList"]
+    """<p>The exporter configurations for the scraper, if configured. The list contains at most one configuration for an Amazon OpenSearch Service domain.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -88,6 +91,12 @@ def serialize_json(value: ScraperSummary) -> dict:
 
         out["roleConfiguration"] = capo_amp.types.role_configuration.serialize_json(
             value["role_configuration"]
+        )
+    if "exporters" in value:
+        import capo_amp.types.exporter_list
+
+        out["exporters"] = capo_amp.types.exporter_list.serialize_json(
+            value["exporters"]
         )
     return out
 
@@ -155,5 +164,11 @@ def deserialize_json(data: dict) -> ScraperSummary:
 
         out["role_configuration"] = capo_amp.types.role_configuration.deserialize_json(
             data["roleConfiguration"]
+        )
+    if data.get("exporters") is not None:
+        import capo_amp.types.exporter_list
+
+        out["exporters"] = capo_amp.types.exporter_list.deserialize_json(
+            data["exporters"]
         )
     return out

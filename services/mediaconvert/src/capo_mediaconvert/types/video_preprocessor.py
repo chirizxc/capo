@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_mediaconvert.types.color_corrector
     import capo_mediaconvert.types.deinterlacer
     import capo_mediaconvert.types.dolby_vision
+    import capo_mediaconvert.types.duration_control
     import capo_mediaconvert.types.hdr10_plus
     import capo_mediaconvert.types.image_inserter
     import capo_mediaconvert.types.noise_reducer
@@ -24,6 +25,10 @@ class VideoPreprocessor(TypedDict, closed=True):
     """Use the deinterlacer to produce smoother motion and a clearer picture. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-scan-type.html."""
     dolby_vision: NotRequired["capo_mediaconvert.types.dolby_vision.DolbyVision"]
     """Enable Dolby Vision feature to produce Dolby Vision compatible video output."""
+    duration_control: NotRequired[
+        "capo_mediaconvert.types.duration_control.DurationControl"
+    ]
+    """Enable integer-second duration normalization. When enabled, the output duration is adjusted to land on an exact integer-second boundary. The adjustment method (trim, compress, or pad) is chosen automatically based on how far the input duration is from the nearest integer second."""
     hdr10_plus: NotRequired["capo_mediaconvert.types.hdr10_plus.Hdr10Plus"]
     """Enable HDR10+ analysis and metadata injection. Compatible with HEVC only."""
     image_inserter: NotRequired["capo_mediaconvert.types.image_inserter.ImageInserter"]
@@ -60,6 +65,14 @@ def serialize_json(value: VideoPreprocessor) -> dict:
 
         out["dolbyVision"] = capo_mediaconvert.types.dolby_vision.serialize_json(
             value["dolby_vision"]
+        )
+    if "duration_control" in value:
+        import capo_mediaconvert.types.duration_control
+
+        out["durationControl"] = (
+            capo_mediaconvert.types.duration_control.serialize_json(
+                value["duration_control"]
+            )
         )
     if "hdr10_plus" in value:
         import capo_mediaconvert.types.hdr10_plus
@@ -117,6 +130,14 @@ def deserialize_json(data: dict) -> VideoPreprocessor:
 
         out["dolby_vision"] = capo_mediaconvert.types.dolby_vision.deserialize_json(
             data["dolbyVision"]
+        )
+    if data.get("durationControl") is not None:
+        import capo_mediaconvert.types.duration_control
+
+        out["duration_control"] = (
+            capo_mediaconvert.types.duration_control.deserialize_json(
+                data["durationControl"]
+            )
         )
     if data.get("hdr10Plus") is not None:
         import capo_mediaconvert.types.hdr10_plus

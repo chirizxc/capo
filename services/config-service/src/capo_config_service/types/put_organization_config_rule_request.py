@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_config_service.types.organization_custom_policy_rule_metadata
     import capo_config_service.types.organization_custom_rule_metadata
     import capo_config_service.types.organization_managed_rule_metadata
+    import capo_config_service.types.tags_list
 
 
 class PutOrganizationConfigRuleRequest(TypedDict, closed=True):
@@ -33,6 +34,8 @@ class PutOrganizationConfigRuleRequest(TypedDict, closed=True):
         "capo_config_service.types.organization_custom_policy_rule_metadata.OrganizationCustomPolicyRuleMetadata"
     ]
     """<p>An <code>OrganizationCustomPolicyRuleMetadata</code> object. This object specifies metadata for your organization's Config Custom Policy rule. The metadata includes the runtime system in use, which accounts have debug logging enabled, and other custom rule metadata, such as resource type, resource ID of Amazon Web Services resource, and organization trigger types that initiate Config to evaluate Amazon Web Services resources against a rule.</p>"""
+    tags: NotRequired["capo_config_service.types.tags_list.TagsList"]
+    """<p>The tags for the organization Config rule. Each tag consists of a key and an optional value, both of which you define.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -70,6 +73,12 @@ def serialize_aws_json_1_1(value: PutOrganizationConfigRuleRequest) -> dict:
             capo_config_service.types.organization_custom_policy_rule_metadata.serialize_aws_json_1_1(
                 value["organization_custom_policy_rule_metadata"]
             )
+        )
+    if "tags" in value:
+        import capo_config_service.types.tags_list
+
+        out["Tags"] = capo_config_service.types.tags_list.serialize_aws_json_1_1(
+            value["tags"]
         )
     return out
 
@@ -113,5 +122,11 @@ def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConfigRuleRequest:
             capo_config_service.types.organization_custom_policy_rule_metadata.deserialize_aws_json_1_1(
                 data["OrganizationCustomPolicyRuleMetadata"]
             )
+        )
+    if data.get("Tags") is not None:
+        import capo_config_service.types.tags_list
+
+        out["tags"] = capo_config_service.types.tags_list.deserialize_aws_json_1_1(
+            data["Tags"]
         )
     return out

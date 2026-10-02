@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class ListV2LoggingLevelsRequest(TypedDict, closed=True):
     target_type: NotRequired["capo_iot.types.log_target_type.LogTargetType"]
-    """<p>The type of resource for which you are configuring logging. Must be <code>THING_Group</code>.</p>"""
+    """<p>The type of resource for which you are configuring logging. Must be <code>DEFAULT</code>, <code>THING_GROUP</code>, <code>CLIENT_ID</code>, <code>SOURCE_IP</code>, or <code>PRINCIPAL_ID</code>.</p>"""
     next_token: NotRequired["capo_iot.types.next_token.NextToken"]
     """<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>"""
     max_results: NotRequired["capo_iot.types.skyfall_max_results.SkyfallMaxResults"]

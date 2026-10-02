@@ -9,7 +9,9 @@ from capo_cloudformation._protocol.xml import Element
 if TYPE_CHECKING:
     import capo_cloudformation.types.capabilities
     import capo_cloudformation.types.client_request_token
+    import capo_cloudformation.types.deployment_config
     import capo_cloudformation.types.disable_rollback
+    import capo_cloudformation.types.disable_validation
     import capo_cloudformation.types.enable_termination_protection
     import capo_cloudformation.types.notification_ar_ns
     import capo_cloudformation.types.on_failure
@@ -84,6 +86,14 @@ class CreateStackInput(TypedDict, closed=True):
         "capo_cloudformation.types.retain_except_on_create.RetainExceptOnCreate"
     ]
     """<p>When set to <code>true</code>, newly created resources are deleted when the operation rolls back. This includes newly created resources marked with a deletion policy of <code>Retain</code>.</p> <p>Default: <code>false</code> </p>"""
+    deployment_config: NotRequired[
+        "capo_cloudformation.types.deployment_config.DeploymentConfig"
+    ]
+    """<p>The deployment configuration for this stack operation, including the deployment mode.</p>"""
+    disable_validation: NotRequired[
+        "capo_cloudformation.types.disable_validation.DisableValidation"
+    ]
+    """<p> Set to <code>true</code> to disable pre-deployment validations in changeset or stack operations. </p> <p> Default: <code>false</code> </p>"""
 
 
 # --- awsQuery ser/de ---
@@ -172,6 +182,19 @@ def serialize_query(
             (
                 f"{key_prefix}RetainExceptOnCreate",
                 "true" if value["retain_except_on_create"] else "false",
+            )
+        )
+    if "deployment_config" in value:
+        import capo_cloudformation.types.deployment_config
+
+        capo_cloudformation.types.deployment_config.serialize_query(
+            value["deployment_config"], pairs, f"{key_prefix}DeploymentConfig"
+        )
+    if "disable_validation" in value:
+        pairs.append(
+            (
+                f"{key_prefix}DisableValidation",
+                "true" if value["disable_validation"] else "false",
             )
         )
 
@@ -267,5 +290,19 @@ def deserialize_query(el: Element) -> CreateStackInput:
     if child_retain_except_on_create is not None:
         out["retain_except_on_create"] = (
             child_retain_except_on_create.text or ""
+        ).lower() == "true"
+    child_deployment_config = el.find("DeploymentConfig")
+    if child_deployment_config is not None:
+        import capo_cloudformation.types.deployment_config
+
+        out["deployment_config"] = (
+            capo_cloudformation.types.deployment_config.deserialize_query(
+                child_deployment_config
+            )
+        )
+    child_disable_validation = el.find("DisableValidation")
+    if child_disable_validation is not None:
+        out["disable_validation"] = (
+            child_disable_validation.text or ""
         ).lower() == "true"
     return out

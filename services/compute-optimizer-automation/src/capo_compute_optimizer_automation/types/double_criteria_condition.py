@@ -13,7 +13,7 @@ class DoubleCriteriaCondition(TypedDict, closed=True):
     comparison: NotRequired[
         "capo_compute_optimizer_automation.types.comparison_operator.ComparisonOperator"
     ]
-    """<p>The comparison operator to use, such as equals, greater than, less than, etc.</p>"""
+    """<p>The comparison operator used to evaluate the attribute against the specified values.</p>"""
     values: NotRequired[
         "capo_compute_optimizer_automation.types.double_list.DoubleList"
     ]

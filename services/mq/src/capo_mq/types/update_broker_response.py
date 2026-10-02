@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_mq.types.__boolean
+    import capo_mq.types.__integer
     import capo_mq.types.__list_of__string
     import capo_mq.types.__string
     import capo_mq.types.authentication_strategy
@@ -42,6 +43,8 @@ class UpdateBrokerResponse(TypedDict, closed=True):
         "capo_mq.types.weekly_start_time.WeeklyStartTime"
     ]
     """<p>The parameters that determine the WeeklyStartTime.</p>"""
+    resource_share_arns: NotRequired["capo_mq.types.__list_of__string.__listOf__string"]
+    """<p>The pending broker's target list of resource shares</p>"""
     security_groups: NotRequired["capo_mq.types.__list_of__string.__listOf__string"]
     """<p>The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.</p>"""
     data_replication_metadata: NotRequired[
@@ -60,6 +63,8 @@ class UpdateBrokerResponse(TypedDict, closed=True):
         "capo_mq.types.data_replication_mode.DataReplicationMode"
     ]
     """<p>Describes whether this broker will be a part of a data replication pair after reboot.</p>"""
+    storage_size: NotRequired["capo_mq.types.__integer.__integer"]
+    """<p>The broker's storage size in GB.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -107,6 +112,12 @@ def serialize_json(value: UpdateBrokerResponse) -> dict:
                 value["maintenance_window_start_time"]
             )
         )
+    if "resource_share_arns" in value:
+        import capo_mq.types.__list_of__string
+
+        out["resourceShareArns"] = capo_mq.types.__list_of__string.serialize_json(
+            value["resource_share_arns"]
+        )
     if "security_groups" in value:
         import capo_mq.types.__list_of__string
 
@@ -143,6 +154,8 @@ def serialize_json(value: UpdateBrokerResponse) -> dict:
                 value["pending_data_replication_mode"]
             )
         )
+    if "storage_size" in value:
+        out["storageSize"] = value["storage_size"]
     return out
 
 
@@ -190,6 +203,12 @@ def deserialize_json(data: dict) -> UpdateBrokerResponse:
                 data["maintenanceWindowStartTime"]
             )
         )
+    if data.get("resourceShareArns") is not None:
+        import capo_mq.types.__list_of__string
+
+        out["resource_share_arns"] = capo_mq.types.__list_of__string.deserialize_json(
+            data["resourceShareArns"]
+        )
     if data.get("securityGroups") is not None:
         import capo_mq.types.__list_of__string
 
@@ -228,4 +247,6 @@ def deserialize_json(data: dict) -> UpdateBrokerResponse:
                 data["pendingDataReplicationMode"]
             )
         )
+    if data.get("storageSize") is not None:
+        out["storage_size"] = data["storageSize"]
     return out

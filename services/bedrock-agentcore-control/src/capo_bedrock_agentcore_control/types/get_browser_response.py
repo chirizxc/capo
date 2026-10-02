@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.recording_config
     import capo_bedrock_agentcore_control.types.role_arn
     import capo_bedrock_agentcore_control.types.sandbox_name
+    import capo_bedrock_agentcore_control.types.tools_file_system_configurations
 
 
 class GetBrowserResponse(TypedDict, closed=True):
@@ -52,6 +53,10 @@ class GetBrowserResponse(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.certificates.Certificates"
     ]
     """<p>The list of certificates configured for the browser.</p>"""
+    filesystem_configurations: NotRequired[
+        "capo_bedrock_agentcore_control.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+    ]
+    """<p>The file system configurations mounted into the browser. Each entry describes an access point and its mount path.</p>"""
     status: "capo_bedrock_agentcore_control.types.browser_status.BrowserStatus"
     """<p>The current status of the browser.</p>"""
     failure_reason: NotRequired["str"]
@@ -109,6 +114,14 @@ def serialize_json(value: GetBrowserResponse) -> dict:
         out["certificates"] = (
             capo_bedrock_agentcore_control.types.certificates.serialize_json(
                 value["certificates"]
+            )
+        )
+    if "filesystem_configurations" in value:
+        import capo_bedrock_agentcore_control.types.tools_file_system_configurations
+
+        out["filesystemConfigurations"] = (
+            capo_bedrock_agentcore_control.types.tools_file_system_configurations.serialize_json(
+                value["filesystem_configurations"]
             )
         )
     import capo_bedrock_agentcore_control.types.browser_status
@@ -193,6 +206,14 @@ def deserialize_json(data: dict) -> GetBrowserResponse:
         out["certificates"] = (
             capo_bedrock_agentcore_control.types.certificates.deserialize_json(
                 data["certificates"]
+            )
+        )
+    if data.get("filesystemConfigurations") is not None:
+        import capo_bedrock_agentcore_control.types.tools_file_system_configurations
+
+        out["filesystem_configurations"] = (
+            capo_bedrock_agentcore_control.types.tools_file_system_configurations.deserialize_json(
+                data["filesystemConfigurations"]
             )
         )
     if data.get("status") is not None:

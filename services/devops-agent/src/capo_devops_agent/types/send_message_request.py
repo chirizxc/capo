@@ -7,7 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
-    import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.asset_id_list
     import capo_devops_agent.types.chat_execution_id
     import capo_devops_agent.types.message_content
@@ -16,7 +16,9 @@ if TYPE_CHECKING:
 
 
 class SendMessageRequest(TypedDict, closed=True):
-    agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
+    agent_space_id: (
+        "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier"
+    )
     """<p>The agent space identifier</p>"""
     execution_id: "capo_devops_agent.types.chat_execution_id.ChatExecutionId"
     """<p>The execution identifier for the chat session</p>"""
@@ -30,6 +32,8 @@ class SendMessageRequest(TypedDict, closed=True):
     """<p>User identifier. This field is deprecated and will be ignored — the service resolves user identity from the authenticated session.</p>"""
     asset_ids: NotRequired["capo_devops_agent.types.asset_id_list.AssetIdList"]
     """<p>Optional list of asset identifiers to attach to the message</p>"""
+    model_tier: NotRequired["str"]
+    """<p>Optional model tier selection. Valid values: smart, balanced, fast. Absent or unrecognized values default to balanced.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -51,6 +55,8 @@ def serialize_json(value: SendMessageRequest) -> dict:
         out["assetIds"] = capo_devops_agent.types.asset_id_list.serialize_json(
             value["asset_ids"]
         )
+    if "model_tier" in value:
+        out["modelTier"] = value["model_tier"]
     return out
 
 
@@ -78,4 +84,6 @@ def deserialize_json(data: dict) -> SendMessageRequest:
         out["asset_ids"] = capo_devops_agent.types.asset_id_list.deserialize_json(
             data["assetIds"]
         )
+    if data.get("modelTier") is not None:
+        out["model_tier"] = data["modelTier"]
     return out

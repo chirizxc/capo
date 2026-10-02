@@ -22,6 +22,7 @@ import capo_devops_agent.errors.service_quota_exceeded_exception
 import capo_devops_agent.errors.throttling_exception
 import capo_devops_agent.errors.validation_exception
 import capo_devops_agent.types.association
+import capo_devops_agent.types.association_capabilities
 import capo_devops_agent.types.generic_webhook
 import capo_devops_agent.types.service_configuration
 import capo_devops_agent.types.update_association_input
@@ -31,6 +32,7 @@ from capo_devops_agent._rule_engine._endpoint_rule_set import EndpointParams, re
 from capo_devops_agent._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_devops_agent.errors import UnknownServiceError
 
@@ -171,7 +173,7 @@ def update_association(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -189,7 +191,7 @@ async def async_update_association(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

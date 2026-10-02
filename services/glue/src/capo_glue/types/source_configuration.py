@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_glue.types.connector_property_list
+    import capo_glue.types.filter_configuration
     import capo_glue.types.http_method
     import capo_glue.types.pagination_configuration
     import capo_glue.types.path_string
@@ -29,6 +30,10 @@ class SourceConfiguration(TypedDict, closed=True):
         "capo_glue.types.pagination_configuration.PaginationConfiguration"
     ]
     """<p>Configuration for handling paginated responses from the REST API, supporting both cursor-based and offset-based pagination strategies.</p>"""
+    filter_configuration: NotRequired[
+        "capo_glue.types.filter_configuration.FilterConfiguration"
+    ]
+    """<p>Configuration for applying filter pushdown to REST API requests, defining how filter predicates are translated into query parameters or filter strings.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -66,6 +71,14 @@ def serialize_aws_json_1_1(value: SourceConfiguration) -> dict:
                 value["pagination_configuration"]
             )
         )
+    if "filter_configuration" in value:
+        import capo_glue.types.filter_configuration
+
+        out["FilterConfiguration"] = (
+            capo_glue.types.filter_configuration.serialize_aws_json_1_1(
+                value["filter_configuration"]
+            )
+        )
     return out
 
 
@@ -101,6 +114,14 @@ def deserialize_aws_json_1_1(data: dict) -> SourceConfiguration:
         out["pagination_configuration"] = (
             capo_glue.types.pagination_configuration.deserialize_aws_json_1_1(
                 data["PaginationConfiguration"]
+            )
+        )
+    if data.get("FilterConfiguration") is not None:
+        import capo_glue.types.filter_configuration
+
+        out["filter_configuration"] = (
+            capo_glue.types.filter_configuration.deserialize_aws_json_1_1(
+                data["FilterConfiguration"]
             )
         )
     return out

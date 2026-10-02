@@ -18,6 +18,11 @@ NodeFilterKey: TypeAlias = Literal[
     "OrganizationalUnitPath",
     "Region",
     "AccountId",
+    "SourceType",
+    "SourceId",
+    "SourceLocation",
+    "AvailabilityZone",
+    "AvailabilityZoneId",
 ]
 
 

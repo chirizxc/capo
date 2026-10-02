@@ -21,6 +21,8 @@ class Resource(TypedDict, closed=True):
     """<p>The type of the resource.</p>"""
     service: NotRequired["str"]
     """<p>The Amazon Web Services service that owns the resource and is responsible for creating and updating it.</p>"""
+    cfn_resource_type: NotRequired["str"]
+    """<p>The CloudFormation resource type identifier for the resource, such as <code>AWS::EC2::Instance</code> or <code>AWS::S3::Bucket</code>.</p>"""
     last_reported_at: NotRequired["datetime.datetime"]
     """<p>The date and time that Resource Explorer last queried this resource and updated the index with the latest information about the resource.</p>"""
     properties: NotRequired[
@@ -42,6 +44,8 @@ def serialize_json(value: Resource) -> dict:
         out["ResourceType"] = value["resource_type"]
     if "service" in value:
         out["Service"] = value["service"]
+    if "cfn_resource_type" in value:
+        out["CfnResourceType"] = value["cfn_resource_type"]
     if "last_reported_at" in value:
         import capo_resource_explorer_2._protocol.serialize
 
@@ -73,6 +77,8 @@ def deserialize_json(data: dict) -> Resource:
         out["resource_type"] = data["ResourceType"]
     if data.get("Service") is not None:
         out["service"] = data["Service"]
+    if data.get("CfnResourceType") is not None:
+        out["cfn_resource_type"] = data["CfnResourceType"]
     if data.get("LastReportedAt") is not None:
         import datetime
 

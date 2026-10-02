@@ -85,7 +85,7 @@ class CloudVmClusterSummary(TypedDict, closed=True):
     domain: NotRequired["str"]
     """<p>The domain of the VM cluster.</p>"""
     scan_dns_name: NotRequired["str"]
-    """<p>The FQDN of the DNS record for the Single Client Access Name (SCAN) IP addresses that are associated with the VM cluster.</p>"""
+    """<p>The fully qualified domain name (FQDN) of the DNS record for the Single Client Access Name (SCAN) IP addresses that are associated with the VM cluster.</p>"""
     scan_dns_record_id: NotRequired["str"]
     """<p>The OCID of the DNS record for the SCAN IP addresses that are associated with the VM cluster.</p>"""
     scan_ip_ids: NotRequired["capo_odb.types.string_list.StringList"]

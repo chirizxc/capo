@@ -17,6 +17,10 @@ class DependencyDiscoveryConfig(TypedDict, closed=True):
     """<p>The current status of dependency discovery.</p>"""
     updated_at: NotRequired["datetime.datetime"]
     """<p>The timestamp when dependency discovery was last updated.</p>"""
+    eligible_resource_count: NotRequired["int"]
+    """<p>The count of resources eligible for dependency attribution.</p>"""
+    message: NotRequired["str"]
+    """<p>A status message for dependency discovery, displayed during the initialization state.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -35,6 +39,10 @@ def serialize_json(value: DependencyDiscoveryConfig) -> dict:
         out["updatedAt"] = capo_resiliencehubv2.types._prelude.timestamp.serialize_json(
             value["updated_at"]
         )
+    if "eligible_resource_count" in value:
+        out["eligibleResourceCount"] = value["eligible_resource_count"]
+    if "message" in value:
+        out["message"] = value["message"]
     return out
 
 
@@ -58,4 +66,8 @@ def deserialize_json(data: dict) -> DependencyDiscoveryConfig:
                 data["updatedAt"]
             )
         )
+    if data.get("eligibleResourceCount") is not None:
+        out["eligible_resource_count"] = data["eligibleResourceCount"]
+    if data.get("message") is not None:
+        out["message"] = data["message"]
     return out

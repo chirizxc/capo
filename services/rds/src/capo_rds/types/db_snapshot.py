@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_rds.types.boolean_optional
     import capo_rds.types.integer
     import capo_rds.types.integer_optional
+    import capo_rds.types.long_optional
     import capo_rds.types.processor_feature_list
     import capo_rds.types.storage_encryption_type
     import capo_rds.types.string
@@ -109,6 +110,10 @@ class DBSnapshot(TypedDict, closed=True):
     """<p>The additional storage volumes associated with the DB snapshot. RDS supports additional storage volumes for RDS for Oracle and RDS for SQL Server.</p>"""
     snapshot_availability_zone: NotRequired["capo_rds.types.string.String"]
     """<p>Specifies the name of the Availability Zone where RDS stores the DB snapshot. This value is valid only for snapshots that RDS stores on a Dedicated Local Zone.</p>"""
+    full_snapshot_size_in_bytes: NotRequired[
+        "capo_rds.types.long_optional.LongOptional"
+    ]
+    """<p>The full size of the DB snapshot, in bytes.</p> <important> <p>This is not the incremental size of the snapshot. This is the full snapshot size and represents the size of all the blocks that were written to the source volume at the time the snapshot was created.</p> </important>"""
 
 
 # --- awsQuery ser/de ---
@@ -276,6 +281,13 @@ def serialize_query(
             (
                 f"{key_prefix}SnapshotAvailabilityZone",
                 str(value["snapshot_availability_zone"]),
+            )
+        )
+    if "full_snapshot_size_in_bytes" in value:
+        pairs.append(
+            (
+                f"{key_prefix}FullSnapshotSizeInBytes",
+                str(value["full_snapshot_size_in_bytes"]),
             )
         )
 
@@ -450,5 +462,10 @@ def deserialize_query(el: Element) -> DBSnapshot:
     if child_snapshot_availability_zone is not None:
         out["snapshot_availability_zone"] = str(
             child_snapshot_availability_zone.text or ""
+        )
+    child_full_snapshot_size_in_bytes = el.find("FullSnapshotSizeInBytes")
+    if child_full_snapshot_size_in_bytes is not None:
+        out["full_snapshot_size_in_bytes"] = int(
+            child_full_snapshot_size_in_bytes.text or ""
         )
     return out

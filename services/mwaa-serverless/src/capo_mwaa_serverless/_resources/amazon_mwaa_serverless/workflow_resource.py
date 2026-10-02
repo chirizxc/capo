@@ -13,6 +13,7 @@ from capo_mwaa_serverless._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_mwaa_serverless.types.code
     import capo_mwaa_serverless.types.create_workflow_request
     import capo_mwaa_serverless.types.create_workflow_response
     import capo_mwaa_serverless.types.definition_s3_location
@@ -61,6 +62,7 @@ class WorkflowResource:
         client_token: Optional[
             "capo_mwaa_serverless.types.idempotency_token_string.IdempotencyTokenString"
         ] = None,
+        code: Optional["capo_mwaa_serverless.types.code.Code"] = None,
         description: Optional[
             "capo_mwaa_serverless.types.description_string.DescriptionString"
         ] = None,
@@ -87,6 +89,7 @@ class WorkflowResource:
             name: <p>The name of the workflow. You must use unique workflow names within your Amazon Web Services account. The service generates a unique identifier that is appended to ensure temporal uniqueness across the account lifecycle.</p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This token prevents duplicate workflow creation requests.</p>
             definition_s3_location: <p>The Amazon S3 location where the workflow definition file is stored. This must point to a valid YAML file that defines the workflow structure using supported Amazon Web Services operators and tasks. Amazon Managed Workflows for Apache Airflow Serverless takes a snapshot of the definition at creation time, so subsequent changes to the Amazon S3 object will not affect the workflow unless you create a new version. In your YAML definition, include task dependencies, scheduling information, and operator configurations that are compatible with the Amazon Managed Workflows for Apache Airflow Serverless execution environment.</p>
+            code: <p>The location of code artifacts in Amazon S3 for the workflow. The service copies the code from this location at the time of the request.</p>
             role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that Amazon Managed Workflows for Apache Airflow Serverless assumes when executing the workflow. This role must have the necessary permissions to access the required Amazon Web Services services and resources that your workflow tasks will interact with. The role is used for task execution in the isolated, multi-tenant environment and should follow the principle of least privilege. Amazon Managed Workflows for Apache Airflow Serverless validates role access during workflow creation but runtime permission checks are performed by the target services.</p>
             description: <p>An optional description of the workflow that you can use to provide additional context about the workflow's purpose and functionality.</p>
             encryption_configuration: <p>The configuration for encrypting workflow data at rest and in transit. Specifies the encryption type and optional KMS key for customer-managed encryption.</p>
@@ -130,6 +133,8 @@ class WorkflowResource:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if code is not None:
+            input_["code"] = code
         if description is not None:
             input_["description"] = description
         if encryption_configuration is not None:
@@ -214,6 +219,7 @@ class WorkflowResource:
         role_arn: "capo_mwaa_serverless.types.role_arn.RoleARN",
         *,
         config_overrides: Optional[MWAAServerlessClientConfig] = None,
+        code: Optional["capo_mwaa_serverless.types.code.Code"] = None,
         description: Optional[
             "capo_mwaa_serverless.types.description_string.DescriptionString"
         ] = None,
@@ -235,6 +241,7 @@ class WorkflowResource:
         Args:
             workflow_arn: <p>The Amazon Resource Name (ARN) of the workflow you want to update.</p>
             definition_s3_location: <p>The Amazon S3 location where the updated workflow definition file is stored.</p>
+            code: <p>The location of code artifacts in Amazon S3 for the updated workflow. The service copies the code from this location at the time of the request.</p>
             role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that Amazon Managed Workflows for Apache Airflow Serverless assumes when it executes the updated workflow.</p>
             description: <p>An updated description for the workflow.</p>
             logging_configuration: <p>Updated logging configuration for the workflow.</p>
@@ -274,6 +281,8 @@ class WorkflowResource:
             "definition_s3_location": definition_s3_location,
             "role_arn": role_arn,
         }
+        if code is not None:
+            input_["code"] = code
         if description is not None:
             input_["description"] = description
         if logging_configuration is not None:
@@ -413,6 +422,7 @@ class AsyncWorkflowResource:
         client_token: Optional[
             "capo_mwaa_serverless.types.idempotency_token_string.IdempotencyTokenString"
         ] = None,
+        code: Optional["capo_mwaa_serverless.types.code.Code"] = None,
         description: Optional[
             "capo_mwaa_serverless.types.description_string.DescriptionString"
         ] = None,
@@ -439,6 +449,7 @@ class AsyncWorkflowResource:
             name: <p>The name of the workflow. You must use unique workflow names within your Amazon Web Services account. The service generates a unique identifier that is appended to ensure temporal uniqueness across the account lifecycle.</p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This token prevents duplicate workflow creation requests.</p>
             definition_s3_location: <p>The Amazon S3 location where the workflow definition file is stored. This must point to a valid YAML file that defines the workflow structure using supported Amazon Web Services operators and tasks. Amazon Managed Workflows for Apache Airflow Serverless takes a snapshot of the definition at creation time, so subsequent changes to the Amazon S3 object will not affect the workflow unless you create a new version. In your YAML definition, include task dependencies, scheduling information, and operator configurations that are compatible with the Amazon Managed Workflows for Apache Airflow Serverless execution environment.</p>
+            code: <p>The location of code artifacts in Amazon S3 for the workflow. The service copies the code from this location at the time of the request.</p>
             role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that Amazon Managed Workflows for Apache Airflow Serverless assumes when executing the workflow. This role must have the necessary permissions to access the required Amazon Web Services services and resources that your workflow tasks will interact with. The role is used for task execution in the isolated, multi-tenant environment and should follow the principle of least privilege. Amazon Managed Workflows for Apache Airflow Serverless validates role access during workflow creation but runtime permission checks are performed by the target services.</p>
             description: <p>An optional description of the workflow that you can use to provide additional context about the workflow's purpose and functionality.</p>
             encryption_configuration: <p>The configuration for encrypting workflow data at rest and in transit. Specifies the encryption type and optional KMS key for customer-managed encryption.</p>
@@ -483,6 +494,8 @@ class AsyncWorkflowResource:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if code is not None:
+            input_["code"] = code
         if description is not None:
             input_["description"] = description
         if encryption_configuration is not None:
@@ -568,6 +581,7 @@ class AsyncWorkflowResource:
         role_arn: "capo_mwaa_serverless.types.role_arn.RoleARN",
         *,
         config_overrides: Optional[AsyncMWAAServerlessClientConfig] = None,
+        code: Optional["capo_mwaa_serverless.types.code.Code"] = None,
         description: Optional[
             "capo_mwaa_serverless.types.description_string.DescriptionString"
         ] = None,
@@ -589,6 +603,7 @@ class AsyncWorkflowResource:
         Args:
             workflow_arn: <p>The Amazon Resource Name (ARN) of the workflow you want to update.</p>
             definition_s3_location: <p>The Amazon S3 location where the updated workflow definition file is stored.</p>
+            code: <p>The location of code artifacts in Amazon S3 for the updated workflow. The service copies the code from this location at the time of the request.</p>
             role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that Amazon Managed Workflows for Apache Airflow Serverless assumes when it executes the updated workflow.</p>
             description: <p>An updated description for the workflow.</p>
             logging_configuration: <p>Updated logging configuration for the workflow.</p>
@@ -629,6 +644,8 @@ class AsyncWorkflowResource:
             "definition_s3_location": definition_s3_location,
             "role_arn": role_arn,
         }
+        if code is not None:
+            input_["code"] = code
         if description is not None:
             input_["description"] = description
         if logging_configuration is not None:

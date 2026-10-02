@@ -19,7 +19,11 @@ import capo_iotsitewise.errors.throttling_exception
 import capo_iotsitewise.types.delete_time_series_request
 from capo_iotsitewise._protocol.errors import parse_error_metadata_json
 from capo_iotsitewise._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_iotsitewise._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_iotsitewise._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_iotsitewise.errors import UnknownServiceError
 
 
@@ -99,6 +103,8 @@ def build_request(
         params.append(("assetId", input_["asset_id"]))
     if "property_id" in input_:
         params.append(("propertyId", input_["property_id"]))
+    if "workspace_name" in input_:
+        params.append(("workspaceName", input_["workspace_name"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = json.dumps(
         capo_iotsitewise.types.delete_time_series_request.serialize_json(input_),
@@ -122,7 +128,7 @@ def delete_time_series(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -137,7 +143,7 @@ async def async_delete_time_series(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

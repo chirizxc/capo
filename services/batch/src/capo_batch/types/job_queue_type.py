@@ -7,6 +7,7 @@ JobQueueType: TypeAlias = Literal[
     "ECS",
     "ECS_FARGATE",
     "SAGEMAKER_TRAINING",
+    "ECS_MANAGED_INSTANCES",
 ]
 
 

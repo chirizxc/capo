@@ -20,7 +20,11 @@ import capo_sqs.types.tag_map
 import capo_sqs.types.tag_queue_request
 from capo_sqs._protocol.errors import parse_error_metadata_json
 from capo_sqs._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_sqs._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_sqs._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_sqs.errors import UnknownServiceError
 
 
@@ -116,7 +120,7 @@ def tag_queue(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -131,7 +135,7 @@ async def async_tag_queue(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

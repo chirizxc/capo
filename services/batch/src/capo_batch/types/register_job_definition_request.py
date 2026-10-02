@@ -47,7 +47,7 @@ class RegisterJobDefinitionRequest(TypedDict, closed=True):
     platform_capabilities: NotRequired[
         "capo_batch.types.platform_capability_list.PlatformCapabilityList"
     ]
-    """<p>The platform capabilities required by the job definition. If no value is specified, it defaults to <code>EC2</code>. To run the job on Fargate resources, specify <code>FARGATE</code>.</p> <note> <p>If the job runs on Amazon EKS resources, then you must not specify <code>platformCapabilities</code>.</p> </note>"""
+    """<p>The platform capabilities required by the job definition. If no value is specified, it defaults to <code>EC2</code>. To run the job on Fargate resources, specify <code>FARGATE</code>. To run the job on Amazon ECS Managed Instances, specify <code>MANAGED_INSTANCES</code>.</p> <p>Jobs with the <code>MANAGED_INSTANCES</code> platform capability must use <code>ecsProperties</code> (not <code>containerProperties</code>) and do not support multi-node parallel jobs.</p> <note> <p>If the job runs on Amazon EKS resources, then you must not specify <code>platformCapabilities</code>.</p> </note>"""
     eks_properties: NotRequired["capo_batch.types.eks_properties.EksProperties"]
     """<p>An object with properties that are specific to Amazon EKS-based jobs. This must not be specified for Amazon ECS based job definitions.</p>"""
     ecs_properties: NotRequired["capo_batch.types.ecs_properties.EcsProperties"]

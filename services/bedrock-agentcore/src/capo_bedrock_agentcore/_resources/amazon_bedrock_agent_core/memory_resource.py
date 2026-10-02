@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.batch_update_memory_records_input
     import capo_bedrock_agentcore.types.batch_update_memory_records_output
     import capo_bedrock_agentcore.types.branch
+    import capo_bedrock_agentcore.types.content_source
     import capo_bedrock_agentcore.types.create_event_input
     import capo_bedrock_agentcore.types.create_event_output
     import capo_bedrock_agentcore.types.delete_event_input
@@ -33,14 +34,18 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.delete_memory_record_output
     import capo_bedrock_agentcore.types.event
     import capo_bedrock_agentcore.types.event_id
+    import capo_bedrock_agentcore.types.extraction_config
     import capo_bedrock_agentcore.types.extraction_job
     import capo_bedrock_agentcore.types.extraction_job_filter_input
     import capo_bedrock_agentcore.types.extraction_job_metadata
+    import capo_bedrock_agentcore.types.extraction_mode
     import capo_bedrock_agentcore.types.filter_input
     import capo_bedrock_agentcore.types.get_event_input
     import capo_bedrock_agentcore.types.get_event_output
     import capo_bedrock_agentcore.types.get_memory_record_input
     import capo_bedrock_agentcore.types.get_memory_record_output
+    import capo_bedrock_agentcore.types.ingest_data_input
+    import capo_bedrock_agentcore.types.ingest_data_output
     import capo_bedrock_agentcore.types.list_actors_input
     import capo_bedrock_agentcore.types.list_actors_output
     import capo_bedrock_agentcore.types.list_events_input
@@ -260,6 +265,12 @@ class MemoryResource:
         metadata: Optional[
             "capo_bedrock_agentcore.types.metadata_map.MetadataMap"
         ] = None,
+        extraction_mode: Optional[
+            "capo_bedrock_agentcore.types.extraction_mode.ExtractionMode"
+        ] = None,
+        extraction_config: Optional[
+            "capo_bedrock_agentcore.types.extraction_config.ExtractionConfig"
+        ] = None,
     ) -> "capo_bedrock_agentcore.types.create_event_output.CreateEventOutput":
         """<p>Creates an event in an AgentCore Memory resource. Events represent interactions or activities that occur within a session and are associated with specific actors.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:CreateEvent</code> permission.</p> <p>This operation is subject to request rate limiting.</p>
 
@@ -268,10 +279,12 @@ class MemoryResource:
             actor_id: <p>The identifier of the actor associated with this event. An actor represents an entity that participates in sessions and generates events.</p>
             session_id: <p>The identifier of the session in which this event occurs. A session represents a sequence of related events.</p>
             event_timestamp: <p>The timestamp when the event occurred. If not specified, the current time is used.</p>
-            payload: <p>The content payload of the event. This can include conversational data or binary content.</p>
+            payload: <p>The content payload of the event. This can include conversational data, JSON data, or binary content.</p>
             branch: <p>The branch information for this event. Branches allow for organizing events into different conversation threads or paths.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, AgentCore ignores the request, but does not return an error.</p>
             metadata: <p>The key-value metadata to attach to the event.</p>
+            extraction_mode: <p>Controls long-term memory extraction for this event. When set to <code>SKIP</code>, the event is stored in short-term memory but is excluded from long-term memory extraction. If not specified, the event is processed for extraction as usual.</p>
+            extraction_config: <p>The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -315,6 +328,10 @@ class MemoryResource:
         input_["client_token"] = client_token
         if metadata is not None:
             input_["metadata"] = metadata
+        if extraction_mode is not None:
+            input_["extraction_mode"] = extraction_mode
+        if extraction_config is not None:
+            input_["extraction_config"] = extraction_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -388,12 +405,14 @@ class MemoryResource:
         memory_record_id: "capo_bedrock_agentcore.types.memory_record_id.MemoryRecordId",
         *,
         config_overrides: Optional[BedrockAgentCoreClientConfig] = None,
+        namespace: Optional["capo_bedrock_agentcore.types.namespace.Namespace"] = None,
     ) -> "capo_bedrock_agentcore.types.delete_memory_record_output.DeleteMemoryRecordOutput":
         """<p>Deletes a memory record from an AgentCore Memory resource. When you delete a memory record, it is permanently removed.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:DeleteMemoryRecord</code> permission.</p>
 
         Args:
             memory_id: <p>The identifier of the AgentCore Memory resource from which to delete the memory record.</p>
             memory_record_id: <p>The identifier of the memory record to delete.</p>
+            namespace: <p>The namespace of the memory record to delete. This value is used for IAM condition key authorization.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -425,6 +444,8 @@ class MemoryResource:
             "memory_id": memory_id,
             "memory_record_id": memory_record_id,
         }
+        if namespace is not None:
+            input_["namespace"] = namespace
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -498,12 +519,14 @@ class MemoryResource:
         memory_record_id: "capo_bedrock_agentcore.types.memory_record_id.MemoryRecordId",
         *,
         config_overrides: Optional[BedrockAgentCoreClientConfig] = None,
+        namespace: Optional["capo_bedrock_agentcore.types.namespace.Namespace"] = None,
     ) -> "capo_bedrock_agentcore.types.get_memory_record_output.GetMemoryRecordOutput":
         """<p>Retrieves a specific memory record from an AgentCore Memory resource.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:GetMemoryRecord</code> permission.</p>
 
         Args:
             memory_id: <p>The identifier of the AgentCore Memory resource containing the memory record.</p>
             memory_record_id: <p>The identifier of the memory record to retrieve.</p>
+            namespace: <p>The namespace of the memory record to retrieve. This value is used for IAM condition key authorization.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -535,6 +558,88 @@ class MemoryResource:
             "memory_id": memory_id,
             "memory_record_id": memory_record_id,
         }
+        if namespace is not None:
+            input_["namespace"] = namespace
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def ingest_data(
+        self,
+        memory_id: "capo_bedrock_agentcore.types.memory_id.MemoryId",
+        source: "capo_bedrock_agentcore.types.content_source.ContentSource",
+        content_timestamp: datetime.datetime,
+        actor_id: "capo_bedrock_agentcore.types.actor_id.ActorId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreClientConfig] = None,
+        session_id: Optional[
+            "capo_bedrock_agentcore.types.session_id.SessionId"
+        ] = None,
+        extraction_config: Optional[
+            "capo_bedrock_agentcore.types.extraction_config.ExtractionConfig"
+        ] = None,
+        metadata: Optional[
+            "capo_bedrock_agentcore.types.metadata_map.MetadataMap"
+        ] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_bedrock_agentcore.types.ingest_data_output.IngestDataOutput":
+        """<p>Submits content directly for ingestion to generate long-term memory records in a AgentCore Memory resource.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:IngestData</code> permission.</p>
+
+        Args:
+            memory_id: <p>The identifier of the AgentCore Memory resource to ingest content into.</p>
+            source: <p>The content to ingest. Only inline content is supported.</p>
+            content_timestamp: <p>The timestamp of when the content occurred.</p>
+            actor_id: <p>The identifier of the actor associated with this content. An actor represents an entity that participates in sessions and generates content.</p>
+            session_id: <p>The identifier of the session that the content belongs to. If not provided, a session identifier is generated and returned in the response.</p>
+            extraction_config: <p>The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.</p>
+            metadata: <p>The key-value metadata to attach to the content.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, AgentCore ignores the request, but does not return an error.</p>
+
+        Raises:
+            capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
+            capo_bedrock_agentcore.errors.resource_not_found_exception.ResourceNotFoundException: <p>The exception that occurs when the specified resource does not exist. This can happen when using an invalid identifier or when trying to access a resource that has been deleted.</p>
+            capo_bedrock_agentcore.errors.service_exception.ServiceException: <p>The service encountered an internal error. Try your request again later.</p>
+            capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The exception that occurs when the request would cause a service quota to be exceeded. Review your service quotas and either reduce your request rate or request a quota increase.</p>
+            capo_bedrock_agentcore.errors.throttled_exception.ThrottledException: <p>The request was denied due to request throttling. Reduce the frequency of requests and try again.</p>
+            capo_bedrock_agentcore.errors.validation_exception.ValidationException: <p>The exception that occurs when the input fails to satisfy the constraints specified by the service. Check the error message for details about which input parameter is invalid and correct your request.</p>
+            capo_bedrock_agentcore.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore.types.ingest_data_input.IngestDataInput]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore.types.ingest_data_output.IngestDataOutput"
+        ]:
+            import capo_bedrock_agentcore._operations.amazon_bedrock_agent_core.ingest_data
+
+            output, http_response = (
+                capo_bedrock_agentcore._operations.amazon_bedrock_agent_core.ingest_data.ingest_data(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore.types.ingest_data_input.IngestDataInput = {
+            "memory_id": memory_id,
+            "source": source,
+            "content_timestamp": content_timestamp,
+            "actor_id": actor_id,
+        }
+        if session_id is not None:
+            input_["session_id"] = session_id
+        if extraction_config is not None:
+            input_["extraction_config"] = extraction_config
+        if metadata is not None:
+            input_["metadata"] = metadata
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1211,6 +1316,12 @@ class AsyncMemoryResource:
         metadata: Optional[
             "capo_bedrock_agentcore.types.metadata_map.MetadataMap"
         ] = None,
+        extraction_mode: Optional[
+            "capo_bedrock_agentcore.types.extraction_mode.ExtractionMode"
+        ] = None,
+        extraction_config: Optional[
+            "capo_bedrock_agentcore.types.extraction_config.ExtractionConfig"
+        ] = None,
     ) -> "capo_bedrock_agentcore.types.create_event_output.CreateEventOutput":
         """<p>Creates an event in an AgentCore Memory resource. Events represent interactions or activities that occur within a session and are associated with specific actors.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:CreateEvent</code> permission.</p> <p>This operation is subject to request rate limiting.</p>
 
@@ -1219,10 +1330,12 @@ class AsyncMemoryResource:
             actor_id: <p>The identifier of the actor associated with this event. An actor represents an entity that participates in sessions and generates events.</p>
             session_id: <p>The identifier of the session in which this event occurs. A session represents a sequence of related events.</p>
             event_timestamp: <p>The timestamp when the event occurred. If not specified, the current time is used.</p>
-            payload: <p>The content payload of the event. This can include conversational data or binary content.</p>
+            payload: <p>The content payload of the event. This can include conversational data, JSON data, or binary content.</p>
             branch: <p>The branch information for this event. Branches allow for organizing events into different conversation threads or paths.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, AgentCore ignores the request, but does not return an error.</p>
             metadata: <p>The key-value metadata to attach to the event.</p>
+            extraction_mode: <p>Controls long-term memory extraction for this event. When set to <code>SKIP</code>, the event is stored in short-term memory but is excluded from long-term memory extraction. If not specified, the event is processed for extraction as usual.</p>
+            extraction_config: <p>The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -1267,6 +1380,10 @@ class AsyncMemoryResource:
         input_["client_token"] = client_token
         if metadata is not None:
             input_["metadata"] = metadata
+        if extraction_mode is not None:
+            input_["extraction_mode"] = extraction_mode
+        if extraction_config is not None:
+            input_["extraction_config"] = extraction_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1341,12 +1458,14 @@ class AsyncMemoryResource:
         memory_record_id: "capo_bedrock_agentcore.types.memory_record_id.MemoryRecordId",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreClientConfig] = None,
+        namespace: Optional["capo_bedrock_agentcore.types.namespace.Namespace"] = None,
     ) -> "capo_bedrock_agentcore.types.delete_memory_record_output.DeleteMemoryRecordOutput":
         """<p>Deletes a memory record from an AgentCore Memory resource. When you delete a memory record, it is permanently removed.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:DeleteMemoryRecord</code> permission.</p>
 
         Args:
             memory_id: <p>The identifier of the AgentCore Memory resource from which to delete the memory record.</p>
             memory_record_id: <p>The identifier of the memory record to delete.</p>
+            namespace: <p>The namespace of the memory record to delete. This value is used for IAM condition key authorization.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -1379,6 +1498,8 @@ class AsyncMemoryResource:
             "memory_id": memory_id,
             "memory_record_id": memory_record_id,
         }
+        if namespace is not None:
+            input_["namespace"] = namespace
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1453,12 +1574,14 @@ class AsyncMemoryResource:
         memory_record_id: "capo_bedrock_agentcore.types.memory_record_id.MemoryRecordId",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreClientConfig] = None,
+        namespace: Optional["capo_bedrock_agentcore.types.namespace.Namespace"] = None,
     ) -> "capo_bedrock_agentcore.types.get_memory_record_output.GetMemoryRecordOutput":
         """<p>Retrieves a specific memory record from an AgentCore Memory resource.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:GetMemoryRecord</code> permission.</p>
 
         Args:
             memory_id: <p>The identifier of the AgentCore Memory resource containing the memory record.</p>
             memory_record_id: <p>The identifier of the memory record to retrieve.</p>
+            namespace: <p>The namespace of the memory record to retrieve. This value is used for IAM condition key authorization.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -1491,6 +1614,89 @@ class AsyncMemoryResource:
             "memory_id": memory_id,
             "memory_record_id": memory_record_id,
         }
+        if namespace is not None:
+            input_["namespace"] = namespace
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def ingest_data(
+        self,
+        memory_id: "capo_bedrock_agentcore.types.memory_id.MemoryId",
+        source: "capo_bedrock_agentcore.types.content_source.ContentSource",
+        content_timestamp: datetime.datetime,
+        actor_id: "capo_bedrock_agentcore.types.actor_id.ActorId",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentCoreClientConfig] = None,
+        session_id: Optional[
+            "capo_bedrock_agentcore.types.session_id.SessionId"
+        ] = None,
+        extraction_config: Optional[
+            "capo_bedrock_agentcore.types.extraction_config.ExtractionConfig"
+        ] = None,
+        metadata: Optional[
+            "capo_bedrock_agentcore.types.metadata_map.MetadataMap"
+        ] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_bedrock_agentcore.types.ingest_data_output.IngestDataOutput":
+        """<p>Submits content directly for ingestion to generate long-term memory records in a AgentCore Memory resource.</p> <p>To use this operation, you must have the <code>bedrock-agentcore:IngestData</code> permission.</p>
+
+        Args:
+            memory_id: <p>The identifier of the AgentCore Memory resource to ingest content into.</p>
+            source: <p>The content to ingest. Only inline content is supported.</p>
+            content_timestamp: <p>The timestamp of when the content occurred.</p>
+            actor_id: <p>The identifier of the actor associated with this content. An actor represents an entity that participates in sessions and generates content.</p>
+            session_id: <p>The identifier of the session that the content belongs to. If not provided, a session identifier is generated and returned in the response.</p>
+            extraction_config: <p>The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.</p>
+            metadata: <p>The key-value metadata to attach to the content.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, AgentCore ignores the request, but does not return an error.</p>
+
+        Raises:
+            capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
+            capo_bedrock_agentcore.errors.resource_not_found_exception.ResourceNotFoundException: <p>The exception that occurs when the specified resource does not exist. This can happen when using an invalid identifier or when trying to access a resource that has been deleted.</p>
+            capo_bedrock_agentcore.errors.service_exception.ServiceException: <p>The service encountered an internal error. Try your request again later.</p>
+            capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The exception that occurs when the request would cause a service quota to be exceeded. Review your service quotas and either reduce your request rate or request a quota increase.</p>
+            capo_bedrock_agentcore.errors.throttled_exception.ThrottledException: <p>The request was denied due to request throttling. Reduce the frequency of requests and try again.</p>
+            capo_bedrock_agentcore.errors.validation_exception.ValidationException: <p>The exception that occurs when the input fails to satisfy the constraints specified by the service. Check the error message for details about which input parameter is invalid and correct your request.</p>
+            capo_bedrock_agentcore.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agentcore.types.ingest_data_input.IngestDataInput]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agentcore.types.ingest_data_output.IngestDataOutput"
+        ]:
+            import capo_bedrock_agentcore._operations.amazon_bedrock_agent_core.ingest_data
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agentcore._operations.amazon_bedrock_agent_core.ingest_data.async_ingest_data(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore.types.ingest_data_input.IngestDataInput = {
+            "memory_id": memory_id,
+            "source": source,
+            "content_timestamp": content_timestamp,
+            "actor_id": actor_id,
+        }
+        if session_id is not None:
+            input_["session_id"] = session_id
+        if extraction_config is not None:
+            input_["extraction_config"] = extraction_config
+        if metadata is not None:
+            input_["metadata"] = metadata
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

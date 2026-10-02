@@ -5,14 +5,15 @@ from typing import TYPE_CHECKING
 from typing_extensions import TypedDict
 
 if TYPE_CHECKING:
-    import capo_appconfig.types.id
     import capo_appconfig.types.integer
+    import capo_appconfig.types.long_name
+    import capo_appconfig.types.name
 
 
 class DeleteHostedConfigurationVersionRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
-    configuration_profile_id: "capo_appconfig.types.id.Id"
+    configuration_profile_id: "capo_appconfig.types.long_name.LongName"
     """<p>The configuration profile ID.</p>"""
     version_number: "capo_appconfig.types.integer.Integer"
     """<p>The versions number to delete.</p>"""

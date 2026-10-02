@@ -9,6 +9,7 @@ KnowledgeBaseStatus: TypeAlias = Literal[
     "UPDATING",
     "FAILED",
     "DELETE_UNSUCCESSFUL",
+    "UPDATE_UNSUCCESSFUL",
 ]
 
 

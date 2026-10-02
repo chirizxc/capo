@@ -5,13 +5,17 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_quicksight.types.limited_string
+    import capo_quicksight.types.limited_sensitive_string
 
 
 class RangeConstant(TypedDict, closed=True):
-    minimum: NotRequired["capo_quicksight.types.limited_string.LimitedString"]
+    minimum: NotRequired[
+        "capo_quicksight.types.limited_sensitive_string.LimitedSensitiveString"
+    ]
     """<p>The minimum value for a range constant.</p>"""
-    maximum: NotRequired["capo_quicksight.types.limited_string.LimitedString"]
+    maximum: NotRequired[
+        "capo_quicksight.types.limited_sensitive_string.LimitedSensitiveString"
+    ]
     """<p>The maximum value for a range constant.</p>"""
 
 

@@ -16,6 +16,8 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.registered_mcp_server_sig_v4_details
     import capo_devops_agent.types.registered_new_relic_details
     import capo_devops_agent.types.registered_pager_duty_details
+    import capo_devops_agent.types.registered_remote_agent_details
+    import capo_devops_agent.types.registered_remote_agent_sig_v4_details
     import capo_devops_agent.types.registered_service_now_details
     import capo_devops_agent.types.registered_slack_service_details
 
@@ -74,6 +76,14 @@ class _AdditionalServiceDetails_mcpserversigv4(TypedDict, closed=True):
     mcpserversigv4: "capo_devops_agent.types.registered_mcp_server_sig_v4_details.RegisteredMCPServerSigV4Details"
 
 
+class _AdditionalServiceDetails_remoteagent(TypedDict, closed=True):
+    remoteagent: "capo_devops_agent.types.registered_remote_agent_details.RegisteredRemoteAgentDetails"
+
+
+class _AdditionalServiceDetails_remoteagentsigv4(TypedDict, closed=True):
+    remoteagentsigv4: "capo_devops_agent.types.registered_remote_agent_sig_v4_details.RegisteredRemoteAgentSigV4Details"
+
+
 AdditionalServiceDetails: TypeAlias = (
     _AdditionalServiceDetails_github
     | _AdditionalServiceDetails_slack
@@ -88,6 +98,8 @@ AdditionalServiceDetails: TypeAlias = (
     | _AdditionalServiceDetails_mcpservergrafana
     | _AdditionalServiceDetails_pagerduty
     | _AdditionalServiceDetails_mcpserversigv4
+    | _AdditionalServiceDetails_remoteagent
+    | _AdditionalServiceDetails_remoteagentsigv4
 )
 
 
@@ -197,6 +209,22 @@ def serialize_json(value: AdditionalServiceDetails) -> dict:
                 value["mcpserversigv4"]
             )
         }
+    elif "remoteagent" in value:
+        import capo_devops_agent.types.registered_remote_agent_details
+
+        return {
+            "remoteagent": capo_devops_agent.types.registered_remote_agent_details.serialize_json(
+                value["remoteagent"]
+            )
+        }
+    elif "remoteagentsigv4" in value:
+        import capo_devops_agent.types.registered_remote_agent_sig_v4_details
+
+        return {
+            "remoteagentsigv4": capo_devops_agent.types.registered_remote_agent_sig_v4_details.serialize_json(
+                value["remoteagentsigv4"]
+            )
+        }
     else:
         raise SerializationError("AdditionalServiceDetails: no variant present")
 
@@ -304,6 +332,22 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
         return {
             "mcpserversigv4": capo_devops_agent.types.registered_mcp_server_sig_v4_details.deserialize_json(
                 data["mcpserversigv4"]
+            )
+        }
+    elif data.get("remoteagent") is not None:
+        import capo_devops_agent.types.registered_remote_agent_details
+
+        return {
+            "remoteagent": capo_devops_agent.types.registered_remote_agent_details.deserialize_json(
+                data["remoteagent"]
+            )
+        }
+    elif data.get("remoteagentsigv4") is not None:
+        import capo_devops_agent.types.registered_remote_agent_sig_v4_details
+
+        return {
+            "remoteagentsigv4": capo_devops_agent.types.registered_remote_agent_sig_v4_details.deserialize_json(
+                data["remoteagentsigv4"]
             )
         }
     else:

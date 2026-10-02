@@ -31,6 +31,7 @@ import capo_wafv2.types.challenge_config
 import capo_wafv2.types.custom_response_bodies
 import capo_wafv2.types.data_protection_config
 import capo_wafv2.types.default_action
+import capo_wafv2.types.monetization_config
 import capo_wafv2.types.on_source_d_do_s_protection_config
 import capo_wafv2.types.rules
 import capo_wafv2.types.scope
@@ -40,7 +41,11 @@ import capo_wafv2.types.update_web_acl_response
 import capo_wafv2.types.visibility_config
 from capo_wafv2._protocol.errors import parse_error_metadata_json
 from capo_wafv2._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_wafv2._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_wafv2._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_wafv2.errors import UnknownServiceError
 
 
@@ -194,7 +199,7 @@ def update_web_acl(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -211,7 +216,7 @@ async def async_update_web_acl(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

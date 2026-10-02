@@ -8,6 +8,7 @@ from capo_connect.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
     import capo_connect.types.attachment_reference
+    import capo_connect.types.contact_analysis_reference
     import capo_connect.types.date_reference
     import capo_connect.types.email_message_reference
     import capo_connect.types.email_reference
@@ -62,6 +63,12 @@ class _ReferenceSummary_Email(TypedDict, closed=True):
     Email: "capo_connect.types.email_reference.EmailReference"
 
 
+class _ReferenceSummary_ContactAnalysis(TypedDict, closed=True):
+    ContactAnalysis: (
+        "capo_connect.types.contact_analysis_reference.ContactAnalysisReference"
+    )
+
+
 ReferenceSummary: TypeAlias = (
     _ReferenceSummary_Url
     | _ReferenceSummary_Attachment
@@ -73,6 +80,7 @@ ReferenceSummary: TypeAlias = (
     | _ReferenceSummary_Number
     | _ReferenceSummary_Date
     | _ReferenceSummary_Email
+    | _ReferenceSummary_ContactAnalysis
 )
 
 
@@ -147,6 +155,14 @@ def serialize_json(value: ReferenceSummary) -> dict:
 
         return {
             "Email": capo_connect.types.email_reference.serialize_json(value["Email"])
+        }
+    elif "ContactAnalysis" in value:
+        import capo_connect.types.contact_analysis_reference
+
+        return {
+            "ContactAnalysis": capo_connect.types.contact_analysis_reference.serialize_json(
+                value["ContactAnalysis"]
+            )
         }
     else:
         raise SerializationError("ReferenceSummary: no variant present")
@@ -224,6 +240,14 @@ def deserialize_json(data: dict) -> ReferenceSummary:
 
         return {
             "Email": capo_connect.types.email_reference.deserialize_json(data["Email"])
+        }
+    elif data.get("ContactAnalysis") is not None:
+        import capo_connect.types.contact_analysis_reference
+
+        return {
+            "ContactAnalysis": capo_connect.types.contact_analysis_reference.deserialize_json(
+                data["ContactAnalysis"]
+            )
         }
     else:
         raise DeserializationError("ReferenceSummary: no recognized variant key")

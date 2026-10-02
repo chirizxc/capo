@@ -17,7 +17,7 @@ class DescribeGameSessionsInput(TypedDict, closed=True):
     fleet_id: NotRequired["capo_gamelift.types.fleet_id_or_arn.FleetIdOrArn"]
     """<p>A unique identifier for the fleet to retrieve game sessions for. You can use either the fleet ID or ARN value. </p>"""
     game_session_id: NotRequired["capo_gamelift.types.arn_string_model.ArnStringModel"]
-    """<p>An identifier for the game session that is unique across all regions to retrieve. The value is always a full ARN in the following format: <code>arn:aws:gamelift:<location>::gamesession/<fleet ID>/<ID string></code>.</p>"""
+    """<p>An identifier for the game session that is unique across all regions to retrieve. The value is always a full ARN in the following format: For Home Region game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<ID string></code>. For Remote Location game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<location>/<ID string></code>.</p>"""
     alias_id: NotRequired["capo_gamelift.types.alias_id_or_arn.AliasIdOrArn"]
     """<p>A unique identifier for the alias associated with the fleet to retrieve game sessions for. You can use either the alias ID or ARN value.</p>"""
     location: NotRequired[

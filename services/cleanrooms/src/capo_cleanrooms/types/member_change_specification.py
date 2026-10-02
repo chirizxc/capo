@@ -18,7 +18,7 @@ class MemberChangeSpecification(TypedDict, closed=True):
     account_id: "capo_cleanrooms.types.account_id.AccountId"
     """<p>The Amazon Web Services account ID of the member to add to the collaboration.</p>"""
     member_abilities: "capo_cleanrooms.types.member_abilities.MemberAbilities"
-    """<p>The abilities granted to the collaboration member. These determine what actions the member can perform within the collaboration.</p> <note> <p>The following values are currently not supported: <code>CAN_QUERY</code> and <code>CAN_RUN_JOB</code>. </p> <p>Set the value of <code>memberAbilities</code> to <code>[]</code> to allow a member to contribute data.</p> <p>Set the value of <code>memberAbilities</code> to <code>[CAN_RECEIVE_RESULTS]</code> to allow a member to contribute data and receive results.</p> </note>"""
+    """<p>The abilities granted to the collaboration member. These determine what actions the member can perform within the collaboration.</p> <note> <p>The following values are currently not supported: <code>CAN_QUERY</code> and <code>CAN_RUN_JOB</code>. </p> <p>Set the value of <code>memberAbilities</code> to <code>[]</code> to allow a member to contribute data.</p> <p>Set the value of <code>memberAbilities</code> to <code>[CAN_RECEIVE_RESULTS]</code> to allow a member to contribute data and receive results.</p> <p>Set the value of <code>memberAbilities</code> to <code>[CAN_EXPORT_QUERY_ANALYSIS_LOG]</code> so that the member can export the analysis logs for a protected query. Having this ability isn't sufficient on its own: You can export logs only for queries that you ran or paid for.</p> </note>"""
     ml_member_abilities: NotRequired[
         "capo_cleanrooms.types.ml_member_abilities.MLMemberAbilities"
     ]

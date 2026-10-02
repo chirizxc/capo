@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.job_status
     import capo_iotsitewise.types.name
     import capo_iotsitewise.types.timestamp
+    import capo_iotsitewise.types.workspace_name
 
 
 class DescribeBulkImportJobResponse(TypedDict, closed=True):
@@ -29,12 +30,14 @@ class DescribeBulkImportJobResponse(TypedDict, closed=True):
     job_role_arn: "capo_iotsitewise.types.arn.ARN"
     r"""<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the IAM role that allows IoT SiteWise to read Amazon S3 data.</p>"""
     files: "capo_iotsitewise.types.files.Files"
-    """<p>The files in the specified Amazon S3 bucket that contain your data.</p>"""
+    """<p>The files in the specified Amazon S3 bucket that contain your data. You can specify up to 100 files for each bulk import job. Each file supports the following size limits:</p> <ul> <li> <p>Parquet files – Up to 256 MiB.</p> </li> <li> <p>Other file formats – Up to 5 GiB.</p> </li> </ul>"""
     error_report_location: (
         "capo_iotsitewise.types.error_report_location.ErrorReportLocation"
     )
     """<p>The Amazon S3 destination where errors associated with the job creation request are saved.</p>"""
-    job_configuration: "capo_iotsitewise.types.job_configuration.JobConfiguration"
+    job_configuration: NotRequired[
+        "capo_iotsitewise.types.job_configuration.JobConfiguration"
+    ]
     """<p>Contains the configuration information of a job, such as the file format used to save data in Amazon S3.</p>"""
     job_creation_date: "capo_iotsitewise.types.timestamp.Timestamp"
     """<p>The date the job was created, in Unix epoch TIME.</p>"""
@@ -48,6 +51,10 @@ class DescribeBulkImportJobResponse(TypedDict, closed=True):
         "capo_iotsitewise.types.delete_files_after_import.DeleteFilesAfterImport"
     ]
     """<p>If set to true, your data files is deleted from S3, after ingestion into IoT SiteWise storage.</p>"""
+    dataset_id: NotRequired["capo_iotsitewise.types.id.ID"]
+    """<p>The ID of the dataset.</p>"""
+    workspace_name: NotRequired["capo_iotsitewise.types.workspace_name.WorkspaceName"]
+    """<p>The name of the workspace.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -71,11 +78,14 @@ def serialize_json(value: DescribeBulkImportJobResponse) -> dict:
             value["error_report_location"]
         )
     )
-    import capo_iotsitewise.types.job_configuration
+    if "job_configuration" in value:
+        import capo_iotsitewise.types.job_configuration
 
-    out["jobConfiguration"] = capo_iotsitewise.types.job_configuration.serialize_json(
-        value["job_configuration"]
-    )
+        out["jobConfiguration"] = (
+            capo_iotsitewise.types.job_configuration.serialize_json(
+                value["job_configuration"]
+            )
+        )
     import capo_iotsitewise.types.timestamp
 
     out["jobCreationDate"] = capo_iotsitewise.types.timestamp.serialize_json(
@@ -90,6 +100,10 @@ def serialize_json(value: DescribeBulkImportJobResponse) -> dict:
         out["adaptiveIngestion"] = value["adaptive_ingestion"]
     if "delete_files_after_import" in value:
         out["deleteFilesAfterImport"] = value["delete_files_after_import"]
+    if "dataset_id" in value:
+        out["datasetId"] = value["dataset_id"]
+    if "workspace_name" in value:
+        out["workspaceName"] = value["workspace_name"]
     return out
 
 
@@ -143,10 +157,6 @@ def deserialize_json(data: dict) -> DescribeBulkImportJobResponse:
                 data["jobConfiguration"]
             )
         )
-    else:
-        raise DeserializationError(
-            "DescribeBulkImportJobResponse.job_configuration required"
-        )
     if data.get("jobCreationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
@@ -171,4 +181,8 @@ def deserialize_json(data: dict) -> DescribeBulkImportJobResponse:
         out["adaptive_ingestion"] = data["adaptiveIngestion"]
     if data.get("deleteFilesAfterImport") is not None:
         out["delete_files_after_import"] = data["deleteFilesAfterImport"]
+    if data.get("datasetId") is not None:
+        out["dataset_id"] = data["datasetId"]
+    if data.get("workspaceName") is not None:
+        out["workspace_name"] = data["workspaceName"]
     return out

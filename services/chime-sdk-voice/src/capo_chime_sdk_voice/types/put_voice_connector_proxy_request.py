@@ -11,13 +11,11 @@ if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.country_list
     import capo_chime_sdk_voice.types.e164_phone_number
     import capo_chime_sdk_voice.types.integer
-    import capo_chime_sdk_voice.types.non_empty_string128
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class PutVoiceConnectorProxyRequest(TypedDict, closed=True):
-    voice_connector_id: (
-        "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128"
-    )
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
     default_session_expiry_minutes: "capo_chime_sdk_voice.types.integer.Integer"
     """<p>The default number of minutes allowed for proxy session.</p>"""

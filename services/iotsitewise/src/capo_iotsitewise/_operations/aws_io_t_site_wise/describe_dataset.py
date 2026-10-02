@@ -16,14 +16,22 @@ import capo_iotsitewise.errors.internal_failure_exception
 import capo_iotsitewise.errors.invalid_request_exception
 import capo_iotsitewise.errors.resource_not_found_exception
 import capo_iotsitewise.errors.throttling_exception
+import capo_iotsitewise.types.dataset_config
+import capo_iotsitewise.types.dataset_enrichment
 import capo_iotsitewise.types.dataset_source
 import capo_iotsitewise.types.dataset_status
+import capo_iotsitewise.types.dataset_type_enum
 import capo_iotsitewise.types.describe_dataset_request
 import capo_iotsitewise.types.describe_dataset_response
+import capo_iotsitewise.types.metadata
 import capo_iotsitewise.types.timestamp
 from capo_iotsitewise._protocol.errors import parse_error_metadata_json
 from capo_iotsitewise._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_iotsitewise._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_iotsitewise._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_iotsitewise.errors import UnknownServiceError
 
 
@@ -116,6 +124,10 @@ def build_request(
     url = endpoint.url.rstrip("/") + "/datasets/{datasetId}"
     url = url.replace("{datasetId}", quote(input_["dataset_id"], safe=""))
     params: list[tuple[str, str]] = []
+    if "workspace_name" in input_:
+        params.append(("workspaceName", input_["workspace_name"]))
+    if "dataset_version" in input_:
+        params.append(("datasetVersion", input_["dataset_version"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
@@ -138,7 +150,7 @@ def describe_dataset(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -156,7 +168,7 @@ async def async_describe_dataset(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -28,7 +28,11 @@ import capo_redshift.types.enable_snapshot_copy_result
 from capo_redshift._protocol.errors import find_error_element, parse_error_metadata
 from capo_redshift._protocol.xml import fromstring
 from capo_redshift._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_redshift._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_redshift._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_redshift.errors import UnknownServiceError
 
 
@@ -180,7 +184,7 @@ def enable_snapshot_copy(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -198,7 +202,7 @@ async def async_enable_snapshot_copy(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

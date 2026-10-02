@@ -14,8 +14,9 @@ if TYPE_CHECKING:
     import capo_quicksight.types.comparative_order
     import capo_quicksight.types.default_aggregation
     import capo_quicksight.types.default_formatting
+    import capo_quicksight.types.description_sensitive_string
     import capo_quicksight.types.expression
-    import capo_quicksight.types.limited_string
+    import capo_quicksight.types.limited_sensitive_string
     import capo_quicksight.types.nullable_boolean
     import capo_quicksight.types.semantic_type
     import capo_quicksight.types.synonyms
@@ -23,10 +24,12 @@ if TYPE_CHECKING:
 
 
 class TopicCalculatedField(TypedDict, closed=True):
-    calculated_field_name: "capo_quicksight.types.limited_string.LimitedString"
+    calculated_field_name: (
+        "capo_quicksight.types.limited_sensitive_string.LimitedSensitiveString"
+    )
     """<p>The calculated field name.</p>"""
     calculated_field_description: NotRequired[
-        "capo_quicksight.types.limited_string.LimitedString"
+        "capo_quicksight.types.description_sensitive_string.DescriptionSensitiveString"
     ]
     """<p>The calculated field description.</p>"""
     expression: "capo_quicksight.types.expression.Expression"

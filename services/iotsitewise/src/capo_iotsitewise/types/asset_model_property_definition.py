@@ -23,7 +23,7 @@ class AssetModelPropertyDefinition(TypedDict, closed=True):
     name: "capo_iotsitewise.types.name.Name"
     """<p>The name of the property definition.</p>"""
     data_type: "capo_iotsitewise.types.property_data_type.PropertyDataType"
-    """<p>The data type of the property definition.</p> <p>If you specify <code>STRUCT</code>, you must also specify <code>dataTypeSpec</code> to identify the type of the structure for this property.</p>"""
+    """<p>The data type of the property definition.</p> <p>The <code>VIDEO</code>, <code>ANNOTATION</code>, and <code>JSON</code> data types aren't supported for asset model properties. These types are used only by time series that store data for datasets in a workspace.</p> <p>If you specify <code>STRUCT</code>, you must also specify <code>dataTypeSpec</code> to identify the type of the structure for this property.</p>"""
     data_type_spec: NotRequired["capo_iotsitewise.types.name.Name"]
     """<p>The data type of the structure for this property. This parameter is required on properties that have the <code>STRUCT</code> data type.</p> <p>The options for this parameter depend on the type of the composite model in which you define this property. Use <code>AWS/ALARM_STATE</code> for alarm state in alarm composite models.</p>"""
     unit: NotRequired["capo_iotsitewise.types.property_unit.PropertyUnit"]

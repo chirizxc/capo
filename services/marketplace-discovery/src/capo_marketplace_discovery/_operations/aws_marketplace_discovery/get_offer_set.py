@@ -29,6 +29,7 @@ from capo_marketplace_discovery._rule_engine._endpoint_rule_set import (
 from capo_marketplace_discovery._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_marketplace_discovery.errors import UnknownServiceError
 
@@ -91,7 +92,7 @@ def get_signer(
     if (
         options.credentials_provider is not None
         and name_to_schema
-        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express", "sigv4a"}
     ):
         raise RuntimeError(
             "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
@@ -110,6 +111,12 @@ def get_signer(
                 return capo_marketplace_discovery._auth._signers.SigV4Signer(
                     options.credentials_provider, auth_scheme=sigv4_config
                 )
+    if options.credentials_provider is not None:
+        sigv4_config = name_to_schema.get("sigv4a")
+        if sigv4_config is not None:
+            return capo_marketplace_discovery._auth._signers.SigV4ASigner(
+                options.credentials_provider, auth_scheme=sigv4_config
+            )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -150,7 +157,7 @@ def get_offer_set(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -168,7 +175,7 @@ async def async_get_offer_set(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

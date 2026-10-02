@@ -17,7 +17,7 @@ class RegisterNotificationHubResponse(TypedDict, closed=True):
     notification_hub_region: "capo_notifications.types.region.Region"
     """<p>The Region of the <code>NotificationHub</code>.</p>"""
     status_summary: "capo_notifications.types.notification_hub_status_summary.NotificationHubStatusSummary"
-    """<p>Provides additional information about the current <code>NotificationConfiguration</code> status information.</p>"""
+    """<p>Provides additional information about the current <code>NotificationHub</code> status information.</p>"""
     creation_time: "capo_notifications.types.creation_time.CreationTime"
     """<p>The date the resource was created.</p>"""
     last_activation_time: NotRequired[

@@ -9,6 +9,7 @@ from capo_sts.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_sts.types.duration_seconds_type
+    import capo_sts.types.minimum_session_token_size_type
     import capo_sts.types.policy_descriptor_list_type
     import capo_sts.types.session_policy_document_type
     import capo_sts.types.tag_list_type
@@ -32,6 +33,9 @@ class GetFederationTokenRequest(TypedDict, closed=True):
     """<p>The duration, in seconds, that the session should last. Acceptable durations for federation sessions range from 900 seconds (15 minutes) to 129,600 seconds (36 hours), with 43,200 seconds (12 hours) as the default. Sessions obtained using root user credentials are restricted to a maximum of 3,600 seconds (one hour). If the specified duration is longer than one hour, the session obtained by using root user credentials defaults to one hour.</p>"""
     tags: NotRequired["capo_sts.types.tag_list_type.tagListType"]
     r"""<p>A list of session tags. Each session tag consists of a key name and an associated value. For more information about session tags, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html\">Passing Session Tags in STS</a> in the <i>IAM User Guide</i>.</p> <p>This parameter is optional. You can pass up to 50 session tags. The plaintext session tag keys can’t exceed 128 characters and the values can’t exceed 256 characters. For these and additional limits, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-limits.html#reference_iam-limits-entity-length\">IAM and STS Character Limits</a> in the <i>IAM User Guide</i>.</p> <note> <p>An Amazon Web Services conversion compresses the passed inline session policy, managed policy ARNs, and session tags into a packed binary format that has a separate limit. Your request can fail for this limit even if your plaintext meets the other requirements. The <code>PackedPolicySize</code> response element indicates by percentage how close the policies and tags for your request are to the upper size limit.</p> </note> <p>You can pass a session tag with the same key as a tag that is already attached to the user you are federating. When you do, session tags override a user tag with the same key. </p> <p>Tag key–value pairs are not case sensitive, but case is preserved. This means that you cannot have separate <code>Department</code> and <code>department</code> tag keys. Assume that the role has the <code>Department</code>=<code>Marketing</code> tag and you pass the <code>department</code>=<code>engineering</code> session tag. <code>Department</code> and <code>department</code> are not saved as separate tags, and the session tag passed in the request takes precedence over the role tag.</p>"""
+    minimum_session_token_size: NotRequired[
+        "capo_sts.types.minimum_session_token_size_type.minimumSessionTokenSizeType"
+    ]
 
 
 # --- awsQuery ser/de ---
@@ -55,6 +59,13 @@ def serialize_query(
 
         capo_sts.types.tag_list_type.serialize_query(
             value["tags"], pairs, f"{key_prefix}Tags"
+        )
+    if "minimum_session_token_size" in value:
+        pairs.append(
+            (
+                f"{key_prefix}MinimumSessionTokenSize",
+                str(value["minimum_session_token_size"]),
+            )
         )
 
 
@@ -85,4 +96,9 @@ def deserialize_query(el: Element) -> GetFederationTokenRequest:
         import capo_sts.types.tag_list_type
 
         out["tags"] = capo_sts.types.tag_list_type.deserialize_query(child_tags)
+    child_minimum_session_token_size = el.find("MinimumSessionTokenSize")
+    if child_minimum_session_token_size is not None:
+        out["minimum_session_token_size"] = int(
+            child_minimum_session_token_size.text or ""
+        )
     return out

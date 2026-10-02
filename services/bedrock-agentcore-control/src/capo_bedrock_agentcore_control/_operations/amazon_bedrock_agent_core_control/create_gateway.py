@@ -21,6 +21,7 @@ import capo_bedrock_agentcore_control.types.authorizer_configuration
 import capo_bedrock_agentcore_control.types.authorizer_type
 import capo_bedrock_agentcore_control.types.create_gateway_request
 import capo_bedrock_agentcore_control.types.create_gateway_response
+import capo_bedrock_agentcore_control.types.custom_transform_configuration
 import capo_bedrock_agentcore_control.types.date_timestamp
 import capo_bedrock_agentcore_control.types.exception_level
 import capo_bedrock_agentcore_control.types.gateway_interceptor_configurations
@@ -30,6 +31,7 @@ import capo_bedrock_agentcore_control.types.gateway_protocol_type
 import capo_bedrock_agentcore_control.types.gateway_status
 import capo_bedrock_agentcore_control.types.status_reasons
 import capo_bedrock_agentcore_control.types.tags_map
+import capo_bedrock_agentcore_control.types.waf_configuration
 import capo_bedrock_agentcore_control.types.workload_identity_details
 from capo_bedrock_agentcore_control._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agentcore_control._rule_engine._endpoint_rule_set import (
@@ -39,6 +41,7 @@ from capo_bedrock_agentcore_control._rule_engine._endpoint_rule_set import (
 from capo_bedrock_agentcore_control._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agentcore_control.errors import UnknownServiceError
 
@@ -165,7 +168,7 @@ def create_gateway(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -183,7 +186,7 @@ async def async_create_gateway(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

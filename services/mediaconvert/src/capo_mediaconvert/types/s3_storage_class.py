@@ -11,6 +11,7 @@ S3StorageClass: TypeAlias = Literal[
     "INTELLIGENT_TIERING",
     "GLACIER",
     "DEEP_ARCHIVE",
+    "GLACIER_IR",
 ]
 
 

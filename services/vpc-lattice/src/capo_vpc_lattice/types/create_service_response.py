@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_vpc_lattice.types.auth_type
     import capo_vpc_lattice.types.certificate_arn
     import capo_vpc_lattice.types.dns_entry
+    import capo_vpc_lattice.types.idle_timeout_seconds
     import capo_vpc_lattice.types.service_arn
     import capo_vpc_lattice.types.service_custom_domain_name
     import capo_vpc_lattice.types.service_id
@@ -34,6 +35,10 @@ class CreateServiceResponse(TypedDict, closed=True):
     """<p>The status. If the status is <code>CREATE_FAILED</code>, you must delete and recreate the service.</p>"""
     auth_type: NotRequired["capo_vpc_lattice.types.auth_type.AuthType"]
     """<p>The type of IAM policy.</p>"""
+    idle_timeout_seconds: NotRequired[
+        "capo_vpc_lattice.types.idle_timeout_seconds.IdleTimeoutSeconds"
+    ]
+    """<p>The amount of time, in seconds, that a connection can remain idle before VPC Lattice closes it.</p>"""
     dns_entry: NotRequired["capo_vpc_lattice.types.dns_entry.DnsEntry"]
     """<p>The public DNS name of the service.</p>"""
 
@@ -55,6 +60,8 @@ def serialize_json(value: CreateServiceResponse) -> dict:
         out["status"] = value["status"]
     if "auth_type" in value:
         out["authType"] = value["auth_type"]
+    if "idle_timeout_seconds" in value:
+        out["idleTimeoutSeconds"] = value["idle_timeout_seconds"]
     if "dns_entry" in value:
         import capo_vpc_lattice.types.dns_entry
 
@@ -80,6 +87,8 @@ def deserialize_json(data: dict) -> CreateServiceResponse:
         out["status"] = data["status"]
     if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
+    if data.get("idleTimeoutSeconds") is not None:
+        out["idle_timeout_seconds"] = data["idleTimeoutSeconds"]
     if data.get("dnsEntry") is not None:
         import capo_vpc_lattice.types.dns_entry
 

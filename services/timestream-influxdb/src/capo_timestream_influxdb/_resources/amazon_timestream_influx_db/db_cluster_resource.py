@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.cluster_deployment_type
     import capo_timestream_influxdb.types.create_db_cluster_input
     import capo_timestream_influxdb.types.create_db_cluster_output
+    import capo_timestream_influxdb.types.db_backup_configuration_input_list
     import capo_timestream_influxdb.types.db_cluster_id
     import capo_timestream_influxdb.types.db_cluster_name
     import capo_timestream_influxdb.types.db_cluster_summary
@@ -30,6 +31,7 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.failover_mode
     import capo_timestream_influxdb.types.get_db_cluster_input
     import capo_timestream_influxdb.types.get_db_cluster_output
+    import capo_timestream_influxdb.types.kms_key_id
     import capo_timestream_influxdb.types.list_db_clusters_input
     import capo_timestream_influxdb.types.list_db_clusters_output
     import capo_timestream_influxdb.types.list_db_instances_for_cluster_input
@@ -104,6 +106,12 @@ class DbClusterResource:
         maintenance_schedule: Optional[
             "capo_timestream_influxdb.types.maintenance_schedule.MaintenanceSchedule"
         ] = None,
+        db_backup_configurations: Optional[
+            "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+        ] = None,
+        kms_key_id: Optional[
+            "capo_timestream_influxdb.types.kms_key_id.KmsKeyId"
+        ] = None,
         tags: Optional[
             "capo_timestream_influxdb.types.request_tag_map.RequestTagMap"
         ] = None,
@@ -131,6 +139,8 @@ class DbClusterResource:
             failover_mode: <p>Specifies the behavior of failure recovery when the primary node of the cluster fails.</p>
             log_delivery_configuration: <p>Configuration for sending InfluxDB engine logs to a specified S3 bucket.</p>
             maintenance_schedule: <p>Specifies the maintenance schedule for the DB cluster, including the preferred maintenance window and timezone.</p>
+            db_backup_configurations: <p>A list of backup configurations to enable automated backups for the DB cluster.</p>
+            kms_key_id: <p>The Amazon Web Services KMS key identifier to use for encryption of the DB cluster. Can be a key ID, key ARN, alias name, or alias ARN.</p>
             tags: <p>A list of key-value pairs to associate with the DB instance.</p>
 
         Raises:
@@ -193,6 +203,10 @@ class DbClusterResource:
             input_["log_delivery_configuration"] = log_delivery_configuration
         if maintenance_schedule is not None:
             input_["maintenance_schedule"] = maintenance_schedule
+        if db_backup_configurations is not None:
+            input_["db_backup_configurations"] = db_backup_configurations
+        if kms_key_id is not None:
+            input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -272,6 +286,9 @@ class DbClusterResource:
         maintenance_schedule: Optional[
             "capo_timestream_influxdb.types.maintenance_schedule.MaintenanceSchedule"
         ] = None,
+        db_backup_configurations: Optional[
+            "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+        ] = None,
     ) -> (
         "capo_timestream_influxdb.types.update_db_cluster_output.UpdateDbClusterOutput"
     ):
@@ -285,6 +302,7 @@ class DbClusterResource:
             db_instance_type: <p>Update the DB cluster to use the specified DB instance Type.</p>
             failover_mode: <p>Update the DB cluster's failover behavior.</p>
             maintenance_schedule: <p>Specifies the maintenance schedule for the DB cluster, including the preferred maintenance window and timezone.</p>
+            db_backup_configurations: <p>A list of backup configurations to update for the DB cluster.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -326,6 +344,8 @@ class DbClusterResource:
             input_["failover_mode"] = failover_mode
         if maintenance_schedule is not None:
             input_["maintenance_schedule"] = maintenance_schedule
+        if db_backup_configurations is not None:
+            input_["db_backup_configurations"] = db_backup_configurations
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -340,6 +360,7 @@ class DbClusterResource:
         db_cluster_id: "capo_timestream_influxdb.types.db_cluster_id.DbClusterId",
         *,
         config_overrides: Optional[TimestreamInfluxDBClientConfig] = None,
+        retain_automated_backups: Optional[bool] = None,
     ) -> (
         "capo_timestream_influxdb.types.delete_db_cluster_output.DeleteDbClusterOutput"
     ):
@@ -347,6 +368,7 @@ class DbClusterResource:
 
         Args:
             db_cluster_id: <p>Service-generated unique identifier of the DB cluster.</p>
+            retain_automated_backups: <p>Specifies whether to retain automated backups after the DB cluster is deleted. If set to true, automated backups are not deleted and can be restored later.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -376,6 +398,8 @@ class DbClusterResource:
         input_: capo_timestream_influxdb.types.delete_db_cluster_input.DeleteDbClusterInput = {
             "db_cluster_id": db_cluster_id
         }
+        if retain_automated_backups is not None:
+            input_["retain_automated_backups"] = retain_automated_backups
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -600,6 +624,12 @@ class AsyncDbClusterResource:
         maintenance_schedule: Optional[
             "capo_timestream_influxdb.types.maintenance_schedule.MaintenanceSchedule"
         ] = None,
+        db_backup_configurations: Optional[
+            "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+        ] = None,
+        kms_key_id: Optional[
+            "capo_timestream_influxdb.types.kms_key_id.KmsKeyId"
+        ] = None,
         tags: Optional[
             "capo_timestream_influxdb.types.request_tag_map.RequestTagMap"
         ] = None,
@@ -627,6 +657,8 @@ class AsyncDbClusterResource:
             failover_mode: <p>Specifies the behavior of failure recovery when the primary node of the cluster fails.</p>
             log_delivery_configuration: <p>Configuration for sending InfluxDB engine logs to a specified S3 bucket.</p>
             maintenance_schedule: <p>Specifies the maintenance schedule for the DB cluster, including the preferred maintenance window and timezone.</p>
+            db_backup_configurations: <p>A list of backup configurations to enable automated backups for the DB cluster.</p>
+            kms_key_id: <p>The Amazon Web Services KMS key identifier to use for encryption of the DB cluster. Can be a key ID, key ARN, alias name, or alias ARN.</p>
             tags: <p>A list of key-value pairs to associate with the DB instance.</p>
 
         Raises:
@@ -690,6 +722,10 @@ class AsyncDbClusterResource:
             input_["log_delivery_configuration"] = log_delivery_configuration
         if maintenance_schedule is not None:
             input_["maintenance_schedule"] = maintenance_schedule
+        if db_backup_configurations is not None:
+            input_["db_backup_configurations"] = db_backup_configurations
+        if kms_key_id is not None:
+            input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -770,6 +806,9 @@ class AsyncDbClusterResource:
         maintenance_schedule: Optional[
             "capo_timestream_influxdb.types.maintenance_schedule.MaintenanceSchedule"
         ] = None,
+        db_backup_configurations: Optional[
+            "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+        ] = None,
     ) -> (
         "capo_timestream_influxdb.types.update_db_cluster_output.UpdateDbClusterOutput"
     ):
@@ -783,6 +822,7 @@ class AsyncDbClusterResource:
             db_instance_type: <p>Update the DB cluster to use the specified DB instance Type.</p>
             failover_mode: <p>Update the DB cluster's failover behavior.</p>
             maintenance_schedule: <p>Specifies the maintenance schedule for the DB cluster, including the preferred maintenance window and timezone.</p>
+            db_backup_configurations: <p>A list of backup configurations to update for the DB cluster.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -825,6 +865,8 @@ class AsyncDbClusterResource:
             input_["failover_mode"] = failover_mode
         if maintenance_schedule is not None:
             input_["maintenance_schedule"] = maintenance_schedule
+        if db_backup_configurations is not None:
+            input_["db_backup_configurations"] = db_backup_configurations
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -839,6 +881,7 @@ class AsyncDbClusterResource:
         db_cluster_id: "capo_timestream_influxdb.types.db_cluster_id.DbClusterId",
         *,
         config_overrides: Optional[AsyncTimestreamInfluxDBClientConfig] = None,
+        retain_automated_backups: Optional[bool] = None,
     ) -> (
         "capo_timestream_influxdb.types.delete_db_cluster_output.DeleteDbClusterOutput"
     ):
@@ -846,6 +889,7 @@ class AsyncDbClusterResource:
 
         Args:
             db_cluster_id: <p>Service-generated unique identifier of the DB cluster.</p>
+            retain_automated_backups: <p>Specifies whether to retain automated backups after the DB cluster is deleted. If set to true, automated backups are not deleted and can be restored later.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -876,6 +920,8 @@ class AsyncDbClusterResource:
         input_: capo_timestream_influxdb.types.delete_db_cluster_input.DeleteDbClusterInput = {
             "db_cluster_id": db_cluster_id
         }
+        if retain_automated_backups is not None:
+            input_["retain_automated_backups"] = retain_automated_backups
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

@@ -8,6 +8,7 @@ from capo_connect.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_connect.types.arn
+    import capo_connect.types.evaluation_form_ai_version
     import capo_connect.types.evaluation_form_auto_evaluation_configuration
     import capo_connect.types.evaluation_form_description
     import capo_connect.types.evaluation_form_items_list
@@ -55,6 +56,10 @@ class EvaluationFormContent(TypedDict, closed=True):
         "capo_connect.types.evaluation_review_configuration.EvaluationReviewConfiguration"
     ]
     """<p>Configuration for evaluation review settings of this evaluation form content.</p>"""
+    ai_version: NotRequired[
+        "capo_connect.types.evaluation_form_ai_version.EvaluationFormAIVersion"
+    ]
+    """<p>The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -111,6 +116,8 @@ def serialize_json(value: EvaluationFormContent) -> dict:
                 value["review_configuration"]
             )
         )
+    if "ai_version" in value:
+        out["AIVersion"] = value["ai_version"]
     return out
 
 
@@ -182,4 +189,6 @@ def deserialize_json(data: dict) -> EvaluationFormContent:
                 data["ReviewConfiguration"]
             )
         )
+    if data.get("AIVersion") is not None:
+        out["ai_version"] = data["AIVersion"]
     return out

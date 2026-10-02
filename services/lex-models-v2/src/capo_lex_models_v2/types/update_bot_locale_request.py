@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_lex_models_v2.types.generative_ai_settings
     import capo_lex_models_v2.types.id
     import capo_lex_models_v2.types.locale_id
+    import capo_lex_models_v2.types.speaker_diarization_settings
     import capo_lex_models_v2.types.speech_detection_sensitivity
     import capo_lex_models_v2.types.speech_recognition_settings
     import capo_lex_models_v2.types.unified_speech_settings
@@ -55,6 +56,10 @@ class UpdateBotLocaleRequest(TypedDict, closed=True):
         "capo_lex_models_v2.types.speech_detection_sensitivity.SpeechDetectionSensitivity"
     ]
     """<p>The new sensitivity level for voice activity detection (VAD) in the bot locale. This setting helps optimize speech recognition accuracy by adjusting how the system responds to background noise during voice interactions.</p>"""
+    speaker_diarization_settings: NotRequired[
+        "capo_lex_models_v2.types.speaker_diarization_settings.SpeakerDiarizationSettings"
+    ]
+    """<p>The updated speaker diarization settings to apply to the bot locale. If you omit this field, Amazon Lex keeps the setting currently stored on the bot locale. To turn speaker diarization off, set <code>enabled</code> to <code>false</code> explicitly.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -118,6 +123,14 @@ def serialize_json(value: UpdateBotLocaleRequest) -> dict:
                 value["speech_detection_sensitivity"]
             )
         )
+    if "speaker_diarization_settings" in value:
+        import capo_lex_models_v2.types.speaker_diarization_settings
+
+        out["speakerDiarizationSettings"] = (
+            capo_lex_models_v2.types.speaker_diarization_settings.serialize_json(
+                value["speaker_diarization_settings"]
+            )
+        )
     return out
 
 
@@ -179,6 +192,14 @@ def deserialize_json(data: dict) -> UpdateBotLocaleRequest:
         out["speech_detection_sensitivity"] = (
             capo_lex_models_v2.types.speech_detection_sensitivity.deserialize_json(
                 data["speechDetectionSensitivity"]
+            )
+        )
+    if data.get("speakerDiarizationSettings") is not None:
+        import capo_lex_models_v2.types.speaker_diarization_settings
+
+        out["speaker_diarization_settings"] = (
+            capo_lex_models_v2.types.speaker_diarization_settings.deserialize_json(
+                data["speakerDiarizationSettings"]
             )
         )
     return out

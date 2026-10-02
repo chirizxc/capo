@@ -8,11 +8,15 @@ from capo_iotsitewise.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_iotsitewise.types.client_token
+    import capo_iotsitewise.types.dataset_config
     import capo_iotsitewise.types.dataset_source
+    import capo_iotsitewise.types.dataset_type_enum
+    import capo_iotsitewise.types.description
     import capo_iotsitewise.types.id
-    import capo_iotsitewise.types.restricted_description
+    import capo_iotsitewise.types.metadata
     import capo_iotsitewise.types.restricted_name
     import capo_iotsitewise.types.tag_map
+    import capo_iotsitewise.types.workspace_name
 
 
 class CreateDatasetRequest(TypedDict, closed=True):
@@ -20,10 +24,18 @@ class CreateDatasetRequest(TypedDict, closed=True):
     """<p>The ID of the dataset.</p>"""
     dataset_name: "capo_iotsitewise.types.restricted_name.RestrictedName"
     """<p>The name of the dataset.</p>"""
-    dataset_description: NotRequired[
-        "capo_iotsitewise.types.restricted_description.RestrictedDescription"
-    ]
+    dataset_description: NotRequired["capo_iotsitewise.types.description.Description"]
     """<p>A description about the dataset, and its functionality.</p>"""
+    dataset_type: NotRequired[
+        "capo_iotsitewise.types.dataset_type_enum.DatasetTypeEnum"
+    ]
+    """<p>The type of dataset: a session dataset, a curated dataset, or a connection to an external datasource.</p>"""
+    dataset_config: NotRequired["capo_iotsitewise.types.dataset_config.DatasetConfig"]
+    """<p>The configuration for the dataset.</p>"""
+    workspace_name: NotRequired["capo_iotsitewise.types.workspace_name.WorkspaceName"]
+    """<p>The name of the workspace that contains the dataset. Required for session and curated datasets. Omit this field for datasets that connect to an external datasource.</p>"""
+    metadata: NotRequired["capo_iotsitewise.types.metadata.Metadata"]
+    """<p>The metadata for the dataset, provided as key-value pairs.</p>"""
     dataset_source: "capo_iotsitewise.types.dataset_source.DatasetSource"
     """<p>The data source for the dataset.</p>"""
     client_token: NotRequired["capo_iotsitewise.types.client_token.ClientToken"]
@@ -40,6 +52,26 @@ def serialize_json(value: CreateDatasetRequest) -> dict:
     out["datasetName"] = value["dataset_name"]
     if "dataset_description" in value:
         out["datasetDescription"] = value["dataset_description"]
+    if "dataset_type" in value:
+        import capo_iotsitewise.types.dataset_type_enum
+
+        out["datasetType"] = capo_iotsitewise.types.dataset_type_enum.serialize_json(
+            value["dataset_type"]
+        )
+    if "dataset_config" in value:
+        import capo_iotsitewise.types.dataset_config
+
+        out["datasetConfig"] = capo_iotsitewise.types.dataset_config.serialize_json(
+            value["dataset_config"]
+        )
+    if "workspace_name" in value:
+        out["workspaceName"] = value["workspace_name"]
+    if "metadata" in value:
+        import capo_iotsitewise.types.metadata
+
+        out["metadata"] = capo_iotsitewise.types.metadata.serialize_json(
+            value["metadata"]
+        )
     import capo_iotsitewise.types.dataset_source
 
     out["datasetSource"] = capo_iotsitewise.types.dataset_source.serialize_json(
@@ -64,6 +96,26 @@ def deserialize_json(data: dict) -> CreateDatasetRequest:
         raise DeserializationError("CreateDatasetRequest.dataset_name required")
     if data.get("datasetDescription") is not None:
         out["dataset_description"] = data["datasetDescription"]
+    if data.get("datasetType") is not None:
+        import capo_iotsitewise.types.dataset_type_enum
+
+        out["dataset_type"] = capo_iotsitewise.types.dataset_type_enum.deserialize_json(
+            data["datasetType"]
+        )
+    if data.get("datasetConfig") is not None:
+        import capo_iotsitewise.types.dataset_config
+
+        out["dataset_config"] = capo_iotsitewise.types.dataset_config.deserialize_json(
+            data["datasetConfig"]
+        )
+    if data.get("workspaceName") is not None:
+        out["workspace_name"] = data["workspaceName"]
+    if data.get("metadata") is not None:
+        import capo_iotsitewise.types.metadata
+
+        out["metadata"] = capo_iotsitewise.types.metadata.deserialize_json(
+            data["metadata"]
+        )
     if data.get("datasetSource") is not None:
         import capo_iotsitewise.types.dataset_source
 

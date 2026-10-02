@@ -14,6 +14,8 @@ if TYPE_CHECKING:
     import capo_mediaconnect.types.maintenance_schedule
     import capo_mediaconnect.types.maintenance_schedule_type
     import capo_mediaconnect.types.maintenance_type
+    import capo_mediaconnect.types.router_content_quality_analysis_configuration
+    import capo_mediaconnect.types.router_content_quality_analysis_type
     import capo_mediaconnect.types.router_input_arn
     import capo_mediaconnect.types.router_input_configuration
     import capo_mediaconnect.types.router_input_messages
@@ -81,6 +83,14 @@ class RouterInput(TypedDict, closed=True):
         "capo_mediaconnect.types.maintenance_schedule.MaintenanceSchedule"
     ]
     """<p>The current maintenance schedule details for this router input.</p>"""
+    content_quality_analysis_type: NotRequired[
+        "capo_mediaconnect.types.router_content_quality_analysis_type.RouterContentQualityAnalysisType"
+    ]
+    """<p>The type of content quality analysis applied to the router input.</p>"""
+    content_quality_analysis_configuration: NotRequired[
+        "capo_mediaconnect.types.router_content_quality_analysis_configuration.RouterContentQualityAnalysisConfiguration"
+    ]
+    """<p>The content quality analysis configuration for the router input.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -182,6 +192,22 @@ def serialize_json(value: RouterInput) -> dict:
         out["maintenanceSchedule"] = (
             capo_mediaconnect.types.maintenance_schedule.serialize_json(
                 value["maintenance_schedule"]
+            )
+        )
+    if "content_quality_analysis_type" in value:
+        import capo_mediaconnect.types.router_content_quality_analysis_type
+
+        out["contentQualityAnalysisType"] = (
+            capo_mediaconnect.types.router_content_quality_analysis_type.serialize_json(
+                value["content_quality_analysis_type"]
+            )
+        )
+    if "content_quality_analysis_configuration" in value:
+        import capo_mediaconnect.types.router_content_quality_analysis_configuration
+
+        out["contentQualityAnalysisConfiguration"] = (
+            capo_mediaconnect.types.router_content_quality_analysis_configuration.serialize_json(
+                value["content_quality_analysis_configuration"]
             )
         )
     return out
@@ -351,6 +377,22 @@ def deserialize_json(data: dict) -> RouterInput:
         out["maintenance_schedule"] = (
             capo_mediaconnect.types.maintenance_schedule.deserialize_json(
                 data["maintenanceSchedule"]
+            )
+        )
+    if data.get("contentQualityAnalysisType") is not None:
+        import capo_mediaconnect.types.router_content_quality_analysis_type
+
+        out["content_quality_analysis_type"] = (
+            capo_mediaconnect.types.router_content_quality_analysis_type.deserialize_json(
+                data["contentQualityAnalysisType"]
+            )
+        )
+    if data.get("contentQualityAnalysisConfiguration") is not None:
+        import capo_mediaconnect.types.router_content_quality_analysis_configuration
+
+        out["content_quality_analysis_configuration"] = (
+            capo_mediaconnect.types.router_content_quality_analysis_configuration.deserialize_json(
+                data["contentQualityAnalysisConfiguration"]
             )
         )
     return out

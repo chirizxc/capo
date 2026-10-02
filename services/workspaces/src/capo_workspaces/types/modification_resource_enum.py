@@ -7,6 +7,7 @@ ModificationResourceEnum: TypeAlias = Literal[
     "USER_VOLUME",
     "COMPUTE_TYPE",
     "PROTOCOL",
+    "NESTED_VIRTUALIZATION",
 ]
 
 

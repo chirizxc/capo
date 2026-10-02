@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_gamelift.types.container_group_definition_arn
     import capo_gamelift.types.container_group_port_mapping_list
     import capo_gamelift.types.container_group_type
+    import capo_gamelift.types.fleet_arn
     import capo_gamelift.types.fleet_id
     import capo_gamelift.types.instance_id
     import capo_gamelift.types.location_string_model
@@ -17,6 +18,8 @@ if TYPE_CHECKING:
 class DescribeContainerGroupPortMappingsOutput(TypedDict, closed=True):
     fleet_id: NotRequired["capo_gamelift.types.fleet_id.FleetId"]
     """<p>A unique identifier for the container fleet.</p>"""
+    fleet_arn: NotRequired["capo_gamelift.types.fleet_arn.FleetArn"]
+    r"""<p>The Amazon Resource Name (<a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html\">ARN</a>) that is assigned to a Amazon GameLift Servers fleet resource and uniquely identifies it. ARNs are unique across all Regions. Format is <code>arn:aws:gamelift:<region>::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>. In a GameLift fleet ARN, the resource ID matches the <code>FleetId</code> value.</p>"""
     location: NotRequired[
         "capo_gamelift.types.location_string_model.LocationStringModel"
     ]
@@ -44,6 +47,8 @@ def serialize_aws_json_1_1(value: DescribeContainerGroupPortMappingsOutput) -> d
     out: dict = {}
     if "fleet_id" in value:
         out["FleetId"] = value["fleet_id"]
+    if "fleet_arn" in value:
+        out["FleetArn"] = value["fleet_arn"]
     if "location" in value:
         out["Location"] = value["location"]
     if "container_group_definition_arn" in value:
@@ -75,6 +80,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeContainerGroupPortMappingsOu
     out: DescribeContainerGroupPortMappingsOutput = {}  # type: ignore[typeddict-item]
     if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
+    if data.get("FleetArn") is not None:
+        out["fleet_arn"] = data["FleetArn"]
     if data.get("Location") is not None:
         out["location"] = data["Location"]
     if data.get("ContainerGroupDefinitionArn") is not None:

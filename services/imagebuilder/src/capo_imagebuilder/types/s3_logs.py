@@ -12,11 +12,11 @@ class S3Logs(TypedDict, closed=True):
     s3_bucket_name: NotRequired[
         "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     ]
-    """<p>The S3 bucket in which to store the logs.</p>"""
+    """<p>The name of an existing Amazon S3 bucket where Image Builder saves build logs. The bucket isn't validated when you create or update the configuration, and Image Builder doesn't create it. The instance profile associated with this infrastructure configuration must have permission to write to the bucket.</p>"""
     s3_key_prefix: NotRequired[
         "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     ]
-    """<p>The Amazon S3 path to the bucket where the logs are stored.</p>"""
+    """<p>The Amazon S3 key prefix under which Image Builder writes build and test logs in the bucket.</p>"""
 
 
 # --- restJson1 ser/de ---

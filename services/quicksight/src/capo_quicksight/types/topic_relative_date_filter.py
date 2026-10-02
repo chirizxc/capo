@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_quicksight.types.null_filter_type
     import capo_quicksight.types.topic_relative_date_filter_function
     import capo_quicksight.types.topic_singular_filter_constant
     import capo_quicksight.types.topic_time_granularity
@@ -23,6 +24,8 @@ class TopicRelativeDateFilter(TypedDict, closed=True):
         "capo_quicksight.types.topic_singular_filter_constant.TopicSingularFilterConstant"
     ]
     """<p>The constant used in a relative date filter.</p>"""
+    null_filter: NotRequired["capo_quicksight.types.null_filter_type.NullFilterType"]
+    """<p>The <code>null</code> filter that is applied to the relative date filter.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -52,6 +55,12 @@ def serialize_json(value: TopicRelativeDateFilter) -> dict:
                 value["constant"]
             )
         )
+    if "null_filter" in value:
+        import capo_quicksight.types.null_filter_type
+
+        out["NullFilter"] = capo_quicksight.types.null_filter_type.serialize_json(
+            value["null_filter"]
+        )
     return out
 
 
@@ -80,5 +89,11 @@ def deserialize_json(data: dict) -> TopicRelativeDateFilter:
             capo_quicksight.types.topic_singular_filter_constant.deserialize_json(
                 data["Constant"]
             )
+        )
+    if data.get("NullFilter") is not None:
+        import capo_quicksight.types.null_filter_type
+
+        out["null_filter"] = capo_quicksight.types.null_filter_type.deserialize_json(
+            data["NullFilter"]
         )
     return out

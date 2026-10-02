@@ -8,11 +8,13 @@ from capo_cleanrooms.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_cleanrooms.types.additional_analyses
+    import capo_cleanrooms.types.aggregation_threshold_list
     import capo_cleanrooms.types.allowed_additional_analyses
     import capo_cleanrooms.types.allowed_analyses_list
     import capo_cleanrooms.types.allowed_analysis_provider_list
     import capo_cleanrooms.types.allowed_result_receivers
     import capo_cleanrooms.types.analysis_rule_column_list
+    import capo_cleanrooms.types.comparison_controls
     import capo_cleanrooms.types.differential_privacy_configuration
 
 
@@ -34,6 +36,14 @@ class ConsolidatedPolicyCustom(TypedDict, closed=True):
     differential_privacy: NotRequired[
         "capo_cleanrooms.types.differential_privacy_configuration.DifferentialPrivacyConfiguration"
     ]
+    aggregation_thresholds: NotRequired[
+        "capo_cleanrooms.types.aggregation_threshold_list.AggregationThresholdList"
+    ]
+    """<p> The aggregation thresholds for the consolidated policy.</p>"""
+    comparison_controls: NotRequired[
+        "capo_cleanrooms.types.comparison_controls.ComparisonControls"
+    ]
+    """<p> The comparison controls for the consolidated policy.</p>"""
     allowed_result_receivers: NotRequired[
         "capo_cleanrooms.types.allowed_result_receivers.AllowedResultReceivers"
     ]
@@ -82,6 +92,22 @@ def serialize_json(value: ConsolidatedPolicyCustom) -> dict:
         out["differentialPrivacy"] = (
             capo_cleanrooms.types.differential_privacy_configuration.serialize_json(
                 value["differential_privacy"]
+            )
+        )
+    if "aggregation_thresholds" in value:
+        import capo_cleanrooms.types.aggregation_threshold_list
+
+        out["aggregationThresholds"] = (
+            capo_cleanrooms.types.aggregation_threshold_list.serialize_json(
+                value["aggregation_thresholds"]
+            )
+        )
+    if "comparison_controls" in value:
+        import capo_cleanrooms.types.comparison_controls
+
+        out["comparisonControls"] = (
+            capo_cleanrooms.types.comparison_controls.serialize_json(
+                value["comparison_controls"]
             )
         )
     if "allowed_result_receivers" in value:
@@ -145,6 +171,22 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyCustom:
         out["differential_privacy"] = (
             capo_cleanrooms.types.differential_privacy_configuration.deserialize_json(
                 data["differentialPrivacy"]
+            )
+        )
+    if data.get("aggregationThresholds") is not None:
+        import capo_cleanrooms.types.aggregation_threshold_list
+
+        out["aggregation_thresholds"] = (
+            capo_cleanrooms.types.aggregation_threshold_list.deserialize_json(
+                data["aggregationThresholds"]
+            )
+        )
+    if data.get("comparisonControls") is not None:
+        import capo_cleanrooms.types.comparison_controls
+
+        out["comparison_controls"] = (
+            capo_cleanrooms.types.comparison_controls.deserialize_json(
+                data["comparisonControls"]
             )
         )
     if data.get("allowedResultReceivers") is not None:

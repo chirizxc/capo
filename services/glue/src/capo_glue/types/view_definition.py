@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     import capo_glue.types.last_refresh_type
     import capo_glue.types.nullable_boolean
     import capo_glue.types.refresh_seconds
+    import capo_glue.types.spark_pipeline_info_map
+    import capo_glue.types.sub_objects_statistics_list
     import capo_glue.types.table_version_id
     import capo_glue.types.view_representation_list
     import capo_glue.types.view_sub_object_version_ids_list
@@ -35,10 +37,18 @@ class ViewDefinition(TypedDict, closed=True):
         "capo_glue.types.view_sub_object_version_ids_list.ViewSubObjectVersionIdsList"
     ]
     """<p>List of the Apache Iceberg table versions referenced by the materialized view.</p>"""
+    sub_objects_statistics: NotRequired[
+        "capo_glue.types.sub_objects_statistics_list.SubObjectsStatisticsList"
+    ]
+    """<p>Statistics captured for each sub-object referenced by the materialized view as of its most recent refresh, such as the source type, Glue version ID, and the partition, file, and byte counts. Each entry describes one sub-object, identified by its source type.</p>"""
     representations: NotRequired[
         "capo_glue.types.view_representation_list.ViewRepresentationList"
     ]
     """<p>A list of representations.</p>"""
+    spark_pipeline_info: NotRequired[
+        "capo_glue.types.spark_pipeline_info_map.SparkPipelineInfoMap"
+    ]
+    """<p>A map of key-value pairs containing Spark Declarative Pipelines (SDP) information for the materialized view.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -77,12 +87,28 @@ def serialize_aws_json_1_1(value: ViewDefinition) -> dict:
                 value["sub_object_version_ids"]
             )
         )
+    if "sub_objects_statistics" in value:
+        import capo_glue.types.sub_objects_statistics_list
+
+        out["SubObjectsStatistics"] = (
+            capo_glue.types.sub_objects_statistics_list.serialize_aws_json_1_1(
+                value["sub_objects_statistics"]
+            )
+        )
     if "representations" in value:
         import capo_glue.types.view_representation_list
 
         out["Representations"] = (
             capo_glue.types.view_representation_list.serialize_aws_json_1_1(
                 value["representations"]
+            )
+        )
+    if "spark_pipeline_info" in value:
+        import capo_glue.types.spark_pipeline_info_map
+
+        out["SparkPipelineInfo"] = (
+            capo_glue.types.spark_pipeline_info_map.serialize_aws_json_1_1(
+                value["spark_pipeline_info"]
             )
         )
     return out
@@ -126,12 +152,28 @@ def deserialize_aws_json_1_1(data: dict) -> ViewDefinition:
                 data["SubObjectVersionIds"]
             )
         )
+    if data.get("SubObjectsStatistics") is not None:
+        import capo_glue.types.sub_objects_statistics_list
+
+        out["sub_objects_statistics"] = (
+            capo_glue.types.sub_objects_statistics_list.deserialize_aws_json_1_1(
+                data["SubObjectsStatistics"]
+            )
+        )
     if data.get("Representations") is not None:
         import capo_glue.types.view_representation_list
 
         out["representations"] = (
             capo_glue.types.view_representation_list.deserialize_aws_json_1_1(
                 data["Representations"]
+            )
+        )
+    if data.get("SparkPipelineInfo") is not None:
+        import capo_glue.types.spark_pipeline_info_map
+
+        out["spark_pipeline_info"] = (
+            capo_glue.types.spark_pipeline_info_map.deserialize_aws_json_1_1(
+                data["SparkPipelineInfo"]
             )
         )
     return out

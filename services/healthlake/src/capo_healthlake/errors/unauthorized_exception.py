@@ -1,0 +1,47 @@
+"""Generated from Smithy shape ``com.amazonaws.healthlake#UnauthorizedException``."""
+
+from typing_extensions import TypedDict
+
+from capo_healthlake.errors import DeserializationError, ServiceError
+
+
+class UnauthorizedException_(TypedDict, closed=True):
+    message: "str"
+
+
+# --- awsJson1_0 ser/de ---
+def serialize_aws_json_1_0(value: UnauthorizedException_) -> dict:
+    out: dict = {}
+    out["Message"] = value["message"]
+    return out
+
+
+def deserialize_aws_json_1_0(data: dict) -> UnauthorizedException_:
+    out: UnauthorizedException_ = {}  # type: ignore[typeddict-item]
+    if data.get("Message") is not None:
+        out["message"] = data["Message"]
+    else:
+        raise DeserializationError("UnauthorizedException_.message required")
+    return out
+
+
+class UnauthorizedException(ServiceError):
+    """Modeled error for Smithy shape ``com.amazonaws.healthlake#UnauthorizedException``."""
+
+    code: str | None = "UnauthorizedException"
+
+    def __init__(self, data: UnauthorizedException_, message: str | None = None):
+        super().__init__(
+            "client",
+            is_throttling_error=False,
+            is_retryable=False,
+            code="UnauthorizedException",
+            message=message,
+        )
+        self.data = data
+
+    @classmethod
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "UnauthorizedException":
+        return cls(deserialize_aws_json_1_0(data), message)

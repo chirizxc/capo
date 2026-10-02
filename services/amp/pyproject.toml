@@ -1,7 +1,7 @@
 [project]
 name = "capo-amp"
-version = "0.2.0"
-description = "Python SDK for Amp."
+version = "0.6.0"
+description = "Python SDK for AWS Amp."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
@@ -24,6 +24,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# Async file request bodies via Body.async_from_path
+anyio = ["anyio>=3.0"]
 # IAM Identity Center (SSO), assume-role and web-identity credentials providers
 sso = [
     "capo-sso>=0.2.0",

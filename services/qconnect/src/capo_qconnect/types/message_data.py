@@ -7,6 +7,7 @@ from typing_extensions import TypedDict
 from capo_qconnect.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
+    import capo_qconnect.types.json_document
     import capo_qconnect.types.text_message
     import capo_qconnect.types.tool_use_result_data
 
@@ -19,7 +20,13 @@ class _MessageData_toolUseResult(TypedDict, closed=True):
     toolUseResult: "capo_qconnect.types.tool_use_result_data.ToolUseResultData"
 
 
-MessageData: TypeAlias = _MessageData_text | _MessageData_toolUseResult
+class _MessageData_data(TypedDict, closed=True):
+    data: "capo_qconnect.types.json_document.JSONDocument"
+
+
+MessageData: TypeAlias = (
+    _MessageData_text | _MessageData_toolUseResult | _MessageData_data
+)
 
 
 # --- restJson1 ser/de ---
@@ -36,6 +43,8 @@ def serialize_json(value: MessageData) -> dict:
                 value["toolUseResult"]
             )
         }
+    elif "data" in value:
+        return {"data": value["data"]}
     else:
         raise SerializationError("MessageData: no variant present")
 
@@ -53,5 +62,7 @@ def deserialize_json(data: dict) -> MessageData:
                 data["toolUseResult"]
             )
         }
+    elif data.get("data") is not None:
+        return {"data": data["data"]}
     else:
         raise DeserializationError("MessageData: no recognized variant key")

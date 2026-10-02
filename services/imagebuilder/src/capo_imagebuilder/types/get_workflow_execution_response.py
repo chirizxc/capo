@@ -31,19 +31,19 @@ class GetWorkflowExecutionResponse(TypedDict, closed=True):
     image_build_version_arn: NotRequired[
         "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the image resource build version that the specified runtime instance of the workflow created.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image build version that owns the specified runtime instance of the workflow.</p>"""
     type: NotRequired["capo_imagebuilder.types.workflow_type.WorkflowType"]
     """<p>The type of workflow that Image Builder ran for the specified runtime instance of the workflow.</p>"""
     status: NotRequired[
         "capo_imagebuilder.types.workflow_execution_status.WorkflowExecutionStatus"
     ]
-    """<p>The current runtime status for the specified runtime instance of the workflow.</p>"""
+    """<p>The current runtime status for the specified runtime instance of the workflow. <code>COMPLETED</code>, <code>FAILED</code>, <code>ROLLBACK_COMPLETED</code>, <code>CANCELLED</code>, and <code>SKIPPED</code> are terminal states.</p>"""
     message: NotRequired[
         "capo_imagebuilder.types.workflow_execution_message.WorkflowExecutionMessage"
     ]
     """<p>The output message from the specified runtime instance of the workflow, if applicable.</p>"""
     total_step_count: "capo_imagebuilder.types.workflow_step_count.WorkflowStepCount"
-    """<p>The total number of steps in the specified runtime instance of the workflow that ran. This number should equal the sum of the step counts for steps that succeeded, were skipped, and failed.</p>"""
+    """<p>The total number of steps that the workflow document defines for this runtime instance of the workflow. Image Builder sets this count before any steps run. The sum of succeeded, skipped, and failed steps only reaches this total if every step finishes in one of those states.</p>"""
     total_steps_succeeded: (
         "capo_imagebuilder.types.workflow_step_count.WorkflowStepCount"
     )
@@ -57,7 +57,7 @@ class GetWorkflowExecutionResponse(TypedDict, closed=True):
     end_time: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
     """<p>The timestamp when the specified runtime instance of the workflow finished.</p>"""
     parallel_group: NotRequired["capo_imagebuilder.types.parallel_group.ParallelGroup"]
-    """<p>Test workflows are defined within named runtime groups. The parallel group is a named group that contains one or more test workflows.</p>"""
+    """<p>The name of the parallel group that this runtime instance of the workflow ran in, if configured. Parallel groups apply only to test workflows.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -39,7 +39,7 @@ class CreateEnvironmentInput(TypedDict, closed=True):
     environment_account_region: NotRequired["str"]
     """<p>The region of the account in which the environment is being created.</p>"""
     environment_blueprint_identifier: NotRequired["str"]
-    """<p>The ID of the blueprint with which the environment is being created.</p>"""
+    """<p>The ID of the blueprint with which the environment is being created.</p> <note> <p>This parameter is only valid for V1 domains. If provided for a V2 domain, the service returns a ValidationException.</p> </note>"""
     deployment_order: NotRequired["int"]
     """<p>The deployment order of the environment.</p>"""
     environment_configuration_id: NotRequired["str"]

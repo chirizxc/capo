@@ -27,7 +27,11 @@ def deserialize_json(data: dict) -> MedicalScribeBinaryAudioEvent:
 
 
 def serialize_event_json(value: MedicalScribeBinaryAudioEvent) -> bytes:
-    headers: dict[str, HeaderValue] = {":event-type": "binaryAudioEvent"}
+    headers: dict[str, HeaderValue] = {
+        ":message-type": "event",
+        ":event-type": "binaryAudioEvent",
+        ":content-type": "application/octet-stream",
+    }
     payload = b""
     payload = value["audio_chunk"]
     return Message(headers=headers, payload=payload).encode()

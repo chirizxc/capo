@@ -17,11 +17,11 @@ class DescribeInstancesHealthRequest(TypedDict, closed=True):
     environment_name: NotRequired[
         "capo_elastic_beanstalk.types.environment_name.EnvironmentName"
     ]
-    """<p>Specify the AWS Elastic Beanstalk environment by name.</p>"""
+    """<p>Specify the Elastic Beanstalk environment by name.</p>"""
     environment_id: NotRequired[
         "capo_elastic_beanstalk.types.environment_id.EnvironmentId"
     ]
-    """<p>Specify the AWS Elastic Beanstalk environment by ID.</p>"""
+    """<p>Specify the Elastic Beanstalk environment by ID.</p>"""
     attribute_names: NotRequired[
         "capo_elastic_beanstalk.types.instances_health_attributes.InstancesHealthAttributes"
     ]

@@ -22,6 +22,7 @@ ResourceType: TypeAlias = Literal[
     "ModelCard",
     "PipelineVersion",
     "Job",
+    "HubContent",
 ]
 
 

@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_odb.types.admin_password_source
+    import capo_odb.types.admin_password_source_configuration_input
     import capo_odb.types.autonomous_maintenance_schedule_type
     import capo_odb.types.customer_contacts
     import capo_odb.types.database_edition
@@ -124,6 +126,14 @@ class CreateAutonomousDatabaseInput(TypedDict, closed=True):
         "capo_odb.types.encryption_key_configuration_input.EncryptionKeyConfigurationInput"
     ]
     """<p>The configuration of the encryption key to use for the Autonomous Database.</p>"""
+    admin_password_source: NotRequired[
+        "capo_odb.types.admin_password_source.AdminPasswordSource"
+    ]
+    """<p>The source of the admin password for the Autonomous Database. When set to <code>CUSTOMER_MANAGED_AWS_SECRET</code>, the admin password is retrieved from an Amazon Web Services Secrets Manager secret.</p>"""
+    admin_password_source_configuration: NotRequired[
+        "capo_odb.types.admin_password_source_configuration_input.AdminPasswordSourceConfigurationInput"
+    ]
+    """<p>The configuration of the admin password source for the Autonomous Database.</p>"""
     client_token: NotRequired["capo_odb.types.general_input_string.GeneralInputString"]
     """<p>A client-provided token to ensure the idempotency of the request.</p>"""
     tags: NotRequired["capo_odb.types.request_tag_map.RequestTagMap"]
@@ -311,6 +321,22 @@ def serialize_aws_json_1_0(value: CreateAutonomousDatabaseInput) -> dict:
                 value["encryption_key_configuration"]
             )
         )
+    if "admin_password_source" in value:
+        import capo_odb.types.admin_password_source
+
+        out["adminPasswordSource"] = (
+            capo_odb.types.admin_password_source.serialize_aws_json_1_0(
+                value["admin_password_source"]
+            )
+        )
+    if "admin_password_source_configuration" in value:
+        import capo_odb.types.admin_password_source_configuration_input
+
+        out["adminPasswordSourceConfiguration"] = (
+            capo_odb.types.admin_password_source_configuration_input.serialize_aws_json_1_0(
+                value["admin_password_source_configuration"]
+            )
+        )
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
     if "tags" in value:
@@ -486,6 +512,22 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
         out["encryption_key_configuration"] = (
             capo_odb.types.encryption_key_configuration_input.deserialize_aws_json_1_0(
                 data["encryptionKeyConfiguration"]
+            )
+        )
+    if data.get("adminPasswordSource") is not None:
+        import capo_odb.types.admin_password_source
+
+        out["admin_password_source"] = (
+            capo_odb.types.admin_password_source.deserialize_aws_json_1_0(
+                data["adminPasswordSource"]
+            )
+        )
+    if data.get("adminPasswordSourceConfiguration") is not None:
+        import capo_odb.types.admin_password_source_configuration_input
+
+        out["admin_password_source_configuration"] = (
+            capo_odb.types.admin_password_source_configuration_input.deserialize_aws_json_1_0(
+                data["adminPasswordSourceConfiguration"]
             )
         )
     if data.get("clientToken") is not None:

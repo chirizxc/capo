@@ -12,6 +12,7 @@ import capo_kinesis._auth._signers
 import capo_kinesis._auth._sigv4
 import capo_kinesis._protocol.eventstream
 import capo_kinesis.errors.access_denied_exception
+import capo_kinesis.errors.dry_run_operation_exception
 import capo_kinesis.errors.internal_failure_exception
 import capo_kinesis.errors.invalid_argument_exception
 import capo_kinesis.errors.kms_access_denied_exception
@@ -28,7 +29,11 @@ import capo_kinesis.types.put_record_input
 import capo_kinesis.types.put_record_output
 from capo_kinesis._protocol.errors import parse_error_metadata_json
 from capo_kinesis._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_kinesis._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_kinesis._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_kinesis.errors import UnknownServiceError
 
 
@@ -38,6 +43,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_kinesis.errors.access_denied_exception.AccessDeniedException.from_aws_json_1_1(
+                data, message
+            )
+        case "DryRunOperationException":
+            raise capo_kinesis.errors.dry_run_operation_exception.DryRunOperationException.from_aws_json_1_1(
                 data, message
             )
         case "InternalFailureException":
@@ -144,11 +153,14 @@ def build_request(
             UseDualStack=options.use_dual_stack,
             UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            OperationType="data",
             StreamId=input_.get("stream_id"),
             StreamARN=input_.get("stream_arn"),
-            OperationType="data",
             ConsumerARN=options.consumer_arn,
             ResourceARN=options.resource_arn,
+            ChannelARN=options.channel_arn,
+            AccountId=options.account_id,
+            AccountIdEndpointMode=options.account_id_endpoint_mode,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
@@ -177,7 +189,7 @@ def put_record(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -192,7 +204,7 @@ async def async_put_record(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

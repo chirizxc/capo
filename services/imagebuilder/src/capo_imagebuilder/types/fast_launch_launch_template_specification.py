@@ -13,15 +13,15 @@ class FastLaunchLaunchTemplateSpecification(TypedDict, closed=True):
     launch_template_id: NotRequired[
         "capo_imagebuilder.types.launch_template_id.LaunchTemplateId"
     ]
-    """<p>The ID of the launch template to use for faster launching for a Windows AMI.</p>"""
+    """<p>The ID of the launch template to use for Windows fast launch for a Windows AMI.</p>"""
     launch_template_name: NotRequired[
         "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     ]
-    """<p>The name of the launch template to use for faster launching for a Windows AMI.</p>"""
+    """<p>The name of the launch template to use for Windows fast launch for a Windows AMI.</p>"""
     launch_template_version: NotRequired[
         "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     ]
-    """<p>The version of the launch template to use for faster launching for a Windows AMI.</p>"""
+    """<p>The version of the launch template to use for Windows fast launch for a Windows AMI.</p>"""
 
 
 # --- restJson1 ser/de ---

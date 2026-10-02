@@ -27,11 +27,11 @@ class MaterializedViewRefreshTaskRun(TypedDict, closed=True):
     database_name: NotRequired["capo_glue.types.database_name.DatabaseName"]
     """<p>The database where the table resides.</p>"""
     table_name: NotRequired["capo_glue.types.table_name.TableName"]
-    """<p>The name of the table for which statistics is generated.</p>"""
+    """<p>The name of the materialized view.</p>"""
     catalog_id: NotRequired["capo_glue.types.catalog_id_string.CatalogIdString"]
     """<p>The ID of the Data Catalog where the table resides. If none is supplied, the account ID is used by default.</p>"""
     role: NotRequired["capo_glue.types.role.Role"]
-    """<p>The IAM role that the service assumes to generate statistics.</p>"""
+    """<p>The IAM role that the service assumes to run the materialized view refresh task.</p>"""
     status: NotRequired[
         "capo_glue.types.materialized_view_refresh_state.MaterializedViewRefreshState"
     ]

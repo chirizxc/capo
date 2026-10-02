@@ -14,6 +14,7 @@ import capo_chime_sdk_voice._auth._sigv4
 import capo_chime_sdk_voice._protocol.eventstream
 import capo_chime_sdk_voice.errors.bad_request_exception
 import capo_chime_sdk_voice.errors.forbidden_exception
+import capo_chime_sdk_voice.errors.gone_exception
 import capo_chime_sdk_voice.errors.not_found_exception
 import capo_chime_sdk_voice.errors.service_failure_exception
 import capo_chime_sdk_voice.errors.service_unavailable_exception
@@ -27,6 +28,7 @@ from capo_chime_sdk_voice._rule_engine._endpoint_rule_set import EndpointParams,
 from capo_chime_sdk_voice._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_chime_sdk_voice.errors import UnknownServiceError
 
@@ -41,6 +43,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ForbiddenException":
             raise capo_chime_sdk_voice.errors.forbidden_exception.ForbiddenException.from_json(
+                data, message
+            )
+        case "GoneException":
+            raise capo_chime_sdk_voice.errors.gone_exception.GoneException.from_json(
                 data, message
             )
         case "NotFoundException":
@@ -155,7 +161,7 @@ def get_sip_media_application_alexa_skill_configuration(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -173,7 +179,7 @@ async def async_get_sip_media_application_alexa_skill_configuration(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

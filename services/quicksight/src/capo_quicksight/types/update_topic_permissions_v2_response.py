@@ -1,0 +1,66 @@
+"""Generated from Smithy shape ``com.amazonaws.quicksight#UpdateTopicPermissionsV2Response``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+if TYPE_CHECKING:
+    import capo_quicksight.types.arn
+    import capo_quicksight.types.resource_permission_list
+    import capo_quicksight.types.status_code
+    import capo_quicksight.types.string
+    import capo_quicksight.types.topic_id
+
+
+class UpdateTopicPermissionsV2Response(TypedDict, closed=True):
+    topic_id: NotRequired["capo_quicksight.types.topic_id.TopicId"]
+    """<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>"""
+    topic_arn: NotRequired["capo_quicksight.types.arn.Arn"]
+    """<p>The Amazon Resource Name (ARN) of the topic.</p>"""
+    permissions: NotRequired[
+        "capo_quicksight.types.resource_permission_list.ResourcePermissionList"
+    ]
+    """<p>A list of resource permissions on the topic.</p>"""
+    status: "capo_quicksight.types.status_code.StatusCode"
+    """<p>The HTTP status of the request.</p>"""
+    request_id: NotRequired["capo_quicksight.types.string.String"]
+    """<p>The Amazon Web Services request ID for this operation.</p>"""
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: UpdateTopicPermissionsV2Response) -> dict:
+    out: dict = {}
+    if "topic_id" in value:
+        out["TopicId"] = value["topic_id"]
+    if "topic_arn" in value:
+        out["TopicArn"] = value["topic_arn"]
+    if "permissions" in value:
+        import capo_quicksight.types.resource_permission_list
+
+        out["Permissions"] = (
+            capo_quicksight.types.resource_permission_list.serialize_json(
+                value["permissions"]
+            )
+        )
+    if "request_id" in value:
+        out["RequestId"] = value["request_id"]
+    return out
+
+
+def deserialize_json(data: dict) -> UpdateTopicPermissionsV2Response:
+    out: UpdateTopicPermissionsV2Response = {}  # type: ignore[typeddict-item]
+    if data.get("TopicId") is not None:
+        out["topic_id"] = data["TopicId"]
+    if data.get("TopicArn") is not None:
+        out["topic_arn"] = data["TopicArn"]
+    if data.get("Permissions") is not None:
+        import capo_quicksight.types.resource_permission_list
+
+        out["permissions"] = (
+            capo_quicksight.types.resource_permission_list.deserialize_json(
+                data["Permissions"]
+            )
+        )
+    if data.get("RequestId") is not None:
+        out["request_id"] = data["RequestId"]
+    return out

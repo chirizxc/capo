@@ -23,9 +23,7 @@ class CreateSipRuleRequest(TypedDict, closed=True):
     """<p>If <code>TriggerType</code> is <code>RequestUriHostname</code>, the value can be the outbound host name of a Voice Connector. If <code>TriggerType</code> is <code>ToPhoneNumber</code>, the value can be a customer-owned phone number in the E164 format. The <code>SipMediaApplication</code> specified in the <code>SipRule</code> is triggered if the request URI in an incoming SIP request matches the <code>RequestUriHostname</code>, or if the <code>To</code> header in the incoming SIP request matches the <code>ToPhoneNumber</code> value.</p>"""
     disabled: NotRequired["capo_chime_sdk_voice.types.nullable_boolean.NullableBoolean"]
     """<p>Disables or enables a SIP rule. You must disable SIP rules before you can delete them.</p>"""
-    target_applications: NotRequired[
-        "capo_chime_sdk_voice.types.sip_rule_target_application_list.SipRuleTargetApplicationList"
-    ]
+    target_applications: "capo_chime_sdk_voice.types.sip_rule_target_application_list.SipRuleTargetApplicationList"
     """<p>List of SIP media applications, with priority and AWS Region. Only one SIP application per AWS Region can be used.</p>"""
 
 
@@ -43,14 +41,13 @@ def serialize_json(value: CreateSipRuleRequest) -> dict:
     out["TriggerValue"] = value["trigger_value"]
     if "disabled" in value:
         out["Disabled"] = value["disabled"]
-    if "target_applications" in value:
-        import capo_chime_sdk_voice.types.sip_rule_target_application_list
+    import capo_chime_sdk_voice.types.sip_rule_target_application_list
 
-        out["TargetApplications"] = (
-            capo_chime_sdk_voice.types.sip_rule_target_application_list.serialize_json(
-                value["target_applications"]
-            )
+    out["TargetApplications"] = (
+        capo_chime_sdk_voice.types.sip_rule_target_application_list.serialize_json(
+            value["target_applications"]
         )
+    )
     return out
 
 
@@ -84,4 +81,6 @@ def deserialize_json(data: dict) -> CreateSipRuleRequest:
                 data["TargetApplications"]
             )
         )
+    else:
+        raise DeserializationError("CreateSipRuleRequest.target_applications required")
     return out

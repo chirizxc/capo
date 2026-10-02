@@ -8,6 +8,7 @@ from capo_healthlake.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_healthlake.types.analytics_configuration
+    import capo_healthlake.types.backup_configuration
     import capo_healthlake.types.datastore_id
     import capo_healthlake.types.datastore_name
     import capo_healthlake.types.identity_provider_configuration
@@ -17,25 +18,29 @@ if TYPE_CHECKING:
 
 class UpdateFHIRDatastoreRequest(TypedDict, closed=True):
     datastore_id: "capo_healthlake.types.datastore_id.DatastoreId"
-    """<para>The data store identifier.</para>"""
+    """<p>The data store identifier.</p>"""
     datastore_name: NotRequired["capo_healthlake.types.datastore_name.DatastoreName"]
-    """<para>The data store name.</para>"""
+    """<p>The data store name.</p>"""
     analytics_configuration: NotRequired[
         "capo_healthlake.types.analytics_configuration.AnalyticsConfiguration"
     ]
-    """<para>The analytics configuration for the data store.</para>"""
+    """<p>The analytics configuration for the data store.</p>"""
     nlp_configuration: NotRequired[
         "capo_healthlake.types.nlp_configuration.NlpConfiguration"
     ]
-    """<para>The NLP configuration for the data store.</para>"""
+    """<p>The natural language processing (NLP) configuration for the data store.</p>"""
     profile_configuration: NotRequired[
         "capo_healthlake.types.profile_configuration.ProfileConfiguration"
     ]
-    """<para>The profile configuration for the data store.</para>"""
+    """<p>The profile configuration for the data store.</p>"""
     identity_provider_configuration: NotRequired[
         "capo_healthlake.types.identity_provider_configuration.IdentityProviderConfiguration"
     ]
-    """<para>The identity provider configuration for the data store.</para>"""
+    """<p>The identity provider configuration for the data store.</p>"""
+    backup_configuration: NotRequired[
+        "capo_healthlake.types.backup_configuration.BackupConfiguration"
+    ]
+    """The backup configuration for the data store."""
 
 
 # --- awsJson1_0 ser/de ---
@@ -74,6 +79,14 @@ def serialize_aws_json_1_0(value: UpdateFHIRDatastoreRequest) -> dict:
         out["IdentityProviderConfiguration"] = (
             capo_healthlake.types.identity_provider_configuration.serialize_aws_json_1_0(
                 value["identity_provider_configuration"]
+            )
+        )
+    if "backup_configuration" in value:
+        import capo_healthlake.types.backup_configuration
+
+        out["BackupConfiguration"] = (
+            capo_healthlake.types.backup_configuration.serialize_aws_json_1_0(
+                value["backup_configuration"]
             )
         )
     return out
@@ -117,6 +130,14 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateFHIRDatastoreRequest:
         out["identity_provider_configuration"] = (
             capo_healthlake.types.identity_provider_configuration.deserialize_aws_json_1_0(
                 data["IdentityProviderConfiguration"]
+            )
+        )
+    if data.get("BackupConfiguration") is not None:
+        import capo_healthlake.types.backup_configuration
+
+        out["backup_configuration"] = (
+            capo_healthlake.types.backup_configuration.deserialize_aws_json_1_0(
+                data["BackupConfiguration"]
             )
         )
     return out

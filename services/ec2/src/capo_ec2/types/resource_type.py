@@ -116,6 +116,7 @@ ResourceType: TypeAlias = Literal[
     "ipam-pool-allocation",
     "capacity-reservation-cancellation-quote",
     "application-status-check",
+    "capacity-reservation-modification-quote",
 ]
 
 

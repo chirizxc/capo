@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     import capo_auto_scaling.types.load_balancer_names
     import capo_auto_scaling.types.max_instance_lifetime
     import capo_auto_scaling.types.mixed_instances_policy
+    import capo_auto_scaling.types.operator
     import capo_auto_scaling.types.resource_name
     import capo_auto_scaling.types.skip_zonal_shift_validation
     import capo_auto_scaling.types.tags
@@ -57,7 +58,7 @@ class CreateAutoScalingGroupType(TypedDict, closed=True):
     mixed_instances_policy: NotRequired[
         "capo_auto_scaling.types.mixed_instances_policy.MixedInstancesPolicy"
     ]
-    r"""<p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"""
+    r"""<p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. To learn how to prioritize multiple capacity types, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/use-distribution-segments.html\">Use Distribution Segments to target multiple capacity types</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"""
     instance_id: NotRequired[
         "capo_auto_scaling.types.xml_string_max_len19.XmlStringMaxLen19"
     ]
@@ -176,6 +177,8 @@ class CreateAutoScalingGroupType(TypedDict, closed=True):
         "capo_auto_scaling.types.instance_lifecycle_policy.InstanceLifecyclePolicy"
     ]
     r"""<p> The instance lifecycle policy for the Auto Scaling group. This policy controls instance behavior when an instance transitions through its lifecycle states. Configure retention triggers to specify when instances should move to a <code>Retained</code> state instead of automatic termination. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-lifecycle-policy.html\"> Control instance retention with instance lifecycle policies</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p> <note> <p>Instances in a Retained state will continue to incur standard EC2 charges until terminated.</p> </note>"""
+    operator: NotRequired["capo_auto_scaling.types.operator.Operator"]
+    """<p>The entity that manages the Auto Scaling group. If you specify this parameter, Amazon EC2 Auto Scaling passes the operator identity to EC2 for instance launches and only allows the designated operator to make changes to the Auto Scaling group. All mutating API calls from non-operator callers are rejected with an <code>AccessDenied</code> exception.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -368,6 +371,12 @@ def serialize_query(
             value["instance_lifecycle_policy"],
             pairs,
             f"{key_prefix}InstanceLifecyclePolicy",
+        )
+    if "operator" in value:
+        import capo_auto_scaling.types.operator
+
+        capo_auto_scaling.types.operator.serialize_query(
+            value["operator"], pairs, f"{key_prefix}Operator"
         )
 
 
@@ -585,5 +594,12 @@ def deserialize_query(el: Element) -> CreateAutoScalingGroupType:
             capo_auto_scaling.types.instance_lifecycle_policy.deserialize_query(
                 child_instance_lifecycle_policy
             )
+        )
+    child_operator = el.find("Operator")
+    if child_operator is not None:
+        import capo_auto_scaling.types.operator
+
+        out["operator"] = capo_auto_scaling.types.operator.deserialize_query(
+            child_operator
         )
     return out

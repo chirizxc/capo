@@ -14,6 +14,7 @@ import capo_direct_connect._protocol.eventstream
 import capo_direct_connect.errors.direct_connect_client_exception
 import capo_direct_connect.errors.direct_connect_server_exception
 import capo_direct_connect.errors.duplicate_tag_keys_exception
+import capo_direct_connect.errors.limit_exceeded_exception
 import capo_direct_connect.errors.too_many_tags_exception
 import capo_direct_connect.types.allocate_transit_virtual_interface_request
 import capo_direct_connect.types.allocate_transit_virtual_interface_result
@@ -24,6 +25,7 @@ from capo_direct_connect._rule_engine._endpoint_rule_set import EndpointParams, 
 from capo_direct_connect._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_direct_connect.errors import UnknownServiceError
 
@@ -42,6 +44,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "DuplicateTagKeysException":
             raise capo_direct_connect.errors.duplicate_tag_keys_exception.DuplicateTagKeysException.from_aws_json_1_1(
+                data, message
+            )
+        case "LimitExceededException":
+            raise capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException.from_aws_json_1_1(
                 data, message
             )
         case "TooManyTagsException":
@@ -141,7 +147,7 @@ def allocate_transit_virtual_interface(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -159,7 +165,7 @@ async def async_allocate_transit_virtual_interface(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

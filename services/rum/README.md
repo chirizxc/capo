@@ -19,6 +19,21 @@ async def main():
         print(response["resource_arn"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_rum import AsyncRUMClient
+
+
+async def main():
+    async with AsyncRUMClient() as rum:
+        # Example: paginate over list_app_monitors
+        async for item in rum.iter_list_app_monitors():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class NlpConfiguration(TypedDict, closed=True):
     status: NotRequired["capo_healthlake.types.nlp_status.NlpStatus"]
-    """<para>The status of the NLP configuration.</para>"""
+    """<p>The status of the NLP configuration.</p>"""
 
 
 # --- awsJson1_0 ser/de ---

@@ -170,10 +170,10 @@ class AsyncRDSDataClient:
 
         Raises:
             capo_rds_data.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
-            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. (This error only appears in calls from Aurora Serverless v1 databases.)</p>
+            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. This exception is deprecated.</p>
             capo_rds_data.errors.database_error_exception.DatabaseErrorException: <p>There was an error in processing the SQL statement.</p>
             capo_rds_data.errors.database_not_found_exception.DatabaseNotFoundException: <p>The DB cluster doesn't have a DB instance.</p>
-            capo_rds_data.errors.database_resuming_exception.DatabaseResumingException: <p>A request was cancelled because the Aurora Serverless v2 DB instance was paused. The Data API request automatically resumes the DB instance. Wait a few seconds and try again.</p>
+            capo_rds_data.errors.database_resuming_exception.DatabaseResumingException: <p>A request was cancelled because the Aurora Serverless DB instance was paused. The Data API request automatically resumes the DB instance. Wait a few seconds and try again.</p>
             capo_rds_data.errors.database_unavailable_exception.DatabaseUnavailableException: <p>The writer instance in the DB cluster isn't available.</p>
             capo_rds_data.errors.forbidden_exception.ForbiddenException: <p>There are insufficient privileges to make the call.</p>
             capo_rds_data.errors.http_endpoint_not_enabled_exception.HttpEndpointNotEnabledException: <p>The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.</p>
@@ -244,10 +244,10 @@ class AsyncRDSDataClient:
 
         Raises:
             capo_rds_data.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
-            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. (This error only appears in calls from Aurora Serverless v1 databases.)</p>
+            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. This exception is deprecated.</p>
             capo_rds_data.errors.database_error_exception.DatabaseErrorException: <p>There was an error in processing the SQL statement.</p>
             capo_rds_data.errors.database_not_found_exception.DatabaseNotFoundException: <p>The DB cluster doesn't have a DB instance.</p>
-            capo_rds_data.errors.database_resuming_exception.DatabaseResumingException: <p>A request was cancelled because the Aurora Serverless v2 DB instance was paused. The Data API request automatically resumes the DB instance. Wait a few seconds and try again.</p>
+            capo_rds_data.errors.database_resuming_exception.DatabaseResumingException: <p>A request was cancelled because the Aurora Serverless DB instance was paused. The Data API request automatically resumes the DB instance. Wait a few seconds and try again.</p>
             capo_rds_data.errors.database_unavailable_exception.DatabaseUnavailableException: <p>The writer instance in the DB cluster isn't available.</p>
             capo_rds_data.errors.forbidden_exception.ForbiddenException: <p>There are insufficient privileges to make the call.</p>
             capo_rds_data.errors.http_endpoint_not_enabled_exception.HttpEndpointNotEnabledException: <p>The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.</p>
@@ -311,7 +311,7 @@ class AsyncRDSDataClient:
 
         Raises:
             capo_rds_data.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
-            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. (This error only appears in calls from Aurora Serverless v1 databases.)</p>
+            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. This exception is deprecated.</p>
             capo_rds_data.errors.database_error_exception.DatabaseErrorException: <p>There was an error in processing the SQL statement.</p>
             capo_rds_data.errors.database_not_found_exception.DatabaseNotFoundException: <p>The DB cluster doesn't have a DB instance.</p>
             capo_rds_data.errors.database_unavailable_exception.DatabaseUnavailableException: <p>The writer instance in the DB cluster isn't available.</p>
@@ -368,7 +368,7 @@ class AsyncRDSDataClient:
         database: Optional["capo_rds_data.types.db_name.DbName"] = None,
         schema: Optional["capo_rds_data.types.db_name.DbName"] = None,
     ) -> "capo_rds_data.types.execute_sql_response.ExecuteSqlResponse":
-        r"""<p>Runs one or more SQL statements.</p> <note> <p>This operation isn't supported for Aurora Serverless v2 and provisioned DB clusters. For Aurora Serverless v1 DB clusters, the operation is deprecated. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation.</p> </note>
+        r"""<p>Runs one or more SQL statements.</p> <note> <p>This operation is deprecated. Please use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation.</p> </note>
 
         Args:
             db_cluster_or_instance_arn: <p>The ARN of the Aurora Serverless DB cluster.</p>
@@ -379,7 +379,7 @@ class AsyncRDSDataClient:
 
         Raises:
             capo_rds_data.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
-            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. (This error only appears in calls from Aurora Serverless v1 databases.)</p>
+            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. This exception is deprecated.</p>
             capo_rds_data.errors.forbidden_exception.ForbiddenException: <p>There are insufficient privileges to make the call.</p>
             capo_rds_data.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal error occurred.</p>
             capo_rds_data.errors.service_unavailable_error.ServiceUnavailableError: <p>The service specified by the <code>resourceArn</code> parameter isn't available.</p>
@@ -459,10 +459,10 @@ class AsyncRDSDataClient:
 
         Raises:
             capo_rds_data.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
-            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. (This error only appears in calls from Aurora Serverless v1 databases.)</p>
+            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. This exception is deprecated.</p>
             capo_rds_data.errors.database_error_exception.DatabaseErrorException: <p>There was an error in processing the SQL statement.</p>
             capo_rds_data.errors.database_not_found_exception.DatabaseNotFoundException: <p>The DB cluster doesn't have a DB instance.</p>
-            capo_rds_data.errors.database_resuming_exception.DatabaseResumingException: <p>A request was cancelled because the Aurora Serverless v2 DB instance was paused. The Data API request automatically resumes the DB instance. Wait a few seconds and try again.</p>
+            capo_rds_data.errors.database_resuming_exception.DatabaseResumingException: <p>A request was cancelled because the Aurora Serverless DB instance was paused. The Data API request automatically resumes the DB instance. Wait a few seconds and try again.</p>
             capo_rds_data.errors.database_unavailable_exception.DatabaseUnavailableException: <p>The writer instance in the DB cluster isn't available.</p>
             capo_rds_data.errors.forbidden_exception.ForbiddenException: <p>There are insufficient privileges to make the call.</p>
             capo_rds_data.errors.http_endpoint_not_enabled_exception.HttpEndpointNotEnabledException: <p>The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.</p>
@@ -542,7 +542,7 @@ class AsyncRDSDataClient:
 
         Raises:
             capo_rds_data.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
-            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. (This error only appears in calls from Aurora Serverless v1 databases.)</p>
+            capo_rds_data.errors.bad_request_exception.BadRequestException: <p>There is an error in the call or in a SQL statement. This exception is deprecated.</p>
             capo_rds_data.errors.database_error_exception.DatabaseErrorException: <p>There was an error in processing the SQL statement.</p>
             capo_rds_data.errors.database_not_found_exception.DatabaseNotFoundException: <p>The DB cluster doesn't have a DB instance.</p>
             capo_rds_data.errors.database_unavailable_exception.DatabaseUnavailableException: <p>The writer instance in the DB cluster isn't available.</p>

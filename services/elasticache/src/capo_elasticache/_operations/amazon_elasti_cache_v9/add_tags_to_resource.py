@@ -15,7 +15,9 @@ import capo_elasticache.errors.cache_cluster_not_found_fault
 import capo_elasticache.errors.cache_parameter_group_not_found_fault
 import capo_elasticache.errors.cache_security_group_not_found_fault
 import capo_elasticache.errors.cache_subnet_group_not_found_fault
+import capo_elasticache.errors.global_replication_group_not_found_fault
 import capo_elasticache.errors.invalid_arn_fault
+import capo_elasticache.errors.invalid_parameter_value_exception
 import capo_elasticache.errors.invalid_replication_group_state_fault
 import capo_elasticache.errors.invalid_serverless_cache_snapshot_state_fault
 import capo_elasticache.errors.invalid_serverless_cache_state_fault
@@ -33,7 +35,11 @@ import capo_elasticache.types.tag_list_message
 from capo_elasticache._protocol.errors import find_error_element, parse_error_metadata
 from capo_elasticache._protocol.xml import fromstring
 from capo_elasticache._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_elasticache._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_elasticache._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_elasticache.errors import UnknownServiceError
 
 
@@ -58,8 +64,16 @@ def handle_error(response: zapros.Response) -> Never:
             raise capo_elasticache.errors.cache_subnet_group_not_found_fault.CacheSubnetGroupNotFoundFault.from_query(
                 error_el, message
             )
+        case "GlobalReplicationGroupNotFoundFault":
+            raise capo_elasticache.errors.global_replication_group_not_found_fault.GlobalReplicationGroupNotFoundFault.from_query(
+                error_el, message
+            )
         case "InvalidARN":
             raise capo_elasticache.errors.invalid_arn_fault.InvalidARNFault.from_query(
+                error_el, message
+            )
+        case "InvalidParameterValue":
+            raise capo_elasticache.errors.invalid_parameter_value_exception.InvalidParameterValueException.from_query(
                 error_el, message
             )
         case "InvalidReplicationGroupState":
@@ -204,7 +218,7 @@ def add_tags_to_resource(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -219,7 +233,7 @@ async def async_add_tags_to_resource(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

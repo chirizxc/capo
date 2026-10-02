@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_partnercentral_channel import AsyncPartnerCentralChannelClient
+
+
+async def main():
+    async with AsyncPartnerCentralChannelClient() as partner_central_channel:
+        # Example: paginate over list_channel_handshakes
+        async for item in partner_central_channel.iter_list_channel_handshakes():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

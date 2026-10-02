@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_pca_connector_scep import AsyncPcaConnectorScepClient
+
+
+async def main():
+    async with AsyncPcaConnectorScepClient() as pca_connector_scep:
+        # Example: paginate over list_challenge_metadata
+        async for item in pca_connector_scep.iter_list_challenge_metadata():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

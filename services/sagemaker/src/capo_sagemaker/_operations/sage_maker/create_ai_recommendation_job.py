@@ -14,6 +14,7 @@ import capo_sagemaker._protocol.eventstream
 import capo_sagemaker.errors.resource_in_use
 import capo_sagemaker.errors.resource_limit_exceeded
 import capo_sagemaker.errors.resource_not_found
+import capo_sagemaker.types.ai_adapter_source
 import capo_sagemaker.types.ai_model_source
 import capo_sagemaker.types.ai_recommendation_compute_spec
 import capo_sagemaker.types.ai_recommendation_inference_specification
@@ -24,7 +25,11 @@ import capo_sagemaker.types.create_ai_recommendation_job_response
 import capo_sagemaker.types.tag_list
 from capo_sagemaker._protocol.errors import parse_error_metadata_json
 from capo_sagemaker._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_sagemaker._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_sagemaker._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_sagemaker.errors import UnknownServiceError
 
 
@@ -137,7 +142,7 @@ def create_ai_recommendation_job(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -155,7 +160,7 @@ async def async_create_ai_recommendation_job(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

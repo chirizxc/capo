@@ -8,6 +8,7 @@ from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_devops_agent.types.github_repo_owner_type
+    import capo_devops_agent.types.role_arn
 
 
 class GitHubConfiguration(TypedDict, closed=True):
@@ -20,6 +21,8 @@ class GitHubConfiguration(TypedDict, closed=True):
     owner_type: "capo_devops_agent.types.github_repo_owner_type.GithubRepoOwnerType"
     instance_identifier: NotRequired["str"]
     """<p>GitHub instance identifier (e.g., github.com or github.enterprise.com)</p>"""
+    runtime_role_arn: NotRequired["capo_devops_agent.types.role_arn.RoleArn"]
+    """<p>Optional role ARN that AIDevOps assumes at runtime for automatic verification testing and VPC connectivity on this association.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -35,6 +38,8 @@ def serialize_json(value: GitHubConfiguration) -> dict:
     )
     if "instance_identifier" in value:
         out["instanceIdentifier"] = value["instance_identifier"]
+    if "runtime_role_arn" in value:
+        out["runtimeRoleArn"] = value["runtime_role_arn"]
     return out
 
 
@@ -64,4 +69,6 @@ def deserialize_json(data: dict) -> GitHubConfiguration:
         raise DeserializationError("GitHubConfiguration.owner_type required")
     if data.get("instanceIdentifier") is not None:
         out["instance_identifier"] = data["instanceIdentifier"]
+    if data.get("runtimeRoleArn") is not None:
+        out["runtime_role_arn"] = data["runtimeRoleArn"]
     return out

@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_ecs.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_ecs.types.express_cpu_architecture
     import capo_ecs.types.express_gateway_container
     import capo_ecs.types.express_gateway_scaling_target
     import capo_ecs.types.express_gateway_service_network_configuration
@@ -34,12 +35,16 @@ class UpdateExpressGatewayServiceRequest(TypedDict, closed=True):
     """<p>The number of CPU units used by the task.</p>"""
     memory: NotRequired["capo_ecs.types.string.String"]
     """<p>The amount of memory (in MiB) used by the task.</p>"""
+    cpu_architecture: NotRequired[
+        "capo_ecs.types.express_cpu_architecture.ExpressCpuArchitecture"
+    ]
+    """<p>The CPU architecture that the tasks in the Express service run on. Amazon ECS applies this value to the task definition revision that it registers for the service. If you don't specify a value, the service keeps the architecture that it currently runs on.</p> <p>Valid values:</p> <ul> <li> <p> <code>X86_64</code> - The x86 64-bit architecture.</p> </li> <li> <p> <code>ARM64</code> - The 64-bit ARM architecture.</p> </li> </ul> <p>Changing the architecture starts a new deployment that replaces the running tasks. Make sure that the container image that the service uses supports the architecture that you choose. The operating system family for an Express service is always <code>LINUX</code>.</p> <p>You can't specify <code>cpuArchitecture</code> when you also specify <code>taskDefinitionArn</code>, because this value applies only to a task definition that Amazon ECS registers on your behalf.</p>"""
     scaling_target: NotRequired[
         "capo_ecs.types.express_gateway_scaling_target.ExpressGatewayScalingTarget"
     ]
     """<p>The auto-scaling configuration for the Express service.</p>"""
     task_definition_arn: NotRequired["capo_ecs.types.string.String"]
-    """<p>The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, or <code>memory</code>.</p>"""
+    """<p>The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, <code>memory</code>, or <code>cpuArchitecture</code>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -72,6 +77,14 @@ def serialize_aws_json_1_1(value: UpdateExpressGatewayServiceRequest) -> dict:
         out["cpu"] = value["cpu"]
     if "memory" in value:
         out["memory"] = value["memory"]
+    if "cpu_architecture" in value:
+        import capo_ecs.types.express_cpu_architecture
+
+        out["cpuArchitecture"] = (
+            capo_ecs.types.express_cpu_architecture.serialize_aws_json_1_1(
+                value["cpu_architecture"]
+            )
+        )
     if "scaling_target" in value:
         import capo_ecs.types.express_gateway_scaling_target
 
@@ -119,6 +132,14 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateExpressGatewayServiceRequest:
         out["cpu"] = data["cpu"]
     if data.get("memory") is not None:
         out["memory"] = data["memory"]
+    if data.get("cpuArchitecture") is not None:
+        import capo_ecs.types.express_cpu_architecture
+
+        out["cpu_architecture"] = (
+            capo_ecs.types.express_cpu_architecture.deserialize_aws_json_1_1(
+                data["cpuArchitecture"]
+            )
+        )
     if data.get("scalingTarget") is not None:
         import capo_ecs.types.express_gateway_scaling_target
 

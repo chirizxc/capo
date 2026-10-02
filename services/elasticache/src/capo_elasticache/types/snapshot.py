@@ -87,7 +87,7 @@ class Snapshot(TypedDict, closed=True):
     ]
     r"""<p>Enables data tiering. Data tiering is only supported for replication groups using the r6gd node type. This parameter must be set to true when using r6gd nodes. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/data-tiering.html\">Data tiering</a>.</p>"""
     durability: NotRequired["capo_elasticache.types.durability.Durability"]
-    r"""<p>The durability setting of the cluster when the snapshot was taken. When restoring from this snapshot, the cluster uses this durability setting unless overridden in the restore request. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Durability.html\">Durability</a>.</p>"""
+    r"""<p>The durability setting of the cluster when the snapshot was taken. When restoring from this snapshot, the cluster uses this durability setting unless overridden in the restore request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/durability.html\">Durability</a>.</p>"""
 
 
 # --- awsQuery ser/de ---

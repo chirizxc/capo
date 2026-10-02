@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.on_behalf_of_token_exchange_config_type
     import capo_bedrock_agentcore_control.types.private_endpoint
     import capo_bedrock_agentcore_control.types.private_endpoint_overrides
+    import capo_bedrock_agentcore_control.types.private_key_jwt_config
     import capo_bedrock_agentcore_control.types.secret_reference
     import capo_bedrock_agentcore_control.types.secret_source_type
 
@@ -30,11 +31,11 @@ class CustomOauth2ProviderConfigInput(TypedDict, closed=True):
     client_secret_config: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_reference.SecretReference"
     ]
-    """<p>A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when <code>clientSecretSource</code> is set to <code>EXTERNAL</code>.</p>"""
+    """<p>A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when <code>clientSecretSource</code> is set to <code>EXTERNAL</code>.</p>"""
     client_secret_source: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_source_type.SecretSourceType"
     ]
-    """<p>The source type of the client secret. Use <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if you manage the secret yourself in AWS Secrets Manager.</p>"""
+    """<p>The source type of the client secret. Use <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if you manage the secret yourself in Amazon Web Services Secrets Manager.</p>"""
     on_behalf_of_token_exchange_config: NotRequired[
         "capo_bedrock_agentcore_control.types.on_behalf_of_token_exchange_config_type.OnBehalfOfTokenExchangeConfigType"
     ]
@@ -43,6 +44,10 @@ class CustomOauth2ProviderConfigInput(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.client_authentication_method_type.ClientAuthenticationMethodType"
     ]
     """<p>The client authentication method to use when authenticating with the token endpoint.</p>"""
+    private_key_jwt_config: NotRequired[
+        "capo_bedrock_agentcore_control.types.private_key_jwt_config.PrivateKeyJwtConfig"
+    ]
+    """<p>The private_key_jwt client authentication configuration for this credential provider. When specified, the credential provider uses JWT client assertions to authenticate with the token endpoint.</p>"""
     private_endpoint: NotRequired[
         "capo_bedrock_agentcore_control.types.private_endpoint.PrivateEndpoint"
     ]
@@ -95,6 +100,14 @@ def serialize_json(value: CustomOauth2ProviderConfigInput) -> dict:
         out["clientAuthenticationMethod"] = (
             capo_bedrock_agentcore_control.types.client_authentication_method_type.serialize_json(
                 value["client_authentication_method"]
+            )
+        )
+    if "private_key_jwt_config" in value:
+        import capo_bedrock_agentcore_control.types.private_key_jwt_config
+
+        out["privateKeyJwtConfig"] = (
+            capo_bedrock_agentcore_control.types.private_key_jwt_config.serialize_json(
+                value["private_key_jwt_config"]
             )
         )
     if "private_endpoint" in value:
@@ -168,6 +181,14 @@ def deserialize_json(data: dict) -> CustomOauth2ProviderConfigInput:
         out["client_authentication_method"] = (
             capo_bedrock_agentcore_control.types.client_authentication_method_type.deserialize_json(
                 data["clientAuthenticationMethod"]
+            )
+        )
+    if data.get("privateKeyJwtConfig") is not None:
+        import capo_bedrock_agentcore_control.types.private_key_jwt_config
+
+        out["private_key_jwt_config"] = (
+            capo_bedrock_agentcore_control.types.private_key_jwt_config.deserialize_json(
+                data["privateKeyJwtConfig"]
             )
         )
     if data.get("privateEndpoint") is not None:

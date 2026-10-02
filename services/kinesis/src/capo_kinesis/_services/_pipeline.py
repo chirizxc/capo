@@ -2,20 +2,25 @@ from __future__ import annotations
 
 import random
 import time
-from collections.abc import Sequence
+from collections.abc import AsyncIterator, Iterator, Sequence
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Awaitable, Callable, Generic, TypeVar
+from typing import TYPE_CHECKING, Awaitable, Callable, Generic, TypeVar, cast
 
+from typing_extensions import Never
 from zapros import (
     AsyncClient,
     Client,
     ConnectionError,
+    ConnectTimeoutError,
+    PoolTimeoutError,
     Response,
     SSLError,
     TimeoutError,
 )
 
 from capo_kinesis._async import anysleep
+from capo_kinesis._body import Body
+from capo_kinesis._iter import StaticAnyIterator
 from capo_kinesis.errors import ServiceError
 
 if TYPE_CHECKING:
@@ -33,11 +38,14 @@ class OperationOptions:
     use_fips: bool | None = None
     region: str | None = None
     endpoint: str | None = None
+    operation_type: str | None = None
     stream_id: str | None = None
     stream_arn: str | None = None
-    operation_type: str | None = None
     consumer_arn: str | None = None
     resource_arn: str | None = None
+    channel_arn: str | None = None
+    account_id: str | None = None
+    account_id_endpoint_mode: str | None = None
     retry_max_attempts: int | None = None
     credentials_provider: IdentityProvider[Credentials] | None = None
 
@@ -49,11 +57,14 @@ class AsyncOperationOptions:
     use_fips: bool | None = None
     region: str | None = None
     endpoint: str | None = None
+    operation_type: str | None = None
     stream_id: str | None = None
     stream_arn: str | None = None
-    operation_type: str | None = None
     consumer_arn: str | None = None
     resource_arn: str | None = None
+    channel_arn: str | None = None
+    account_id: str | None = None
+    account_id_endpoint_mode: str | None = None
     retry_max_attempts: int | None = None
     credentials_provider: IdentityProvider[Credentials] | None = None
 
@@ -141,6 +152,22 @@ async def aexecute_pipeline(
     return await make_chain(0)(request)
 
 
+def raise_error(response: Response, handle_error: Callable[[Response], Never]) -> Never:
+    try:
+        handle_error(response)
+    except ServiceError as exc:
+        # The response itself can say a retry is safe, even when the error is
+        # not marked @retryable: a 429, a transient 5xx or a Retry-After header.
+        if response.status == 429:
+            exc.is_throttling_error = True
+        if (
+            response.status in (429, 500, 502, 503, 504)
+            or "retry-after" in response.headers
+        ):
+            exc.is_retryable = True
+        raise
+
+
 def _is_retryable(exc: Exception) -> bool:
     if isinstance(exc, ServiceError):
         return exc.is_retryable
@@ -149,6 +176,43 @@ def _is_retryable(exc: Exception) -> bool:
     if isinstance(exc, (ConnectionError, TimeoutError)):
         return True
     return False
+
+
+def _is_pre_transmission(exc: Exception) -> bool:
+    # True when the request body was certainly not written before the error,
+    # so the same stream can be reused as-is. A bare ConnectionError is
+    # ambiguous ("cannot be established or is lost"), so it does not qualify.
+    return isinstance(exc, (ConnectTimeoutError, PoolTimeoutError))
+
+
+def _prepare_retry(inp: object) -> bool:
+    if not isinstance(inp, dict):
+        return True
+    for value in inp.values():
+        if isinstance(value, Body):
+            value = cast(Body[Iterator[bytes]], value)
+            if value.rebuild() is None:
+                return False
+        elif isinstance(value, StaticAnyIterator):
+            continue
+        elif isinstance(value, (Iterator, AsyncIterator)):
+            return False
+    return True
+
+
+async def _aprepare_retry(inp: object) -> bool:
+    if not isinstance(inp, dict):
+        return True
+    for value in inp.values():
+        if isinstance(value, Body):
+            value = cast(Body[AsyncIterator[bytes]], value)
+            if await value.arebuild() is None:
+                return False
+        elif isinstance(value, StaticAnyIterator):
+            continue
+        elif isinstance(value, (Iterator, AsyncIterator)):
+            return False
+    return True
 
 
 def _retry_delay(attempt: int, is_throttling: bool) -> float:
@@ -172,6 +236,10 @@ def retry() -> Interceptor[TInput, TOutput]:
                     raise
                 last_exc = exc
                 if attempt < max_attempts:
+                    if not _is_pre_transmission(exc) and not _prepare_retry(
+                        request.input
+                    ):
+                        raise
                     is_throttling = (
                         isinstance(exc, ServiceError) and exc.is_throttling_error
                     )
@@ -197,6 +265,10 @@ def aretry() -> AsyncInterceptor[TInput, TOutput]:
                     raise
                 last_exc = exc
                 if attempt < max_attempts:
+                    if not _is_pre_transmission(exc) and not await _aprepare_retry(
+                        request.input
+                    ):
+                        raise
                     is_throttling = (
                         isinstance(exc, ServiceError) and exc.is_throttling_error
                     )

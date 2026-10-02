@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_geo_places.types.language_tag
     import capo_geo_places.types.position
     import capo_geo_places.types.reverse_geocode_additional_feature_list
+    import capo_geo_places.types.reverse_geocode_address_names_mode
     import capo_geo_places.types.reverse_geocode_filter
     import capo_geo_places.types.reverse_geocode_intended_use
 
@@ -34,7 +35,7 @@ class ReverseGeocodeRequest(TypedDict, closed=True):
     ]
     r"""<p> A list of optional additional parameters, such as time zone that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>TimeZone</code> value. </p>"""
     language: NotRequired["capo_geo_places.types.language_tag.LanguageTag"]
-    r"""<p> A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>"""
+    r"""<p> A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>"""
     political_view: NotRequired["capo_geo_places.types.country_code.CountryCode"]
     r"""<p> The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>"""
     intended_use: NotRequired[
@@ -45,6 +46,10 @@ class ReverseGeocodeRequest(TypedDict, closed=True):
     """<p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>"""
     heading: "capo_geo_places.types.heading.Heading"
     """<p>The heading in degrees from true north in a navigation context. The heading is measured as the angle clockwise from the North direction.</p> <p>Example: North is <code>0</code> degrees, East is <code>90</code> degrees, South is <code>180</code> degrees, and West is <code>270</code> degrees.</p>"""
+    address_names_mode: NotRequired[
+        "capo_geo_places.types.reverse_geocode_address_names_mode.ReverseGeocodeAddressNamesMode"
+    ]
+    """<p>Specifies how address names are returned. When set to <code>Administrative</code>, the service returns the official administrative names for address components. <code>Administrative</code> currently applies only to addresses in the United States.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -78,7 +83,13 @@ def serialize_json(value: ReverseGeocodeRequest) -> dict:
     if "political_view" in value:
         out["PoliticalView"] = value["political_view"]
     if "intended_use" in value:
-        out["IntendedUse"] = value["intended_use"]
+        import capo_geo_places.types.reverse_geocode_intended_use
+
+        out["IntendedUse"] = (
+            capo_geo_places.types.reverse_geocode_intended_use.serialize_json(
+                value["intended_use"]
+            )
+        )
     out["Heading"] = (
         "NaN"
         if value.get("heading", 0) != value.get("heading", 0)
@@ -88,6 +99,14 @@ def serialize_json(value: ReverseGeocodeRequest) -> dict:
         if value.get("heading", 0) == float("-inf")
         else value.get("heading", 0)
     )
+    if "address_names_mode" in value:
+        import capo_geo_places.types.reverse_geocode_address_names_mode
+
+        out["AddressNamesMode"] = (
+            capo_geo_places.types.reverse_geocode_address_names_mode.serialize_json(
+                value["address_names_mode"]
+            )
+        )
     return out
 
 
@@ -124,9 +143,23 @@ def deserialize_json(data: dict) -> ReverseGeocodeRequest:
     if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
     if data.get("IntendedUse") is not None:
-        out["intended_use"] = data["IntendedUse"]
+        import capo_geo_places.types.reverse_geocode_intended_use
+
+        out["intended_use"] = (
+            capo_geo_places.types.reverse_geocode_intended_use.deserialize_json(
+                data["IntendedUse"]
+            )
+        )
     if data.get("Heading") is not None:
         out["heading"] = float(data["Heading"])
     else:
         out["heading"] = 0
+    if data.get("AddressNamesMode") is not None:
+        import capo_geo_places.types.reverse_geocode_address_names_mode
+
+        out["address_names_mode"] = (
+            capo_geo_places.types.reverse_geocode_address_names_mode.deserialize_json(
+                data["AddressNamesMode"]
+            )
+        )
     return out

@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.client_token
     import capo_bedrock_agentcore_control.types.credentials_provider_configurations
     import capo_bedrock_agentcore_control.types.payment_connector_name
+    import capo_bedrock_agentcore_control.types.payment_connector_provision_mode
     import capo_bedrock_agentcore_control.types.payment_connector_type
     import capo_bedrock_agentcore_control.types.payment_manager_id
     import capo_bedrock_agentcore_control.types.payments_description
@@ -30,6 +31,10 @@ class CreatePaymentConnectorRequest(TypedDict, closed=True):
     """<p>The type of payment connector, which determines the payment provider integration.</p>"""
     credential_provider_configurations: "capo_bedrock_agentcore_control.types.credentials_provider_configurations.CredentialsProviderConfigurations"
     """<p>The credential provider configurations for the payment connector. These configurations specify how the connector authenticates with the payment provider.</p>"""
+    provision_mode: NotRequired[
+        "capo_bedrock_agentcore_control.types.payment_connector_provision_mode.PaymentConnectorProvisionMode"
+    ]
+    """<p>The provision mode for creating the payment connector. If you don't specify a value, the default is <code>MANUAL</code>.</p> <ul> <li> <p> <code>MANUAL</code> - You provide the credential provider configurations directly.</p> </li> <li> <p> <code>QUICK_CREATE</code> - The service orchestrates OAuth consent and provisions the credential provider for you.</p> </li> </ul>"""
     client_token: NotRequired[
         "capo_bedrock_agentcore_control.types.client_token.ClientToken"
     ]
@@ -56,6 +61,14 @@ def serialize_json(value: CreatePaymentConnectorRequest) -> dict:
             value["credential_provider_configurations"]
         )
     )
+    if "provision_mode" in value:
+        import capo_bedrock_agentcore_control.types.payment_connector_provision_mode
+
+        out["provisionMode"] = (
+            capo_bedrock_agentcore_control.types.payment_connector_provision_mode.serialize_json(
+                value["provision_mode"]
+            )
+        )
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
     return out
@@ -90,6 +103,14 @@ def deserialize_json(data: dict) -> CreatePaymentConnectorRequest:
     else:
         raise DeserializationError(
             "CreatePaymentConnectorRequest.credential_provider_configurations required"
+        )
+    if data.get("provisionMode") is not None:
+        import capo_bedrock_agentcore_control.types.payment_connector_provision_mode
+
+        out["provision_mode"] = (
+            capo_bedrock_agentcore_control.types.payment_connector_provision_mode.deserialize_json(
+                data["provisionMode"]
+            )
         )
     if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]

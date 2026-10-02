@@ -7,6 +7,7 @@ from typing_extensions import TypedDict
 from capo_bedrock_agentcore.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
+    import capo_bedrock_agentcore.types.harness_skill_aws_skills_source
     import capo_bedrock_agentcore.types.harness_skill_git_source
     import capo_bedrock_agentcore.types.harness_skill_path
     import capo_bedrock_agentcore.types.harness_skill_s3_source
@@ -24,7 +25,13 @@ class _HarnessSkill_git(TypedDict, closed=True):
     git: "capo_bedrock_agentcore.types.harness_skill_git_source.HarnessSkillGitSource"
 
 
-HarnessSkill: TypeAlias = _HarnessSkill_path | _HarnessSkill_s3 | _HarnessSkill_git
+class _HarnessSkill_awsSkills(TypedDict, closed=True):
+    awsSkills: "capo_bedrock_agentcore.types.harness_skill_aws_skills_source.HarnessSkillAwsSkillsSource"
+
+
+HarnessSkill: TypeAlias = (
+    _HarnessSkill_path | _HarnessSkill_s3 | _HarnessSkill_git | _HarnessSkill_awsSkills
+)
 
 
 # --- restJson1 ser/de ---
@@ -45,6 +52,14 @@ def serialize_json(value: HarnessSkill) -> dict:
         return {
             "git": capo_bedrock_agentcore.types.harness_skill_git_source.serialize_json(
                 value["git"]
+            )
+        }
+    elif "awsSkills" in value:
+        import capo_bedrock_agentcore.types.harness_skill_aws_skills_source
+
+        return {
+            "awsSkills": capo_bedrock_agentcore.types.harness_skill_aws_skills_source.serialize_json(
+                value["awsSkills"]
             )
         }
     else:
@@ -68,6 +83,14 @@ def deserialize_json(data: dict) -> HarnessSkill:
         return {
             "git": capo_bedrock_agentcore.types.harness_skill_git_source.deserialize_json(
                 data["git"]
+            )
+        }
+    elif data.get("awsSkills") is not None:
+        import capo_bedrock_agentcore.types.harness_skill_aws_skills_source
+
+        return {
+            "awsSkills": capo_bedrock_agentcore.types.harness_skill_aws_skills_source.deserialize_json(
+                data["awsSkills"]
             )
         }
     else:

@@ -8,7 +8,9 @@ from capo_socialmessaging.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_socialmessaging.types.linked_whats_app_business_account_id
+    import capo_socialmessaging.types.meta_flow_application_id
     import capo_socialmessaging.types.meta_flow_category_list
+    import capo_socialmessaging.types.meta_flow_endpoint_uri
     import capo_socialmessaging.types.meta_flow_id
     import capo_socialmessaging.types.meta_flow_name
 
@@ -24,6 +26,14 @@ class UpdateWhatsAppFlowInput(TypedDict, closed=True):
         "capo_socialmessaging.types.meta_flow_category_list.MetaFlowCategoryList"
     ]
     """<p>The updated categories for the Flow.</p>"""
+    endpoint_uri: NotRequired[
+        "capo_socialmessaging.types.meta_flow_endpoint_uri.MetaFlowEndpointUri"
+    ]
+    """<p>The updated HTTPS endpoint for a data exchange Flow.</p>"""
+    meta_app_id: NotRequired[
+        "capo_socialmessaging.types.meta_flow_application_id.MetaFlowApplicationId"
+    ]
+    """<p>The ID of the Meta application to attach to the Flow.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -41,6 +51,10 @@ def serialize_json(value: UpdateWhatsAppFlowInput) -> dict:
                 value["categories"]
             )
         )
+    if "endpoint_uri" in value:
+        out["endpointUri"] = value["endpoint_uri"]
+    if "meta_app_id" in value:
+        out["metaAppId"] = value["meta_app_id"]
     return out
 
 
@@ -64,4 +78,8 @@ def deserialize_json(data: dict) -> UpdateWhatsAppFlowInput:
                 data["categories"]
             )
         )
+    if data.get("endpointUri") is not None:
+        out["endpoint_uri"] = data["endpointUri"]
+    if data.get("metaAppId") is not None:
+        out["meta_app_id"] = data["metaAppId"]
     return out

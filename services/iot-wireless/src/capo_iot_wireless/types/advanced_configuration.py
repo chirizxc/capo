@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class AdvancedConfiguration(TypedDict, closed=True):
     wi_fi_cellular: NotRequired["capo_iot_wireless.types.wi_fi_cellular.WiFiCellular"]
-    """Configuration for WiFi and cellular-based payloads for location estimates."""
+    """<p>Configuration for WiFi and cellular-based location estimate payloads resolved by HERE's solvers.</p>"""
 
 
 # --- restJson1 ser/de ---

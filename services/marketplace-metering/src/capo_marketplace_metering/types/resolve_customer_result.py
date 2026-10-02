@@ -15,7 +15,7 @@ class ResolveCustomerResult(TypedDict, closed=True):
     customer_identifier: NotRequired[
         "capo_marketplace_metering.types.customer_identifier.CustomerIdentifier"
     ]
-    """<p>The <code>CustomerIdentifier</code> is used to identify an individual customer in your application.</p>"""
+    """<p>The <code>CustomerIdentifier</code> is used to identify an individual customer in your application.</p> <important> <p>For new SaaS product integrations, this field is not populated. Use <code>CustomerAWSAccountId</code> and <code>LicenseArn</code> to identify customers instead.</p> </important>"""
     product_code: NotRequired[
         "capo_marketplace_metering.types.product_code.ProductCode"
     ]

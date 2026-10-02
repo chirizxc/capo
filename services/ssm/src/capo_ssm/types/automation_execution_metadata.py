@@ -64,7 +64,9 @@ class AutomationExecutionMetadata(TypedDict, closed=True):
     current_action: NotRequired["capo_ssm.types.string.String"]
     """<p>The action of the step that is currently running.</p>"""
     failure_message: NotRequired["capo_ssm.types.string.String"]
-    """<p>The list of execution outputs as defined in the Automation runbook.</p>"""
+    """<p>A message that describes a failure that occurred during the automation execution.</p>"""
+    warning_message: NotRequired["capo_ssm.types.string.String"]
+    """<p>A message that describes a non-critical issue that occurred during the automation execution.</p>"""
     target_parameter_name: NotRequired[
         "capo_ssm.types.automation_parameter_key.AutomationParameterKey"
     ]
@@ -166,6 +168,8 @@ def serialize_aws_json_1_1(value: AutomationExecutionMetadata) -> dict:
         out["CurrentAction"] = value["current_action"]
     if "failure_message" in value:
         out["FailureMessage"] = value["failure_message"]
+    if "warning_message" in value:
+        out["WarningMessage"] = value["warning_message"]
     if "target_parameter_name" in value:
         out["TargetParameterName"] = value["target_parameter_name"]
     if "targets" in value:
@@ -297,6 +301,8 @@ def deserialize_aws_json_1_1(data: dict) -> AutomationExecutionMetadata:
         out["current_action"] = data["CurrentAction"]
     if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
+    if data.get("WarningMessage") is not None:
+        out["warning_message"] = data["WarningMessage"]
     if data.get("TargetParameterName") is not None:
         out["target_parameter_name"] = data["TargetParameterName"]
     if data.get("Targets") is not None:

@@ -23,6 +23,7 @@ from capo_notifications._rule_engine._endpoint_rule_set import EndpointParams, r
 from capo_notifications._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_notifications.errors import UnknownServiceError
 
@@ -140,6 +141,13 @@ def build_request(
         params.append(("organizationalUnitId", input_["organizational_unit_id"]))
     if "related_account" in input_:
         params.append(("relatedAccount", input_["related_account"]))
+    if "include_sensitive_events" in input_:
+        params.append(
+            (
+                "includeSensitiveEvents",
+                "true" if input_["include_sensitive_events"] else "false",
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
@@ -162,7 +170,7 @@ def list_managed_notification_events(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -180,7 +188,7 @@ async def async_list_managed_notification_events(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

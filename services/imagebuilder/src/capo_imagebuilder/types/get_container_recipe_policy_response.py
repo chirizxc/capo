@@ -15,7 +15,7 @@ class GetContainerRecipePolicyResponse(TypedDict, closed=True):
     policy: NotRequired[
         "capo_imagebuilder.types.resource_policy_document.ResourcePolicyDocument"
     ]
-    """<p>The container recipe policy object that is returned.</p>"""
+    """<p>The resource policy for the container recipe, as a JSON policy document. If no policy has been applied, the response contains an empty JSON object (<code>{}</code>).</p>"""
 
 
 # --- restJson1 ser/de ---

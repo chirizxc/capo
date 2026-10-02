@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.iotsitewise#AWSIoTSiteWise``."""
 
+import datetime
 import time
 import uuid
 import warnings
@@ -42,6 +43,9 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.aggregated_value
     import capo_iotsitewise.types.alarms
     import capo_iotsitewise.types.amazon_resource_name
+    import capo_iotsitewise.types.application_id
+    import capo_iotsitewise.types.application_name
+    import capo_iotsitewise.types.application_summary
     import capo_iotsitewise.types.arn
     import capo_iotsitewise.types.asset_model_composite_model_definitions
     import capo_iotsitewise.types.asset_model_composite_model_summary
@@ -61,11 +65,18 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.asset_relationship_summary
     import capo_iotsitewise.types.asset_summary
     import capo_iotsitewise.types.associate_assets_request
+    import capo_iotsitewise.types.associate_data_segment_entries
     import capo_iotsitewise.types.associate_time_series_to_asset_property_request
     import capo_iotsitewise.types.associated_assets_summary
     import capo_iotsitewise.types.auth_mode
+    import capo_iotsitewise.types.batch_associate_data_segments_to_dataset_request
+    import capo_iotsitewise.types.batch_associate_data_segments_to_dataset_response
     import capo_iotsitewise.types.batch_associate_project_assets_request
     import capo_iotsitewise.types.batch_associate_project_assets_response
+    import capo_iotsitewise.types.batch_delete_dataset_data_segments_request
+    import capo_iotsitewise.types.batch_delete_dataset_data_segments_response
+    import capo_iotsitewise.types.batch_disassociate_data_segments_from_dataset_request
+    import capo_iotsitewise.types.batch_disassociate_data_segments_from_dataset_response
     import capo_iotsitewise.types.batch_disassociate_project_assets_request
     import capo_iotsitewise.types.batch_disassociate_project_assets_response
     import capo_iotsitewise.types.batch_get_asset_property_aggregates_entries
@@ -82,6 +93,14 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.batch_put_asset_property_value_request
     import capo_iotsitewise.types.batch_put_asset_property_value_response
     import capo_iotsitewise.types.boolean_value
+    import capo_iotsitewise.types.bulk_import_job_name
+    import capo_iotsitewise.types.cancel_enrichment_job_request
+    import capo_iotsitewise.types.cancel_enrichment_job_response
+    import capo_iotsitewise.types.cancel_pipeline_execution_request
+    import capo_iotsitewise.types.cancel_pipeline_execution_request_reason_string
+    import capo_iotsitewise.types.cancel_pipeline_execution_response
+    import capo_iotsitewise.types.cancel_query_request
+    import capo_iotsitewise.types.cancel_query_response
     import capo_iotsitewise.types.capability_configuration
     import capo_iotsitewise.types.capability_namespace
     import capo_iotsitewise.types.client_token
@@ -93,9 +112,13 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.computation_model_summary
     import capo_iotsitewise.types.computation_model_type
     import capo_iotsitewise.types.computation_model_version_filter
+    import capo_iotsitewise.types.compute_node_execution_details
+    import capo_iotsitewise.types.compute_node_list
     import capo_iotsitewise.types.conversation_id
     import capo_iotsitewise.types.create_access_policy_request
     import capo_iotsitewise.types.create_access_policy_response
+    import capo_iotsitewise.types.create_application_request
+    import capo_iotsitewise.types.create_application_response
     import capo_iotsitewise.types.create_asset_model_composite_model_request
     import capo_iotsitewise.types.create_asset_model_composite_model_response
     import capo_iotsitewise.types.create_asset_model_request
@@ -108,23 +131,41 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.create_computation_model_response
     import capo_iotsitewise.types.create_dashboard_request
     import capo_iotsitewise.types.create_dashboard_response
+    import capo_iotsitewise.types.create_dataset_export_job_request
+    import capo_iotsitewise.types.create_dataset_export_job_response
     import capo_iotsitewise.types.create_dataset_request
     import capo_iotsitewise.types.create_dataset_response
+    import capo_iotsitewise.types.create_enrichment_job_request
+    import capo_iotsitewise.types.create_enrichment_job_response
     import capo_iotsitewise.types.create_gateway_request
     import capo_iotsitewise.types.create_gateway_response
+    import capo_iotsitewise.types.create_pipeline_request
+    import capo_iotsitewise.types.create_pipeline_response
     import capo_iotsitewise.types.create_portal_request
     import capo_iotsitewise.types.create_portal_response
     import capo_iotsitewise.types.create_project_request
     import capo_iotsitewise.types.create_project_response
+    import capo_iotsitewise.types.create_task_request
+    import capo_iotsitewise.types.create_task_response
+    import capo_iotsitewise.types.create_workspace_request
+    import capo_iotsitewise.types.create_workspace_response
     import capo_iotsitewise.types.custom_id
     import capo_iotsitewise.types.dashboard_definition
     import capo_iotsitewise.types.dashboard_summary
     import capo_iotsitewise.types.data_binding_value_filter
+    import capo_iotsitewise.types.data_segment_relationship_summary
+    import capo_iotsitewise.types.data_segment_summary
+    import capo_iotsitewise.types.dataset_config
+    import capo_iotsitewise.types.dataset_export_job_filter
+    import capo_iotsitewise.types.dataset_export_job_id
     import capo_iotsitewise.types.dataset_source
     import capo_iotsitewise.types.dataset_source_type
     import capo_iotsitewise.types.dataset_summary
+    import capo_iotsitewise.types.dataset_type_enum
     import capo_iotsitewise.types.delete_access_policy_request
     import capo_iotsitewise.types.delete_access_policy_response
+    import capo_iotsitewise.types.delete_application_request
+    import capo_iotsitewise.types.delete_application_response
     import capo_iotsitewise.types.delete_asset_model_composite_model_request
     import capo_iotsitewise.types.delete_asset_model_composite_model_response
     import capo_iotsitewise.types.delete_asset_model_interface_relationship_request
@@ -137,19 +178,28 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.delete_computation_model_response
     import capo_iotsitewise.types.delete_dashboard_request
     import capo_iotsitewise.types.delete_dashboard_response
+    import capo_iotsitewise.types.delete_data_segment_entries
     import capo_iotsitewise.types.delete_dataset_request
     import capo_iotsitewise.types.delete_dataset_response
     import capo_iotsitewise.types.delete_files_after_import
     import capo_iotsitewise.types.delete_gateway_request
+    import capo_iotsitewise.types.delete_pipeline_request
+    import capo_iotsitewise.types.delete_pipeline_response
     import capo_iotsitewise.types.delete_portal_request
     import capo_iotsitewise.types.delete_portal_response
     import capo_iotsitewise.types.delete_project_request
     import capo_iotsitewise.types.delete_project_response
+    import capo_iotsitewise.types.delete_task_request
+    import capo_iotsitewise.types.delete_task_response
     import capo_iotsitewise.types.delete_time_series_request
+    import capo_iotsitewise.types.delete_workspace_request
+    import capo_iotsitewise.types.delete_workspace_response
     import capo_iotsitewise.types.describe_access_policy_request
     import capo_iotsitewise.types.describe_access_policy_response
     import capo_iotsitewise.types.describe_action_request
     import capo_iotsitewise.types.describe_action_response
+    import capo_iotsitewise.types.describe_application_request
+    import capo_iotsitewise.types.describe_application_response
     import capo_iotsitewise.types.describe_asset_composite_model_request
     import capo_iotsitewise.types.describe_asset_composite_model_response
     import capo_iotsitewise.types.describe_asset_model_composite_model_request
@@ -170,10 +220,14 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.describe_computation_model_response
     import capo_iotsitewise.types.describe_dashboard_request
     import capo_iotsitewise.types.describe_dashboard_response
+    import capo_iotsitewise.types.describe_dataset_export_job_request
+    import capo_iotsitewise.types.describe_dataset_export_job_response
     import capo_iotsitewise.types.describe_dataset_request
     import capo_iotsitewise.types.describe_dataset_response
     import capo_iotsitewise.types.describe_default_encryption_configuration_request
     import capo_iotsitewise.types.describe_default_encryption_configuration_response
+    import capo_iotsitewise.types.describe_enrichment_job_request
+    import capo_iotsitewise.types.describe_enrichment_job_response
     import capo_iotsitewise.types.describe_execution_request
     import capo_iotsitewise.types.describe_execution_response
     import capo_iotsitewise.types.describe_gateway_capability_configuration_request
@@ -182,22 +236,40 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.describe_gateway_response
     import capo_iotsitewise.types.describe_logging_options_request
     import capo_iotsitewise.types.describe_logging_options_response
+    import capo_iotsitewise.types.describe_pipeline_execution_request
+    import capo_iotsitewise.types.describe_pipeline_execution_request_max_results_integer
+    import capo_iotsitewise.types.describe_pipeline_execution_response
+    import capo_iotsitewise.types.describe_pipeline_request
+    import capo_iotsitewise.types.describe_pipeline_response
     import capo_iotsitewise.types.describe_portal_request
     import capo_iotsitewise.types.describe_portal_response
     import capo_iotsitewise.types.describe_project_request
     import capo_iotsitewise.types.describe_project_response
+    import capo_iotsitewise.types.describe_query_request
+    import capo_iotsitewise.types.describe_query_response
+    import capo_iotsitewise.types.describe_search_request
+    import capo_iotsitewise.types.describe_search_response
     import capo_iotsitewise.types.describe_storage_configuration_request
     import capo_iotsitewise.types.describe_storage_configuration_response
+    import capo_iotsitewise.types.describe_task_request
+    import capo_iotsitewise.types.describe_task_response
     import capo_iotsitewise.types.describe_time_series_request
     import capo_iotsitewise.types.describe_time_series_response
+    import capo_iotsitewise.types.describe_workspace_request
+    import capo_iotsitewise.types.describe_workspace_response
     import capo_iotsitewise.types.description
     import capo_iotsitewise.types.disallow_ingest_null_na_n
     import capo_iotsitewise.types.disassociate_assets_request
+    import capo_iotsitewise.types.disassociate_data_segment_entries
     import capo_iotsitewise.types.disassociate_time_series_from_asset_property_request
     import capo_iotsitewise.types.disassociated_data_storage_state
     import capo_iotsitewise.types.e_tag
     import capo_iotsitewise.types.email
     import capo_iotsitewise.types.encryption_type
+    import capo_iotsitewise.types.enrichment_job_configuration
+    import capo_iotsitewise.types.enrichment_job_status
+    import capo_iotsitewise.types.enrichment_job_summary
+    import capo_iotsitewise.types.environment_variables_map
     import capo_iotsitewise.types.error_report_location
     import capo_iotsitewise.types.exclude_properties
     import capo_iotsitewise.types.execute_action_request
@@ -206,9 +278,14 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.execute_query_next_token
     import capo_iotsitewise.types.execute_query_request
     import capo_iotsitewise.types.execute_query_response
+    import capo_iotsitewise.types.execution_environment_variables
+    import capo_iotsitewise.types.execution_priority
     import capo_iotsitewise.types.execution_summary
+    import capo_iotsitewise.types.export_error_report_location
+    import capo_iotsitewise.types.export_job_summary
     import capo_iotsitewise.types.external_id
     import capo_iotsitewise.types.files
+    import capo_iotsitewise.types.format_settings
     import capo_iotsitewise.types.gateway_name
     import capo_iotsitewise.types.gateway_platform
     import capo_iotsitewise.types.gateway_summary
@@ -221,8 +298,17 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.get_asset_property_value_history_response
     import capo_iotsitewise.types.get_asset_property_value_request
     import capo_iotsitewise.types.get_asset_property_value_response
+    import capo_iotsitewise.types.get_capture_data_next_token
+    import capo_iotsitewise.types.get_capture_data_request
+    import capo_iotsitewise.types.get_capture_data_response
     import capo_iotsitewise.types.get_interpolated_asset_property_values_request
     import capo_iotsitewise.types.get_interpolated_asset_property_values_response
+    import capo_iotsitewise.types.get_query_results_request
+    import capo_iotsitewise.types.get_query_results_response
+    import capo_iotsitewise.types.get_search_results_request
+    import capo_iotsitewise.types.get_search_results_request_max_results_integer
+    import capo_iotsitewise.types.get_search_results_response
+    import capo_iotsitewise.types.group_id
     import capo_iotsitewise.types.i_ds
     import capo_iotsitewise.types.iam_arn
     import capo_iotsitewise.types.id
@@ -240,11 +326,14 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.invoke_assistant_response
     import capo_iotsitewise.types.job_configuration
     import capo_iotsitewise.types.job_summary
+    import capo_iotsitewise.types.job_type
     import capo_iotsitewise.types.kms_key_id
     import capo_iotsitewise.types.list_access_policies_request
     import capo_iotsitewise.types.list_access_policies_response
     import capo_iotsitewise.types.list_actions_request
     import capo_iotsitewise.types.list_actions_response
+    import capo_iotsitewise.types.list_applications_request
+    import capo_iotsitewise.types.list_applications_response
     import capo_iotsitewise.types.list_asset_model_composite_models_request
     import capo_iotsitewise.types.list_asset_model_composite_models_response
     import capo_iotsitewise.types.list_asset_model_properties_filter
@@ -276,37 +365,71 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.list_computation_models_response
     import capo_iotsitewise.types.list_dashboards_request
     import capo_iotsitewise.types.list_dashboards_response
+    import capo_iotsitewise.types.list_dataset_data_segment_relationships_request
+    import capo_iotsitewise.types.list_dataset_data_segment_relationships_response
+    import capo_iotsitewise.types.list_dataset_data_segments_request
+    import capo_iotsitewise.types.list_dataset_data_segments_response
+    import capo_iotsitewise.types.list_dataset_export_jobs_request
+    import capo_iotsitewise.types.list_dataset_export_jobs_response
     import capo_iotsitewise.types.list_datasets_request
     import capo_iotsitewise.types.list_datasets_response
+    import capo_iotsitewise.types.list_enrichment_jobs_request
+    import capo_iotsitewise.types.list_enrichment_jobs_response
     import capo_iotsitewise.types.list_executions_request
     import capo_iotsitewise.types.list_executions_response
+    import capo_iotsitewise.types.list_export_jobs_max_results
+    import capo_iotsitewise.types.list_export_jobs_next_token
     import capo_iotsitewise.types.list_gateways_request
     import capo_iotsitewise.types.list_gateways_response
     import capo_iotsitewise.types.list_interface_relationships_request
     import capo_iotsitewise.types.list_interface_relationships_response
+    import capo_iotsitewise.types.list_pipeline_executions_request
+    import capo_iotsitewise.types.list_pipeline_executions_request_max_results_integer
+    import capo_iotsitewise.types.list_pipeline_executions_response
+    import capo_iotsitewise.types.list_pipelines_request
+    import capo_iotsitewise.types.list_pipelines_request_max_results_integer
+    import capo_iotsitewise.types.list_pipelines_response
     import capo_iotsitewise.types.list_portals_request
     import capo_iotsitewise.types.list_portals_response
     import capo_iotsitewise.types.list_project_assets_request
     import capo_iotsitewise.types.list_project_assets_response
     import capo_iotsitewise.types.list_projects_request
     import capo_iotsitewise.types.list_projects_response
+    import capo_iotsitewise.types.list_queries_request
+    import capo_iotsitewise.types.list_queries_response
+    import capo_iotsitewise.types.list_searches_filters
+    import capo_iotsitewise.types.list_searches_request
+    import capo_iotsitewise.types.list_searches_request_max_results_integer
+    import capo_iotsitewise.types.list_searches_response
     import capo_iotsitewise.types.list_tags_for_resource_request
     import capo_iotsitewise.types.list_tags_for_resource_response
+    import capo_iotsitewise.types.list_tasks_request
+    import capo_iotsitewise.types.list_tasks_request_max_results_integer
+    import capo_iotsitewise.types.list_tasks_response
     import capo_iotsitewise.types.list_time_series_request
     import capo_iotsitewise.types.list_time_series_response
     import capo_iotsitewise.types.list_time_series_type
+    import capo_iotsitewise.types.list_workspaces_request
+    import capo_iotsitewise.types.list_workspaces_response
     import capo_iotsitewise.types.logging_options
     import capo_iotsitewise.types.max_interpolated_results
     import capo_iotsitewise.types.max_results
     import capo_iotsitewise.types.message_input
+    import capo_iotsitewise.types.metadata
+    import capo_iotsitewise.types.mount_overrides
     import capo_iotsitewise.types.multi_layer_storage
     import capo_iotsitewise.types.name
     import capo_iotsitewise.types.next_token
     import capo_iotsitewise.types.offset_in_nanos
+    import capo_iotsitewise.types.pagination_token
     import capo_iotsitewise.types.permission
+    import capo_iotsitewise.types.pipeline_execution_state
+    import capo_iotsitewise.types.pipeline_execution_summary
+    import capo_iotsitewise.types.pipeline_summary
     import capo_iotsitewise.types.portal_summary
     import capo_iotsitewise.types.portal_type
     import capo_iotsitewise.types.portal_type_configuration
+    import capo_iotsitewise.types.processing_input
     import capo_iotsitewise.types.project_summary
     import capo_iotsitewise.types.property_alias
     import capo_iotsitewise.types.property_mapping_configuration
@@ -323,17 +446,39 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.put_storage_configuration_response
     import capo_iotsitewise.types.qualities
     import capo_iotsitewise.types.quality
+    import capo_iotsitewise.types.query_filter
+    import capo_iotsitewise.types.query_id
+    import capo_iotsitewise.types.query_list_next_token
+    import capo_iotsitewise.types.query_max_results
+    import capo_iotsitewise.types.query_next_token
     import capo_iotsitewise.types.query_statement
+    import capo_iotsitewise.types.query_string
+    import capo_iotsitewise.types.query_summary
     import capo_iotsitewise.types.resolution
     import capo_iotsitewise.types.resolve_to
     import capo_iotsitewise.types.resolve_to_resource_type
     import capo_iotsitewise.types.resource
+    import capo_iotsitewise.types.resource_name
     import capo_iotsitewise.types.resource_type
     import capo_iotsitewise.types.restricted_description
     import capo_iotsitewise.types.restricted_name
+    import capo_iotsitewise.types.result
     import capo_iotsitewise.types.retention_period
     import capo_iotsitewise.types.row
+    import capo_iotsitewise.types.s3_uri
+    import capo_iotsitewise.types.search_filters
+    import capo_iotsitewise.types.search_id
+    import capo_iotsitewise.types.search_query_statement
+    import capo_iotsitewise.types.search_result
+    import capo_iotsitewise.types.search_summary
+    import capo_iotsitewise.types.search_type
     import capo_iotsitewise.types.select_all
+    import capo_iotsitewise.types.start_pipeline_execution_request
+    import capo_iotsitewise.types.start_pipeline_execution_response
+    import capo_iotsitewise.types.start_query_request
+    import capo_iotsitewise.types.start_query_response
+    import capo_iotsitewise.types.start_search_request
+    import capo_iotsitewise.types.start_search_response
     import capo_iotsitewise.types.storage_type
     import capo_iotsitewise.types.tag_key_list
     import capo_iotsitewise.types.tag_map
@@ -341,8 +486,12 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.tag_resource_response
     import capo_iotsitewise.types.target_resource
     import capo_iotsitewise.types.target_resource_type
+    import capo_iotsitewise.types.task_configuration
+    import capo_iotsitewise.types.task_summary
+    import capo_iotsitewise.types.time_in_nanos
     import capo_iotsitewise.types.time_in_seconds
     import capo_iotsitewise.types.time_ordering
+    import capo_iotsitewise.types.time_series_id
     import capo_iotsitewise.types.time_series_summary
     import capo_iotsitewise.types.timestamp
     import capo_iotsitewise.types.traversal_direction
@@ -367,12 +516,22 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.update_gateway_capability_configuration_request
     import capo_iotsitewise.types.update_gateway_capability_configuration_response
     import capo_iotsitewise.types.update_gateway_request
+    import capo_iotsitewise.types.update_pipeline_request
+    import capo_iotsitewise.types.update_pipeline_response
     import capo_iotsitewise.types.update_portal_request
     import capo_iotsitewise.types.update_portal_response
     import capo_iotsitewise.types.update_project_request
     import capo_iotsitewise.types.update_project_response
+    import capo_iotsitewise.types.update_task_request
+    import capo_iotsitewise.types.update_task_response
+    import capo_iotsitewise.types.update_workspace_request
+    import capo_iotsitewise.types.update_workspace_response
+    import capo_iotsitewise.types.version
     import capo_iotsitewise.types.warm_tier_retention_period
     import capo_iotsitewise.types.warm_tier_state
+    import capo_iotsitewise.types.workspace_encryption_configuration
+    import capo_iotsitewise.types.workspace_name
+    import capo_iotsitewise.types.workspace_summary
 
 
 class AsyncIoTSiteWiseClientConfig(TypedDict, total=False, closed=True):
@@ -588,6 +747,68 @@ class AsyncIoTSiteWiseClient:
         await response.response.aclose()
         return response.output
 
+    async def batch_associate_data_segments_to_dataset(
+        self,
+        dataset_id: "capo_iotsitewise.types.id.ID",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        associate_data_segment_entries: "capo_iotsitewise.types.associate_data_segment_entries.AssociateDataSegmentEntries",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.batch_associate_data_segments_to_dataset_response.BatchAssociateDataSegmentsToDatasetResponse":
+        """<p>Associates a batch of data segments with a curated dataset. Data segments are time-bounded slices of time series data selected from source session datasets. Data segments that belong to the same time series can't overlap in time, regardless of which dataset they belong to.</p>
+
+        Args:
+            dataset_id: <p>The ID of the curated dataset to associate data segments with.</p>
+            workspace_name: <p>The name of the workspace that contains the dataset.</p>
+            associate_data_segment_entries: <p>The list of data segment entries to associate with the dataset.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the request is idempotent. If you retry a request that completed successfully using the same client token, the retry succeeds without performing any further actions.</p>
+
+        Raises:
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.batch_associate_data_segments_to_dataset_request.BatchAssociateDataSegmentsToDatasetRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.batch_associate_data_segments_to_dataset_response.BatchAssociateDataSegmentsToDatasetResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.batch_associate_data_segments_to_dataset
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.batch_associate_data_segments_to_dataset.async_batch_associate_data_segments_to_dataset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.batch_associate_data_segments_to_dataset_request.BatchAssociateDataSegmentsToDatasetRequest = {
+            "dataset_id": dataset_id,
+            "workspace_name": workspace_name,
+            "associate_data_segment_entries": associate_data_segment_entries,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def batch_associate_project_assets(
         self,
         project_id: "capo_iotsitewise.types.id.ID",
@@ -598,7 +819,7 @@ class AsyncIoTSiteWiseClient:
             "capo_iotsitewise.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_iotsitewise.types.batch_associate_project_assets_response.BatchAssociateProjectAssetsResponse":
-        """<p>Associates a group (batch) of assets with an IoT SiteWise Monitor project.</p>
+        r"""<important> <p>The IoT SiteWise Monitor feature will no longer be open to new customers starting November 7, 2025. If you would like to use the IoT SiteWise Monitor feature, sign up prior to that date. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/appguide/iotsitewise-monitor-availability-change.html\">IoT SiteWise Monitor availability change</a>.</p> </important> <p>Associates a group (batch) of assets with an IoT SiteWise Monitor project.</p>
 
         Args:
             project_id: <p>The ID of the project to which to associate the assets.</p>
@@ -633,6 +854,128 @@ class AsyncIoTSiteWiseClient:
         input_: capo_iotsitewise.types.batch_associate_project_assets_request.BatchAssociateProjectAssetsRequest = {
             "project_id": project_id,
             "asset_ids": asset_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def batch_delete_dataset_data_segments(
+        self,
+        dataset_id: "capo_iotsitewise.types.id.ID",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        delete_data_segment_entries: "capo_iotsitewise.types.delete_data_segment_entries.DeleteDataSegmentEntries",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.batch_delete_dataset_data_segments_response.BatchDeleteDatasetDataSegmentsResponse":
+        """<p>Deletes a batch of data segments from a session dataset. Deleting a data segment deletes the underlying time series data for the segment's time range.</p>
+
+        Args:
+            dataset_id: <p>The ID of the session dataset from which to delete data segments.</p>
+            workspace_name: <p>The name of the workspace that contains the dataset.</p>
+            delete_data_segment_entries: <p>The list of data segment entries to delete.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the request is idempotent. If you retry a request that completed successfully using the same client token, the retry succeeds without performing any further actions.</p>
+
+        Raises:
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.batch_delete_dataset_data_segments_request.BatchDeleteDatasetDataSegmentsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.batch_delete_dataset_data_segments_response.BatchDeleteDatasetDataSegmentsResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.batch_delete_dataset_data_segments
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.batch_delete_dataset_data_segments.async_batch_delete_dataset_data_segments(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.batch_delete_dataset_data_segments_request.BatchDeleteDatasetDataSegmentsRequest = {
+            "dataset_id": dataset_id,
+            "workspace_name": workspace_name,
+            "delete_data_segment_entries": delete_data_segment_entries,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def batch_disassociate_data_segments_from_dataset(
+        self,
+        dataset_id: "capo_iotsitewise.types.id.ID",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        disassociate_data_segment_entries: "capo_iotsitewise.types.disassociate_data_segment_entries.DisassociateDataSegmentEntries",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.batch_disassociate_data_segments_from_dataset_response.BatchDisassociateDataSegmentsFromDatasetResponse":
+        """<p>Disassociates a batch of data segments from a curated dataset. Disassociating a data segment doesn't delete the underlying data in the source session dataset.</p>
+
+        Args:
+            dataset_id: <p>The ID of the curated dataset to disassociate data segments from.</p>
+            workspace_name: <p>The name of the workspace that contains the dataset.</p>
+            disassociate_data_segment_entries: <p>The list of data segment entries to disassociate from the dataset.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the request is idempotent. If you retry a request that completed successfully using the same client token, the retry succeeds without performing any further actions.</p>
+
+        Raises:
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.batch_disassociate_data_segments_from_dataset_request.BatchDisassociateDataSegmentsFromDatasetRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.batch_disassociate_data_segments_from_dataset_response.BatchDisassociateDataSegmentsFromDatasetResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.batch_disassociate_data_segments_from_dataset
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.batch_disassociate_data_segments_from_dataset.async_batch_disassociate_data_segments_from_dataset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.batch_disassociate_data_segments_from_dataset_request.BatchDisassociateDataSegmentsFromDatasetRequest = {
+            "dataset_id": dataset_id,
+            "workspace_name": workspace_name,
+            "disassociate_data_segment_entries": disassociate_data_segment_entries,
         }
         if client_token is None:
             client_token = str(uuid.uuid4())
@@ -989,6 +1332,172 @@ class AsyncIoTSiteWiseClient:
         await response.response.aclose()
         return response.output
 
+    async def cancel_enrichment_job(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        job_id: "capo_iotsitewise.types.id.ID",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.cancel_enrichment_job_response.CancelEnrichmentJobResponse":
+        """<p>Cancels a running or pending enrichment job. This is an idempotent operation—calling it multiple times with the same jobId is safe and returns the current status.</p> <h2>Behavior</h2> <ul> <li>Jobs in PENDING or RUNNING status transition to CANCELLED</li> <li>Jobs in RUNNING state may not be cancellable once they have progressed to certain processing stages</li> <li>Jobs already in terminal states (COMPLETED, FAILED, TIMED_OUT) cannot be cancelled; the operation returns a ConflictingOperationException</li> <li>Cancelling an already-CANCELLED job is a no-op and returns the current status (idempotent behavior)</li> <li>The API responds immediately after recording the cancellation</li> <li>Cleanup of job resources happens asynchronously in the background</li> </ul> <h2>When to Cancel</h2> <p>Cancel a job when:</p> <ul> <li>The job is taking longer than expected</li> <li>The job was created with incorrect parameters</li> <li>You no longer need the results</li> </ul> <h2>Idempotency</h2> <p>You can safely retry cancellation requests. Calling CancelEnrichmentJob multiple times for the same job returns the current status without error as long as the job is not in a terminal state other than CANCELLED.</p>
+
+        Args:
+            workspace_name: <p>The name of the IoT SiteWise workspace containing the enrichment job to cancel.</p>
+            job_id: <p>The unique identifier of the enrichment job to cancel. This is the jobId returned by CreateEnrichmentJob.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.cancel_enrichment_job_request.CancelEnrichmentJobRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.cancel_enrichment_job_response.CancelEnrichmentJobResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.cancel_enrichment_job
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.cancel_enrichment_job.async_cancel_enrichment_job(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.cancel_enrichment_job_request.CancelEnrichmentJobRequest = {
+            "workspace_name": workspace_name,
+            "job_id": job_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def cancel_pipeline_execution(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        pipeline_execution_id: "capo_iotsitewise.types.id.ID",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        reason: Optional[
+            "capo_iotsitewise.types.cancel_pipeline_execution_request_reason_string.CancelPipelineExecutionRequestReasonString"
+        ] = None,
+    ) -> "capo_iotsitewise.types.cancel_pipeline_execution_response.CancelPipelineExecutionResponse":
+        """<p>Cancels a pipeline execution in the specified workspace. If the execution is not in a terminal state (such as NOT_STARTED or RUNNING), it transitions to CANCELLING and asynchronously to CANCELLED. This operation is idempotent: calling it on an execution that is already CANCELLING or CANCELLED returns success with the current state. Calling it on a terminal execution (SUCCEEDED or FAILED) returns a conflict error. You can optionally provide a reason; it is returned in the stateDetails field when you describe the execution.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            pipeline_name: <p>The name of the pipeline.</p>
+            pipeline_execution_id: <p>The unique identifier of the pipeline execution.</p>
+            reason: <p>A message describing why the pipeline execution is being cancelled.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.cancel_pipeline_execution_request.CancelPipelineExecutionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.cancel_pipeline_execution_response.CancelPipelineExecutionResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.cancel_pipeline_execution
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.cancel_pipeline_execution.async_cancel_pipeline_execution(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.cancel_pipeline_execution_request.CancelPipelineExecutionRequest = {
+            "workspace_name": workspace_name,
+            "pipeline_name": pipeline_name,
+            "pipeline_execution_id": pipeline_execution_id,
+        }
+        if reason is not None:
+            input_["reason"] = reason
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def cancel_query(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        query_id: "capo_iotsitewise.types.query_id.QueryId",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.cancel_query_response.CancelQueryResponse":
+        """<p>Cancels a running query.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace associated with the query.</p>
+            query_id: <p>The unique identifier for the query execution to cancel.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.cancel_query_request.CancelQueryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.cancel_query_response.CancelQueryResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.cancel_query
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.cancel_query.async_cancel_query(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.cancel_query_request.CancelQueryRequest = {
+            "workspace_name": workspace_name,
+            "query_id": query_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def create_access_policy(
         self,
         access_policy_identity: "capo_iotsitewise.types.identity.Identity",
@@ -1001,7 +1510,7 @@ class AsyncIoTSiteWiseClient:
         ] = None,
         tags: Optional["capo_iotsitewise.types.tag_map.TagMap"] = None,
     ) -> "capo_iotsitewise.types.create_access_policy_response.CreateAccessPolicyResponse":
-        r"""<p>Creates an access policy that grants the specified identity (IAM Identity Center user, IAM Identity Center group, or IAM user) access to the specified IoT SiteWise Monitor portal or project resource.</p> <note> <p>Support for access policies that use an SSO Group as the identity is not supported at this time.</p> </note>
+        r"""<important> <p>The IoT SiteWise Monitor feature will no longer be open to new customers starting November 7, 2025. If you would like to use the IoT SiteWise Monitor feature, sign up prior to that date. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/appguide/iotsitewise-monitor-availability-change.html\">IoT SiteWise Monitor availability change</a>.</p> </important> <p>Creates an access policy that grants the specified identity (IAM Identity Center user, IAM Identity Center group, or IAM user) access to the specified IoT SiteWise Monitor portal or project resource.</p> <note> <p>Support for access policies that use an SSO Group as the identity is not supported at this time.</p> </note>
 
         Args:
             access_policy_identity: <p>The identity for this access policy. Choose an IAM Identity Center user, an IAM Identity Center group, or an IAM user.</p>
@@ -1043,6 +1552,77 @@ class AsyncIoTSiteWiseClient:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_application(
+        self,
+        idc_instance_arn: "capo_iotsitewise.types.arn.ARN",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        name: "capo_iotsitewise.types.application_name.ApplicationName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+        description: Optional["capo_iotsitewise.types.description.Description"] = None,
+        tags: Optional["capo_iotsitewise.types.tag_map.TagMap"] = None,
+    ) -> "capo_iotsitewise.types.create_application_response.CreateApplicationResponse":
+        """<p>Creates a new application for the workspace and IdC application provided</p>
+
+        Args:
+            client_token: <p>Unique client token for idempotent request handling</p>
+            idc_instance_arn: <p>Identity Center Instance ARN to create the application in</p>
+            workspace_name: <p>Name of the workspace to associate with the underlying Application</p>
+            name: <p>Name of the application</p>
+            description: <p>Description of the application</p>
+            tags: <p>A list of key-value pairs that contain metadata for the application.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.create_application_request.CreateApplicationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.create_application_response.CreateApplicationResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.create_application
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.create_application.async_create_application(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.create_application_request.CreateApplicationRequest = {
+            "idc_instance_arn": idc_instance_arn,
+            "workspace_name": workspace_name,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if description is not None:
+            input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
 
@@ -1357,30 +1937,38 @@ class AsyncIoTSiteWiseClient:
 
     async def create_bulk_import_job(
         self,
-        job_name: "capo_iotsitewise.types.name.Name",
+        job_name: "capo_iotsitewise.types.bulk_import_job_name.BulkImportJobName",
         job_role_arn: "capo_iotsitewise.types.arn.ARN",
         files: "capo_iotsitewise.types.files.Files",
         error_report_location: "capo_iotsitewise.types.error_report_location.ErrorReportLocation",
-        job_configuration: "capo_iotsitewise.types.job_configuration.JobConfiguration",
         *,
         config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        job_configuration: Optional[
+            "capo_iotsitewise.types.job_configuration.JobConfiguration"
+        ] = None,
         adaptive_ingestion: Optional[
             "capo_iotsitewise.types.adaptive_ingestion.AdaptiveIngestion"
         ] = None,
         delete_files_after_import: Optional[
             "capo_iotsitewise.types.delete_files_after_import.DeleteFilesAfterImport"
         ] = None,
+        dataset_id: Optional["capo_iotsitewise.types.id.ID"] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> "capo_iotsitewise.types.create_bulk_import_job_response.CreateBulkImportJobResponse":
-        r"""<p>Defines a job to ingest data to IoT SiteWise from Amazon S3. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/CreateBulkImportJob.html\">Create a bulk import job (CLI)</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p> <important> <p>Before you create a bulk import job, you must enable IoT SiteWise warm tier or IoT SiteWise cold tier. For more information about how to configure storage settings, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_PutStorageConfiguration.html\">PutStorageConfiguration</a>.</p> <p>Bulk import is designed to store historical data to IoT SiteWise.</p> <ul> <li> <p>Newly ingested data in the hot tier triggers notifications and computations.</p> </li> <li> <p>After data moves from the hot tier to the warm or cold tier based on retention settings, it does not trigger computations or notifications.</p> </li> <li> <p>Data older than 7 days does not trigger computations or notifications.</p> </li> </ul> </important>
+        r"""<p>Defines a job to ingest data to IoT SiteWise from Amazon S3. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/CreateBulkImportJob.html\">Create a bulk import job (CLI)</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p> <important> <p>Before you create a bulk import job that ingests data into time series outside of a workspace, you must enable IoT SiteWise warm tier or IoT SiteWise cold tier. For more information about how to configure storage settings, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_PutStorageConfiguration.html\">PutStorageConfiguration</a>. This requirement doesn't apply to bulk import jobs that ingest data into a session dataset in a workspace (jobs that specify a <code>workspaceName</code> and <code>datasetId</code>). Those jobs don't use IoT SiteWise warm or cold tier storage.</p> <p>Bulk import is designed to store historical data to IoT SiteWise.</p> <ul> <li> <p>Newly ingested data in the hot tier triggers notifications and computations.</p> </li> <li> <p>After data moves from the hot tier to the warm or cold tier based on retention settings, it does not trigger computations or notifications.</p> </li> <li> <p>Data older than 7 days does not trigger computations or notifications.</p> </li> </ul> </important>
 
         Args:
             job_name: <p>The unique name that helps identify the job request.</p>
             job_role_arn: <p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the IAM role that allows IoT SiteWise to read Amazon S3 data.</p>
-            files: <p>The files in the specified Amazon S3 bucket that contain your data.</p>
+            files: <p>The files in the specified Amazon S3 bucket that contain your data. You can specify up to 100 files for each bulk import job. Each file supports the following size limits:</p> <ul> <li> <p>Parquet files – Up to 256 MiB.</p> </li> <li> <p>Other file formats – Up to 5 GiB.</p> </li> </ul>
             error_report_location: <p>The Amazon S3 destination where errors associated with the job creation request are saved.</p>
             job_configuration: <p>Contains the configuration information of a job, such as the file format used to save data in Amazon S3.</p>
             adaptive_ingestion: <p>If set to true, ingest new data into IoT SiteWise storage. Measurements with notifications, metrics and transforms are computed. If set to false, historical data is ingested into IoT SiteWise as is.</p>
             delete_files_after_import: <p>If set to true, your data files is deleted from S3, after ingestion into IoT SiteWise storage.</p>
+            dataset_id: <p>The ID of the session dataset to ingest data into. Specify this field, together with <code>workspaceName</code>, to ingest data into a session dataset in a workspace.</p>
+            workspace_name: <p>The name of the workspace that contains the session dataset. Specify this field together with <code>datasetId</code>.</p>
 
         Raises:
             capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
@@ -1414,12 +2002,17 @@ class AsyncIoTSiteWiseClient:
             "job_role_arn": job_role_arn,
             "files": files,
             "error_report_location": error_report_location,
-            "job_configuration": job_configuration,
         }
+        if job_configuration is not None:
+            input_["job_configuration"] = job_configuration
         if adaptive_ingestion is not None:
             input_["adaptive_ingestion"] = adaptive_ingestion
         if delete_files_after_import is not None:
             input_["delete_files_after_import"] = delete_files_after_import
+        if dataset_id is not None:
+            input_["dataset_id"] = dataset_id
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1517,7 +2110,7 @@ class AsyncIoTSiteWiseClient:
         ] = None,
         tags: Optional["capo_iotsitewise.types.tag_map.TagMap"] = None,
     ) -> "capo_iotsitewise.types.create_dashboard_response.CreateDashboardResponse":
-        r"""<p>Creates a dashboard in an IoT SiteWise Monitor project.</p>
+        r"""<important> <p>The IoT SiteWise Monitor feature will no longer be open to new customers starting November 7, 2025. If you would like to use the IoT SiteWise Monitor feature, sign up prior to that date. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/appguide/iotsitewise-monitor-availability-change.html\">IoT SiteWise Monitor availability change</a>.</p> </important> <p>Creates a dashboard in an IoT SiteWise Monitor project.</p>
 
         Args:
             project_id: <p>The ID of the project in which to create the dashboard.</p>
@@ -1581,19 +2174,33 @@ class AsyncIoTSiteWiseClient:
         config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
         dataset_id: Optional["capo_iotsitewise.types.id.ID"] = None,
         dataset_description: Optional[
-            "capo_iotsitewise.types.restricted_description.RestrictedDescription"
+            "capo_iotsitewise.types.description.Description"
         ] = None,
+        dataset_type: Optional[
+            "capo_iotsitewise.types.dataset_type_enum.DatasetTypeEnum"
+        ] = None,
+        dataset_config: Optional[
+            "capo_iotsitewise.types.dataset_config.DatasetConfig"
+        ] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
+        metadata: Optional["capo_iotsitewise.types.metadata.Metadata"] = None,
         client_token: Optional[
             "capo_iotsitewise.types.client_token.ClientToken"
         ] = None,
         tags: Optional["capo_iotsitewise.types.tag_map.TagMap"] = None,
     ) -> "capo_iotsitewise.types.create_dataset_response.CreateDatasetResponse":
-        r"""<p>Creates a dataset to connect an external datasource.</p>
+        r"""<p>Creates a dataset. Session and curated datasets are created in a workspace. A session dataset contains data segments of time series data, and a curated dataset curates data segments selected from source session datasets. A dataset that connects to an external datasource is created outside of a workspace.</p>
 
         Args:
             dataset_id: <p>The ID of the dataset.</p>
             dataset_name: <p>The name of the dataset.</p>
             dataset_description: <p>A description about the dataset, and its functionality.</p>
+            dataset_type: <p>The type of dataset: a session dataset, a curated dataset, or a connection to an external datasource.</p>
+            dataset_config: <p>The configuration for the dataset.</p>
+            workspace_name: <p>The name of the workspace that contains the dataset. Required for session and curated datasets. Omit this field for datasets that connect to an external datasource.</p>
+            metadata: <p>The metadata for the dataset, provided as key-value pairs.</p>
             dataset_source: <p>The data source for the dataset.</p>
             client_token: <p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>
             tags: <p>A list of key-value pairs that contain metadata for the access policy. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html\">Tagging your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.</p>
@@ -1633,11 +2240,144 @@ class AsyncIoTSiteWiseClient:
             input_["dataset_id"] = dataset_id
         if dataset_description is not None:
             input_["dataset_description"] = dataset_description
+        if dataset_type is not None:
+            input_["dataset_type"] = dataset_type
+        if dataset_config is not None:
+            input_["dataset_config"] = dataset_config
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
+        if metadata is not None:
+            input_["metadata"] = metadata
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_dataset_export_job(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        destination_s3_uri: "capo_iotsitewise.types.s3_uri.S3Uri",
+        input: "capo_iotsitewise.types.processing_input.ProcessingInput",
+        error_report_location: "capo_iotsitewise.types.export_error_report_location.ExportErrorReportLocation",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.create_dataset_export_job_response.CreateDatasetExportJobResponse":
+        """<p>Starts an asynchronous job that exports dataset and time-series data from a workspace to Amazon S3. The operation returns a jobId immediately; poll DescribeDatasetExportJob to track progress and ListDatasetExportJobs to enumerate a workspace's jobs.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace in which to create the dataset export job.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. The AWS SDKs and CLI populate this automatically.</p>
+            destination_s3_uri: <p>The S3 URI where output clips will be written.</p>
+            input: <p>The processing input source.</p>
+            error_report_location: <p>The location where the error report will be written on failure.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.create_dataset_export_job_request.CreateDatasetExportJobRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.create_dataset_export_job_response.CreateDatasetExportJobResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.create_dataset_export_job
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.create_dataset_export_job.async_create_dataset_export_job(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.create_dataset_export_job_request.CreateDatasetExportJobRequest = {
+            "workspace_name": workspace_name,
+            "destination_s3_uri": destination_s3_uri,
+            "input": input,
+            "error_report_location": error_report_location,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_enrichment_job(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        job_configuration: "capo_iotsitewise.types.enrichment_job_configuration.EnrichmentJobConfiguration",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.create_enrichment_job_response.CreateEnrichmentJobResponse":
+        """<p>Creates an asynchronous enrichment job to analyze time-series sensor data. The operation returns immediately with job details while processing continues in the background.</p> <h2>Idempotency</h2> <p>Include a clientToken to make the operation idempotent. If you submit the same request with the same token within the idempotency window, you receive the original job details without creating a duplicate.</p> <h2>Prerequisites</h2> <p>Before creating a job, ensure:</p> <ul> <li>The workspace is in ACTIVE state (not being deleted)</li> <li>You have IAM permissions for the workspace, dataset, and time-series resources</li> <li>You have KMS Decrypt permission on the workspace's customer-managed encryption key</li> <li>No duplicate job (same workspace, dataset, property, and job type) is currently running</li> </ul> <h2>Workflow</h2> <ol> <li>Submit the job with configuration specifying which video data to analyze and the time range</li> <li>Capture the jobId from the response</li> <li>Use DescribeEnrichmentJob to monitor progress and check job status</li> <li>When status reaches a terminal state (COMPLETED, FAILED, TIMED_OUT, CANCELLED), check results</li> <li>For COMPLETED jobs, query IoT SiteWise for semantic search on video events</li> </ol> <h2>Error Handling</h2> <ul> <li>ConflictingOperationException: A duplicate job is already running for the same configuration</li> <li>InvalidRequestException: Invalid parameters (e.g., both timeSeriesId and propertyAlias specified)</li> <li>AccessDeniedException: Insufficient IAM or KMS permissions</li> <li>LimitExceededException: Too many concurrent jobs or requests</li> </ul>
+
+        Args:
+            workspace_name: <p>The name of the IoT SiteWise workspace containing the video data to analyze.</p>
+            job_configuration: <p>Configuration defining the type of enrichment analysis to perform and which video data to analyze. Currently supports eventDetection for generating embeddings from video data for semantic search.</p>
+            client_token: <p>Optional unique token that makes the operation idempotent. If you submit the same request with the same token within the idempotency window, the service returns the original job without creating a duplicate. Use a UUID or timestamp-based token for each unique request.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.create_enrichment_job_request.CreateEnrichmentJobRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.create_enrichment_job_response.CreateEnrichmentJobResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.create_enrichment_job
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.create_enrichment_job.async_create_enrichment_job(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.create_enrichment_job_request.CreateEnrichmentJobRequest = {
+            "workspace_name": workspace_name,
+            "job_configuration": job_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1708,6 +2448,83 @@ class AsyncIoTSiteWiseClient:
         await response.response.aclose()
         return response.output
 
+    async def create_pipeline(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        computations: "capo_iotsitewise.types.compute_node_list.ComputeNodeList",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        description: Optional["capo_iotsitewise.types.description.Description"] = None,
+        environment_variables: Optional[
+            "capo_iotsitewise.types.environment_variables_map.EnvironmentVariablesMap"
+        ] = None,
+        tags: Optional["capo_iotsitewise.types.tag_map.TagMap"] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.create_pipeline_response.CreatePipelineResponse":
+        r"""<p>Creates a new pipeline in the specified workspace. A pipeline defines a directed acyclic graph (DAG) of compute nodes, where each node references a task and can declare dependencies on other nodes. Cyclic dependencies are not allowed. Nodes without dependencies run in parallel, while nodes with dependencies wait for all upstream nodes to complete successfully before starting.</p> <p>You can set environment variables at the pipeline level that are shared across all compute nodes, and override them at the individual compute node level.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            pipeline_name: <p>The name of the pipeline to create. Must be unique within the workspace.</p>
+            description: <p>A description of the pipeline.</p>
+            environment_variables: <p>Environment variables shared across all compute nodes in the pipeline. Individual compute nodes can override these values with their own environment variables.</p>
+            computations: <p>The list of compute nodes that form the pipeline DAG. Each compute node references a task and can declare dependencies on other nodes.</p>
+            tags: <p>A list of key-value pairs that contain metadata for the pipeline. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html\">Tagging your AWS IoT SiteWise resources</a> in the AWS IoT SiteWise User Guide.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you retry a request that completed successfully using the same client token, the server returns the cached result from the original successful request without performing the operation again.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.create_pipeline_request.CreatePipelineRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.create_pipeline_response.CreatePipelineResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.create_pipeline
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.create_pipeline.async_create_pipeline(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.create_pipeline_request.CreatePipelineRequest = {
+            "workspace_name": workspace_name,
+            "pipeline_name": pipeline_name,
+            "computations": computations,
+        }
+        if description is not None:
+            input_["description"] = description
+        if environment_variables is not None:
+            input_["environment_variables"] = environment_variables
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def create_portal(
         self,
         portal_name: "capo_iotsitewise.types.name.Name",
@@ -1735,7 +2552,7 @@ class AsyncIoTSiteWiseClient:
             "capo_iotsitewise.types.portal_type_configuration.PortalTypeConfiguration"
         ] = None,
     ) -> "capo_iotsitewise.types.create_portal_response.CreatePortalResponse":
-        r"""<p>Creates a portal, which can contain projects and dashboards. IoT SiteWise Monitor uses IAM Identity Center or IAM to authenticate portal users and manage user permissions.</p> <note> <p>Before you can sign in to a new portal, you must add at least one identity to that portal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins\">Adding or removing portal administrators</a> in the <i>IoT SiteWise User Guide</i>.</p> </note>
+        r"""<important> <p>The IoT SiteWise Monitor feature will no longer be open to new customers starting November 7, 2025. If you would like to use the IoT SiteWise Monitor feature, sign up prior to that date. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/appguide/iotsitewise-monitor-availability-change.html\">IoT SiteWise Monitor availability change</a>.</p> </important> <p>Creates a portal, which can contain projects and dashboards. IoT SiteWise Monitor uses IAM Identity Center or IAM to authenticate portal users and manage user permissions.</p> <note> <p>Before you can sign in to a new portal, you must add at least one identity to that portal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins\">Adding or removing portal administrators</a> in the <i>IoT SiteWise User Guide</i>.</p> </note>
 
         Args:
             portal_name: <p>A friendly name for the portal.</p>
@@ -1823,7 +2640,7 @@ class AsyncIoTSiteWiseClient:
         ] = None,
         tags: Optional["capo_iotsitewise.types.tag_map.TagMap"] = None,
     ) -> "capo_iotsitewise.types.create_project_response.CreateProjectResponse":
-        r"""<p>Creates a project in the specified portal.</p> <note> <p>Make sure that the project name and description don't contain confidential information.</p> </note>
+        r"""<important> <p>The IoT SiteWise Monitor feature will no longer be open to new customers starting November 7, 2025. If you would like to use the IoT SiteWise Monitor feature, sign up prior to that date. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/appguide/iotsitewise-monitor-availability-change.html\">IoT SiteWise Monitor availability change</a>.</p> </important> <p>Creates a project in the specified portal.</p> <note> <p>Make sure that the project name and description don't contain confidential information.</p> </note>
 
         Args:
             portal_id: <p>The ID of the portal in which to create the project.</p>
@@ -1868,6 +2685,146 @@ class AsyncIoTSiteWiseClient:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_task(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        task_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        task_configuration: "capo_iotsitewise.types.task_configuration.TaskConfiguration",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        description: Optional["capo_iotsitewise.types.description.Description"] = None,
+        tags: Optional["capo_iotsitewise.types.tag_map.TagMap"] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.create_task_response.CreateTaskResponse":
+        r"""<p>Creates a new task in the specified workspace. A task defines a reusable containerized compute workload that can be referenced by one or more pipeline compute nodes.</p> <p>Specify a <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ContainerTaskConfiguration.html\"><code>containerTaskConfiguration</code></a> for custom container workloads with configurable ECR image, processing type, processing unit, and environment variables.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            task_name: <p>The name of the task to create. Must be unique within the workspace.</p>
+            description: <p>A description of the task.</p>
+            task_configuration: <p>The task execution configuration. Specify a <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ContainerTaskConfiguration.html\">containerTaskConfiguration</a> for custom container workloads.</p>
+            tags: <p>A list of key-value pairs that contain metadata for the task. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html\">Tagging your AWS IoT SiteWise resources</a> in the AWS IoT SiteWise User Guide.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you retry a request that completed successfully using the same client token, the server returns the cached result from the original successful request without performing the operation again.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.create_task_request.CreateTaskRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.create_task_response.CreateTaskResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.create_task
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.create_task.async_create_task(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.create_task_request.CreateTaskRequest = {
+            "workspace_name": workspace_name,
+            "task_name": task_name,
+            "task_configuration": task_configuration,
+        }
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_workspace(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        encryption_configuration: "capo_iotsitewise.types.workspace_encryption_configuration.WorkspaceEncryptionConfiguration",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        workspace_description: Optional[
+            "capo_iotsitewise.types.description.Description"
+        ] = None,
+        tags: Optional["capo_iotsitewise.types.tag_map.TagMap"] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.create_workspace_response.CreateWorkspaceResponse":
+        r"""<p>Creates a workspace in IoT SiteWise. A workspace isolates its resources, such as datasets, time series, pipelines, and tasks, and their data from other workspaces, and has its own quotas and throttling limits. You must specify an encryption configuration when you create a workspace. The operation returns immediately with the workspace in the <code>CREATING</code> state. Provisioning completes asynchronously, after which the workspace state is <code>ACTIVE</code>, or <code>FAILED</code> if provisioning doesn't complete.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace to create.</p>
+            workspace_description: <p>A description for the workspace.</p>
+            encryption_configuration: <p>The encryption configuration for the workspace.</p>
+            tags: <p>A list of key-value pairs that contain metadata for the workspace. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html\">Tagging your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the request is idempotent. If you retry a request that completed successfully using the same client token, the retry succeeds without performing any further actions.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.create_workspace_request.CreateWorkspaceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.create_workspace_response.CreateWorkspaceResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.create_workspace
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.create_workspace.async_create_workspace(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.create_workspace_request.CreateWorkspaceRequest = {
+            "workspace_name": workspace_name,
+            "encryption_configuration": encryption_configuration,
+        }
+        if workspace_description is not None:
+            input_["workspace_description"] = workspace_description
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1922,6 +2879,58 @@ class AsyncIoTSiteWiseClient:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_application(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        id: "capo_iotsitewise.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.delete_application_response.DeleteApplicationResponse":
+        """<p>Deletes an application by ID</p>
+
+        Args:
+            workspace_name: <p>Name of the workspace to associate with the underlying Application</p>
+            id: <p>ID of the Application to delete</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.delete_application_request.DeleteApplicationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.delete_application_response.DeleteApplicationResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.delete_application
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.delete_application.async_delete_application(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.delete_application_request.DeleteApplicationRequest = {
+            "workspace_name": workspace_name,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2301,14 +3310,18 @@ class AsyncIoTSiteWiseClient:
         dataset_id: "capo_iotsitewise.types.id.ID",
         *,
         config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
         client_token: Optional[
             "capo_iotsitewise.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_iotsitewise.types.delete_dataset_response.DeleteDatasetResponse":
-        """<p>Deletes a dataset. This cannot be undone.</p>
+        """<p>Deletes a dataset. This can't be undone. Deleting a session dataset also deletes the underlying time series data in the session. You can't delete a session dataset while a curated dataset references its data segments. First delete the curated dataset or disassociate the data segments. Deleting a curated dataset doesn't delete the underlying data in the source session datasets.</p>
 
         Args:
             dataset_id: <p>The ID of the dataset.</p>
+            workspace_name: <p>The name of the workspace that contains the dataset.</p>
             client_token: <p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>
 
         Raises:
@@ -2339,6 +3352,8 @@ class AsyncIoTSiteWiseClient:
         input_: capo_iotsitewise.types.delete_dataset_request.DeleteDatasetRequest = {
             "dataset_id": dataset_id
         }
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -2387,6 +3402,58 @@ class AsyncIoTSiteWiseClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_iotsitewise.types.delete_gateway_request.DeleteGatewayRequest = {
             "gateway_id": gateway_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_pipeline(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.delete_pipeline_response.DeletePipelineResponse":
+        r"""<p>Deletes a pipeline from the specified workspace. A pipeline cannot be deleted if it has any active executions. Wait for all executions to complete before attempting to delete the pipeline, or use <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CancelPipelineExecution.html\">CancelPipelineExecution</a> to stop a running execution.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            pipeline_name: <p>The name of the pipeline to delete.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.delete_pipeline_request.DeletePipelineRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.delete_pipeline_response.DeletePipelineResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.delete_pipeline
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.delete_pipeline.async_delete_pipeline(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.delete_pipeline_request.DeletePipelineRequest = {
+            "workspace_name": workspace_name,
+            "pipeline_name": pipeline_name,
         }
 
         response = await aexecute_pipeline(
@@ -2506,6 +3573,58 @@ class AsyncIoTSiteWiseClient:
         await response.response.aclose()
         return response.output
 
+    async def delete_task(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        task_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.delete_task_response.DeleteTaskResponse":
+        """<p>Deletes a task from the specified workspace. A task cannot be deleted if it is currently referenced by any existing pipeline. Remove the task from all pipelines before attempting to delete it.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            task_name: <p>The name of the task to delete.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.delete_task_request.DeleteTaskRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.delete_task_response.DeleteTaskResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.delete_task
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.delete_task.async_delete_task(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.delete_task_request.DeleteTaskRequest = {
+            "workspace_name": workspace_name,
+            "task_name": task_name,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_time_series(
         self,
         *,
@@ -2516,14 +3635,18 @@ class AsyncIoTSiteWiseClient:
         client_token: Optional[
             "capo_iotsitewise.types.client_token.ClientToken"
         ] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> None:
-        r"""<p>Deletes a time series (data stream). If you delete a time series that's associated with an asset property, the asset property still exists, but the time series will no longer be associated with this asset property.</p> <p>To identify a time series, do one of the following:</p> <ul> <li> <p>If the time series isn't associated with an asset property, specify the <code>alias</code> of the time series.</p> </li> <li> <p>If the time series is associated with an asset property, specify one of the following: </p> <ul> <li> <p>The <code>alias</code> of the time series.</p> </li> <li> <p>The <code>assetId</code> and <code>propertyId</code> that identifies the asset property.</p> </li> </ul> </li> </ul>
+        r"""<p>Deletes a time series (data stream). If you delete a time series that's associated with an asset property, the asset property still exists, but the time series will no longer be associated with this asset property. You can't delete a time series until all of its data segments have been deleted from session datasets.</p> <p>To identify a time series, do one of the following:</p> <ul> <li> <p>If the time series isn't associated with an asset property, specify the <code>alias</code> of the time series.</p> </li> <li> <p>If the time series is associated with an asset property, specify one of the following: </p> <ul> <li> <p>The <code>alias</code> of the time series.</p> </li> <li> <p>The <code>assetId</code> and <code>propertyId</code> that identifies the asset property.</p> </li> </ul> </li> </ul>
 
         Args:
             alias: <p>The alias that identifies the time series.</p>
             asset_id: <p>The ID of the asset in which the asset property was created. This can be either the actual ID in UUID format, or else <code>externalId:</code> followed by the external ID, if it has one. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references\">Referencing objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.</p>
             property_id: <p>The ID of the asset property. This can be either the actual ID in UUID format, or else <code>externalId:</code> followed by the external ID, if it has one. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references\">Referencing objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.</p>
             client_token: <p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>
+            workspace_name: <p>The name of the workspace.</p>
 
         Raises:
             capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
@@ -2555,6 +3678,64 @@ class AsyncIoTSiteWiseClient:
             input_["asset_id"] = asset_id
         if property_id is not None:
             input_["property_id"] = property_id
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_workspace(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.delete_workspace_response.DeleteWorkspaceResponse":
+        """<p>Deletes a workspace. Before you delete a workspace, you must delete all resources contained in or associated with the workspace, such as datasets, time series, pipelines, and tasks.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace to delete.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the request is idempotent. If you retry a request that completed successfully using the same client token, the retry succeeds without performing any further actions.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.delete_workspace_request.DeleteWorkspaceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.delete_workspace_response.DeleteWorkspaceResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.delete_workspace
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.delete_workspace.async_delete_workspace(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.delete_workspace_request.DeleteWorkspaceRequest = {
+            "workspace_name": workspace_name
+        }
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -2651,6 +3832,57 @@ class AsyncIoTSiteWiseClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_iotsitewise.types.describe_action_request.DescribeActionRequest = {
             "action_id": action_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_application(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        id: "capo_iotsitewise.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.describe_application_response.DescribeApplicationResponse":
+        """<p>Retrieves Application details based on the ID</p>
+
+        Args:
+            workspace_name: <p>Name of the workspace to associate with the underlying Application</p>
+            id: <p>ID of the Application</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.describe_application_request.DescribeApplicationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.describe_application_response.DescribeApplicationResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.describe_application
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.describe_application.async_describe_application(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.describe_application_request.DescribeApplicationRequest = {
+            "workspace_name": workspace_name,
+            "id": id,
         }
 
         response = await aexecute_pipeline(
@@ -3081,11 +4313,15 @@ class AsyncIoTSiteWiseClient:
         job_id: "capo_iotsitewise.types.id.ID",
         *,
         config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> "capo_iotsitewise.types.describe_bulk_import_job_response.DescribeBulkImportJobResponse":
         r"""<p>Retrieves information about a bulk import job request. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/DescribeBulkImportJob.html\">Describe a bulk import job (CLI)</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p>
 
         Args:
             job_id: <p>The ID of the job.</p>
+            workspace_name: <p>The name of the workspace.</p>
 
         Raises:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
@@ -3114,6 +4350,8 @@ class AsyncIoTSiteWiseClient:
         input_: capo_iotsitewise.types.describe_bulk_import_job_request.DescribeBulkImportJobRequest = {
             "job_id": job_id
         }
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3285,11 +4523,17 @@ class AsyncIoTSiteWiseClient:
         dataset_id: "capo_iotsitewise.types.id.ID",
         *,
         config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
+        dataset_version: Optional["capo_iotsitewise.types.version.Version"] = None,
     ) -> "capo_iotsitewise.types.describe_dataset_response.DescribeDatasetResponse":
         """<p>Retrieves information about a dataset.</p>
 
         Args:
             dataset_id: <p>The ID of the dataset.</p>
+            workspace_name: <p>The name of the workspace that contains the dataset.</p>
+            dataset_version: <p>The version of the dataset.</p>
 
         Raises:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
@@ -3318,6 +4562,61 @@ class AsyncIoTSiteWiseClient:
         input_: capo_iotsitewise.types.describe_dataset_request.DescribeDatasetRequest = {
             "dataset_id": dataset_id
         }
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
+        if dataset_version is not None:
+            input_["dataset_version"] = dataset_version
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_dataset_export_job(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        job_id: "capo_iotsitewise.types.dataset_export_job_id.DatasetExportJobId",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.describe_dataset_export_job_response.DescribeDatasetExportJobResponse":
+        """<p>Retrieves information about a dataset export job.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace that contains the dataset export job.</p>
+            job_id: <p>The unique identifier for the dataset export job.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.describe_dataset_export_job_request.DescribeDatasetExportJobRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.describe_dataset_export_job_response.DescribeDatasetExportJobResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.describe_dataset_export_job
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.describe_dataset_export_job.async_describe_dataset_export_job(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.describe_dataset_export_job_request.DescribeDatasetExportJobRequest = {
+            "workspace_name": workspace_name,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3335,6 +4634,7 @@ class AsyncIoTSiteWiseClient:
         Raises:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
             capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
             capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
             capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -3356,6 +4656,59 @@ class AsyncIoTSiteWiseClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_iotsitewise.types.describe_default_encryption_configuration_request.DescribeDefaultEncryptionConfigurationRequest = {}
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_enrichment_job(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        job_id: "capo_iotsitewise.types.id.ID",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.describe_enrichment_job_response.DescribeEnrichmentJobResponse":
+        """<p>Retrieves detailed information about a specific enrichment job, including its current status, configuration, and timestamps.</p> <h2>Use Cases</h2> <ul> <li>Monitor job progress by checking status updates with DescribeEnrichmentJob</li> <li>Retrieve the complete job configuration submitted during creation</li> <li>Debug failed jobs by examining the failureMessage field</li> <li>Track job lifecycle with creation, update, completion, and cancellation timestamps</li> </ul> <h2>Status Monitoring</h2> <p>Jobs progress through statuses: PENDING → RUNNING → terminal state</p> <p>Terminal states:</p> <ul> <li>COMPLETED: Job finished successfully; query IoT SiteWise for semantic search results</li> <li>FAILED: Job encountered an error; check failureMessage for details</li> <li>TIMED_OUT: Job exceeded maximum processing time</li> <li>CANCELLED: Job was cancelled via CancelEnrichmentJob</li> </ul> <h2>Response Fields</h2> <p>The response includes:</p> <ul> <li>Current job status and type</li> <li>Full job configuration as originally submitted</li> <li>Lifecycle timestamps (created, updated, completed, cancelled)</li> <li>Failure details if status is FAILED</li> </ul>
+
+        Args:
+            workspace_name: <p>The name of the IoT SiteWise workspace containing the enrichment job.</p>
+            job_id: <p>The unique identifier of the enrichment job to retrieve. This is the jobId returned by CreateEnrichmentJob.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.describe_enrichment_job_request.DescribeEnrichmentJobRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.describe_enrichment_job_response.DescribeEnrichmentJobResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.describe_enrichment_job
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.describe_enrichment_job.async_describe_enrichment_job(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.describe_enrichment_job_request.DescribeEnrichmentJobRequest = {
+            "workspace_name": workspace_name,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3510,9 +4863,17 @@ class AsyncIoTSiteWiseClient:
         return response.output
 
     async def describe_logging_options(
-        self, *, config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> "capo_iotsitewise.types.describe_logging_options_response.DescribeLoggingOptionsResponse":
         """<p>Retrieves the current IoT SiteWise logging options.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
 
         Raises:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
@@ -3539,6 +4900,8 @@ class AsyncIoTSiteWiseClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_iotsitewise.types.describe_logging_options_request.DescribeLoggingOptionsRequest = {}
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3547,6 +4910,158 @@ class AsyncIoTSiteWiseClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def describe_pipeline(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        pipeline_version: Optional["capo_iotsitewise.types.version.Version"] = None,
+    ) -> "capo_iotsitewise.types.describe_pipeline_response.DescribePipelineResponse":
+        """<p>Retrieves detailed information about a specific pipeline in a workspace.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            pipeline_name: <p>The name of the pipeline.</p>
+            pipeline_version: <p>The version number of the pipeline to retrieve. If not specified, returns the latest version.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.describe_pipeline_request.DescribePipelineRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.describe_pipeline_response.DescribePipelineResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.describe_pipeline
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.describe_pipeline.async_describe_pipeline(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.describe_pipeline_request.DescribePipelineRequest = {
+            "workspace_name": workspace_name,
+            "pipeline_name": pipeline_name,
+        }
+        if pipeline_version is not None:
+            input_["pipeline_version"] = pipeline_version
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_pipeline_execution(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        pipeline_execution_id: "capo_iotsitewise.types.id.ID",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.describe_pipeline_execution_request_max_results_integer.DescribePipelineExecutionRequestMaxResultsInteger"
+        ] = None,
+    ) -> "capo_iotsitewise.types.describe_pipeline_execution_response.DescribePipelineExecutionResponse":
+        """<p>Retrieves detailed information about a specific pipeline execution, including the overall execution status and the status of each individual compute node. Use this operation to monitor execution progress and inspect per-node results, environment variables, and error details.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            pipeline_name: <p>The name of the pipeline.</p>
+            pipeline_execution_id: <p>The unique identifier of the pipeline execution.</p>
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+            max_results: <p>The maximum number of compute nodes to return per request. This is an upper bound; the actual number of results may be less. Default: 50.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.describe_pipeline_execution_request.DescribePipelineExecutionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.describe_pipeline_execution_response.DescribePipelineExecutionResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.describe_pipeline_execution
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.describe_pipeline_execution.async_describe_pipeline_execution(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.describe_pipeline_execution_request.DescribePipelineExecutionRequest = {
+            "workspace_name": workspace_name,
+            "pipeline_name": pipeline_name,
+            "pipeline_execution_id": pipeline_execution_id,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_describe_pipeline_execution(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        pipeline_execution_id: "capo_iotsitewise.types.id.ID",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.describe_pipeline_execution_request_max_results_integer.DescribePipelineExecutionRequestMaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.compute_node_execution_details.ComputeNodeExecutionDetails]":
+        _token = next_token
+        while True:
+            _response = await self.describe_pipeline_execution(
+                workspace_name,
+                pipeline_name,
+                pipeline_execution_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("compute_node_execution_details",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_portal(
         self,
@@ -3682,6 +5197,108 @@ class AsyncIoTSiteWiseClient:
         await response.response.aclose()
         return response.output
 
+    async def describe_query(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        query_id: "capo_iotsitewise.types.query_id.QueryId",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.describe_query_response.DescribeQueryResponse":
+        """<p>Retrieves information about a query, including its status.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace associated with the query.</p>
+            query_id: <p>The unique identifier for the query execution.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.describe_query_request.DescribeQueryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.describe_query_response.DescribeQueryResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.describe_query
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.describe_query.async_describe_query(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.describe_query_request.DescribeQueryRequest = {
+            "workspace_name": workspace_name,
+            "query_id": query_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_search(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        search_id: "capo_iotsitewise.types.search_id.SearchId",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.describe_search_response.DescribeSearchResponse":
+        """<p>Returns the current status and metadata of a single search, including the query that was submitted, the search type, and — when the search has failed — the reason. Use this to poll a search started with <code>StartSearch</code> until it reaches a terminal status (<code>SUCCEEDED</code> or <code>FAILED</code>).</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace the search belongs to.</p>
+            search_id: <p>The identifier of the search to describe.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.describe_search_request.DescribeSearchRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.describe_search_response.DescribeSearchResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.describe_search
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.describe_search.async_describe_search(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.describe_search_request.DescribeSearchRequest = {
+            "workspace_name": workspace_name,
+            "search_id": search_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def describe_storage_configuration(
         self, *, config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None
     ) -> "capo_iotsitewise.types.describe_storage_configuration_response.DescribeStorageConfigurationResponse":
@@ -3723,6 +5340,61 @@ class AsyncIoTSiteWiseClient:
         await response.response.aclose()
         return response.output
 
+    async def describe_task(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        task_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        task_version: Optional["capo_iotsitewise.types.version.Version"] = None,
+    ) -> "capo_iotsitewise.types.describe_task_response.DescribeTaskResponse":
+        """<p>Retrieves detailed information about a specific task in a workspace.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            task_name: <p>The name of the task.</p>
+            task_version: <p>The version number of the task to retrieve. If not specified, returns the latest version.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.describe_task_request.DescribeTaskRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.describe_task_response.DescribeTaskResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.describe_task
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.describe_task.async_describe_task(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.describe_task_request.DescribeTaskRequest = {
+            "workspace_name": workspace_name,
+            "task_name": task_name,
+        }
+        if task_version is not None:
+            input_["task_version"] = task_version
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def describe_time_series(
         self,
         *,
@@ -3730,6 +5402,9 @@ class AsyncIoTSiteWiseClient:
         alias: Optional["capo_iotsitewise.types.property_alias.PropertyAlias"] = None,
         asset_id: Optional["capo_iotsitewise.types.custom_id.CustomID"] = None,
         property_id: Optional["capo_iotsitewise.types.custom_id.CustomID"] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> "capo_iotsitewise.types.describe_time_series_response.DescribeTimeSeriesResponse":
         r"""<p>Retrieves information about a time series (data stream).</p> <p>To identify a time series, do one of the following:</p> <ul> <li> <p>If the time series isn't associated with an asset property, specify the <code>alias</code> of the time series.</p> </li> <li> <p>If the time series is associated with an asset property, specify one of the following: </p> <ul> <li> <p>The <code>alias</code> of the time series.</p> </li> <li> <p>The <code>assetId</code> and <code>propertyId</code> that identifies the asset property.</p> </li> </ul> </li> </ul>
 
@@ -3737,6 +5412,7 @@ class AsyncIoTSiteWiseClient:
             alias: <p>The alias that identifies the time series.</p>
             asset_id: <p>The ID of the asset in which the asset property was created. This can be either the actual ID in UUID format, or else <code>externalId:</code> followed by the external ID, if it has one. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references\">Referencing objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.</p>
             property_id: <p>The ID of the asset property. This can be either the actual ID in UUID format, or else <code>externalId:</code> followed by the external ID, if it has one. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references\">Referencing objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            workspace_name: <p>The name of the workspace.</p>
 
         Raises:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
@@ -3769,6 +5445,56 @@ class AsyncIoTSiteWiseClient:
             input_["asset_id"] = asset_id
         if property_id is not None:
             input_["property_id"] = property_id
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_workspace(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+    ) -> "capo_iotsitewise.types.describe_workspace_response.DescribeWorkspaceResponse":
+        """<p>Retrieves information about a workspace.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.describe_workspace_request.DescribeWorkspaceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.describe_workspace_response.DescribeWorkspaceResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.describe_workspace
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.describe_workspace.async_describe_workspace(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.describe_workspace_request.DescribeWorkspaceRequest = {
+            "workspace_name": workspace_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -4384,6 +6110,84 @@ class AsyncIoTSiteWiseClient:
             if not _token:
                 break
 
+    async def get_capture_data(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        start_time: "capo_iotsitewise.types.time_in_nanos.TimeInNanos",
+        end_time: "capo_iotsitewise.types.time_in_nanos.TimeInNanos",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        time_series_id: Optional[
+            "capo_iotsitewise.types.time_series_id.TimeSeriesId"
+        ] = None,
+        property_alias: Optional[
+            "capo_iotsitewise.types.asset_property_alias.AssetPropertyAlias"
+        ] = None,
+        format_settings: Optional[
+            "capo_iotsitewise.types.format_settings.FormatSettings"
+        ] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.get_capture_data_next_token.GetCaptureDataNextToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.get_capture_data_response.GetCaptureDataResponse":
+        """<p>Retrieves video data for a specific time range.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace that contains the capture source.</p>
+            start_time: <p>The start time for the video data range.</p>
+            end_time: <p>The end time for the video data range. Must be greater than startTime.</p>
+            time_series_id: <p>The time series ID that identifies the capture source. Mutually exclusive with propertyAlias.</p>
+            property_alias: <p>The property alias that identifies the capture source. Mutually exclusive with timeSeriesId.</p>
+            format_settings: <p>The optional format settings for the output.</p>
+            next_token: <p>The token from a previous response used to continue retrieving data.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.get_capture_data_request.GetCaptureDataRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.get_capture_data_response.GetCaptureDataResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.get_capture_data
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.get_capture_data.async_get_capture_data(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.get_capture_data_request.GetCaptureDataRequest = {
+            "workspace_name": workspace_name,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
+        if time_series_id is not None:
+            input_["time_series_id"] = time_series_id
+        if property_alias is not None:
+            input_["property_alias"] = property_alias
+        if format_settings is not None:
+            input_["format_settings"] = format_settings
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_interpolated_asset_property_values(
         self,
         start_time_in_seconds: "capo_iotsitewise.types.time_in_seconds.TimeInSeconds",
@@ -4533,6 +6337,186 @@ class AsyncIoTSiteWiseClient:
                 interval_window_in_seconds=interval_window_in_seconds,
             )
             _page = _resolve_path(_response, ("interpolated_asset_property_values",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def get_query_results(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        query_id: "capo_iotsitewise.types.query_id.QueryId",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.query_max_results.QueryMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.query_next_token.QueryNextToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.get_query_results_response.GetQueryResultsResponse":
+        """<p>Retrieves the paginated results of a query. Returns empty rows if the query is not yet complete.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace associated with the query.</p>
+            query_id: <p>The unique identifier for the query execution.</p>
+            max_results: <p>The maximum number of results to return for each paginated request.</p>
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.get_query_results_request.GetQueryResultsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.get_query_results_response.GetQueryResultsResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.get_query_results
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.get_query_results.async_get_query_results(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.get_query_results_request.GetQueryResultsRequest = {
+            "workspace_name": workspace_name,
+            "query_id": query_id,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_get_query_results(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        query_id: "capo_iotsitewise.types.query_id.QueryId",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.query_max_results.QueryMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.query_next_token.QueryNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.result.Result]":
+        _token = next_token
+        while True:
+            _response = await self.get_query_results(
+                workspace_name,
+                query_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("rows",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def get_search_results(
+        self,
+        search_id: "capo_iotsitewise.types.search_id.SearchId",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.get_search_results_request_max_results_integer.GetSearchResultsRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "capo_iotsitewise.types.get_search_results_response.GetSearchResultsResponse":
+        """<p>Retrieves the ranked results of a search, ordered by descending relevance score. Results are available only after the search has reached the <code>SUCCEEDED</code> status. Calling this on a search that exists but has not yet completed returns <code>InvalidRequestException</code>, while calling it on a search that does not exist returns <code>ResourceNotFoundException</code>. The response is paginated: when <code>nextToken</code> is present, pass it on a subsequent call to retrieve the next page.</p>
+
+        Args:
+            search_id: <p>The identifier of the search whose results are retrieved.</p>
+            workspace_name: <p>The name of the workspace the search belongs to.</p>
+            max_results: <p>The maximum number of results to return in a single page. Valid range is 1 to 10,000; if omitted, a service-defined default is used.</p>
+            next_token: <p>The pagination token returned by a previous GetSearchResults call. Provide it to retrieve the next page of results; omit it to retrieve the first page.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.get_search_results_request.GetSearchResultsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.get_search_results_response.GetSearchResultsResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.get_search_results
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.get_search_results.async_get_search_results(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.get_search_results_request.GetSearchResultsRequest = {
+            "search_id": search_id,
+            "workspace_name": workspace_name,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_get_search_results(
+        self,
+        search_id: "capo_iotsitewise.types.search_id.SearchId",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.get_search_results_request_max_results_integer.GetSearchResultsRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.search_result.SearchResult]":
+        _token = next_token
+        while True:
+            _response = await self.get_search_results(
+                search_id,
+                workspace_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("search_results",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -4810,6 +6794,79 @@ class AsyncIoTSiteWiseClient:
             if not _token:
                 break
 
+    async def list_applications(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "capo_iotsitewise.types.list_applications_response.ListApplicationsResponse":
+        """<p>Retrieves a paginated list of existing applications</p>
+
+        Args:
+            max_results: <p>Maximum number of results to return</p>
+            next_token: <p>Next Page Token</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_applications_request.ListApplicationsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_applications_response.ListApplicationsResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_applications
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_applications.async_list_applications(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_applications_request.ListApplicationsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_applications(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.application_summary.ApplicationSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_applications(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("applications",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_asset_model_composite_models(
         self,
         asset_model_id: "capo_iotsitewise.types.custom_id.CustomID",
@@ -5020,6 +7077,7 @@ class AsyncIoTSiteWiseClient:
         Raises:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
             capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
             capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
             capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -5449,6 +7507,9 @@ class AsyncIoTSiteWiseClient:
         filter: Optional[
             "capo_iotsitewise.types.list_bulk_import_jobs_filter.ListBulkImportJobsFilter"
         ] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> "capo_iotsitewise.types.list_bulk_import_jobs_response.ListBulkImportJobsResponse":
         r"""<p>Retrieves a paginated list of bulk import job requests. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/ListBulkImportJobs.html\">List bulk import jobs (CLI)</a> in the <i>IoT SiteWise User Guide</i>.</p>
 
@@ -5456,6 +7517,7 @@ class AsyncIoTSiteWiseClient:
             next_token: <p>The token to be used for the next set of paginated results.</p>
             max_results: <p>The maximum number of results to return for each paginated request.</p>
             filter: <p>You can use a filter to select the bulk import jobs that you want to retrieve.</p>
+            workspace_name: <p>The name of the workspace.</p>
 
         Raises:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
@@ -5488,6 +7550,8 @@ class AsyncIoTSiteWiseClient:
             input_["max_results"] = max_results
         if filter is not None:
             input_["filter"] = filter
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -5506,6 +7570,9 @@ class AsyncIoTSiteWiseClient:
         filter: Optional[
             "capo_iotsitewise.types.list_bulk_import_jobs_filter.ListBulkImportJobsFilter"
         ] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> "AsyncIterator[capo_iotsitewise.types.job_summary.JobSummary]":
         _token = next_token
         while True:
@@ -5514,6 +7581,7 @@ class AsyncIoTSiteWiseClient:
                 next_token=_token,
                 max_results=max_results,
                 filter=filter,
+                workspace_name=workspace_name,
             )
             _page = _resolve_path(_response, ("job_summaries",))
             for _item in _page or []:
@@ -5915,11 +7983,288 @@ class AsyncIoTSiteWiseClient:
             if not _token:
                 break
 
+    async def list_dataset_data_segment_relationships(
+        self,
+        dataset_id: "capo_iotsitewise.types.id.ID",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "capo_iotsitewise.types.list_dataset_data_segment_relationships_response.ListDatasetDataSegmentRelationshipsResponse":
+        """<p>Retrieves a paginated list of data segment relationships for a session dataset. Use this operation to find the curated datasets that reference data segments of the specified session dataset. Use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            dataset_id: <p>The ID of the session dataset to list data segment relationships for.</p>
+            workspace_name: <p>The name of the workspace that contains the dataset.</p>
+            max_results: <p>The maximum number of results to return for each paginated request. Default: 50.</p>
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+
+        Raises:
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_dataset_data_segment_relationships_request.ListDatasetDataSegmentRelationshipsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_dataset_data_segment_relationships_response.ListDatasetDataSegmentRelationshipsResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_dataset_data_segment_relationships
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_dataset_data_segment_relationships.async_list_dataset_data_segment_relationships(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_dataset_data_segment_relationships_request.ListDatasetDataSegmentRelationshipsRequest = {
+            "dataset_id": dataset_id,
+            "workspace_name": workspace_name,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_dataset_data_segment_relationships(
+        self,
+        dataset_id: "capo_iotsitewise.types.id.ID",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.data_segment_relationship_summary.DataSegmentRelationshipSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_dataset_data_segment_relationships(
+                dataset_id,
+                workspace_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("data_segment_relationship_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_dataset_data_segments(
+        self,
+        dataset_id: "capo_iotsitewise.types.id.ID",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        dataset_version: Optional["capo_iotsitewise.types.version.Version"] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "capo_iotsitewise.types.list_dataset_data_segments_response.ListDatasetDataSegmentsResponse":
+        """<p>Retrieves a paginated list of data segments associated with a dataset. Use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            dataset_id: <p>The ID of the dataset.</p>
+            workspace_name: <p>The name of the workspace that contains the dataset.</p>
+            dataset_version: <p>The version of the dataset to list data segments for.</p>
+            max_results: <p>The maximum number of results to return for each paginated request. Default: 50.</p>
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+
+        Raises:
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_dataset_data_segments_request.ListDatasetDataSegmentsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_dataset_data_segments_response.ListDatasetDataSegmentsResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_dataset_data_segments
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_dataset_data_segments.async_list_dataset_data_segments(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_dataset_data_segments_request.ListDatasetDataSegmentsRequest = {
+            "dataset_id": dataset_id,
+            "workspace_name": workspace_name,
+        }
+        if dataset_version is not None:
+            input_["dataset_version"] = dataset_version
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_dataset_data_segments(
+        self,
+        dataset_id: "capo_iotsitewise.types.id.ID",
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        dataset_version: Optional["capo_iotsitewise.types.version.Version"] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> (
+        "AsyncIterator[capo_iotsitewise.types.data_segment_summary.DataSegmentSummary]"
+    ):
+        _token = next_token
+        while True:
+            _response = await self.list_dataset_data_segments(
+                dataset_id,
+                workspace_name,
+                config_overrides=config_overrides,
+                dataset_version=dataset_version,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("data_segments",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_dataset_export_jobs(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        filter: Optional[
+            "capo_iotsitewise.types.dataset_export_job_filter.DatasetExportJobFilter"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_export_jobs_max_results.ListExportJobsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.list_export_jobs_next_token.ListExportJobsNextToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.list_dataset_export_jobs_response.ListDatasetExportJobsResponse":
+        """<p>Retrieves a paginated list of dataset export jobs for a workspace.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace whose dataset export jobs should be listed.</p>
+            filter: <p>The optional filter that returns only jobs matching the given filter value. Defaults to ALL.</p>
+            max_results: <p>The maximum number of results to return for each paginated request.</p>
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_dataset_export_jobs_request.ListDatasetExportJobsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_dataset_export_jobs_response.ListDatasetExportJobsResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_dataset_export_jobs
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_dataset_export_jobs.async_list_dataset_export_jobs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_dataset_export_jobs_request.ListDatasetExportJobsRequest = {
+            "workspace_name": workspace_name
+        }
+        if filter is not None:
+            input_["filter"] = filter
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_dataset_export_jobs(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        filter: Optional[
+            "capo_iotsitewise.types.dataset_export_job_filter.DatasetExportJobFilter"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_export_jobs_max_results.ListExportJobsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.list_export_jobs_next_token.ListExportJobsNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.export_job_summary.ExportJobSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_dataset_export_jobs(
+                workspace_name,
+                config_overrides=config_overrides,
+                filter=filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("jobs",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_datasets(
         self,
         source_type: "capo_iotsitewise.types.dataset_source_type.DatasetSourceType",
         *,
         config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
+        dataset_type: Optional[
+            "capo_iotsitewise.types.dataset_type_enum.DatasetTypeEnum"
+        ] = None,
         next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
         max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
     ) -> "capo_iotsitewise.types.list_datasets_response.ListDatasetsResponse":
@@ -5927,12 +8272,15 @@ class AsyncIoTSiteWiseClient:
 
         Args:
             source_type: <p>The type of data source for the dataset.</p>
+            workspace_name: <p>The name of the workspace to filter datasets by.</p>
+            dataset_type: <p>The type of dataset to filter by: a session dataset, a curated dataset, or a connection to an external datasource.</p>
             next_token: <p>The token for the next set of results, or null if there are no additional results.</p>
             max_results: <p>The maximum number of results to return for each paginated request.</p>
 
         Raises:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
             capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
             capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
             capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -5956,6 +8304,10 @@ class AsyncIoTSiteWiseClient:
         input_: capo_iotsitewise.types.list_datasets_request.ListDatasetsRequest = {
             "source_type": source_type
         }
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
+        if dataset_type is not None:
+            input_["dataset_type"] = dataset_type
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5974,6 +8326,12 @@ class AsyncIoTSiteWiseClient:
         source_type: "capo_iotsitewise.types.dataset_source_type.DatasetSourceType",
         *,
         config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
+        dataset_type: Optional[
+            "capo_iotsitewise.types.dataset_type_enum.DatasetTypeEnum"
+        ] = None,
         next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
         max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
     ) -> "AsyncIterator[capo_iotsitewise.types.dataset_summary.DatasetSummary]":
@@ -5982,10 +8340,147 @@ class AsyncIoTSiteWiseClient:
             _response = await self.list_datasets(
                 source_type,
                 config_overrides=config_overrides,
+                workspace_name=workspace_name,
+                dataset_type=dataset_type,
                 next_token=_token,
                 max_results=max_results,
             )
             _page = _resolve_path(_response, ("dataset_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_enrichment_jobs(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        dataset_id: Optional["capo_iotsitewise.types.id.ID"] = None,
+        property_alias: Optional[
+            "capo_iotsitewise.types.asset_property_alias.AssetPropertyAlias"
+        ] = None,
+        time_series_id: Optional[
+            "capo_iotsitewise.types.time_series_id.TimeSeriesId"
+        ] = None,
+        status: Optional[
+            "capo_iotsitewise.types.enrichment_job_status.EnrichmentJobStatus"
+        ] = None,
+        job_type: Optional["capo_iotsitewise.types.job_type.JobType"] = None,
+        start_date: Optional[datetime.datetime] = None,
+        end_date: Optional[datetime.datetime] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "capo_iotsitewise.types.list_enrichment_jobs_response.ListEnrichmentJobsResponse":
+        """<p>Lists enrichment jobs within a workspace with optional filtering and pagination. Results are ordered by createdAt timestamp descending (newest first).</p> <h2>Filtering</h2> <p>Combine filters to narrow results:</p> <ul> <li><strong>datasetId</strong>: Filter by dataset</li> <li><strong>propertyAlias</strong> OR <strong>timeSeriesId</strong>: Filter by time series (specify one, not both)</li> <li><strong>status</strong>: Filter by job status (e.g., RUNNING to find active jobs)</li> <li><strong>jobType</strong>: Filter by enrichment type (currently only EVENT_DETECTION)</li> <li><strong>startDate</strong> and <strong>endDate</strong>: Filter by job creation time range</li> </ul> <h2>Important Constraints</h2> <ul> <li>You must specify either propertyAlias OR timeSeriesId, but not both</li> <li>Attempting to specify both results in an InvalidRequestException</li> <li>Date filters use ISO 8601 format</li> <li>startDate is exclusive, endDate is inclusive</li> </ul> <h2>Pagination</h2> <p>The operation returns up to maxResults jobs per page (default 50). If more results exist, the response includes a nextToken. Submit this token in a subsequent request to retrieve the next page.</p> <h2>Common Use Cases</h2> <ul> <li>Find all running jobs: Filter by status=RUNNING</li> <li>List recent jobs for a dataset: Filter by datasetId with optional date range</li> <li>Monitor jobs for a specific sensor: Filter by propertyAlias or timeSeriesId</li> <li>Track all event detection jobs: Filter by jobType=EVENT_DETECTION</li> </ul> <h2>Performance</h2> <p>Performance is optimal when filtering by supported fields (datasetId, propertyAlias, timeSeriesId, status, jobType).</p>
+
+        Args:
+            workspace_name: <p>The name of the IoT SiteWise workspace to list enrichment jobs from.</p>
+            dataset_id: <p>Filter jobs by dataset ID. Returns only jobs analyzing data from the specified dataset.</p>
+            property_alias: <p>Filter by property alias (human-readable sensor name). Specify either propertyAlias or timeSeriesId, but not both. Returns only jobs analyzing the specified property alias.</p>
+            time_series_id: <p>Filter by time series ID (system identifier). Specify either timeSeriesId or propertyAlias, but not both. Returns only jobs analyzing the specified time series.</p>
+            status: <p>Filter by job status. Returns only jobs in the specified status. Use RUNNING to find active jobs, or FAILED to identify jobs requiring attention.</p>
+            job_type: <p>Filter by enrichment job type. Currently only EVENT_DETECTION is supported. Use this filter to future-proof queries when additional job types are added.</p>
+            start_date: <p>The exclusive start of the date range for filtering jobs by creation time. Jobs created after this timestamp are included. Use ISO 8601 format (e.g., 2024-01-01T00:00:00Z).</p>
+            end_date: <p>The inclusive end of the date range for filtering jobs by creation time. Jobs created on or before this timestamp are included. Use ISO 8601 format (e.g., 2024-01-31T23:59:59Z).</p>
+            max_results: <p>Maximum number of jobs to return per page. Defaults to 50 if not specified. Use smaller values for faster responses, larger values to reduce API calls.</p>
+            next_token: <p>Pagination token from a previous ListEnrichmentJobs response. Include this token to retrieve the next page of results. Omit for the first request.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_enrichment_jobs_request.ListEnrichmentJobsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_enrichment_jobs_response.ListEnrichmentJobsResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_enrichment_jobs
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_enrichment_jobs.async_list_enrichment_jobs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_enrichment_jobs_request.ListEnrichmentJobsRequest = {
+            "workspace_name": workspace_name
+        }
+        if dataset_id is not None:
+            input_["dataset_id"] = dataset_id
+        if property_alias is not None:
+            input_["property_alias"] = property_alias
+        if time_series_id is not None:
+            input_["time_series_id"] = time_series_id
+        if status is not None:
+            input_["status"] = status
+        if job_type is not None:
+            input_["job_type"] = job_type
+        if start_date is not None:
+            input_["start_date"] = start_date
+        if end_date is not None:
+            input_["end_date"] = end_date
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_enrichment_jobs(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        dataset_id: Optional["capo_iotsitewise.types.id.ID"] = None,
+        property_alias: Optional[
+            "capo_iotsitewise.types.asset_property_alias.AssetPropertyAlias"
+        ] = None,
+        time_series_id: Optional[
+            "capo_iotsitewise.types.time_series_id.TimeSeriesId"
+        ] = None,
+        status: Optional[
+            "capo_iotsitewise.types.enrichment_job_status.EnrichmentJobStatus"
+        ] = None,
+        job_type: Optional["capo_iotsitewise.types.job_type.JobType"] = None,
+        start_date: Optional[datetime.datetime] = None,
+        end_date: Optional[datetime.datetime] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.enrichment_job_summary.EnrichmentJobSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_enrichment_jobs(
+                workspace_name,
+                config_overrides=config_overrides,
+                dataset_id=dataset_id,
+                property_alias=property_alias,
+                time_series_id=time_series_id,
+                status=status,
+                job_type=job_type,
+                start_date=start_date,
+                end_date=end_date,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("jobs",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -6246,6 +8741,223 @@ class AsyncIoTSiteWiseClient:
             if not _token:
                 break
 
+    async def list_pipeline_executions(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_pipeline_executions_request_max_results_integer.ListPipelineExecutionsRequestMaxResultsInteger"
+        ] = None,
+        state: Optional[
+            "capo_iotsitewise.types.pipeline_execution_state.PipelineExecutionState"
+        ] = None,
+        start_time_after: Optional["capo_iotsitewise.types.timestamp.Timestamp"] = None,
+        start_time_before: Optional[
+            "capo_iotsitewise.types.timestamp.Timestamp"
+        ] = None,
+        end_time_after: Optional["capo_iotsitewise.types.timestamp.Timestamp"] = None,
+        end_time_before: Optional["capo_iotsitewise.types.timestamp.Timestamp"] = None,
+    ) -> "capo_iotsitewise.types.list_pipeline_executions_response.ListPipelineExecutionsResponse":
+        """<p>Lists pipeline executions for a specific pipeline in a workspace. Supports filtering by state and time range. State can be combined with either startTime or endTime filters. Time range filters are grouped: use startTime filters (startTimeAfter, startTimeBefore) or endTime filters (endTimeAfter, endTimeBefore), but not both. Combining startTime and endTime filters returns an InvalidRequestException. Note: endTime filters only return executions in terminal states, as in-progress executions have no endTime.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            pipeline_name: <p>The name of the pipeline.</p>
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+            max_results: <p>The maximum number of results to return per request. This is an upper bound; the actual number of results may be less. Default: 50.</p>
+            state: <p>Filter by execution state. If not specified, executions in all states are returned.</p>
+            start_time_after: <p>Inclusive lower bound on execution start time (ISO-8601). Only executions with startTime &gt;= startTimeAfter are returned. Cannot be combined with endTimeAfter or endTimeBefore.</p>
+            start_time_before: <p>Exclusive upper bound on execution start time (ISO-8601). Only executions with startTime &lt; startTimeBefore are returned. Cannot be combined with endTimeAfter or endTimeBefore.</p>
+            end_time_after: <p>Inclusive lower bound on execution end time (ISO-8601). Only executions with endTime &gt;= endTimeAfter are returned. Cannot be combined with startTimeAfter or startTimeBefore. Only matches executions in terminal states.</p>
+            end_time_before: <p>Exclusive upper bound on execution end time (ISO-8601). Only executions with endTime &lt; endTimeBefore are returned. Cannot be combined with startTimeAfter or startTimeBefore. Only matches executions in terminal states.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_pipeline_executions_request.ListPipelineExecutionsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_pipeline_executions_response.ListPipelineExecutionsResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_pipeline_executions
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_pipeline_executions.async_list_pipeline_executions(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_pipeline_executions_request.ListPipelineExecutionsRequest = {
+            "workspace_name": workspace_name,
+            "pipeline_name": pipeline_name,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if state is not None:
+            input_["state"] = state
+        if start_time_after is not None:
+            input_["start_time_after"] = start_time_after
+        if start_time_before is not None:
+            input_["start_time_before"] = start_time_before
+        if end_time_after is not None:
+            input_["end_time_after"] = end_time_after
+        if end_time_before is not None:
+            input_["end_time_before"] = end_time_before
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_pipeline_executions(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_pipeline_executions_request_max_results_integer.ListPipelineExecutionsRequestMaxResultsInteger"
+        ] = None,
+        state: Optional[
+            "capo_iotsitewise.types.pipeline_execution_state.PipelineExecutionState"
+        ] = None,
+        start_time_after: Optional["capo_iotsitewise.types.timestamp.Timestamp"] = None,
+        start_time_before: Optional[
+            "capo_iotsitewise.types.timestamp.Timestamp"
+        ] = None,
+        end_time_after: Optional["capo_iotsitewise.types.timestamp.Timestamp"] = None,
+        end_time_before: Optional["capo_iotsitewise.types.timestamp.Timestamp"] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.pipeline_execution_summary.PipelineExecutionSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_pipeline_executions(
+                workspace_name,
+                pipeline_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                state=state,
+                start_time_after=start_time_after,
+                start_time_before=start_time_before,
+                end_time_after=end_time_after,
+                end_time_before=end_time_before,
+            )
+            _page = _resolve_path(_response, ("pipeline_execution_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_pipelines(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_pipelines_request_max_results_integer.ListPipelinesRequestMaxResultsInteger"
+        ] = None,
+    ) -> "capo_iotsitewise.types.list_pipelines_response.ListPipelinesResponse":
+        r"""<p>Lists pipelines in a workspace. To get complete details about a pipeline, use <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribePipeline.html\">DescribePipeline</a>.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+            max_results: <p>The maximum number of results to return for each paginated request. Default: 50.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_pipelines_request.ListPipelinesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_pipelines_response.ListPipelinesResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_pipelines
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_pipelines.async_list_pipelines(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_pipelines_request.ListPipelinesRequest = {
+            "workspace_name": workspace_name
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_pipelines(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_pipelines_request_max_results_integer.ListPipelinesRequestMaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.pipeline_summary.PipelineSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_pipelines(
+                workspace_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("pipeline_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_portals(
         self,
         *,
@@ -6473,6 +9185,192 @@ class AsyncIoTSiteWiseClient:
             if not _token:
                 break
 
+    async def list_queries(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        filter: Optional["capo_iotsitewise.types.query_filter.QueryFilter"] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.query_max_results.QueryMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.query_list_next_token.QueryListNextToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.list_queries_response.ListQueriesResponse":
+        """<p>Retrieves a paginated list of queries for a workspace.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace to list queries for.</p>
+            filter: <p>An optional filter to return only queries with the specified status. The value must be one of the supported query statuses: SUBMITTED, RUNNING, COMPLETED, FAILED, CANCELED, or CANCELING.</p>
+            max_results: <p>The maximum number of results to return for each paginated request.</p>
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_queries_request.ListQueriesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_queries_response.ListQueriesResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_queries
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_queries.async_list_queries(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_queries_request.ListQueriesRequest = {
+            "workspace_name": workspace_name
+        }
+        if filter is not None:
+            input_["filter"] = filter
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_queries(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        filter: Optional["capo_iotsitewise.types.query_filter.QueryFilter"] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.query_max_results.QueryMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.query_list_next_token.QueryListNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.query_summary.QuerySummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_queries(
+                workspace_name,
+                config_overrides=config_overrides,
+                filter=filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("queries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_searches(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_searches_request_max_results_integer.ListSearchesRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+        list_searches_filters: Optional[
+            "capo_iotsitewise.types.list_searches_filters.ListSearchesFilters"
+        ] = None,
+    ) -> "capo_iotsitewise.types.list_searches_response.ListSearchesResponse":
+        """<p>Lists the searches in a workspace, most recently started first. Results can be narrowed with optional filters (status, search type, group, and started-at time range) and are paginated: when <code>nextToken</code> is present, pass it on a subsequent call to retrieve the next page.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace whose searches are listed.</p>
+            max_results: <p>The maximum number of searches to return in a single page. Valid range is 1 to 1,000; if omitted, a service-defined default is used.</p>
+            next_token: <p>The pagination token returned by a previous ListSearches call. Provide it to retrieve the next page; omit it to retrieve the first page.</p>
+            list_searches_filters: <p>Optional filters that restrict which searches are returned.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_searches_request.ListSearchesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_searches_response.ListSearchesResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_searches
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_searches.async_list_searches(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_searches_request.ListSearchesRequest = {
+            "workspace_name": workspace_name
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if list_searches_filters is not None:
+            input_["list_searches_filters"] = list_searches_filters
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_searches(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_searches_request_max_results_integer.ListSearchesRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+        list_searches_filters: Optional[
+            "capo_iotsitewise.types.list_searches_filters.ListSearchesFilters"
+        ] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.search_summary.SearchSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_searches(
+                workspace_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                list_searches_filters=list_searches_filters,
+            )
+            _page = _resolve_path(_response, ("search_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_tags_for_resource(
         self,
         resource_arn: "capo_iotsitewise.types.amazon_resource_name.AmazonResourceName",
@@ -6523,6 +9421,93 @@ class AsyncIoTSiteWiseClient:
         await response.response.aclose()
         return response.output
 
+    async def list_tasks(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_tasks_request_max_results_integer.ListTasksRequestMaxResultsInteger"
+        ] = None,
+    ) -> "capo_iotsitewise.types.list_tasks_response.ListTasksResponse":
+        r"""<p>Lists tasks in a workspace. To get complete details about a task, use <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeTask.html\">DescribeTask</a>.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+            max_results: <p>The maximum number of results to return for each paginated request. Default: 50.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_tasks_request.ListTasksRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_tasks_response.ListTasksResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_tasks
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_tasks.async_list_tasks(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_tasks_request.ListTasksRequest = {
+            "workspace_name": workspace_name
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_tasks(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional[
+            "capo_iotsitewise.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.list_tasks_request_max_results_integer.ListTasksRequestMaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.task_summary.TaskSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_tasks(
+                workspace_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("task_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_time_series(
         self,
         *,
@@ -6536,6 +9521,9 @@ class AsyncIoTSiteWiseClient:
         time_series_type: Optional[
             "capo_iotsitewise.types.list_time_series_type.ListTimeSeriesType"
         ] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> "capo_iotsitewise.types.list_time_series_response.ListTimeSeriesResponse":
         r"""<p>Retrieves a paginated list of time series (data streams).</p>
 
@@ -6545,6 +9533,7 @@ class AsyncIoTSiteWiseClient:
             asset_id: <p>The ID of the asset in which the asset property was created. This can be either the actual ID in UUID format, or else <code>externalId:</code> followed by the external ID, if it has one. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references\">Referencing objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.</p>
             alias_prefix: <p>The alias prefix of the time series.</p>
             time_series_type: <p>The type of the time series. The time series type can be one of the following values:</p> <ul> <li> <p> <code>ASSOCIATED</code> – The time series is associated with an asset property.</p> </li> <li> <p> <code>DISASSOCIATED</code> – The time series isn't associated with any asset property.</p> </li> </ul>
+            workspace_name: <p>The name of the workspace.</p>
 
         Raises:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
@@ -6581,6 +9570,8 @@ class AsyncIoTSiteWiseClient:
             input_["alias_prefix"] = alias_prefix
         if time_series_type is not None:
             input_["time_series_type"] = time_series_type
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -6603,6 +9594,9 @@ class AsyncIoTSiteWiseClient:
         time_series_type: Optional[
             "capo_iotsitewise.types.list_time_series_type.ListTimeSeriesType"
         ] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> "AsyncIterator[capo_iotsitewise.types.time_series_summary.TimeSeriesSummary]":
         _token = next_token
         while True:
@@ -6613,8 +9607,81 @@ class AsyncIoTSiteWiseClient:
                 asset_id=asset_id,
                 alias_prefix=alias_prefix,
                 time_series_type=time_series_type,
+                workspace_name=workspace_name,
             )
             _page = _resolve_path(_response, ("time_series_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_workspaces(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+    ) -> "capo_iotsitewise.types.list_workspaces_response.ListWorkspacesResponse":
+        """<p>Retrieves a paginated list of workspaces. Use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            next_token: <p>The token to be used for the next set of paginated results.</p>
+            max_results: <p>The maximum number of results to return for each paginated request. Default: 50.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.list_workspaces_request.ListWorkspacesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.list_workspaces_response.ListWorkspacesResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.list_workspaces
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.list_workspaces.async_list_workspaces(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.list_workspaces_request.ListWorkspacesRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_workspaces(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iotsitewise.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_iotsitewise.types.workspace_summary.WorkspaceSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_workspaces(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("workspace_summaries",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -6701,6 +9768,7 @@ class AsyncIoTSiteWiseClient:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
             capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
             capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
             capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
             capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -6740,6 +9808,9 @@ class AsyncIoTSiteWiseClient:
         logging_options: "capo_iotsitewise.types.logging_options.LoggingOptions",
         *,
         config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
+        ] = None,
     ) -> (
         "capo_iotsitewise.types.put_logging_options_response.PutLoggingOptionsResponse"
     ):
@@ -6747,6 +9818,7 @@ class AsyncIoTSiteWiseClient:
 
         Args:
             logging_options: <p>The logging options to set.</p>
+            workspace_name: <p>The name of the workspace.</p>
 
         Raises:
             capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
@@ -6776,6 +9848,8 @@ class AsyncIoTSiteWiseClient:
         input_: capo_iotsitewise.types.put_logging_options_request.PutLoggingOptionsRequest = {
             "logging_options": logging_options
         }
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -6861,6 +9935,219 @@ class AsyncIoTSiteWiseClient:
             input_["warm_tier_retention_period"] = warm_tier_retention_period
         if disallow_ingest_null_na_n is not None:
             input_["disallow_ingest_null_na_n"] = disallow_ingest_null_na_n
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_pipeline_execution(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        execution_environment_variable_overrides: Optional[
+            "capo_iotsitewise.types.execution_environment_variables.ExecutionEnvironmentVariables"
+        ] = None,
+        execution_mount_overrides: Optional[
+            "capo_iotsitewise.types.mount_overrides.MountOverrides"
+        ] = None,
+        execution_priority: Optional[
+            "capo_iotsitewise.types.execution_priority.ExecutionPriority"
+        ] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.start_pipeline_execution_response.StartPipelineExecutionResponse":
+        """<p>Starts execution of a pipeline in the specified workspace. Each compute node runs according to the DAG dependency order defined in the pipeline. Nodes without dependencies start immediately, while dependent nodes wait for all upstream nodes to complete successfully.</p> <p>You can provide runtime environment variable overrides that take the highest priority in the environment variable hierarchy, without modifying the pipeline definition.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace containing the pipeline.</p>
+            pipeline_name: <p>The name of the pipeline to execute.</p>
+            execution_environment_variable_overrides: <p>Runtime environment variable overrides for the execution. Includes global variables that apply to all compute nodes and computeNodes for per-node overrides. These take the highest priority in the environment variable hierarchy.</p>
+            execution_mount_overrides: <p>Runtime mount overrides for the execution. Overrides are merged by mount name into each listed compute node's task-defined mounts: a matching name replaces the task-defined mount, a new name adds a mount, and task-defined mounts not referenced remain unchanged. Compute nodes not listed use their task-defined mounts as-is.</p>
+            execution_priority: <p>Scheduling priority for the execution. Lower values indicate higher priority. Defaults to 2 when not specified.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you retry a request that completed successfully using the same client token, the server returns the cached result from the original successful request without performing the operation again.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.start_pipeline_execution_request.StartPipelineExecutionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.start_pipeline_execution_response.StartPipelineExecutionResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.start_pipeline_execution
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.start_pipeline_execution.async_start_pipeline_execution(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.start_pipeline_execution_request.StartPipelineExecutionRequest = {
+            "workspace_name": workspace_name,
+            "pipeline_name": pipeline_name,
+        }
+        if execution_environment_variable_overrides is not None:
+            input_["execution_environment_variable_overrides"] = (
+                execution_environment_variable_overrides
+            )
+        if execution_mount_overrides is not None:
+            input_["execution_mount_overrides"] = execution_mount_overrides
+        if execution_priority is not None:
+            input_["execution_priority"] = execution_priority
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_query(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        query_statement: "capo_iotsitewise.types.query_string.QueryString",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.start_query_response.StartQueryResponse":
+        """<p>Starts an asynchronous SQL query against workspace telemetry, annotations, data segment, and dataset data.</p>
+
+        Args:
+            client_token: <p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>
+            workspace_name: <p>The name of the workspace to query.</p>
+            query_statement: <p>The SQL query to execute against the workspace telemetry, annotations, data segment, and dataset data.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.start_query_request.StartQueryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.start_query_response.StartQueryResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.start_query
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.start_query.async_start_query(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.start_query_request.StartQueryRequest = {
+            "workspace_name": workspace_name,
+            "query_statement": query_statement,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_search(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        query_statement: "capo_iotsitewise.types.search_query_statement.SearchQueryStatement",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+        search_type: Optional["capo_iotsitewise.types.search_type.SearchType"] = None,
+        search_filters: Optional[
+            "capo_iotsitewise.types.search_filters.SearchFilters"
+        ] = None,
+        group_id: Optional["capo_iotsitewise.types.group_id.GroupId"] = None,
+    ) -> "capo_iotsitewise.types.start_search_response.StartSearchResponse":
+        """<p>Starts an asynchronous search over the data in a workspace. The search runs in the background; the response returns immediately with a <code>searchId</code> and an initial status of <code>QUEUED</code>. Use <code>DescribeSearch</code> to poll for completion and <code>GetSearchResults</code> to retrieve the results once the search reaches <code>SUCCEEDED</code>. The request is idempotent on <code>clientToken</code>: repeating a call with the same token returns the original search instead of starting a new one.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace whose data is searched.</p>
+            query_statement: <p>The natural-language query describing the data to search for.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure the request is idempotent. Repeating a StartSearch call with the same <code>clientToken</code> returns the original search rather than starting a new one. If omitted, the SDK autogenerates one.</p>
+            search_type: <p>The search strategy to use. Defaults to <code>QUICK</code> when omitted.</p>
+            search_filters: <p>Optional filters that restrict the search to a subset of the workspace's data.</p>
+            group_id: <p>An optional caller-supplied identifier used to group related searches together.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.start_search_request.StartSearchRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.start_search_response.StartSearchResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.start_search
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.start_search.async_start_search(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.start_search_request.StartSearchRequest = {
+            "workspace_name": workspace_name,
+            "query_statement": query_statement,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if search_type is not None:
+            input_["search_type"] = search_type
+        if search_filters is not None:
+            input_["search_filters"] = search_filters
+        if group_id is not None:
+            input_["group_id"] = group_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -6989,7 +10276,7 @@ class AsyncIoTSiteWiseClient:
             "capo_iotsitewise.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_iotsitewise.types.update_access_policy_response.UpdateAccessPolicyResponse":
-        """<p>Updates an existing access policy that specifies an identity's access to an IoT SiteWise Monitor portal or project resource.</p>
+        r"""<important> <p>The IoT SiteWise Monitor feature will no longer be open to new customers starting November 7, 2025. If you would like to use the IoT SiteWise Monitor feature, sign up prior to that date. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/appguide/iotsitewise-monitor-availability-change.html\">IoT SiteWise Monitor availability change</a>.</p> </important> <p>Updates an existing access policy that specifies an identity's access to an IoT SiteWise Monitor portal or project resource.</p>
 
         Args:
             access_policy_id: <p>The ID of the access policy.</p>
@@ -7478,7 +10765,7 @@ class AsyncIoTSiteWiseClient:
             "capo_iotsitewise.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_iotsitewise.types.update_dashboard_response.UpdateDashboardResponse":
-        r"""<p>Updates an IoT SiteWise Monitor dashboard.</p>
+        r"""<important> <p>The IoT SiteWise Monitor feature will no longer be open to new customers starting November 7, 2025. If you would like to use the IoT SiteWise Monitor feature, sign up prior to that date. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/appguide/iotsitewise-monitor-availability-change.html\">IoT SiteWise Monitor availability change</a>.</p> </important> <p>Updates an IoT SiteWise Monitor dashboard.</p>
 
         Args:
             dashboard_id: <p>The ID of the dashboard to update.</p>
@@ -7537,9 +10824,16 @@ class AsyncIoTSiteWiseClient:
         dataset_source: "capo_iotsitewise.types.dataset_source.DatasetSource",
         *,
         config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
-        dataset_description: Optional[
-            "capo_iotsitewise.types.restricted_description.RestrictedDescription"
+        workspace_name: Optional[
+            "capo_iotsitewise.types.workspace_name.WorkspaceName"
         ] = None,
+        dataset_description: Optional[
+            "capo_iotsitewise.types.description.Description"
+        ] = None,
+        dataset_config: Optional[
+            "capo_iotsitewise.types.dataset_config.DatasetConfig"
+        ] = None,
+        metadata: Optional["capo_iotsitewise.types.metadata.Metadata"] = None,
         client_token: Optional[
             "capo_iotsitewise.types.client_token.ClientToken"
         ] = None,
@@ -7548,8 +10842,11 @@ class AsyncIoTSiteWiseClient:
 
         Args:
             dataset_id: <p>The ID of the dataset.</p>
+            workspace_name: <p>The name of the workspace that contains the dataset.</p>
             dataset_name: <p>The name of the dataset.</p>
             dataset_description: <p>A description about the dataset, and its functionality.</p>
+            dataset_config: <p>The updated configuration for the dataset.</p>
+            metadata: <p>The updated metadata for the dataset.</p>
             dataset_source: <p>The data source for the dataset.</p>
             client_token: <p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>
 
@@ -7558,6 +10855,7 @@ class AsyncIoTSiteWiseClient:
             capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
             capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
             capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_already_exists_exception.ResourceAlreadyExistsException: <p>The resource already exists.</p>
             capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
             capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
             capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -7584,8 +10882,14 @@ class AsyncIoTSiteWiseClient:
             "dataset_name": dataset_name,
             "dataset_source": dataset_source,
         }
+        if workspace_name is not None:
+            input_["workspace_name"] = workspace_name
         if dataset_description is not None:
             input_["dataset_description"] = dataset_description
+        if dataset_config is not None:
+            input_["dataset_config"] = dataset_config
+        if metadata is not None:
+            input_["metadata"] = metadata
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -7702,6 +11006,75 @@ class AsyncIoTSiteWiseClient:
         await response.response.aclose()
         return response.output
 
+    async def update_pipeline(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        pipeline_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        description: Optional["capo_iotsitewise.types.description.Description"] = None,
+        environment_variables: Optional[
+            "capo_iotsitewise.types.environment_variables_map.EnvironmentVariablesMap"
+        ] = None,
+        computations: Optional[
+            "capo_iotsitewise.types.compute_node_list.ComputeNodeList"
+        ] = None,
+    ) -> "capo_iotsitewise.types.update_pipeline_response.UpdatePipelineResponse":
+        """<p>Updates an existing pipeline in the specified workspace. Only the fields provided in the request are updated; fields not included in the request are preserved unchanged. You can update the pipeline description, environment variables, and the list of compute nodes independently.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            pipeline_name: <p>The name of the pipeline to update.</p>
+            description: <p>A new description for the pipeline.</p>
+            environment_variables: <p>Updated environment variables shared across all compute nodes.</p>
+            computations: <p>Updated list of compute nodes forming the pipeline DAG.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException: <p>You've reached the quota for a resource. For example, this can occur if you're trying to associate more than the allowed number of child assets or attempting to create more than the allowed number of properties for an asset model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.update_pipeline_request.UpdatePipelineRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.update_pipeline_response.UpdatePipelineResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.update_pipeline
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.update_pipeline.async_update_pipeline(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.update_pipeline_request.UpdatePipelineRequest = {
+            "workspace_name": workspace_name,
+            "pipeline_name": pipeline_name,
+        }
+        if description is not None:
+            input_["description"] = description
+        if environment_variables is not None:
+            input_["environment_variables"] = environment_variables
+        if computations is not None:
+            input_["computations"] = computations
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def update_portal(
         self,
         portal_id: "capo_iotsitewise.types.id.ID",
@@ -7726,7 +11099,7 @@ class AsyncIoTSiteWiseClient:
             "capo_iotsitewise.types.portal_type_configuration.PortalTypeConfiguration"
         ] = None,
     ) -> "capo_iotsitewise.types.update_portal_response.UpdatePortalResponse":
-        r"""<p>Updates an IoT SiteWise Monitor portal.</p>
+        r"""<important> <p>The IoT SiteWise Monitor feature will no longer be open to new customers starting November 7, 2025. If you would like to use the IoT SiteWise Monitor feature, sign up prior to that date. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/appguide/iotsitewise-monitor-availability-change.html\">IoT SiteWise Monitor availability change</a>.</p> </important> <p>Updates an IoT SiteWise Monitor portal.</p>
 
         Args:
             portal_id: <p>The ID of the portal to update.</p>
@@ -7808,7 +11181,7 @@ class AsyncIoTSiteWiseClient:
             "capo_iotsitewise.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_iotsitewise.types.update_project_response.UpdateProjectResponse":
-        """<p>Updates an IoT SiteWise Monitor project.</p>
+        r"""<important> <p>The IoT SiteWise Monitor feature will no longer be open to new customers starting November 7, 2025. If you would like to use the IoT SiteWise Monitor feature, sign up prior to that date. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/appguide/iotsitewise-monitor-availability-change.html\">IoT SiteWise Monitor availability change</a>.</p> </important> <p>Updates an IoT SiteWise Monitor project.</p>
 
         Args:
             project_id: <p>The ID of the project to update.</p>
@@ -7846,6 +11219,136 @@ class AsyncIoTSiteWiseClient:
         }
         if project_description is not None:
             input_["project_description"] = project_description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_task(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        task_name: "capo_iotsitewise.types.resource_name.ResourceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        description: Optional["capo_iotsitewise.types.description.Description"] = None,
+        task_configuration: Optional[
+            "capo_iotsitewise.types.task_configuration.TaskConfiguration"
+        ] = None,
+    ) -> "capo_iotsitewise.types.update_task_response.UpdateTaskResponse":
+        """<p>Updates an existing task in the specified workspace. Only the fields provided in the request are updated; fields not included in the request are preserved unchanged.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace.</p>
+            task_name: <p>The name of the task to update.</p>
+            description: <p>A new description for the task.</p>
+            task_configuration: <p>The updated task execution configuration.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.update_task_request.UpdateTaskRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.update_task_response.UpdateTaskResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.update_task
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.update_task.async_update_task(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.update_task_request.UpdateTaskRequest = {
+            "workspace_name": workspace_name,
+            "task_name": task_name,
+        }
+        if description is not None:
+            input_["description"] = description
+        if task_configuration is not None:
+            input_["task_configuration"] = task_configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_workspace(
+        self,
+        workspace_name: "capo_iotsitewise.types.workspace_name.WorkspaceName",
+        *,
+        config_overrides: Optional[AsyncIoTSiteWiseClientConfig] = None,
+        workspace_description: Optional[
+            "capo_iotsitewise.types.description.Description"
+        ] = None,
+        encryption_configuration: Optional[
+            "capo_iotsitewise.types.workspace_encryption_configuration.WorkspaceEncryptionConfiguration"
+        ] = None,
+        client_token: Optional[
+            "capo_iotsitewise.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_iotsitewise.types.update_workspace_response.UpdateWorkspaceResponse":
+        """<p>Updates a workspace. You can update only workspaces in the <code>ACTIVE</code> or <code>FAILED</code> state. Fields that you omit from the request are left unchanged. To recover a workspace in the <code>FAILED</code> state, call this operation and supply its encryption configuration again.</p>
+
+        Args:
+            workspace_name: <p>The name of the workspace to update.</p>
+            workspace_description: <p>A new description for the workspace.</p>
+            encryption_configuration: <p>The encryption configuration for the workspace. Omit this field to leave encryption unchanged. After a customer managed key configuration becomes active, the key can't be changed; supplying the same key is accepted.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the request is idempotent. If you retry a request that completed successfully using the same client token, the retry succeeds without performing any further actions.</p>
+
+        Raises:
+            capo_iotsitewise.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p>
+            capo_iotsitewise.errors.conflicting_operation_exception.ConflictingOperationException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_iotsitewise.errors.internal_failure_exception.InternalFailureException: <p>IoT SiteWise can't process your request right now. Try again later.</p>
+            capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException: <p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>
+            capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource can't be found.</p>
+            capo_iotsitewise.errors.throttling_exception.ThrottlingException: <p>Your request exceeded a rate limit. For example, you might have exceeded the number of IoT SiteWise assets that can be created per second, the allowed number of messages per second, and so on.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>IoT SiteWise User Guide</i>.</p>
+            capo_iotsitewise.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_iotsitewise.types.update_workspace_request.UpdateWorkspaceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_iotsitewise.types.update_workspace_response.UpdateWorkspaceResponse"
+        ]:
+            import capo_iotsitewise._operations.aws_io_t_site_wise.update_workspace
+
+            (
+                output,
+                http_response,
+            ) = await capo_iotsitewise._operations.aws_io_t_site_wise.update_workspace.async_update_workspace(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_iotsitewise.types.update_workspace_request.UpdateWorkspaceRequest = {
+            "workspace_name": workspace_name
+        }
+        if workspace_description is not None:
+            input_["workspace_description"] = workspace_description
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token

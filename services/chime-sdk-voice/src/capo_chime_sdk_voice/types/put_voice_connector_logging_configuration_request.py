@@ -8,11 +8,11 @@ from capo_chime_sdk_voice.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.logging_configuration
-    import capo_chime_sdk_voice.types.non_empty_string
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class PutVoiceConnectorLoggingConfigurationRequest(TypedDict, closed=True):
-    voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString"
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
     logging_configuration: (
         "capo_chime_sdk_voice.types.logging_configuration.LoggingConfiguration"

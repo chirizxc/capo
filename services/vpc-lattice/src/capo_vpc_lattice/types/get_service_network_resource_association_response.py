@@ -68,7 +68,7 @@ class GetServiceNetworkResourceAssociationResponse(TypedDict, closed=True):
     last_updated_at: NotRequired["capo_vpc_lattice.types.timestamp.Timestamp"]
     """<p>The most recent date and time that the association was updated, in ISO-8601 format.</p>"""
     private_dns_entry: NotRequired["capo_vpc_lattice.types.dns_entry.DnsEntry"]
-    """<p>The private DNS entry for the service.</p>"""
+    """<p>The private DNS entry for the service. This entry includes only the domain name.</p>"""
     private_dns_enabled: NotRequired["capo_vpc_lattice.types.boolean.Boolean"]
     """<p> Indicates if private DNS is enabled in the service network resource association. </p>"""
     dns_entry: NotRequired["capo_vpc_lattice.types.dns_entry.DnsEntry"]

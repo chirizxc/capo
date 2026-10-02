@@ -9,6 +9,7 @@ UnlimitedSupportedInstanceFamily: TypeAlias = Literal[
     "t3",
     "t3a",
     "t4g",
+    "t8i",
 ]
 
 

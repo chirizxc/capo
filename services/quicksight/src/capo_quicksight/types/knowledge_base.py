@@ -9,6 +9,7 @@ from capo_quicksight.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_quicksight.types.access_control_configuration
     import capo_quicksight.types.boolean
     import capo_quicksight.types.data_set_status
     import capo_quicksight.types.data_source_arn
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.long
     import capo_quicksight.types.media_extraction_configuration
     import capo_quicksight.types.sensitive_string
+    import capo_quicksight.types.string
 
 
 class KnowledgeBase(TypedDict, closed=True):
@@ -42,6 +44,10 @@ class KnowledgeBase(TypedDict, closed=True):
         "capo_quicksight.types.media_extraction_configuration.MediaExtractionConfiguration"
     ]
     """<p>The media extraction configuration for the knowledge base.</p>"""
+    access_control_configuration: NotRequired[
+        "capo_quicksight.types.access_control_configuration.AccessControlConfiguration"
+    ]
+    """<p>The access control configuration for the knowledge base.</p>"""
     type: NotRequired["str"]
     """<p>The type of the knowledge base.</p>"""
     created_at: NotRequired["datetime.datetime"]
@@ -55,7 +61,7 @@ class KnowledgeBase(TypedDict, closed=True):
     is_email_notification_opted_for_ingestion_failures: NotRequired[
         "capo_quicksight.types.boolean.Boolean"
     ]
-    """<p>Indicates whether email notifications are enabled for ingestion failures.</p>"""
+    """<p>Specifies whether email notifications are enabled for ingestion failures.</p>"""
     first_completed_ingestion_summary: NotRequired[
         "capo_quicksight.types.knowledge_base_ingestion_summary.KnowledgeBaseIngestionSummary"
     ]
@@ -72,7 +78,7 @@ class KnowledgeBase(TypedDict, closed=True):
     """<p>The size of the knowledge base in bytes.</p>"""
     document_count: NotRequired["capo_quicksight.types.long.Long"]
     """<p>The number of documents in the knowledge base.</p>"""
-    primary_owner_arn: NotRequired["str"]
+    primary_owner_arn: NotRequired["capo_quicksight.types.string.String"]
     """<p>The ARN of the primary owner of the knowledge base.</p>"""
     primary_owner_username: NotRequired[
         "capo_quicksight.types.sensitive_string.SensitiveString"
@@ -105,6 +111,14 @@ def serialize_json(value: KnowledgeBase) -> dict:
         out["MediaExtractionConfiguration"] = (
             capo_quicksight.types.media_extraction_configuration.serialize_json(
                 value["media_extraction_configuration"]
+            )
+        )
+    if "access_control_configuration" in value:
+        import capo_quicksight.types.access_control_configuration
+
+        out["AccessControlConfiguration"] = (
+            capo_quicksight.types.access_control_configuration.serialize_json(
+                value["access_control_configuration"]
             )
         )
     if "type" in value:
@@ -206,6 +220,14 @@ def deserialize_json(data: dict) -> KnowledgeBase:
         out["media_extraction_configuration"] = (
             capo_quicksight.types.media_extraction_configuration.deserialize_json(
                 data["MediaExtractionConfiguration"]
+            )
+        )
+    if data.get("AccessControlConfiguration") is not None:
+        import capo_quicksight.types.access_control_configuration
+
+        out["access_control_configuration"] = (
+            capo_quicksight.types.access_control_configuration.deserialize_json(
+                data["AccessControlConfiguration"]
             )
         )
     if data.get("Type") is not None:

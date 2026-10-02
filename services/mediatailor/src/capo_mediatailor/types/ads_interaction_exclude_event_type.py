@@ -2,6 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
+"""<p>An ADS interaction log event type that MediaTailor emits by default and that you can suppress. For descriptions of each event type, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/ads-log-format.html\">MediaTailor ADS logs description and event types</a> in Elemental MediaTailor User Guide.</p>"""
 AdsInteractionExcludeEventType: TypeAlias = Literal[
     "AD_MARKER_FOUND",
     "NON_AD_MARKER_FOUND",
@@ -46,6 +47,10 @@ AdsInteractionExcludeEventType: TypeAlias = Literal[
     "INTERSTITIAL_VOD_FAILURE",
     "PRE_ADS_REQUEST_HOOK_ERROR",
     "PRE_ADS_REQUEST_FUNCTION_ERROR",
+    "POST_ADS_RESPONSE_HOOK_ERROR",
+    "POST_ADS_RESPONSE_FUNCTION_ERROR",
+    "PRE_MANIFEST_INSERTION_HOOK_ERROR",
+    "PRE_MANIFEST_INSERTION_FUNCTION_ERROR",
 ]
 
 

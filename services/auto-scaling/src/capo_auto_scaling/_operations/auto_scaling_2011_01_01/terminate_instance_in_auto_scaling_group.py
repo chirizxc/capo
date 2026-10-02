@@ -13,15 +13,18 @@ import capo_auto_scaling._auth._sigv4
 import capo_auto_scaling._protocol.eventstream
 import capo_auto_scaling.errors.resource_contention_fault
 import capo_auto_scaling.errors.scaling_activity_in_progress_fault
+import capo_auto_scaling.types.activities
 import capo_auto_scaling.types.activity
 import capo_auto_scaling.types.activity_type
 import capo_auto_scaling.types.terminate_instance_in_auto_scaling_group_type
+import capo_auto_scaling.types.termination_instance_ids
 from capo_auto_scaling._protocol.errors import find_error_element, parse_error_metadata
 from capo_auto_scaling._protocol.xml import fromstring
 from capo_auto_scaling._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_auto_scaling._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_auto_scaling.errors import UnknownServiceError
 
@@ -137,7 +140,7 @@ def terminate_instance_in_auto_scaling_group(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -152,7 +155,7 @@ async def async_terminate_instance_in_auto_scaling_group(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

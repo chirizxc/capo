@@ -12,6 +12,7 @@ class ResourceStateUpdateExclusionRules(TypedDict, closed=True):
     amis: NotRequired[
         "capo_imagebuilder.types.lifecycle_policy_detail_exclusion_rules_amis.LifecyclePolicyDetailExclusionRulesAmis"
     ]
+    """<p>Defines criteria for AMIs that Image Builder should exclude from the resource state update.</p>"""
 
 
 # --- restJson1 ser/de ---

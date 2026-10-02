@@ -15,7 +15,7 @@ class CreateRegistrationAttachmentRequest(TypedDict, closed=True):
     attachment_body: NotRequired[
         "capo_pinpoint_sms_voice_v2.types.attachment_body.AttachmentBody"
     ]
-    """<p>The registration file to upload. The maximum file size is 500KB and valid file extensions are PDF, JPEG and PNG.</p>"""
+    """<p>The registration file to upload. The maximum file size is 5MB and valid file extensions are PDF, JPEG and PNG.</p>"""
     attachment_url: NotRequired[
         "capo_pinpoint_sms_voice_v2.types.attachment_url.AttachmentUrl"
     ]

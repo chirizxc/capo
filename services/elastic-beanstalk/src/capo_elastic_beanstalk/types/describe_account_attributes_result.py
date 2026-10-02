@@ -14,7 +14,7 @@ class DescribeAccountAttributesResult(TypedDict, closed=True):
     resource_quotas: NotRequired[
         "capo_elastic_beanstalk.types.resource_quotas.ResourceQuotas"
     ]
-    """<p>The Elastic Beanstalk resource quotas associated with the calling AWS account.</p>"""
+    """<p>The Elastic Beanstalk resource quotas associated with the calling Amazon Web Services account.</p>"""
 
 
 # --- awsQuery ser/de ---

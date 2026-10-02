@@ -14,6 +14,8 @@ ClusterStatus: TypeAlias = Literal[
     "REBOOTING",
     "REBOOT_FAILED",
     "PARTIALLY_AVAILABLE",
+    "RESTORING",
+    "RESTORE_FAILED",
 ]
 
 

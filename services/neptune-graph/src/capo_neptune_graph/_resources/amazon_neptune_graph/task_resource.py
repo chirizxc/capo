@@ -205,7 +205,7 @@ class TaskResource:
             public_connectivity: <p>Specifies whether or not the graph can be reachable over the internet. All access to graphs is IAM authenticated. (<code>true</code> to enable, or <code>false</code> to disable).</p>
             kms_key_identifier: <p>Specifies a KMS key to use to encrypt data imported into the new graph.</p>
             vector_search_configuration: <p>Specifies the number of dimensions for vector embeddings that will be loaded into the graph. The value is specified as <code>dimension=</code>value. Max = 65,535 </p>
-            replica_count: <p>The number of replicas in other AZs to provision on the new graph after import. Default = 0, Min = 0, Max = 2.</p> <important> <p> Additional charges equivalent to the m-NCUs selected for the graph apply for each replica. </p> </important>
+            replica_count: <p>The number of replicas in other AZs to provision on the new graph after import. Default = 1, Min = 0, Max = 2.</p> <important> <p> Additional charges equivalent to the m-NCUs selected for the graph apply for each replica. </p> </important>
             deletion_protection: <p>Indicates whether or not to enable deletion protection on the graph. The graph can’t be deleted when deletion protection is enabled. (<code>true</code> or <code>false</code>).</p>
             import_options: <p>Contains options for controlling the import process. For example, if the <code>failOnError</code> key is set to <code>false</code>, the import skips problem data and attempts to continue (whereas if set to <code>true</code>, the default, or if omitted, the import operation halts immediately when an error is encountered.</p>
             max_provisioned_memory: <p>The maximum provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the graph. Default: 1024, or the approved upper limit for your account.</p> <p> If both the minimum and maximum values are specified, the final <code>provisioned-memory</code> will be chosen per the actual size of your imported data. If neither value is specified, 128 m-NCUs are used.</p>
@@ -435,6 +435,9 @@ class TaskResource:
         self,
         *,
         config_overrides: Optional[NeptuneGraphClientConfig] = None,
+        graph_identifier: Optional[
+            "capo_neptune_graph.types.graph_identifier.GraphIdentifier"
+        ] = None,
         next_token: Optional[
             "capo_neptune_graph.types.pagination_token.PaginationToken"
         ] = None,
@@ -443,6 +446,7 @@ class TaskResource:
         """<p>Lists import tasks.</p>
 
         Args:
+            graph_identifier: <p>The unique identifier of the Neptune Analytics graph. When provided, the service returns only import tasks associated with this graph. If not specified, the service returns all import tasks.</p>
             next_token: <p>Pagination token used to paginate output.</p> <p>When this value is provided as input, the service returns results from where the previous response left off. When this value is present in output, it indicates that there are more results to retrieve.</p>
             max_results: <p>The total number of records to return in the command's output.</p> <p>If the total number of records available is more than the value specified, <code>nextToken</code> is provided in the command's output. To resume pagination, provide the <code>nextToken</code> output value in the <code>nextToken</code> argument of a subsequent command. Do not use the <code>nextToken</code> response element directly outside of the Amazon CLI.</p>
 
@@ -470,6 +474,8 @@ class TaskResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_neptune_graph.types.list_import_tasks_input.ListImportTasksInput = {}
+        if graph_identifier is not None:
+            input_["graph_identifier"] = graph_identifier
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -782,7 +788,7 @@ class AsyncTaskResource:
             public_connectivity: <p>Specifies whether or not the graph can be reachable over the internet. All access to graphs is IAM authenticated. (<code>true</code> to enable, or <code>false</code> to disable).</p>
             kms_key_identifier: <p>Specifies a KMS key to use to encrypt data imported into the new graph.</p>
             vector_search_configuration: <p>Specifies the number of dimensions for vector embeddings that will be loaded into the graph. The value is specified as <code>dimension=</code>value. Max = 65,535 </p>
-            replica_count: <p>The number of replicas in other AZs to provision on the new graph after import. Default = 0, Min = 0, Max = 2.</p> <important> <p> Additional charges equivalent to the m-NCUs selected for the graph apply for each replica. </p> </important>
+            replica_count: <p>The number of replicas in other AZs to provision on the new graph after import. Default = 1, Min = 0, Max = 2.</p> <important> <p> Additional charges equivalent to the m-NCUs selected for the graph apply for each replica. </p> </important>
             deletion_protection: <p>Indicates whether or not to enable deletion protection on the graph. The graph can’t be deleted when deletion protection is enabled. (<code>true</code> or <code>false</code>).</p>
             import_options: <p>Contains options for controlling the import process. For example, if the <code>failOnError</code> key is set to <code>false</code>, the import skips problem data and attempts to continue (whereas if set to <code>true</code>, the default, or if omitted, the import operation halts immediately when an error is encountered.</p>
             max_provisioned_memory: <p>The maximum provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the graph. Default: 1024, or the approved upper limit for your account.</p> <p> If both the minimum and maximum values are specified, the final <code>provisioned-memory</code> will be chosen per the actual size of your imported data. If neither value is specified, 128 m-NCUs are used.</p>
@@ -1016,6 +1022,9 @@ class AsyncTaskResource:
         self,
         *,
         config_overrides: Optional[AsyncNeptuneGraphClientConfig] = None,
+        graph_identifier: Optional[
+            "capo_neptune_graph.types.graph_identifier.GraphIdentifier"
+        ] = None,
         next_token: Optional[
             "capo_neptune_graph.types.pagination_token.PaginationToken"
         ] = None,
@@ -1024,6 +1033,7 @@ class AsyncTaskResource:
         """<p>Lists import tasks.</p>
 
         Args:
+            graph_identifier: <p>The unique identifier of the Neptune Analytics graph. When provided, the service returns only import tasks associated with this graph. If not specified, the service returns all import tasks.</p>
             next_token: <p>Pagination token used to paginate output.</p> <p>When this value is provided as input, the service returns results from where the previous response left off. When this value is present in output, it indicates that there are more results to retrieve.</p>
             max_results: <p>The total number of records to return in the command's output.</p> <p>If the total number of records available is more than the value specified, <code>nextToken</code> is provided in the command's output. To resume pagination, provide the <code>nextToken</code> output value in the <code>nextToken</code> argument of a subsequent command. Do not use the <code>nextToken</code> response element directly outside of the Amazon CLI.</p>
 
@@ -1052,6 +1062,8 @@ class AsyncTaskResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_neptune_graph.types.list_import_tasks_input.ListImportTasksInput = {}
+        if graph_identifier is not None:
+            input_["graph_identifier"] = graph_identifier
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:

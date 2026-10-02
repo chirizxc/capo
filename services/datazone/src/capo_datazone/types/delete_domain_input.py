@@ -14,7 +14,9 @@ class DeleteDomainInput(TypedDict, closed=True):
     client_token: NotRequired["str"]
     """<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>"""
     skip_deletion_check: NotRequired["bool"]
-    """<p>Specifies the optional flag to delete all child entities within the domain.</p>"""
+    """<p>Specifies whether to skip the check that prevents deletion of a domain that still contains resources. When you use this parameter, Amazon DataZone deletes the domain but might not remove its associated resources, which can leave orphaned resources behind. To delete a domain and fully clean up its associated resources, use <code>cascadeDelete</code> instead. You can't use this parameter together with <code>cascadeDelete</code>.</p>"""
+    cascade_delete: NotRequired["bool"]
+    """<p>Specifies whether to delete the domain along with all of its associated resources. When you use this parameter, Amazon DataZone deletes the domain and cleanly removes its associated resources without leaving orphaned resources behind. Amazon DataZone reports deletion progress in the <code>deleteProgress</code> field. Amazon DataZone reports any resources that it can't delete in the <code>failureReasons</code> field of the <code>GetDomain</code> response. You can't use this parameter together with <code>skipDeletionCheck</code>. If you don't specify a value, the default is <code>false</code>.</p>"""
 
 
 # --- restJson1 ser/de ---

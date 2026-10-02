@@ -7,9 +7,11 @@ from typing_extensions import NotRequired, TypedDict
 from capo_connect.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_connect.types.boolean
     import capo_connect.types.evaluation_form_item_weight
     import capo_connect.types.evaluation_form_items_list
     import capo_connect.types.evaluation_form_question_instructions
+    import capo_connect.types.evaluation_form_score_threshold_list
     import capo_connect.types.evaluation_form_section_title
     import capo_connect.types.reference_id
 
@@ -27,6 +29,12 @@ class EvaluationFormSection(TypedDict, closed=True):
     """<p>The items of the section.</p>"""
     weight: "capo_connect.types.evaluation_form_item_weight.EvaluationFormItemWeight"
     """<p>The scoring weight of the section.</p>"""
+    is_excluded_from_scoring: "capo_connect.types.boolean.Boolean"
+    """<p>The flag to exclude the section from scoring.</p>"""
+    score_thresholds: NotRequired[
+        "capo_connect.types.evaluation_form_score_threshold_list.EvaluationFormScoreThresholdList"
+    ]
+    """<p>The score thresholds for performance categories.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -50,6 +58,15 @@ def serialize_json(value: EvaluationFormSection) -> dict:
         if value.get("weight", 0) == float("-inf")
         else value.get("weight", 0)
     )
+    out["IsExcludedFromScoring"] = value.get("is_excluded_from_scoring", False)
+    if "score_thresholds" in value:
+        import capo_connect.types.evaluation_form_score_threshold_list
+
+        out["ScoreThresholds"] = (
+            capo_connect.types.evaluation_form_score_threshold_list.serialize_json(
+                value["score_thresholds"]
+            )
+        )
     return out
 
 
@@ -77,4 +94,16 @@ def deserialize_json(data: dict) -> EvaluationFormSection:
         out["weight"] = float(data["Weight"])
     else:
         out["weight"] = 0
+    if data.get("IsExcludedFromScoring") is not None:
+        out["is_excluded_from_scoring"] = data["IsExcludedFromScoring"]
+    else:
+        out["is_excluded_from_scoring"] = False
+    if data.get("ScoreThresholds") is not None:
+        import capo_connect.types.evaluation_form_score_threshold_list
+
+        out["score_thresholds"] = (
+            capo_connect.types.evaluation_form_score_threshold_list.deserialize_json(
+                data["ScoreThresholds"]
+            )
+        )
     return out

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     import capo_partnercentral_selling.types.engagement_invitation_payload_type
     import capo_partnercentral_selling.types.engagement_member_summaries
     import capo_partnercentral_selling.types.engagement_title
+    import capo_partnercentral_selling.types.enrichment_context
     import capo_partnercentral_selling.types.invitation_message
     import capo_partnercentral_selling.types.invitation_status
     import capo_partnercentral_selling.types.payload
@@ -76,6 +77,10 @@ class GetEngagementInvitationResponse(TypedDict, closed=True):
         "capo_partnercentral_selling.types.engagement_member_summaries.EngagementMemberSummaries"
     ]
     """<p>A list of active members currently part of the Engagement. This array contains a maximum of 10 members, each represented by an object with the following properties.</p> <ul> <li> <p>CompanyName: The name of the member's company.</p> </li> <li> <p>WebsiteUrl: The website URL of the member's company.</p> </li> </ul>"""
+    enrichment_context: NotRequired[
+        "capo_partnercentral_selling.types.enrichment_context.EnrichmentContext"
+    ]
+    """<p>The enrichment data for the engagement associated with this invitation. You can view propensity scores, program eligibility, and lead readiness assessments before taking action on the invitation.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -153,6 +158,14 @@ def serialize_aws_json_1_0(value: GetEngagementInvitationResponse) -> dict:
         out["ExistingMembers"] = (
             capo_partnercentral_selling.types.engagement_member_summaries.serialize_aws_json_1_0(
                 value["existing_members"]
+            )
+        )
+    if "enrichment_context" in value:
+        import capo_partnercentral_selling.types.enrichment_context
+
+        out["EnrichmentContext"] = (
+            capo_partnercentral_selling.types.enrichment_context.serialize_aws_json_1_0(
+                value["enrichment_context"]
             )
         )
     return out
@@ -238,6 +251,14 @@ def deserialize_aws_json_1_0(data: dict) -> GetEngagementInvitationResponse:
         out["existing_members"] = (
             capo_partnercentral_selling.types.engagement_member_summaries.deserialize_aws_json_1_0(
                 data["ExistingMembers"]
+            )
+        )
+    if data.get("EnrichmentContext") is not None:
+        import capo_partnercentral_selling.types.enrichment_context
+
+        out["enrichment_context"] = (
+            capo_partnercentral_selling.types.enrichment_context.deserialize_aws_json_1_0(
+                data["EnrichmentContext"]
             )
         )
     return out

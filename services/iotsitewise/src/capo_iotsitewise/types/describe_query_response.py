@@ -1,0 +1,104 @@
+"""Generated from Smithy shape ``com.amazonaws.iotsitewise#DescribeQueryResponse``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+from capo_iotsitewise.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import datetime
+
+    import capo_iotsitewise.types.query_error_message
+    import capo_iotsitewise.types.query_id
+    import capo_iotsitewise.types.query_statistics
+    import capo_iotsitewise.types.query_status
+
+
+class DescribeQueryResponse(TypedDict, closed=True):
+    query_id: "capo_iotsitewise.types.query_id.QueryId"
+    """<p>The unique identifier for the query execution.</p>"""
+    status: "capo_iotsitewise.types.query_status.QueryStatus"
+    """<p>The current query status.</p>"""
+    submitted_at: "datetime.datetime"
+    """<p>The date and time when the query was submitted, in Unix epoch time.</p>"""
+    completed_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the query reached a terminal state, in Unix epoch time. This field is present when the query status is COMPLETED, FAILED, or CANCELED.</p>"""
+    statistics: NotRequired["capo_iotsitewise.types.query_statistics.QueryStatistics"]
+    """<p>The query execution statistics. This field is present when the query status is COMPLETED.</p>"""
+    error_message: NotRequired[
+        "capo_iotsitewise.types.query_error_message.QueryErrorMessage"
+    ]
+    """<p>A human-readable error description. This field is present when the query status is FAILED.</p>"""
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: DescribeQueryResponse) -> dict:
+    out: dict = {}
+    out["queryId"] = value["query_id"]
+    import capo_iotsitewise.types.query_status
+
+    out["status"] = capo_iotsitewise.types.query_status.serialize_json(value["status"])
+    import capo_iotsitewise.types._prelude.timestamp
+
+    out["submittedAt"] = capo_iotsitewise.types._prelude.timestamp.serialize_json(
+        value["submitted_at"]
+    )
+    if "completed_at" in value:
+        import capo_iotsitewise.types._prelude.timestamp
+
+        out["completedAt"] = capo_iotsitewise.types._prelude.timestamp.serialize_json(
+            value["completed_at"]
+        )
+    if "statistics" in value:
+        import capo_iotsitewise.types.query_statistics
+
+        out["statistics"] = capo_iotsitewise.types.query_statistics.serialize_json(
+            value["statistics"]
+        )
+    if "error_message" in value:
+        out["errorMessage"] = value["error_message"]
+    return out
+
+
+def deserialize_json(data: dict) -> DescribeQueryResponse:
+    out: DescribeQueryResponse = {}  # type: ignore[typeddict-item]
+    if data.get("queryId") is not None:
+        out["query_id"] = data["queryId"]
+    else:
+        raise DeserializationError("DescribeQueryResponse.query_id required")
+    if data.get("status") is not None:
+        import capo_iotsitewise.types.query_status
+
+        out["status"] = capo_iotsitewise.types.query_status.deserialize_json(
+            data["status"]
+        )
+    else:
+        raise DeserializationError("DescribeQueryResponse.status required")
+    if data.get("submittedAt") is not None:
+        import capo_iotsitewise.types._prelude.timestamp
+
+        out["submitted_at"] = (
+            capo_iotsitewise.types._prelude.timestamp.deserialize_json(
+                data["submittedAt"]
+            )
+        )
+    else:
+        raise DeserializationError("DescribeQueryResponse.submitted_at required")
+    if data.get("completedAt") is not None:
+        import capo_iotsitewise.types._prelude.timestamp
+
+        out["completed_at"] = (
+            capo_iotsitewise.types._prelude.timestamp.deserialize_json(
+                data["completedAt"]
+            )
+        )
+    if data.get("statistics") is not None:
+        import capo_iotsitewise.types.query_statistics
+
+        out["statistics"] = capo_iotsitewise.types.query_statistics.deserialize_json(
+            data["statistics"]
+        )
+    if data.get("errorMessage") is not None:
+        out["error_message"] = data["errorMessage"]
+    return out

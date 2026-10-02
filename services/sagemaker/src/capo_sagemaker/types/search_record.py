@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.experiment
     import capo_sagemaker.types.feature_group
     import capo_sagemaker.types.feature_metadata
+    import capo_sagemaker.types.hub_content
     import capo_sagemaker.types.hyper_parameter_tuning_job_search_entity
     import capo_sagemaker.types.job
     import capo_sagemaker.types.model_card
@@ -61,6 +62,9 @@ class SearchRecord(TypedDict, closed=True):
     """<p>An Amazon SageMaker Model Card that documents details about a machine learning model.</p>"""
     model: NotRequired["capo_sagemaker.types.model_dashboard_model.ModelDashboardModel"]
     job: NotRequired["capo_sagemaker.types.job.Job"]
+    """<p>The properties of a job.</p>"""
+    hub_content: NotRequired["capo_sagemaker.types.hub_content.HubContent"]
+    """<p>The properties of a hub content resource.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -178,6 +182,12 @@ def serialize_aws_json_1_1(value: SearchRecord) -> dict:
         import capo_sagemaker.types.job
 
         out["Job"] = capo_sagemaker.types.job.serialize_aws_json_1_1(value["job"])
+    if "hub_content" in value:
+        import capo_sagemaker.types.hub_content
+
+        out["HubContent"] = capo_sagemaker.types.hub_content.serialize_aws_json_1_1(
+            value["hub_content"]
+        )
     return out
 
 
@@ -303,4 +313,10 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
         import capo_sagemaker.types.job
 
         out["job"] = capo_sagemaker.types.job.deserialize_aws_json_1_1(data["Job"])
+    if data.get("HubContent") is not None:
+        import capo_sagemaker.types.hub_content
+
+        out["hub_content"] = capo_sagemaker.types.hub_content.deserialize_aws_json_1_1(
+            data["HubContent"]
+        )
     return out

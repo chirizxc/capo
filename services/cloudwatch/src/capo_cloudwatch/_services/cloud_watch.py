@@ -57,6 +57,8 @@ if TYPE_CHECKING:
     import capo_cloudwatch.types.associate_dataset_kms_key_output
     import capo_cloudwatch.types.comparison_operator
     import capo_cloudwatch.types.contributor_id
+    import capo_cloudwatch.types.create_resource_metrics_configuration_input
+    import capo_cloudwatch.types.create_resource_metrics_configuration_output
     import capo_cloudwatch.types.dashboard_body
     import capo_cloudwatch.types.dashboard_entry
     import capo_cloudwatch.types.dashboard_name
@@ -74,6 +76,8 @@ if TYPE_CHECKING:
     import capo_cloudwatch.types.delete_insight_rules_output
     import capo_cloudwatch.types.delete_metric_stream_input
     import capo_cloudwatch.types.delete_metric_stream_output
+    import capo_cloudwatch.types.delete_resource_metrics_configuration_input
+    import capo_cloudwatch.types.delete_resource_metrics_configuration_output
     import capo_cloudwatch.types.describe_alarm_contributors_input
     import capo_cloudwatch.types.describe_alarm_contributors_output
     import capo_cloudwatch.types.describe_alarm_history_input
@@ -123,6 +127,8 @@ if TYPE_CHECKING:
     import capo_cloudwatch.types.get_metric_widget_image_output
     import capo_cloudwatch.types.get_o_tel_enrichment_input
     import capo_cloudwatch.types.get_o_tel_enrichment_output
+    import capo_cloudwatch.types.get_resource_metrics_configuration_input
+    import capo_cloudwatch.types.get_resource_metrics_configuration_output
     import capo_cloudwatch.types.history_item_type
     import capo_cloudwatch.types.include_linked_accounts
     import capo_cloudwatch.types.include_linked_accounts_metrics
@@ -169,6 +175,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch.types.name
     import capo_cloudwatch.types.namespace
     import capo_cloudwatch.types.next_token
+    import capo_cloudwatch.types.o_tel_enrichment_metric_selector_list
     import capo_cloudwatch.types.output_format
     import capo_cloudwatch.types.period
     import capo_cloudwatch.types.put_alarm_mute_rule_input
@@ -189,7 +196,9 @@ if TYPE_CHECKING:
     import capo_cloudwatch.types.query_results_to_alarm
     import capo_cloudwatch.types.query_results_to_evaluate
     import capo_cloudwatch.types.recently_active
+    import capo_cloudwatch.types.resource_arn
     import capo_cloudwatch.types.resource_list
+    import capo_cloudwatch.types.resource_metric_selection_list
     import capo_cloudwatch.types.rule
     import capo_cloudwatch.types.scan_by
     import capo_cloudwatch.types.scheduled_query_configuration
@@ -220,6 +229,11 @@ if TYPE_CHECKING:
     import capo_cloudwatch.types.treat_missing_data
     import capo_cloudwatch.types.untag_resource_input
     import capo_cloudwatch.types.untag_resource_output
+    import capo_cloudwatch.types.update_o_tel_enrichment_input
+    import capo_cloudwatch.types.update_o_tel_enrichment_output
+    import capo_cloudwatch.types.update_resource_metrics_configuration_input
+    import capo_cloudwatch.types.update_resource_metrics_configuration_output
+    import capo_cloudwatch.types.warm_up_configuration
 
 
 class CloudWatchClientConfig(TypedDict, total=False, closed=True):
@@ -324,7 +338,7 @@ class CloudWatchClient:
         ] = None,
         kms_key_arn: Optional["capo_cloudwatch.types.kms_key_arn.KmsKeyArn"] = None,
     ) -> "capo_cloudwatch.types.associate_dataset_kms_key_output.AssociateDatasetKmsKeyOutput":
-        r"""<p>Associates an Amazon Web Services Key Management Service (Amazon Web Services KMS) customer managed key with the specified dataset. After this operation completes, all data published to the dataset is encrypted at rest using the specified KMS key. Callers must have <code>kms:Decrypt</code> permission on the key to read the encrypted data.</p> <p>Only the <code>default</code> dataset is supported. The <code>default</code> dataset is implicit for every account in every Region — you do not need to create it before calling this operation.</p> <p>You can call <code>AssociateDatasetKmsKey</code> on a dataset that is already associated with a KMS key to replace the existing key with a different one. To replace a key, the caller must have <code>kms:Decrypt</code> permission on both the current key and the new key.</p> <p>The KMS key that you specify must meet all of the following requirements:</p> <ul> <li> <p>It must be a symmetric encryption KMS key (key spec <code>SYMMETRIC_DEFAULT</code>, key usage <code>ENCRYPT_DECRYPT</code>). Asymmetric keys, HMAC keys, and key material types other than <code>SYMMETRIC_DEFAULT</code> are not supported.</p> </li> <li> <p>It must be enabled and not pending deletion.</p> </li> <li> <p>Its key policy must grant the CloudWatch service principal (<code>cloudwatch.amazonaws.com</code>) these permissions: <code>kms:DescribeKey</code>, <code>kms:GenerateDataKey</code>, <code>kms:Encrypt</code>, <code>kms:Decrypt</code>, and <code>kms:ReEncrypt*</code>. Amazon CloudWatch requires these permissions to manage the data on your behalf.</p> </li> <li> <p>The calling principal must have <code>kms:Decrypt</code> permission on the key.</p> </li> <li> <p>It must be specified as a fully qualified key ARN. Key IDs, aliases, and alias ARNs are not accepted.</p> </li> <li> <p>It must be in the same Amazon Web Services Region as the dataset.</p> </li> </ul> <p>Before completing the association, Amazon CloudWatch validates the key by performing a series of dry-run KMS operations. Service-principal checks run first to verify that the key policy grants the required access to Amazon CloudWatch. These checks include <code>kms:DescribeKey</code>, <code>kms:GenerateDataKey</code>, <code>kms:Encrypt</code>, <code>kms:Decrypt</code>, and <code>kms:ReEncrypt*</code>. After those succeed, a <code>kms:Decrypt</code> dry-run is run with the caller's credentials to verify that the calling principal can use the key. When you are replacing an existing key, the caller's <code>kms:Decrypt</code> dry-run is run on the current key first, and only then on the new key.</p> <p>If any of these checks fails, the operation fails and the existing key association (if any) remains unchanged. Common failure causes include the key being disabled, the key policy not granting the required permissions to Amazon CloudWatch, or the caller lacking <code>kms:Decrypt</code> permission on the key.</p> <p>For more information about using customer managed keys with Amazon CloudWatch, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cmk-encryption.html\">Encryption at rest with customer managed keys</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
+        r"""<p>Associates an Amazon Web Services Key Management Service (Amazon Web Services KMS) customer managed key with the specified dataset. After this operation completes, all data published to the dataset is encrypted at rest using the specified KMS key. Callers must have <code>kms:Decrypt</code> permission on the key to read the encrypted data.</p> <p>Only the <code>default</code> dataset is supported. The <code>default</code> dataset is implicit for every account in every Region — you do not need to create it before calling this operation.</p> <p>You can call <code>AssociateDatasetKmsKey</code> on a dataset that is already associated with a KMS key to replace the existing key with a different one. The caller must have <code>kms:Decrypt</code> permission on both the current key and the new key.</p> <note> <p>If the currently associated key has been deleted, is scheduled for deletion, is pending import, is unavailable, or has been disabled, Amazon CloudWatch does not require <code>kms:Decrypt</code> permission on the current key and the rotation proceeds. If the key was only disabled, consider re-enabling it instead of rotating, because re-enabling allows Amazon CloudWatch to resume decrypting your existing metric data encrypted with that key.</p> </note> <p>The KMS key that you specify must meet all of the following requirements:</p> <ul> <li> <p>It must be a symmetric encryption KMS key (key spec <code>SYMMETRIC_DEFAULT</code>, key usage <code>ENCRYPT_DECRYPT</code>). Asymmetric keys, HMAC keys, and key material types other than <code>SYMMETRIC_DEFAULT</code> are not supported.</p> </li> <li> <p>It must be enabled and not pending deletion.</p> </li> <li> <p>Its key policy must grant the CloudWatch service principal (<code>cloudwatch.amazonaws.com</code>) these permissions: <code>kms:DescribeKey</code>, <code>kms:GenerateDataKey</code>, <code>kms:Encrypt</code>, <code>kms:Decrypt</code>, and <code>kms:ReEncrypt*</code>. Amazon CloudWatch requires these permissions to manage the data on your behalf.</p> </li> <li> <p>The calling principal must have <code>kms:Decrypt</code> permission on the key.</p> </li> <li> <p>It must be specified as a fully qualified key ARN. Key IDs, aliases, and alias ARNs are not accepted.</p> </li> <li> <p>It must be in the same Amazon Web Services Region as the dataset.</p> </li> </ul> <p>Before completing the association, Amazon CloudWatch validates the key by performing a series of dry-run KMS operations. Service-principal checks run first to verify that the key policy grants the required access to Amazon CloudWatch. These checks include <code>kms:DescribeKey</code>, <code>kms:GenerateDataKey</code>, <code>kms:Encrypt</code>, <code>kms:Decrypt</code>, and <code>kms:ReEncrypt*</code>. After those succeed, a <code>kms:Decrypt</code> dry-run is run with the caller's credentials to verify that the calling principal can use the new key. When you are replacing an existing key, the caller's <code>kms:Decrypt</code> dry-run is also run on the current key.</p> <p>If any of these checks on the new key fails, the operation fails and the existing key association (if any) remains unchanged. Common failure causes include the new key being disabled, the key policy not granting the required permissions to Amazon CloudWatch, or the caller lacking <code>kms:Decrypt</code> permission on the new key.</p> <p>For more information about using customer managed keys with Amazon CloudWatch, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cmk-encryption.html\">Encryption at rest with customer managed keys</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
 
         Args:
             dataset_identifier: <p>Specifies the identifier of the dataset that you want to associate the KMS key with. For the <code>default</code> dataset, you can specify either <code>default</code> or the full dataset Amazon Resource Name (ARN) in the format <code>arn:aws:cloudwatch:<i>Region</i>:<i>account-id</i>:dataset/default</code>.</p>
@@ -359,6 +373,56 @@ class CloudWatchClient:
             input_["dataset_identifier"] = dataset_identifier
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_resource_metrics_configuration(
+        self,
+        *,
+        config_overrides: Optional[CloudWatchClientConfig] = None,
+        resource_arn: Optional["capo_cloudwatch.types.resource_arn.ResourceArn"] = None,
+        metric_selections: Optional[
+            "capo_cloudwatch.types.resource_metric_selection_list.ResourceMetricSelectionList"
+        ] = None,
+    ) -> "capo_cloudwatch.types.create_resource_metrics_configuration_output.CreateResourceMetricsConfigurationOutput":
+        r"""<p>Creates a resource metrics configuration for an Amazon Web Services resource. After you create a configuration, Amazon CloudWatch collects detailed metrics for that resource.</p> <p>Each Amazon Web Services resource can have only one resource metrics configuration. If a configuration already exists for the specified resource ARN, this operation returns a <code>ConflictException</code>. To modify an existing configuration, use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_UpdateResourceMetricsConfiguration.html\">UpdateResourceMetricsConfiguration</a>.</p> <p>If the Amazon Web Services resource that you specify in <code>ResourceArn</code> does not exist, this operation returns a <code>ResourceNotFoundException</code>. Verify that the resource ARN is correct and that the resource exists before you retry the request.</p> <p>To create a resource metrics configuration, you must have the <code>cloudwatch:CreateResourceMetricsConfiguration</code> permission. For information about scoping this permission to specific resources, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/iam-cw-condition-keys-resource-arn.html\">Condition keys for resource metrics configuration access</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the Amazon Web Services resource to enable detailed monitoring for.</p>
+            metric_selections: <p>Specifies which metrics Amazon CloudWatch collects for the resource. If you omit this parameter, Amazon CloudWatch collects all available detailed metrics for the resource.</p>
+
+        Raises:
+            capo_cloudwatch.errors.conflict_exception.ConflictException: <p>This operation attempted to create a resource that already exists.</p>
+            capo_cloudwatch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The named resource does not exist.</p>
+            capo_cloudwatch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cloudwatch.types.create_resource_metrics_configuration_input.CreateResourceMetricsConfigurationInput]",
+        ) -> OperationResponse[
+            "capo_cloudwatch.types.create_resource_metrics_configuration_output.CreateResourceMetricsConfigurationOutput"
+        ]:
+            import capo_cloudwatch._operations.granite_service_version20100801.create_resource_metrics_configuration
+
+            output, http_response = (
+                capo_cloudwatch._operations.granite_service_version20100801.create_resource_metrics_configuration.create_resource_metrics_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch.types.create_resource_metrics_configuration_input.CreateResourceMetricsConfigurationInput = {}
+        if resource_arn is not None:
+            input_["resource_arn"] = resource_arn
+        if metric_selections is not None:
+            input_["metric_selections"] = metric_selections
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -660,6 +724,49 @@ class CloudWatchClient:
         input_: capo_cloudwatch.types.delete_metric_stream_input.DeleteMetricStreamInput = {}
         if name is not None:
             input_["name"] = name
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_resource_metrics_configuration(
+        self,
+        *,
+        config_overrides: Optional[CloudWatchClientConfig] = None,
+        resource_arn: Optional["capo_cloudwatch.types.resource_arn.ResourceArn"] = None,
+    ) -> "capo_cloudwatch.types.delete_resource_metrics_configuration_output.DeleteResourceMetricsConfigurationOutput":
+        r"""<p>Deletes the resource metrics configuration for an Amazon Web Services resource. After you delete the configuration, Amazon CloudWatch stops collecting detailed metrics for the resource. Metric data that Amazon CloudWatch already collected for the resource is not deleted.</p> <p>This operation returns a <code>ResourceNotFoundException</code> if no resource metrics configuration exists for the specified resource ARN. Verify that the resource ARN is correct.</p> <p>To delete a resource metrics configuration, you must have the <code>cloudwatch:DeleteResourceMetricsConfiguration</code> permission. For information about scoping this permission to specific resources, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/iam-cw-condition-keys-resource-arn.html\">Condition keys for resource metrics configuration access</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the Amazon Web Services resource to delete the resource metrics configuration for.</p>
+
+        Raises:
+            capo_cloudwatch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The named resource does not exist.</p>
+            capo_cloudwatch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cloudwatch.types.delete_resource_metrics_configuration_input.DeleteResourceMetricsConfigurationInput]",
+        ) -> OperationResponse[
+            "capo_cloudwatch.types.delete_resource_metrics_configuration_output.DeleteResourceMetricsConfigurationOutput"
+        ]:
+            import capo_cloudwatch._operations.granite_service_version20100801.delete_resource_metrics_configuration
+
+            output, http_response = (
+                capo_cloudwatch._operations.granite_service_version20100801.delete_resource_metrics_configuration.delete_resource_metrics_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch.types.delete_resource_metrics_configuration_input.DeleteResourceMetricsConfigurationInput = {}
+        if resource_arn is not None:
+            input_["resource_arn"] = resource_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1308,7 +1415,7 @@ class CloudWatchClient:
             "capo_cloudwatch.types.dataset_identifier.DatasetIdentifier"
         ] = None,
     ) -> "capo_cloudwatch.types.disassociate_dataset_kms_key_output.DisassociateDatasetKmsKeyOutput":
-        r"""<p>Removes the customer managed Amazon Web Services Key Management Service (Amazon Web Services KMS) key association from the specified dataset. After this operation completes, data that you publish to the dataset is encrypted at rest using an Amazon Web Services owned key managed by Amazon CloudWatch.</p> <p>Only the <code>default</code> dataset is supported. To call this operation, the dataset must currently have a customer managed KMS key associated with it. If the dataset has no associated KMS key, the operation fails with <code>ResourceNotFoundException</code>.</p> <p>Amazon CloudWatch performs a dry-run <code>kms:Decrypt</code> call on the key as part of this operation. This verifies that the caller is authorized to use the currently associated key. The caller must have <code>kms:Decrypt</code> permission on the currently associated key, and the key must be enabled and accessible. If the key has been disabled or scheduled for deletion, you must first re-enable or restore it before you can disassociate it from the dataset.</p> <important> <p>Disassociating a KMS key from a dataset does not immediately remove the <code>kms:Decrypt</code> requirement on data plane operations. For up to three hours after disassociation, callers must continue to have <code>kms:Decrypt</code> permission on the previously associated key. Some data may still be encrypted with that key during this window. After this enforcement window elapses, the <code>kms:Decrypt</code> requirement is lifted.</p> </important> <p>For more information about using customer managed keys with Amazon CloudWatch, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cmk-encryption.html\">Encryption at rest with customer managed keys</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
+        r"""<p>Removes the customer managed Amazon Web Services Key Management Service (Amazon Web Services KMS) key association from the specified dataset. After this operation completes, data that you publish to the dataset is encrypted at rest using an Amazon Web Services owned key managed by Amazon CloudWatch.</p> <p>Only the <code>default</code> dataset is supported. To call this operation, the dataset must currently have a customer managed KMS key associated with it. If the dataset has no associated KMS key, the operation fails with <code>ResourceNotFoundException</code>.</p> <p>Amazon CloudWatch performs a dry-run <code>kms:Decrypt</code> call on the currently associated key as part of this operation. The caller must have <code>kms:Decrypt</code> permission on the currently associated key. If the key is accessible but the caller lacks <code>kms:Decrypt</code> permission, the operation fails with <code>AccessDeniedException</code>.</p> <note> <p>If the currently associated key has been deleted, is scheduled for deletion, is pending import, is unavailable, or has been disabled, Amazon CloudWatch does not require <code>kms:Decrypt</code> permission on that key and the disassociation proceeds. If the key was only disabled, consider re-enabling it instead of disassociating, because re-enabling allows Amazon CloudWatch to resume decrypting your existing metric data.</p> </note> <important> <p>Disassociating a KMS key from a dataset does not immediately remove the <code>kms:Decrypt</code> requirement on data plane operations. For up to three hours after disassociation, callers must continue to have <code>kms:Decrypt</code> permission on the previously associated key. Some data might still be encrypted with that key during this window. After this enforcement window elapses, the <code>kms:Decrypt</code> requirement is lifted.</p> </important> <p>For more information about using customer managed keys with Amazon CloudWatch, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cmk-encryption.html\">Encryption at rest with customer managed keys</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
 
         Args:
             dataset_identifier: <p>Specifies the identifier of the dataset from which to remove the KMS key association. For the <code>default</code> dataset, you can specify either <code>default</code> or the full dataset Amazon Resource Name (ARN) in the format <code>arn:aws:cloudwatch:<i>Region</i>:<i>account-id</i>:dataset/default</code>.</p>
@@ -1527,7 +1634,7 @@ class CloudWatchClient:
             "capo_cloudwatch.types.dashboard_name.DashboardName"
         ] = None,
     ) -> "capo_cloudwatch.types.get_dashboard_output.GetDashboardOutput":
-        """<p>Displays the details of the dashboard that you specify.</p> <p>To copy an existing dashboard, use <code>GetDashboard</code>, and then use the data returned within <code>DashboardBody</code> as the template for the new dashboard when you call <code>PutDashboard</code> to create the copy.</p>
+        r"""<p>Displays the details of the dashboard that you specify.</p> <p>To copy an existing dashboard, use <code>GetDashboard</code>, and then use the data returned within <code>DashboardBody</code> as the template for the new dashboard when you call <code>PutDashboard</code> to create the copy.</p> <p>You might have recently enabled an <a href=\"https://docs.aws.amazon.com/glossary/latest/reference/glos-chap.html#optinregion\">opt-in Region (Region that is disabled by default)</a> for your account. In that Region, <code>GetDashboard</code> can return an access denied error for up to 24 hours after you enable the Region. This delay occurs while dashboard data propagates. The error does not indicate a problem with your permissions. Because dashboards are global, you can call <code>GetDashboard</code> in any other enabled Region, or retry after propagation completes.</p>
 
         Args:
             dashboard_name: <p>The name of the dashboard to be described.</p>
@@ -1706,7 +1813,7 @@ class CloudWatchClient:
             "capo_cloudwatch.types.label_options.LabelOptions"
         ] = None,
     ) -> "capo_cloudwatch.types.get_metric_data_output.GetMetricDataOutput":
-        r"""<p>You can use the <code>GetMetricData</code> API to retrieve CloudWatch metric values. The operation can also include a CloudWatch Metrics Insights query, and one or more metric math functions.</p> <p>A <code>GetMetricData</code> operation that does not include a query can retrieve as many as 500 different metrics in a single request, with a total of as many as 100,800 data points. You can also optionally perform metric math expressions on the values of the returned statistics, to create new time series that represent new insights into your data. For example, using Lambda metrics, you could divide the Errors metric by the Invocations metric to get an error rate time series. For more information about metric math expressions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html#metric-math-syntax\">Metric Math Syntax and Functions</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>If you include a Metrics Insights query, each <code>GetMetricData</code> operation can include only one query. But the same <code>GetMetricData</code> operation can also retrieve other metrics. Metrics Insights queries can query only the most recent three hours of metric data. For more information about Metrics Insights, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/query_with_cloudwatch-metrics-insights.html\">Query your metrics with CloudWatch Metrics Insights</a>.</p> <p>Calls to the <code>GetMetricData</code> API have a different pricing structure than calls to <code>GetMetricStatistics</code>. For more information about pricing, see <a href=\"https://aws.amazon.com/cloudwatch/pricing/\">Amazon CloudWatch Pricing</a>.</p> <p>Amazon CloudWatch retains metric data as follows:</p> <ul> <li> <p>Data points with a period of less than 60 seconds are available for 3 hours. These data points are high-resolution metrics and are available only for custom metrics that have been defined with a <code>StorageResolution</code> of 1.</p> </li> <li> <p>Data points with a period of 60 seconds (1-minute) are available for 15 days.</p> </li> <li> <p>Data points with a period of 300 seconds (5-minute) are available for 63 days.</p> </li> <li> <p>Data points with a period of 3600 seconds (1 hour) are available for 455 days (15 months).</p> </li> </ul> <p>Data points that are initially published with a shorter period are aggregated together for long-term storage. For example, if you collect data using a period of 1 minute, the data remains available for 15 days with 1-minute resolution. After 15 days, this data is still available, but is aggregated and retrievable only with a resolution of 5 minutes. After 63 days, the data is further aggregated and is available with a resolution of 1 hour.</p> <p>If you omit <code>Unit</code> in your request, all data that was collected with any unit is returned, along with the corresponding units that were specified when the data was reported to CloudWatch. If you specify a unit, the operation returns only data that was collected with that unit specified. If you specify a unit that does not match the data collected, the results of the operation are null. CloudWatch does not perform unit conversions.</p> <p> <b>Using Metrics Insights queries with metric math</b> </p> <p>You can't mix a Metric Insights query and metric math syntax in the same expression, but you can reference results from a Metrics Insights query within other Metric math expressions. A Metrics Insights query without a <b>GROUP BY</b> clause returns a single time-series (TS), and can be used as input for a metric math expression that expects a single time series. A Metrics Insights query with a <b>GROUP BY</b> clause returns an array of time-series (TS[]), and can be used as input for a metric math expression that expects an array of time series. </p>
+        r"""<p>You can use the <code>GetMetricData</code> API to retrieve CloudWatch metric values. The operation can also include a CloudWatch Metrics Insights query, and one or more metric math functions.</p> <p>A <code>GetMetricData</code> operation that does not include a query can retrieve as many as 500 different metrics in a single request, with a total of as many as 100,800 data points. You can also optionally perform metric math expressions on the values of the returned statistics, to create new time series that represent new insights into your data. For example, using Lambda metrics, you could divide the Errors metric by the Invocations metric to get an error rate time series. For more information about metric math expressions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html#metric-math-syntax\">Metric Math Syntax and Functions</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>If you include a Metrics Insights query, each <code>GetMetricData</code> operation can include only one query. But the same <code>GetMetricData</code> operation can also retrieve other metrics. Metrics Insights queries can query the most recent two weeks of metric data. For alarm condition evaluations, Metrics Insights queries can query only the most recent three hours of metric data. For more information about Metrics Insights, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/query_with_cloudwatch-metrics-insights.html\">Query your metrics with CloudWatch Metrics Insights</a>.</p> <p>Calls to the <code>GetMetricData</code> API have a different pricing structure than calls to <code>GetMetricStatistics</code>. For more information about pricing, see <a href=\"https://aws.amazon.com/cloudwatch/pricing/\">Amazon CloudWatch Pricing</a>.</p> <p>Amazon CloudWatch retains metric data as follows:</p> <ul> <li> <p>Data points with a period of less than 60 seconds are available for 3 hours. These data points are high-resolution metrics and are available only for custom metrics that have been defined with a <code>StorageResolution</code> of 1.</p> </li> <li> <p>Data points with a period of 60 seconds (1-minute) are available for 15 days.</p> </li> <li> <p>Data points with a period of 300 seconds (5-minute) are available for 63 days.</p> </li> <li> <p>Data points with a period of 3600 seconds (1 hour) are available for 455 days (15 months).</p> </li> </ul> <p>Data points that are initially published with a shorter period are aggregated together for long-term storage. For example, if you collect data using a period of 1 minute, the data remains available for 15 days with 1-minute resolution. After 15 days, this data is still available, but is aggregated and retrievable only with a resolution of 5 minutes. After 63 days, the data is further aggregated and is available with a resolution of 1 hour.</p> <p>If you omit <code>Unit</code> in your request, all data that was collected with any unit is returned, along with the corresponding units that were specified when the data was reported to CloudWatch. If you specify a unit, the operation returns only data that was collected with that unit specified. If you specify a unit that does not match the data collected, the results of the operation are null. CloudWatch does not perform unit conversions.</p> <p> <b>Using Metrics Insights queries with metric math</b> </p> <p>You can't mix a Metric Insights query and metric math syntax in the same expression, but you can reference results from a Metrics Insights query within other Metric math expressions. A Metrics Insights query without a <b>GROUP BY</b> clause returns a single time-series (TS), and can be used as input for a metric math expression that expects a single time series. A Metrics Insights query with a <b>GROUP BY</b> clause returns an array of time-series (TS[]), and can be used as input for a metric math expression that expects an array of time series. </p>
 
         Args:
             metric_data_queries: <p>The metric queries to be returned. A single <code>GetMetricData</code> call can include as many as 500 <code>MetricDataQuery</code> structures. Each of these structures can specify either a metric to retrieve, a Metrics Insights query, or a math expression to perform on retrieved data. </p>
@@ -2009,6 +2116,49 @@ class CloudWatchClient:
         response.response.close()
         return response.output
 
+    def get_resource_metrics_configuration(
+        self,
+        *,
+        config_overrides: Optional[CloudWatchClientConfig] = None,
+        resource_arn: Optional["capo_cloudwatch.types.resource_arn.ResourceArn"] = None,
+    ) -> "capo_cloudwatch.types.get_resource_metrics_configuration_output.GetResourceMetricsConfigurationOutput":
+        r"""<p>Retrieves the current resource metrics configuration for an Amazon Web Services resource. The response includes the resource ARN, any metric selections, and the times at which the configuration was created and last updated.</p> <p>This operation returns a <code>ResourceNotFoundException</code> if no resource metrics configuration exists for the specified resource ARN. To create a configuration, use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_CreateResourceMetricsConfiguration.html\">CreateResourceMetricsConfiguration</a>.</p> <p>To retrieve a resource metrics configuration, you must have the <code>cloudwatch:GetResourceMetricsConfiguration</code> permission. For information about scoping this permission to specific resources, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/iam-cw-condition-keys-resource-arn.html\">Condition keys for resource metrics configuration access</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the Amazon Web Services resource to retrieve the resource metrics configuration for.</p>
+
+        Raises:
+            capo_cloudwatch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The named resource does not exist.</p>
+            capo_cloudwatch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cloudwatch.types.get_resource_metrics_configuration_input.GetResourceMetricsConfigurationInput]",
+        ) -> OperationResponse[
+            "capo_cloudwatch.types.get_resource_metrics_configuration_output.GetResourceMetricsConfigurationOutput"
+        ]:
+            import capo_cloudwatch._operations.granite_service_version20100801.get_resource_metrics_configuration
+
+            output, http_response = (
+                capo_cloudwatch._operations.granite_service_version20100801.get_resource_metrics_configuration.get_resource_metrics_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch.types.get_resource_metrics_configuration_input.GetResourceMetricsConfigurationInput = {}
+        if resource_arn is not None:
+            input_["resource_arn"] = resource_arn
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def list_alarm_mute_rules(
         self,
         *,
@@ -2103,7 +2253,7 @@ class CloudWatchClient:
         ] = None,
         next_token: Optional["capo_cloudwatch.types.next_token.NextToken"] = None,
     ) -> "capo_cloudwatch.types.list_dashboards_output.ListDashboardsOutput":
-        r"""<p>Returns a list of the dashboards for your account. If you include <code>DashboardNamePrefix</code>, only those dashboards with names starting with the prefix are listed. Otherwise, all dashboards in your account are listed. </p> <p> <code>ListDashboards</code> returns up to 1000 results on one page. If there are more than 1000 dashboards, you can call <code>ListDashboards</code> again and include the value you received for <code>NextToken</code> in the first call, to receive the next 1000 results.</p>
+        r"""<p>Returns a list of the dashboards for your account. If you include <code>DashboardNamePrefix</code>, only those dashboards with names starting with the prefix are listed. Otherwise, all dashboards in your account are listed. </p> <p> <code>ListDashboards</code> returns up to 1000 results on one page. If there are more than 1000 dashboards, you can call <code>ListDashboards</code> again and include the value you received for <code>NextToken</code> in the first call, to receive the next 1000 results.</p> <p>You might have recently enabled an <a href=\"https://docs.aws.amazon.com/glossary/latest/reference/glos-chap.html#optinregion\">opt-in Region (Region that is disabled by default)</a> for your account. In that Region, <code>ListDashboards</code> can return an access denied error for up to 24 hours after you enable the Region. This delay occurs while dashboard data propagates. The error does not indicate a problem with your permissions. Because dashboards are global, you can call <code>ListDashboards</code> in any other enabled Region, or retry after propagation completes.</p>
 
         Args:
             dashboard_name_prefix: <p>If you specify this parameter, only the dashboards with names starting with the specified string are listed. The maximum length is 255, and valid characters are A-Z, a-z, 0-9, \".\", \"-\", and \"_\". </p>
@@ -2894,8 +3044,11 @@ class CloudWatchClient:
             "capo_cloudwatch.types.treat_missing_data.TreatMissingData"
         ] = None,
         tags: Optional["capo_cloudwatch.types.tag_list.TagList"] = None,
+        warm_up_configuration: Optional[
+            "capo_cloudwatch.types.warm_up_configuration.WarmUpConfiguration"
+        ] = None,
     ) -> None:
-        """<p>Creates or updates a log alarm. A log alarm evaluates the results of a CloudWatch Logs scheduled query against the configured threshold and comparison operator to determine its state.</p> <p>When you create a log alarm, the operation creates a service-managed CloudWatch Logs scheduled query that runs the query string you provide on the schedule you configure. Each scheduled query execution returns one or more aggregated values determined by the <code>AggregationExpression</code>, and each aggregated value is compared against the alarm <code>Threshold</code> to determine the alarm state. The alarm uses M-out-of-N evaluation: if <code>QueryResultsToAlarm</code> out of the most recent <code>QueryResultsToEvaluate</code> query results breach the threshold, the alarm transitions to <code>ALARM</code>.</p> <p>Log alarms support the alarm states (<code>OK</code>, <code>ALARM</code>, <code>INSUFFICIENT_DATA</code>). Configure transition actions using <code>OKActions</code>, <code>AlarmActions</code>, and <code>InsufficientDataActions</code>.</p> <p>If you call this operation with the name of an existing log alarm, the operation replaces the previous configuration of that alarm.</p> <p> <b>Permissions</b> </p> <p>To create or update a log alarm, you must have the <code>cloudwatch:PutLogAlarm</code> permission. The IAM role specified in <code>ScheduledQueryRoleARN</code> must grant the CloudWatch Alarms service permission to execute scheduled queries on the specified log groups. If you set <code>ActionLogLineCount</code>, the role specified in <code>ActionLogLineRoleArn</code> must grant permission to retrieve log events for inclusion in alarm notifications.</p>
+        r"""<p>Creates or updates a log alarm. A log alarm evaluates the results of a CloudWatch Logs scheduled query against the configured threshold and comparison operator to determine its state.</p> <p>When you create a log alarm, the operation creates a service-managed CloudWatch Logs scheduled query that runs the query string you provide on the schedule you configure. Each scheduled query execution returns one or more aggregated values determined by the <code>AggregationExpression</code>, and each aggregated value is compared against the alarm <code>Threshold</code> to determine the alarm state. The alarm uses M-out-of-N evaluation: if <code>QueryResultsToAlarm</code> out of the most recent <code>QueryResultsToEvaluate</code> query results breach the threshold, the alarm transitions to <code>ALARM</code>.</p> <p>Log alarms support the alarm states (<code>OK</code>, <code>ALARM</code>, <code>INSUFFICIENT_DATA</code>). Configure transition actions using <code>OKActions</code>, <code>AlarmActions</code>, and <code>InsufficientDataActions</code>.</p> <p>If you call this operation with the name of an existing log alarm, the operation replaces the previous configuration of that alarm.</p> <p> <b>Permissions</b> </p> <p>To create or update a log alarm, you must have the <code>cloudwatch:PutLogAlarm</code> permission. The IAM role specified in <code>ScheduledQueryRoleARN</code> must grant the CloudWatch Alarms service permission to execute scheduled queries on the specified log groups. If you set <code>ActionLogLineCount</code>, the role specified in <code>ActionLogLineRoleArn</code> must grant permission to retrieve log events for inclusion in alarm notifications.</p>
 
         Args:
             alarm_name: <p>The name for the alarm. This name must be unique within the Amazon Web Services account and Region.</p>
@@ -2913,6 +3066,7 @@ class CloudWatchClient:
             comparison_operator: <p>The arithmetic operation to use when comparing the aggregated query result and the threshold. The aggregated query result is used as the first operand. Valid values are <code>GreaterThanThreshold</code>, <code>GreaterThanOrEqualToThreshold</code>, <code>LessThanThreshold</code>, and <code>LessThanOrEqualToThreshold</code>.</p>
             treat_missing_data: <p>Sets how this alarm is to handle missing data points. Valid values are <code>breaching</code>, <code>notBreaching</code>, <code>ignore</code>, and <code>missing</code>. If this parameter is omitted, the default behavior of <code>missing</code> is used.</p>
             tags: <p>A list of key-value pairs to associate with the alarm. You can use tags to categorize and manage your alarms.</p>
+            warm_up_configuration: <p>The warm-up configuration for the alarm. A warm-up period delays alarm evaluation after you create or update the alarm. The warm-up period reduces alarm noise from missing data while a new resource or service starts publishing data.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-warm-up.html\">Alarm warm-up periods</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
 
         Raises:
             capo_cloudwatch.errors.limit_exceeded_fault.LimitExceededFault: <p>The quota for alarms for this customer has already been reached.</p>
@@ -2964,6 +3118,8 @@ class CloudWatchClient:
             input_["treat_missing_data"] = treat_missing_data
         if tags is not None:
             input_["tags"] = tags
+        if warm_up_configuration is not None:
+            input_["warm_up_configuration"] = warm_up_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3072,6 +3228,9 @@ class CloudWatchClient:
         evaluation_window: Optional[
             "capo_cloudwatch.types.evaluation_window.EvaluationWindow"
         ] = None,
+        warm_up_configuration: Optional[
+            "capo_cloudwatch.types.warm_up_configuration.WarmUpConfiguration"
+        ] = None,
         evaluation_criteria: Optional[
             "capo_cloudwatch.types.evaluation_criteria.EvaluationCriteria"
         ] = None,
@@ -3105,6 +3264,7 @@ class CloudWatchClient:
             tags: <p>A list of key-value pairs to associate with the alarm. You can associate as many as 50 tags with an alarm. To be able to associate tags with the alarm when you create the alarm, you must have the <code>cloudwatch:TagResource</code> permission.</p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values.</p> <p>If you are using this operation to update an existing alarm, any tags you specify in this parameter are ignored. To change the tags of an existing alarm, use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_TagResource.html\">TagResource</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_UntagResource.html\">UntagResource</a>.</p> <p>To use this field to set tags for an alarm when you create it, you must be signed on with both the <code>cloudwatch:PutMetricAlarm</code> and <code>cloudwatch:TagResource</code> permissions.</p>
             threshold_metric_id: <p>If this is an alarm based on an anomaly detection model, make this value match the ID of the <code>ANOMALY_DETECTION_BAND</code> function.</p> <p>For an example of how to use this parameter, see the <b>Anomaly Detection Model Alarm</b> example on this page.</p> <p>If your alarm uses this parameter, it cannot have Auto Scaling actions.</p>
             evaluation_window: <p>The evaluation window that the alarm uses to select the range of metric data that it evaluates. Specify either a sliding window or a wall clock window. If you omit this parameter, the alarm uses a sliding window.</p> <p>A sliding window advances each time the alarm is evaluated, forming a rolling time window. A wall clock window aligns the evaluated range to fixed clock boundaries, such as the top of the hour or the start of the day.</p> <p>You can use <code>EvaluationWindow</code> with any type of metric alarm except alarms that are based on a PromQL query.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-evaluation-window.html\">Alarm evaluation windows</a> in the <i>CloudWatch User Guide</i>.</p>
+            warm_up_configuration: <p>The warm-up configuration for the alarm. A warm-up period delays alarm evaluation after you create or update the alarm. The warm-up period reduces alarm noise from missing data while a new resource or service starts publishing metrics.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-warm-up.html\">Alarm warm-up periods</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
             evaluation_criteria: <p>The evaluation criteria for the alarm. For each <code>PutMetricAlarm</code> operation, you must specify either <code>MetricName</code>, a <code>Metrics</code> array, or an <code>EvaluationCriteria</code>.</p> <p>If you use the <code>EvaluationCriteria</code> parameter, you cannot include the <code>Namespace</code>, <code>MetricName</code>, <code>Dimensions</code>, <code>Period</code>, <code>Unit</code>, <code>Statistic</code>, <code>ExtendedStatistic</code>, <code>Metrics</code>, <code>Threshold</code>, <code>ComparisonOperator</code>, <code>ThresholdMetricId</code>, <code>EvaluationPeriods</code>, or <code>DatapointsToAlarm</code> parameters of <code>PutMetricAlarm</code> in the same operation. Instead, all evaluation parameters are defined within this structure.</p> <p>For an example of how to use this parameter, see the <b>PromQL alarm</b> example on this page.</p>
             evaluation_interval: <p>The frequency, in seconds, at which the alarm is evaluated. Valid values are 10, 20, 30, and any multiple of 60.</p> <p>This parameter is required for alarms that use <code>EvaluationCriteria</code>, and cannot be specified for alarms configured with <code>MetricName</code> or <code>Metrics</code>.</p>
 
@@ -3175,6 +3335,8 @@ class CloudWatchClient:
             input_["threshold_metric_id"] = threshold_metric_id
         if evaluation_window is not None:
             input_["evaluation_window"] = evaluation_window
+        if warm_up_configuration is not None:
+            input_["warm_up_configuration"] = warm_up_configuration
         if evaluation_criteria is not None:
             input_["evaluation_criteria"] = evaluation_criteria
         if evaluation_interval is not None:
@@ -3288,7 +3450,7 @@ class CloudWatchClient:
             role_arn: <p>The ARN of an IAM role that this metric stream will use to access Amazon Kinesis Data Firehose resources. This IAM role must already exist and must be in the same account as the metric stream. This IAM role must include the following permissions:</p> <ul> <li> <p>firehose:PutRecord</p> </li> <li> <p>firehose:PutRecordBatch</p> </li> </ul>
             output_format: <p>The output format for the stream. Valid values are <code>json</code>, <code>opentelemetry1.0</code>, and <code>opentelemetry0.7</code>. For more information about metric stream output formats, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-metric-streams-formats.html\"> Metric streams output formats</a>.</p>
             tags: <p>A list of key-value pairs to associate with the metric stream. You can associate as many as 50 tags with a metric stream.</p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values.</p> <p>You can use this parameter only when you are creating a new metric stream. If you are using this operation to update an existing metric stream, any tags you specify in this parameter are ignored. To change the tags of an existing metric stream, use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_TagResource.html\">TagResource</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_UntagResource.html\">UntagResource</a>.</p>
-            statistics_configurations: <p>By default, a metric stream always sends the <code>MAX</code>, <code>MIN</code>, <code>SUM</code>, and <code>SAMPLECOUNT</code> statistics for each metric that is streamed. You can use this parameter to have the metric stream also send additional statistics in the stream. This array can have up to 100 members.</p> <p>For each entry in this array, you specify one or more metrics and the list of additional statistics to stream for those metrics. The additional statistics that you can stream depend on the stream's <code>OutputFormat</code>. If the <code>OutputFormat</code> is <code>json</code>, you can stream any additional statistic that is supported by CloudWatch, listed in <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.html\"> CloudWatch statistics definitions</a>. If the <code>OutputFormat</code> is <code>opentelemetry1.0</code> or <code>opentelemetry0.7</code>, you can stream percentile statistics such as p95, p99.9, and so on.</p>
+            statistics_configurations: <p>By default, a metric stream always sends the <code>MAX</code>, <code>MIN</code>, <code>SUM</code>, and <code>SAMPLECOUNT</code> statistics for each metric that is streamed. You can use this parameter to have the metric stream also send additional statistics in the stream. This array can have up to 100 members.</p> <p>For each entry in this array, you specify one or more metrics and the list of additional statistics to stream for those metrics. The additional statistics that you can stream depend on the stream's <code>OutputFormat</code>. If the <code>OutputFormat</code> is <code>json</code>, you can stream any additional statistic that is supported by CloudWatch, listed in <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html\"> CloudWatch statistics definitions</a>. If the <code>OutputFormat</code> is <code>opentelemetry1.0</code> or <code>opentelemetry0.7</code>, you can stream percentile statistics such as p95, p99.9, and so on.</p>
             include_linked_accounts_metrics: <p>If you are creating a metric stream in a monitoring account, specify <code>true</code> to include metrics from source accounts in the metric stream.</p>
 
         Raises:
@@ -3447,13 +3609,26 @@ class CloudWatchClient:
         return response.output
 
     def start_o_tel_enrichment(
-        self, *, config_overrides: Optional[CloudWatchClientConfig] = None
+        self,
+        *,
+        config_overrides: Optional[CloudWatchClientConfig] = None,
+        include_filters: Optional[
+            "capo_cloudwatch.types.o_tel_enrichment_metric_selector_list.OTelEnrichmentMetricSelectorList"
+        ] = None,
+        exclude_filters: Optional[
+            "capo_cloudwatch.types.o_tel_enrichment_metric_selector_list.OTelEnrichmentMetricSelectorList"
+        ] = None,
     ) -> (
         "capo_cloudwatch.types.start_o_tel_enrichment_output.StartOTelEnrichmentOutput"
     ):
-        r"""<p>Enables enrichment and PromQL access for CloudWatch vended metrics for <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingResourceTagsForTelemetry.html\">supported Amazon Web Services resources</a> in the account. Once enabled, metrics that contain a resource identifier dimension (for example, EC2 <code>CPUUtilization</code> with an <code>InstanceId</code> dimension) are enriched with resource ARN and resource tag labels and become queryable using PromQL.</p> <p>Before calling this operation, you must enable resource tags on telemetry for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/EnableResourceTagsOnTelemetry.html\">Enable resource tags on telemetry</a>.</p>
+        r"""<p>Enables enrichment and PromQL access for CloudWatch vended metrics for <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingResourceTagsForTelemetry.html\">supported Amazon Web Services resources</a> in the account. Once enabled, metrics that contain a resource identifier dimension (for example, EC2 <code>CPUUtilization</code> with an <code>InstanceId</code> dimension) are enriched with resource ARN and resource tag labels and become queryable using PromQL.</p> <p>Before calling this operation, you must enable resource tags on telemetry for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/EnableResourceTagsOnTelemetry.html\">Enable resource tags on telemetry</a>.</p> <p>Optionally, <code>IncludeFilters</code> and <code>ExcludeFilters</code> limit enrichment to a subset of the account's metrics. These filters are stored only when this operation starts enrichment. Calling <code>StartOTelEnrichment</code> for an account where enrichment is already running has no effect and does not modify the filters that are applied. To change them, use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_UpdateOTelEnrichment.html\">UpdateOTelEnrichment</a>.</p>
+
+        Args:
+            include_filters: <p>The metric namespaces, and the metric names, to enrich. If this parameter is omitted, every namespace that Amazon CloudWatch supports for enrichment is in scope.</p> <p>A maximum of 100 filters is allowed across <code>IncludeFilters</code> and <code>ExcludeFilters</code> combined.</p>
+            exclude_filters: <p>The metric namespaces, and the metric names, to leave unenriched. If this parameter is omitted, nothing is excluded.</p> <p>Amazon CloudWatch applies <code>ExcludeFilters</code> after <code>IncludeFilters</code>, so a metric that both parameters match is not enriched.</p> <p>A maximum of 100 filters is allowed across <code>IncludeFilters</code> and <code>ExcludeFilters</code> combined.</p>
 
         Raises:
+            capo_cloudwatch.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters do not satisfy the constraints that the operation requires.</p>
             capo_cloudwatch.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -3473,6 +3648,10 @@ class CloudWatchClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_cloudwatch.types.start_o_tel_enrichment_input.StartOTelEnrichmentInput = {}
+        if include_filters is not None:
+            input_["include_filters"] = include_filters
+        if exclude_filters is not None:
+            input_["exclude_filters"] = exclude_filters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3660,6 +3839,107 @@ class CloudWatchClient:
             input_["resource_arn"] = resource_arn
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_o_tel_enrichment(
+        self,
+        *,
+        config_overrides: Optional[CloudWatchClientConfig] = None,
+        include_filters: Optional[
+            "capo_cloudwatch.types.o_tel_enrichment_metric_selector_list.OTelEnrichmentMetricSelectorList"
+        ] = None,
+        exclude_filters: Optional[
+            "capo_cloudwatch.types.o_tel_enrichment_metric_selector_list.OTelEnrichmentMetricSelectorList"
+        ] = None,
+    ) -> "capo_cloudwatch.types.update_o_tel_enrichment_output.UpdateOTelEnrichmentOutput":
+        r"""<p>Replaces the filters that determine which CloudWatch vended metrics are enriched with resource ARN and resource tag labels for the account. Enrichment must already be running for the account. If it is not, this operation returns a <code>ResourceNotFoundException</code>. To start enrichment, use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_StartOTelEnrichment.html\">StartOTelEnrichment</a>.</p> <p>The filters in the request completely replace the stored filters; they are not merged with them. <code>IncludeFilters</code> and <code>ExcludeFilters</code> are replaced as a pair, so a request that specifies only <code>IncludeFilters</code> also clears the stored <code>ExcludeFilters</code>, and a request that specifies neither clears both.</p>
+
+        Args:
+            include_filters: <p>The metric namespaces, and the metric names, to enrich. If this parameter is omitted, every namespace that Amazon CloudWatch supports for enrichment is in scope.</p> <p>A maximum of 100 filters is allowed across <code>IncludeFilters</code> and <code>ExcludeFilters</code> combined.</p>
+            exclude_filters: <p>The metric namespaces, and the metric names, to leave unenriched. If this parameter is omitted, nothing is excluded.</p> <p>Amazon CloudWatch applies <code>ExcludeFilters</code> after <code>IncludeFilters</code>, so a metric that both parameters match is not enriched.</p> <p>A maximum of 100 filters is allowed across <code>IncludeFilters</code> and <code>ExcludeFilters</code> combined.</p>
+
+        Raises:
+            capo_cloudwatch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The named resource does not exist.</p>
+            capo_cloudwatch.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters do not satisfy the constraints that the operation requires.</p>
+            capo_cloudwatch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cloudwatch.types.update_o_tel_enrichment_input.UpdateOTelEnrichmentInput]",
+        ) -> OperationResponse[
+            "capo_cloudwatch.types.update_o_tel_enrichment_output.UpdateOTelEnrichmentOutput"
+        ]:
+            import capo_cloudwatch._operations.granite_service_version20100801.update_o_tel_enrichment
+
+            output, http_response = (
+                capo_cloudwatch._operations.granite_service_version20100801.update_o_tel_enrichment.update_o_tel_enrichment(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch.types.update_o_tel_enrichment_input.UpdateOTelEnrichmentInput = {}
+        if include_filters is not None:
+            input_["include_filters"] = include_filters
+        if exclude_filters is not None:
+            input_["exclude_filters"] = exclude_filters
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_resource_metrics_configuration(
+        self,
+        *,
+        config_overrides: Optional[CloudWatchClientConfig] = None,
+        resource_arn: Optional["capo_cloudwatch.types.resource_arn.ResourceArn"] = None,
+        metric_selections: Optional[
+            "capo_cloudwatch.types.resource_metric_selection_list.ResourceMetricSelectionList"
+        ] = None,
+    ) -> "capo_cloudwatch.types.update_resource_metrics_configuration_output.UpdateResourceMetricsConfigurationOutput":
+        r"""<p>Updates the resource metrics configuration for an Amazon Web Services resource. The <code>MetricSelections</code> value that you provide replaces any existing metric selections for the resource; it is not merged with them.</p> <p>If you omit <code>MetricSelections</code>, Amazon CloudWatch removes any existing metric selection filter and collects all available detailed metrics for the resource.</p> <p>This operation returns a <code>ResourceNotFoundException</code> if no resource metrics configuration exists for the specified resource ARN. To create a configuration, use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_CreateResourceMetricsConfiguration.html\">CreateResourceMetricsConfiguration</a>.</p> <p>To update a resource metrics configuration, you must have the <code>cloudwatch:UpdateResourceMetricsConfiguration</code> permission. For information about scoping this permission to specific resources, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/iam-cw-condition-keys-resource-arn.html\">Condition keys for resource metrics configuration access</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the Amazon Web Services resource to update the resource metrics configuration for.</p>
+            metric_selections: <p>Specifies which metrics Amazon CloudWatch collects for the resource. The selections that you provide completely replace any existing metric selections.</p> <p>If you omit this parameter, Amazon CloudWatch removes any existing metric selection filter and collects all available detailed metrics for the resource.</p>
+
+        Raises:
+            capo_cloudwatch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The named resource does not exist.</p>
+            capo_cloudwatch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cloudwatch.types.update_resource_metrics_configuration_input.UpdateResourceMetricsConfigurationInput]",
+        ) -> OperationResponse[
+            "capo_cloudwatch.types.update_resource_metrics_configuration_output.UpdateResourceMetricsConfigurationOutput"
+        ]:
+            import capo_cloudwatch._operations.granite_service_version20100801.update_resource_metrics_configuration
+
+            output, http_response = (
+                capo_cloudwatch._operations.granite_service_version20100801.update_resource_metrics_configuration.update_resource_metrics_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch.types.update_resource_metrics_configuration_input.UpdateResourceMetricsConfigurationInput = {}
+        if resource_arn is not None:
+            input_["resource_arn"] = resource_arn
+        if metric_selections is not None:
+            input_["metric_selections"] = metric_selections
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

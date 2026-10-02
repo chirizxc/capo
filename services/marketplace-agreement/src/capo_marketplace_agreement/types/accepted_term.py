@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_marketplace_agreement.types.fixed_upfront_pricing_term
     import capo_marketplace_agreement.types.free_trial_pricing_term
     import capo_marketplace_agreement.types.legal_term
+    import capo_marketplace_agreement.types.net_payment_term
     import capo_marketplace_agreement.types.payment_schedule_term
     import capo_marketplace_agreement.types.recurring_payment_term
     import capo_marketplace_agreement.types.renewal_term
@@ -79,6 +80,10 @@ class _AcceptedTerm_variablePaymentTerm(TypedDict, closed=True):
     )
 
 
+class _AcceptedTerm_netPaymentTerm(TypedDict, closed=True):
+    netPaymentTerm: "capo_marketplace_agreement.types.net_payment_term.NetPaymentTerm"
+
+
 AcceptedTerm: TypeAlias = (
     _AcceptedTerm_legalTerm
     | _AcceptedTerm_supportTerm
@@ -92,6 +97,7 @@ AcceptedTerm: TypeAlias = (
     | _AcceptedTerm_freeTrialPricingTerm
     | _AcceptedTerm_fixedUpfrontPricingTerm
     | _AcceptedTerm_variablePaymentTerm
+    | _AcceptedTerm_netPaymentTerm
 )
 
 
@@ -193,6 +199,14 @@ def serialize_aws_json_1_0(value: AcceptedTerm) -> dict:
                 value["variablePaymentTerm"]
             )
         }
+    elif "netPaymentTerm" in value:
+        import capo_marketplace_agreement.types.net_payment_term
+
+        return {
+            "netPaymentTerm": capo_marketplace_agreement.types.net_payment_term.serialize_aws_json_1_0(
+                value["netPaymentTerm"]
+            )
+        }
     else:
         raise SerializationError("AcceptedTerm: no variant present")
 
@@ -292,6 +306,14 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
         return {
             "variablePaymentTerm": capo_marketplace_agreement.types.variable_payment_term.deserialize_aws_json_1_0(
                 data["variablePaymentTerm"]
+            )
+        }
+    elif data.get("netPaymentTerm") is not None:
+        import capo_marketplace_agreement.types.net_payment_term
+
+        return {
+            "netPaymentTerm": capo_marketplace_agreement.types.net_payment_term.deserialize_aws_json_1_0(
+                data["netPaymentTerm"]
             )
         }
     else:

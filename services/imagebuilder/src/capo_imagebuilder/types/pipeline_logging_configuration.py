@@ -12,11 +12,11 @@ class PipelineLoggingConfiguration(TypedDict, closed=True):
     image_log_group_name: NotRequired[
         "capo_imagebuilder.types.log_group_name.LogGroupName"
     ]
-    """<p>The log group name that Image Builder uses for image creation. If not specified, the log group name defaults to <code>/aws/imagebuilder/image-name</code>.</p>"""
+    """<p>Specifies the CloudWatch Logs log group name for image build logs. The log group name can contain alphanumeric characters, hyphens, underscores, forward slashes, and periods, up to 512 characters. Log group names not starting with <code>/aws/imagebuilder/</code> require an <code>executionRole</code> with CloudWatch Logs write permissions. If not specified, defaults to <code>/aws/imagebuilder/image-name</code>.</p>"""
     pipeline_log_group_name: NotRequired[
         "capo_imagebuilder.types.log_group_name.LogGroupName"
     ]
-    """<p>The log group name that Image Builder uses for the log output during creation of a new pipeline. If not specified, the pipeline log group name defaults to <code>/aws/imagebuilder/pipeline/pipeline-name</code>.</p>"""
+    """<p>Specifies the CloudWatch Logs log group name for pipeline execution logs. The log group name can contain alphanumeric characters, hyphens, underscores, forward slashes, and periods, up to 512 characters. Log group names not starting with <code>/aws/imagebuilder/</code> require an <code>executionRole</code> with CloudWatch Logs write permissions. If not specified, defaults to <code>/aws/imagebuilder/pipeline/pipeline-name</code>.</p>"""
 
 
 # --- restJson1 ser/de ---

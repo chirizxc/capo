@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_batch.types.ce_state
     import capo_batch.types.ce_type
     import capo_batch.types.compute_resource
+    import capo_batch.types.ecs_settings
     import capo_batch.types.eks_configuration
     import capo_batch.types.integer
     import capo_batch.types.string
@@ -35,6 +36,8 @@ class CreateComputeEnvironmentRequest(TypedDict, closed=True):
     """<p>The details for the Amazon EKS cluster that supports the compute environment.</p> <note> <p>To create a compute environment that uses EKS resources, the caller must have permissions to call <code>eks:DescribeCluster</code>.</p> </note>"""
     context: NotRequired["capo_batch.types.string.String"]
     """<p>Reserved.</p>"""
+    ecs_settings: NotRequired["capo_batch.types.ecs_settings.EcsSettings"]
+    """<p>The Amazon ECS settings for the compute environment. These settings control CloudWatch Container Insights collection for the compute environment.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -72,6 +75,12 @@ def serialize_json(value: CreateComputeEnvironmentRequest) -> dict:
         )
     if "context" in value:
         out["context"] = value["context"]
+    if "ecs_settings" in value:
+        import capo_batch.types.ecs_settings
+
+        out["ecsSettings"] = capo_batch.types.ecs_settings.serialize_json(
+            value["ecs_settings"]
+        )
     return out
 
 
@@ -109,4 +118,10 @@ def deserialize_json(data: dict) -> CreateComputeEnvironmentRequest:
         )
     if data.get("context") is not None:
         out["context"] = data["context"]
+    if data.get("ecsSettings") is not None:
+        import capo_batch.types.ecs_settings
+
+        out["ecs_settings"] = capo_batch.types.ecs_settings.deserialize_json(
+            data["ecsSettings"]
+        )
     return out

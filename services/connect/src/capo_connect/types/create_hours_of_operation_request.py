@@ -34,7 +34,7 @@ class CreateHoursOfOperationRequest(TypedDict, closed=True):
     parent_hours_of_operation_configs: NotRequired[
         "capo_connect.types.parent_hours_of_operation_config_list.ParentHoursOfOperationConfigList"
     ]
-    r"""<p>Configuration for parent hours of operations. Eg: ResourceArn. </p> <p>For more information about parent hours of operations, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Link overrides from different hours of operation</a> in the <i> Administrator Guide</i>.</p>"""
+    r"""<p>Configuration for parent hours of operations. Eg: ResourceArn. </p> <p>For more information about parent hours of operations, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Link overrides from different hours of operation</a> in the <i> Administrator Guide</i>.</p>"""
     tags: NotRequired["capo_connect.types.tag_map.TagMap"]
     r"""<p>The tags used to organize, track, or control access for this resource. For example, { \"Tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>"""
 

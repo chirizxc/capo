@@ -15,14 +15,18 @@ import capo_resiliencehubv2.errors.access_denied_exception
 import capo_resiliencehubv2.errors.internal_server_exception
 import capo_resiliencehubv2.errors.resource_not_found_exception
 import capo_resiliencehubv2.errors.validation_exception
+import capo_resiliencehubv2.types.assessment_sort_field
+import capo_resiliencehubv2.types.assessment_status_list
 import capo_resiliencehubv2.types.assessment_summary_list
 import capo_resiliencehubv2.types.list_failure_mode_assessments_request
 import capo_resiliencehubv2.types.list_failure_mode_assessments_response
+import capo_resiliencehubv2.types.sort_order
 from capo_resiliencehubv2._protocol.errors import parse_error_metadata_json
 from capo_resiliencehubv2._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_resiliencehubv2._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_resiliencehubv2.errors import UnknownServiceError
 
@@ -109,10 +113,59 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_resiliencehubv2._protocol.serialize
+    import capo_resiliencehubv2.types.assessment_sort_field
+    import capo_resiliencehubv2.types.assessment_status
+    import capo_resiliencehubv2.types.sort_order
+
     url = endpoint.url.rstrip("/") + "/v2/list-failure-mode-assessments"
     params: list[tuple[str, str]] = []
     if "service_arn" in input_:
         params.append(("serviceArn", input_["service_arn"]))
+    if "assessment_statuses" in input_:
+        for item in input_["assessment_statuses"]:
+            params.append(
+                (
+                    "assessmentStatuses",
+                    capo_resiliencehubv2.types.assessment_status.serialize_json(item),
+                )
+            )
+    if "started_after" in input_:
+        params.append(
+            (
+                "startedAfter",
+                capo_resiliencehubv2._protocol.serialize.fmt_date_time(
+                    input_["started_after"]
+                ),
+            )
+        )
+    if "ended_before" in input_:
+        params.append(
+            (
+                "endedBefore",
+                capo_resiliencehubv2._protocol.serialize.fmt_date_time(
+                    input_["ended_before"]
+                ),
+            )
+        )
+    if "sort_by" in input_:
+        params.append(
+            (
+                "sortBy",
+                capo_resiliencehubv2.types.assessment_sort_field.serialize_json(
+                    input_["sort_by"]
+                ),
+            )
+        )
+    if "sort_order" in input_:
+        params.append(
+            (
+                "sortOrder",
+                capo_resiliencehubv2.types.sort_order.serialize_json(
+                    input_["sort_order"]
+                ),
+            )
+        )
     params.append(("maxResults", str(input_.get("max_results", 100))))
     if "next_token" in input_:
         params.append(("nextToken", input_["next_token"]))
@@ -138,7 +191,7 @@ def list_failure_mode_assessments(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -156,7 +209,7 @@ async def async_list_failure_mode_assessments(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

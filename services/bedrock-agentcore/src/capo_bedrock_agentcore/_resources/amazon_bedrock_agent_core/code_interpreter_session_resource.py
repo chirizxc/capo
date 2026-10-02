@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.start_code_interpreter_session_response
     import capo_bedrock_agentcore.types.stop_code_interpreter_session_request
     import capo_bedrock_agentcore.types.stop_code_interpreter_session_response
+    import capo_bedrock_agentcore.types.tools_file_system_configurations
     from capo_bedrock_agentcore._services.async_bedrock_agent_core import (
         AsyncBedrockAgentCoreClient,
         AsyncBedrockAgentCoreClientConfig,
@@ -174,6 +175,9 @@ class CodeInterpreterSessionResource:
         certificates: Optional[
             "capo_bedrock_agentcore.types.certificates.Certificates"
         ] = None,
+        filesystem_configurations: Optional[
+            "capo_bedrock_agentcore.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
@@ -187,6 +191,7 @@ class CodeInterpreterSessionResource:
             name: <p>The name of the code interpreter session. This name helps you identify and manage the session. The name does not need to be unique.</p>
             session_timeout_seconds: <p>The duration in seconds (time-to-live) after which the session automatically terminates, regardless of ongoing activity. Defaults to 900 seconds (15 minutes). Recommended minimum: 60 seconds. Maximum allowed: 28,800 seconds (8 hours).</p>
             certificates: <p>A list of certificates to install in the code interpreter session.</p>
+            filesystem_configurations: <p>The file system configurations to mount into the code interpreter session. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your session can then read and write your data. If you don't specify this field, no additional file systems are mounted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request, but does not return an error. This parameter helps prevent the creation of duplicate sessions if there are temporary network issues.</p>
 
         Raises:
@@ -228,6 +233,8 @@ class CodeInterpreterSessionResource:
             input_["session_timeout_seconds"] = session_timeout_seconds
         if certificates is not None:
             input_["certificates"] = certificates
+        if filesystem_configurations is not None:
+            input_["filesystem_configurations"] = filesystem_configurations
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -443,6 +450,9 @@ class AsyncCodeInterpreterSessionResource:
         certificates: Optional[
             "capo_bedrock_agentcore.types.certificates.Certificates"
         ] = None,
+        filesystem_configurations: Optional[
+            "capo_bedrock_agentcore.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
@@ -456,6 +466,7 @@ class AsyncCodeInterpreterSessionResource:
             name: <p>The name of the code interpreter session. This name helps you identify and manage the session. The name does not need to be unique.</p>
             session_timeout_seconds: <p>The duration in seconds (time-to-live) after which the session automatically terminates, regardless of ongoing activity. Defaults to 900 seconds (15 minutes). Recommended minimum: 60 seconds. Maximum allowed: 28,800 seconds (8 hours).</p>
             certificates: <p>A list of certificates to install in the code interpreter session.</p>
+            filesystem_configurations: <p>The file system configurations to mount into the code interpreter session. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your session can then read and write your data. If you don't specify this field, no additional file systems are mounted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request, but does not return an error. This parameter helps prevent the creation of duplicate sessions if there are temporary network issues.</p>
 
         Raises:
@@ -498,6 +509,8 @@ class AsyncCodeInterpreterSessionResource:
             input_["session_timeout_seconds"] = session_timeout_seconds
         if certificates is not None:
             input_["certificates"] = certificates
+        if filesystem_configurations is not None:
+            input_["filesystem_configurations"] = filesystem_configurations
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token

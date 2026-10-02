@@ -15,6 +15,8 @@ if TYPE_CHECKING:
     import capo_bedrock_runtime.types.image_block
     import capo_bedrock_runtime.types.reasoning_content_block
     import capo_bedrock_runtime.types.search_result_block
+    import capo_bedrock_runtime.types.tool_addition_block
+    import capo_bedrock_runtime.types.tool_removal_block
     import capo_bedrock_runtime.types.tool_result_block
     import capo_bedrock_runtime.types.tool_use_block
     import capo_bedrock_runtime.types.video_block
@@ -72,6 +74,14 @@ class _ContentBlock_searchResult(TypedDict, closed=True):
     searchResult: "capo_bedrock_runtime.types.search_result_block.SearchResultBlock"
 
 
+class _ContentBlock_toolAddition(TypedDict, closed=True):
+    toolAddition: "capo_bedrock_runtime.types.tool_addition_block.ToolAdditionBlock"
+
+
+class _ContentBlock_toolRemoval(TypedDict, closed=True):
+    toolRemoval: "capo_bedrock_runtime.types.tool_removal_block.ToolRemovalBlock"
+
+
 ContentBlock: TypeAlias = (
     _ContentBlock_text
     | _ContentBlock_image
@@ -85,6 +95,8 @@ ContentBlock: TypeAlias = (
     | _ContentBlock_reasoningContent
     | _ContentBlock_citationsContent
     | _ContentBlock_searchResult
+    | _ContentBlock_toolAddition
+    | _ContentBlock_toolRemoval
 )
 
 
@@ -180,6 +192,22 @@ def serialize_json(value: ContentBlock) -> dict:
                 value["searchResult"]
             )
         }
+    elif "toolAddition" in value:
+        import capo_bedrock_runtime.types.tool_addition_block
+
+        return {
+            "toolAddition": capo_bedrock_runtime.types.tool_addition_block.serialize_json(
+                value["toolAddition"]
+            )
+        }
+    elif "toolRemoval" in value:
+        import capo_bedrock_runtime.types.tool_removal_block
+
+        return {
+            "toolRemoval": capo_bedrock_runtime.types.tool_removal_block.serialize_json(
+                value["toolRemoval"]
+            )
+        }
     else:
         raise SerializationError("ContentBlock: no variant present")
 
@@ -273,6 +301,22 @@ def deserialize_json(data: dict) -> ContentBlock:
         return {
             "searchResult": capo_bedrock_runtime.types.search_result_block.deserialize_json(
                 data["searchResult"]
+            )
+        }
+    elif data.get("toolAddition") is not None:
+        import capo_bedrock_runtime.types.tool_addition_block
+
+        return {
+            "toolAddition": capo_bedrock_runtime.types.tool_addition_block.deserialize_json(
+                data["toolAddition"]
+            )
+        }
+    elif data.get("toolRemoval") is not None:
+        import capo_bedrock_runtime.types.tool_removal_block
+
+        return {
+            "toolRemoval": capo_bedrock_runtime.types.tool_removal_block.deserialize_json(
+                data["toolRemoval"]
             )
         }
     else:

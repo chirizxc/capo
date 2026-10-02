@@ -6,6 +6,7 @@ ServiceType: TypeAlias = Literal[
     "REDSHIFT",
     "QBUSINESS",
     "ATHENA",
+    "GLUE_DATA_CATALOG",
 ]
 
 

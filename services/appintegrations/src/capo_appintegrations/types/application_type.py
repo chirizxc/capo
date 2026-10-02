@@ -7,6 +7,7 @@ ApplicationType: TypeAlias = Literal[
     "STANDARD",
     "SERVICE",
     "MCP_SERVER",
+    "A2A_SERVER",
 ]
 
 

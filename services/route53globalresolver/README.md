@@ -19,6 +19,21 @@ async def main():
         print(response["id"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_route53globalresolver import AsyncRoute53GlobalResolverClient
+
+
+async def main():
+    async with AsyncRoute53GlobalResolverClient() as route53_global_resolver:
+        # Example: paginate over list_shared_dns_views
+        async for item in route53_global_resolver.iter_list_shared_dns_views():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

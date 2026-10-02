@@ -8,6 +8,7 @@ from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_devops_agent.types.agent_space_name
+    import capo_devops_agent.types.agent_space_preferences
     import capo_devops_agent.types.description
     import capo_devops_agent.types.kms_key_arn
     import capo_devops_agent.types.locale
@@ -27,6 +28,10 @@ class CreateAgentSpaceInput(TypedDict, closed=True):
     """<p>Client-provided token to ensure request idempotency. When the same token is provided in subsequent calls, the same response is returned within a 8-hour window.</p>"""
     tags: NotRequired["capo_devops_agent.types.tags.Tags"]
     """<p>Tags to add to the AgentSpace at creation time.</p>"""
+    preferences: NotRequired[
+        "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+    ]
+    """<p>The preferences to configure on the agent space. Preferences not provided take their default values.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -45,6 +50,14 @@ def serialize_json(value: CreateAgentSpaceInput) -> dict:
         import capo_devops_agent.types.tags
 
         out["tags"] = capo_devops_agent.types.tags.serialize_json(value["tags"])
+    if "preferences" in value:
+        import capo_devops_agent.types.agent_space_preferences
+
+        out["preferences"] = (
+            capo_devops_agent.types.agent_space_preferences.serialize_json(
+                value["preferences"]
+            )
+        )
     return out
 
 
@@ -66,4 +79,12 @@ def deserialize_json(data: dict) -> CreateAgentSpaceInput:
         import capo_devops_agent.types.tags
 
         out["tags"] = capo_devops_agent.types.tags.deserialize_json(data["tags"])
+    if data.get("preferences") is not None:
+        import capo_devops_agent.types.agent_space_preferences
+
+        out["preferences"] = (
+            capo_devops_agent.types.agent_space_preferences.deserialize_json(
+                data["preferences"]
+            )
+        )
     return out

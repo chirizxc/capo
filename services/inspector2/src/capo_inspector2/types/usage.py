@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_inspector2.types.cloud_provider
     import capo_inspector2.types.currency
     import capo_inspector2.types.monthly_cost_estimate
     import capo_inspector2.types.usage_type
@@ -22,6 +23,8 @@ class Usage(TypedDict, closed=True):
     """<p>The estimated monthly cost of Amazon Inspector.</p>"""
     currency: NotRequired["capo_inspector2.types.currency.Currency"]
     """<p>The currency type used when calculating usage data.</p>"""
+    cloud_provider: NotRequired["capo_inspector2.types.cloud_provider.CloudProvider"]
+    """<p>The cloud provider associated with the usage information.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -50,6 +53,8 @@ def serialize_json(value: Usage) -> dict:
     )
     if "currency" in value:
         out["currency"] = value["currency"]
+    if "cloud_provider" in value:
+        out["cloudProvider"] = value["cloud_provider"]
     return out
 
 
@@ -67,4 +72,6 @@ def deserialize_json(data: dict) -> Usage:
         out["estimated_monthly_cost"] = 0
     if data.get("currency") is not None:
         out["currency"] = data["currency"]
+    if data.get("cloudProvider") is not None:
+        out["cloud_provider"] = data["cloudProvider"]
     return out

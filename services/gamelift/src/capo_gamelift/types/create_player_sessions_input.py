@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class CreatePlayerSessionsInput(TypedDict, closed=True):
     game_session_id: NotRequired["capo_gamelift.types.arn_string_model.ArnStringModel"]
-    """<p>An identifier for the game session that is unique across all regions to add players to. The value is always a full ARN in the following format: <code>arn:aws:gamelift:<location>::gamesession/<fleet ID>/<ID string></code>.</p>"""
+    """<p>An identifier for the game session that is unique across all regions to add players to. The value is always a full ARN in the following format: For Home Region game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<ID string></code>. For Remote Location game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<location>/<ID string></code>.</p>"""
     player_ids: NotRequired["capo_gamelift.types.player_id_list.PlayerIdList"]
     """<p>List of unique identifiers for the players to be added.</p>"""
     player_data_map: NotRequired["capo_gamelift.types.player_data_map.PlayerDataMap"]

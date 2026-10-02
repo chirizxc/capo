@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.acm#CertificateManager``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -29,41 +30,88 @@ from capo_acm._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_acm.types.acme_account_summary
+    import capo_acm.types.acme_authorization_behavior
+    import capo_acm.types.acme_contact
+    import capo_acm.types.acme_domain_validation_arn
+    import capo_acm.types.acme_domain_validation_summary
+    import capo_acm.types.acme_endpoint_arn
+    import capo_acm.types.acme_endpoint_summary
+    import capo_acm.types.acme_external_account_binding_arn
+    import capo_acm.types.acme_external_account_binding_summary
     import capo_acm.types.add_tags_to_certificate_request
     import capo_acm.types.arn
+    import capo_acm.types.certificate_arn
+    import capo_acm.types.certificate_authority
     import capo_acm.types.certificate_body_blob
     import capo_acm.types.certificate_chain_blob
     import capo_acm.types.certificate_filter_statement
+    import capo_acm.types.certificate_key_pair_origins
     import capo_acm.types.certificate_managed_by
     import capo_acm.types.certificate_options
     import capo_acm.types.certificate_search_result
     import capo_acm.types.certificate_statuses
     import capo_acm.types.certificate_summary
+    import capo_acm.types.create_acme_domain_validation_request
+    import capo_acm.types.create_acme_domain_validation_response
+    import capo_acm.types.create_acme_endpoint_request
+    import capo_acm.types.create_acme_endpoint_response
+    import capo_acm.types.create_acme_external_account_binding_request
+    import capo_acm.types.create_acme_external_account_binding_response
+    import capo_acm.types.delete_acme_domain_validation_request
+    import capo_acm.types.delete_acme_endpoint_request
+    import capo_acm.types.delete_acme_external_account_binding_request
     import capo_acm.types.delete_certificate_request
+    import capo_acm.types.describe_acme_account_request
+    import capo_acm.types.describe_acme_account_response
+    import capo_acm.types.describe_acme_domain_validation_request
+    import capo_acm.types.describe_acme_domain_validation_response
+    import capo_acm.types.describe_acme_endpoint_request
+    import capo_acm.types.describe_acme_endpoint_response
+    import capo_acm.types.describe_acme_external_account_binding_request
+    import capo_acm.types.describe_acme_external_account_binding_response
     import capo_acm.types.describe_certificate_request
     import capo_acm.types.describe_certificate_response
     import capo_acm.types.domain_list
+    import capo_acm.types.domain_name
     import capo_acm.types.domain_name_string
     import capo_acm.types.domain_validation_option_list
+    import capo_acm.types.domain_validation_summary
+    import capo_acm.types.expiration
     import capo_acm.types.expiry_events_configuration
     import capo_acm.types.export_certificate_request
     import capo_acm.types.export_certificate_response
     import capo_acm.types.filters
     import capo_acm.types.get_account_configuration_response
+    import capo_acm.types.get_acme_external_account_binding_credentials_request
+    import capo_acm.types.get_acme_external_account_binding_credentials_response
     import capo_acm.types.get_certificate_request
     import capo_acm.types.get_certificate_response
     import capo_acm.types.idempotency_token
     import capo_acm.types.import_certificate_request
     import capo_acm.types.import_certificate_response
     import capo_acm.types.key_algorithm
+    import capo_acm.types.list_acme_accounts_request
+    import capo_acm.types.list_acme_accounts_response
+    import capo_acm.types.list_acme_domain_validations_request
+    import capo_acm.types.list_acme_domain_validations_response
+    import capo_acm.types.list_acme_endpoints_request
+    import capo_acm.types.list_acme_endpoints_response
+    import capo_acm.types.list_acme_external_account_bindings_request
+    import capo_acm.types.list_acme_external_account_bindings_response
+    import capo_acm.types.list_certificate_domain_validations_request
+    import capo_acm.types.list_certificate_domain_validations_response
     import capo_acm.types.list_certificates_request
     import capo_acm.types.list_certificates_response
     import capo_acm.types.list_tags_for_certificate_request
     import capo_acm.types.list_tags_for_certificate_response
+    import capo_acm.types.list_tags_for_resource_request
+    import capo_acm.types.list_tags_for_resource_response
     import capo_acm.types.max_items
     import capo_acm.types.next_token
     import capo_acm.types.passphrase_blob
     import capo_acm.types.pca_arn
+    import capo_acm.types.prevalidation_options
     import capo_acm.types.private_key_blob
     import capo_acm.types.put_account_configuration_request
     import capo_acm.types.remove_tags_from_certificate_request
@@ -72,8 +120,11 @@ if TYPE_CHECKING:
     import capo_acm.types.request_certificate_response
     import capo_acm.types.resend_validation_email_request
     import capo_acm.types.revocation_reason
+    import capo_acm.types.revoke_acme_account_request
+    import capo_acm.types.revoke_acme_external_account_binding_request
     import capo_acm.types.revoke_certificate_request
     import capo_acm.types.revoke_certificate_response
+    import capo_acm.types.role_arn
     import capo_acm.types.search_certificates_request
     import capo_acm.types.search_certificates_response
     import capo_acm.types.search_certificates_sort_by
@@ -81,7 +132,12 @@ if TYPE_CHECKING:
     import capo_acm.types.search_max_results
     import capo_acm.types.sort_by
     import capo_acm.types.sort_order
+    import capo_acm.types.tag_key_list
     import capo_acm.types.tag_list
+    import capo_acm.types.tag_resource_request
+    import capo_acm.types.untag_resource_request
+    import capo_acm.types.update_acme_domain_validation_request
+    import capo_acm.types.update_acme_endpoint_request
     import capo_acm.types.update_certificate_options_request
     import capo_acm.types.validation_method
 
@@ -90,10 +146,11 @@ class ACMClientConfig(TypedDict, total=False, closed=True):
     operation_interceptors: Iterable[Interceptor[Any, Any]]
     retry_max_attempts: int | None
     region: str | None
-    use_dual_stack: bool | None
-    use_fips: bool | None
     endpoint: str | None
+    use_fips: bool | None
+    use_dual_stack: bool | None
     credentials_provider: IdentityProvider[Credentials] | None
+    service_type: str | None
 
 
 class ACMClient:
@@ -104,11 +161,12 @@ class ACMClient:
         operation_interceptors: Interceptors that wrap every operation call. If not provided, defaults to an empty list.
         retry_max_attempts: Maximum number of times to retry a failed operation. Defaults to 3.
         region: The value of the ``AWS::Region`` endpoint parameter.
-        use_dual_stack: The value of the ``AWS::UseDualStack`` endpoint parameter.
-        use_fips: The value of the ``AWS::UseFIPS`` endpoint parameter.
         endpoint: The value of the ``SDK::Endpoint`` endpoint parameter.
+        use_fips: The value of the ``AWS::UseFIPS`` endpoint parameter.
+        use_dual_stack: The value of the ``AWS::UseDualStack`` endpoint parameter.
         credentials: AWS credentials for request signing.
         credentials_provider: Provider that resolves AWS credentials. Takes precedence over ``credentials``.
+        service_type: The service type: ACM or ACM-ACME. Injected via @staticContextParams.
     """
 
     def __init__(
@@ -117,11 +175,12 @@ class ACMClient:
         operation_interceptors: Iterable[Interceptor[Any, Any]] | None = None,
         retry_max_attempts: int | None = None,
         region: str | None = None,
-        use_dual_stack: bool | None = None,
-        use_fips: bool | None = None,
         endpoint: str | None = None,
+        use_fips: bool | None = None,
+        use_dual_stack: bool | None = None,
         credentials: Credentials | None = None,
         credentials_provider: CredentialsProvider | None = None,
+        service_type: str | None = None,
     ):
         self._client = Client(http_handler).wrap_with_middleware(
             lambda next: AuthMiddleware(next)
@@ -144,10 +203,11 @@ class ACMClient:
                 "operation_interceptors": operation_interceptors or [],
                 "retry_max_attempts": retry_max_attempts,
                 "region": region,
-                "use_dual_stack": use_dual_stack,
-                "use_fips": use_fips,
                 "endpoint": endpoint,
+                "use_fips": use_fips,
+                "use_dual_stack": use_dual_stack,
                 "credentials_provider": resolved_credentials_provider,
+                "service_type": service_type,
             }
         )
 
@@ -168,13 +228,16 @@ class ACMClient:
                 "retry_max_attempts", self._config.get("retry_max_attempts")
             ),
             region=overrides.get("region", self._config.get("region")),
+            endpoint=overrides.get("endpoint", self._config.get("endpoint")),
+            use_fips=overrides.get("use_fips", self._config.get("use_fips")),
             use_dual_stack=overrides.get(
                 "use_dual_stack", self._config.get("use_dual_stack")
             ),
-            use_fips=overrides.get("use_fips", self._config.get("use_fips")),
-            endpoint=overrides.get("endpoint", self._config.get("endpoint")),
             credentials_provider=overrides.get(
                 "credentials_provider", self._config.get("credentials_provider")
+            ),
+            service_type=overrides.get(
+                "service_type", self._config.get("service_type")
             ),
         )
         return interceptors_, options_
@@ -186,7 +249,7 @@ class ACMClient:
         *,
         config_overrides: Optional[ACMClientConfig] = None,
     ) -> None:
-        r"""<p>Adds one or more tags to an ACM certificate. Tags are labels that you can use to identify and organize your Amazon Web Services resources. Each tag consists of a <code>key</code> and an optional <code>value</code>. You specify the certificate on input by its Amazon Resource Name (ARN). You specify the tag by using a key-value pair. </p> <p>You can apply a tag to just one certificate if you want to identify a specific characteristic of that certificate, or you can apply the same tag to multiple certificates if you want to filter for a common relationship among those certificates. Similarly, you can apply the same tag to multiple resources if you want to specify a relationship among those resources. For example, you can add the same tag to an ACM certificate and an Elastic Load Balancing load balancer to indicate that they are both used by the same website. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/tags.html\">Tagging ACM certificates</a>. </p> <p>To remove one or more tags, use the <a>RemoveTagsFromCertificate</a> action. To view all of the tags that have been applied to the certificate, use the <a>ListTagsForCertificate</a> action. </p>
+        r"""<p>Adds one or more tags to an ACM certificate. Tags are labels that you can use to identify and organize your Amazon Web Services resources. Each tag consists of a <code>key</code> and an optional <code>value</code>. You specify the certificate on input by its Amazon Resource Name (ARN). You specify the tag by using a key-value pair. </p> <note> <p>This action applies only to the <code>certificate</code> resource type. For all other ACM resource types, use <a>TagResource</a> instead.</p> </note> <p>You can apply a tag to just one certificate if you want to identify a specific characteristic of that certificate, or you can apply the same tag to multiple certificates if you want to filter for a common relationship among those certificates. Similarly, you can apply the same tag to multiple resources if you want to specify a relationship among those resources. For example, you can add the same tag to an ACM certificate and an Elastic Load Balancing load balancer to indicate that they are both used by the same website. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/tags.html\">Tagging ACM certificates</a>. </p> <p>To remove one or more tags, use the <a>RemoveTagsFromCertificate</a> action. To view all of the tags that have been applied to the certificate, use the <a>ListTagsForCertificate</a> action. </p>
 
         Args:
             certificate_arn: <p>String that contains the ARN of the ACM certificate to which the tag is to be applied. This must be of the form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a>.</p>
@@ -200,6 +263,7 @@ class ACMClient:
             capo_acm.errors.tag_policy_exception.TagPolicyException: <p>A specified tag did not comply with an existing tag policy and was rejected.</p>
             capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
             capo_acm.errors.too_many_tags_exception.TooManyTagsException: <p>The request contains too many tags. Try the request again with fewer tags.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -229,13 +293,344 @@ class ACMClient:
         response.response.close()
         return response.output
 
+    def create_acme_domain_validation(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        domain_name: "capo_acm.types.domain_name.DomainName",
+        prevalidation_options: "capo_acm.types.prevalidation_options.PrevalidationOptions",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        idempotency_token: Optional[str] = None,
+        tags: Optional["capo_acm.types.tag_list.TagList"] = None,
+    ) -> "capo_acm.types.create_acme_domain_validation_response.CreateAcmeDomainValidationResponse":
+        """<p>Creates a domain validation for an ACME endpoint. Domain validations authorize the endpoint to issue certificates for specified domain names. You configure prevalidation to prove domain ownership.</p>
+
+        Args:
+            idempotency_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint.</p>
+            domain_name: <p>The domain name to validate.</p>
+            prevalidation_options: <p>The prevalidation options for the domain.</p>
+            tags: <p>One or more tags to associate with the domain validation.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>A service quota has been exceeded.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.create_acme_domain_validation_request.CreateAcmeDomainValidationRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.create_acme_domain_validation_response.CreateAcmeDomainValidationResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.create_acme_domain_validation
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.create_acme_domain_validation.create_acme_domain_validation(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.create_acme_domain_validation_request.CreateAcmeDomainValidationRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn,
+            "domain_name": domain_name,
+            "prevalidation_options": prevalidation_options,
+        }
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_acme_endpoint(
+        self,
+        authorization_behavior: "capo_acm.types.acme_authorization_behavior.AcmeAuthorizationBehavior",
+        certificate_authority: "capo_acm.types.certificate_authority.CertificateAuthority",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        idempotency_token: Optional[str] = None,
+        contact: Optional["capo_acm.types.acme_contact.AcmeContact"] = None,
+        tags: Optional["capo_acm.types.tag_list.TagList"] = None,
+        certificate_tags: Optional["capo_acm.types.tag_list.TagList"] = None,
+    ) -> "capo_acm.types.create_acme_endpoint_response.CreateAcmeEndpointResponse":
+        """<p>Creates an ACME endpoint, which is a managed ACME server with a unique endpoint URL. After creation, ACME clients can use the endpoint URL to automate certificate issuance using the ACME protocol.</p>
+
+        Args:
+            idempotency_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+            authorization_behavior: <p>The authorization behavior for the ACME endpoint.</p>
+            contact: <p>Specifies whether ACME clients must provide contact information during account registration.</p>
+            certificate_authority: <p>The type of certificate authority to use for issuing certificates through this ACME endpoint.</p>
+            tags: <p>One or more tags to associate with the ACME endpoint.</p>
+            certificate_tags: <p>Tags to apply to certificates issued through this ACME endpoint.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>A service quota has been exceeded.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.create_acme_endpoint_request.CreateAcmeEndpointRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.create_acme_endpoint_response.CreateAcmeEndpointResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.create_acme_endpoint
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.create_acme_endpoint.create_acme_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.create_acme_endpoint_request.CreateAcmeEndpointRequest = {
+            "authorization_behavior": authorization_behavior,
+            "certificate_authority": certificate_authority,
+        }
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
+        if contact is not None:
+            input_["contact"] = contact
+        if tags is not None:
+            input_["tags"] = tags
+        if certificate_tags is not None:
+            input_["certificate_tags"] = certificate_tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_acme_external_account_binding(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        role_arn: "capo_acm.types.role_arn.RoleArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        idempotency_token: Optional[str] = None,
+        expiration: Optional["capo_acm.types.expiration.Expiration"] = None,
+        tags: Optional["capo_acm.types.tag_list.TagList"] = None,
+    ) -> "capo_acm.types.create_acme_external_account_binding_response.CreateAcmeExternalAccountBindingResponse":
+        """<p>Creates an external account binding (EAB) for an ACME endpoint. An EAB provides credentials that authorize an ACME client to register an account with the endpoint. Each EAB is associated with an IAM role that controls what certificate operations the ACME client can perform.</p>
+
+        Args:
+            idempotency_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint.</p>
+            role_arn: <p>The Amazon Resource Name (ARN) of the IAM role to associate with the external account binding.</p>
+            expiration: <p>The expiration configuration for the external account binding.</p>
+            tags: <p>One or more tags to associate with the external account binding.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>A service quota has been exceeded.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.create_acme_external_account_binding_request.CreateAcmeExternalAccountBindingRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.create_acme_external_account_binding_response.CreateAcmeExternalAccountBindingResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.create_acme_external_account_binding
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.create_acme_external_account_binding.create_acme_external_account_binding(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.create_acme_external_account_binding_request.CreateAcmeExternalAccountBindingRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn,
+            "role_arn": role_arn,
+        }
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
+        if expiration is not None:
+            input_["expiration"] = expiration
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_acme_domain_validation(
+        self,
+        acme_domain_validation_arn: "capo_acm.types.acme_domain_validation_arn.AcmeDomainValidationArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a domain validation. After deletion, the ACME endpoint can no longer issue certificates for the associated domain.</p>
+
+        Args:
+            acme_domain_validation_arn: <p>The Amazon Resource Name (ARN) of the ACME domain validation to delete.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.delete_acme_domain_validation_request.DeleteAcmeDomainValidationRequest]",
+        ) -> OperationResponse[None]:
+            import capo_acm._operations.certificate_manager.delete_acme_domain_validation
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.delete_acme_domain_validation.delete_acme_domain_validation(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.delete_acme_domain_validation_request.DeleteAcmeDomainValidationRequest = {
+            "acme_domain_validation_arn": acme_domain_validation_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_acme_endpoint(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> None:
+        """<p>Deletes an ACME endpoint. After deletion, the endpoint URL is no longer accessible and ACME clients cannot issue certificates through it. Any existing external account bindings and domain validations associated with the endpoint are also deleted.</p>
+
+        Args:
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint to delete.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.delete_acme_endpoint_request.DeleteAcmeEndpointRequest]",
+        ) -> OperationResponse[None]:
+            import capo_acm._operations.certificate_manager.delete_acme_endpoint
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.delete_acme_endpoint.delete_acme_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.delete_acme_endpoint_request.DeleteAcmeEndpointRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_acme_external_account_binding(
+        self,
+        acme_external_account_binding_arn: "capo_acm.types.acme_external_account_binding_arn.AcmeExternalAccountBindingArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> None:
+        """<p>Deletes an external account binding. Previously fetched credentials for this binding will no longer be usable for account registration. A deleted binding cannot be recovered.</p>
+
+        Args:
+            acme_external_account_binding_arn: <p>The Amazon Resource Name (ARN) of the ACME external account binding to delete.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.delete_acme_external_account_binding_request.DeleteAcmeExternalAccountBindingRequest]",
+        ) -> OperationResponse[None]:
+            import capo_acm._operations.certificate_manager.delete_acme_external_account_binding
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.delete_acme_external_account_binding.delete_acme_external_account_binding(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.delete_acme_external_account_binding_request.DeleteAcmeExternalAccountBindingRequest = {
+            "acme_external_account_binding_arn": acme_external_account_binding_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def delete_certificate(
         self,
         certificate_arn: "capo_acm.types.arn.Arn",
         *,
         config_overrides: Optional[ACMClientConfig] = None,
     ) -> None:
-        r"""<p>Deletes a certificate and its associated private key. If this action succeeds, the certificate is not available for use by Amazon Web Services services integrated with ACM. Deleting a certificate is eventually consistent. The may be a short delay before the certificate no longer appears in the list that can be displayed by calling the <a>ListCertificates</a> action or be retrieved by calling the <a>GetCertificate</a> action.</p> <note> <p>You cannot delete an ACM certificate that is being used by another Amazon Web Services service. To delete a certificate that is in use, you must first remove the certificate association using the console or the CLI for the associated service.</p> <p>Deleting a certificate issued by a private certificate authority (CA) has no effect on the CA. You will continue to be charged for the CA until it is deleted. For more information, see <a href=\"https://docs.aws.amazon.com/privateca/latest/userguide/PCADeleteCA.html\"> Deleting Your Private CA</a> in the <i>Private Certificate Authority User Guide</i>.</p> </note> <p>Deleting a certificate issued by a private certificate authority (CA) has no effect on the CA. You will continue to be charged for the CA until it is deleted. For more information, see <a href=\"https://docs.aws.amazon.com/privateca/latest/userguide/PCADeleteCA.html\">Deleting your private CA</a> in the <i>Amazon Web Services Private Certificate Authority User Guide</i>.</p>
+        r"""<p>Deletes a certificate and its associated private key. If this action succeeds, the certificate is not available for use by Amazon Web Services services integrated with ACM. Deleting a certificate is eventually consistent. The may be a short delay before the certificate no longer appears in the list that can be displayed by calling the <a>ListCertificates</a> action or be retrieved by calling the <a>GetCertificate</a> action.</p> <note> <p>You cannot delete an ACM certificate that is being used by another Amazon Web Services service. To delete a certificate that is in use, you must first remove the certificate association using the console or the CLI for the associated service.</p> <p>Deleting a certificate issued by a private certificate authority (CA) has no effect on the CA. You will continue to be charged for the CA until it is deleted. For more information, see <a href=\"https://docs.aws.amazon.com/privateca/latest/userguide/PCADeleteCA.html\"> Deleting Your Private CA</a> in the <i>Private Certificate Authority User Guide</i>.</p> <p>You cannot delete a certificate with a <code>CertificateKeyPairOrigin</code> of <code>ACME</code>. ACM automatically deletes these certificates 1 year after they expire.</p> </note> <p>Deleting a certificate issued by a private certificate authority (CA) has no effect on the CA. You will continue to be charged for the CA until it is deleted. For more information, see <a href=\"https://docs.aws.amazon.com/privateca/latest/userguide/PCADeleteCA.html\">Deleting your private CA</a> in the <i>Amazon Web Services Private Certificate Authority User Guide</i>.</p>
 
         Args:
             certificate_arn: <p>String that contains the ARN of the ACM certificate to be deleted. This must be of the form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a>.</p>
@@ -247,6 +642,7 @@ class ACMClient:
             capo_acm.errors.resource_in_use_exception.ResourceInUseException: <p>The certificate is in use by another Amazon Web Services service in the caller's account. Remove the association and try again.</p>
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
             capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -275,6 +671,197 @@ class ACMClient:
         response.response.close()
         return response.output
 
+    def describe_acme_account(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        account_url: str,
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> "capo_acm.types.describe_acme_account_response.DescribeAcmeAccountResponse":
+        """<p>Returns detailed metadata about the specified ACME account, including its status, public key thumbprint, and associated external account binding.</p>
+
+        Args:
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint.</p>
+            account_url: <p>The URL of the ACME account.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.describe_acme_account_request.DescribeAcmeAccountRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.describe_acme_account_response.DescribeAcmeAccountResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.describe_acme_account
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.describe_acme_account.describe_acme_account(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.describe_acme_account_request.DescribeAcmeAccountRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn,
+            "account_url": account_url,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_acme_domain_validation(
+        self,
+        acme_domain_validation_arn: "capo_acm.types.acme_domain_validation_arn.AcmeDomainValidationArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> "capo_acm.types.describe_acme_domain_validation_response.DescribeAcmeDomainValidationResponse":
+        """<p>Returns detailed metadata about the specified domain validation, including its status, domain scope, and DNS resource records required for validation.</p>
+
+        Args:
+            acme_domain_validation_arn: <p>The Amazon Resource Name (ARN) of the ACME domain validation.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.describe_acme_domain_validation_request.DescribeAcmeDomainValidationRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.describe_acme_domain_validation_response.DescribeAcmeDomainValidationResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.describe_acme_domain_validation
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.describe_acme_domain_validation.describe_acme_domain_validation(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.describe_acme_domain_validation_request.DescribeAcmeDomainValidationRequest = {
+            "acme_domain_validation_arn": acme_domain_validation_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_acme_endpoint(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> "capo_acm.types.describe_acme_endpoint_response.DescribeAcmeEndpointResponse":
+        """<p>Returns detailed metadata about the specified ACME endpoint, including its status, URL, authorization behavior, and certificate authority configuration.</p>
+
+        Args:
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.describe_acme_endpoint_request.DescribeAcmeEndpointRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.describe_acme_endpoint_response.DescribeAcmeEndpointResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.describe_acme_endpoint
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.describe_acme_endpoint.describe_acme_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.describe_acme_endpoint_request.DescribeAcmeEndpointRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_acme_external_account_binding(
+        self,
+        acme_external_account_binding_arn: "capo_acm.types.acme_external_account_binding_arn.AcmeExternalAccountBindingArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> "capo_acm.types.describe_acme_external_account_binding_response.DescribeAcmeExternalAccountBindingResponse":
+        """<p>Returns detailed metadata about the specified external account binding, including the associated IAM role, expiration time, and usage history.</p>
+
+        Args:
+            acme_external_account_binding_arn: <p>The Amazon Resource Name (ARN) of the ACME external account binding.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.describe_acme_external_account_binding_request.DescribeAcmeExternalAccountBindingRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.describe_acme_external_account_binding_response.DescribeAcmeExternalAccountBindingResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.describe_acme_external_account_binding
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.describe_acme_external_account_binding.describe_acme_external_account_binding(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.describe_acme_external_account_binding_request.DescribeAcmeExternalAccountBindingRequest = {
+            "acme_external_account_binding_arn": acme_external_account_binding_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def describe_certificate(
         self,
         certificate_arn: "capo_acm.types.arn.Arn",
@@ -289,6 +876,7 @@ class ACMClient:
         Raises:
             capo_acm.errors.invalid_arn_exception.InvalidArnException: <p>The requested Amazon Resource Name (ARN) does not refer to an existing resource.</p>
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -337,6 +925,7 @@ class ACMClient:
             capo_acm.errors.request_in_progress_exception.RequestInProgressException: <p>The certificate request is in process and the certificate in your account has not yet been issued.</p>
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
             capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -403,6 +992,53 @@ class ACMClient:
         response.response.close()
         return response.output
 
+    def get_acme_external_account_binding_credentials(
+        self,
+        acme_external_account_binding_arn: "capo_acm.types.acme_external_account_binding_arn.AcmeExternalAccountBindingArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> "capo_acm.types.get_acme_external_account_binding_credentials_response.GetAcmeExternalAccountBindingCredentialsResponse":
+        """<p>Retrieves the key ID and MAC key credentials for an external account binding. These credentials are used by ACME clients during account registration to bind to the endpoint.</p>
+
+        Args:
+            acme_external_account_binding_arn: <p>The Amazon Resource Name (ARN) of the ACME external account binding.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.get_acme_external_account_binding_credentials_request.GetAcmeExternalAccountBindingCredentialsRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.get_acme_external_account_binding_credentials_response.GetAcmeExternalAccountBindingCredentialsResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.get_acme_external_account_binding_credentials
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.get_acme_external_account_binding_credentials.get_acme_external_account_binding_credentials(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.get_acme_external_account_binding_credentials_request.GetAcmeExternalAccountBindingCredentialsRequest = {
+            "acme_external_account_binding_arn": acme_external_account_binding_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def get_certificate(
         self,
         certificate_arn: "capo_acm.types.arn.Arn",
@@ -418,6 +1054,7 @@ class ACMClient:
             capo_acm.errors.invalid_arn_exception.InvalidArnException: <p>The requested Amazon Resource Name (ARN) does not refer to an existing resource.</p>
             capo_acm.errors.request_in_progress_exception.RequestInProgressException: <p>The certificate request is in process and the certificate in your account has not yet been issued.</p>
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -478,6 +1115,7 @@ class ACMClient:
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
             capo_acm.errors.tag_policy_exception.TagPolicyException: <p>A specified tag did not comply with an existing tag policy and was rejected.</p>
             capo_acm.errors.too_many_tags_exception.TooManyTagsException: <p>The request contains too many tags. Try the request again with fewer tags.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -515,6 +1153,388 @@ class ACMClient:
         response.response.close()
         return response.output
 
+    def list_acme_accounts(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_acm.types.list_acme_accounts_response.ListAcmeAccountsResponse":
+        """<p>Retrieves a list of ACME accounts registered with the specified ACME endpoint. ACME accounts are created when clients use external account binding credentials to register.</p>
+
+        Args:
+            next_token: <p>A token for pagination.</p>
+            max_results: <p>The maximum number of results to return.</p>
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.list_acme_accounts_request.ListAcmeAccountsRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.list_acme_accounts_response.ListAcmeAccountsResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.list_acme_accounts
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.list_acme_accounts.list_acme_accounts(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.list_acme_accounts_request.ListAcmeAccountsRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_acme_accounts(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_acm.types.acme_account_summary.AcmeAccountSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_acme_accounts(
+                acme_endpoint_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("acme_accounts",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_acme_domain_validations(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_acm.types.list_acme_domain_validations_response.ListAcmeDomainValidationsResponse":
+        """<p>Retrieves a list of domain validations for the specified ACME endpoint.</p>
+
+        Args:
+            next_token: <p>A token for pagination.</p>
+            max_results: <p>The maximum number of results to return.</p>
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.list_acme_domain_validations_request.ListAcmeDomainValidationsRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.list_acme_domain_validations_response.ListAcmeDomainValidationsResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.list_acme_domain_validations
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.list_acme_domain_validations.list_acme_domain_validations(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.list_acme_domain_validations_request.ListAcmeDomainValidationsRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_acme_domain_validations(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_acm.types.acme_domain_validation_summary.AcmeDomainValidationSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_acme_domain_validations(
+                acme_endpoint_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("acme_domain_validations",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_acme_endpoints(
+        self,
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_acm.types.list_acme_endpoints_response.ListAcmeEndpointsResponse":
+        """<p>Retrieves a list of ACME endpoints in your account. Use this operation to view all configured ACME endpoints and their current status.</p>
+
+        Args:
+            next_token: <p>A token for pagination.</p>
+            max_results: <p>The maximum number of results to return.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.list_acme_endpoints_request.ListAcmeEndpointsRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.list_acme_endpoints_response.ListAcmeEndpointsResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.list_acme_endpoints
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.list_acme_endpoints.list_acme_endpoints(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.list_acme_endpoints_request.ListAcmeEndpointsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_acme_endpoints(
+        self,
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_acm.types.acme_endpoint_summary.AcmeEndpointSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_acme_endpoints(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("acme_endpoints",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_acme_external_account_bindings(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_acm.types.list_acme_external_account_bindings_response.ListAcmeExternalAccountBindingsResponse":
+        """<p>Retrieves a list of external account bindings for the specified ACME endpoint.</p>
+
+        Args:
+            next_token: <p>A token for pagination.</p>
+            max_results: <p>The maximum number of results to return.</p>
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.list_acme_external_account_bindings_request.ListAcmeExternalAccountBindingsRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.list_acme_external_account_bindings_response.ListAcmeExternalAccountBindingsResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.list_acme_external_account_bindings
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.list_acme_external_account_bindings.list_acme_external_account_bindings(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.list_acme_external_account_bindings_request.ListAcmeExternalAccountBindingsRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_acme_external_account_bindings(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_acm.types.acme_external_account_binding_summary.AcmeExternalAccountBindingSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_acme_external_account_bindings(
+                acme_endpoint_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("external_account_bindings",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_certificate_domain_validations(
+        self,
+        certificate_arn: "capo_acm.types.certificate_arn.CertificateArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional["capo_acm.types.next_token.NextToken"] = None,
+        max_items: Optional["capo_acm.types.max_items.MaxItems"] = None,
+    ) -> "capo_acm.types.list_certificate_domain_validations_response.ListCertificateDomainValidationsResponse":
+        """<p>Returns per-domain validation summaries for an ACM certificate. Each summary includes the domain name, the active validation configuration, and the requested validation configuration when a validation method migration is in progress. You can use the results to monitor the progress of an email-to-DNS validation migration and to retrieve the CNAME records required for DNS validation.</p>
+
+        Args:
+            certificate_arn: <p>The Amazon Resource Name (ARN) of the certificate for which to list domain validation summaries.</p>
+            next_token: <p>A token returned by a previous call to <code>ListCertificateDomainValidations</code>. If the number of results exceeds <code>MaxItems</code>, use this token to retrieve the next page of results.</p>
+            max_items: <p>The maximum number of domain validation summaries to return. If you don't specify a value, the default is 1000.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.invalid_args_exception.InvalidArgsException: <p>One or more of request parameters specified is not valid.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.list_certificate_domain_validations_request.ListCertificateDomainValidationsRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.list_certificate_domain_validations_response.ListCertificateDomainValidationsResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.list_certificate_domain_validations
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.list_certificate_domain_validations.list_certificate_domain_validations(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.list_certificate_domain_validations_request.ListCertificateDomainValidationsRequest = {
+            "certificate_arn": certificate_arn
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_items is not None:
+            input_["max_items"] = max_items
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_certificate_domain_validations(
+        self,
+        certificate_arn: "capo_acm.types.certificate_arn.CertificateArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        next_token: Optional["capo_acm.types.next_token.NextToken"] = None,
+        max_items: Optional["capo_acm.types.max_items.MaxItems"] = None,
+    ) -> "Iterator[capo_acm.types.domain_validation_summary.DomainValidationSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_certificate_domain_validations(
+                certificate_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_items=max_items,
+            )
+            _page = _resolve_path(_response, ("domain_validation_summary_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def list_certificates(
         self,
         *,
@@ -522,16 +1542,20 @@ class ACMClient:
         certificate_statuses: Optional[
             "capo_acm.types.certificate_statuses.CertificateStatuses"
         ] = None,
+        certificate_key_pair_origins: Optional[
+            "capo_acm.types.certificate_key_pair_origins.CertificateKeyPairOrigins"
+        ] = None,
         includes: Optional["capo_acm.types.filters.Filters"] = None,
         next_token: Optional["capo_acm.types.next_token.NextToken"] = None,
         max_items: Optional["capo_acm.types.max_items.MaxItems"] = None,
         sort_by: Optional["capo_acm.types.sort_by.SortBy"] = None,
         sort_order: Optional["capo_acm.types.sort_order.SortOrder"] = None,
     ) -> "capo_acm.types.list_certificates_response.ListCertificatesResponse":
-        """<p>Retrieves a list of certificate ARNs and domain names. You can request that only certificates that match a specific status be listed. You can also filter by specific attributes of the certificate. Default filtering returns only <code>RSA_2048</code> certificates. For more information, see <a>Filters</a>.</p>
+        """<p>Retrieves a list of certificate ARNs and domain names. You can request that only certificates that match a specific status be listed. You can also filter by specific attributes of the certificate. Default filtering returns only <code>RSA_2048</code> certificates. For more information, see <a>Filters</a>.</p> <note> <p>By default, this action does not return certificates with a <code>CertificateKeyPairOrigin</code> of <code>ACME</code>. To include ACME certificates, specify <code>ACME</code> in the <code>CertificateKeyPairOrigins</code> filter.</p> </note>
 
         Args:
             certificate_statuses: <p>Filter the certificate list by status value.</p>
+            certificate_key_pair_origins: <p>Filter the certificate list by certificate key pair origin. Specify one or more <code>CertificateKeyPairOrigin</code> values. Default filtering returns only certificates with key pair origin of <code>AWS_MANAGED</code> and <code>CUSTOMER_PROVIDED</code>.</p>
             includes: <p>Filter the certificate list. For more information, see the <a>Filters</a> structure.</p>
             next_token: <p>Use this parameter only when paginating results and only in a subsequent request after you receive a response with truncated results. Set it to the value of <code>NextToken</code> from the response you just received.</p>
             max_items: <p>Use this parameter when paginating results to specify the maximum number of items to return in the response. If additional items exist beyond the number you specify, the <code>NextToken</code> element is sent in the response. Use this <code>NextToken</code> value in a subsequent request to retrieve additional items.</p>
@@ -562,6 +1586,8 @@ class ACMClient:
         input_: capo_acm.types.list_certificates_request.ListCertificatesRequest = {}
         if certificate_statuses is not None:
             input_["certificate_statuses"] = certificate_statuses
+        if certificate_key_pair_origins is not None:
+            input_["certificate_key_pair_origins"] = certificate_key_pair_origins
         if includes is not None:
             input_["includes"] = includes
         if next_token is not None:
@@ -588,6 +1614,9 @@ class ACMClient:
         certificate_statuses: Optional[
             "capo_acm.types.certificate_statuses.CertificateStatuses"
         ] = None,
+        certificate_key_pair_origins: Optional[
+            "capo_acm.types.certificate_key_pair_origins.CertificateKeyPairOrigins"
+        ] = None,
         includes: Optional["capo_acm.types.filters.Filters"] = None,
         next_token: Optional["capo_acm.types.next_token.NextToken"] = None,
         max_items: Optional["capo_acm.types.max_items.MaxItems"] = None,
@@ -599,6 +1628,7 @@ class ACMClient:
             _response = self.list_certificates(
                 config_overrides=config_overrides,
                 certificate_statuses=certificate_statuses,
+                certificate_key_pair_origins=certificate_key_pair_origins,
                 includes=includes,
                 next_token=_token,
                 max_items=max_items,
@@ -618,7 +1648,7 @@ class ACMClient:
         *,
         config_overrides: Optional[ACMClientConfig] = None,
     ) -> "capo_acm.types.list_tags_for_certificate_response.ListTagsForCertificateResponse":
-        r"""<p>Lists the tags that have been applied to the ACM certificate. Use the certificate's Amazon Resource Name (ARN) to specify the certificate. To add a tag to an ACM certificate, use the <a>AddTagsToCertificate</a> action. To delete a tag, use the <a>RemoveTagsFromCertificate</a> action. </p>
+        r"""<p>Lists the tags that have been applied to the ACM certificate. Use the certificate's Amazon Resource Name (ARN) to specify the certificate. To add a tag to an ACM certificate, use the <a>AddTagsToCertificate</a> action. To delete a tag, use the <a>RemoveTagsFromCertificate</a> action. </p> <note> <p>This action applies only to the <code>certificate</code> resource type. For all other ACM resource types, use <a>ListTagsForResource</a> instead.</p> </note>
 
         Args:
             certificate_arn: <p>String that contains the ARN of the ACM certificate for which you want to list the tags. This must have the following form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a>.</p>
@@ -626,6 +1656,7 @@ class ACMClient:
         Raises:
             capo_acm.errors.invalid_arn_exception.InvalidArnException: <p>The requested Amazon Resource Name (ARN) does not refer to an existing resource.</p>
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -646,6 +1677,50 @@ class ACMClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_acm.types.list_tags_for_certificate_request.ListTagsForCertificateRequest = {
             "certificate_arn": certificate_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_tags_for_resource(
+        self,
+        resource_arn: "capo_acm.types.arn.Arn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> "capo_acm.types.list_tags_for_resource_response.ListTagsForResourceResponse":
+        """<p>Lists the tags associated with an ACM resource.</p> <note> <p>Use this action for all ACM resource types except the <code>certificate</code> resource type. For certificate resources, use <a>ListTagsForCertificate</a> instead.</p> </note> <p>To add one or more tags, use the <a>TagResource</a> action. To remove one or more tags, use the <a>UntagResource</a> action.</p>
+
+        Args:
+            resource_arn: <p>The ARN of the ACM resource for which to list tags.</p>
+
+        Raises:
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.list_tags_for_resource_request.ListTagsForResourceRequest]",
+        ) -> OperationResponse[
+            "capo_acm.types.list_tags_for_resource_response.ListTagsForResourceResponse"
+        ]:
+            import capo_acm._operations.certificate_manager.list_tags_for_resource
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.list_tags_for_resource.list_tags_for_resource(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
         }
 
         response = execute_pipeline(
@@ -713,7 +1788,7 @@ class ACMClient:
         *,
         config_overrides: Optional[ACMClientConfig] = None,
     ) -> None:
-        r"""<p>Remove one or more tags from an ACM certificate. A tag consists of a key-value pair. If you do not specify the value portion of the tag when calling this function, the tag will be removed regardless of value. If you specify a value, the tag is removed only if it is associated with the specified value. </p> <p>To add tags to a certificate, use the <a>AddTagsToCertificate</a> action. To view all of the tags that have been applied to a specific ACM certificate, use the <a>ListTagsForCertificate</a> action. </p>
+        r"""<p>Remove one or more tags from an ACM certificate. A tag consists of a key-value pair. If you do not specify the value portion of the tag when calling this function, the tag will be removed regardless of value. If you specify a value, the tag is removed only if it is associated with the specified value. </p> <note> <p>This action applies only to the <code>certificate</code> resource type. For all other ACM resource types, use <a>UntagResource</a> instead.</p> </note> <p>To add tags to a certificate, use the <a>AddTagsToCertificate</a> action. To view all of the tags that have been applied to a specific ACM certificate, use the <a>ListTagsForCertificate</a> action. </p>
 
         Args:
             certificate_arn: <p>String that contains the ARN of the ACM Certificate with one or more tags that you want to remove. This must be of the form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a>.</p>
@@ -726,6 +1801,7 @@ class ACMClient:
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
             capo_acm.errors.tag_policy_exception.TagPolicyException: <p>A specified tag did not comply with an existing tag policy and was rejected.</p>
             capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -770,6 +1846,7 @@ class ACMClient:
             capo_acm.errors.invalid_arn_exception.InvalidArnException: <p>The requested Amazon Resource Name (ARN) does not refer to an existing resource.</p>
             capo_acm.errors.request_in_progress_exception.RequestInProgressException: <p>The certificate request is in process and the certificate in your account has not yet been issued.</p>
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -833,7 +1910,7 @@ class ACMClient:
             subject_alternative_names: <p>Additional FQDNs to be included in the Subject Alternative Name extension of the ACM certificate. For example, add the name www.example.net to a certificate for which the <code>DomainName</code> field is www.example.com if users can reach your site by using either name. The maximum number of domain names that you can add to an ACM certificate is 100. However, the initial quota is 10 domain names. If you need more than 10 names, you must request a quota increase. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-limits.html\">Quotas</a>.</p> <p> The maximum length of a SAN DNS name is 253 octets. The name is made up of multiple labels separated by periods. No label can be longer than 63 octets. Consider the following examples: </p> <ul> <li> <p> <code>(63 octets).(63 octets).(63 octets).(61 octets)</code> is legal because the total length is 253 octets (63+1+63+1+63+1+61) and no label exceeds 63 octets.</p> </li> <li> <p> <code>(64 octets).(63 octets).(63 octets).(61 octets)</code> is not legal because the total length exceeds 253 octets (64+1+63+1+63+1+61) and the first label exceeds 63 octets.</p> </li> <li> <p> <code>(63 octets).(63 octets).(63 octets).(62 octets)</code> is not legal because the total length of the DNS name (63+1+63+1+63+1+62) exceeds 253 octets.</p> </li> </ul>
             idempotency_token: <p>Customer chosen string that can be used to distinguish between calls to <code>RequestCertificate</code>. Idempotency tokens time out after one hour. Therefore, if you call <code>RequestCertificate</code> multiple times with the same idempotency token within one hour, ACM recognizes that you are requesting only one certificate and will issue only one. If you change the idempotency token for each call, ACM recognizes that you are requesting multiple certificates.</p>
             domain_validation_options: <p>The domain name that you want ACM to use to send you emails so that you can validate domain ownership.</p>
-            options: <p>You can use this parameter to specify whether to add the certificate to a certificate transparency log and export your certificate.</p> <p>Certificate transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-bestpractices.html#best-practices-transparency\">Opting Out of Certificate Transparency Logging</a>.</p> <p>You can export public ACM certificates to use with Amazon Web Services services as well as outside the Amazon Web Services Cloud. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-exportable-certificates.html\">Certificate Manager exportable public certificate</a>.</p>
+            options: <p>You can use this parameter to specify whether to export your certificate.</p> <p>Certificate transparency logging opt-out is no longer available. All public certificates are recorded in a certificate transparency log. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-transparency\">Certificate Transparency Logging</a>.</p> <p>You can export public ACM certificates to use with Amazon Web Services services as well as outside the Amazon Web Services Cloud. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-exportable-certificates.html\">Certificate Manager exportable public certificate</a>.</p>
             certificate_authority_arn: <p>The Amazon Resource Name (ARN) of the private certificate authority (CA) that will be used to issue the certificate. If you do not provide an ARN and you are trying to request a private certificate, ACM will attempt to issue a public certificate. For more information about private CAs, see the <a href=\"https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html\">Amazon Web Services Private Certificate Authority</a> user guide. The ARN must have the following form: </p> <p> <code>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</code> </p>
             tags: <p>One or more resource tags to associate with the certificate.</p>
             key_algorithm: <p>Specifies the algorithm of the public and private key pair that your certificate uses to encrypt data. RSA is the default key algorithm for ACM certificates. Elliptic Curve Digital Signature Algorithm (ECDSA) keys are smaller, offering security comparable to RSA keys but with greater computing efficiency. However, ECDSA is not supported by all network clients. Some Amazon Web Services services may require RSA keys, or only support ECDSA keys of a particular size, while others allow the use of either RSA and ECDSA keys to ensure that compatibility is not broken. Check the requirements for the Amazon Web Services service where you plan to deploy your certificate. For more information about selecting an algorithm, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate-characteristics.html#algorithms-term\">Key algorithms</a>.</p> <note> <p>Algorithms supported for an ACM certificate request include: </p> <ul> <li> <p> <code>RSA_2048</code> </p> </li> <li> <p> <code>EC_prime256v1</code> </p> </li> <li> <p> <code>EC_secp384r1</code> </p> </li> </ul> <p>Other listed algorithms are for imported certificates only. </p> </note> <note> <p>When you request a private PKI certificate signed by a CA from Amazon Web Services Private CA, the specified signing algorithm family (RSA or ECDSA) must match the algorithm family of the CA's secret key.</p> </note> <p>Default: RSA_2048</p>
@@ -915,6 +1992,7 @@ class ACMClient:
             capo_acm.errors.invalid_domain_validation_options_exception.InvalidDomainValidationOptionsException: <p>One or more values in the <a>DomainValidationOption</a> structure is incorrect.</p>
             capo_acm.errors.invalid_state_exception.InvalidStateException: <p>Processing has reached an invalid state.</p>
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -945,6 +2023,101 @@ class ACMClient:
         response.response.close()
         return response.output
 
+    def revoke_acme_account(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        account_url: str,
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> None:
+        """<p>Revokes an ACME account, preventing it from requesting or revoking certificates. This operation is irreversible.</p>
+
+        Args:
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint.</p>
+            account_url: <p>The URL of the ACME account to revoke.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.revoke_acme_account_request.RevokeAcmeAccountRequest]",
+        ) -> OperationResponse[None]:
+            import capo_acm._operations.certificate_manager.revoke_acme_account
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.revoke_acme_account.revoke_acme_account(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.revoke_acme_account_request.RevokeAcmeAccountRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn,
+            "account_url": account_url,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def revoke_acme_external_account_binding(
+        self,
+        acme_external_account_binding_arn: "capo_acm.types.acme_external_account_binding_arn.AcmeExternalAccountBindingArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> None:
+        """<p>Revokes an external account binding, preventing new ACME accounts from being registered using this binding. Existing ACME accounts that were previously registered using the binding are not affected and must be revoked separately.</p>
+
+        Args:
+            acme_external_account_binding_arn: <p>The Amazon Resource Name (ARN) of the ACME external account binding to revoke.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.revoke_acme_external_account_binding_request.RevokeAcmeExternalAccountBindingRequest]",
+        ) -> OperationResponse[None]:
+            import capo_acm._operations.certificate_manager.revoke_acme_external_account_binding
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.revoke_acme_external_account_binding.revoke_acme_external_account_binding(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.revoke_acme_external_account_binding_request.RevokeAcmeExternalAccountBindingRequest = {
+            "acme_external_account_binding_arn": acme_external_account_binding_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def revoke_certificate(
         self,
         certificate_arn: "capo_acm.types.arn.Arn",
@@ -965,6 +2138,7 @@ class ACMClient:
             capo_acm.errors.resource_in_use_exception.ResourceInUseException: <p>The certificate is in use by another Amazon Web Services service in the caller's account. Remove the association and try again.</p>
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
             capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1100,6 +2274,211 @@ class ACMClient:
             if not _token:
                 break
 
+    def tag_resource(
+        self,
+        resource_arn: "capo_acm.types.arn.Arn",
+        tags: "capo_acm.types.tag_list.TagList",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> None:
+        """<p>Adds one or more tags to an ACM resource. Tags are labels that you can use to identify and organize your Amazon Web Services resources. Each tag consists of a <code>key</code> and an optional <code>value</code>.</p> <note> <p>Use this action for all ACM resource types except the <code>certificate</code> resource type. For certificate resources, use <a>AddTagsToCertificate</a> instead.</p> </note> <p>To remove one or more tags, use the <a>UntagResource</a> action. To view all of the tags that have been applied to a resource, use the <a>ListTagsForResource</a> action.</p>
+
+        Args:
+            resource_arn: <p>The ARN of the ACM resource to which the tag is to be applied.</p>
+            tags: <p>The key-value pair that defines the tag to apply.</p>
+
+        Raises:
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>A service quota has been exceeded.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.tag_resource_request.TagResourceRequest]",
+        ) -> OperationResponse[None]:
+            import capo_acm._operations.certificate_manager.tag_resource
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.tag_resource.tag_resource(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def untag_resource(
+        self,
+        resource_arn: "capo_acm.types.arn.Arn",
+        tag_keys: "capo_acm.types.tag_key_list.TagKeyList",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+    ) -> None:
+        """<p>Removes one or more tags from an ACM resource.</p> <note> <p>Use this action for all ACM resource types except the <code>certificate</code> resource type. For certificate resources, use <a>RemoveTagsFromCertificate</a> instead.</p> </note> <p>To add one or more tags, use the <a>TagResource</a> action. To view all of the tags that have been applied to a resource, use the <a>ListTagsForResource</a> action.</p>
+
+        Args:
+            resource_arn: <p>The ARN of the ACM resource from which the tag is to be removed.</p>
+            tag_keys: <p>The key of each tag to remove.</p>
+
+        Raises:
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.untag_resource_request.UntagResourceRequest]",
+        ) -> OperationResponse[None]:
+            import capo_acm._operations.certificate_manager.untag_resource
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.untag_resource.untag_resource(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_acme_domain_validation(
+        self,
+        acme_domain_validation_arn: "capo_acm.types.acme_domain_validation_arn.AcmeDomainValidationArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        prevalidation_options: Optional[
+            "capo_acm.types.prevalidation_options.PrevalidationOptions"
+        ] = None,
+    ) -> None:
+        """<p>Updates the prevalidation configuration of an existing domain validation.</p>
+
+        Args:
+            acme_domain_validation_arn: <p>The Amazon Resource Name (ARN) of the ACME domain validation to update.</p>
+            prevalidation_options: <p>The updated prevalidation options.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.update_acme_domain_validation_request.UpdateAcmeDomainValidationRequest]",
+        ) -> OperationResponse[None]:
+            import capo_acm._operations.certificate_manager.update_acme_domain_validation
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.update_acme_domain_validation.update_acme_domain_validation(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.update_acme_domain_validation_request.UpdateAcmeDomainValidationRequest = {
+            "acme_domain_validation_arn": acme_domain_validation_arn
+        }
+        if prevalidation_options is not None:
+            input_["prevalidation_options"] = prevalidation_options
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_acme_endpoint(
+        self,
+        acme_endpoint_arn: "capo_acm.types.acme_endpoint_arn.AcmeEndpointArn",
+        *,
+        config_overrides: Optional[ACMClientConfig] = None,
+        authorization_behavior: Optional[
+            "capo_acm.types.acme_authorization_behavior.AcmeAuthorizationBehavior"
+        ] = None,
+        contact: Optional["capo_acm.types.acme_contact.AcmeContact"] = None,
+        certificate_authority: Optional[
+            "capo_acm.types.certificate_authority.CertificateAuthority"
+        ] = None,
+    ) -> None:
+        """<p>Updates the configuration of an existing ACME endpoint. You can change the authorization behavior, contact requirement, or certificate authority settings.</p>
+
+        Args:
+            acme_endpoint_arn: <p>The Amazon Resource Name (ARN) of the ACME endpoint to update.</p>
+            authorization_behavior: <p>The updated authorization behavior.</p>
+            contact: <p>The updated contact requirement.</p>
+            certificate_authority: <p>The updated certificate authority configuration.</p>
+
+        Raises:
+            capo_acm.errors.access_denied_exception.AccessDeniedException: <p>You do not have access required to perform this action.</p>
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
+            capo_acm.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.throttling_exception.ThrottlingException: <p>The request was denied because it exceeded a quota.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
+            capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_acm.types.update_acme_endpoint_request.UpdateAcmeEndpointRequest]",
+        ) -> OperationResponse[None]:
+            import capo_acm._operations.certificate_manager.update_acme_endpoint
+
+            output, http_response = (
+                capo_acm._operations.certificate_manager.update_acme_endpoint.update_acme_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_acm.types.update_acme_endpoint_request.UpdateAcmeEndpointRequest = {
+            "acme_endpoint_arn": acme_endpoint_arn
+        }
+        if authorization_behavior is not None:
+            input_["authorization_behavior"] = authorization_behavior
+        if contact is not None:
+            input_["contact"] = contact
+        if certificate_authority is not None:
+            input_["certificate_authority"] = certificate_authority
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def update_certificate_options(
         self,
         certificate_arn: "capo_acm.types.arn.Arn",
@@ -1107,17 +2486,19 @@ class ACMClient:
         *,
         config_overrides: Optional[ACMClientConfig] = None,
     ) -> None:
-        r"""<p>Updates a certificate. You can use this function to specify whether to opt in to or out of recording your certificate in a certificate transparency log and exporting. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-bestpractices.html#best-practices-transparency\"> Opting Out of Certificate Transparency Logging</a> and <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-exportable-certificates.html\">Certificate Manager Exportable Managed Certificates</a>.</p>
+        r"""<p>Updates certificate options. You can use this operation to change the domain validation method or specify whether to export your certificate. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/email-to-dns-migration.html\">Migrate from email to DNS validation</a> and <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-exportable-certificates.html\">Certificate Manager Exportable Managed Certificates</a>.</p>
 
         Args:
             certificate_arn: <p>ARN of the requested certificate to update. This must be of the form:</p> <p> <code>arn:aws:acm:us-east-1:<i>account</i>:certificate/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>
-            options: <p>Use to update the options for your certificate. Currently, you can specify whether to add your certificate to a transparency log or export your certificate. Certificate transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. </p>
+            options: <p>Use to update the options for your certificate. Currently, you can change the domain validation method or specify whether to export your certificate. For more information about migrating from email to DNS validation, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/email-to-dns-migration.html\">Migrate from email to DNS validation</a>.</p>
 
         Raises:
+            capo_acm.errors.conflict_exception.ConflictException: <p>You are trying to update a resource or configuration that is already being created or updated. Wait for the previous operation to finish and try again.</p>
             capo_acm.errors.invalid_arn_exception.InvalidArnException: <p>The requested Amazon Resource Name (ARN) does not refer to an existing resource.</p>
             capo_acm.errors.invalid_state_exception.InvalidStateException: <p>Processing has reached an invalid state.</p>
             capo_acm.errors.limit_exceeded_exception.LimitExceededException: <p>An ACM quota has been exceeded.</p>
             capo_acm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified certificate cannot be found in the caller's account or the caller's account cannot be found.</p>
+            capo_acm.errors.validation_exception.ValidationException: <p>The supplied input failed to satisfy constraints of an Amazon Web Services service.</p>
             capo_acm.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 

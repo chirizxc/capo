@@ -9,16 +9,27 @@ from capo_mediapackagev2.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_mediapackagev2.types.attached_multiview_channel_list
     import capo_mediapackagev2.types.entity_tag
     import capo_mediapackagev2.types.ingest_endpoint_list
     import capo_mediapackagev2.types.input_switch_configuration
     import capo_mediapackagev2.types.input_type
+    import capo_mediapackagev2.types.multiview_configuration
     import capo_mediapackagev2.types.output_header_configuration
+    import capo_mediapackagev2.types.output_locking_mode
     import capo_mediapackagev2.types.resource_description
     import capo_mediapackagev2.types.tag_map
 
 
 class GetChannelResponse(TypedDict, closed=True):
+    multiview_configuration: NotRequired[
+        "capo_mediapackagev2.types.multiview_configuration.MultiviewConfiguration"
+    ]
+    """<p>The multiview configuration for the channel. This is present only when <code>InputType</code> is <code>MULTIVIEW</code>.</p>"""
+    attached_multiview_channels: NotRequired[
+        "capo_mediapackagev2.types.attached_multiview_channel_list.AttachedMultiviewChannelList"
+    ]
+    """<p>The multiview channels, in the same channel group, that list this channel as an available source. This is a read-only field. You can't delete a channel while any multiview channel still lists it as a source. Use this field to find the multiview channels that you need to update first.</p>"""
     arn: "str"
     """<p>The Amazon Resource Name (ARN) associated with the resource.</p>"""
     channel_name: "str"
@@ -39,7 +50,7 @@ class GetChannelResponse(TypedDict, closed=True):
         "capo_mediapackagev2.types.ingest_endpoint_list.IngestEndpointList"
     ]
     input_type: NotRequired["capo_mediapackagev2.types.input_type.InputType"]
-    """<p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p> </li> <li> <p> <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p> </li> </ul>"""
+    """<p>The input type is an immutable field. It defines whether the channel allows CMAF ingest, HLS ingest, or server-side multiview output. Multiview channels receive no ingest of their own. If unprovided, the value defaults to HLS.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p> </li> <li> <p> <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p> </li> <li> <p> <code>MULTIVIEW</code> – Server-side multiview. The channel receives no ingest of its own. Instead, it composites video from the source channels in its <code>MultiviewConfiguration</code> into a single tiled output stream.</p> </li> </ul>"""
     e_tag: NotRequired["capo_mediapackagev2.types.entity_tag.EntityTag"]
     """<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>"""
     tags: NotRequired["capo_mediapackagev2.types.tag_map.TagMap"]
@@ -52,11 +63,31 @@ class GetChannelResponse(TypedDict, closed=True):
         "capo_mediapackagev2.types.output_header_configuration.OutputHeaderConfiguration"
     ]
     """<p>The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when <code>InputType</code> is <code>CMAF</code>.</p>"""
+    output_locking_mode: NotRequired[
+        "capo_mediapackagev2.types.output_locking_mode.OutputLockingMode"
+    ]
+    """<p>The output locking mode configured for the channel.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>EPOCH_LOCKED</code> - The channel uses epoch-locked behavior with deterministic sequence numbering and fixed segment boundaries aligned to epoch time.</p> </li> <li> <p> <code>NON_EPOCH_LOCKED</code> - The channel uses non-epoch-locked behavior with duration-based segment combining and monotonically increasing sequence numbers starting from 0.</p> </li> </ul>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: GetChannelResponse) -> dict:
     out: dict = {}
+    if "multiview_configuration" in value:
+        import capo_mediapackagev2.types.multiview_configuration
+
+        out["MultiviewConfiguration"] = (
+            capo_mediapackagev2.types.multiview_configuration.serialize_json(
+                value["multiview_configuration"]
+            )
+        )
+    if "attached_multiview_channels" in value:
+        import capo_mediapackagev2.types.attached_multiview_channel_list
+
+        out["AttachedMultiviewChannels"] = (
+            capo_mediapackagev2.types.attached_multiview_channel_list.serialize_json(
+                value["attached_multiview_channels"]
+            )
+        )
     out["Arn"] = value["arn"]
     out["ChannelName"] = value["channel_name"]
     out["ChannelGroupName"] = value["channel_group_name"]
@@ -114,11 +145,35 @@ def serialize_json(value: GetChannelResponse) -> dict:
                 value["output_header_configuration"]
             )
         )
+    if "output_locking_mode" in value:
+        import capo_mediapackagev2.types.output_locking_mode
+
+        out["OutputLockingMode"] = (
+            capo_mediapackagev2.types.output_locking_mode.serialize_json(
+                value["output_locking_mode"]
+            )
+        )
     return out
 
 
 def deserialize_json(data: dict) -> GetChannelResponse:
     out: GetChannelResponse = {}  # type: ignore[typeddict-item]
+    if data.get("MultiviewConfiguration") is not None:
+        import capo_mediapackagev2.types.multiview_configuration
+
+        out["multiview_configuration"] = (
+            capo_mediapackagev2.types.multiview_configuration.deserialize_json(
+                data["MultiviewConfiguration"]
+            )
+        )
+    if data.get("AttachedMultiviewChannels") is not None:
+        import capo_mediapackagev2.types.attached_multiview_channel_list
+
+        out["attached_multiview_channels"] = (
+            capo_mediapackagev2.types.attached_multiview_channel_list.deserialize_json(
+                data["AttachedMultiviewChannels"]
+            )
+        )
     if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
@@ -193,6 +248,14 @@ def deserialize_json(data: dict) -> GetChannelResponse:
         out["output_header_configuration"] = (
             capo_mediapackagev2.types.output_header_configuration.deserialize_json(
                 data["OutputHeaderConfiguration"]
+            )
+        )
+    if data.get("OutputLockingMode") is not None:
+        import capo_mediapackagev2.types.output_locking_mode
+
+        out["output_locking_mode"] = (
+            capo_mediapackagev2.types.output_locking_mode.deserialize_json(
+                data["OutputLockingMode"]
             )
         )
     return out

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import AsyncIterator, Iterator
 from typing import Any, cast
 from urllib.parse import quote
 
@@ -11,6 +12,7 @@ from typing_extensions import Never
 
 import capo_lex_runtime_service._auth._signers
 import capo_lex_runtime_service._auth._sigv4
+import capo_lex_runtime_service._body
 import capo_lex_runtime_service._protocol.eventstream
 import capo_lex_runtime_service.errors.bad_gateway_exception
 import capo_lex_runtime_service.errors.bad_request_exception
@@ -36,6 +38,7 @@ from capo_lex_runtime_service._rule_engine._endpoint_rule_set import (
 from capo_lex_runtime_service._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_lex_runtime_service.errors import UnknownServiceError
 
@@ -229,7 +232,9 @@ def get_signer(
             )
             if sigv4_config is not None:
                 return capo_lex_runtime_service._auth._signers.SigV4Signer(
-                    options.credentials_provider, auth_scheme=sigv4_config
+                    options.credentials_provider,
+                    auth_scheme=sigv4_config,
+                    unsigned_payload=True,
                 )
     raise RuntimeError("Auth was not resolved")
 
@@ -266,6 +271,75 @@ def build_request(
     if "active_contexts" in input_:
         headers["x-amz-lex-active-contexts"] = input_["active_contexts"]
     body = input_["input_stream"]
+    if isinstance(body, capo_lex_runtime_service._body.Body):
+        body = cast(capo_lex_runtime_service._body.Body[Iterator[bytes]], body)
+        stream = body.stream
+        if stream is None:
+            rebuilt = body.rebuild()
+            if rebuilt is None:
+                raise RuntimeError("streaming body could not be rebuilt")
+            stream, _ = rebuilt
+        if "content-length" not in [header.lower() for header in headers]:
+            headers["Content-Length"] = str(body.length)
+        body = stream
+    if isinstance(body, capo_lex_runtime_service._iter.StaticAnyIterator):
+        body = cast(bytes, body.content)
+    if not isinstance(body, bytes) and "content-length" not in [
+        header.lower() for header in headers
+    ]:
+        raise ValueError("Content-Length is required for streaming input")
+    signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
+    normalized_url = zapros.URL(url)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
+    return zapros.Request(
+        normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
+    )
+
+
+async def async_build_request(
+    options: OperationOptions | AsyncOperationOptions,
+    input_: capo_lex_runtime_service.types.post_content_request.PostContentRequest,
+) -> zapros.Request:
+    endpoint = resolve(
+        EndpointParams(
+            Region=options.region,
+            UseDualStack=options.use_dual_stack,
+            UseFIPS=options.use_fips,
+            Endpoint=options.endpoint,
+        )
+    )  # noqa: F841
+    url = (
+        endpoint.url.rstrip("/")
+        + "/bot/{botName}/alias/{botAlias}/user/{userId}/content"
+    )
+    url = url.replace("{botName}", quote(input_["bot_name"], safe=""))
+    url = url.replace("{botAlias}", quote(input_["bot_alias"], safe=""))
+    url = url.replace("{userId}", quote(input_["user_id"], safe=""))
+    params: list[tuple[str, str]] = []
+    headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
+    if "session_attributes" in input_:
+        headers["x-amz-lex-session-attributes"] = input_["session_attributes"]
+    if "request_attributes" in input_:
+        headers["x-amz-lex-request-attributes"] = input_["request_attributes"]
+    if "content_type" in input_:
+        headers["Content-Type"] = input_["content_type"]
+    if "accept" in input_:
+        headers["Accept"] = input_["accept"]
+    if "active_contexts" in input_:
+        headers["x-amz-lex-active-contexts"] = input_["active_contexts"]
+    body = input_["input_stream"]
+    if isinstance(body, capo_lex_runtime_service._body.Body):
+        body = cast(capo_lex_runtime_service._body.Body[AsyncIterator[bytes]], body)
+        stream = body.stream
+        if stream is None:
+            rebuilt = await body.arebuild()
+            if rebuilt is None:
+                raise RuntimeError("streaming body could not be rebuilt")
+            stream, _ = rebuilt
+        if "content-length" not in [header.lower() for header in headers]:
+            headers["Content-Length"] = str(body.length)
+        body = stream
     if isinstance(body, capo_lex_runtime_service._iter.StaticAnyIterator):
         body = cast(bytes, body.content)
     if not isinstance(body, bytes) and "content-length" not in [
@@ -292,7 +366,7 @@ def post_content(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -306,11 +380,13 @@ async def async_post_content(
     capo_lex_runtime_service.types.post_content_response.PostContentResponse,
     zapros.Response,
 ]:
-    response = await options.client.handler.ahandle(build_request(options, input_))
+    response = await options.client.handler.ahandle(
+        await async_build_request(options, input_)
+    )
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

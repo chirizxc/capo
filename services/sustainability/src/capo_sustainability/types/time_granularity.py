@@ -2,7 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
-"""<p>Specifies the time period over which emissions data is aggregated.</p>"""
+"""<p>Specifies the time period over which environmental impact data is aggregated.</p>"""
 TimeGranularity: TypeAlias = Literal[
     "YEARLY_CALENDAR",
     "YEARLY_FISCAL",

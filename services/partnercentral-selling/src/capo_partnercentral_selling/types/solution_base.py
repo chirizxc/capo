@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_partnercentral_selling.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_partnercentral_selling.types.aws_marketplace_solution_arn
     import capo_partnercentral_selling.types.catalog_identifier
     import capo_partnercentral_selling.types.date_time
     import capo_partnercentral_selling.types.solution_arn
@@ -29,6 +30,10 @@ class SolutionBase(TypedDict, closed=True):
     """<p>Specifies the solution category, which helps to categorize and organize the solutions partners offer. Valid values: <code>Software Product</code> | <code>Consulting Service</code> | <code>Hardware Product</code> | <code>Communications Product</code> | <code>Professional Service</code> | <code>Managed Service</code> | <code>Value-Added Resale Amazon Web Services Service</code> | <code>Distribution Service</code> | <code>Training Service</code> | <code>Merger and Acquisition Advising Service</code>.</p>"""
     created_date: "capo_partnercentral_selling.types.date_time.DateTime"
     """<p>Indicates the solution creation date. This is useful to track and audit.</p>"""
+    aws_marketplace_solution_arn: NotRequired[
+        "capo_partnercentral_selling.types.aws_marketplace_solution_arn.AwsMarketplaceSolutionArn"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the AWS Marketplace solution associated with this partner solution.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -54,6 +59,8 @@ def serialize_aws_json_1_0(value: SolutionBase) -> dict:
             value["created_date"]
         )
     )
+    if "aws_marketplace_solution_arn" in value:
+        out["AwsMarketplaceSolutionArn"] = value["aws_marketplace_solution_arn"]
     return out
 
 
@@ -97,4 +104,6 @@ def deserialize_aws_json_1_0(data: dict) -> SolutionBase:
         )
     else:
         raise DeserializationError("SolutionBase.created_date required")
+    if data.get("AwsMarketplaceSolutionArn") is not None:
+        out["aws_marketplace_solution_arn"] = data["AwsMarketplaceSolutionArn"]
     return out

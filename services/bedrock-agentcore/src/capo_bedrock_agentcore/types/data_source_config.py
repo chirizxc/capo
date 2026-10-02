@@ -8,6 +8,7 @@ from capo_bedrock_agentcore.errors import DeserializationError, SerializationErr
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.cloud_watch_logs_source
+    import capo_bedrock_agentcore.types.online_evaluation_config_source
 
 
 class _DataSourceConfig_cloudWatchLogs(TypedDict, closed=True):
@@ -16,7 +17,13 @@ class _DataSourceConfig_cloudWatchLogs(TypedDict, closed=True):
     )
 
 
-DataSourceConfig: TypeAlias = _DataSourceConfig_cloudWatchLogs
+class _DataSourceConfig_onlineEvaluationConfigSource(TypedDict, closed=True):
+    onlineEvaluationConfigSource: "capo_bedrock_agentcore.types.online_evaluation_config_source.OnlineEvaluationConfigSource"
+
+
+DataSourceConfig: TypeAlias = (
+    _DataSourceConfig_cloudWatchLogs | _DataSourceConfig_onlineEvaluationConfigSource
+)
 
 
 # --- restJson1 ser/de ---
@@ -27,6 +34,14 @@ def serialize_json(value: DataSourceConfig) -> dict:
         return {
             "cloudWatchLogs": capo_bedrock_agentcore.types.cloud_watch_logs_source.serialize_json(
                 value["cloudWatchLogs"]
+            )
+        }
+    elif "onlineEvaluationConfigSource" in value:
+        import capo_bedrock_agentcore.types.online_evaluation_config_source
+
+        return {
+            "onlineEvaluationConfigSource": capo_bedrock_agentcore.types.online_evaluation_config_source.serialize_json(
+                value["onlineEvaluationConfigSource"]
             )
         }
     else:
@@ -40,6 +55,14 @@ def deserialize_json(data: dict) -> DataSourceConfig:
         return {
             "cloudWatchLogs": capo_bedrock_agentcore.types.cloud_watch_logs_source.deserialize_json(
                 data["cloudWatchLogs"]
+            )
+        }
+    elif data.get("onlineEvaluationConfigSource") is not None:
+        import capo_bedrock_agentcore.types.online_evaluation_config_source
+
+        return {
+            "onlineEvaluationConfigSource": capo_bedrock_agentcore.types.online_evaluation_config_source.deserialize_json(
+                data["onlineEvaluationConfigSource"]
             )
         }
     else:

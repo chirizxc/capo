@@ -6,14 +6,14 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_appconfig.types.boolean
-    import capo_appconfig.types.id
     import capo_appconfig.types.integer
+    import capo_appconfig.types.name
 
 
 class StopDeploymentRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
-    environment_id: "capo_appconfig.types.id.Id"
+    environment_id: "capo_appconfig.types.name.Name"
     """<p>The environment ID.</p>"""
     deployment_number: "capo_appconfig.types.integer.Integer"
     """<p>The sequence number of the deployment.</p>"""

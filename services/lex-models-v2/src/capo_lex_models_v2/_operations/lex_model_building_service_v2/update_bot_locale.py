@@ -23,6 +23,7 @@ import capo_lex_models_v2.types.bot_locale_status
 import capo_lex_models_v2.types.failure_reasons
 import capo_lex_models_v2.types.generative_ai_settings
 import capo_lex_models_v2.types.recommended_actions
+import capo_lex_models_v2.types.speaker_diarization_settings
 import capo_lex_models_v2.types.speech_detection_sensitivity
 import capo_lex_models_v2.types.speech_recognition_settings
 import capo_lex_models_v2.types.timestamp
@@ -35,6 +36,7 @@ from capo_lex_models_v2._rule_engine._endpoint_rule_set import EndpointParams, r
 from capo_lex_models_v2._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_lex_models_v2.errors import UnknownServiceError
 
@@ -167,7 +169,7 @@ def update_bot_locale(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -185,7 +187,7 @@ async def async_update_bot_locale(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

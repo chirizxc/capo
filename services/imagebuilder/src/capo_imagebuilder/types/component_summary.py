@@ -36,15 +36,15 @@ class ComponentSummary(TypedDict, closed=True):
     type: NotRequired["capo_imagebuilder.types.component_type.ComponentType"]
     """<p>The component type specifies whether Image Builder uses the component to build the image or only to test it.</p>"""
     owner: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>The owner of the component.</p>"""
+    """<p>The owner of the component. The value is your account ID for components that you own, the sharing account's ID for shared components, or <code>Amazon</code>, <code>ThirdParty</code>, or <code>AWSMarketplace</code>.</p>"""
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The description of the component.</p>"""
     change_description: NotRequired[
         "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     ]
-    """<p>The change description for the current version of the component.</p>"""
+    """<p>The change description for this version of the component.</p>"""
     date_created: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
-    """<p>The original creation date of the component.</p>"""
+    """<p>The date that Image Builder created this version of the component.</p>"""
     tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
     """<p>The tags that apply to the component.</p>"""
     publisher: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]

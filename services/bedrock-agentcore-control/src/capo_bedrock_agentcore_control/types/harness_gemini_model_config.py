@@ -30,6 +30,8 @@ class HarnessGeminiModelConfig(TypedDict, closed=True):
     """<p>The topP set when calling the model.</p>"""
     top_k: NotRequired["capo_bedrock_agentcore_control.types.top_k.TopK"]
     """<p>The topK set when calling the model.</p>"""
+    additional_params: NotRequired["object"]
+    """<p>Provider-specific parameters passed through to the Gemini model provider unchanged.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -61,6 +63,8 @@ def serialize_json(value: HarnessGeminiModelConfig) -> dict:
         )
     if "top_k" in value:
         out["topK"] = value["top_k"]
+    if "additional_params" in value:
+        out["additionalParams"] = value["additional_params"]
     return out
 
 
@@ -82,4 +86,6 @@ def deserialize_json(data: dict) -> HarnessGeminiModelConfig:
         out["top_p"] = float(data["topP"])
     if data.get("topK") is not None:
         out["top_k"] = data["topK"]
+    if data.get("additionalParams") is not None:
+        out["additional_params"] = data["additionalParams"]
     return out

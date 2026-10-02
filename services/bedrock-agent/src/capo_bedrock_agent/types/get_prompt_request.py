@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_bedrock_agent.types.included_data
     import capo_bedrock_agent.types.prompt_identifier
     import capo_bedrock_agent.types.version
 
@@ -14,6 +15,8 @@ class GetPromptRequest(TypedDict, closed=True):
     """<p>The unique identifier of the prompt.</p>"""
     prompt_version: NotRequired["capo_bedrock_agent.types.version.Version"]
     """<p>The version of the prompt about which you want to retrieve information. Omit this field to return information about the working draft of the prompt.</p>"""
+    included_data: NotRequired["capo_bedrock_agent.types.included_data.IncludedData"]
+    """<p>Controls the scope of data returned. Set to <code>METADATA_ONLY</code> to return only resource metadata. Set to <code>ALL_DATA</code> or omit this field to return the full response.</p>"""
 
 
 # --- restJson1 ser/de ---

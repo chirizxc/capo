@@ -2,7 +2,10 @@
 
 from typing import Literal, TypeAlias, cast
 
-OciAwsIntegration: TypeAlias = Literal["KmsTde",]
+OciAwsIntegration: TypeAlias = Literal[
+    "KmsTde",
+    "SecretsManager",
+]
 
 
 # --- awsJson1_0 ser/de ---

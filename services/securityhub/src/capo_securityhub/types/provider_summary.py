@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_securityhub.types.connector_provider_name
     import capo_securityhub.types.connector_status
+    import capo_securityhub.types.provider_detail
 
 
 class ProviderSummary(TypedDict, closed=True):
@@ -18,6 +19,9 @@ class ProviderSummary(TypedDict, closed=True):
         "capo_securityhub.types.connector_status.ConnectorStatus"
     ]
     """<p>The status for the connectorV2.</p>"""
+    provider_configuration: NotRequired[
+        "capo_securityhub.types.provider_detail.ProviderDetail"
+    ]
 
 
 # --- restJson1 ser/de ---
@@ -36,6 +40,14 @@ def serialize_json(value: ProviderSummary) -> dict:
 
         out["ConnectorStatus"] = capo_securityhub.types.connector_status.serialize_json(
             value["connector_status"]
+        )
+    if "provider_configuration" in value:
+        import capo_securityhub.types.provider_detail
+
+        out["ProviderConfiguration"] = (
+            capo_securityhub.types.provider_detail.serialize_json(
+                value["provider_configuration"]
+            )
         )
     return out
 
@@ -56,6 +68,14 @@ def deserialize_json(data: dict) -> ProviderSummary:
         out["connector_status"] = (
             capo_securityhub.types.connector_status.deserialize_json(
                 data["ConnectorStatus"]
+            )
+        )
+    if data.get("ProviderConfiguration") is not None:
+        import capo_securityhub.types.provider_detail
+
+        out["provider_configuration"] = (
+            capo_securityhub.types.provider_detail.deserialize_json(
+                data["ProviderConfiguration"]
             )
         )
     return out

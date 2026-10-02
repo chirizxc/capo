@@ -102,6 +102,9 @@ from .resource_not_found_exception import (
 from .scope_does_not_exist_exception import (
     ScopeDoesNotExistException as ScopeDoesNotExistException,
 )
+from .service_quota_exceeded_exception import (
+    ServiceQuotaExceededException as ServiceQuotaExceededException,
+)
 from .software_token_mfa_not_found_exception import (
     SoftwareTokenMFANotFoundException as SoftwareTokenMFANotFoundException,
 )

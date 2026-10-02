@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_notifications.errors import DeserializationError
 
@@ -18,6 +18,8 @@ class AssociateManagedNotificationAccountContactRequest(TypedDict, closed=True):
     """<p>A unique value of an Account Contact Type to associate with the <code>ManagedNotificationConfiguration</code>.</p>"""
     managed_notification_configuration_arn: "capo_notifications.types.managed_notification_configuration_os_arn.ManagedNotificationConfigurationOsArn"
     """<p>The Amazon Resource Name (ARN) of the <code>ManagedNotificationConfiguration</code> to associate with the Account Contact.</p>"""
+    is_sensitive_events_subscribed: NotRequired["bool"]
+    """<p>Specifies whether this contact is subscribed to sensitive events. The <code>notifications:SubscribeSensitiveEvents</code> permission controls access to sensitive events. Defaults to false.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -26,6 +28,8 @@ def serialize_json(value: AssociateManagedNotificationAccountContactRequest) -> 
     out["managedNotificationConfigurationArn"] = value[
         "managed_notification_configuration_arn"
     ]
+    if "is_sensitive_events_subscribed" in value:
+        out["isSensitiveEventsSubscribed"] = value["is_sensitive_events_subscribed"]
     return out
 
 
@@ -39,4 +43,6 @@ def deserialize_json(data: dict) -> AssociateManagedNotificationAccountContactRe
         raise DeserializationError(
             "AssociateManagedNotificationAccountContactRequest.managed_notification_configuration_arn required"
         )
+    if data.get("isSensitiveEventsSubscribed") is not None:
+        out["is_sensitive_events_subscribed"] = data["isSensitiveEventsSubscribed"]
     return out

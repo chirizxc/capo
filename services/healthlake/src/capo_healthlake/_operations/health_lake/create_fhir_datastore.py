@@ -15,17 +15,25 @@ import capo_healthlake.errors.access_denied_exception
 import capo_healthlake.errors.internal_server_exception
 import capo_healthlake.errors.throttling_exception
 import capo_healthlake.errors.validation_exception
+import capo_healthlake.types.analytics_configuration
+import capo_healthlake.types.backup_configuration
 import capo_healthlake.types.create_fhir_datastore_request
 import capo_healthlake.types.create_fhir_datastore_response
 import capo_healthlake.types.datastore_status
 import capo_healthlake.types.fhir_version
 import capo_healthlake.types.identity_provider_configuration
+import capo_healthlake.types.nlp_configuration
 import capo_healthlake.types.preload_data_config
+import capo_healthlake.types.profile_configuration
 import capo_healthlake.types.sse_configuration
 import capo_healthlake.types.tag_list
 from capo_healthlake._protocol.errors import parse_error_metadata_json
 from capo_healthlake._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_healthlake._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_healthlake._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_healthlake.errors import UnknownServiceError
 
 
@@ -142,7 +150,7 @@ def create_fhir_datastore(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -160,7 +168,7 @@ async def async_create_fhir_datastore(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

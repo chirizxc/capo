@@ -16,7 +16,7 @@ class UpdateApplicationMessage(TypedDict, closed=True):
     application_name: "capo_elastic_beanstalk.types.application_name.ApplicationName"
     """<p>The name of the application to update. If no such application is found, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </p>"""
     description: NotRequired["capo_elastic_beanstalk.types.description.Description"]
-    """<p>A new description for the application.</p> <p>Default: If not specified, AWS Elastic Beanstalk does not update the description.</p>"""
+    """<p>A new description for the application.</p> <p>Default: If not specified, Elastic Beanstalk does not update the description.</p>"""
 
 
 # --- awsQuery ser/de ---

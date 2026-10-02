@@ -11,8 +11,9 @@ if TYPE_CHECKING:
 
 class ListImageScanFindingAggregationsRequest(TypedDict, closed=True):
     filter: NotRequired["capo_imagebuilder.types.filter.Filter"]
+    """<p>A filter name and value pair that determines the type of aggregation that Image Builder returns. Use one of the following filter names:</p> <ul> <li> <p> <code>imageBuildVersionArn</code> </p> </li> <li> <p> <code>imagePipelineArn</code> </p> </li> <li> <p> <code>vulnerabilityId</code> </p> </li> </ul> <p>If you don't specify a filter, Image Builder returns an aggregation for your account.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
-    """<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>"""
+    """<p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>"""
 
 
 # --- restJson1 ser/de ---

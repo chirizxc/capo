@@ -4,7 +4,10 @@ from typing import Literal, TypeAlias, cast
 
 from capo_ec2._protocol.xml import Element
 
-PayerResponsibilityScope: TypeAlias = Literal["vpc-endpoint-charges",]
+PayerResponsibilityScope: TypeAlias = Literal[
+    "vpc-endpoint-charges",
+    "resource-gateway-charges",
+]
 
 
 # --- ec2Query ser/de ---

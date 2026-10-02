@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_glue.types.column_name_list
+    import capo_glue.types.distribution_data
     import capo_glue.types.double
     import capo_glue.types.hash_string
     import capo_glue.types.reference_datasets_list
@@ -30,6 +31,10 @@ class StatisticSummary(TypedDict, closed=True):
     """<p>The name of the statistic.</p>"""
     double_value: "capo_glue.types.double.Double"
     """<p>The value of the statistic.</p>"""
+    distribution_value: NotRequired[
+        "capo_glue.types.distribution_data.DistributionData"
+    ]
+    """<p>The distribution value for the statistic.</p>"""
     evaluation_level: NotRequired[
         "capo_glue.types.statistic_evaluation_level.StatisticEvaluationLevel"
     ]
@@ -76,6 +81,14 @@ def serialize_aws_json_1_1(value: StatisticSummary) -> dict:
         if value.get("double_value", 0) == float("-inf")
         else value.get("double_value", 0)
     )
+    if "distribution_value" in value:
+        import capo_glue.types.distribution_data
+
+        out["DistributionValue"] = (
+            capo_glue.types.distribution_data.serialize_aws_json_1_1(
+                value["distribution_value"]
+            )
+        )
     if "evaluation_level" in value:
         import capo_glue.types.statistic_evaluation_level
 
@@ -143,6 +156,14 @@ def deserialize_aws_json_1_1(data: dict) -> StatisticSummary:
         out["double_value"] = float(data["DoubleValue"])
     else:
         out["double_value"] = 0
+    if data.get("DistributionValue") is not None:
+        import capo_glue.types.distribution_data
+
+        out["distribution_value"] = (
+            capo_glue.types.distribution_data.deserialize_aws_json_1_1(
+                data["DistributionValue"]
+            )
+        )
     if data.get("EvaluationLevel") is not None:
         import capo_glue.types.statistic_evaluation_level
 

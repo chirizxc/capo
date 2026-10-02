@@ -10,11 +10,13 @@ if TYPE_CHECKING:
     import capo_imagebuilder.types.resource_name
     import capo_imagebuilder.types.version_number
     import capo_imagebuilder.types.workflow_type
-    import capo_imagebuilder.types.workflow_version_arn
+    import capo_imagebuilder.types.workflow_wildcard_version_arn
 
 
 class WorkflowVersion(TypedDict, closed=True):
-    arn: NotRequired["capo_imagebuilder.types.workflow_version_arn.WorkflowVersionArn"]
+    arn: NotRequired[
+        "capo_imagebuilder.types.workflow_wildcard_version_arn.WorkflowWildcardVersionArn"
+    ]
     """<p>The Amazon Resource Name (ARN) of the workflow resource.</p>"""
     name: NotRequired["capo_imagebuilder.types.resource_name.ResourceName"]
     """<p>The name of the workflow.</p>"""
@@ -23,7 +25,7 @@ class WorkflowVersion(TypedDict, closed=True):
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>Describes the workflow.</p>"""
     type: NotRequired["capo_imagebuilder.types.workflow_type.WorkflowType"]
-    """<p>The image creation stage that this workflow applies to. Image Builder currently supports build and test stage workflows.</p>"""
+    """<p>The image creation stage that this workflow applies to.</p>"""
     owner: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The owner of the workflow resource.</p>"""
     date_created: NotRequired["capo_imagebuilder.types.date_time.DateTime"]

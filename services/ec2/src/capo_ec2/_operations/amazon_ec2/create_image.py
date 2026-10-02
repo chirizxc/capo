@@ -12,6 +12,7 @@ import capo_ec2._auth._signers
 import capo_ec2._auth._sigv4
 import capo_ec2._protocol.eventstream
 import capo_ec2.types.block_device_mapping_request_list
+import capo_ec2.types.boot_mode_override_values
 import capo_ec2.types.create_image_request
 import capo_ec2.types.create_image_result
 import capo_ec2.types.snapshot_location_enum
@@ -19,7 +20,11 @@ import capo_ec2.types.tag_specification_list
 from capo_ec2._protocol.errors import parse_error_metadata
 from capo_ec2._protocol.xml import fromstring
 from capo_ec2._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_ec2._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_ec2._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_ec2.errors import UnknownServiceError
 
 
@@ -119,7 +124,7 @@ def create_image(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -134,7 +139,7 @@ async def async_create_image(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

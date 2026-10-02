@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_bedrock_agentcore_control.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.branch_name
     import capo_bedrock_agentcore_control.types.client_token
@@ -12,6 +14,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.configuration_bundle_id
     import capo_bedrock_agentcore_control.types.configuration_bundle_name
     import capo_bedrock_agentcore_control.types.configuration_bundle_version_list
+    import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.version_created_by_source
 
 
@@ -34,9 +37,7 @@ class UpdateConfigurationBundleRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.component_configuration_map.ComponentConfigurationMap"
     ]
     """<p>The updated component configurations. Creates a new version of the bundle.</p>"""
-    parent_version_ids: NotRequired[
-        "capo_bedrock_agentcore_control.types.configuration_bundle_version_list.ConfigurationBundleVersionList"
-    ]
+    parent_version_ids: "capo_bedrock_agentcore_control.types.configuration_bundle_version_list.ConfigurationBundleVersionList"
     """<p>A list of parent version identifiers for lineage tracking. Regular commits have a single parent. Merge commits have two parents: the target branch parent and the source branch parent. If the branch already exists, the first parent must be the latest version on that branch.</p>"""
     branch_name: NotRequired[
         "capo_bedrock_agentcore_control.types.branch_name.BranchName"
@@ -48,6 +49,10 @@ class UpdateConfigurationBundleRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.version_created_by_source.VersionCreatedBySource"
     ]
     """<p>The source that created this version, including the source name and optional ARN.</p>"""
+    kms_key_arn: NotRequired[
+        "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+    ]
+    """<p>Optional KMS key ARN for encrypting component configurations. If provided, components will be encrypted with this key. If the bundle already has a KMS key, this rotates to the new key.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -67,14 +72,13 @@ def serialize_json(value: UpdateConfigurationBundleRequest) -> dict:
                 value["components"]
             )
         )
-    if "parent_version_ids" in value:
-        import capo_bedrock_agentcore_control.types.configuration_bundle_version_list
+    import capo_bedrock_agentcore_control.types.configuration_bundle_version_list
 
-        out["parentVersionIds"] = (
-            capo_bedrock_agentcore_control.types.configuration_bundle_version_list.serialize_json(
-                value["parent_version_ids"]
-            )
+    out["parentVersionIds"] = (
+        capo_bedrock_agentcore_control.types.configuration_bundle_version_list.serialize_json(
+            value["parent_version_ids"]
         )
+    )
     if "branch_name" in value:
         out["branchName"] = value["branch_name"]
     if "commit_message" in value:
@@ -87,6 +91,8 @@ def serialize_json(value: UpdateConfigurationBundleRequest) -> dict:
                 value["created_by"]
             )
         )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -114,6 +120,10 @@ def deserialize_json(data: dict) -> UpdateConfigurationBundleRequest:
                 data["parentVersionIds"]
             )
         )
+    else:
+        raise DeserializationError(
+            "UpdateConfigurationBundleRequest.parent_version_ids required"
+        )
     if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     if data.get("commitMessage") is not None:
@@ -126,4 +136,6 @@ def deserialize_json(data: dict) -> UpdateConfigurationBundleRequest:
                 data["createdBy"]
             )
         )
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     return out

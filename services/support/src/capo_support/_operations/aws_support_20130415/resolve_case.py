@@ -12,12 +12,17 @@ import capo_support._auth._signers
 import capo_support._auth._sigv4
 import capo_support._protocol.eventstream
 import capo_support.errors.case_id_not_found
+import capo_support.errors.dry_run_operation_exception
 import capo_support.errors.internal_server_error
 import capo_support.types.resolve_case_request
 import capo_support.types.resolve_case_response
 from capo_support._protocol.errors import parse_error_metadata_json
 from capo_support._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_support._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_support._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_support.errors import UnknownServiceError
 
 
@@ -27,6 +32,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "CaseIdNotFound":
             raise capo_support.errors.case_id_not_found.CaseIdNotFound.from_aws_json_1_1(
+                data, message
+            )
+        case "DryRunOperationException":
+            raise capo_support.errors.dry_run_operation_exception.DryRunOperationException.from_aws_json_1_1(
                 data, message
             )
         case "InternalServerError":
@@ -127,7 +136,7 @@ def resolve_case(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -144,7 +153,7 @@ async def async_resolve_case(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

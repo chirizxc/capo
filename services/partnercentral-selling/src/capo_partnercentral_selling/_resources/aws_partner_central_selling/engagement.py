@@ -52,10 +52,14 @@ class Engagement:
         self,
         catalog: "capo_partnercentral_selling.types.catalog_identifier.CatalogIdentifier",
         client_token: "capo_partnercentral_selling.types.client_token.ClientToken",
-        title: "capo_partnercentral_selling.types.engagement_title.EngagementTitle",
-        description: "capo_partnercentral_selling.types.engagement_description.EngagementDescription",
         *,
         config_overrides: Optional[PartnerCentralSellingClientConfig] = None,
+        title: Optional[
+            "capo_partnercentral_selling.types.engagement_title.EngagementTitle"
+        ] = None,
+        description: Optional[
+            "capo_partnercentral_selling.types.engagement_description.EngagementDescription"
+        ] = None,
         contexts: Optional[
             "capo_partnercentral_selling.types.engagement_contexts.EngagementContexts"
         ] = None,
@@ -98,9 +102,11 @@ class Engagement:
         input_: capo_partnercentral_selling.types.create_engagement_request.CreateEngagementRequest = {
             "catalog": catalog,
             "client_token": client_token,
-            "title": title,
-            "description": description,
         }
+        if title is not None:
+            input_["title"] = title
+        if description is not None:
+            input_["description"] = description
         if contexts is not None:
             input_["contexts"] = contexts
 
@@ -323,10 +329,14 @@ class AsyncEngagement:
         self,
         catalog: "capo_partnercentral_selling.types.catalog_identifier.CatalogIdentifier",
         client_token: "capo_partnercentral_selling.types.client_token.ClientToken",
-        title: "capo_partnercentral_selling.types.engagement_title.EngagementTitle",
-        description: "capo_partnercentral_selling.types.engagement_description.EngagementDescription",
         *,
         config_overrides: Optional[AsyncPartnerCentralSellingClientConfig] = None,
+        title: Optional[
+            "capo_partnercentral_selling.types.engagement_title.EngagementTitle"
+        ] = None,
+        description: Optional[
+            "capo_partnercentral_selling.types.engagement_description.EngagementDescription"
+        ] = None,
         contexts: Optional[
             "capo_partnercentral_selling.types.engagement_contexts.EngagementContexts"
         ] = None,
@@ -370,9 +380,11 @@ class AsyncEngagement:
         input_: capo_partnercentral_selling.types.create_engagement_request.CreateEngagementRequest = {
             "catalog": catalog,
             "client_token": client_token,
-            "title": title,
-            "description": description,
         }
+        if title is not None:
+            input_["title"] = title
+        if description is not None:
+            input_["description"] = description
         if contexts is not None:
             input_["contexts"] = contexts
 

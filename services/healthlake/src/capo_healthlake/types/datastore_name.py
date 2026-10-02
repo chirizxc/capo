@@ -2,4 +2,5 @@
 
 from typing import TypeAlias
 
+"""The name of a data store."""
 DatastoreName: TypeAlias = str

@@ -22,7 +22,11 @@ import capo_s3.types.upload_part_copy_request
 from capo_s3._protocol.errors import is_xml_error_body, parse_error_metadata
 from capo_s3._protocol.xml import fromstring
 from capo_s3._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_s3._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_s3._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_s3.errors import UnknownServiceError
 
 
@@ -251,8 +255,9 @@ def upload_part_copy(
 ) -> tuple[capo_s3.types.upload_part_copy_output.UploadPartCopyOutput, zapros.Response]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 300 or is_xml_error_body(response.read()):
-            handle_error(response)
+        body = response.read()
+        if response.status >= 300 or is_xml_error_body(body):
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -265,8 +270,9 @@ async def async_upload_part_copy(
 ) -> tuple[capo_s3.types.upload_part_copy_output.UploadPartCopyOutput, zapros.Response]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 300 or is_xml_error_body(await response.aread()):
-            handle_error(response)
+        body = await response.aread()
+        if response.status >= 300 or is_xml_error_body(body):
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

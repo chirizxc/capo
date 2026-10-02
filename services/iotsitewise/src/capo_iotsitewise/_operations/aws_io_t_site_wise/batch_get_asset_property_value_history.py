@@ -23,7 +23,11 @@ import capo_iotsitewise.types.batch_get_asset_property_value_history_skipped_ent
 import capo_iotsitewise.types.batch_get_asset_property_value_history_success_entries
 from capo_iotsitewise._protocol.errors import parse_error_metadata_json
 from capo_iotsitewise._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_iotsitewise._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_iotsitewise._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_iotsitewise.errors import UnknownServiceError
 
 
@@ -139,7 +143,7 @@ def batch_get_asset_property_value_history(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -157,7 +161,7 @@ async def async_batch_get_asset_property_value_history(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

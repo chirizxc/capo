@@ -1,0 +1,55 @@
+"""Generated from Smithy shape ``com.amazonaws.healthlake#TransformationJobProgressReport``."""
+
+from typing_extensions import TypedDict
+
+from capo_healthlake.errors import DeserializationError
+
+
+class TransformationJobProgressReport(TypedDict, closed=True):
+    total_files_scanned: "int"
+    """<p>The total number of source files scanned by the job.</p>"""
+    total_files_converted: "int"
+    """<p>The total number of source files successfully converted.</p>"""
+    total_files_failed: "int"
+    """<p>The total number of source files that failed conversion.</p>"""
+    total_resources_generated: "int"
+    """<p>The total number of FHIR R4 resources generated across all converted files.</p>"""
+
+
+# --- awsJson1_0 ser/de ---
+def serialize_aws_json_1_0(value: TransformationJobProgressReport) -> dict:
+    out: dict = {}
+    out["TotalFilesScanned"] = value["total_files_scanned"]
+    out["TotalFilesConverted"] = value["total_files_converted"]
+    out["TotalFilesFailed"] = value["total_files_failed"]
+    out["TotalResourcesGenerated"] = value["total_resources_generated"]
+    return out
+
+
+def deserialize_aws_json_1_0(data: dict) -> TransformationJobProgressReport:
+    out: TransformationJobProgressReport = {}  # type: ignore[typeddict-item]
+    if data.get("TotalFilesScanned") is not None:
+        out["total_files_scanned"] = data["TotalFilesScanned"]
+    else:
+        raise DeserializationError(
+            "TransformationJobProgressReport.total_files_scanned required"
+        )
+    if data.get("TotalFilesConverted") is not None:
+        out["total_files_converted"] = data["TotalFilesConverted"]
+    else:
+        raise DeserializationError(
+            "TransformationJobProgressReport.total_files_converted required"
+        )
+    if data.get("TotalFilesFailed") is not None:
+        out["total_files_failed"] = data["TotalFilesFailed"]
+    else:
+        raise DeserializationError(
+            "TransformationJobProgressReport.total_files_failed required"
+        )
+    if data.get("TotalResourcesGenerated") is not None:
+        out["total_resources_generated"] = data["TotalResourcesGenerated"]
+    else:
+        raise DeserializationError(
+            "TransformationJobProgressReport.total_resources_generated required"
+        )
+    return out

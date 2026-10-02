@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_redshift.types.log_destination_type
     import capo_redshift.types.log_type_list
     import capo_redshift.types.s3_key_prefix_value
+    import capo_redshift.types.s3_table_publish_status
     import capo_redshift.types.string
     import capo_redshift.types.t_stamp
 
@@ -33,9 +34,13 @@ class LoggingStatus(TypedDict, closed=True):
     log_destination_type: NotRequired[
         "capo_redshift.types.log_destination_type.LogDestinationType"
     ]
-    """<p>The log destination type. An enum with possible values of <code>s3</code> and <code>cloudwatch</code>.</p>"""
+    """<p>The log destination type. An enum with possible values of <code>s3</code>, <code>cloudwatch</code>, and <code>s3table</code>.</p>"""
     log_exports: NotRequired["capo_redshift.types.log_type_list.LogTypeList"]
-    """<p>The collection of exported log types. Possible values are <code>connectionlog</code>, <code>useractivitylog</code>, and <code>userlog</code>.</p>"""
+    """<p>The collection of exported log types. When <code>LogDestinationType</code> is <code>s3</code> or <code>cloudwatch</code>, possible values are <code>connectionlog</code>, <code>useractivitylog</code>, and <code>userlog</code>. When <code>LogDestinationType</code> is <code>s3table</code>, the values are the names of the system tables being published.</p>"""
+    s3_tables: NotRequired[
+        "capo_redshift.types.s3_table_publish_status.S3TablePublishStatus"
+    ]
+    """<p>The status of system table publishing to S3 Tables. This field is populated only when system table publishing is active.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -84,6 +89,12 @@ def serialize_query(
         capo_redshift.types.log_type_list.serialize_query(
             value["log_exports"], pairs, f"{key_prefix}LogExports"
         )
+    if "s3_tables" in value:
+        import capo_redshift.types.s3_table_publish_status
+
+        capo_redshift.types.s3_table_publish_status.serialize_query(
+            value["s3_tables"], pairs, f"{key_prefix}S3Tables"
+        )
 
 
 def deserialize_query(el: Element) -> LoggingStatus:
@@ -131,5 +142,14 @@ def deserialize_query(el: Element) -> LoggingStatus:
 
         out["log_exports"] = capo_redshift.types.log_type_list.deserialize_query(
             child_log_exports
+        )
+    child_s3_tables = el.find("S3Tables")
+    if child_s3_tables is not None:
+        import capo_redshift.types.s3_table_publish_status
+
+        out["s3_tables"] = (
+            capo_redshift.types.s3_table_publish_status.deserialize_query(
+                child_s3_tables
+            )
         )
     return out

@@ -2,12 +2,13 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_connect.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_connect.types.instance_id
+    import capo_connect.types.pre_evaluation_filters
     import capo_connect.types.rule_actions
     import capo_connect.types.rule_function
     import capo_connect.types.rule_id
@@ -28,6 +29,10 @@ class UpdateRuleRequest(TypedDict, closed=True):
     """<p>A list of actions to be run when the rule is triggered.</p>"""
     publish_status: "capo_connect.types.rule_publish_status.RulePublishStatus"
     """<p>The publish status of the rule.</p>"""
+    pre_evaluation_filters: NotRequired[
+        "capo_connect.types.pre_evaluation_filters.PreEvaluationFilters"
+    ]
+    """<p>The pre-evaluation filters for the rule, that restrict the rule to be applied to only certain resources based on the resource's attributes, such as tags assigned to a contact. The pre-evaluation filters are applied even before rule conditions are evaluated and are used to enforce tag-based-access-control while applying rules.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -43,6 +48,14 @@ def serialize_json(value: UpdateRuleRequest) -> dict:
     out["PublishStatus"] = capo_connect.types.rule_publish_status.serialize_json(
         value["publish_status"]
     )
+    if "pre_evaluation_filters" in value:
+        import capo_connect.types.pre_evaluation_filters
+
+        out["PreEvaluationFilters"] = (
+            capo_connect.types.pre_evaluation_filters.serialize_json(
+                value["pre_evaluation_filters"]
+            )
+        )
     return out
 
 
@@ -72,4 +85,12 @@ def deserialize_json(data: dict) -> UpdateRuleRequest:
         )
     else:
         raise DeserializationError("UpdateRuleRequest.publish_status required")
+    if data.get("PreEvaluationFilters") is not None:
+        import capo_connect.types.pre_evaluation_filters
+
+        out["pre_evaluation_filters"] = (
+            capo_connect.types.pre_evaluation_filters.deserialize_json(
+                data["PreEvaluationFilters"]
+            )
+        )
     return out

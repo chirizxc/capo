@@ -101,9 +101,11 @@ if TYPE_CHECKING:
     import capo_elasticsearch_service.types.dissociate_package_response
     import capo_elasticsearch_service.types.domain_arn
     import capo_elasticsearch_service.types.domain_endpoint_options
+    import capo_elasticsearch_service.types.domain_engine_mode
     import capo_elasticsearch_service.types.domain_information
     import capo_elasticsearch_service.types.domain_name
     import capo_elasticsearch_service.types.domain_name_list
+    import capo_elasticsearch_service.types.domain_use_case
     import capo_elasticsearch_service.types.dry_run
     import capo_elasticsearch_service.types.ebs_options
     import capo_elasticsearch_service.types.elasticsearch_cluster_config
@@ -614,6 +616,12 @@ class ElasticsearchServiceClient:
         automated_snapshot_pause_options: Optional[
             "capo_elasticsearch_service.types.automated_snapshot_pause_request_options.AutomatedSnapshotPauseRequestOptions"
         ] = None,
+        use_case: Optional[
+            "capo_elasticsearch_service.types.domain_use_case.DomainUseCase"
+        ] = None,
+        engine_mode: Optional[
+            "capo_elasticsearch_service.types.domain_engine_mode.DomainEngineMode"
+        ] = None,
     ) -> "capo_elasticsearch_service.types.create_elasticsearch_domain_response.CreateElasticsearchDomainResponse":
         r"""<p>Creates a new Elasticsearch domain. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains\" target=\"_blank\">Creating Elasticsearch Domains</a> in the <i>Amazon Elasticsearch Service Developer Guide</i>.</p>
 
@@ -636,6 +644,8 @@ class ElasticsearchServiceClient:
             tag_list: <p>A list of <code>Tag</code> added during domain creation.</p>
             deployment_strategy_options: <p>Specifies the deployment strategy options.</p>
             automated_snapshot_pause_options: <p>Specifies the automated snapshot pause options for the domain.</p> <important> <p>Suspending snapshots reduces data protection. You cannot restore your domain to points in time when snapshots are suspended. Use this feature only for short-term operational needs such as migrations or maintenance windows.</p> </important> <p>Maximum suspension duration: 3 days.</p>
+            use_case: <p>The primary use case for the domain. For valid values, see <code>DomainUseCase</code>.</p>
+            engine_mode: <p>The engine mode for the domain. For valid values and requirements, see <code>DomainEngineMode</code>.</p>
 
         Raises:
             capo_elasticsearch_service.errors.base_exception.BaseException: <p>An error occurred while processing the request.</p>
@@ -702,6 +712,10 @@ class ElasticsearchServiceClient:
             input_["automated_snapshot_pause_options"] = (
                 automated_snapshot_pause_options
             )
+        if use_case is not None:
+            input_["use_case"] = use_case
+        if engine_mode is not None:
+            input_["engine_mode"] = engine_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3132,6 +3146,12 @@ class ElasticsearchServiceClient:
         automated_snapshot_pause_options: Optional[
             "capo_elasticsearch_service.types.automated_snapshot_pause_request_options.AutomatedSnapshotPauseRequestOptions"
         ] = None,
+        use_case: Optional[
+            "capo_elasticsearch_service.types.domain_use_case.DomainUseCase"
+        ] = None,
+        engine_mode: Optional[
+            "capo_elasticsearch_service.types.domain_engine_mode.DomainEngineMode"
+        ] = None,
     ) -> "capo_elasticsearch_service.types.update_elasticsearch_domain_config_response.UpdateElasticsearchDomainConfigResponse":
         r"""<p>Modifies the cluster configuration of the specified Elasticsearch domain, setting as setting the instance type and the number of instances. </p>
 
@@ -3153,6 +3173,8 @@ class ElasticsearchServiceClient:
             dry_run: <p> This flag, when set to True, specifies whether the <code>UpdateElasticsearchDomain</code> request should return the results of validation checks without actually applying the change. This flag, when set to True, specifies the deployment mechanism through which the update shall be applied on the domain. This will not actually perform the Update. </p>
             deployment_strategy_options: <p>Specifies the deployment strategy options.</p>
             automated_snapshot_pause_options: <p>Specifies the automated snapshot pause options for the domain.</p> <important> <p>Suspending snapshots reduces data protection. You cannot restore your domain to points in time when snapshots are suspended. Use this feature only for short-term operational needs such as migrations or maintenance windows.</p> </important> <p>Maximum suspension duration: 3 days.</p>
+            use_case: <p>The primary use case for the domain. For valid values, see <code>DomainUseCase</code>.</p>
+            engine_mode: <p>The engine mode for the domain. For valid values and requirements, see <code>DomainEngineMode</code>.</p>
 
         Raises:
             capo_elasticsearch_service.errors.base_exception.BaseException: <p>An error occurred while processing the request.</p>
@@ -3216,6 +3238,10 @@ class ElasticsearchServiceClient:
             input_["automated_snapshot_pause_options"] = (
                 automated_snapshot_pause_options
             )
+        if use_case is not None:
+            input_["use_case"] = use_case
+        if engine_mode is not None:
+            input_["engine_mode"] = engine_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_batch.types.ce_status
     import capo_batch.types.ce_type
     import capo_batch.types.compute_resource
+    import capo_batch.types.ecs_settings
     import capo_batch.types.eks_configuration
     import capo_batch.types.integer
     import capo_batch.types.orchestration_type
@@ -54,6 +55,8 @@ class ComputeEnvironmentDetail(TypedDict, closed=True):
     """<p>Unique identifier for the compute environment.</p>"""
     context: NotRequired["capo_batch.types.string.String"]
     """<p>Reserved.</p>"""
+    ecs_settings: NotRequired["capo_batch.types.ecs_settings.EcsSettings"]
+    """<p>The Amazon ECS settings for the compute environment. These settings control CloudWatch Container Insights collection.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -117,6 +120,12 @@ def serialize_json(value: ComputeEnvironmentDetail) -> dict:
         out["uuid"] = value["uuid"]
     if "context" in value:
         out["context"] = value["context"]
+    if "ecs_settings" in value:
+        import capo_batch.types.ecs_settings
+
+        out["ecsSettings"] = capo_batch.types.ecs_settings.serialize_json(
+            value["ecs_settings"]
+        )
     return out
 
 
@@ -180,4 +189,10 @@ def deserialize_json(data: dict) -> ComputeEnvironmentDetail:
         out["uuid"] = data["uuid"]
     if data.get("context") is not None:
         out["context"] = data["context"]
+    if data.get("ecsSettings") is not None:
+        import capo_batch.types.ecs_settings
+
+        out["ecs_settings"] = capo_batch.types.ecs_settings.deserialize_json(
+            data["ecsSettings"]
+        )
     return out

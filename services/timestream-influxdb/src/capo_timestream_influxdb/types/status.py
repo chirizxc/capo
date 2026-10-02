@@ -15,6 +15,8 @@ Status: TypeAlias = Literal[
     "MAINTENANCE",
     "REBOOTING",
     "REBOOT_FAILED",
+    "RESTORING",
+    "RESTORE_FAILED",
 ]
 
 

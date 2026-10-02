@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.next_token
     import capo_devops_agent.types.recommendation_priority
     import capo_devops_agent.types.recommendation_status
@@ -13,7 +13,9 @@ if TYPE_CHECKING:
 
 
 class ListRecommendationsRequest(TypedDict, closed=True):
-    agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
+    agent_space_id: (
+        "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier"
+    )
     """<p>The unique identifier for the agent space containing the recommendations</p>"""
     task_id: NotRequired["capo_devops_agent.types.resource_id.ResourceId"]
     """<p>Optional task ID to filter recommendations by specific task</p>"""

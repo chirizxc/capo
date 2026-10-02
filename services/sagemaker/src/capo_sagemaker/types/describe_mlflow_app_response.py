@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_sagemaker.types.account_default_status
     import capo_sagemaker.types.default_domain_id_list
+    import capo_sagemaker.types.kms_key_id
     import capo_sagemaker.types.maintenance_status
     import capo_sagemaker.types.mlflow_app_arn
     import capo_sagemaker.types.mlflow_app_name
@@ -31,6 +32,8 @@ class DescribeMlflowAppResponse(TypedDict, closed=True):
     """<p>The MLflow version used.</p>"""
     role_arn: NotRequired["capo_sagemaker.types.role_arn.RoleArn"]
     """<p>The Amazon Resource Name (ARN) for an IAM role in your account that the MLflow App uses to access the artifact store in Amazon S3.</p>"""
+    kms_key_id: NotRequired["capo_sagemaker.types.kms_key_id.KmsKeyId"]
+    """<p>The ID of the Amazon Web Services KMS key used to encrypt the data at rest associated with the MLflow App. This field is absent if the MLflow App is not encrypted with a customer-managed key.</p>"""
     status: NotRequired["capo_sagemaker.types.mlflow_app_status.MlflowAppStatus"]
     """<p>The current creation status of the described MLflow App.</p>"""
     model_registration_mode: NotRequired[
@@ -74,6 +77,8 @@ def serialize_aws_json_1_1(value: DescribeMlflowAppResponse) -> dict:
         out["MlflowVersion"] = value["mlflow_version"]
     if "role_arn" in value:
         out["RoleArn"] = value["role_arn"]
+    if "kms_key_id" in value:
+        out["KmsKeyId"] = value["kms_key_id"]
     if "status" in value:
         import capo_sagemaker.types.mlflow_app_status
 
@@ -155,6 +160,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowAppResponse:
         out["mlflow_version"] = data["MlflowVersion"]
     if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
+    if data.get("KmsKeyId") is not None:
+        out["kms_key_id"] = data["KmsKeyId"]
     if data.get("Status") is not None:
         import capo_sagemaker.types.mlflow_app_status
 

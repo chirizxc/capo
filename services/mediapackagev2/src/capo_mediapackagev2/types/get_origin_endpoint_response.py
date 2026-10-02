@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     import capo_mediapackagev2.types.resource_description
     import capo_mediapackagev2.types.resource_name
     import capo_mediapackagev2.types.segment
+    import capo_mediapackagev2.types.stream_name_output_mode
     import capo_mediapackagev2.types.tag_map
     import capo_mediapackagev2.types.uri_separator
 
@@ -69,6 +70,10 @@ class GetOriginEndpointResponse(TypedDict, closed=True):
     """<p>The failover settings for the endpoint.</p>"""
     uri_separator: NotRequired["capo_mediapackagev2.types.uri_separator.UriSeparator"]
     """<p>The separator character used in generated URIs for this origin endpoint.</p>"""
+    stream_name_output_mode: NotRequired[
+        "capo_mediapackagev2.types.stream_name_output_mode.StreamNameOutputMode"
+    ]
+    """<p>The output mode for stream names in egress manifests for this origin endpoint.</p>"""
     e_tag: NotRequired["capo_mediapackagev2.types.entity_tag.EntityTag"]
     """<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>"""
     tags: NotRequired["capo_mediapackagev2.types.tag_map.TagMap"]
@@ -155,6 +160,14 @@ def serialize_json(value: GetOriginEndpointResponse) -> dict:
 
         out["UriSeparator"] = capo_mediapackagev2.types.uri_separator.serialize_json(
             value["uri_separator"]
+        )
+    if "stream_name_output_mode" in value:
+        import capo_mediapackagev2.types.stream_name_output_mode
+
+        out["StreamNameOutputMode"] = (
+            capo_mediapackagev2.types.stream_name_output_mode.serialize_json(
+                value["stream_name_output_mode"]
+            )
         )
     if "e_tag" in value:
         out["ETag"] = value["e_tag"]
@@ -280,6 +293,14 @@ def deserialize_json(data: dict) -> GetOriginEndpointResponse:
 
         out["uri_separator"] = capo_mediapackagev2.types.uri_separator.deserialize_json(
             data["UriSeparator"]
+        )
+    if data.get("StreamNameOutputMode") is not None:
+        import capo_mediapackagev2.types.stream_name_output_mode
+
+        out["stream_name_output_mode"] = (
+            capo_mediapackagev2.types.stream_name_output_mode.deserialize_json(
+                data["StreamNameOutputMode"]
+            )
         )
     if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]

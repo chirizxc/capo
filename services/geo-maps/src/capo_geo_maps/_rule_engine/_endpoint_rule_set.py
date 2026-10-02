@@ -60,7 +60,7 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                     if p.UseDualStack is False:
                         return Endpoint(
                             url=interpolate(
-                                "https://maps.geo.{Region}.{PartitionResult#dnsSuffix}/v2",
+                                "https://maps.geo.{Region}.{PartitionResult#dnsSuffix}",
                                 p,
                                 _locals,
                             ),
@@ -75,7 +75,7 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                     if p.UseDualStack is True:
                         return Endpoint(
                             url=interpolate(
-                                "https://maps.geo-fips.{Region}.{PartitionResult#dualStackDnsSuffix}/v2",
+                                "https://maps.geo-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                 p,
                                 _locals,
                             ),
@@ -90,7 +90,7 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                     if p.UseDualStack is False:
                         return Endpoint(
                             url=interpolate(
-                                "https://maps.geo-fips.{Region}.{PartitionResult#dnsSuffix}/v2",
+                                "https://maps.geo-fips.{Region}.{PartitionResult#dnsSuffix}",
                                 p,
                                 _locals,
                             ),
@@ -105,7 +105,7 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                     if p.UseDualStack is True:
                         return Endpoint(
                             url=interpolate(
-                                "https://maps.geo.{Region}.{PartitionResult#dualStackDnsSuffix}/v2",
+                                "https://maps.geo.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                 p,
                                 _locals,
                             ),
@@ -120,7 +120,7 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                     if p.UseDualStack is False:
                         return Endpoint(
                             url=interpolate(
-                                "https://maps.geo.{Region}.{PartitionResult#dnsSuffix}/v2",
+                                "https://maps.geo.{Region}.{PartitionResult#dnsSuffix}",
                                 p,
                                 _locals,
                             ),
@@ -135,7 +135,7 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                     if p.UseDualStack is True:
                         return Endpoint(
                             url=interpolate(
-                                "https://maps.geo-fips.{Region}.{PartitionResult#dualStackDnsSuffix}/v2",
+                                "https://maps.geo-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                 p,
                                 _locals,
                             ),
@@ -150,7 +150,7 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                     if p.UseDualStack is False:
                         return Endpoint(
                             url=interpolate(
-                                "https://maps.geo-fips.{Region}.{PartitionResult#dnsSuffix}/v2",
+                                "https://maps.geo-fips.{Region}.{PartitionResult#dnsSuffix}",
                                 p,
                                 _locals,
                             ),
@@ -165,7 +165,7 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                     if p.UseDualStack is True:
                         return Endpoint(
                             url=interpolate(
-                                "https://maps.geo.{Region}.{PartitionResult#dualStackDnsSuffix}/v2",
+                                "https://maps.geo.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                 p,
                                 _locals,
                             ),

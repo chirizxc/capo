@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_dynamodb.types.sse_description
     import capo_dynamodb.types.stream_specification
     import capo_dynamodb.types.time_to_live_description
+    import capo_dynamodb.types.vector_indexes
 
 
 class SourceTableFeatureDetails(TypedDict, closed=True):
@@ -31,6 +32,8 @@ class SourceTableFeatureDetails(TypedDict, closed=True):
     """<p>Time to Live settings on the table when the backup was created.</p>"""
     sse_description: NotRequired["capo_dynamodb.types.sse_description.SSEDescription"]
     """<p>The description of the server-side encryption status on the table when the backup was created.</p>"""
+    vector_indexes: NotRequired["capo_dynamodb.types.vector_indexes.VectorIndexes"]
+    """<p>The vector index properties for the table at the time the backup was created, including the index name, vector attribute, dimensions, distance function, search schema, and projection.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -76,6 +79,14 @@ def serialize_aws_json_1_0(value: SourceTableFeatureDetails) -> dict:
                 value["sse_description"]
             )
         )
+    if "vector_indexes" in value:
+        import capo_dynamodb.types.vector_indexes
+
+        out["VectorIndexes"] = (
+            capo_dynamodb.types.vector_indexes.serialize_aws_json_1_0(
+                value["vector_indexes"]
+            )
+        )
     return out
 
 
@@ -119,6 +130,14 @@ def deserialize_aws_json_1_0(data: dict) -> SourceTableFeatureDetails:
         out["sse_description"] = (
             capo_dynamodb.types.sse_description.deserialize_aws_json_1_0(
                 data["SSEDescription"]
+            )
+        )
+    if data.get("VectorIndexes") is not None:
+        import capo_dynamodb.types.vector_indexes
+
+        out["vector_indexes"] = (
+            capo_dynamodb.types.vector_indexes.deserialize_aws_json_1_0(
+                data["VectorIndexes"]
             )
         )
     return out

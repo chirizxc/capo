@@ -29,8 +29,8 @@ from capo_acm import AsyncACMClient
 
 async def main():
     async with AsyncACMClient() as acm:
-        # Example: paginate over list_certificates
-        async for item in acm.iter_list_certificates():
+        # Example: paginate over list_acme_accounts
+        async for item in acm.iter_list_acme_accounts():
             print(item)
 ```
 

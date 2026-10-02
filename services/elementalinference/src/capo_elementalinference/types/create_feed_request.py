@@ -8,6 +8,7 @@ from capo_elementalinference.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_elementalinference.types.create_output_list
+    import capo_elementalinference.types.iam_role_arn
     import capo_elementalinference.types.resource_name
     import capo_elementalinference.types.tag_map
 
@@ -15,6 +16,10 @@ if TYPE_CHECKING:
 class CreateFeedRequest(TypedDict, closed=True):
     name: "capo_elementalinference.types.resource_name.ResourceName"
     """<p>A user-friendly name for this feed.</p>"""
+    access_role_arn: NotRequired[
+        "capo_elementalinference.types.iam_role_arn.IamRoleArn"
+    ]
+    """<p>The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. For example, the smart crop feature uses this role to read graphics-compositing templates from your Amazon S3 bucket. You specify one access role for each feed. </p>"""
     outputs: "capo_elementalinference.types.create_output_list.CreateOutputList"
     """<p>An array of outputs for this feed. Each output represents a specific Elemental Inference feature. For example, there is one output type for the smart crop feature. You must specify at least one output, but you can later add outputs using AssociateFeed, or add, modify, and delete outputs using UpdateFeed. </p>"""
     tags: NotRequired["capo_elementalinference.types.tag_map.TagMap"]
@@ -25,6 +30,8 @@ class CreateFeedRequest(TypedDict, closed=True):
 def serialize_json(value: CreateFeedRequest) -> dict:
     out: dict = {}
     out["name"] = value["name"]
+    if "access_role_arn" in value:
+        out["accessRoleArn"] = value["access_role_arn"]
     import capo_elementalinference.types.create_output_list
 
     out["outputs"] = capo_elementalinference.types.create_output_list.serialize_json(
@@ -45,6 +52,8 @@ def deserialize_json(data: dict) -> CreateFeedRequest:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateFeedRequest.name required")
+    if data.get("accessRoleArn") is not None:
+        out["access_role_arn"] = data["accessRoleArn"]
     if data.get("outputs") is not None:
         import capo_elementalinference.types.create_output_list
 

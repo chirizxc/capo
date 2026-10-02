@@ -21,6 +21,8 @@ class QueryStatistics(TypedDict, closed=True):
     r"""<p>An estimate of the number of bytes in the log events that were skipped when processing this query, because the query contained an indexed field. Skipping these entries lowers query costs and improves the query performance time. For more information about field indexes, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html\">PutIndexPolicy</a>.</p>"""
     log_groups_scanned: "capo_cloudwatch_logs.types.stats_value.StatsValue"
     """<p>The number of log groups that were scanned by this query.</p>"""
+    result_count: "capo_cloudwatch_logs.types.stats_value.StatsValue"
+    """<p>The number of rows in the final query result set. This value represents the total number of output rows across all pages. For queries that include post-aggregation filters (such as <code>stats count(*) by field | filter count > threshold</code>), this value might be less than <code>recordsMatched</code>. It reflects only the rows that survived all operations in the query.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -82,6 +84,15 @@ def serialize_aws_json_1_1(value: QueryStatistics) -> dict:
         if value.get("log_groups_scanned", 0) == float("-inf")
         else value.get("log_groups_scanned", 0)
     )
+    out["resultCount"] = (
+        "NaN"
+        if value.get("result_count", 0) != value.get("result_count", 0)
+        else "Infinity"
+        if value.get("result_count", 0) == float("inf")
+        else "-Infinity"
+        if value.get("result_count", 0) == float("-inf")
+        else value.get("result_count", 0)
+    )
     return out
 
 
@@ -111,4 +122,8 @@ def deserialize_aws_json_1_1(data: dict) -> QueryStatistics:
         out["log_groups_scanned"] = float(data["logGroupsScanned"])
     else:
         out["log_groups_scanned"] = 0
+    if data.get("resultCount") is not None:
+        out["result_count"] = float(data["resultCount"])
+    else:
+        out["result_count"] = 0
     return out

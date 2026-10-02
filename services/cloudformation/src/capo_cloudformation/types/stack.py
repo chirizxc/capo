@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_cloudformation.types.creation_time
     import capo_cloudformation.types.deletion_mode
     import capo_cloudformation.types.deletion_time
+    import capo_cloudformation.types.deployment_config
     import capo_cloudformation.types.description
     import capo_cloudformation.types.detailed_status
     import capo_cloudformation.types.disable_rollback
@@ -66,6 +67,10 @@ class Stack(TypedDict, closed=True):
         "capo_cloudformation.types.disable_rollback.DisableRollback"
     ]
     """<p>Boolean to enable or disable rollback on stack creation failures:</p> <ul> <li> <p> <code>true</code>: disable rollback.</p> </li> <li> <p> <code>false</code>: enable rollback.</p> </li> </ul>"""
+    deployment_config: NotRequired[
+        "capo_cloudformation.types.deployment_config.DeploymentConfig"
+    ]
+    """<p>The deployment configuration for the stack, including the deployment mode used for stack operations.</p>"""
     notification_ar_ns: NotRequired[
         "capo_cloudformation.types.notification_ar_ns.NotificationARNs"
     ]
@@ -167,6 +172,12 @@ def serialize_query(value: Stack, pairs: list[tuple[str, str]], prefix: str) -> 
                 f"{key_prefix}DisableRollback",
                 "true" if value["disable_rollback"] else "false",
             )
+        )
+    if "deployment_config" in value:
+        import capo_cloudformation.types.deployment_config
+
+        capo_cloudformation.types.deployment_config.serialize_query(
+            value["deployment_config"], pairs, f"{key_prefix}DeploymentConfig"
         )
     if "notification_ar_ns" in value:
         import capo_cloudformation.types.notification_ar_ns
@@ -312,6 +323,15 @@ def deserialize_query(el: Element) -> Stack:
     child_disable_rollback = el.find("DisableRollback")
     if child_disable_rollback is not None:
         out["disable_rollback"] = (child_disable_rollback.text or "").lower() == "true"
+    child_deployment_config = el.find("DeploymentConfig")
+    if child_deployment_config is not None:
+        import capo_cloudformation.types.deployment_config
+
+        out["deployment_config"] = (
+            capo_cloudformation.types.deployment_config.deserialize_query(
+                child_deployment_config
+            )
+        )
     child_notification_ar_ns = el.find("NotificationARNs")
     if child_notification_ar_ns is not None:
         import capo_cloudformation.types.notification_ar_ns

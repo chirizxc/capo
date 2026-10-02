@@ -1,0 +1,83 @@
+# ry (https://github.com/karpetrosyan/ry) generates the sync twin of every
+# async test class in tests/ marked with `# unasync: generate`.
+#
+#   uv run ry tests          # check that generated code is up to date
+#   uv run ry --fix tests    # regenerate
+#
+# Async code is the source of truth: never edit a `# unasync: generated` class.
+version: 1
+
+defaults:
+  include:
+    - package: std
+    - package: capo
+
+packages:
+  capo:
+    rules:
+      - id: test-class
+        match: '\bTestAsync(\w+)'
+        replace: 'Test$1'
+
+      # capo service clients: AsyncS3Client -> S3Client, AsyncEBSClient -> EBSClient, ...
+      - id: async-service-client
+        match: '\bAsync(\w+)Client\b'
+        replace: '${1}Client'
+      # zapros, used as a plain HTTP client for presigned URLs
+      - id: zapros-async-client
+        match: '\bAsyncClient\b'
+        replace: 'Client'
+      - id: zapros-aread
+        match: '\baread\b'
+        replace: 'read'
+      # capo credential providers
+      - id: aresolve-identity
+        match: '\baresolve_identity\b'
+        replace: 'resolve_identity'
+
+      # fixtures (tests/conftest.py)
+      - id: async-s3-fixture
+        match: '\basync_s3\b'
+        replace: 's3'
+      - id: async-aws-credentials-fixture
+        match: '\basync_aws_credentials\b'
+        replace: 'aws_credentials'
+
+      - id: anyio-sleep
+        match: '\banyio\.sleep\b'
+        replace: 'time.sleep'
+      # tests/conftest.py: task group -> thread pool
+      - id: agather
+        match: '\bagather\b'
+        replace: 'gather'
+      - id: aread-body
+        match: '\baread_body\b'
+        replace: 'read_body'
+      - id: make-async-s3-client
+        match: '\bmake_async_s3_client\b'
+        replace: 'make_s3_client'
+      # capo_s3.Body constructors
+      - id: body-async-from-path
+        match: '\basync_from_path\b'
+        replace: 'from_path'
+      - id: astream
+        match: '\bastream\b'
+        replace: 'stream'
+      # tests/test_body.py
+      - id: faulty-async-s3-fixture
+        match: '\bfaulty_async_s3\b'
+        replace: 'faulty_s3'
+      # tests/test_caching.py
+      - id: cached-async-s3-fixture
+        match: '\bcached_async_s3\b'
+        replace: 'cached_s3'
+      - id: make-cached-async-s3
+        match: '\bmake_cached_async_s3\b'
+        replace: 'make_cached_s3'
+      # tests/test_eventbridgev2.py
+      - id: async-eventbridge-fixture
+        match: '\basync_eventbridge\b'
+        replace: 'eventbridge'
+      - id: async-wait-until-active
+        match: '\basync_wait_until_active\b'
+        replace: 'wait_until_active'

@@ -13,6 +13,7 @@ import capo_imagebuilder._auth._sigv4
 import capo_imagebuilder._protocol.eventstream
 import capo_imagebuilder.errors.call_rate_limit_exceeded_exception
 import capo_imagebuilder.errors.client_exception
+import capo_imagebuilder.errors.dry_run_operation_exception
 import capo_imagebuilder.errors.forbidden_exception
 import capo_imagebuilder.errors.idempotent_parameter_mismatch_exception
 import capo_imagebuilder.errors.invalid_request_exception
@@ -23,6 +24,7 @@ import capo_imagebuilder.errors.service_exception
 import capo_imagebuilder.errors.service_quota_exceeded_exception
 import capo_imagebuilder.errors.service_unavailable_exception
 import capo_imagebuilder.types.additional_instance_configuration
+import capo_imagebuilder.types.ami_watermarks_list
 import capo_imagebuilder.types.component_configuration_list
 import capo_imagebuilder.types.create_image_recipe_request
 import capo_imagebuilder.types.create_image_recipe_response
@@ -34,6 +36,7 @@ from capo_imagebuilder._rule_engine._endpoint_rule_set import EndpointParams, re
 from capo_imagebuilder._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_imagebuilder.errors import UnknownServiceError
 
@@ -48,6 +51,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ClientException":
             raise capo_imagebuilder.errors.client_exception.ClientException.from_json(
+                data, message
+            )
+        case "DryRunOperationException":
+            raise capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException.from_json(
                 data, message
             )
         case "ForbiddenException":
@@ -176,7 +183,7 @@ def create_image_recipe(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -194,7 +201,7 @@ async def async_create_image_recipe(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

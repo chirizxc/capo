@@ -315,3 +315,63 @@ def test_valid_endpointid_with_custom_sdk_endpoin():
     params = EndpointParams(EndpointId='abc123.456def', UseDualStack=False, UseFIPS=True, Region='us-east-1', Endpoint='https://example.com')
     with pytest.raises(EndpointError, match=re.escape('Invalid Configuration: FIPS is not supported with multi-region endpoints')):
         resolve(params)
+
+def test_gov_ipv4_only__us_gov_west_1_primary__du():
+    """Gov IPv4 only: us-gov-west-1 primary, dualstack and FIPS disabled"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=False, UseFIPS=False, Region='us-gov-west-1')
+    result = resolve(params)
+    assert result.url == 'https://abc123.456def.endpoints.email.us-gov.amazonaws.com'
+
+def test_gov_ipv4_only__us_gov_east_1__dualstack_():
+    """Gov IPv4 only: us-gov-east-1, dualstack and FIPS disabled (proves both gov regions resolve identically)"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=False, UseFIPS=False, Region='us-gov-east-1')
+    result = resolve(params)
+    assert result.url == 'https://abc123.456def.endpoints.email.us-gov.amazonaws.com'
+
+def test_gov_dualstack__us_gov_west_1__dualstack_():
+    """Gov dualstack: us-gov-west-1, dualstack enabled, FIPS disabled (no global. prefix; api.aws not global.api.aws)"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=True, UseFIPS=False, Region='us-gov-west-1')
+    result = resolve(params)
+    assert result.url == 'https://abc123.456def.endpoints.email.us-gov.api.aws'
+
+def test_gov_fips__us_gov_west_1__fips_enabled__d():
+    """Gov FIPS: us-gov-west-1, FIPS enabled, dualstack disabled — FIPS not supported with multi-region endpoints"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=False, UseFIPS=True, Region='us-gov-west-1')
+    with pytest.raises(EndpointError, match=re.escape('Invalid Configuration: FIPS is not supported with multi-region endpoints')):
+        resolve(params)
+
+def test_gov_fips_dualstack__us_gov_west_1__both_():
+    """Gov FIPS+dualstack: us-gov-west-1, both FIPS and dualstack enabled — FIPS check precedes dualstack branch selection"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=True, UseFIPS=True, Region='us-gov-west-1')
+    with pytest.raises(EndpointError, match=re.escape('Invalid Configuration: FIPS is not supported with multi-region endpoints')):
+        resolve(params)
+
+def test_gov_custom_sdk_endpoint__us_gov_west_1__():
+    """Gov custom SDK endpoint: us-gov-west-1, EndpointId set, custom Endpoint — passes through unchanged with SigV4a"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=False, UseFIPS=False, Region='us-gov-west-1', Endpoint='https://example.com')
+    result = resolve(params)
+    assert result.url == 'https://example.com'
+
+def test_china_ipv4_regression__cn_north_1__duals():
+    """China IPv4 regression: cn-north-1, dualstack disabled — endpoint uses aws-cn dnsSuffix (amazonaws.com.cn)"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=False, UseFIPS=False, Region='cn-north-1')
+    result = resolve(params)
+    assert result.url == 'https://abc123.456def.endpoints.email.amazonaws.com.cn'
+
+def test_china_dualstack_regression__cn_north_1__():
+    """China dualstack regression: cn-north-1, dualstack enabled — uses global. prefix with aws-cn dualStackDnsSuffix (api.amazonwebservices.com.cn)"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=True, UseFIPS=False, Region='cn-north-1')
+    result = resolve(params)
+    assert result.url == 'https://abc123.456def.endpoints.email.global.api.amazonwebservices.com.cn'
+
+def test_gov_custom_sdk_endpoint_with_fips__fips_():
+    """Gov custom SDK endpoint with FIPS: FIPS guard sits above the SDK passthrough, so error wins"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=False, UseFIPS=True, Region='us-gov-west-1', Endpoint='https://example.com')
+    with pytest.raises(EndpointError, match=re.escape('Invalid Configuration: FIPS is not supported with multi-region endpoints')):
+        resolve(params)
+
+def test_gov_dualstack_osu__us_gov_east_1__matche():
+    """Gov dualstack OSU (us-gov-east-1) matches PDT dualstack output (us-gov.api.aws, no global. prefix)"""
+    params = EndpointParams(EndpointId='abc123.456def', UseDualStack=True, UseFIPS=False, Region='us-gov-east-1')
+    result = resolve(params)
+    assert result.url == 'https://abc123.456def.endpoints.email.us-gov.api.aws'

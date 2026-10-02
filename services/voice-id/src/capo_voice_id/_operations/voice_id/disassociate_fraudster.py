@@ -22,7 +22,11 @@ import capo_voice_id.types.disassociate_fraudster_response
 import capo_voice_id.types.fraudster
 from capo_voice_id._protocol.errors import parse_error_metadata_json
 from capo_voice_id._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_voice_id._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_voice_id._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_voice_id.errors import UnknownServiceError
 
 
@@ -147,7 +151,7 @@ def disassociate_fraudster(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -165,7 +169,7 @@ async def async_disassociate_fraudster(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

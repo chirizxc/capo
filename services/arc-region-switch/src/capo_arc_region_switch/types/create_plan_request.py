@@ -37,6 +37,8 @@ class CreatePlanRequest(TypedDict, closed=True):
     report_configuration: NotRequired[
         "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
     ]
+    service_quota_checks_enabled: NotRequired["bool"]
+    """<p>Specifies whether to enable service quota checks for the Region switch plan.</p>"""
     name: "capo_arc_region_switch.types.plan_name.PlanName"
     """<p>The name of a Region switch plan.</p>"""
     regions: "capo_arc_region_switch.types.region_list.RegionList"
@@ -88,6 +90,8 @@ def serialize_aws_json_1_0(value: CreatePlanRequest) -> dict:
                 value["report_configuration"]
             )
         )
+    if "service_quota_checks_enabled" in value:
+        out["serviceQuotaChecksEnabled"] = value["service_quota_checks_enabled"]
     out["name"] = value["name"]
     import capo_arc_region_switch.types.region_list
 
@@ -156,6 +160,8 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePlanRequest:
                 data["reportConfiguration"]
             )
         )
+    if data.get("serviceQuotaChecksEnabled") is not None:
+        out["service_quota_checks_enabled"] = data["serviceQuotaChecksEnabled"]
     if data.get("name") is not None:
         out["name"] = data["name"]
     else:

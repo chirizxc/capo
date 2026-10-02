@@ -8,6 +8,7 @@ from capo_quicksight.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
     import capo_quicksight.types.custom_sql
+    import capo_quicksight.types.file_source
     import capo_quicksight.types.relational_table
     import capo_quicksight.types.s3_source
     import capo_quicksight.types.saa_s_table
@@ -29,11 +30,16 @@ class _PhysicalTable_SaaSTable(TypedDict, closed=True):
     SaaSTable: "capo_quicksight.types.saa_s_table.SaaSTable"
 
 
+class _PhysicalTable_FileSource(TypedDict, closed=True):
+    FileSource: "capo_quicksight.types.file_source.FileSource"
+
+
 PhysicalTable: TypeAlias = (
     _PhysicalTable_RelationalTable
     | _PhysicalTable_CustomSql
     | _PhysicalTable_S3Source
     | _PhysicalTable_SaaSTable
+    | _PhysicalTable_FileSource
 )
 
 
@@ -71,6 +77,14 @@ def serialize_json(value: PhysicalTable) -> dict:
                 value["SaaSTable"]
             )
         }
+    elif "FileSource" in value:
+        import capo_quicksight.types.file_source
+
+        return {
+            "FileSource": capo_quicksight.types.file_source.serialize_json(
+                value["FileSource"]
+            )
+        }
     else:
         raise SerializationError("PhysicalTable: no variant present")
 
@@ -106,6 +120,14 @@ def deserialize_json(data: dict) -> PhysicalTable:
         return {
             "SaaSTable": capo_quicksight.types.saa_s_table.deserialize_json(
                 data["SaaSTable"]
+            )
+        }
+    elif data.get("FileSource") is not None:
+        import capo_quicksight.types.file_source
+
+        return {
+            "FileSource": capo_quicksight.types.file_source.deserialize_json(
+                data["FileSource"]
             )
         }
     else:

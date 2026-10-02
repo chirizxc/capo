@@ -10,9 +10,11 @@ if TYPE_CHECKING:
     import capo_outposts.types.life_cycle_status
     import capo_outposts.types.outpost_arn
     import capo_outposts.types.outpost_description
+    import capo_outposts.types.outpost_generation
     import capo_outposts.types.outpost_id
     import capo_outposts.types.outpost_name
     import capo_outposts.types.owner_id
+    import capo_outposts.types.rack_scaling_type
     import capo_outposts.types.site_arn
     import capo_outposts.types.site_id
     import capo_outposts.types.supported_hardware_type
@@ -45,6 +47,12 @@ class Outpost(TypedDict, closed=True):
         "capo_outposts.types.supported_hardware_type.SupportedHardwareType"
     ]
     """<p> The hardware type. </p>"""
+    generation: NotRequired["capo_outposts.types.outpost_generation.OutpostGeneration"]
+    """<p>The Outpost generation. Valid values are <code>GENERATION_1</code> for first-generation rack deployments and <code>GENERATION_2</code> for second-generation rack deployments.</p>"""
+    rack_scaling_type: NotRequired[
+        "capo_outposts.types.rack_scaling_type.RackScalingType"
+    ]
+    """<p>The rack scaling type. Valid values are <code>SINGLE_RACK</code> for single-rack Outposts and <code>MULTI_RACK</code> for multi-rack Outposts that can expand across multiple racks.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -82,6 +90,18 @@ def serialize_json(value: Outpost) -> dict:
                 value["supported_hardware_type"]
             )
         )
+    if "generation" in value:
+        import capo_outposts.types.outpost_generation
+
+        out["Generation"] = capo_outposts.types.outpost_generation.serialize_json(
+            value["generation"]
+        )
+    if "rack_scaling_type" in value:
+        import capo_outposts.types.rack_scaling_type
+
+        out["RackScalingType"] = capo_outposts.types.rack_scaling_type.serialize_json(
+            value["rack_scaling_type"]
+        )
     return out
 
 
@@ -117,6 +137,20 @@ def deserialize_json(data: dict) -> Outpost:
         out["supported_hardware_type"] = (
             capo_outposts.types.supported_hardware_type.deserialize_json(
                 data["SupportedHardwareType"]
+            )
+        )
+    if data.get("Generation") is not None:
+        import capo_outposts.types.outpost_generation
+
+        out["generation"] = capo_outposts.types.outpost_generation.deserialize_json(
+            data["Generation"]
+        )
+    if data.get("RackScalingType") is not None:
+        import capo_outposts.types.rack_scaling_type
+
+        out["rack_scaling_type"] = (
+            capo_outposts.types.rack_scaling_type.deserialize_json(
+                data["RackScalingType"]
             )
         )
     return out

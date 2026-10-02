@@ -7,12 +7,12 @@ from typing_extensions import TypedDict
 from capo_chime_sdk_voice.errors import DeserializationError
 
 if TYPE_CHECKING:
-    import capo_chime_sdk_voice.types.non_empty_string
     import capo_chime_sdk_voice.types.sensitive_string_list
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class DeleteVoiceConnectorTerminationCredentialsRequest(TypedDict, closed=True):
-    voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString"
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
     usernames: "capo_chime_sdk_voice.types.sensitive_string_list.SensitiveStringList"
     """<p>The RFC2617 compliant username associated with the SIP credentials, in US-ASCII format.</p>"""

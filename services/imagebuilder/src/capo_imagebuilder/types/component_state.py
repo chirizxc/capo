@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class ComponentState(TypedDict, closed=True):
     status: NotRequired["capo_imagebuilder.types.component_status.ComponentStatus"]
-    """<p>The current state of the component.</p>"""
+    """<p>The current state of the component. Components with a status of <code>DEPRECATED</code> or <code>DISABLED</code> can't be added to new recipes.</p>"""
     reason: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>Describes how or why the component changed state.</p>"""
 

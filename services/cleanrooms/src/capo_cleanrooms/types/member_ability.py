@@ -6,6 +6,7 @@ MemberAbility: TypeAlias = Literal[
     "CAN_QUERY",
     "CAN_RECEIVE_RESULTS",
     "CAN_RUN_JOB",
+    "CAN_EXPORT_QUERY_ANALYSIS_LOG",
 ]
 
 

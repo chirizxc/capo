@@ -89,6 +89,8 @@ if TYPE_CHECKING:
     import capo_codecommit.types.describe_pull_request_events_input
     import capo_codecommit.types.describe_pull_request_events_output
     import capo_codecommit.types.description
+    import capo_codecommit.types.diff_context
+    import capo_codecommit.types.diff_hunk
     import capo_codecommit.types.disassociate_approval_rule_template_from_repository_input
     import capo_codecommit.types.email
     import capo_codecommit.types.evaluate_pull_request_approval_rules_input
@@ -98,6 +100,8 @@ if TYPE_CHECKING:
     import capo_codecommit.types.file_paths
     import capo_codecommit.types.get_approval_rule_template_input
     import capo_codecommit.types.get_approval_rule_template_output
+    import capo_codecommit.types.get_blob_differences_input
+    import capo_codecommit.types.get_blob_differences_output
     import capo_codecommit.types.get_blob_input
     import capo_codecommit.types.get_blob_output
     import capo_codecommit.types.get_branch_input
@@ -134,6 +138,7 @@ if TYPE_CHECKING:
     import capo_codecommit.types.get_repository_output
     import capo_codecommit.types.get_repository_triggers_input
     import capo_codecommit.types.get_repository_triggers_output
+    import capo_codecommit.types.ignore_white_spaces
     import capo_codecommit.types.keep_empty_folders
     import capo_codecommit.types.kms_key_id
     import capo_codecommit.types.limit
@@ -2080,6 +2085,125 @@ class CodeCommitClient:
         response.response.close()
         return response.output
 
+    def get_blob_differences(
+        self,
+        repository_name: "capo_codecommit.types.repository_name.RepositoryName",
+        after_blob_id: "capo_codecommit.types.object_id.ObjectId",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        before_blob_id: Optional["capo_codecommit.types.object_id.ObjectId"] = None,
+        context_lines: Optional[
+            "capo_codecommit.types.diff_context.DiffContext"
+        ] = None,
+        ignore_whitespace: Optional[
+            "capo_codecommit.types.ignore_white_spaces.IgnoreWhiteSpaces"
+        ] = None,
+        max_results: Optional["capo_codecommit.types.limit.Limit"] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+    ) -> "capo_codecommit.types.get_blob_differences_output.GetBlobDifferencesOutput":
+        r"""<p>Returns a structured, line-level diff between two blob versions in a repository. The diff is returned as an ordered list of hunks, where each hunk represents a contiguous run of changed lines together with any surrounding unchanged context lines.</p> <p>Results are paginated. Use <code>MaxResults</code> and <code>NextToken</code> to retrieve additional pages.</p> <p>For the typical usage workflow, see <a>GetDifferences</a>.</p>
+
+        Args:
+            repository_name: <p>The name of the repository that contains the blobs to compare.</p>
+            after_blob_id: <p>The ID of the \"after\" (destination) blob in the diff. Typically the value of <code>afterBlob.blobId</code> from a <code>Difference</code> object returned by <a>GetDifferences</a>.</p>
+            before_blob_id: <p>The ID of the \"before\" (source) blob in the diff. Typically the value of <code>beforeBlob.blobId</code> from a <code>Difference</code> object returned by <a>GetDifferences</a>.</p> <p>If you do not specify a value, the operation returns a diff against an empty before-state. This is equivalent to treating the file as newly added.</p>
+            context_lines: <p>The number of unchanged lines of context to include before and after each block of changes in a hunk. Valid values are 0 through 20. Defaults to <code>3</code>.</p>
+            ignore_whitespace: <p>Specifies whether to ignore whitespace-only changes when computing the diff. When <code>true</code>, the operation treats lines that differ only in whitespace as unchanged. Defaults to <code>false</code>.</p>
+            max_results: <p>The maximum number of <code>DiffHunk</code> entries to return in a single response page. Defaults to <code>100</code>.</p>
+            next_token: <p>An enumeration token that returns the next batch of results when present in a request.</p>
+
+        Raises:
+            capo_codecommit.errors.blob_id_does_not_exist_exception.BlobIdDoesNotExistException: <p>The specified blob does not exist.</p>
+            capo_codecommit.errors.blob_id_required_exception.BlobIdRequiredException: <p>A blob ID is required, but was not specified.</p>
+            capo_codecommit.errors.encryption_integrity_checks_failed_exception.EncryptionIntegrityChecksFailedException: <p>An encryption integrity check failed.</p>
+            capo_codecommit.errors.encryption_key_access_denied_exception.EncryptionKeyAccessDeniedException: <p>An encryption key could not be accessed.</p>
+            capo_codecommit.errors.encryption_key_disabled_exception.EncryptionKeyDisabledException: <p>The encryption key is disabled.</p>
+            capo_codecommit.errors.encryption_key_not_found_exception.EncryptionKeyNotFoundException: <p>No encryption key was found.</p>
+            capo_codecommit.errors.encryption_key_unavailable_exception.EncryptionKeyUnavailableException: <p>The encryption key is not available.</p>
+            capo_codecommit.errors.file_too_large_exception.FileTooLargeException: <p>The specified file exceeds the file size limit for CodeCommit. For more information about limits in CodeCommit, see <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html\">Quotas</a> in the <i>CodeCommit User Guide</i>.</p>
+            capo_codecommit.errors.invalid_blob_id_exception.InvalidBlobIdException: <p>The specified blob is not valid.</p>
+            capo_codecommit.errors.invalid_continuation_token_exception.InvalidContinuationTokenException: <p>The specified continuation token is not valid.</p>
+            capo_codecommit.errors.invalid_max_results_exception.InvalidMaxResultsException: <p>The specified number of maximum results is not valid.</p>
+            capo_codecommit.errors.invalid_repository_name_exception.InvalidRepositoryNameException: <p>A specified repository name is not valid.</p> <note> <p>This exception occurs only when a specified repository name is not valid. Other exceptions occur when a required repository parameter is missing, or when a specified repository does not exist.</p> </note>
+            capo_codecommit.errors.repository_does_not_exist_exception.RepositoryDoesNotExistException: <p>The specified repository does not exist.</p>
+            capo_codecommit.errors.repository_name_required_exception.RepositoryNameRequiredException: <p>A repository name is required, but was not specified.</p>
+            capo_codecommit.errors.validation_exception.ValidationException: <p>The specified input is either not valid, or it could not be validated.</p>
+            capo_codecommit.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_codecommit.types.get_blob_differences_input.GetBlobDifferencesInput]",
+        ) -> OperationResponse[
+            "capo_codecommit.types.get_blob_differences_output.GetBlobDifferencesOutput"
+        ]:
+            import capo_codecommit._operations.code_commit_20150413.get_blob_differences
+
+            output, http_response = (
+                capo_codecommit._operations.code_commit_20150413.get_blob_differences.get_blob_differences(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_codecommit.types.get_blob_differences_input.GetBlobDifferencesInput = {
+            "repository_name": repository_name,
+            "after_blob_id": after_blob_id,
+        }
+        if before_blob_id is not None:
+            input_["before_blob_id"] = before_blob_id
+        if context_lines is not None:
+            input_["context_lines"] = context_lines
+        if ignore_whitespace is not None:
+            input_["ignore_whitespace"] = ignore_whitespace
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_get_blob_differences(
+        self,
+        repository_name: "capo_codecommit.types.repository_name.RepositoryName",
+        after_blob_id: "capo_codecommit.types.object_id.ObjectId",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        before_blob_id: Optional["capo_codecommit.types.object_id.ObjectId"] = None,
+        context_lines: Optional[
+            "capo_codecommit.types.diff_context.DiffContext"
+        ] = None,
+        ignore_whitespace: Optional[
+            "capo_codecommit.types.ignore_white_spaces.IgnoreWhiteSpaces"
+        ] = None,
+        max_results: Optional["capo_codecommit.types.limit.Limit"] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_codecommit.types.diff_hunk.DiffHunk]":
+        _token = next_token
+        while True:
+            _response = self.get_blob_differences(
+                repository_name,
+                after_blob_id,
+                config_overrides=config_overrides,
+                before_blob_id=before_blob_id,
+                context_lines=context_lines,
+                ignore_whitespace=ignore_whitespace,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("hunks",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def get_branch(
         self,
         *,
@@ -2549,7 +2673,7 @@ class CodeCommitClient:
         max_results: Optional["capo_codecommit.types.limit.Limit"] = None,
         next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
     ) -> "capo_codecommit.types.get_differences_output.GetDifferencesOutput":
-        """<p>Returns information about the differences in a valid commit specifier (such as a branch, tag, HEAD, commit ID, or other fully qualified reference). Results can be limited to a specified path.</p>
+        """<p>Returns information about the differences in a valid commit specifier (such as a branch, tag, HEAD, commit ID, or other fully qualified reference). Results can be limited to a specified path.</p> <p>For line-level diff details, pass the <code>beforeBlob.blobId</code> and <code>afterBlob.blobId</code> values from a <code>Difference</code> object to <a>GetBlobDifferences</a>.</p>
 
         Args:
             repository_name: <p>The name of the repository where you want to get differences.</p>

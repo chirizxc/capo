@@ -15,7 +15,7 @@ class GetMarketplaceResourceResponse(TypedDict, closed=True):
     ]
     """<p>The Amazon Resource Name (ARN) for the Amazon Web Services Marketplace resource that was requested.</p>"""
     url: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>The obfuscated S3 URL to download the component artifact from.</p>"""
+    """<p>A time-limited presigned URL for downloading the component artifact from Amazon S3.</p>"""
     data: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>Returns obfuscated data that contains the YAML content of the component.</p>"""
 

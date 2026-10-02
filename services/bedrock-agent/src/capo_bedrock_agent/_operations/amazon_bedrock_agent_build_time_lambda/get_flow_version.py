@@ -22,11 +22,13 @@ import capo_bedrock_agent.types.flow_definition
 import capo_bedrock_agent.types.flow_status
 import capo_bedrock_agent.types.get_flow_version_request
 import capo_bedrock_agent.types.get_flow_version_response
+import capo_bedrock_agent.types.included_data
 from capo_bedrock_agent._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agent._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_bedrock_agent._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agent.errors import UnknownServiceError
 
@@ -121,10 +123,21 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_bedrock_agent.types.included_data
+
     url = endpoint.url.rstrip("/") + "/flows/{flowIdentifier}/versions/{flowVersion}/"
     url = url.replace("{flowIdentifier}", quote(input_["flow_identifier"], safe=""))
     url = url.replace("{flowVersion}", quote(input_["flow_version"], safe=""))
     params: list[tuple[str, str]] = []
+    if "included_data" in input_:
+        params.append(
+            (
+                "includedData",
+                capo_bedrock_agent.types.included_data.serialize_json(
+                    input_["included_data"]
+                ),
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
@@ -147,7 +160,7 @@ def get_flow_version(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -165,7 +178,7 @@ async def async_get_flow_version(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

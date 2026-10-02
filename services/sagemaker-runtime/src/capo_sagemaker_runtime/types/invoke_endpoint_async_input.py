@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_sagemaker_runtime.types.async_body_blob
     import capo_sagemaker_runtime.types.custom_attributes_header
     import capo_sagemaker_runtime.types.endpoint_name
     import capo_sagemaker_runtime.types.filename_header
@@ -47,14 +48,28 @@ class InvokeEndpointAsyncInput(TypedDict, closed=True):
         "capo_sagemaker_runtime.types.invocation_timeout_seconds_header.InvocationTimeoutSecondsHeader"
     ]
     """<p>Maximum amount of time in seconds a request can be processed before it is marked as expired. The default is 15 minutes, or 900 seconds.</p>"""
+    body: NotRequired["capo_sagemaker_runtime.types.async_body_blob.AsyncBodyBlob"]
+    r"""<p>Provides inline input data for the inference request, in the format specified in the <code>ContentType</code> request header. Use this parameter to send the request payload directly in the API call instead of uploading it to Amazon S3 and referencing it with <code>InputLocation</code>. The inline payload can be up to 128,000 bytes.</p> <p> <code>Body</code> and <code>InputLocation</code> are mutually exclusive. Provide exactly one of them.</p> <p>For information about the format of the request body, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/cdf-inference.html\">Common Data Formats-Inference</a>.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: InvokeEndpointAsyncInput) -> dict:
     out: dict = {}
+    if "body" in value:
+        import capo_sagemaker_runtime.types.async_body_blob
+
+        out["Body"] = capo_sagemaker_runtime.types.async_body_blob.serialize_json(
+            value["body"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> InvokeEndpointAsyncInput:
     out: InvokeEndpointAsyncInput = {}  # type: ignore[typeddict-item]
+    if data.get("Body") is not None:
+        import capo_sagemaker_runtime.types.async_body_blob
+
+        out["body"] = capo_sagemaker_runtime.types.async_body_blob.deserialize_json(
+            data["Body"]
+        )
     return out

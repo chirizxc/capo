@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_ec2._protocol.xml import Element
 
 if TYPE_CHECKING:
+    import capo_ec2.types.boxed_long
     import capo_ec2.types.integer
     import capo_ec2.types.millisecond_date_time
 
@@ -18,6 +19,8 @@ class CapacityReservationCommitmentInfo(TypedDict, closed=True):
         "capo_ec2.types.millisecond_date_time.MillisecondDateTime"
     ]
     """<p>The date and time at which the commitment duration expires, in the ISO8601 format in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>). You can't decrease the instance count or cancel the Capacity Reservation before this date and time.</p>"""
+    commitment_duration: NotRequired["capo_ec2.types.boxed_long.BoxedLong"]
+    """<p>The commitment duration, in seconds, for the future-dated Capacity Reservation. This is the minimum duration for which you commit to having the Capacity Reservation in the <code>active</code> state in your account after it has been delivered.</p>"""
 
 
 # --- ec2Query ser/de ---
@@ -38,6 +41,10 @@ def serialize_ec2_query(
         capo_ec2.types.millisecond_date_time.serialize_ec2_query(
             value["commitment_end_date"], pairs, f"{key_prefix}CommitmentEndDate"
         )
+    if "commitment_duration" in value:
+        pairs.append(
+            (f"{key_prefix}CommitmentDuration", str(value["commitment_duration"]))
+        )
 
 
 def deserialize_ec2_query(el: Element) -> CapacityReservationCommitmentInfo:
@@ -54,4 +61,7 @@ def deserialize_ec2_query(el: Element) -> CapacityReservationCommitmentInfo:
                 child_commitment_end_date
             )
         )
+    child_commitment_duration = el.find("commitmentDuration")
+    if child_commitment_duration is not None:
+        out["commitment_duration"] = int(child_commitment_duration.text or "")
     return out

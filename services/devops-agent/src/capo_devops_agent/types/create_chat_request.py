@@ -5,13 +5,16 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.resource_id
     import capo_devops_agent.types.user_type
 
 
 class CreateChatRequest(TypedDict, closed=True):
-    agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
+    agent_space_id: (
+        "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier"
+    )
+    """<p>The unique identifier for the agent space where the chat will be created.</p>"""
     user_id: NotRequired["capo_devops_agent.types.resource_id.ResourceId"]
     """<p>The user identifier for the chat. This field is deprecated and will be ignored — the service resolves user identity from the authenticated session.</p>"""
     user_type: NotRequired["capo_devops_agent.types.user_type.UserType"]

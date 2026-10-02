@@ -19,6 +19,7 @@ import capo_s3.types.create_multipart_upload_output
 import capo_s3.types.create_multipart_upload_request
 import capo_s3.types.metadata
 import capo_s3.types.object_canned_acl
+import capo_s3.types.object_lock_event_hold
 import capo_s3.types.object_lock_legal_hold_status
 import capo_s3.types.object_lock_mode
 import capo_s3.types.object_lock_retain_until_date
@@ -29,7 +30,11 @@ import capo_s3.types.storage_class
 from capo_s3._protocol.errors import parse_error_metadata
 from capo_s3._protocol.xml import fromstring
 from capo_s3._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_s3._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_s3._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_s3.errors import UnknownServiceError
 
 
@@ -209,6 +214,7 @@ def build_request(
     import capo_s3.types.checksum_algorithm
     import capo_s3.types.checksum_type
     import capo_s3.types.object_canned_acl
+    import capo_s3.types.object_lock_event_hold
     import capo_s3.types.object_lock_legal_hold_status
     import capo_s3.types.object_lock_mode
     import capo_s3.types.request_payer
@@ -299,6 +305,20 @@ def build_request(
                 input_["object_lock_legal_hold_status"]
             )
         )
+    if "object_lock_event_hold" in input_:
+        headers["x-amz-object-lock-event-hold"] = (
+            capo_s3.types.object_lock_event_hold.to_xml_text(
+                input_["object_lock_event_hold"]
+            )
+        )
+    if "object_lock_event_hold_duration_days" in input_:
+        headers["x-amz-object-lock-event-hold-duration-days"] = str(
+            input_["object_lock_event_hold_duration_days"]
+        )
+    if "object_lock_event_hold_duration_years" in input_:
+        headers["x-amz-object-lock-event-hold-duration-years"] = str(
+            input_["object_lock_event_hold_duration_years"]
+        )
     if "expected_bucket_owner" in input_:
         headers["x-amz-expected-bucket-owner"] = input_["expected_bucket_owner"]
     if "checksum_algorithm" in input_:
@@ -333,7 +353,7 @@ def create_multipart_upload(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -351,7 +371,7 @@ async def async_create_multipart_upload(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

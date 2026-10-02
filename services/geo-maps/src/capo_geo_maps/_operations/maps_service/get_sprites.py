@@ -12,11 +12,18 @@ from typing_extensions import Never
 import capo_geo_maps._auth._signers
 import capo_geo_maps._auth._sigv4
 import capo_geo_maps._protocol.eventstream
+import capo_geo_maps.types.color_scheme
 import capo_geo_maps.types.get_sprites_request
 import capo_geo_maps.types.get_sprites_response
+import capo_geo_maps.types.map_style
+import capo_geo_maps.types.variant
 from capo_geo_maps._protocol.errors import parse_error_metadata_json
 from capo_geo_maps._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_geo_maps._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_geo_maps._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_geo_maps.errors import UnknownServiceError
 
 
@@ -98,14 +105,30 @@ def build_request(
             Region=options.region,
         )
     )  # noqa: F841
+    import capo_geo_maps.types.color_scheme
+    import capo_geo_maps.types.map_style
+    import capo_geo_maps.types.variant
+
     url = (
         endpoint.url.rstrip("/")
-        + "/styles/{Style}/{ColorScheme}/{Variant}/sprites/{FileName}"
+        + "/v2/styles/{Style}/{ColorScheme}/{Variant}/sprites/{FileName}"
     )
     url = url.replace("{FileName}", quote(input_["file_name"], safe=""))
-    url = url.replace("{Style}", quote(input_["style"], safe=""))
-    url = url.replace("{ColorScheme}", quote(input_["color_scheme"], safe=""))
-    url = url.replace("{Variant}", quote(input_["variant"], safe=""))
+    url = url.replace(
+        "{Style}",
+        quote(capo_geo_maps.types.map_style.serialize_json(input_["style"]), safe=""),
+    )
+    url = url.replace(
+        "{ColorScheme}",
+        quote(
+            capo_geo_maps.types.color_scheme.serialize_json(input_["color_scheme"]),
+            safe="",
+        ),
+    )
+    url = url.replace(
+        "{Variant}",
+        quote(capo_geo_maps.types.variant.serialize_json(input_["variant"]), safe=""),
+    )
     params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
@@ -128,7 +151,7 @@ def get_sprites(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -145,7 +168,7 @@ async def async_get_sprites(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_customer_profiles.types.diversity_config
     import capo_customer_profiles.types.events_config
     import capo_customer_profiles.types.included_columns
     import capo_customer_profiles.types.inference_config
@@ -32,6 +33,10 @@ class RecommenderConfig(TypedDict, closed=True):
         "capo_customer_profiles.types.included_columns.IncludedColumns"
     ]
     """<p>A map of dataset type to a list of column names to exclude from training. The <code>_webAnalytics</code> and <code>_catalogItem</code> keys are supported. The column names must be valid columns defined in the recommender schema. All columns in the schema except the listed columns will be used for training. The following columns are mandatory and cannot be excluded: <code>Item.Id</code>, <code>EventTimestamp</code>, and <code>EventType</code> for <code>_webAnalytics</code>; <code>Id</code> for <code>_catalogItem</code>. Mutually exclusive with IncludedColumns — both cannot be specified in the same request.</p>"""
+    diversity_config: NotRequired[
+        "capo_customer_profiles.types.diversity_config.DiversityConfig"
+    ]
+    """<p>Configuration for diversity-aware recommendations. When set, the recommender applies diversity constraints defined per item column to reduce over-concentration of similar items in the results.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -67,6 +72,14 @@ def serialize_json(value: RecommenderConfig) -> dict:
         out["ExcludedColumns"] = (
             capo_customer_profiles.types.included_columns.serialize_json(
                 value["excluded_columns"]
+            )
+        )
+    if "diversity_config" in value:
+        import capo_customer_profiles.types.diversity_config
+
+        out["DiversityConfig"] = (
+            capo_customer_profiles.types.diversity_config.serialize_json(
+                value["diversity_config"]
             )
         )
     return out
@@ -106,6 +119,14 @@ def deserialize_json(data: dict) -> RecommenderConfig:
         out["excluded_columns"] = (
             capo_customer_profiles.types.included_columns.deserialize_json(
                 data["ExcludedColumns"]
+            )
+        )
+    if data.get("DiversityConfig") is not None:
+        import capo_customer_profiles.types.diversity_config
+
+        out["diversity_config"] = (
+            capo_customer_profiles.types.diversity_config.deserialize_json(
+                data["DiversityConfig"]
             )
         )
     return out

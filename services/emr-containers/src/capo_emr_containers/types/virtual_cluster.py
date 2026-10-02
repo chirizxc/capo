@@ -5,10 +5,13 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_emr_containers.types.boolean
     import capo_emr_containers.types.container_provider
     import capo_emr_containers.types.date
     import capo_emr_containers.types.resource_id_string
     import capo_emr_containers.types.resource_name_string
+    import capo_emr_containers.types.scheduler_configuration
+    import capo_emr_containers.types.scheduler_status
     import capo_emr_containers.types.tag_map
     import capo_emr_containers.types.virtual_cluster_arn
     import capo_emr_containers.types.virtual_cluster_state
@@ -39,6 +42,16 @@ class VirtualCluster(TypedDict, closed=True):
         "capo_emr_containers.types.resource_id_string.ResourceIdString"
     ]
     """<p>The ID of the security configuration.</p>"""
+    session_enabled: NotRequired["capo_emr_containers.types.boolean.Boolean"]
+    """<p>Specifies whether the virtual cluster has session support enabled. </p>"""
+    scheduler_configuration: NotRequired[
+        "capo_emr_containers.types.scheduler_configuration.SchedulerConfiguration"
+    ]
+    """<p>The scheduler configuration (concurrency and queue limits) applied to the virtual cluster. The service does not return this field when no scheduler limits are configured.</p>"""
+    scheduler_status: NotRequired[
+        "capo_emr_containers.types.scheduler_status.SchedulerStatus"
+    ]
+    """<p>The current in-queue and concurrent job-run counts for the virtual cluster.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -76,6 +89,24 @@ def serialize_json(value: VirtualCluster) -> dict:
         out["tags"] = capo_emr_containers.types.tag_map.serialize_json(value["tags"])
     if "security_configuration_id" in value:
         out["securityConfigurationId"] = value["security_configuration_id"]
+    if "session_enabled" in value:
+        out["sessionEnabled"] = value["session_enabled"]
+    if "scheduler_configuration" in value:
+        import capo_emr_containers.types.scheduler_configuration
+
+        out["schedulerConfiguration"] = (
+            capo_emr_containers.types.scheduler_configuration.serialize_json(
+                value["scheduler_configuration"]
+            )
+        )
+    if "scheduler_status" in value:
+        import capo_emr_containers.types.scheduler_status
+
+        out["schedulerStatus"] = (
+            capo_emr_containers.types.scheduler_status.serialize_json(
+                value["scheduler_status"]
+            )
+        )
     return out
 
 
@@ -113,4 +144,22 @@ def deserialize_json(data: dict) -> VirtualCluster:
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])
     if data.get("securityConfigurationId") is not None:
         out["security_configuration_id"] = data["securityConfigurationId"]
+    if data.get("sessionEnabled") is not None:
+        out["session_enabled"] = data["sessionEnabled"]
+    if data.get("schedulerConfiguration") is not None:
+        import capo_emr_containers.types.scheduler_configuration
+
+        out["scheduler_configuration"] = (
+            capo_emr_containers.types.scheduler_configuration.deserialize_json(
+                data["schedulerConfiguration"]
+            )
+        )
+    if data.get("schedulerStatus") is not None:
+        import capo_emr_containers.types.scheduler_status
+
+        out["scheduler_status"] = (
+            capo_emr_containers.types.scheduler_status.deserialize_json(
+                data["schedulerStatus"]
+            )
+        )
     return out

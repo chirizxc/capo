@@ -40,6 +40,8 @@ if TYPE_CHECKING:
     import capo_inspector2.types.associate_member_request
     import capo_inspector2.types.associate_member_response
     import capo_inspector2.types.auto_enable
+    import capo_inspector2.types.aws_config_connector_arn
+    import capo_inspector2.types.aws_config_connector_arn_list
     import capo_inspector2.types.batch_associate_code_security_scan_configuration_request
     import capo_inspector2.types.batch_associate_code_security_scan_configuration_response
     import capo_inspector2.types.batch_disassociate_code_security_scan_configuration_request
@@ -90,6 +92,16 @@ if TYPE_CHECKING:
     import capo_inspector2.types.code_security_scan_configuration
     import capo_inspector2.types.code_security_uuid
     import capo_inspector2.types.configuration_level
+    import capo_inspector2.types.connector
+    import capo_inspector2.types.connector_arn
+    import capo_inspector2.types.connector_cloud_provider
+    import capo_inspector2.types.connector_description
+    import capo_inspector2.types.connector_filter_criteria
+    import capo_inspector2.types.connector_name
+    import capo_inspector2.types.connector_next_token
+    import capo_inspector2.types.connector_scan_configuration
+    import capo_inspector2.types.connector_scan_configuration_item
+    import capo_inspector2.types.connector_tag_map
     import capo_inspector2.types.counts
     import capo_inspector2.types.coverage_filter_criteria
     import capo_inspector2.types.covered_resource
@@ -100,6 +112,8 @@ if TYPE_CHECKING:
     import capo_inspector2.types.create_code_security_integration_response
     import capo_inspector2.types.create_code_security_scan_configuration_request
     import capo_inspector2.types.create_code_security_scan_configuration_response
+    import capo_inspector2.types.create_connector_request
+    import capo_inspector2.types.create_connector_response
     import capo_inspector2.types.create_filter_request
     import capo_inspector2.types.create_filter_response
     import capo_inspector2.types.create_findings_report_request
@@ -114,6 +128,8 @@ if TYPE_CHECKING:
     import capo_inspector2.types.delete_code_security_integration_response
     import capo_inspector2.types.delete_code_security_scan_configuration_request
     import capo_inspector2.types.delete_code_security_scan_configuration_response
+    import capo_inspector2.types.delete_connector_request
+    import capo_inspector2.types.delete_connector_response
     import capo_inspector2.types.delete_filter_request
     import capo_inspector2.types.delete_filter_response
     import capo_inspector2.types.describe_organization_configuration_request
@@ -200,6 +216,11 @@ if TYPE_CHECKING:
     import capo_inspector2.types.list_code_security_scan_configuration_associations_response
     import capo_inspector2.types.list_code_security_scan_configurations_request
     import capo_inspector2.types.list_code_security_scan_configurations_response
+    import capo_inspector2.types.list_connector_scan_configurations_max_results
+    import capo_inspector2.types.list_connector_scan_configurations_request
+    import capo_inspector2.types.list_connector_scan_configurations_response
+    import capo_inspector2.types.list_connectors_request
+    import capo_inspector2.types.list_connectors_response
     import capo_inspector2.types.list_coverage_max_results
     import capo_inspector2.types.list_coverage_request
     import capo_inspector2.types.list_coverage_response
@@ -232,6 +253,8 @@ if TYPE_CHECKING:
     import capo_inspector2.types.next_token
     import capo_inspector2.types.path_list
     import capo_inspector2.types.permission
+    import capo_inspector2.types.provider_detail_create
+    import capo_inspector2.types.provider_detail_update
     import capo_inspector2.types.report_format
     import capo_inspector2.types.report_id
     import capo_inspector2.types.report_target_accounts
@@ -277,8 +300,13 @@ if TYPE_CHECKING:
     import capo_inspector2.types.update_code_security_integration_response
     import capo_inspector2.types.update_code_security_scan_configuration_request
     import capo_inspector2.types.update_code_security_scan_configuration_response
+    import capo_inspector2.types.update_configuration_inheritance
     import capo_inspector2.types.update_configuration_request
     import capo_inspector2.types.update_configuration_response
+    import capo_inspector2.types.update_connector_request
+    import capo_inspector2.types.update_connector_response
+    import capo_inspector2.types.update_connector_scan_configuration_request
+    import capo_inspector2.types.update_connector_scan_configuration_response
     import capo_inspector2.types.update_ec2_deep_inspection_configuration_request
     import capo_inspector2.types.update_ec2_deep_inspection_configuration_response
     import capo_inspector2.types.update_encryption_key_request
@@ -1101,6 +1129,82 @@ class Inspector2Client:
         response.response.close()
         return response.output
 
+    def create_connector(
+        self,
+        name: "capo_inspector2.types.connector_name.ConnectorName",
+        provider: "capo_inspector2.types.connector_cloud_provider.ConnectorCloudProvider",
+        provider_detail: "capo_inspector2.types.provider_detail_create.ProviderDetailCreate",
+        *,
+        config_overrides: Optional[Inspector2ClientConfig] = None,
+        client_token: Optional[str] = None,
+        description: Optional[
+            "capo_inspector2.types.connector_description.ConnectorDescription"
+        ] = None,
+        tags: Optional[
+            "capo_inspector2.types.connector_tag_map.ConnectorTagMap"
+        ] = None,
+    ) -> "capo_inspector2.types.create_connector_response.CreateConnectorResponse":
+        """<p>Creates a connector that links an external cloud provider to Amazon Inspector for vulnerability scanning.</p>
+
+        Args:
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.</p>
+            name: <p>The name of the connector.</p>
+            provider: <p>The cloud provider for the connector.</p>
+            description: <p>A description of the connector.</p>
+            provider_detail: <p>The provider-specific configuration details for the connector.</p>
+            tags: <p>The tags to apply to the connector.</p>
+
+        Raises:
+            capo_inspector2.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p> For <code>Enable</code>, you receive this error if you attempt to use a feature in an unsupported Amazon Web Services Region. </p>
+            capo_inspector2.errors.conflict_exception.ConflictException: <p>A conflict occurred. This exception occurs when the same resource is being modified by concurrent requests.</p>
+            capo_inspector2.errors.internal_server_exception.InternalServerException: <p>The request has failed due to an internal failure of the Amazon Inspector service.</p>
+            capo_inspector2.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota. To perform the requested action, remove some of the relevant resources, or use Service Quotas to request a service quota increase.</p>
+            capo_inspector2.errors.throttling_exception.ThrottlingException: <p>The limit on the number of requests per second was exceeded.</p>
+            capo_inspector2.errors.validation_exception.ValidationException: <p>The request has failed validation due to missing required fields or having invalid inputs.</p>
+            capo_inspector2.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create an Azure customer-managed connector for VM scanning at SUBSCRIPTION scope
+
+            >>> client.create_connector(name='my-azure-connector', description='Azure subscription scanner', provider='AZURE', provider_detail={'azure': {'awsConfigConnectorArn': 'arn:aws:config:us-east-1:123456789012:connector/azure/a7bc5463-04ce-4b52-901e-f26f7292a4a7/2fbed4bd-5b95-4947-a751-8defc76ecdae', 'scopeConfiguration': {'vmScanning': {'scopeType': 'SUBSCRIPTION', 'scopeValues': ['552802f5-1492-4184-bbae-7291c9939b16']}}, 'azureRegions': ['eastus'], 'autoInstallVMScanner': True}}, tags={'env': 'prod', 'owner': 'security-team'})
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_inspector2.types.create_connector_request.CreateConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_inspector2.types.create_connector_response.CreateConnectorResponse"
+        ]:
+            import capo_inspector2._operations.inspector2.create_connector
+
+            output, http_response = (
+                capo_inspector2._operations.inspector2.create_connector.create_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_inspector2.types.create_connector_request.CreateConnectorRequest = {
+            "name": name,
+            "provider": provider,
+            "provider_detail": provider_detail,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_filter(
         self,
         action: "capo_inspector2.types.filter_action.FilterAction",
@@ -1417,6 +1521,59 @@ class Inspector2Client:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_inspector2.types.delete_code_security_scan_configuration_request.DeleteCodeSecurityScanConfigurationRequest = {
             "scan_configuration_arn": scan_configuration_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_connector(
+        self,
+        connector_arn: "capo_inspector2.types.connector_arn.ConnectorArn",
+        *,
+        config_overrides: Optional[Inspector2ClientConfig] = None,
+    ) -> "capo_inspector2.types.delete_connector_response.DeleteConnectorResponse":
+        """<p>Deletes a connector from your account.</p>
+
+        Args:
+            connector_arn: <p>The Amazon Resource Name (ARN) of the connector to delete.</p>
+
+        Raises:
+            capo_inspector2.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p> For <code>Enable</code>, you receive this error if you attempt to use a feature in an unsupported Amazon Web Services Region. </p>
+            capo_inspector2.errors.conflict_exception.ConflictException: <p>A conflict occurred. This exception occurs when the same resource is being modified by concurrent requests.</p>
+            capo_inspector2.errors.internal_server_exception.InternalServerException: <p>The request has failed due to an internal failure of the Amazon Inspector service.</p>
+            capo_inspector2.errors.resource_not_found_exception.ResourceNotFoundException: <p>The operation tried to access an invalid resource. Make sure the resource is specified correctly.</p>
+            capo_inspector2.errors.throttling_exception.ThrottlingException: <p>The limit on the number of requests per second was exceeded.</p>
+            capo_inspector2.errors.validation_exception.ValidationException: <p>The request has failed validation due to missing required fields or having invalid inputs.</p>
+            capo_inspector2.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete a customer-managed connector
+
+            >>> client.delete_connector(connector_arn='arn:aws:inspector2:us-east-1:123456789012:connector/6ccf8549-b52b-57ca-bf52-a2266da3c53a')
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_inspector2.types.delete_connector_request.DeleteConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_inspector2.types.delete_connector_response.DeleteConnectorResponse"
+        ]:
+            import capo_inspector2._operations.inspector2.delete_connector
+
+            output, http_response = (
+                capo_inspector2._operations.inspector2.delete_connector.delete_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_inspector2.types.delete_connector_request.DeleteConnectorRequest = {
+            "connector_arn": connector_arn
         }
 
         response = execute_pipeline(
@@ -2193,14 +2350,22 @@ class Inspector2Client:
         return response.output
 
     def get_configuration(
-        self, *, config_overrides: Optional[Inspector2ClientConfig] = None
+        self,
+        *,
+        config_overrides: Optional[Inspector2ClientConfig] = None,
+        account_id: Optional["capo_inspector2.types.account_id.AccountId"] = None,
     ) -> "capo_inspector2.types.get_configuration_response.GetConfigurationResponse":
-        """<p>Retrieves setting configurations for Inspector scans.</p>
+        """<p>Retrieves setting configurations for Amazon Inspector scans. If you specify an <code>accountId</code>, this operation returns the scan configuration for that member account. You must be the delegated administrator for the specified member account. If you do not specify an <code>accountId</code>, this operation returns your own scan configuration.</p>
+
+        Args:
+            account_id: <p>The 12-digit Amazon Web Services account ID of the member account whose scan configuration you want to retrieve. When specified, you must be the delegated administrator for this member account. If not specified, the operation returns your own configuration.</p>
 
         Raises:
+            capo_inspector2.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p> For <code>Enable</code>, you receive this error if you attempt to use a feature in an unsupported Amazon Web Services Region. </p>
             capo_inspector2.errors.internal_server_exception.InternalServerException: <p>The request has failed due to an internal failure of the Amazon Inspector service.</p>
             capo_inspector2.errors.resource_not_found_exception.ResourceNotFoundException: <p>The operation tried to access an invalid resource. Make sure the resource is specified correctly.</p>
             capo_inspector2.errors.throttling_exception.ThrottlingException: <p>The limit on the number of requests per second was exceeded.</p>
+            capo_inspector2.errors.validation_exception.ValidationException: <p>The request has failed validation due to missing required fields or having invalid inputs.</p>
             capo_inspector2.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2220,6 +2385,8 @@ class Inspector2Client:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_inspector2.types.get_configuration_request.GetConfigurationRequest = {}
+        if account_id is not None:
+            input_["account_id"] = account_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3195,6 +3362,190 @@ class Inspector2Client:
         )
         response.response.close()
         return response.output
+
+    def list_connectors(
+        self,
+        *,
+        config_overrides: Optional[Inspector2ClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[
+            "capo_inspector2.types.connector_next_token.ConnectorNextToken"
+        ] = None,
+        filter_criteria: Optional[
+            "capo_inspector2.types.connector_filter_criteria.ConnectorFilterCriteria"
+        ] = None,
+    ) -> "capo_inspector2.types.list_connectors_response.ListConnectorsResponse":
+        """<p>Lists connectors in your account. Results are paginated. Use the <code>nextToken</code> parameter to retrieve the next page of results.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return in a single call. To retrieve the remaining results, make another request with the <code>nextToken</code> value returned from this request.</p>
+            next_token: <p>A token to use for paginating results. Set this value to null for the first request. For subsequent calls, use the <code>nextToken</code> value returned from the previous request.</p>
+            filter_criteria: <p>The filter criteria to apply to the list of connectors.</p>
+
+        Raises:
+            capo_inspector2.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p> For <code>Enable</code>, you receive this error if you attempt to use a feature in an unsupported Amazon Web Services Region. </p>
+            capo_inspector2.errors.internal_server_exception.InternalServerException: <p>The request has failed due to an internal failure of the Amazon Inspector service.</p>
+            capo_inspector2.errors.throttling_exception.ThrottlingException: <p>The limit on the number of requests per second was exceeded.</p>
+            capo_inspector2.errors.validation_exception.ValidationException: <p>The request has failed validation due to missing required fields or having invalid inputs.</p>
+            capo_inspector2.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List all Azure customer-managed connectors
+
+            >>> client.list_connectors(max_results=10, filter_criteria={'provider': [{'comparison': 'EQUALS', 'value': 'AZURE'}], 'connectorType': [{'comparison': 'EQUALS', 'value': 'CUSTOMER_MANAGED'}]})
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_inspector2.types.list_connectors_request.ListConnectorsRequest]",
+        ) -> OperationResponse[
+            "capo_inspector2.types.list_connectors_response.ListConnectorsResponse"
+        ]:
+            import capo_inspector2._operations.inspector2.list_connectors
+
+            output, http_response = (
+                capo_inspector2._operations.inspector2.list_connectors.list_connectors(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_inspector2.types.list_connectors_request.ListConnectorsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if filter_criteria is not None:
+            input_["filter_criteria"] = filter_criteria
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_connectors(
+        self,
+        *,
+        config_overrides: Optional[Inspector2ClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[
+            "capo_inspector2.types.connector_next_token.ConnectorNextToken"
+        ] = None,
+        filter_criteria: Optional[
+            "capo_inspector2.types.connector_filter_criteria.ConnectorFilterCriteria"
+        ] = None,
+    ) -> "Iterator[capo_inspector2.types.connector.Connector]":
+        _token = next_token
+        while True:
+            _response = self.list_connectors(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                filter_criteria=filter_criteria,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_connector_scan_configurations(
+        self,
+        *,
+        config_overrides: Optional[Inspector2ClientConfig] = None,
+        aws_config_connector_arns: Optional[
+            "capo_inspector2.types.aws_config_connector_arn_list.AwsConfigConnectorArnList"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector2.types.list_connector_scan_configurations_max_results.ListConnectorScanConfigurationsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_inspector2.types.connector_next_token.ConnectorNextToken"
+        ] = None,
+    ) -> "capo_inspector2.types.list_connector_scan_configurations_response.ListConnectorScanConfigurationsResponse":
+        """<p>Lists scan configurations for Amazon Web Services Config connectors. Results are paginated. Use the <code>nextToken</code> parameter to retrieve the next page of results.</p>
+
+        Args:
+            aws_config_connector_arns: <p>The list of Amazon Web Services Config connector ARNs to filter results.</p>
+            max_results: <p>The maximum number of results to return in a single call. Valid range is 1 to 50. To retrieve the remaining results, make another request with the <code>nextToken</code> value returned from this request.</p>
+            next_token: <p>A token to use for paginating results. Set this value to null for the first request. For subsequent calls, use the <code>nextToken</code> value returned from the previous request.</p>
+
+        Raises:
+            capo_inspector2.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p> For <code>Enable</code>, you receive this error if you attempt to use a feature in an unsupported Amazon Web Services Region. </p>
+            capo_inspector2.errors.internal_server_exception.InternalServerException: <p>The request has failed due to an internal failure of the Amazon Inspector service.</p>
+            capo_inspector2.errors.throttling_exception.ThrottlingException: <p>The limit on the number of requests per second was exceeded.</p>
+            capo_inspector2.errors.validation_exception.ValidationException: <p>The request has failed validation due to missing required fields or having invalid inputs.</p>
+            capo_inspector2.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List scan configurations for a specific AWS Config connector
+
+            >>> client.list_connector_scan_configurations(aws_config_connector_arns=['arn:aws:config:us-east-1:123456789012:connector/azure/a7bc5463-04ce-4b52-901e-f26f7292a4a7/2fbed4bd-5b95-4947-a751-8defc76ecdae'], max_results=10)
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_inspector2.types.list_connector_scan_configurations_request.ListConnectorScanConfigurationsRequest]",
+        ) -> OperationResponse[
+            "capo_inspector2.types.list_connector_scan_configurations_response.ListConnectorScanConfigurationsResponse"
+        ]:
+            import capo_inspector2._operations.inspector2.list_connector_scan_configurations
+
+            output, http_response = (
+                capo_inspector2._operations.inspector2.list_connector_scan_configurations.list_connector_scan_configurations(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_inspector2.types.list_connector_scan_configurations_request.ListConnectorScanConfigurationsRequest = {}
+        if aws_config_connector_arns is not None:
+            input_["aws_config_connector_arns"] = aws_config_connector_arns
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_connector_scan_configurations(
+        self,
+        *,
+        config_overrides: Optional[Inspector2ClientConfig] = None,
+        aws_config_connector_arns: Optional[
+            "capo_inspector2.types.aws_config_connector_arn_list.AwsConfigConnectorArnList"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector2.types.list_connector_scan_configurations_max_results.ListConnectorScanConfigurationsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_inspector2.types.connector_next_token.ConnectorNextToken"
+        ] = None,
+    ) -> "Iterator[capo_inspector2.types.connector_scan_configuration_item.ConnectorScanConfigurationItem]":
+        _token = next_token
+        while True:
+            _response = self.list_connector_scan_configurations(
+                config_overrides=config_overrides,
+                aws_config_connector_arns=aws_config_connector_arns,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("scan_configurations",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_coverage(
         self,
@@ -4615,18 +4966,24 @@ class Inspector2Client:
         self,
         *,
         config_overrides: Optional[Inspector2ClientConfig] = None,
+        account_id: Optional["capo_inspector2.types.account_id.AccountId"] = None,
         ecr_configuration: Optional[
             "capo_inspector2.types.ecr_configuration.EcrConfiguration"
         ] = None,
         ec2_configuration: Optional[
             "capo_inspector2.types.ec2_configuration.Ec2Configuration"
         ] = None,
+        update_configuration_inheritance: Optional[
+            "capo_inspector2.types.update_configuration_inheritance.UpdateConfigurationInheritance"
+        ] = None,
     ) -> "capo_inspector2.types.update_configuration_response.UpdateConfigurationResponse":
-        """<p>Updates setting configurations for your Amazon Inspector account. When you use this API as an Amazon Inspector delegated administrator this updates the setting for all accounts you manage. Member accounts in an organization cannot update this setting.</p>
+        """<p>Updates the scan configuration for your Amazon Inspector account. If you don't specify an <code>accountId</code>, this operation updates the delegated administrator's configuration and propagates it to member accounts that have not been individually configured. If you specify an <code>accountId</code>, this operation updates that member account's configuration. Only the delegated administrator can specify an <code>accountId</code>; member accounts cannot call this operation.</p>
 
         Args:
+            account_id: <p>The 12-digit Amazon Web Services account ID of the member account whose scan configuration you want to update. When specified, you must be the delegated administrator for this member account. If not specified, the operation updates your own configuration and propagates changes to any member accounts that have not been individually configured.</p>
             ecr_configuration: <p>Specifies how the ECR automated re-scan will be updated for your environment.</p>
             ec2_configuration: <p>Specifies how the Amazon EC2 automated scan will be updated for your environment.</p>
+            update_configuration_inheritance: <p>Specifies which scan-type configurations to reset to the delegated administrator's inherited values for the targeted member account. Each member of this structure is independently optional. When specified, <code>ec2Configuration</code> and <code>ecrConfiguration</code> must be absent, and <code>accountId</code> must also be present. Only <code>INHERIT_FROM_ADMIN</code> is valid for each member. If not specified, the operation uses the <code>ec2Configuration</code> and <code>ecrConfiguration</code> parameters instead.</p>
 
         Raises:
             capo_inspector2.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p> For <code>Enable</code>, you receive this error if you attempt to use a feature in an unsupported Amazon Web Services Region. </p>
@@ -4652,10 +5009,137 @@ class Inspector2Client:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_inspector2.types.update_configuration_request.UpdateConfigurationRequest = {}
+        if account_id is not None:
+            input_["account_id"] = account_id
         if ecr_configuration is not None:
             input_["ecr_configuration"] = ecr_configuration
         if ec2_configuration is not None:
             input_["ec2_configuration"] = ec2_configuration
+        if update_configuration_inheritance is not None:
+            input_["update_configuration_inheritance"] = (
+                update_configuration_inheritance
+            )
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_connector(
+        self,
+        connector_arn: "capo_inspector2.types.connector_arn.ConnectorArn",
+        *,
+        config_overrides: Optional[Inspector2ClientConfig] = None,
+        description: Optional[
+            "capo_inspector2.types.connector_description.ConnectorDescription"
+        ] = None,
+        provider_detail: Optional[
+            "capo_inspector2.types.provider_detail_update.ProviderDetailUpdate"
+        ] = None,
+    ) -> "capo_inspector2.types.update_connector_response.UpdateConnectorResponse":
+        """<p>Updates the description or provider-specific configuration details of an existing connector.</p>
+
+        Args:
+            connector_arn: <p>The Amazon Resource Name (ARN) of the connector to update.</p>
+            description: <p>The updated description of the connector.</p>
+            provider_detail: <p>The updated provider-specific configuration details for the connector.</p>
+
+        Raises:
+            capo_inspector2.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p> For <code>Enable</code>, you receive this error if you attempt to use a feature in an unsupported Amazon Web Services Region. </p>
+            capo_inspector2.errors.conflict_exception.ConflictException: <p>A conflict occurred. This exception occurs when the same resource is being modified by concurrent requests.</p>
+            capo_inspector2.errors.internal_server_exception.InternalServerException: <p>The request has failed due to an internal failure of the Amazon Inspector service.</p>
+            capo_inspector2.errors.resource_not_found_exception.ResourceNotFoundException: <p>The operation tried to access an invalid resource. Make sure the resource is specified correctly.</p>
+            capo_inspector2.errors.throttling_exception.ThrottlingException: <p>The limit on the number of requests per second was exceeded.</p>
+            capo_inspector2.errors.validation_exception.ValidationException: <p>The request has failed validation due to missing required fields or having invalid inputs.</p>
+            capo_inspector2.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Expand the Azure regions covered by a connector
+
+            >>> client.update_connector(connector_arn='arn:aws:inspector2:us-east-1:123456789012:connector/6ccf8549-b52b-57ca-bf52-a2266da3c53a', provider_detail={'azure': {'azureRegions': ['eastus', 'westus']}})
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_inspector2.types.update_connector_request.UpdateConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_inspector2.types.update_connector_response.UpdateConnectorResponse"
+        ]:
+            import capo_inspector2._operations.inspector2.update_connector
+
+            output, http_response = (
+                capo_inspector2._operations.inspector2.update_connector.update_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_inspector2.types.update_connector_request.UpdateConnectorRequest = {
+            "connector_arn": connector_arn
+        }
+        if description is not None:
+            input_["description"] = description
+        if provider_detail is not None:
+            input_["provider_detail"] = provider_detail
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_connector_scan_configuration(
+        self,
+        aws_config_connector_arn: "capo_inspector2.types.aws_config_connector_arn.AwsConfigConnectorArn",
+        scan_configuration: "capo_inspector2.types.connector_scan_configuration.ConnectorScanConfiguration",
+        *,
+        config_overrides: Optional[Inspector2ClientConfig] = None,
+    ) -> "capo_inspector2.types.update_connector_scan_configuration_response.UpdateConnectorScanConfigurationResponse":
+        """<p>Updates scan configuration settings for resources associated with an Amazon Web Services Config connector.</p>
+
+        Args:
+            aws_config_connector_arn: <p>The ARN of the Amazon Web Services Config connector.</p>
+            scan_configuration: <p>The scan configuration settings to apply.</p>
+
+        Raises:
+            capo_inspector2.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p> For <code>Enable</code>, you receive this error if you attempt to use a feature in an unsupported Amazon Web Services Region. </p>
+            capo_inspector2.errors.conflict_exception.ConflictException: <p>A conflict occurred. This exception occurs when the same resource is being modified by concurrent requests.</p>
+            capo_inspector2.errors.internal_server_exception.InternalServerException: <p>The request has failed due to an internal failure of the Amazon Inspector service.</p>
+            capo_inspector2.errors.resource_not_found_exception.ResourceNotFoundException: <p>The operation tried to access an invalid resource. Make sure the resource is specified correctly.</p>
+            capo_inspector2.errors.throttling_exception.ThrottlingException: <p>The limit on the number of requests per second was exceeded.</p>
+            capo_inspector2.errors.validation_exception.ValidationException: <p>The request has failed validation due to missing required fields or having invalid inputs.</p>
+            capo_inspector2.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Set 30-day push and 14-day pull rescan durations for an Azure container registry connector
+
+            >>> client.update_connector_scan_configuration(aws_config_connector_arn='arn:aws:config:us-east-1:123456789012:connector/azure/a7bc5463-04ce-4b52-901e-f26f7292a4a7/2fbed4bd-5b95-4947-a751-8defc76ecdae', scan_configuration={'containerImageScanning': {'pushDuration': 'DAYS_30', 'pullDuration': 'DAYS_14'}})
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_inspector2.types.update_connector_scan_configuration_request.UpdateConnectorScanConfigurationRequest]",
+        ) -> OperationResponse[
+            "capo_inspector2.types.update_connector_scan_configuration_response.UpdateConnectorScanConfigurationResponse"
+        ]:
+            import capo_inspector2._operations.inspector2.update_connector_scan_configuration
+
+            output, http_response = (
+                capo_inspector2._operations.inspector2.update_connector_scan_configuration.update_connector_scan_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_inspector2.types.update_connector_scan_configuration_request.UpdateConnectorScanConfigurationRequest = {
+            "aws_config_connector_arn": aws_config_connector_arn,
+            "scan_configuration": scan_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

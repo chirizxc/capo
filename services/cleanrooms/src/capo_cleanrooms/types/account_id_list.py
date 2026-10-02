@@ -1,0 +1,17 @@
+"""Generated from Smithy shape ``com.amazonaws.cleanrooms#AccountIdList``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_cleanrooms.types.account_id
+
+AccountIdList: TypeAlias = list["capo_cleanrooms.types.account_id.AccountId"]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: AccountIdList) -> list:
+    return list(value)
+
+
+def deserialize_json(data: list) -> AccountIdList:
+    return [item for item in data if item is not None]

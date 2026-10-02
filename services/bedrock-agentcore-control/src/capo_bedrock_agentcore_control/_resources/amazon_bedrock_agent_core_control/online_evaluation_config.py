@@ -16,6 +16,7 @@ from capo_bedrock_agentcore_control._services._pipeline import (
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.client_token
+    import capo_bedrock_agentcore_control.types.clustering_config
     import capo_bedrock_agentcore_control.types.create_online_evaluation_config_request
     import capo_bedrock_agentcore_control.types.create_online_evaluation_config_response
     import capo_bedrock_agentcore_control.types.data_source_config
@@ -26,11 +27,13 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.evaluator_list
     import capo_bedrock_agentcore_control.types.get_online_evaluation_config_request
     import capo_bedrock_agentcore_control.types.get_online_evaluation_config_response
+    import capo_bedrock_agentcore_control.types.insight_list
     import capo_bedrock_agentcore_control.types.list_online_evaluation_configs_request
     import capo_bedrock_agentcore_control.types.list_online_evaluation_configs_response
     import capo_bedrock_agentcore_control.types.online_evaluation_config_id
     import capo_bedrock_agentcore_control.types.online_evaluation_config_summary
     import capo_bedrock_agentcore_control.types.online_evaluation_execution_status
+    import capo_bedrock_agentcore_control.types.output_config
     import capo_bedrock_agentcore_control.types.role_arn
     import capo_bedrock_agentcore_control.types.rule
     import capo_bedrock_agentcore_control.types.tags_map
@@ -55,7 +58,6 @@ class OnlineEvaluationConfig:
         online_evaluation_config_name: "capo_bedrock_agentcore_control.types.evaluation_config_name.EvaluationConfigName",
         rule: "capo_bedrock_agentcore_control.types.rule.Rule",
         data_source_config: "capo_bedrock_agentcore_control.types.data_source_config.DataSourceConfig",
-        evaluators: "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList",
         evaluation_execution_role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn",
         enable_on_create: bool,
         *,
@@ -65,6 +67,18 @@ class OnlineEvaluationConfig:
         ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.evaluation_config_description.EvaluationConfigDescription"
+        ] = None,
+        evaluators: Optional[
+            "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
+        ] = None,
+        insights: Optional[
+            "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+        ] = None,
+        clustering_config: Optional[
+            "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+        ] = None,
+        output_config: Optional[
+            "capo_bedrock_agentcore_control.types.output_config.OutputConfig"
         ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_online_evaluation_config_response.CreateOnlineEvaluationConfigResponse":
@@ -77,6 +91,8 @@ class OnlineEvaluationConfig:
             rule: <p> The evaluation rule that defines sampling configuration, filters, and session detection settings for the online evaluation. </p>
             data_source_config: <p> The data source configuration that specifies CloudWatch log groups and service names to monitor for agent traces. </p>
             evaluators: <p> The list of evaluators to apply during online evaluation. Can include both built-in evaluators and custom evaluators created with <code>CreateEvaluator</code>. </p>
+            insights: <p>The list of insight types to run against agent sessions.</p>
+            clustering_config: <p>Configuration for periodic batch evaluation clustering of insight results.</p>
             evaluation_execution_role_arn: <p> The Amazon Resource Name (ARN) of the IAM role that grants permissions to read from CloudWatch logs, write evaluation results, and invoke Amazon Bedrock models for evaluation. If the configuration references evaluators encrypted with a customer managed KMS key, this role must also have <code>kms:Decrypt</code> permission on the KMS key. The service validates this permission at configuration creation time. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations-encryption.html\">Encryption at rest for AgentCore Evaluations</a>. </p>
             enable_on_create: <p> Whether to enable the online evaluation configuration immediately upon creation. If true, evaluation begins automatically. </p>
             tags: <p>A map of tag keys and values to assign to an AgentCore Online Evaluation Config. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
@@ -110,7 +126,6 @@ class OnlineEvaluationConfig:
             "online_evaluation_config_name": online_evaluation_config_name,
             "rule": rule,
             "data_source_config": data_source_config,
-            "evaluators": evaluators,
             "evaluation_execution_role_arn": evaluation_execution_role_arn,
             "enable_on_create": enable_on_create,
         }
@@ -119,6 +134,14 @@ class OnlineEvaluationConfig:
         input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
+        if evaluators is not None:
+            input_["evaluators"] = evaluators
+        if insights is not None:
+            input_["insights"] = insights
+        if clustering_config is not None:
+            input_["clustering_config"] = clustering_config
+        if output_config is not None:
+            input_["output_config"] = output_config
         if tags is not None:
             input_["tags"] = tags
 
@@ -195,6 +218,15 @@ class OnlineEvaluationConfig:
         evaluators: Optional[
             "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
         ] = None,
+        insights: Optional[
+            "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+        ] = None,
+        clustering_config: Optional[
+            "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+        ] = None,
+        output_config: Optional[
+            "capo_bedrock_agentcore_control.types.output_config.OutputConfig"
+        ] = None,
         evaluation_execution_role_arn: Optional[
             "capo_bedrock_agentcore_control.types.role_arn.RoleArn"
         ] = None,
@@ -211,6 +243,8 @@ class OnlineEvaluationConfig:
             rule: <p> The updated evaluation rule containing sampling configuration, filters, and session settings. </p>
             data_source_config: <p> The updated data source configuration specifying CloudWatch log groups and service names to monitor. </p>
             evaluators: <p> The updated list of evaluators to apply during online evaluation. </p>
+            insights: <p>The updated list of insight types to run against agent sessions.</p>
+            clustering_config: <p>The updated clustering configuration for periodic batch evaluation.</p>
             evaluation_execution_role_arn: <p> The updated Amazon Resource Name (ARN) of the IAM role used for evaluation execution. </p>
             execution_status: <p> The updated execution status to enable or disable the online evaluation. </p>
 
@@ -254,6 +288,12 @@ class OnlineEvaluationConfig:
             input_["data_source_config"] = data_source_config
         if evaluators is not None:
             input_["evaluators"] = evaluators
+        if insights is not None:
+            input_["insights"] = insights
+        if clustering_config is not None:
+            input_["clustering_config"] = clustering_config
+        if output_config is not None:
+            input_["output_config"] = output_config
         if evaluation_execution_role_arn is not None:
             input_["evaluation_execution_role_arn"] = evaluation_execution_role_arn
         if execution_status is not None:
@@ -375,7 +415,6 @@ class AsyncOnlineEvaluationConfig:
         online_evaluation_config_name: "capo_bedrock_agentcore_control.types.evaluation_config_name.EvaluationConfigName",
         rule: "capo_bedrock_agentcore_control.types.rule.Rule",
         data_source_config: "capo_bedrock_agentcore_control.types.data_source_config.DataSourceConfig",
-        evaluators: "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList",
         evaluation_execution_role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn",
         enable_on_create: bool,
         *,
@@ -385,6 +424,18 @@ class AsyncOnlineEvaluationConfig:
         ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.evaluation_config_description.EvaluationConfigDescription"
+        ] = None,
+        evaluators: Optional[
+            "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
+        ] = None,
+        insights: Optional[
+            "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+        ] = None,
+        clustering_config: Optional[
+            "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+        ] = None,
+        output_config: Optional[
+            "capo_bedrock_agentcore_control.types.output_config.OutputConfig"
         ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_online_evaluation_config_response.CreateOnlineEvaluationConfigResponse":
@@ -397,6 +448,8 @@ class AsyncOnlineEvaluationConfig:
             rule: <p> The evaluation rule that defines sampling configuration, filters, and session detection settings for the online evaluation. </p>
             data_source_config: <p> The data source configuration that specifies CloudWatch log groups and service names to monitor for agent traces. </p>
             evaluators: <p> The list of evaluators to apply during online evaluation. Can include both built-in evaluators and custom evaluators created with <code>CreateEvaluator</code>. </p>
+            insights: <p>The list of insight types to run against agent sessions.</p>
+            clustering_config: <p>Configuration for periodic batch evaluation clustering of insight results.</p>
             evaluation_execution_role_arn: <p> The Amazon Resource Name (ARN) of the IAM role that grants permissions to read from CloudWatch logs, write evaluation results, and invoke Amazon Bedrock models for evaluation. If the configuration references evaluators encrypted with a customer managed KMS key, this role must also have <code>kms:Decrypt</code> permission on the KMS key. The service validates this permission at configuration creation time. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations-encryption.html\">Encryption at rest for AgentCore Evaluations</a>. </p>
             enable_on_create: <p> Whether to enable the online evaluation configuration immediately upon creation. If true, evaluation begins automatically. </p>
             tags: <p>A map of tag keys and values to assign to an AgentCore Online Evaluation Config. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
@@ -431,7 +484,6 @@ class AsyncOnlineEvaluationConfig:
             "online_evaluation_config_name": online_evaluation_config_name,
             "rule": rule,
             "data_source_config": data_source_config,
-            "evaluators": evaluators,
             "evaluation_execution_role_arn": evaluation_execution_role_arn,
             "enable_on_create": enable_on_create,
         }
@@ -440,6 +492,14 @@ class AsyncOnlineEvaluationConfig:
         input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
+        if evaluators is not None:
+            input_["evaluators"] = evaluators
+        if insights is not None:
+            input_["insights"] = insights
+        if clustering_config is not None:
+            input_["clustering_config"] = clustering_config
+        if output_config is not None:
+            input_["output_config"] = output_config
         if tags is not None:
             input_["tags"] = tags
 
@@ -517,6 +577,15 @@ class AsyncOnlineEvaluationConfig:
         evaluators: Optional[
             "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
         ] = None,
+        insights: Optional[
+            "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+        ] = None,
+        clustering_config: Optional[
+            "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+        ] = None,
+        output_config: Optional[
+            "capo_bedrock_agentcore_control.types.output_config.OutputConfig"
+        ] = None,
         evaluation_execution_role_arn: Optional[
             "capo_bedrock_agentcore_control.types.role_arn.RoleArn"
         ] = None,
@@ -533,6 +602,8 @@ class AsyncOnlineEvaluationConfig:
             rule: <p> The updated evaluation rule containing sampling configuration, filters, and session settings. </p>
             data_source_config: <p> The updated data source configuration specifying CloudWatch log groups and service names to monitor. </p>
             evaluators: <p> The updated list of evaluators to apply during online evaluation. </p>
+            insights: <p>The updated list of insight types to run against agent sessions.</p>
+            clustering_config: <p>The updated clustering configuration for periodic batch evaluation.</p>
             evaluation_execution_role_arn: <p> The updated Amazon Resource Name (ARN) of the IAM role used for evaluation execution. </p>
             execution_status: <p> The updated execution status to enable or disable the online evaluation. </p>
 
@@ -577,6 +648,12 @@ class AsyncOnlineEvaluationConfig:
             input_["data_source_config"] = data_source_config
         if evaluators is not None:
             input_["evaluators"] = evaluators
+        if insights is not None:
+            input_["insights"] = insights
+        if clustering_config is not None:
+            input_["clustering_config"] = clustering_config
+        if output_config is not None:
+            input_["output_config"] = output_config
         if evaluation_execution_role_arn is not None:
             input_["evaluation_execution_role_arn"] = evaluation_execution_role_arn
         if execution_status is not None:

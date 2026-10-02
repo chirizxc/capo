@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 SchemaType: TypeAlias = Literal[
     "TABLE",
     "ID_MAPPING_TABLE",
+    "INTERMEDIATE_TABLE",
 ]
 
 

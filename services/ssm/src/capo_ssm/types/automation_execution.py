@@ -62,6 +62,8 @@ class AutomationExecution(TypedDict, closed=True):
     """<p>The list of execution outputs as defined in the Automation runbook.</p>"""
     failure_message: NotRequired["capo_ssm.types.string.String"]
     """<p>A message describing why an execution has failed, if the status is set to Failed.</p>"""
+    warning_message: NotRequired["capo_ssm.types.string.String"]
+    """<p>A message that describes a non-critical issue that occurred during the automation execution.</p>"""
     mode: NotRequired["capo_ssm.types.execution_mode.ExecutionMode"]
     """<p>The automation execution mode.</p>"""
     parent_automation_execution_id: NotRequired[
@@ -182,6 +184,8 @@ def serialize_aws_json_1_1(value: AutomationExecution) -> dict:
         )
     if "failure_message" in value:
         out["FailureMessage"] = value["failure_message"]
+    if "warning_message" in value:
+        out["WarningMessage"] = value["warning_message"]
     if "mode" in value:
         import capo_ssm.types.execution_mode
 
@@ -347,6 +351,8 @@ def deserialize_aws_json_1_1(data: dict) -> AutomationExecution:
         )
     if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
+    if data.get("WarningMessage") is not None:
+        out["warning_message"] = data["WarningMessage"]
     if data.get("Mode") is not None:
         import capo_ssm.types.execution_mode
 

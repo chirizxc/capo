@@ -25,6 +25,8 @@ import capo_elasticsearch_service.types.automated_snapshot_pause_request_options
 import capo_elasticsearch_service.types.cognito_options
 import capo_elasticsearch_service.types.deployment_strategy_options
 import capo_elasticsearch_service.types.domain_endpoint_options
+import capo_elasticsearch_service.types.domain_engine_mode
+import capo_elasticsearch_service.types.domain_use_case
 import capo_elasticsearch_service.types.dry_run_results
 import capo_elasticsearch_service.types.ebs_options
 import capo_elasticsearch_service.types.elasticsearch_cluster_config
@@ -44,6 +46,7 @@ from capo_elasticsearch_service._rule_engine._endpoint_rule_set import (
 from capo_elasticsearch_service._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_elasticsearch_service.errors import UnknownServiceError
 
@@ -171,7 +174,7 @@ def update_elasticsearch_domain_config(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -189,7 +192,7 @@ async def async_update_elasticsearch_domain_config(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

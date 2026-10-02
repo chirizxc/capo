@@ -32,7 +32,7 @@ class MaintenanceWindowTask(TypedDict, closed=True):
     task_arn: NotRequired[
         "capo_ssm.types.maintenance_window_task_arn.MaintenanceWindowTaskArn"
     ]
-    """<p>The resource that the task uses during execution. For <code>RUN_COMMAND</code> and <code>AUTOMATION</code> task types, <code>TaskArn</code> is the Amazon Web Services Systems Manager (SSM document) name or ARN. For <code>LAMBDA</code> tasks, it's the function name or ARN. For <code>STEP_FUNCTIONS</code> tasks, it's the state machine ARN.</p>"""
+    """<p>The resource that the task uses during execution. For <code>RUN_COMMAND</code> and <code>AUTOMATION</code> task types, <code>TaskArn</code> is the Amazon Web Services Systems Manager (SSM document) name or ARN. For <code>LAMBDA</code> tasks, it's the function name or ARN. For <code>STEP_FUNCTIONS</code> tasks, it's the state machine ARN.</p> <note> <p>Maintenance Window does not validate the TaskArn when you register a task. A successful registration does not guarantee that the TaskArn is valid.</p> </note>"""
     type: NotRequired[
         "capo_ssm.types.maintenance_window_task_type.MaintenanceWindowTaskType"
     ]

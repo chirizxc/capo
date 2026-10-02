@@ -48,6 +48,7 @@ if TYPE_CHECKING:
     import capo_marketplace_discovery.types.listing_facet_list
     import capo_marketplace_discovery.types.listing_id
     import capo_marketplace_discovery.types.listing_summary
+    import capo_marketplace_discovery.types.locale
     import capo_marketplace_discovery.types.max_results
     import capo_marketplace_discovery.types.next_token
     import capo_marketplace_discovery.types.offer_id
@@ -158,10 +159,12 @@ class MarketplaceDiscoveryClient:
         listing_id: "capo_marketplace_discovery.types.listing_id.ListingId",
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
     ) -> "capo_marketplace_discovery.types.get_listing_output.GetListingOutput":
         """<p>Provides details about a listing, such as descriptions, badges, categories, pricing model summaries, reviews, and associated products and offers.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             listing_id: <p>The unique identifier of the listing to retrieve.</p>
 
         Raises:
@@ -175,13 +178,13 @@ class MarketplaceDiscoveryClient:
         Examples:
             GetListing for SaaS listing
 
-            >>> client.get_listing(listing_id='prodview-sampleSaasId')
+            >>> client.get_listing(locale='en-US', listing_id='prodview-sampleSaasId')
             GetListing for AMI listing with video
 
-            >>> client.get_listing(listing_id='prodview-sampleAmiId')
+            >>> client.get_listing(locale='en-US', listing_id='prodview-sampleAmiId')
             GetListing for multi-product listing
 
-            >>> client.get_listing(listing_id='prodview-sampleMultiProductId')
+            >>> client.get_listing(locale='en-US', listing_id='prodview-sampleMultiProductId')
         """
 
         def _handler(
@@ -202,6 +205,8 @@ class MarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_listing_input.GetListingInput = {
             "listing_id": listing_id
         }
+        if locale is not None:
+            input_["locale"] = locale
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -216,10 +221,12 @@ class MarketplaceDiscoveryClient:
         offer_id: "capo_marketplace_discovery.types.offer_id.OfferId",
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
     ) -> "capo_marketplace_discovery.types.get_offer_output.GetOfferOutput":
         """<p>Provides details about an offer, such as the pricing model, seller of record, availability dates, badges, and associated products.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             offer_id: <p>The unique identifier of the offer to retrieve.</p>
 
         Raises:
@@ -233,16 +240,16 @@ class MarketplaceDiscoveryClient:
         Examples:
             Invoke GetOffer for Contract Pricing offer
 
-            >>> client.get_offer(offer_id='offer-sampleContractId')
+            >>> client.get_offer(locale='en-US', offer_id='offer-sampleContractId')
             Invoke GetOffer for Usage Pricing offer
 
-            >>> client.get_offer(offer_id='offer-sampleUsageId')
+            >>> client.get_offer(locale='en-US', offer_id='offer-sampleUsageId')
             Invoke GetOffer for BYOL Pricing offer
 
-            >>> client.get_offer(offer_id='offer-sampleByolId')
+            >>> client.get_offer(locale='en-US', offer_id='offer-sampleByolId')
             Invoke GetOffer for FREE Pricing offer
 
-            >>> client.get_offer(offer_id='offer-sampleFreeId')
+            >>> client.get_offer(locale='en-US', offer_id='offer-sampleFreeId')
         """
 
         def _handler(
@@ -263,6 +270,8 @@ class MarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_offer_input.GetOfferInput = {
             "offer_id": offer_id
         }
+        if locale is not None:
+            input_["locale"] = locale
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -277,10 +286,12 @@ class MarketplaceDiscoveryClient:
         offer_set_id: "capo_marketplace_discovery.types.offer_set_id.OfferSetId",
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
     ) -> "capo_marketplace_discovery.types.get_offer_set_output.GetOfferSetOutput":
         """<p>Provides details about an offer set, which is a bundle of offers across multiple products. Includes the seller, availability dates, buyer notes, and associated product-offer pairs.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             offer_set_id: <p>The unique identifier of the offer set to retrieve.</p>
 
         Raises:
@@ -294,7 +305,13 @@ class MarketplaceDiscoveryClient:
         Examples:
             Get offer set with multiple products
 
-            >>> client.get_offer_set(offer_set_id='offerset-sampleId')
+            >>> client.get_offer_set(locale='en-US', offer_set_id='offerset-sampleId')
+            Get offer set with only required fields
+
+            >>> client.get_offer_set(offer_set_id='offerset-sampleMinimalId')
+            Get offer set that never expires from a first-party seller
+
+            >>> client.get_offer_set(locale='en-US', offer_set_id='offerset-samplePerpetualId')
         """
 
         def _handler(
@@ -315,6 +332,8 @@ class MarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_offer_set_input.GetOfferSetInput = {
             "offer_set_id": offer_set_id
         }
+        if locale is not None:
+            input_["locale"] = locale
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -329,6 +348,7 @@ class MarketplaceDiscoveryClient:
         offer_id: "capo_marketplace_discovery.types.offer_id.OfferId",
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         max_results: Optional[int] = None,
         next_token: Optional[
             "capo_marketplace_discovery.types.next_token.NextToken"
@@ -337,6 +357,7 @@ class MarketplaceDiscoveryClient:
         """<p>Returns the terms attached to an offer, such as pricing terms (usage-based, contract, BYOL, free trial), legal terms, payment schedules, validity terms, support terms, and renewal terms.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             offer_id: <p>The unique identifier of the offer whose terms to retrieve.</p>
             max_results: <p>The maximum number of results that are returned per call. You can use <code>nextToken</code> to get more results.</p>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. Make the call again using the returned token to retrieve the next page.</p>
@@ -352,31 +373,40 @@ class MarketplaceDiscoveryClient:
         Examples:
             GetOfferTerms for Usage-based ML Model offer
 
-            >>> client.get_offer_terms(offer_id='offer-sampleUsageBasedId')
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleUsageBasedId')
             GetOfferTerms for BYOL offer
 
-            >>> client.get_offer_terms(offer_id='offer-sampleByolId')
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleByolId')
             GetOfferTerms for configurable upfront pricing
 
-            >>> client.get_offer_terms(offer_id='offer-sampleConfigUpfrontId')
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleConfigUpfrontId')
             GetOfferTerms for free trial offer
 
-            >>> client.get_offer_terms(offer_id='offer-sampleFreeTrialId')
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleFreeTrialId')
             GetOfferTerms for recurring payment
 
-            >>> client.get_offer_terms(offer_id='offer-sampleRecurringId')
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleRecurringId')
             GetOfferTerms for variable payment
 
-            >>> client.get_offer_terms(offer_id='offer-sampleVariableId')
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleVariableId')
             GetOfferTerms for renewal term
 
-            >>> client.get_offer_terms(offer_id='offer-sampleRenewalId')
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleRenewalId')
+            GetOfferTerms for renewal term with fixed percentage
+
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleRenewalFixedId')
+            GetOfferTerms for renewal term with identical pricing (no price increase)
+
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleRenewalNoPriceIncreaseId')
             GetOfferTerms for support term
 
-            >>> client.get_offer_terms(offer_id='offer-sampleSupportId')
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleSupportId')
             GetOfferTerms for validity term with dates
 
-            >>> client.get_offer_terms(offer_id='offer-sampleValidityId')
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleValidityId')
+            GetOfferTerms for net payment term
+
+            >>> client.get_offer_terms(locale='en-US', offer_id='offer-sampleNetPaymentId')
         """
 
         def _handler(
@@ -397,6 +427,8 @@ class MarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_offer_terms_input.GetOfferTermsInput = {
             "offer_id": offer_id
         }
+        if locale is not None:
+            input_["locale"] = locale
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -415,6 +447,7 @@ class MarketplaceDiscoveryClient:
         offer_id: "capo_marketplace_discovery.types.offer_id.OfferId",
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         max_results: Optional[int] = None,
         next_token: Optional[
             "capo_marketplace_discovery.types.next_token.NextToken"
@@ -425,6 +458,7 @@ class MarketplaceDiscoveryClient:
             _response = self.get_offer_terms(
                 offer_id,
                 config_overrides=config_overrides,
+                locale=locale,
                 max_results=max_results,
                 next_token=_token,
             )
@@ -440,10 +474,12 @@ class MarketplaceDiscoveryClient:
         product_id: "capo_marketplace_discovery.types.product_id.ProductId",
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
     ) -> "capo_marketplace_discovery.types.get_product_output.GetProductOutput":
         """<p>Provides details about a product, such as descriptions, highlights, categories, fulfillment option summaries, promotional media, and seller engagement options.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             product_id: <p>The unique identifier of the product to retrieve.</p>
 
         Raises:
@@ -457,13 +493,13 @@ class MarketplaceDiscoveryClient:
         Examples:
             GetProduct for SaaS product with DEPLOYED status
 
-            >>> client.get_product(product_id='prod-sampleSaasId')
+            >>> client.get_product(locale='en-US', product_id='prod-sampleSaasId')
             GetProduct for AMI product with NOT_DEPLOYED status
 
-            >>> client.get_product(product_id='prod-sampleAmiId')
+            >>> client.get_product(locale='en-US', product_id='prod-sampleAmiId')
             GetProduct for professional services with NOT_APPLICABLE status
 
-            >>> client.get_product(product_id='prod-sampleProServId')
+            >>> client.get_product(locale='en-US', product_id='prod-sampleProServId')
         """
 
         def _handler(
@@ -484,6 +520,8 @@ class MarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_product_input.GetProductInput = {
             "product_id": product_id
         }
+        if locale is not None:
+            input_["locale"] = locale
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -498,6 +536,7 @@ class MarketplaceDiscoveryClient:
         product_id: "capo_marketplace_discovery.types.product_id.ProductId",
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         max_results: Optional[int] = None,
         next_token: Optional[
             "capo_marketplace_discovery.types.next_token.NextToken"
@@ -506,6 +545,7 @@ class MarketplaceDiscoveryClient:
         """<p>Returns the fulfillment options available for a product, including deployment details such as version information, operating systems, usage instructions, and release notes.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             product_id: <p>The unique identifier of the product for which to list fulfillment options.</p>
             max_results: <p>The maximum number of results that are returned per call. You can use <code>nextToken</code> to get more results.</p>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. Make the call again using the returned token to retrieve the next page.</p>
@@ -521,40 +561,43 @@ class MarketplaceDiscoveryClient:
         Examples:
             List AMI Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleAmiId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleAmiId')
             List API Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleApiId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleApiId')
+            List API Fulfillment Options with Dynamic Endpoint
+
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleApiDynamicId')
             List CloudFormation Template Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleCftId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleCftId')
             List Container Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleContainerId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleContainerId')
             List Helm Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleHelmId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleHelmId')
             List EKS Add-On Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleEksId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleEksId')
             List EC2 Image Builder Component Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleImageBuilderId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleImageBuilderId')
             List Data Exchange Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleDataExchangeId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleDataExchangeId')
             List Professional Services Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleProServId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleProServId')
             List SaaS Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleSaasId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleSaasId')
             List SageMaker Algorithm Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleSmAlgoId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleSmAlgoId')
             List SageMaker Model Fulfillment Options
 
-            >>> client.list_fulfillment_options(product_id='prod-sampleSmModelId')
+            >>> client.list_fulfillment_options(locale='en-US', product_id='prod-sampleSmModelId')
         """
 
         def _handler(
@@ -575,6 +618,8 @@ class MarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.list_fulfillment_options_input.ListFulfillmentOptionsInput = {
             "product_id": product_id
         }
+        if locale is not None:
+            input_["locale"] = locale
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -593,6 +638,7 @@ class MarketplaceDiscoveryClient:
         product_id: "capo_marketplace_discovery.types.product_id.ProductId",
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         max_results: Optional[int] = None,
         next_token: Optional[
             "capo_marketplace_discovery.types.next_token.NextToken"
@@ -603,6 +649,7 @@ class MarketplaceDiscoveryClient:
             _response = self.list_fulfillment_options(
                 product_id,
                 config_overrides=config_overrides,
+                locale=locale,
                 max_results=max_results,
                 next_token=_token,
             )
@@ -617,6 +664,7 @@ class MarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         filters: Optional[
             "capo_marketplace_discovery.types.purchase_option_filter_list.PurchaseOptionFilterList"
         ] = None,
@@ -630,6 +678,7 @@ class MarketplaceDiscoveryClient:
         """<p>Returns the purchase options (offers and offer sets) available to the buyer. You can filter results by product, seller, purchase option type, visibility scope, and availability status.</p> <note> <p>You must include at least one of the following filters in the request: a <code>PRODUCT_ID</code> filter to specify the product for which to retrieve purchase options, or a <code>VISIBILITY_SCOPE</code> filter to retrieve purchase options by visibility.</p> </note>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             filters: <p>Filters to narrow the results. Multiple filters are combined with AND logic. Multiple values within the same filter are combined with OR logic.</p>
             max_results: <p>The maximum number of results that are returned per call. You can use <code>nextToken</code> to get more results.</p>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. Make the call again using the returned token to retrieve the next page.</p>
@@ -644,10 +693,10 @@ class MarketplaceDiscoveryClient:
         Examples:
             Filter by Product ID
 
-            >>> client.list_purchase_options(filters=[{'filterType': 'PRODUCT_ID', 'filterValues': ['prod-sampleOfferId']}])
+            >>> client.list_purchase_options(locale='en-US', filters=[{'filterType': 'PRODUCT_ID', 'filterValues': ['prod-sampleOfferId']}])
             Filter by Seller with Private Offerset
 
-            >>> client.list_purchase_options(filters=[{'filterType': 'SELLER_OF_RECORD_PROFILE_ID', 'filterValues': ['seller-sampleResellerId']}, {'filterType': 'PURCHASE_OPTION_TYPE', 'filterValues': ['OFFERSET']}, {'filterType': 'VISIBILITY_SCOPE', 'filterValues': ['PRIVATE']}])
+            >>> client.list_purchase_options(locale='en-US', filters=[{'filterType': 'SELLER_OF_RECORD_PROFILE_ID', 'filterValues': ['seller-sampleResellerId']}, {'filterType': 'PURCHASE_OPTION_TYPE', 'filterValues': ['OFFERSET']}, {'filterType': 'VISIBILITY_SCOPE', 'filterValues': ['PRIVATE']}])
         """
 
         def _handler(
@@ -666,6 +715,8 @@ class MarketplaceDiscoveryClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_marketplace_discovery.types.list_purchase_options_input.ListPurchaseOptionsInput = {}
+        if locale is not None:
+            input_["locale"] = locale
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -685,6 +736,7 @@ class MarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         filters: Optional[
             "capo_marketplace_discovery.types.purchase_option_filter_list.PurchaseOptionFilterList"
         ] = None,
@@ -699,6 +751,7 @@ class MarketplaceDiscoveryClient:
         while True:
             _response = self.list_purchase_options(
                 config_overrides=config_overrides,
+                locale=locale,
                 filters=filters,
                 max_results=max_results,
                 next_token=_token,
@@ -714,6 +767,7 @@ class MarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         search_text: Optional[
             "capo_marketplace_discovery.types.search_text.SearchText"
         ] = None,
@@ -730,6 +784,7 @@ class MarketplaceDiscoveryClient:
         """<p>Returns available facet values for filtering listings, such as categories, pricing models, fulfillment option types, publishers, and customer ratings. Each facet value includes a count of matching listings.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             search_text: <p>The search query text to filter listings before retrieving facets.</p>
             filters: <p>Filters to apply before retrieving facets. Multiple filters are combined with AND logic. Multiple values within the same filter are combined with OR logic.</p>
             facet_types: <p>A list of specific facet types to retrieve. If empty or null, all available facets are returned.</p>
@@ -746,11 +801,11 @@ class MarketplaceDiscoveryClient:
             Get facets for machine learning category
             Retrieve available facet values for listings in the machine learning category
 
-            >>> client.search_facets(search_text='analytics', filters=[{'filterType': 'CATEGORY', 'filterValues': ['machine-learning']}], facet_types=['FULFILLMENT_OPTION_TYPE', 'PRICING_MODEL'])
+            >>> client.search_facets(locale='en-US', search_text='analytics', filters=[{'filterType': 'CATEGORY', 'filterValues': ['machine-learning']}], facet_types=['FULFILLMENT_OPTION_TYPE', 'PRICING_MODEL'])
             Get facets with term and rating range filters
             Retrieve facets for security listings with ratings between 3.0 and 5.0 stars
 
-            >>> client.search_facets(filters=[{'filterType': 'CATEGORY', 'filterValues': ['security']}, {'filterType': 'MIN_AVERAGE_CUSTOMER_RATING', 'filterValues': ['3.0']}, {'filterType': 'MAX_AVERAGE_CUSTOMER_RATING', 'filterValues': ['5.0']}], facet_types=['PRICING_MODEL', 'AVERAGE_CUSTOMER_RATING'])
+            >>> client.search_facets(locale='en-US', filters=[{'filterType': 'CATEGORY', 'filterValues': ['security']}, {'filterType': 'MIN_AVERAGE_CUSTOMER_RATING', 'filterValues': ['3.0']}, {'filterType': 'MAX_AVERAGE_CUSTOMER_RATING', 'filterValues': ['5.0']}], facet_types=['PRICING_MODEL', 'AVERAGE_CUSTOMER_RATING'])
         """
 
         def _handler(
@@ -769,6 +824,8 @@ class MarketplaceDiscoveryClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_marketplace_discovery.types.search_facets_input.SearchFacetsInput = {}
+        if locale is not None:
+            input_["locale"] = locale
         if search_text is not None:
             input_["search_text"] = search_text
         if filters is not None:
@@ -790,6 +847,7 @@ class MarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         search_text: Optional[
             "capo_marketplace_discovery.types.search_text.SearchText"
         ] = None,
@@ -807,6 +865,7 @@ class MarketplaceDiscoveryClient:
         while True:
             _response = self.search_facets(
                 config_overrides=config_overrides,
+                locale=locale,
                 search_text=search_text,
                 filters=filters,
                 facet_types=facet_types,
@@ -823,6 +882,7 @@ class MarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         search_text: Optional[
             "capo_marketplace_discovery.types.search_text.SearchText"
         ] = None,
@@ -845,6 +905,7 @@ class MarketplaceDiscoveryClient:
         """<p>Returns a list of product listings based on search criteria and filters. You can search by keyword, filter by category, pricing model, fulfillment type, and other attributes, and sort results by relevance or customer rating.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             search_text: <p>The search query text to find relevant listings.</p>
             filters: <p>Filters to narrow search results. Multiple filters are combined with AND logic. Multiple values within the same filter are combined with OR logic.</p>
             max_results: <p>The maximum number of results that are returned per call. You can use <code>nextToken</code> to get more results.</p>
@@ -863,7 +924,7 @@ class MarketplaceDiscoveryClient:
             Search for machine learning listings
             Search for SaaS listings in the machine learning category with sorting by relevance
 
-            >>> client.search_listings(search_text='computer vision', filters=[{'filterType': 'CATEGORY', 'filterValues': ['machine-learning']}, {'filterType': 'FULFILLMENT_OPTION_TYPE', 'filterValues': ['SAAS']}], max_results=25, sort_by='RELEVANCE', sort_order='DESCENDING')
+            >>> client.search_listings(locale='en-US', search_text='computer vision', filters=[{'filterType': 'CATEGORY', 'filterValues': ['machine-learning']}, {'filterType': 'FULFILLMENT_OPTION_TYPE', 'filterValues': ['SAAS']}], max_results=25, sort_by='RELEVANCE', sort_order='DESCENDING')
         """
 
         def _handler(
@@ -882,6 +943,8 @@ class MarketplaceDiscoveryClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_marketplace_discovery.types.search_listings_input.SearchListingsInput = {}
+        if locale is not None:
+            input_["locale"] = locale
         if search_text is not None:
             input_["search_text"] = search_text
         if filters is not None:
@@ -907,6 +970,7 @@ class MarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[MarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         search_text: Optional[
             "capo_marketplace_discovery.types.search_text.SearchText"
         ] = None,
@@ -930,6 +994,7 @@ class MarketplaceDiscoveryClient:
         while True:
             _response = self.search_listings(
                 config_overrides=config_overrides,
+                locale=locale,
                 search_text=search_text,
                 filters=filters,
                 max_results=max_results,

@@ -8,16 +8,15 @@ from capo_bedrock_agent_runtime.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.guardrail_configuration
-    import capo_bedrock_agent_runtime.types.knowledge_base_id
+    import capo_bedrock_agent_runtime.types.knowledge_base_identifier
     import capo_bedrock_agent_runtime.types.knowledge_base_query
     import capo_bedrock_agent_runtime.types.knowledge_base_retrieval_configuration
     import capo_bedrock_agent_runtime.types.next_token
+    import capo_bedrock_agent_runtime.types.user_context
 
 
 class RetrieveRequest(TypedDict, closed=True):
-    knowledge_base_id: (
-        "capo_bedrock_agent_runtime.types.knowledge_base_id.KnowledgeBaseId"
-    )
+    knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_identifier.KnowledgeBaseIdentifier"
     """<p>The unique identifier of the knowledge base to query.</p>"""
     retrieval_query: (
         "capo_bedrock_agent_runtime.types.knowledge_base_query.KnowledgeBaseQuery"
@@ -33,6 +32,10 @@ class RetrieveRequest(TypedDict, closed=True):
     """<p>Guardrail settings.</p>"""
     next_token: NotRequired["capo_bedrock_agent_runtime.types.next_token.NextToken"]
     """<p>If there are more results than can fit in the response, the response returns a <code>nextToken</code>. Use this token in the <code>nextToken</code> field of another request to retrieve the next batch of results.</p>"""
+    user_context: NotRequired[
+        "capo_bedrock_agent_runtime.types.user_context.UserContext"
+    ]
+    """<p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -63,6 +66,14 @@ def serialize_json(value: RetrieveRequest) -> dict:
         )
     if "next_token" in value:
         out["nextToken"] = value["next_token"]
+    if "user_context" in value:
+        import capo_bedrock_agent_runtime.types.user_context
+
+        out["userContext"] = (
+            capo_bedrock_agent_runtime.types.user_context.serialize_json(
+                value["user_context"]
+            )
+        )
     return out
 
 
@@ -96,4 +107,12 @@ def deserialize_json(data: dict) -> RetrieveRequest:
         )
     if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
+    if data.get("userContext") is not None:
+        import capo_bedrock_agent_runtime.types.user_context
+
+        out["user_context"] = (
+            capo_bedrock_agent_runtime.types.user_context.deserialize_json(
+                data["userContext"]
+            )
+        )
     return out

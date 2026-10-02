@@ -17,7 +17,7 @@ class StartMaterializedViewRefreshTaskRunRequest(TypedDict, closed=True):
     database_name: "capo_glue.types.name_string.NameString"
     """<p>The name of the database where the table resides.</p>"""
     table_name: "capo_glue.types.name_string.NameString"
-    """<p>The name of the table to generate run the materialized view refresh task.</p>"""
+    """<p>The name of the materialized view to run the refresh task for.</p>"""
     full_refresh: NotRequired["capo_glue.types.nullable_boolean.NullableBoolean"]
     """<p>Specifies whether this is a full refresh of the task run.</p>"""
 

@@ -40,6 +40,7 @@ if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.batch_update_phone_number_request
     import capo_chime_sdk_voice.types.batch_update_phone_number_response
     import capo_chime_sdk_voice.types.boolean
+    import capo_chime_sdk_voice.types.call_distribution_type
     import capo_chime_sdk_voice.types.call_leg_type
     import capo_chime_sdk_voice.types.calling_name
     import capo_chime_sdk_voice.types.capability_list
@@ -259,6 +260,7 @@ if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.validate_e911_address_response
     import capo_chime_sdk_voice.types.voice_connector_aws_region
     import capo_chime_sdk_voice.types.voice_connector_group_name
+    import capo_chime_sdk_voice.types.voice_connector_id
     import capo_chime_sdk_voice.types.voice_connector_integration_type
     import capo_chime_sdk_voice.types.voice_connector_item_list
     import capo_chime_sdk_voice.types.voice_connector_name
@@ -362,7 +364,7 @@ class ChimeSDKVoiceClient:
 
     def associate_phone_numbers_with_voice_connector(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         e164_phone_numbers: "capo_chime_sdk_voice.types.e164_phone_number_list.E164PhoneNumberList",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -637,7 +639,7 @@ class ChimeSDKVoiceClient:
 
     def create_proxy_session(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         participant_phone_numbers: "capo_chime_sdk_voice.types.participant_phone_number_list.ParticipantPhoneNumberList",
         capabilities: "capo_chime_sdk_voice.types.capability_list.CapabilityList",
         *,
@@ -658,7 +660,7 @@ class ChimeSDKVoiceClient:
             "capo_chime_sdk_voice.types.geo_match_params.GeoMatchParams"
         ] = None,
     ) -> "capo_chime_sdk_voice.types.create_proxy_session_response.CreateProxySessionResponse":
-        """<p>Creates a proxy session for the specified Amazon Chime SDK Voice Connector for the specified participant phone numbers.</p>
+        """<p>Creates a proxy session for the specified Amazon Chime SDK Voice Connector for the specified participant phone numbers.</p> <important> <p>End of support notice: On April 7, 2026, AWS will end support for Amazon Chime SDK proxy sessions.</p> </important>
 
         Args:
             voice_connector_id: <p>The Voice Connector ID.</p>
@@ -854,13 +856,11 @@ class ChimeSDKVoiceClient:
         name: "capo_chime_sdk_voice.types.sip_rule_name.SipRuleName",
         trigger_type: "capo_chime_sdk_voice.types.sip_rule_trigger_type.SipRuleTriggerType",
         trigger_value: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        target_applications: "capo_chime_sdk_voice.types.sip_rule_target_application_list.SipRuleTargetApplicationList",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
         disabled: Optional[
             "capo_chime_sdk_voice.types.nullable_boolean.NullableBoolean"
-        ] = None,
-        target_applications: Optional[
-            "capo_chime_sdk_voice.types.sip_rule_target_application_list.SipRuleTargetApplicationList"
         ] = None,
     ) -> "capo_chime_sdk_voice.types.create_sip_rule_response.CreateSipRuleResponse":
         r"""<p>Creates a SIP rule, which can be used to run a SIP media application as a target for a specific trigger type. For more information about SIP rules, see <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/ag/manage-sip-applications.html\">Managing SIP media applications and rules</a> in the <i>Amazon Chime SDK Administrator Guide</i>.</p>
@@ -904,11 +904,10 @@ class ChimeSDKVoiceClient:
             "name": name,
             "trigger_type": trigger_type,
             "trigger_value": trigger_value,
+            "target_applications": target_applications,
         }
         if disabled is not None:
             input_["disabled"] = disabled
-        if target_applications is not None:
-            input_["target_applications"] = target_applications
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -942,8 +941,8 @@ class ChimeSDKVoiceClient:
             aws_region: <p>The AWS Region in which the Amazon Chime SDK Voice Connector is created. Default value: <code>us-east-1</code> .</p>
             require_encryption: <p>Enables or disables encryption for the Voice Connector.</p>
             tags: <p>The tags assigned to the Voice Connector.</p>
-            integration_type: <p>The connectors for use with Connect Customer.</p> <p>The following options are available:</p> <ul> <li> <p> <code>CONNECT_CALL_TRANSFER_CONNECTOR</code> - Enables enterprises to integrate Connect Customer with other voice systems to directly transfer voice calls and metadata without using the public telephone network. They can use Connect Customer telephony and Interactive Voice Response (IVR) with their existing voice systems to modernize the IVR experience of their existing contact center and their enterprise and branch voice systems. Additionally, enterprises migrating their contact center to Connect Customer can start with Connect telephony and IVR for immediate modernization ahead of agent migration.</p> </li> <li> <p> <code>CONNECT_ANALYTICS_CONNECTOR</code> - Enables enterprises to integrate Connect Customer with other voice systems for real-time and post-call analytics. They can use Connect Customer Contact Lens with their existing voice systems to provides call recordings, conversational analytics (including contact transcript, sensitive data redaction, content categorization, theme detection, sentiment analysis, real-time alerts, and post-contact summary), and agent performance evaluations (including evaluation forms, automated evaluation, supervisor review) with a rich user experience to display, search and filter customer interactions, and programmatic access to data streams and the data lake. Additionally, enterprises migrating their contact center to Connect Customer can start with Contact Lens analytics and performance insights ahead of agent migration.</p> </li> </ul>
-            network_type: <p>The type of network for the Voice Connector. Either IPv4 only or dual-stack (IPv4 and IPv6).</p>
+            integration_type: <p>The connectors for use with Connect Customer.</p> <p>The following options are available:</p> <ul> <li> <p> <code>CONNECT_CALL_TRANSFER_CONNECTOR</code> - Enables enterprises to integrate Connect Customer with other voice systems to directly transfer voice calls and metadata without using the public telephone network. They can use Connect Customer telephony and Interactive Voice Response (IVR) with their existing voice systems to modernize the IVR experience of their existing contact center and their enterprise and branch voice systems. Additionally, enterprises migrating their contact center to Connect Customer can start with Connect telephony and IVR for immediate modernization ahead of agent migration.</p> <note> <p>This integration is a gated feature. Please reach out to your account team to discuss this feature with a Connect Specialist.</p> </note> </li> <li> <p> <code>CONNECT_ANALYTICS_CONNECTOR</code> - Enables enterprises to integrate Connect Customer with other voice systems for real-time and post-call analytics. They can use Connect Customer Contact Lens with their existing voice systems to provides call recordings, conversational analytics (including contact transcript, sensitive data redaction, content categorization, theme detection, sentiment analysis, real-time alerts, and post-contact summary), and agent performance evaluations (including evaluation forms, automated evaluation, supervisor review) with a rich user experience to display, search and filter customer interactions, and programmatic access to data streams and the data lake. Additionally, enterprises migrating their contact center to Connect Customer can start with Contact Lens analytics and performance insights ahead of agent migration.</p> </li> </ul>
+            network_type: <p>The type of network for the Voice Connector.</p>
 
         Raises:
             capo_chime_sdk_voice.errors.access_denied_exception.AccessDeniedException: <p>You don't have the permissions needed to run this action.</p>
@@ -1001,6 +1000,9 @@ class ChimeSDKVoiceClient:
         voice_connector_items: Optional[
             "capo_chime_sdk_voice.types.voice_connector_item_list.VoiceConnectorItemList"
         ] = None,
+        call_distribution_type: Optional[
+            "capo_chime_sdk_voice.types.call_distribution_type.CallDistributionType"
+        ] = None,
     ) -> "capo_chime_sdk_voice.types.create_voice_connector_group_response.CreateVoiceConnectorGroupResponse":
         """<p>Creates an Amazon Chime SDK Voice Connector group under the administrator's AWS account. You can associate Amazon Chime SDK Voice Connectors with the Voice Connector group by including <code>VoiceConnectorItems</code> in the request. </p> <p>You can include Voice Connectors from different AWS Regions in your group. This creates a fault tolerant mechanism for fallback in case of availability events.</p>
 
@@ -1012,6 +1014,7 @@ class ChimeSDKVoiceClient:
             capo_chime_sdk_voice.errors.access_denied_exception.AccessDeniedException: <p>You don't have the permissions needed to run this action.</p>
             capo_chime_sdk_voice.errors.bad_request_exception.BadRequestException: <p>The input parameters don't match the service's restrictions.</p>
             capo_chime_sdk_voice.errors.forbidden_exception.ForbiddenException: <p>The client is permanently forbidden from making the request.</p>
+            capo_chime_sdk_voice.errors.not_found_exception.NotFoundException: <p>The requested resource couldn't be found.</p>
             capo_chime_sdk_voice.errors.resource_limit_exceeded_exception.ResourceLimitExceededException: <p>The request exceeds the resource limit.</p>
             capo_chime_sdk_voice.errors.service_failure_exception.ServiceFailureException: <p>The service encountered an unexpected error.</p>
             capo_chime_sdk_voice.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is currently unavailable.</p>
@@ -1040,6 +1043,8 @@ class ChimeSDKVoiceClient:
         }
         if voice_connector_items is not None:
             input_["voice_connector_items"] = voice_connector_items
+        if call_distribution_type is not None:
+            input_["call_distribution_type"] = call_distribution_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1221,12 +1226,12 @@ class ChimeSDKVoiceClient:
 
     def delete_proxy_session(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         proxy_session_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> None:
-        """<p>Deletes the specified proxy session from the specified Amazon Chime SDK Voice Connector.</p>
+        """<p>Deletes the specified proxy session from the specified Amazon Chime SDK Voice Connector.</p> <important> <p>End of support notice: On April 7, 2026, AWS will end support for Amazon Chime SDK proxy sessions.</p> </important>
 
         Args:
             voice_connector_id: <p>The Voice Connector ID.</p>
@@ -1367,7 +1372,7 @@ class ChimeSDKVoiceClient:
 
     def delete_voice_connector(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> None:
@@ -1415,7 +1420,7 @@ class ChimeSDKVoiceClient:
 
     def delete_voice_connector_emergency_calling_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> None:
@@ -1462,7 +1467,7 @@ class ChimeSDKVoiceClient:
 
     def delete_voice_connector_external_systems_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> None:
@@ -1557,7 +1562,7 @@ class ChimeSDKVoiceClient:
 
     def delete_voice_connector_origination(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> None:
@@ -1604,11 +1609,11 @@ class ChimeSDKVoiceClient:
 
     def delete_voice_connector_proxy(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> None:
-        """<p>Deletes the proxy configuration from the specified Amazon Chime SDK Voice Connector.</p>
+        """<p>Deletes the proxy configuration from the specified Amazon Chime SDK Voice Connector.</p> <important> <p>End of support notice: On April 7, 2026, AWS will end support for Amazon Chime SDK proxy sessions.</p> </important>
 
         Args:
             voice_connector_id: <p>The Voice Connector ID.</p>
@@ -1651,7 +1656,7 @@ class ChimeSDKVoiceClient:
 
     def delete_voice_connector_streaming_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> None:
@@ -1698,7 +1703,7 @@ class ChimeSDKVoiceClient:
 
     def delete_voice_connector_termination(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> None:
@@ -1745,7 +1750,7 @@ class ChimeSDKVoiceClient:
 
     def delete_voice_connector_termination_credentials(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         usernames: "capo_chime_sdk_voice.types.sensitive_string_list.SensitiveStringList",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -1893,7 +1898,7 @@ class ChimeSDKVoiceClient:
 
     def disassociate_phone_numbers_from_voice_connector(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         e164_phone_numbers: "capo_chime_sdk_voice.types.e164_phone_number_list.E164PhoneNumberList",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -2173,14 +2178,14 @@ class ChimeSDKVoiceClient:
 
     def get_proxy_session(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         proxy_session_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> (
         "capo_chime_sdk_voice.types.get_proxy_session_response.GetProxySessionResponse"
     ):
-        """<p>Retrieves the specified proxy session details for the specified Amazon Chime SDK Voice Connector.</p>
+        """<p>Retrieves the specified proxy session details for the specified Amazon Chime SDK Voice Connector.</p> <important> <p>End of support notice: On April 7, 2026, AWS will end support for Amazon Chime SDK proxy sessions.</p> </important>
 
         Args:
             voice_connector_id: <p>The Voice Connector ID.</p>
@@ -2288,6 +2293,7 @@ class ChimeSDKVoiceClient:
         Raises:
             capo_chime_sdk_voice.errors.bad_request_exception.BadRequestException: <p>The input parameters don't match the service's restrictions.</p>
             capo_chime_sdk_voice.errors.forbidden_exception.ForbiddenException: <p>The client is permanently forbidden from making the request.</p>
+            capo_chime_sdk_voice.errors.gone_exception.GoneException: <p>Access to the target resource is no longer available at the origin server. This condition is likely to be permanent.</p>
             capo_chime_sdk_voice.errors.not_found_exception.NotFoundException: <p>The requested resource couldn't be found.</p>
             capo_chime_sdk_voice.errors.service_failure_exception.ServiceFailureException: <p>The service encountered an unexpected error.</p>
             capo_chime_sdk_voice.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is currently unavailable.</p>
@@ -2423,7 +2429,7 @@ class ChimeSDKVoiceClient:
 
     def get_speaker_search_task(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         speaker_search_task_id: "capo_chime_sdk_voice.types.non_empty_string256.NonEmptyString256",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -2477,7 +2483,7 @@ class ChimeSDKVoiceClient:
 
     def get_voice_connector(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.get_voice_connector_response.GetVoiceConnectorResponse":
@@ -2526,7 +2532,7 @@ class ChimeSDKVoiceClient:
 
     def get_voice_connector_emergency_calling_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.get_voice_connector_emergency_calling_configuration_response.GetVoiceConnectorEmergencyCallingConfigurationResponse":
@@ -2575,7 +2581,7 @@ class ChimeSDKVoiceClient:
 
     def get_voice_connector_external_systems_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.get_voice_connector_external_systems_configuration_response.GetVoiceConnectorExternalSystemsConfigurationResponse":
@@ -2673,7 +2679,7 @@ class ChimeSDKVoiceClient:
 
     def get_voice_connector_logging_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.get_voice_connector_logging_configuration_response.GetVoiceConnectorLoggingConfigurationResponse":
@@ -2722,7 +2728,7 @@ class ChimeSDKVoiceClient:
 
     def get_voice_connector_origination(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.get_voice_connector_origination_response.GetVoiceConnectorOriginationResponse":
@@ -2771,11 +2777,11 @@ class ChimeSDKVoiceClient:
 
     def get_voice_connector_proxy(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.get_voice_connector_proxy_response.GetVoiceConnectorProxyResponse":
-        """<p>Retrieves the proxy configuration details for the specified Amazon Chime SDK Voice Connector.</p>
+        """<p>Retrieves the proxy configuration details for the specified Amazon Chime SDK Voice Connector.</p> <important> <p>End of support notice: On April 7, 2026, AWS will end support for Amazon Chime SDK proxy sessions.</p> </important>
 
         Args:
             voice_connector_id: <p>The Voice Connector ID.</p>
@@ -2820,7 +2826,7 @@ class ChimeSDKVoiceClient:
 
     def get_voice_connector_streaming_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.get_voice_connector_streaming_configuration_response.GetVoiceConnectorStreamingConfigurationResponse":
@@ -2869,7 +2875,7 @@ class ChimeSDKVoiceClient:
 
     def get_voice_connector_termination(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.get_voice_connector_termination_response.GetVoiceConnectorTerminationResponse":
@@ -2918,7 +2924,7 @@ class ChimeSDKVoiceClient:
 
     def get_voice_connector_termination_health(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.get_voice_connector_termination_health_response.GetVoiceConnectorTerminationHealthResponse":
@@ -3069,7 +3075,7 @@ class ChimeSDKVoiceClient:
 
     def get_voice_tone_analysis_task(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         voice_tone_analysis_task_id: "capo_chime_sdk_voice.types.non_empty_string256.NonEmptyString256",
         is_caller: "capo_chime_sdk_voice.types.boolean.Boolean",
         *,
@@ -3167,7 +3173,9 @@ class ChimeSDKVoiceClient:
         self,
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
-        next_token: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        next_token: Optional[
+            "capo_chime_sdk_voice.types.next_token_string.NextTokenString"
+        ] = None,
         max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
     ) -> "capo_chime_sdk_voice.types.list_phone_number_orders_response.ListPhoneNumberOrdersResponse":
         """<p>Lists the phone numbers for an administrator's Amazon Chime SDK account.</p>
@@ -3219,7 +3227,9 @@ class ChimeSDKVoiceClient:
         self,
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
-        next_token: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        next_token: Optional[
+            "capo_chime_sdk_voice.types.next_token_string.NextTokenString"
+        ] = None,
         max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
     ) -> "Iterator[capo_chime_sdk_voice.types.list_phone_number_orders_response.ListPhoneNumberOrdersResponse]":
         _token = next_token
@@ -3340,7 +3350,7 @@ class ChimeSDKVoiceClient:
 
     def list_proxy_sessions(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
         status: Optional[
@@ -3351,7 +3361,7 @@ class ChimeSDKVoiceClient:
         ] = None,
         max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
     ) -> "capo_chime_sdk_voice.types.list_proxy_sessions_response.ListProxySessionsResponse":
-        """<p>Lists the proxy sessions for the specified Amazon Chime SDK Voice Connector.</p>
+        """<p>Lists the proxy sessions for the specified Amazon Chime SDK Voice Connector.</p> <important> <p>End of support notice: On April 7, 2026, AWS will end support for Amazon Chime SDK proxy sessions.</p> </important>
 
         Args:
             voice_connector_id: <p>The Voice Connector ID.</p>
@@ -3405,7 +3415,7 @@ class ChimeSDKVoiceClient:
 
     def iter_list_proxy_sessions(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
         status: Optional[
@@ -3531,6 +3541,7 @@ class ChimeSDKVoiceClient:
         Raises:
             capo_chime_sdk_voice.errors.bad_request_exception.BadRequestException: <p>The input parameters don't match the service's restrictions.</p>
             capo_chime_sdk_voice.errors.forbidden_exception.ForbiddenException: <p>The client is permanently forbidden from making the request.</p>
+            capo_chime_sdk_voice.errors.not_found_exception.NotFoundException: <p>The requested resource couldn't be found.</p>
             capo_chime_sdk_voice.errors.service_failure_exception.ServiceFailureException: <p>The service encountered an unexpected error.</p>
             capo_chime_sdk_voice.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is currently unavailable.</p>
             capo_chime_sdk_voice.errors.throttled_client_exception.ThrottledClientException: <p>The number of customer requests exceeds the request rate limit.</p>
@@ -3837,7 +3848,7 @@ class ChimeSDKVoiceClient:
 
     def list_voice_connector_termination_credentials(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
     ) -> "capo_chime_sdk_voice.types.list_voice_connector_termination_credentials_response.ListVoiceConnectorTerminationCredentialsResponse":
@@ -4052,6 +4063,7 @@ class ChimeSDKVoiceClient:
         Raises:
             capo_chime_sdk_voice.errors.bad_request_exception.BadRequestException: <p>The input parameters don't match the service's restrictions.</p>
             capo_chime_sdk_voice.errors.forbidden_exception.ForbiddenException: <p>The client is permanently forbidden from making the request.</p>
+            capo_chime_sdk_voice.errors.gone_exception.GoneException: <p>Access to the target resource is no longer available at the origin server. This condition is likely to be permanent.</p>
             capo_chime_sdk_voice.errors.not_found_exception.NotFoundException: <p>The requested resource couldn't be found.</p>
             capo_chime_sdk_voice.errors.service_failure_exception.ServiceFailureException: <p>The service encountered an unexpected error.</p>
             capo_chime_sdk_voice.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is currently unavailable.</p>
@@ -4150,7 +4162,7 @@ class ChimeSDKVoiceClient:
 
     def put_voice_connector_emergency_calling_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         emergency_calling_configuration: "capo_chime_sdk_voice.types.emergency_calling_configuration.EmergencyCallingConfiguration",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -4202,7 +4214,7 @@ class ChimeSDKVoiceClient:
 
     def put_voice_connector_external_systems_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
         session_border_controller_types: Optional[
@@ -4264,7 +4276,7 @@ class ChimeSDKVoiceClient:
 
     def put_voice_connector_logging_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         logging_configuration: "capo_chime_sdk_voice.types.logging_configuration.LoggingConfiguration",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -4316,7 +4328,7 @@ class ChimeSDKVoiceClient:
 
     def put_voice_connector_origination(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         origination: "capo_chime_sdk_voice.types.origination.Origination",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -4328,6 +4340,7 @@ class ChimeSDKVoiceClient:
             origination: <p>The origination settings being updated.</p>
 
         Raises:
+            capo_chime_sdk_voice.errors.access_denied_exception.AccessDeniedException: <p>You don't have the permissions needed to run this action.</p>
             capo_chime_sdk_voice.errors.bad_request_exception.BadRequestException: <p>The input parameters don't match the service's restrictions.</p>
             capo_chime_sdk_voice.errors.forbidden_exception.ForbiddenException: <p>The client is permanently forbidden from making the request.</p>
             capo_chime_sdk_voice.errors.not_found_exception.NotFoundException: <p>The requested resource couldn't be found.</p>
@@ -4368,7 +4381,7 @@ class ChimeSDKVoiceClient:
 
     def put_voice_connector_proxy(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         default_session_expiry_minutes: "capo_chime_sdk_voice.types.integer.Integer",
         phone_number_pool_countries: "capo_chime_sdk_voice.types.country_list.CountryList",
         *,
@@ -4378,7 +4391,7 @@ class ChimeSDKVoiceClient:
         ] = None,
         disabled: Optional["capo_chime_sdk_voice.types.boolean.Boolean"] = None,
     ) -> "capo_chime_sdk_voice.types.put_voice_connector_proxy_response.PutVoiceConnectorProxyResponse":
-        """<p>Puts the specified proxy configuration to the specified Amazon Chime SDK Voice Connector.</p>
+        """<p>Puts the specified proxy configuration to the specified Amazon Chime SDK Voice Connector.</p> <important> <p>End of support notice: On April 7, 2026, AWS will end support for Amazon Chime SDK proxy sessions.</p> </important>
 
         Args:
             voice_connector_id: <p>The Voice Connector ID.</p>
@@ -4434,7 +4447,7 @@ class ChimeSDKVoiceClient:
 
     def put_voice_connector_streaming_configuration(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         streaming_configuration: "capo_chime_sdk_voice.types.streaming_configuration.StreamingConfiguration",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -4486,7 +4499,7 @@ class ChimeSDKVoiceClient:
 
     def put_voice_connector_termination(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         termination: "capo_chime_sdk_voice.types.termination.Termination",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -4539,7 +4552,7 @@ class ChimeSDKVoiceClient:
 
     def put_voice_connector_termination_credentials(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
         credentials: Optional[
@@ -4766,7 +4779,7 @@ class ChimeSDKVoiceClient:
 
     def start_speaker_search_task(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         transaction_id: "capo_chime_sdk_voice.types.non_empty_string256.NonEmptyString256",
         voice_profile_domain_id: "capo_chime_sdk_voice.types.non_empty_string256.NonEmptyString256",
         *,
@@ -4838,7 +4851,7 @@ class ChimeSDKVoiceClient:
 
     def start_voice_tone_analysis_task(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         transaction_id: "capo_chime_sdk_voice.types.non_empty_string256.NonEmptyString256",
         language_code: "capo_chime_sdk_voice.types.language_code.LanguageCode",
         *,
@@ -4904,7 +4917,7 @@ class ChimeSDKVoiceClient:
 
     def stop_speaker_search_task(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         speaker_search_task_id: "capo_chime_sdk_voice.types.non_empty_string256.NonEmptyString256",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -4957,7 +4970,7 @@ class ChimeSDKVoiceClient:
 
     def stop_voice_tone_analysis_task(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         voice_tone_analysis_task_id: "capo_chime_sdk_voice.types.non_empty_string256.NonEmptyString256",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
@@ -5109,11 +5122,9 @@ class ChimeSDKVoiceClient:
 
     def update_global_settings(
         self,
+        voice_connector: "capo_chime_sdk_voice.types.voice_connector_settings.VoiceConnectorSettings",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
-        voice_connector: Optional[
-            "capo_chime_sdk_voice.types.voice_connector_settings.VoiceConnectorSettings"
-        ] = None,
     ) -> None:
         """<p>Updates global settings for the Amazon Chime SDK Voice Connectors in an AWS account.</p>
 
@@ -5143,9 +5154,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_global_settings_request.UpdateGlobalSettingsRequest = {}
-        if voice_connector is not None:
-            input_["voice_connector"] = voice_connector
+        input_: capo_chime_sdk_voice.types.update_global_settings_request.UpdateGlobalSettingsRequest = {
+            "voice_connector": voice_connector
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -5271,7 +5282,7 @@ class ChimeSDKVoiceClient:
 
     def update_proxy_session(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         proxy_session_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
         capabilities: "capo_chime_sdk_voice.types.capability_list.CapabilityList",
         *,
@@ -5280,7 +5291,7 @@ class ChimeSDKVoiceClient:
             "capo_chime_sdk_voice.types.positive_integer.PositiveInteger"
         ] = None,
     ) -> "capo_chime_sdk_voice.types.update_proxy_session_response.UpdateProxySessionResponse":
-        """<p>Updates the specified proxy session details, such as voice or SMS capabilities.</p>
+        """<p>Updates the specified proxy session details, such as voice or SMS capabilities.</p> <important> <p>End of support notice: On April 7, 2026, AWS will end support for Amazon Chime SDK proxy sessions.</p> </important>
 
         Args:
             voice_connector_id: <p>The Voice Connector ID.</p>
@@ -5516,7 +5527,7 @@ class ChimeSDKVoiceClient:
 
     def update_voice_connector(
         self,
-        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString",
+        voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId",
         name: "capo_chime_sdk_voice.types.voice_connector_name.VoiceConnectorName",
         require_encryption: "capo_chime_sdk_voice.types.boolean.Boolean",
         *,
@@ -5576,6 +5587,9 @@ class ChimeSDKVoiceClient:
         voice_connector_items: "capo_chime_sdk_voice.types.voice_connector_item_list.VoiceConnectorItemList",
         *,
         config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
+        call_distribution_type: Optional[
+            "capo_chime_sdk_voice.types.call_distribution_type.CallDistributionType"
+        ] = None,
     ) -> "capo_chime_sdk_voice.types.update_voice_connector_group_response.UpdateVoiceConnectorGroupResponse":
         """<p>Updates the settings for the specified Amazon Chime SDK Voice Connector group.</p>
 
@@ -5616,6 +5630,8 @@ class ChimeSDKVoiceClient:
             "name": name,
             "voice_connector_items": voice_connector_items,
         }
+        if call_distribution_type is not None:
+            input_["call_distribution_type"] = call_distribution_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

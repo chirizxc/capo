@@ -11,6 +11,8 @@ RetrievalResultLocationType: TypeAlias = Literal[
     "CUSTOM",
     "KENDRA",
     "SQL",
+    "ONEDRIVE",
+    "GOOGLEDRIVE",
 ]
 
 

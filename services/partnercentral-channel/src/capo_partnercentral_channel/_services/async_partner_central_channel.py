@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.partnercentralchannel#PartnerCentralChannel``."""
 
+import uuid
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_partnercentral_channel._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_partnercentral_channel._auth._zapros_handler import AuthMiddleware
+from capo_partnercentral_channel._pagination import resolve_path as _resolve_path
 from capo_partnercentral_channel._resources.partner_central_channel.channel_handshake_resource import (
     AsyncChannelHandshakeResource,
 )
@@ -36,8 +39,67 @@ from capo_partnercentral_channel._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_partnercentral_channel.types.accept_channel_handshake_request
+    import capo_partnercentral_channel.types.accept_channel_handshake_response
+    import capo_partnercentral_channel.types.account_id
+    import capo_partnercentral_channel.types.account_id_list
+    import capo_partnercentral_channel.types.associated_resource_identifier
+    import capo_partnercentral_channel.types.associated_resource_identifier_list
+    import capo_partnercentral_channel.types.association_type
+    import capo_partnercentral_channel.types.association_type_list
+    import capo_partnercentral_channel.types.cancel_channel_handshake_request
+    import capo_partnercentral_channel.types.cancel_channel_handshake_response
+    import capo_partnercentral_channel.types.catalog
+    import capo_partnercentral_channel.types.channel_handshake_identifier
+    import capo_partnercentral_channel.types.channel_handshake_payload
+    import capo_partnercentral_channel.types.channel_handshake_summary
+    import capo_partnercentral_channel.types.client_token
+    import capo_partnercentral_channel.types.create_channel_handshake_request
+    import capo_partnercentral_channel.types.create_channel_handshake_response
+    import capo_partnercentral_channel.types.create_program_management_account_request
+    import capo_partnercentral_channel.types.create_program_management_account_response
+    import capo_partnercentral_channel.types.create_relationship_request
+    import capo_partnercentral_channel.types.create_relationship_response
+    import capo_partnercentral_channel.types.delete_program_management_account_request
+    import capo_partnercentral_channel.types.delete_program_management_account_response
+    import capo_partnercentral_channel.types.delete_relationship_request
+    import capo_partnercentral_channel.types.delete_relationship_response
+    import capo_partnercentral_channel.types.get_relationship_request
+    import capo_partnercentral_channel.types.get_relationship_response
+    import capo_partnercentral_channel.types.handshake_status_list
+    import capo_partnercentral_channel.types.handshake_type
+    import capo_partnercentral_channel.types.list_channel_handshakes_request
+    import capo_partnercentral_channel.types.list_channel_handshakes_response
+    import capo_partnercentral_channel.types.list_channel_handshakes_type_filters
+    import capo_partnercentral_channel.types.list_channel_handshakes_type_sort
+    import capo_partnercentral_channel.types.list_program_management_accounts_request
+    import capo_partnercentral_channel.types.list_program_management_accounts_response
+    import capo_partnercentral_channel.types.list_program_management_accounts_sort_base
+    import capo_partnercentral_channel.types.list_relationships_request
+    import capo_partnercentral_channel.types.list_relationships_response
+    import capo_partnercentral_channel.types.list_relationships_sort_base
     import capo_partnercentral_channel.types.list_tags_for_resource_request
     import capo_partnercentral_channel.types.list_tags_for_resource_response
+    import capo_partnercentral_channel.types.next_token
+    import capo_partnercentral_channel.types.participant_type
+    import capo_partnercentral_channel.types.program
+    import capo_partnercentral_channel.types.program_list
+    import capo_partnercentral_channel.types.program_management_account_display_name
+    import capo_partnercentral_channel.types.program_management_account_display_name_list
+    import capo_partnercentral_channel.types.program_management_account_identifier
+    import capo_partnercentral_channel.types.program_management_account_identifier_list
+    import capo_partnercentral_channel.types.program_management_account_status_list
+    import capo_partnercentral_channel.types.program_management_account_summary
+    import capo_partnercentral_channel.types.reject_channel_handshake_request
+    import capo_partnercentral_channel.types.reject_channel_handshake_response
+    import capo_partnercentral_channel.types.relationship_display_name
+    import capo_partnercentral_channel.types.relationship_display_name_list
+    import capo_partnercentral_channel.types.relationship_identifier
+    import capo_partnercentral_channel.types.relationship_summary
+    import capo_partnercentral_channel.types.resale_account_model
+    import capo_partnercentral_channel.types.revision
+    import capo_partnercentral_channel.types.sector
+    import capo_partnercentral_channel.types.support_plan
     import capo_partnercentral_channel.types.tag_key_list
     import capo_partnercentral_channel.types.tag_list
     import capo_partnercentral_channel.types.tag_resource_request
@@ -45,6 +107,10 @@ if TYPE_CHECKING:
     import capo_partnercentral_channel.types.taggable_arn
     import capo_partnercentral_channel.types.untag_resource_request
     import capo_partnercentral_channel.types.untag_resource_response
+    import capo_partnercentral_channel.types.update_program_management_account_request
+    import capo_partnercentral_channel.types.update_program_management_account_response
+    import capo_partnercentral_channel.types.update_relationship_request
+    import capo_partnercentral_channel.types.update_relationship_response
 
 
 class AsyncPartnerCentralChannelClientConfig(TypedDict, total=False, closed=True):
@@ -306,6 +372,1188 @@ class AsyncPartnerCentralChannelClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def create_channel_handshake(
+        self,
+        handshake_type: "capo_partnercentral_channel.types.handshake_type.HandshakeType",
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        associated_resource_identifier: "capo_partnercentral_channel.types.associated_resource_identifier.AssociatedResourceIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        payload: Optional[
+            "capo_partnercentral_channel.types.channel_handshake_payload.ChannelHandshakePayload"
+        ] = None,
+        client_token: Optional[
+            "capo_partnercentral_channel.types.client_token.ClientToken"
+        ] = None,
+        tags: Optional["capo_partnercentral_channel.types.tag_list.TagList"] = None,
+    ) -> "capo_partnercentral_channel.types.create_channel_handshake_response.CreateChannelHandshakeResponse":
+        """<p>Creates a new channel handshake request to establish a partnership with another AWS account.</p>
+
+        Args:
+            handshake_type: <p>The type of handshake to create (e.g., start service period, revoke service period).</p>
+            catalog: <p>The catalog identifier for the handshake request.</p>
+            associated_resource_identifier: <p>The identifier of the resource associated with this handshake.</p>
+            payload: <p>The payload containing specific details for the handshake type.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+            tags: <p>Key-value pairs to associate with the channel handshake.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_partnercentral_channel.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed a service quota limit.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for CreateChannelHandshake - START_SERVICE_PERIOD with Minimum Notice Period
+
+            >>> await client.create_channel_handshake(handshake_type='START_SERVICE_PERIOD', catalog='AWS', associated_resource_identifier='rs-abc123def456g', payload={'startServicePeriodPayload': {'programManagementAccountIdentifier': 'pma-abcdef123456g', 'servicePeriodType': 'MINIMUM_NOTICE_PERIOD', 'minimumNoticeDays': '14', 'note': 'Optional Note'}}, client_token='clientToken')
+            Example for CreateChannelHandshake - START_SERVICE_PERIOD with Fixed Commitment Period
+
+            >>> await client.create_channel_handshake(handshake_type='START_SERVICE_PERIOD', catalog='AWS', associated_resource_identifier='rs-abc123def456g', payload={'startServicePeriodPayload': {'programManagementAccountIdentifier': 'pma-abcdef123456g', 'servicePeriodType': 'FIXED_COMMITMENT_PERIOD', 'endDate': '2026-07-01T00:00:00Z', 'note': 'Optional Note'}}, client_token='clientToken')
+            Example for CreateChannelHandshake - REVOKE_SERVICE_PERIOD
+
+            >>> await client.create_channel_handshake(handshake_type='REVOKE_SERVICE_PERIOD', catalog='AWS', associated_resource_identifier='rs-abc123def456g', payload={'revokeServicePeriodPayload': {'programManagementAccountIdentifier': 'pma-abcdef123456g', 'note': 'Optional Note'}}, client_token='clientToken')
+            Example for CreateChannelHandshake - PROGRAM_MANAGEMENT_ACCOUNT
+
+            >>> await client.create_channel_handshake(handshake_type='PROGRAM_MANAGEMENT_ACCOUNT', catalog='AWS', associated_resource_identifier='pma-123abc456def7', client_token='clientToken')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.create_channel_handshake_request.CreateChannelHandshakeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.create_channel_handshake_response.CreateChannelHandshakeResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.create_channel_handshake
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.create_channel_handshake.async_create_channel_handshake(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.create_channel_handshake_request.CreateChannelHandshakeRequest = {
+            "handshake_type": handshake_type,
+            "catalog": catalog,
+            "associated_resource_identifier": associated_resource_identifier,
+        }
+        if payload is not None:
+            input_["payload"] = payload
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_channel_handshakes(
+        self,
+        handshake_type: "capo_partnercentral_channel.types.handshake_type.HandshakeType",
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        participant_type: "capo_partnercentral_channel.types.participant_type.ParticipantType",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        max_results: Optional[int] = None,
+        statuses: Optional[
+            "capo_partnercentral_channel.types.handshake_status_list.HandshakeStatusList"
+        ] = None,
+        associated_resource_identifiers: Optional[
+            "capo_partnercentral_channel.types.associated_resource_identifier_list.AssociatedResourceIdentifierList"
+        ] = None,
+        handshake_type_filters: Optional[
+            "capo_partnercentral_channel.types.list_channel_handshakes_type_filters.ListChannelHandshakesTypeFilters"
+        ] = None,
+        handshake_type_sort: Optional[
+            "capo_partnercentral_channel.types.list_channel_handshakes_type_sort.ListChannelHandshakesTypeSort"
+        ] = None,
+        next_token: Optional[
+            "capo_partnercentral_channel.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_partnercentral_channel.types.list_channel_handshakes_response.ListChannelHandshakesResponse":
+        """<p>Lists channel handshakes based on specified criteria.</p>
+
+        Args:
+            handshake_type: <p>Filter results by handshake type.</p>
+            catalog: <p>The catalog identifier to filter handshakes.</p>
+            participant_type: <p>Filter by participant type (sender or receiver).</p>
+            max_results: <p>The maximum number of results to return in a single call.</p>
+            statuses: <p>Filter results by handshake status.</p>
+            associated_resource_identifiers: <p>Filter by associated resource identifiers.</p>
+            handshake_type_filters: <p>Type-specific filters for handshakes.</p>
+            handshake_type_sort: <p>Type-specific sorting options for handshakes.</p>
+            next_token: <p>Token for retrieving the next page of results.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for ListChannelHandshakes - START_SERVICE_PERIOD
+
+            >>> await client.list_channel_handshakes(handshake_type='START_SERVICE_PERIOD', catalog='AWS', participant_type='SENDER', statuses=['ACCEPTED'], associated_resource_identifiers=['rs-123abc456def7'], handshake_type_filters={'startServicePeriodTypeFilters': {'servicePeriodTypes': ['FIXED_COMMITMENT_PERIOD']}}, handshake_type_sort={'startServicePeriodTypeSort': {'sortBy': 'UpdatedAt', 'sortOrder': 'Descending'}})
+            Example for ListChannelHandshakes - REVOKE_SERVICE_PERIOD
+
+            >>> await client.list_channel_handshakes(handshake_type='REVOKE_SERVICE_PERIOD', catalog='AWS', participant_type='SENDER', statuses=['ACCEPTED'], associated_resource_identifiers=['rs-123abc456def7'], handshake_type_filters={'revokeServicePeriodTypeFilters': {'servicePeriodTypes': ['MINIMUM_NOTICE_PERIOD']}}, handshake_type_sort={'revokeServicePeriodTypeSort': {'sortBy': 'UpdatedAt', 'sortOrder': 'Descending'}})
+            Example for ListChannelHandshakes - PROGRAM_MANAGEMENT_ACCOUNT
+
+            >>> await client.list_channel_handshakes(handshake_type='PROGRAM_MANAGEMENT_ACCOUNT', catalog='AWS', participant_type='SENDER', statuses=['ACCEPTED'], associated_resource_identifiers=['pma-123abc456def7'], handshake_type_filters={'programManagementAccountTypeFilters': {'programs': ['SOLUTION_PROVIDER']}}, handshake_type_sort={'programManagementAccountTypeSort': {'sortBy': 'UpdatedAt', 'sortOrder': 'Descending'}}, max_results=20, next_token='nextToken')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.list_channel_handshakes_request.ListChannelHandshakesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.list_channel_handshakes_response.ListChannelHandshakesResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.list_channel_handshakes
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.list_channel_handshakes.async_list_channel_handshakes(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.list_channel_handshakes_request.ListChannelHandshakesRequest = {
+            "handshake_type": handshake_type,
+            "catalog": catalog,
+            "participant_type": participant_type,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if statuses is not None:
+            input_["statuses"] = statuses
+        if associated_resource_identifiers is not None:
+            input_["associated_resource_identifiers"] = associated_resource_identifiers
+        if handshake_type_filters is not None:
+            input_["handshake_type_filters"] = handshake_type_filters
+        if handshake_type_sort is not None:
+            input_["handshake_type_sort"] = handshake_type_sort
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_channel_handshakes(
+        self,
+        handshake_type: "capo_partnercentral_channel.types.handshake_type.HandshakeType",
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        participant_type: "capo_partnercentral_channel.types.participant_type.ParticipantType",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        max_results: Optional[int] = None,
+        statuses: Optional[
+            "capo_partnercentral_channel.types.handshake_status_list.HandshakeStatusList"
+        ] = None,
+        associated_resource_identifiers: Optional[
+            "capo_partnercentral_channel.types.associated_resource_identifier_list.AssociatedResourceIdentifierList"
+        ] = None,
+        handshake_type_filters: Optional[
+            "capo_partnercentral_channel.types.list_channel_handshakes_type_filters.ListChannelHandshakesTypeFilters"
+        ] = None,
+        handshake_type_sort: Optional[
+            "capo_partnercentral_channel.types.list_channel_handshakes_type_sort.ListChannelHandshakesTypeSort"
+        ] = None,
+        next_token: Optional[
+            "capo_partnercentral_channel.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_partnercentral_channel.types.channel_handshake_summary.ChannelHandshakeSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_channel_handshakes(
+                handshake_type,
+                catalog,
+                participant_type,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                statuses=statuses,
+                associated_resource_identifiers=associated_resource_identifiers,
+                handshake_type_filters=handshake_type_filters,
+                handshake_type_sort=handshake_type_sort,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def accept_channel_handshake(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        identifier: "capo_partnercentral_channel.types.channel_handshake_identifier.ChannelHandshakeIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+    ) -> "capo_partnercentral_channel.types.accept_channel_handshake_response.AcceptChannelHandshakeResponse":
+        """<p>Accepts a pending channel handshake request from another AWS account.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the handshake request.</p>
+            identifier: <p>The unique identifier of the channel handshake to accept.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for AcceptChannelHandshake
+
+            >>> await client.accept_channel_handshake(catalog='AWS', identifier='ch-4fj3bd2o3vb91')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.accept_channel_handshake_request.AcceptChannelHandshakeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.accept_channel_handshake_response.AcceptChannelHandshakeResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.accept_channel_handshake
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.accept_channel_handshake.async_accept_channel_handshake(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.accept_channel_handshake_request.AcceptChannelHandshakeRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def cancel_channel_handshake(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        identifier: "capo_partnercentral_channel.types.channel_handshake_identifier.ChannelHandshakeIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+    ) -> "capo_partnercentral_channel.types.cancel_channel_handshake_response.CancelChannelHandshakeResponse":
+        """<p>Cancels a pending channel handshake request.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the handshake request.</p>
+            identifier: <p>The unique identifier of the channel handshake to cancel.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for CancelChannelHandshake
+
+            >>> await client.cancel_channel_handshake(catalog='AWS', identifier='ch-4fj3bd2o3vb91')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.cancel_channel_handshake_request.CancelChannelHandshakeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.cancel_channel_handshake_response.CancelChannelHandshakeResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.cancel_channel_handshake
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.cancel_channel_handshake.async_cancel_channel_handshake(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.cancel_channel_handshake_request.CancelChannelHandshakeRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def reject_channel_handshake(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        identifier: "capo_partnercentral_channel.types.channel_handshake_identifier.ChannelHandshakeIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+    ) -> "capo_partnercentral_channel.types.reject_channel_handshake_response.RejectChannelHandshakeResponse":
+        """<p>Rejects a pending channel handshake request.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the handshake request.</p>
+            identifier: <p>The unique identifier of the channel handshake to reject.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for RejectChannelHandshake
+
+            >>> await client.reject_channel_handshake(catalog='AWS', identifier='ch-4fj3bd2o3vb91')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.reject_channel_handshake_request.RejectChannelHandshakeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.reject_channel_handshake_response.RejectChannelHandshakeResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.reject_channel_handshake
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.reject_channel_handshake.async_reject_channel_handshake(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.reject_channel_handshake_request.RejectChannelHandshakeRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_program_management_account(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        program: "capo_partnercentral_channel.types.program.Program",
+        display_name: "capo_partnercentral_channel.types.program_management_account_display_name.ProgramManagementAccountDisplayName",
+        account_id: "capo_partnercentral_channel.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        client_token: Optional[
+            "capo_partnercentral_channel.types.client_token.ClientToken"
+        ] = None,
+        tags: Optional["capo_partnercentral_channel.types.tag_list.TagList"] = None,
+    ) -> "capo_partnercentral_channel.types.create_program_management_account_response.CreateProgramManagementAccountResponse":
+        """<p>Creates a new program management account for managing partner relationships.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the program management account.</p>
+            program: <p>The program type for the management account.</p>
+            display_name: <p>A human-readable name for the program management account.</p>
+            account_id: <p>The AWS account ID to associate with the program management account.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+            tags: <p>Key-value pairs to associate with the program management account.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_partnercentral_channel.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed a service quota limit.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for CreateProgramManagementAccount
+
+            >>> await client.create_program_management_account(catalog='AWS', program='SOLUTION_PROVIDER', display_name='TestDisplayName', account_id='111122223333', client_token='clientToken')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.create_program_management_account_request.CreateProgramManagementAccountRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.create_program_management_account_response.CreateProgramManagementAccountResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.create_program_management_account
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.create_program_management_account.async_create_program_management_account(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.create_program_management_account_request.CreateProgramManagementAccountRequest = {
+            "catalog": catalog,
+            "program": program,
+            "display_name": display_name,
+            "account_id": account_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_program_management_account(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        identifier: "capo_partnercentral_channel.types.program_management_account_identifier.ProgramManagementAccountIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        revision: Optional[
+            "capo_partnercentral_channel.types.revision.Revision"
+        ] = None,
+        display_name: Optional[
+            "capo_partnercentral_channel.types.program_management_account_display_name.ProgramManagementAccountDisplayName"
+        ] = None,
+    ) -> "capo_partnercentral_channel.types.update_program_management_account_response.UpdateProgramManagementAccountResponse":
+        """<p>Updates the properties of a program management account.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the program management account.</p>
+            identifier: <p>The unique identifier of the program management account to update.</p>
+            revision: <p>The current revision number of the program management account.</p>
+            display_name: <p>The new display name for the program management account.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for UpdateProgramManagementAccount
+
+            >>> await client.update_program_management_account(catalog='AWS', identifier='pma-u8ic702rtzng8', revision='3', display_name='TestDisplayName')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.update_program_management_account_request.UpdateProgramManagementAccountRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.update_program_management_account_response.UpdateProgramManagementAccountResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.update_program_management_account
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.update_program_management_account.async_update_program_management_account(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.update_program_management_account_request.UpdateProgramManagementAccountRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+        if revision is not None:
+            input_["revision"] = revision
+        if display_name is not None:
+            input_["display_name"] = display_name
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_program_management_account(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        identifier: "capo_partnercentral_channel.types.program_management_account_identifier.ProgramManagementAccountIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        client_token: Optional[
+            "capo_partnercentral_channel.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_partnercentral_channel.types.delete_program_management_account_response.DeleteProgramManagementAccountResponse":
+        """<p>Deletes a program management account.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the program management account.</p>
+            identifier: <p>The unique identifier of the program management account to delete.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for DeleteProgramManagementAccount
+
+            >>> await client.delete_program_management_account(catalog='AWS', identifier='pma-u8ic702rtzng8', client_token='clientToken')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.delete_program_management_account_request.DeleteProgramManagementAccountRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.delete_program_management_account_response.DeleteProgramManagementAccountResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.delete_program_management_account
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.delete_program_management_account.async_delete_program_management_account(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.delete_program_management_account_request.DeleteProgramManagementAccountRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_program_management_accounts(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        max_results: Optional[int] = None,
+        display_names: Optional[
+            "capo_partnercentral_channel.types.program_management_account_display_name_list.ProgramManagementAccountDisplayNameList"
+        ] = None,
+        programs: Optional[
+            "capo_partnercentral_channel.types.program_list.ProgramList"
+        ] = None,
+        account_ids: Optional[
+            "capo_partnercentral_channel.types.account_id_list.AccountIdList"
+        ] = None,
+        statuses: Optional[
+            "capo_partnercentral_channel.types.program_management_account_status_list.ProgramManagementAccountStatusList"
+        ] = None,
+        sort: Optional[
+            "capo_partnercentral_channel.types.list_program_management_accounts_sort_base.ListProgramManagementAccountsSortBase"
+        ] = None,
+        next_token: Optional[
+            "capo_partnercentral_channel.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_partnercentral_channel.types.list_program_management_accounts_response.ListProgramManagementAccountsResponse":
+        """<p>Lists program management accounts based on specified criteria.</p>
+
+        Args:
+            catalog: <p>The catalog identifier to filter accounts.</p>
+            max_results: <p>The maximum number of results to return in a single call.</p>
+            display_names: <p>Filter by display names.</p>
+            programs: <p>Filter by program types.</p>
+            account_ids: <p>Filter by AWS account IDs.</p>
+            statuses: <p>Filter by program management account statuses.</p>
+            sort: <p>Sorting options for the results.</p>
+            next_token: <p>Token for retrieving the next page of results.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for ListProgramManagementAccounts
+
+            >>> await client.list_program_management_accounts(catalog='AWS', max_results=20, programs=['SOLUTION_PROVIDER'], display_names=['TestDisplayName'], account_ids=['111122223333'], statuses=['PENDING'], sort={'sortBy': 'UpdatedAt', 'sortOrder': 'Descending'})
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.list_program_management_accounts_request.ListProgramManagementAccountsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.list_program_management_accounts_response.ListProgramManagementAccountsResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.list_program_management_accounts
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.list_program_management_accounts.async_list_program_management_accounts(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.list_program_management_accounts_request.ListProgramManagementAccountsRequest = {
+            "catalog": catalog
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if display_names is not None:
+            input_["display_names"] = display_names
+        if programs is not None:
+            input_["programs"] = programs
+        if account_ids is not None:
+            input_["account_ids"] = account_ids
+        if statuses is not None:
+            input_["statuses"] = statuses
+        if sort is not None:
+            input_["sort"] = sort
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_program_management_accounts(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        max_results: Optional[int] = None,
+        display_names: Optional[
+            "capo_partnercentral_channel.types.program_management_account_display_name_list.ProgramManagementAccountDisplayNameList"
+        ] = None,
+        programs: Optional[
+            "capo_partnercentral_channel.types.program_list.ProgramList"
+        ] = None,
+        account_ids: Optional[
+            "capo_partnercentral_channel.types.account_id_list.AccountIdList"
+        ] = None,
+        statuses: Optional[
+            "capo_partnercentral_channel.types.program_management_account_status_list.ProgramManagementAccountStatusList"
+        ] = None,
+        sort: Optional[
+            "capo_partnercentral_channel.types.list_program_management_accounts_sort_base.ListProgramManagementAccountsSortBase"
+        ] = None,
+        next_token: Optional[
+            "capo_partnercentral_channel.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_partnercentral_channel.types.program_management_account_summary.ProgramManagementAccountSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_program_management_accounts(
+                catalog,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                display_names=display_names,
+                programs=programs,
+                account_ids=account_ids,
+                statuses=statuses,
+                sort=sort,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_relationship(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        association_type: "capo_partnercentral_channel.types.association_type.AssociationType",
+        program_management_account_identifier: "capo_partnercentral_channel.types.program_management_account_identifier.ProgramManagementAccountIdentifier",
+        associated_account_id: "capo_partnercentral_channel.types.account_id.AccountId",
+        display_name: "capo_partnercentral_channel.types.relationship_display_name.RelationshipDisplayName",
+        sector: "capo_partnercentral_channel.types.sector.Sector",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        resale_account_model: Optional[
+            "capo_partnercentral_channel.types.resale_account_model.ResaleAccountModel"
+        ] = None,
+        client_token: Optional[
+            "capo_partnercentral_channel.types.client_token.ClientToken"
+        ] = None,
+        tags: Optional["capo_partnercentral_channel.types.tag_list.TagList"] = None,
+        requested_support_plan: Optional[
+            "capo_partnercentral_channel.types.support_plan.SupportPlan"
+        ] = None,
+    ) -> "capo_partnercentral_channel.types.create_relationship_response.CreateRelationshipResponse":
+        """<p>Creates a new partner relationship between accounts.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the relationship.</p>
+            association_type: <p>The type of association for the relationship (e.g., reseller, distributor).</p>
+            program_management_account_identifier: <p>The identifier of the program management account for this relationship.</p>
+            associated_account_id: <p>The AWS account ID to associate in this relationship.</p>
+            display_name: <p>A human-readable name for the relationship.</p>
+            resale_account_model: <p>The resale account model for the relationship.</p>
+            sector: <p>The business sector for the relationship.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+            tags: <p>Key-value pairs to associate with the relationship.</p>
+            requested_support_plan: <p>The support plan requested for this relationship.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_partnercentral_channel.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed a service quota limit.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for CreateRelationship
+
+            >>> await client.create_relationship(catalog='AWS', association_type='DOWNSTREAM_SELLER', program_management_account_identifier='pma-u8ic702rtzng8', associated_account_id='987654321012', display_name='TestDisplayName', resale_account_model='END_CUSTOMER', sector='COMMERCIAL', client_token='clientToken')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.create_relationship_request.CreateRelationshipRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.create_relationship_response.CreateRelationshipResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.create_relationship
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.create_relationship.async_create_relationship(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.create_relationship_request.CreateRelationshipRequest = {
+            "catalog": catalog,
+            "association_type": association_type,
+            "program_management_account_identifier": program_management_account_identifier,
+            "associated_account_id": associated_account_id,
+            "display_name": display_name,
+            "sector": sector,
+        }
+        if resale_account_model is not None:
+            input_["resale_account_model"] = resale_account_model
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+        if requested_support_plan is not None:
+            input_["requested_support_plan"] = requested_support_plan
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_relationship(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        program_management_account_identifier: "capo_partnercentral_channel.types.program_management_account_identifier.ProgramManagementAccountIdentifier",
+        identifier: "capo_partnercentral_channel.types.relationship_identifier.RelationshipIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+    ) -> "capo_partnercentral_channel.types.get_relationship_response.GetRelationshipResponse":
+        """<p>Retrieves details of a specific partner relationship.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the relationship.</p>
+            program_management_account_identifier: <p>The identifier of the program management account associated with the relationship.</p>
+            identifier: <p>The unique identifier of the relationship to retrieve.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for GetRelationship
+
+            >>> await client.get_relationship(catalog='AWS', program_management_account_identifier='pma-u8ic702rtzng8', identifier='rs-l9o4fj3b5zb91')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.get_relationship_request.GetRelationshipRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.get_relationship_response.GetRelationshipResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.get_relationship
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.get_relationship.async_get_relationship(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.get_relationship_request.GetRelationshipRequest = {
+            "catalog": catalog,
+            "program_management_account_identifier": program_management_account_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_relationship(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        identifier: "capo_partnercentral_channel.types.relationship_identifier.RelationshipIdentifier",
+        program_management_account_identifier: "capo_partnercentral_channel.types.program_management_account_identifier.ProgramManagementAccountIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        revision: Optional[
+            "capo_partnercentral_channel.types.revision.Revision"
+        ] = None,
+        display_name: Optional[
+            "capo_partnercentral_channel.types.relationship_display_name.RelationshipDisplayName"
+        ] = None,
+        requested_support_plan: Optional[
+            "capo_partnercentral_channel.types.support_plan.SupportPlan"
+        ] = None,
+    ) -> "capo_partnercentral_channel.types.update_relationship_response.UpdateRelationshipResponse":
+        """<p>Updates the properties of a partner relationship.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the relationship.</p>
+            identifier: <p>The unique identifier of the relationship to update.</p>
+            program_management_account_identifier: <p>The identifier of the program management account associated with the relationship.</p>
+            revision: <p>The current revision number of the relationship.</p>
+            display_name: <p>The new display name for the relationship.</p>
+            requested_support_plan: <p>The updated support plan for the relationship.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for UpdateRelationship
+
+            >>> await client.update_relationship(catalog='AWS', program_management_account_identifier='pma-u8ic702rtzng8', identifier='rs-l9o4fj3b5zb91', revision='3', display_name='TestDisplayName')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.update_relationship_request.UpdateRelationshipRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.update_relationship_response.UpdateRelationshipResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.update_relationship
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.update_relationship.async_update_relationship(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.update_relationship_request.UpdateRelationshipRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "program_management_account_identifier": program_management_account_identifier,
+        }
+        if revision is not None:
+            input_["revision"] = revision
+        if display_name is not None:
+            input_["display_name"] = display_name
+        if requested_support_plan is not None:
+            input_["requested_support_plan"] = requested_support_plan
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_relationship(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        identifier: "capo_partnercentral_channel.types.relationship_identifier.RelationshipIdentifier",
+        program_management_account_identifier: "capo_partnercentral_channel.types.program_management_account_identifier.ProgramManagementAccountIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        client_token: Optional[
+            "capo_partnercentral_channel.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_partnercentral_channel.types.delete_relationship_response.DeleteRelationshipResponse":
+        """<p>Deletes a partner relationship.</p>
+
+        Args:
+            catalog: <p>The catalog identifier for the relationship.</p>
+            identifier: <p>The unique identifier of the relationship to delete.</p>
+            program_management_account_identifier: <p>The identifier of the program management account associated with the relationship.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for DeleteRelationship
+
+            >>> await client.delete_relationship(catalog='AWS', program_management_account_identifier='pma-u8ic702rtzng8', identifier='rs-l9o4fj3b5zb91', client_token='clientToken')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.delete_relationship_request.DeleteRelationshipRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.delete_relationship_response.DeleteRelationshipResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.delete_relationship
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.delete_relationship.async_delete_relationship(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.delete_relationship_request.DeleteRelationshipRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "program_management_account_identifier": program_management_account_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_relationships(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        max_results: Optional[int] = None,
+        associated_account_ids: Optional[
+            "capo_partnercentral_channel.types.account_id_list.AccountIdList"
+        ] = None,
+        association_types: Optional[
+            "capo_partnercentral_channel.types.association_type_list.AssociationTypeList"
+        ] = None,
+        display_names: Optional[
+            "capo_partnercentral_channel.types.relationship_display_name_list.RelationshipDisplayNameList"
+        ] = None,
+        program_management_account_identifiers: Optional[
+            "capo_partnercentral_channel.types.program_management_account_identifier_list.ProgramManagementAccountIdentifierList"
+        ] = None,
+        sort: Optional[
+            "capo_partnercentral_channel.types.list_relationships_sort_base.ListRelationshipsSortBase"
+        ] = None,
+        next_token: Optional[
+            "capo_partnercentral_channel.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_partnercentral_channel.types.list_relationships_response.ListRelationshipsResponse":
+        """<p>Lists partner relationships based on specified criteria.</p>
+
+        Args:
+            catalog: <p>The catalog identifier to filter relationships.</p>
+            max_results: <p>The maximum number of results to return in a single call.</p>
+            associated_account_ids: <p>Filter by associated AWS account IDs.</p>
+            association_types: <p>Filter by association types.</p>
+            display_names: <p>Filter by display names.</p>
+            program_management_account_identifiers: <p>Filter by program management account identifiers.</p>
+            sort: <p>Sorting options for the results.</p>
+            next_token: <p>Token for retrieving the next page of results.</p>
+
+        Raises:
+            capo_partnercentral_channel.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions.</p>
+            capo_partnercentral_channel.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request.</p>
+            capo_partnercentral_channel.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_partnercentral_channel.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period.</p>
+            capo_partnercentral_channel.errors.validation_exception.ValidationException: <p>The request failed validation due to invalid input parameters.</p>
+            capo_partnercentral_channel.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example for ListRelationships
+
+            >>> await client.list_relationships(catalog='AWS', max_results=100, associated_account_ids=['123456789012'], association_types=['DOWNSTREAM_SELLER'], display_names=['TestDisplayName'], program_management_account_identifiers=['pma-u8ic702rtzng8'], sort={'sortBy': 'UpdatedAt', 'sortOrder': 'Descending'}, next_token='nextToken')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_channel.types.list_relationships_request.ListRelationshipsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_channel.types.list_relationships_response.ListRelationshipsResponse"
+        ]:
+            import capo_partnercentral_channel._operations.partner_central_channel.list_relationships
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_channel._operations.partner_central_channel.list_relationships.async_list_relationships(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_partnercentral_channel.types.list_relationships_request.ListRelationshipsRequest = {
+            "catalog": catalog
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if associated_account_ids is not None:
+            input_["associated_account_ids"] = associated_account_ids
+        if association_types is not None:
+            input_["association_types"] = association_types
+        if display_names is not None:
+            input_["display_names"] = display_names
+        if program_management_account_identifiers is not None:
+            input_["program_management_account_identifiers"] = (
+                program_management_account_identifiers
+            )
+        if sort is not None:
+            input_["sort"] = sort
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_relationships(
+        self,
+        catalog: "capo_partnercentral_channel.types.catalog.Catalog",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralChannelClientConfig] = None,
+        max_results: Optional[int] = None,
+        associated_account_ids: Optional[
+            "capo_partnercentral_channel.types.account_id_list.AccountIdList"
+        ] = None,
+        association_types: Optional[
+            "capo_partnercentral_channel.types.association_type_list.AssociationTypeList"
+        ] = None,
+        display_names: Optional[
+            "capo_partnercentral_channel.types.relationship_display_name_list.RelationshipDisplayNameList"
+        ] = None,
+        program_management_account_identifiers: Optional[
+            "capo_partnercentral_channel.types.program_management_account_identifier_list.ProgramManagementAccountIdentifierList"
+        ] = None,
+        sort: Optional[
+            "capo_partnercentral_channel.types.list_relationships_sort_base.ListRelationshipsSortBase"
+        ] = None,
+        next_token: Optional[
+            "capo_partnercentral_channel.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_partnercentral_channel.types.relationship_summary.RelationshipSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_relationships(
+                catalog,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                associated_account_ids=associated_account_ids,
+                association_types=association_types,
+                display_names=display_names,
+                program_management_account_identifiers=program_management_account_identifiers,
+                sort=sort,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def __aenter__(self) -> Self:
         return self

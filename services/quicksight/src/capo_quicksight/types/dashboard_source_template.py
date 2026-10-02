@@ -2,13 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_quicksight.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_quicksight.types.arn
     import capo_quicksight.types.data_set_reference_list
+    import capo_quicksight.types.topic_reference_list
 
 
 class DashboardSourceTemplate(TypedDict, closed=True):
@@ -16,6 +17,10 @@ class DashboardSourceTemplate(TypedDict, closed=True):
         "capo_quicksight.types.data_set_reference_list.DataSetReferenceList"
     )
     """<p>Dataset references.</p>"""
+    topic_references: NotRequired[
+        "capo_quicksight.types.topic_reference_list.TopicReferenceList"
+    ]
+    """<p>The topic references for the source template of a dashboard.</p>"""
     arn: "capo_quicksight.types.arn.Arn"
     """<p>The Amazon Resource Name (ARN) of the resource.</p>"""
 
@@ -30,6 +35,14 @@ def serialize_json(value: DashboardSourceTemplate) -> dict:
             value["data_set_references"]
         )
     )
+    if "topic_references" in value:
+        import capo_quicksight.types.topic_reference_list
+
+        out["TopicReferences"] = (
+            capo_quicksight.types.topic_reference_list.serialize_json(
+                value["topic_references"]
+            )
+        )
     out["Arn"] = value["arn"]
     return out
 
@@ -47,6 +60,14 @@ def deserialize_json(data: dict) -> DashboardSourceTemplate:
     else:
         raise DeserializationError(
             "DashboardSourceTemplate.data_set_references required"
+        )
+    if data.get("TopicReferences") is not None:
+        import capo_quicksight.types.topic_reference_list
+
+        out["topic_references"] = (
+            capo_quicksight.types.topic_reference_list.deserialize_json(
+                data["TopicReferences"]
+            )
         )
     if data.get("Arn") is not None:
         out["arn"] = data["Arn"]

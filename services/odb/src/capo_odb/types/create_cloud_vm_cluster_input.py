@@ -42,7 +42,7 @@ class CreateCloudVmClusterInput(TypedDict, closed=True):
     data_storage_size_in_t_bs: NotRequired["float"]
     """<p>The size of the data disk group, in terabytes (TBs), to allocate for the VM cluster.</p>"""
     db_node_storage_size_in_g_bs: NotRequired["int"]
-    """<p>The amount of local node storage, in gigabytes (GBs), to allocate for the VM cluster.</p>"""
+    """<p>The amount of local node storage, in gigabytes (GB), to allocate for the VM cluster.</p>"""
     db_servers: NotRequired["capo_odb.types.string_list.StringList"]
     """<p>The list of database servers for the VM cluster.</p>"""
     tags: NotRequired["capo_odb.types.request_tag_map.RequestTagMap"]
@@ -54,7 +54,7 @@ class CreateCloudVmClusterInput(TypedDict, closed=True):
     license_model: NotRequired["capo_odb.types.license_model.LicenseModel"]
     """<p>The Oracle license model to apply to the VM cluster.</p> <p>Default: <code>LICENSE_INCLUDED</code> </p>"""
     memory_size_in_g_bs: NotRequired["int"]
-    """<p>The amount of memory, in gigabytes (GBs), to allocate for the VM cluster.</p>"""
+    """<p>The amount of memory, in gigabytes (GB), to allocate for the VM cluster.</p>"""
     system_version: NotRequired["str"]
     """<p>The version of the operating system of the image for the VM cluster.</p>"""
     time_zone: NotRequired["str"]

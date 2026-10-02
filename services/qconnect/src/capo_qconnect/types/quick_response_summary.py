@@ -48,7 +48,7 @@ class QuickResponseSummary(TypedDict, closed=True):
     is_active: NotRequired["bool"]
     """<p>Whether the quick response is active.</p>"""
     channels: NotRequired["capo_qconnect.types.channels.Channels"]
-    """<p>The Amazon Connect contact channels this quick response applies to. The supported contact channel types include <code>Chat</code>.</p>"""
+    """<p>The Connect Customer contact channels this quick response applies to. The supported contact channel types include <code>Chat</code>.</p>"""
     tags: NotRequired["capo_qconnect.types.tags.Tags"]
     """<p>The tags used to organize, track, or control access for this resource.</p>"""
 

@@ -8,6 +8,7 @@ from capo_config_service.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_config_service.types.amazon_resource_name
+    import capo_config_service.types.provider
     import capo_config_service.types.recorder_name
     import capo_config_service.types.recording_scope
     import capo_config_service.types.service_principal
@@ -24,6 +25,8 @@ class ConfigurationRecorderSummary(TypedDict, closed=True):
     """<p>For service-linked configuration recorders, indicates which Amazon Web Services service the configuration recorder is linked to.</p>"""
     recording_scope: "capo_config_service.types.recording_scope.RecordingScope"
     r"""<p>Indicates whether the <a href=\"https://docs.aws.amazon.com/config/latest/APIReference/API_ConfigurationItem.html\">ConfigurationItems</a> in scope for the configuration recorder are recorded for free (<code>INTERNAL</code>) or if you are charged a service fee for recording (<code>PAID</code>).</p>"""
+    provider: NotRequired["capo_config_service.types.provider.Provider"]
+    """<p>For service-linked configuration recorders that record resources from a third-party cloud service provider, indicates the cloud service provider. Currently, <code>AZURE</code> is supported.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -40,6 +43,12 @@ def serialize_aws_json_1_1(value: ConfigurationRecorderSummary) -> dict:
             value["recording_scope"]
         )
     )
+    if "provider" in value:
+        import capo_config_service.types.provider
+
+        out["provider"] = capo_config_service.types.provider.serialize_aws_json_1_1(
+            value["provider"]
+        )
     return out
 
 
@@ -66,5 +75,11 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorderSummary:
     else:
         raise DeserializationError(
             "ConfigurationRecorderSummary.recording_scope required"
+        )
+    if data.get("provider") is not None:
+        import capo_config_service.types.provider
+
+        out["provider"] = capo_config_service.types.provider.deserialize_aws_json_1_1(
+            data["provider"]
         )
     return out

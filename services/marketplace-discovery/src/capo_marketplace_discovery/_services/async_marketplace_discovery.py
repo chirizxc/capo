@@ -48,6 +48,7 @@ if TYPE_CHECKING:
     import capo_marketplace_discovery.types.listing_facet_list
     import capo_marketplace_discovery.types.listing_id
     import capo_marketplace_discovery.types.listing_summary
+    import capo_marketplace_discovery.types.locale
     import capo_marketplace_discovery.types.max_results
     import capo_marketplace_discovery.types.next_token
     import capo_marketplace_discovery.types.offer_id
@@ -158,10 +159,12 @@ class AsyncMarketplaceDiscoveryClient:
         listing_id: "capo_marketplace_discovery.types.listing_id.ListingId",
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
     ) -> "capo_marketplace_discovery.types.get_listing_output.GetListingOutput":
         """<p>Provides details about a listing, such as descriptions, badges, categories, pricing model summaries, reviews, and associated products and offers.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             listing_id: <p>The unique identifier of the listing to retrieve.</p>
 
         Raises:
@@ -175,13 +178,13 @@ class AsyncMarketplaceDiscoveryClient:
         Examples:
             GetListing for SaaS listing
 
-            >>> await client.get_listing(listing_id='prodview-sampleSaasId')
+            >>> await client.get_listing(locale='en-US', listing_id='prodview-sampleSaasId')
             GetListing for AMI listing with video
 
-            >>> await client.get_listing(listing_id='prodview-sampleAmiId')
+            >>> await client.get_listing(locale='en-US', listing_id='prodview-sampleAmiId')
             GetListing for multi-product listing
 
-            >>> await client.get_listing(listing_id='prodview-sampleMultiProductId')
+            >>> await client.get_listing(locale='en-US', listing_id='prodview-sampleMultiProductId')
         """
 
         async def _handler(
@@ -203,6 +206,8 @@ class AsyncMarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_listing_input.GetListingInput = {
             "listing_id": listing_id
         }
+        if locale is not None:
+            input_["locale"] = locale
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -217,10 +222,12 @@ class AsyncMarketplaceDiscoveryClient:
         offer_id: "capo_marketplace_discovery.types.offer_id.OfferId",
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
     ) -> "capo_marketplace_discovery.types.get_offer_output.GetOfferOutput":
         """<p>Provides details about an offer, such as the pricing model, seller of record, availability dates, badges, and associated products.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             offer_id: <p>The unique identifier of the offer to retrieve.</p>
 
         Raises:
@@ -234,16 +241,16 @@ class AsyncMarketplaceDiscoveryClient:
         Examples:
             Invoke GetOffer for Contract Pricing offer
 
-            >>> await client.get_offer(offer_id='offer-sampleContractId')
+            >>> await client.get_offer(locale='en-US', offer_id='offer-sampleContractId')
             Invoke GetOffer for Usage Pricing offer
 
-            >>> await client.get_offer(offer_id='offer-sampleUsageId')
+            >>> await client.get_offer(locale='en-US', offer_id='offer-sampleUsageId')
             Invoke GetOffer for BYOL Pricing offer
 
-            >>> await client.get_offer(offer_id='offer-sampleByolId')
+            >>> await client.get_offer(locale='en-US', offer_id='offer-sampleByolId')
             Invoke GetOffer for FREE Pricing offer
 
-            >>> await client.get_offer(offer_id='offer-sampleFreeId')
+            >>> await client.get_offer(locale='en-US', offer_id='offer-sampleFreeId')
         """
 
         async def _handler(
@@ -265,6 +272,8 @@ class AsyncMarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_offer_input.GetOfferInput = {
             "offer_id": offer_id
         }
+        if locale is not None:
+            input_["locale"] = locale
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -279,10 +288,12 @@ class AsyncMarketplaceDiscoveryClient:
         offer_set_id: "capo_marketplace_discovery.types.offer_set_id.OfferSetId",
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
     ) -> "capo_marketplace_discovery.types.get_offer_set_output.GetOfferSetOutput":
         """<p>Provides details about an offer set, which is a bundle of offers across multiple products. Includes the seller, availability dates, buyer notes, and associated product-offer pairs.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             offer_set_id: <p>The unique identifier of the offer set to retrieve.</p>
 
         Raises:
@@ -296,7 +307,13 @@ class AsyncMarketplaceDiscoveryClient:
         Examples:
             Get offer set with multiple products
 
-            >>> await client.get_offer_set(offer_set_id='offerset-sampleId')
+            >>> await client.get_offer_set(locale='en-US', offer_set_id='offerset-sampleId')
+            Get offer set with only required fields
+
+            >>> await client.get_offer_set(offer_set_id='offerset-sampleMinimalId')
+            Get offer set that never expires from a first-party seller
+
+            >>> await client.get_offer_set(locale='en-US', offer_set_id='offerset-samplePerpetualId')
         """
 
         async def _handler(
@@ -318,6 +335,8 @@ class AsyncMarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_offer_set_input.GetOfferSetInput = {
             "offer_set_id": offer_set_id
         }
+        if locale is not None:
+            input_["locale"] = locale
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -332,6 +351,7 @@ class AsyncMarketplaceDiscoveryClient:
         offer_id: "capo_marketplace_discovery.types.offer_id.OfferId",
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         max_results: Optional[int] = None,
         next_token: Optional[
             "capo_marketplace_discovery.types.next_token.NextToken"
@@ -340,6 +360,7 @@ class AsyncMarketplaceDiscoveryClient:
         """<p>Returns the terms attached to an offer, such as pricing terms (usage-based, contract, BYOL, free trial), legal terms, payment schedules, validity terms, support terms, and renewal terms.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             offer_id: <p>The unique identifier of the offer whose terms to retrieve.</p>
             max_results: <p>The maximum number of results that are returned per call. You can use <code>nextToken</code> to get more results.</p>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. Make the call again using the returned token to retrieve the next page.</p>
@@ -355,31 +376,40 @@ class AsyncMarketplaceDiscoveryClient:
         Examples:
             GetOfferTerms for Usage-based ML Model offer
 
-            >>> await client.get_offer_terms(offer_id='offer-sampleUsageBasedId')
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleUsageBasedId')
             GetOfferTerms for BYOL offer
 
-            >>> await client.get_offer_terms(offer_id='offer-sampleByolId')
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleByolId')
             GetOfferTerms for configurable upfront pricing
 
-            >>> await client.get_offer_terms(offer_id='offer-sampleConfigUpfrontId')
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleConfigUpfrontId')
             GetOfferTerms for free trial offer
 
-            >>> await client.get_offer_terms(offer_id='offer-sampleFreeTrialId')
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleFreeTrialId')
             GetOfferTerms for recurring payment
 
-            >>> await client.get_offer_terms(offer_id='offer-sampleRecurringId')
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleRecurringId')
             GetOfferTerms for variable payment
 
-            >>> await client.get_offer_terms(offer_id='offer-sampleVariableId')
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleVariableId')
             GetOfferTerms for renewal term
 
-            >>> await client.get_offer_terms(offer_id='offer-sampleRenewalId')
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleRenewalId')
+            GetOfferTerms for renewal term with fixed percentage
+
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleRenewalFixedId')
+            GetOfferTerms for renewal term with identical pricing (no price increase)
+
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleRenewalNoPriceIncreaseId')
             GetOfferTerms for support term
 
-            >>> await client.get_offer_terms(offer_id='offer-sampleSupportId')
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleSupportId')
             GetOfferTerms for validity term with dates
 
-            >>> await client.get_offer_terms(offer_id='offer-sampleValidityId')
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleValidityId')
+            GetOfferTerms for net payment term
+
+            >>> await client.get_offer_terms(locale='en-US', offer_id='offer-sampleNetPaymentId')
         """
 
         async def _handler(
@@ -401,6 +431,8 @@ class AsyncMarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_offer_terms_input.GetOfferTermsInput = {
             "offer_id": offer_id
         }
+        if locale is not None:
+            input_["locale"] = locale
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -419,6 +451,7 @@ class AsyncMarketplaceDiscoveryClient:
         offer_id: "capo_marketplace_discovery.types.offer_id.OfferId",
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         max_results: Optional[int] = None,
         next_token: Optional[
             "capo_marketplace_discovery.types.next_token.NextToken"
@@ -429,6 +462,7 @@ class AsyncMarketplaceDiscoveryClient:
             _response = await self.get_offer_terms(
                 offer_id,
                 config_overrides=config_overrides,
+                locale=locale,
                 max_results=max_results,
                 next_token=_token,
             )
@@ -444,10 +478,12 @@ class AsyncMarketplaceDiscoveryClient:
         product_id: "capo_marketplace_discovery.types.product_id.ProductId",
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
     ) -> "capo_marketplace_discovery.types.get_product_output.GetProductOutput":
         """<p>Provides details about a product, such as descriptions, highlights, categories, fulfillment option summaries, promotional media, and seller engagement options.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             product_id: <p>The unique identifier of the product to retrieve.</p>
 
         Raises:
@@ -461,13 +497,13 @@ class AsyncMarketplaceDiscoveryClient:
         Examples:
             GetProduct for SaaS product with DEPLOYED status
 
-            >>> await client.get_product(product_id='prod-sampleSaasId')
+            >>> await client.get_product(locale='en-US', product_id='prod-sampleSaasId')
             GetProduct for AMI product with NOT_DEPLOYED status
 
-            >>> await client.get_product(product_id='prod-sampleAmiId')
+            >>> await client.get_product(locale='en-US', product_id='prod-sampleAmiId')
             GetProduct for professional services with NOT_APPLICABLE status
 
-            >>> await client.get_product(product_id='prod-sampleProServId')
+            >>> await client.get_product(locale='en-US', product_id='prod-sampleProServId')
         """
 
         async def _handler(
@@ -489,6 +525,8 @@ class AsyncMarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.get_product_input.GetProductInput = {
             "product_id": product_id
         }
+        if locale is not None:
+            input_["locale"] = locale
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -503,6 +541,7 @@ class AsyncMarketplaceDiscoveryClient:
         product_id: "capo_marketplace_discovery.types.product_id.ProductId",
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         max_results: Optional[int] = None,
         next_token: Optional[
             "capo_marketplace_discovery.types.next_token.NextToken"
@@ -511,6 +550,7 @@ class AsyncMarketplaceDiscoveryClient:
         """<p>Returns the fulfillment options available for a product, including deployment details such as version information, operating systems, usage instructions, and release notes.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             product_id: <p>The unique identifier of the product for which to list fulfillment options.</p>
             max_results: <p>The maximum number of results that are returned per call. You can use <code>nextToken</code> to get more results.</p>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. Make the call again using the returned token to retrieve the next page.</p>
@@ -526,40 +566,43 @@ class AsyncMarketplaceDiscoveryClient:
         Examples:
             List AMI Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleAmiId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleAmiId')
             List API Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleApiId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleApiId')
+            List API Fulfillment Options with Dynamic Endpoint
+
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleApiDynamicId')
             List CloudFormation Template Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleCftId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleCftId')
             List Container Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleContainerId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleContainerId')
             List Helm Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleHelmId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleHelmId')
             List EKS Add-On Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleEksId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleEksId')
             List EC2 Image Builder Component Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleImageBuilderId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleImageBuilderId')
             List Data Exchange Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleDataExchangeId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleDataExchangeId')
             List Professional Services Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleProServId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleProServId')
             List SaaS Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleSaasId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleSaasId')
             List SageMaker Algorithm Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleSmAlgoId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleSmAlgoId')
             List SageMaker Model Fulfillment Options
 
-            >>> await client.list_fulfillment_options(product_id='prod-sampleSmModelId')
+            >>> await client.list_fulfillment_options(locale='en-US', product_id='prod-sampleSmModelId')
         """
 
         async def _handler(
@@ -581,6 +624,8 @@ class AsyncMarketplaceDiscoveryClient:
         input_: capo_marketplace_discovery.types.list_fulfillment_options_input.ListFulfillmentOptionsInput = {
             "product_id": product_id
         }
+        if locale is not None:
+            input_["locale"] = locale
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -599,6 +644,7 @@ class AsyncMarketplaceDiscoveryClient:
         product_id: "capo_marketplace_discovery.types.product_id.ProductId",
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         max_results: Optional[int] = None,
         next_token: Optional[
             "capo_marketplace_discovery.types.next_token.NextToken"
@@ -609,6 +655,7 @@ class AsyncMarketplaceDiscoveryClient:
             _response = await self.list_fulfillment_options(
                 product_id,
                 config_overrides=config_overrides,
+                locale=locale,
                 max_results=max_results,
                 next_token=_token,
             )
@@ -623,6 +670,7 @@ class AsyncMarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         filters: Optional[
             "capo_marketplace_discovery.types.purchase_option_filter_list.PurchaseOptionFilterList"
         ] = None,
@@ -636,6 +684,7 @@ class AsyncMarketplaceDiscoveryClient:
         """<p>Returns the purchase options (offers and offer sets) available to the buyer. You can filter results by product, seller, purchase option type, visibility scope, and availability status.</p> <note> <p>You must include at least one of the following filters in the request: a <code>PRODUCT_ID</code> filter to specify the product for which to retrieve purchase options, or a <code>VISIBILITY_SCOPE</code> filter to retrieve purchase options by visibility.</p> </note>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             filters: <p>Filters to narrow the results. Multiple filters are combined with AND logic. Multiple values within the same filter are combined with OR logic.</p>
             max_results: <p>The maximum number of results that are returned per call. You can use <code>nextToken</code> to get more results.</p>
             next_token: <p>If <code>nextToken</code> is returned, there are more results available. Make the call again using the returned token to retrieve the next page.</p>
@@ -650,10 +699,10 @@ class AsyncMarketplaceDiscoveryClient:
         Examples:
             Filter by Product ID
 
-            >>> await client.list_purchase_options(filters=[{'filterType': 'PRODUCT_ID', 'filterValues': ['prod-sampleOfferId']}])
+            >>> await client.list_purchase_options(locale='en-US', filters=[{'filterType': 'PRODUCT_ID', 'filterValues': ['prod-sampleOfferId']}])
             Filter by Seller with Private Offerset
 
-            >>> await client.list_purchase_options(filters=[{'filterType': 'SELLER_OF_RECORD_PROFILE_ID', 'filterValues': ['seller-sampleResellerId']}, {'filterType': 'PURCHASE_OPTION_TYPE', 'filterValues': ['OFFERSET']}, {'filterType': 'VISIBILITY_SCOPE', 'filterValues': ['PRIVATE']}])
+            >>> await client.list_purchase_options(locale='en-US', filters=[{'filterType': 'SELLER_OF_RECORD_PROFILE_ID', 'filterValues': ['seller-sampleResellerId']}, {'filterType': 'PURCHASE_OPTION_TYPE', 'filterValues': ['OFFERSET']}, {'filterType': 'VISIBILITY_SCOPE', 'filterValues': ['PRIVATE']}])
         """
 
         async def _handler(
@@ -673,6 +722,8 @@ class AsyncMarketplaceDiscoveryClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_marketplace_discovery.types.list_purchase_options_input.ListPurchaseOptionsInput = {}
+        if locale is not None:
+            input_["locale"] = locale
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -692,6 +743,7 @@ class AsyncMarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         filters: Optional[
             "capo_marketplace_discovery.types.purchase_option_filter_list.PurchaseOptionFilterList"
         ] = None,
@@ -706,6 +758,7 @@ class AsyncMarketplaceDiscoveryClient:
         while True:
             _response = await self.list_purchase_options(
                 config_overrides=config_overrides,
+                locale=locale,
                 filters=filters,
                 max_results=max_results,
                 next_token=_token,
@@ -721,6 +774,7 @@ class AsyncMarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         search_text: Optional[
             "capo_marketplace_discovery.types.search_text.SearchText"
         ] = None,
@@ -737,6 +791,7 @@ class AsyncMarketplaceDiscoveryClient:
         """<p>Returns available facet values for filtering listings, such as categories, pricing models, fulfillment option types, publishers, and customer ratings. Each facet value includes a count of matching listings.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             search_text: <p>The search query text to filter listings before retrieving facets.</p>
             filters: <p>Filters to apply before retrieving facets. Multiple filters are combined with AND logic. Multiple values within the same filter are combined with OR logic.</p>
             facet_types: <p>A list of specific facet types to retrieve. If empty or null, all available facets are returned.</p>
@@ -753,11 +808,11 @@ class AsyncMarketplaceDiscoveryClient:
             Get facets for machine learning category
             Retrieve available facet values for listings in the machine learning category
 
-            >>> await client.search_facets(search_text='analytics', filters=[{'filterType': 'CATEGORY', 'filterValues': ['machine-learning']}], facet_types=['FULFILLMENT_OPTION_TYPE', 'PRICING_MODEL'])
+            >>> await client.search_facets(locale='en-US', search_text='analytics', filters=[{'filterType': 'CATEGORY', 'filterValues': ['machine-learning']}], facet_types=['FULFILLMENT_OPTION_TYPE', 'PRICING_MODEL'])
             Get facets with term and rating range filters
             Retrieve facets for security listings with ratings between 3.0 and 5.0 stars
 
-            >>> await client.search_facets(filters=[{'filterType': 'CATEGORY', 'filterValues': ['security']}, {'filterType': 'MIN_AVERAGE_CUSTOMER_RATING', 'filterValues': ['3.0']}, {'filterType': 'MAX_AVERAGE_CUSTOMER_RATING', 'filterValues': ['5.0']}], facet_types=['PRICING_MODEL', 'AVERAGE_CUSTOMER_RATING'])
+            >>> await client.search_facets(locale='en-US', filters=[{'filterType': 'CATEGORY', 'filterValues': ['security']}, {'filterType': 'MIN_AVERAGE_CUSTOMER_RATING', 'filterValues': ['3.0']}, {'filterType': 'MAX_AVERAGE_CUSTOMER_RATING', 'filterValues': ['5.0']}], facet_types=['PRICING_MODEL', 'AVERAGE_CUSTOMER_RATING'])
         """
 
         async def _handler(
@@ -777,6 +832,8 @@ class AsyncMarketplaceDiscoveryClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_marketplace_discovery.types.search_facets_input.SearchFacetsInput = {}
+        if locale is not None:
+            input_["locale"] = locale
         if search_text is not None:
             input_["search_text"] = search_text
         if filters is not None:
@@ -798,6 +855,7 @@ class AsyncMarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         search_text: Optional[
             "capo_marketplace_discovery.types.search_text.SearchText"
         ] = None,
@@ -815,6 +873,7 @@ class AsyncMarketplaceDiscoveryClient:
         while True:
             _response = await self.search_facets(
                 config_overrides=config_overrides,
+                locale=locale,
                 search_text=search_text,
                 filters=filters,
                 facet_types=facet_types,
@@ -831,6 +890,7 @@ class AsyncMarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         search_text: Optional[
             "capo_marketplace_discovery.types.search_text.SearchText"
         ] = None,
@@ -853,6 +913,7 @@ class AsyncMarketplaceDiscoveryClient:
         """<p>Returns a list of product listings based on search criteria and filters. You can search by keyword, filter by category, pricing model, fulfillment type, and other attributes, and sort results by relevance or customer rating.</p>
 
         Args:
+            locale: <p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>
             search_text: <p>The search query text to find relevant listings.</p>
             filters: <p>Filters to narrow search results. Multiple filters are combined with AND logic. Multiple values within the same filter are combined with OR logic.</p>
             max_results: <p>The maximum number of results that are returned per call. You can use <code>nextToken</code> to get more results.</p>
@@ -871,7 +932,7 @@ class AsyncMarketplaceDiscoveryClient:
             Search for machine learning listings
             Search for SaaS listings in the machine learning category with sorting by relevance
 
-            >>> await client.search_listings(search_text='computer vision', filters=[{'filterType': 'CATEGORY', 'filterValues': ['machine-learning']}, {'filterType': 'FULFILLMENT_OPTION_TYPE', 'filterValues': ['SAAS']}], max_results=25, sort_by='RELEVANCE', sort_order='DESCENDING')
+            >>> await client.search_listings(locale='en-US', search_text='computer vision', filters=[{'filterType': 'CATEGORY', 'filterValues': ['machine-learning']}, {'filterType': 'FULFILLMENT_OPTION_TYPE', 'filterValues': ['SAAS']}], max_results=25, sort_by='RELEVANCE', sort_order='DESCENDING')
         """
 
         async def _handler(
@@ -891,6 +952,8 @@ class AsyncMarketplaceDiscoveryClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_marketplace_discovery.types.search_listings_input.SearchListingsInput = {}
+        if locale is not None:
+            input_["locale"] = locale
         if search_text is not None:
             input_["search_text"] = search_text
         if filters is not None:
@@ -916,6 +979,7 @@ class AsyncMarketplaceDiscoveryClient:
         self,
         *,
         config_overrides: Optional[AsyncMarketplaceDiscoveryClientConfig] = None,
+        locale: Optional["capo_marketplace_discovery.types.locale.Locale"] = None,
         search_text: Optional[
             "capo_marketplace_discovery.types.search_text.SearchText"
         ] = None,
@@ -941,6 +1005,7 @@ class AsyncMarketplaceDiscoveryClient:
         while True:
             _response = await self.search_listings(
                 config_overrides=config_overrides,
+                locale=locale,
                 search_text=search_text,
                 filters=filters,
                 max_results=max_results,

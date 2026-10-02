@@ -7,6 +7,8 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_glue.types.data_source
     import capo_glue.types.hash_string
+    import capo_glue.types.name_string
+    import capo_glue.types.recommendation_mode
     import capo_glue.types.task_status_type
     import capo_glue.types.timestamp
 
@@ -20,6 +22,12 @@ class DataQualityRuleRecommendationRunDescription(TypedDict, closed=True):
     """<p>The date and time when this run started.</p>"""
     data_source: NotRequired["capo_glue.types.data_source.DataSource"]
     """<p>The data source (Glue table) associated with the recommendation run.</p>"""
+    created_ruleset_name: NotRequired["capo_glue.types.name_string.NameString"]
+    """<p>The name of the ruleset that was created by the recommendation run.</p>"""
+    recommendation_mode: NotRequired[
+        "capo_glue.types.recommendation_mode.RecommendationMode"
+    ]
+    """<p>The mode that Glue Data Quality uses to recommend rules.</p> <p>The default is <code>BASIC</code>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -45,6 +53,16 @@ def serialize_aws_json_1_1(value: DataQualityRuleRecommendationRunDescription) -
         out["DataSource"] = capo_glue.types.data_source.serialize_aws_json_1_1(
             value["data_source"]
         )
+    if "created_ruleset_name" in value:
+        out["CreatedRulesetName"] = value["created_ruleset_name"]
+    if "recommendation_mode" in value:
+        import capo_glue.types.recommendation_mode
+
+        out["RecommendationMode"] = (
+            capo_glue.types.recommendation_mode.serialize_aws_json_1_1(
+                value["recommendation_mode"]
+            )
+        )
     return out
 
 
@@ -69,5 +87,15 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityRuleRecommendationRunDesc
 
         out["data_source"] = capo_glue.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
+        )
+    if data.get("CreatedRulesetName") is not None:
+        out["created_ruleset_name"] = data["CreatedRulesetName"]
+    if data.get("RecommendationMode") is not None:
+        import capo_glue.types.recommendation_mode
+
+        out["recommendation_mode"] = (
+            capo_glue.types.recommendation_mode.deserialize_aws_json_1_1(
+                data["RecommendationMode"]
+            )
         )
     return out

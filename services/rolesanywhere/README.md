@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_rolesanywhere import AsyncRolesAnywhereClient
+
+
+async def main():
+    async with AsyncRolesAnywhereClient() as roles_anywhere:
+        # Example: paginate over list_crls
+        async for item in roles_anywhere.iter_list_crls():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

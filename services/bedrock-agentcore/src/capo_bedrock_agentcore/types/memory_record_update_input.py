@@ -27,6 +27,10 @@ class MemoryRecordUpdateInput(TypedDict, closed=True):
         "capo_bedrock_agentcore.types.namespaces_list.NamespacesList"
     ]
     """<p>The updated list of namespace identifiers for categorizing the memory record.</p>"""
+    source_namespaces: NotRequired[
+        "capo_bedrock_agentcore.types.namespaces_list.NamespacesList"
+    ]
+    """<p>The namespaces of the source memory record being updated. This value is used for IAM condition key authorization.</p>"""
     memory_strategy_id: NotRequired[
         "capo_bedrock_agentcore.types.memory_strategy_id.MemoryStrategyId"
     ]
@@ -57,6 +61,14 @@ def serialize_json(value: MemoryRecordUpdateInput) -> dict:
 
         out["namespaces"] = capo_bedrock_agentcore.types.namespaces_list.serialize_json(
             value["namespaces"]
+        )
+    if "source_namespaces" in value:
+        import capo_bedrock_agentcore.types.namespaces_list
+
+        out["sourceNamespaces"] = (
+            capo_bedrock_agentcore.types.namespaces_list.serialize_json(
+                value["source_namespaces"]
+            )
         )
     if "memory_strategy_id" in value:
         out["memoryStrategyId"] = value["memory_strategy_id"]
@@ -99,6 +111,14 @@ def deserialize_json(data: dict) -> MemoryRecordUpdateInput:
         out["namespaces"] = (
             capo_bedrock_agentcore.types.namespaces_list.deserialize_json(
                 data["namespaces"]
+            )
+        )
+    if data.get("sourceNamespaces") is not None:
+        import capo_bedrock_agentcore.types.namespaces_list
+
+        out["source_namespaces"] = (
+            capo_bedrock_agentcore.types.namespaces_list.deserialize_json(
+                data["sourceNamespaces"]
             )
         )
     if data.get("memoryStrategyId") is not None:

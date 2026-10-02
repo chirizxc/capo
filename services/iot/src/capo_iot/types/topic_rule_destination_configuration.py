@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_iot.types.http_url_destination_configuration
+    import capo_iot.types.influx_db_destination_configuration
     import capo_iot.types.vpc_destination_configuration
 
 
@@ -18,6 +19,10 @@ class TopicRuleDestinationConfiguration(TypedDict, closed=True):
         "capo_iot.types.vpc_destination_configuration.VpcDestinationConfiguration"
     ]
     """<p>Configuration of the virtual private cloud (VPC) connection.</p>"""
+    influx_db_configuration: NotRequired[
+        "capo_iot.types.influx_db_destination_configuration.InfluxDBDestinationConfiguration"
+    ]
+    """<p>The configuration of an InfluxDB topic rule destination, which you specify when you call <code>CreateTopicRuleDestination</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -39,6 +44,14 @@ def serialize_json(value: TopicRuleDestinationConfiguration) -> dict:
                 value["vpc_configuration"]
             )
         )
+    if "influx_db_configuration" in value:
+        import capo_iot.types.influx_db_destination_configuration
+
+        out["influxDBConfiguration"] = (
+            capo_iot.types.influx_db_destination_configuration.serialize_json(
+                value["influx_db_configuration"]
+            )
+        )
     return out
 
 
@@ -58,6 +71,14 @@ def deserialize_json(data: dict) -> TopicRuleDestinationConfiguration:
         out["vpc_configuration"] = (
             capo_iot.types.vpc_destination_configuration.deserialize_json(
                 data["vpcConfiguration"]
+            )
+        )
+    if data.get("influxDBConfiguration") is not None:
+        import capo_iot.types.influx_db_destination_configuration
+
+        out["influx_db_configuration"] = (
+            capo_iot.types.influx_db_destination_configuration.deserialize_json(
+                data["influxDBConfiguration"]
             )
         )
     return out

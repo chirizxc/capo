@@ -30,11 +30,14 @@ from capo_signin._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_signin.types.client_credentials_grant_type
     import capo_signin.types.client_token
     import capo_signin.types.console_permission_max_results
     import capo_signin.types.create_o_auth2_token_request
     import capo_signin.types.create_o_auth2_token_request_body
     import capo_signin.types.create_o_auth2_token_response
+    import capo_signin.types.create_o_auth2_token_with_iam_request
+    import capo_signin.types.create_o_auth2_token_with_iam_response
     import capo_signin.types.delete_console_authorization_configuration_input
     import capo_signin.types.delete_console_authorization_configuration_output
     import capo_signin.types.delete_resource_permission_statement_input
@@ -44,6 +47,9 @@ if TYPE_CHECKING:
     import capo_signin.types.get_console_authorization_configuration_output
     import capo_signin.types.get_resource_policy_input
     import capo_signin.types.get_resource_policy_output
+    import capo_signin.types.introspect_o_auth2_token_with_iam_request
+    import capo_signin.types.introspect_o_auth2_token_with_iam_response
+    import capo_signin.types.introspection_token
     import capo_signin.types.list_resource_permission_statements_input
     import capo_signin.types.list_resource_permission_statements_output
     import capo_signin.types.next_token
@@ -53,11 +59,15 @@ if TYPE_CHECKING:
     import capo_signin.types.put_resource_permission_statement_input
     import capo_signin.types.put_resource_permission_statement_output
     import capo_signin.types.requested_region
+    import capo_signin.types.revocation_token
+    import capo_signin.types.revoke_o_auth2_token_with_iam_request
+    import capo_signin.types.revoke_o_auth2_token_with_iam_response
     import capo_signin.types.source_ip
     import capo_signin.types.source_vpc
     import capo_signin.types.source_vpce
     import capo_signin.types.statement_id
     import capo_signin.types.target_id
+    import capo_signin.types.token_type_hint
     import capo_signin.types.vpc_source_ip
 
 
@@ -191,6 +201,56 @@ class AsyncSigninClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_signin.types.create_o_auth2_token_request.CreateOAuth2TokenRequest = {
             "token_input": token_input
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_o_auth2_token_with_iam(
+        self,
+        grant_type: "capo_signin.types.client_credentials_grant_type.ClientCredentialsGrantType",
+        resource: str,
+        *,
+        config_overrides: Optional[AsyncSigninClientConfig] = None,
+    ) -> "capo_signin.types.create_o_auth2_token_with_iam_response.CreateOAuth2TokenWithIAMResponse":
+        r"""Grants permission to exchange client credentials for an OAuth 2.0 access token scoped to a resource that can be used to access AWS services from applications
+
+        Args:
+            grant_type: OAuth 2.0 grant type. Must be \"client_credentials\".
+            resource: The OAuth resource for which the access token is requested. Example: \"aws-mcp.amazonaws.com\".
+
+        Raises:
+            capo_signin.errors.access_denied_exception.AccessDeniedException: Error thrown for access denied scenarios with flexible HTTP status mapping Runtime HTTP Status Code Mapping: - HTTP 401 (Unauthorized): TOKEN_EXPIRED, AUTHCODE_EXPIRED - HTTP 403 (Forbidden): USER_CREDENTIALS_CHANGED, INSUFFICIENT_PERMISSIONS The specific HTTP status code is determined at runtime based on the error enum value. Consumers should use the error field to determine the specific access denial reason.
+            capo_signin.errors.internal_server_exception.InternalServerException: Error thrown when an internal server error occurs HTTP Status Code: 500 Internal Server Error Used for unexpected server-side errors that prevent request processing.
+            capo_signin.errors.too_many_requests_error.TooManyRequestsError: Error thrown when rate limit is exceeded HTTP Status Code: 429 Too Many Requests Possible OAuth2ErrorCode values: - INVALID_REQUEST: Rate limiting, too many requests, abuse prevention Possible causes: - Too many token requests from the same client - Rate limiting based on client_id or IP address - Abuse prevention mechanisms triggered - Service protection against excessive token generation
+            capo_signin.errors.validation_exception.ValidationException: Error thrown when request validation fails HTTP Status Code: 400 Bad Request Used for request validation errors such as malformed parameters, missing required fields, or invalid parameter values.
+            capo_signin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_signin.types.create_o_auth2_token_with_iam_request.CreateOAuth2TokenWithIAMRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_signin.types.create_o_auth2_token_with_iam_response.CreateOAuth2TokenWithIAMResponse"
+        ]:
+            import capo_signin._operations.signin.create_o_auth2_token_with_iam
+
+            (
+                output,
+                http_response,
+            ) = await capo_signin._operations.signin.create_o_auth2_token_with_iam.async_create_o_auth2_token_with_iam(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_signin.types.create_o_auth2_token_with_iam_request.CreateOAuth2TokenWithIAMRequest = {
+            "grant_type": grant_type,
+            "resource": resource,
         }
 
         response = await aexecute_pipeline(
@@ -380,6 +440,59 @@ class AsyncSigninClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_signin.types.get_resource_policy_input.GetResourcePolicyInput = {}
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def introspect_o_auth2_token_with_iam(
+        self,
+        token: "capo_signin.types.introspection_token.IntrospectionToken",
+        *,
+        config_overrides: Optional[AsyncSigninClientConfig] = None,
+        token_type_hint: Optional[
+            "capo_signin.types.token_type_hint.TokenTypeHint"
+        ] = None,
+    ) -> "capo_signin.types.introspect_o_auth2_token_with_iam_response.IntrospectOAuth2TokenWithIAMResponse":
+        r"""Grants permission to inspect the metadata and state of an OAuth 2.0 access token or refresh token Implements RFC 7662 OAuth 2.0 Token Introspection over a SigV4-authenticated endpoint. Inspects the metadata of an access_token or refresh_token issued by AWS Sign-In and returns the claims associated with it. Inactive token semantics (RFC 7662 §2.2): when the supplied token is unknown, expired, revoked, malformed, or owned by a different account, the response body is exactly { \"active\": false } with all other claims omitted.
+
+        Args:
+            token: The string value of the token to introspect. May be either an access_token or a refresh_token issued by AWS Sign-In.
+            token_type_hint: Optional hint about the type of the token submitted for introspection. The server uses this hint to optimize lookup, but still falls back to the other token type on miss. Allowed values: access_token, refresh_token.
+
+        Raises:
+            capo_signin.errors.access_denied_exception.AccessDeniedException: Error thrown for access denied scenarios with flexible HTTP status mapping Runtime HTTP Status Code Mapping: - HTTP 401 (Unauthorized): TOKEN_EXPIRED, AUTHCODE_EXPIRED - HTTP 403 (Forbidden): USER_CREDENTIALS_CHANGED, INSUFFICIENT_PERMISSIONS The specific HTTP status code is determined at runtime based on the error enum value. Consumers should use the error field to determine the specific access denial reason.
+            capo_signin.errors.internal_server_exception.InternalServerException: Error thrown when an internal server error occurs HTTP Status Code: 500 Internal Server Error Used for unexpected server-side errors that prevent request processing.
+            capo_signin.errors.too_many_requests_error.TooManyRequestsError: Error thrown when rate limit is exceeded HTTP Status Code: 429 Too Many Requests Possible OAuth2ErrorCode values: - INVALID_REQUEST: Rate limiting, too many requests, abuse prevention Possible causes: - Too many token requests from the same client - Rate limiting based on client_id or IP address - Abuse prevention mechanisms triggered - Service protection against excessive token generation
+            capo_signin.errors.validation_exception.ValidationException: Error thrown when request validation fails HTTP Status Code: 400 Bad Request Used for request validation errors such as malformed parameters, missing required fields, or invalid parameter values.
+            capo_signin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_signin.types.introspect_o_auth2_token_with_iam_request.IntrospectOAuth2TokenWithIAMRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_signin.types.introspect_o_auth2_token_with_iam_response.IntrospectOAuth2TokenWithIAMResponse"
+        ]:
+            import capo_signin._operations.signin.introspect_o_auth2_token_with_iam
+
+            (
+                output,
+                http_response,
+            ) = await capo_signin._operations.signin.introspect_o_auth2_token_with_iam.async_introspect_o_auth2_token_with_iam(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_signin.types.introspect_o_auth2_token_with_iam_request.IntrospectOAuth2TokenWithIAMRequest = {
+            "token": token
+        }
+        if token_type_hint is not None:
+            input_["token_type_hint"] = token_type_hint
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -590,6 +703,53 @@ class AsyncSigninClient:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def revoke_o_auth2_token_with_iam(
+        self,
+        token: "capo_signin.types.revocation_token.RevocationToken",
+        *,
+        config_overrides: Optional[AsyncSigninClientConfig] = None,
+    ) -> "capo_signin.types.revoke_o_auth2_token_with_iam_response.RevokeOAuth2TokenWithIAMResponse":
+        r"""Grants permission to revoke an OAuth 2.0 refresh token and its associated refresh tokens Revokes a refresh_token issued by AWS Sign-In, invalidating the entire token chain so that the refresh_token can no longer be used to mint new access_tokens. Idempotency: revoking an already-revoked, expired, or otherwise invalid token still returns 200 OK with an empty body. Only the refresh_token type is accepted.
+
+        Args:
+            token: The refresh_token to revoke. Must be a refresh_token issued by AWS Sign-In (prefix \"ASOR\"); access_tokens are not accepted for revocation.
+
+        Raises:
+            capo_signin.errors.access_denied_exception.AccessDeniedException: Error thrown for access denied scenarios with flexible HTTP status mapping Runtime HTTP Status Code Mapping: - HTTP 401 (Unauthorized): TOKEN_EXPIRED, AUTHCODE_EXPIRED - HTTP 403 (Forbidden): USER_CREDENTIALS_CHANGED, INSUFFICIENT_PERMISSIONS The specific HTTP status code is determined at runtime based on the error enum value. Consumers should use the error field to determine the specific access denial reason.
+            capo_signin.errors.internal_server_exception.InternalServerException: Error thrown when an internal server error occurs HTTP Status Code: 500 Internal Server Error Used for unexpected server-side errors that prevent request processing.
+            capo_signin.errors.too_many_requests_error.TooManyRequestsError: Error thrown when rate limit is exceeded HTTP Status Code: 429 Too Many Requests Possible OAuth2ErrorCode values: - INVALID_REQUEST: Rate limiting, too many requests, abuse prevention Possible causes: - Too many token requests from the same client - Rate limiting based on client_id or IP address - Abuse prevention mechanisms triggered - Service protection against excessive token generation
+            capo_signin.errors.validation_exception.ValidationException: Error thrown when request validation fails HTTP Status Code: 400 Bad Request Used for request validation errors such as malformed parameters, missing required fields, or invalid parameter values.
+            capo_signin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_signin.types.revoke_o_auth2_token_with_iam_request.RevokeOAuth2TokenWithIAMRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_signin.types.revoke_o_auth2_token_with_iam_response.RevokeOAuth2TokenWithIAMResponse"
+        ]:
+            import capo_signin._operations.signin.revoke_o_auth2_token_with_iam
+
+            (
+                output,
+                http_response,
+            ) = await capo_signin._operations.signin.revoke_o_auth2_token_with_iam.async_revoke_o_auth2_token_with_iam(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_signin.types.revoke_o_auth2_token_with_iam_request.RevokeOAuth2TokenWithIAMRequest = {
+            "token": token
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     import capo_sts.types.credentials
     import capo_sts.types.federated_user
     import capo_sts.types.non_negative_integer_type
+    import capo_sts.types.session_token_size_type
+    import capo_sts.types.session_token_utilization_type
 
 
 class GetFederationTokenResponse(TypedDict, closed=True):
@@ -21,6 +23,12 @@ class GetFederationTokenResponse(TypedDict, closed=True):
         "capo_sts.types.non_negative_integer_type.nonNegativeIntegerType"
     ]
     """<p>A percentage value that indicates the packed size of the session policies and session tags combined passed in the request. The request fails if the packed size is greater than 100 percent, which means the policies and tags exceeded the allowed space.</p>"""
+    session_token_utilization: NotRequired[
+        "capo_sts.types.session_token_utilization_type.sessionTokenUtilizationType"
+    ]
+    session_token_size: NotRequired[
+        "capo_sts.types.session_token_size_type.sessionTokenSizeType"
+    ]
 
 
 # --- awsQuery ser/de ---
@@ -44,6 +52,17 @@ def serialize_query(
         pairs.append(
             (f"{key_prefix}PackedPolicySize", str(value["packed_policy_size"]))
         )
+    if "session_token_utilization" in value:
+        pairs.append(
+            (
+                f"{key_prefix}SessionTokenUtilization",
+                str(value["session_token_utilization"]),
+            )
+        )
+    if "session_token_size" in value:
+        pairs.append(
+            (f"{key_prefix}SessionTokenSize", str(value["session_token_size"]))
+        )
 
 
 def deserialize_query(el: Element) -> GetFederationTokenResponse:
@@ -65,4 +84,12 @@ def deserialize_query(el: Element) -> GetFederationTokenResponse:
     child_packed_policy_size = el.find("PackedPolicySize")
     if child_packed_policy_size is not None:
         out["packed_policy_size"] = int(child_packed_policy_size.text or "")
+    child_session_token_utilization = el.find("SessionTokenUtilization")
+    if child_session_token_utilization is not None:
+        out["session_token_utilization"] = int(
+            child_session_token_utilization.text or ""
+        )
+    child_session_token_size = el.find("SessionTokenSize")
+    if child_session_token_size is not None:
+        out["session_token_size"] = int(child_session_token_size.text or "")
     return out

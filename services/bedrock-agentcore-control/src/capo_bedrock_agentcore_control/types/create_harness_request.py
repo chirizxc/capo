@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.harness_allowed_tools
     import capo_bedrock_agentcore_control.types.harness_environment_artifact
     import capo_bedrock_agentcore_control.types.harness_environment_provider_request
+    import capo_bedrock_agentcore_control.types.harness_hooks
     import capo_bedrock_agentcore_control.types.harness_memory_configuration
     import capo_bedrock_agentcore_control.types.harness_model_configuration
     import capo_bedrock_agentcore_control.types.harness_name
@@ -76,6 +77,10 @@ class CreateHarnessRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.harness_truncation_configuration.HarnessTruncationConfiguration"
     ]
     """<p>The truncation configuration for managing conversation context when it exceeds model limits.</p>"""
+    hooks: NotRequired[
+        "capo_bedrock_agentcore_control.types.harness_hooks.HarnessHooks"
+    ]
+    """<p>The lifecycle hooks to run at defined points in the agent loop.</p>"""
     max_iterations: NotRequired["int"]
     """<p>The maximum number of iterations the agent loop can execute per invocation.</p>"""
     max_tokens: NotRequired["int"]
@@ -179,6 +184,14 @@ def serialize_json(value: CreateHarnessRequest) -> dict:
         out["truncation"] = (
             capo_bedrock_agentcore_control.types.harness_truncation_configuration.serialize_json(
                 value["truncation"]
+            )
+        )
+    if "hooks" in value:
+        import capo_bedrock_agentcore_control.types.harness_hooks
+
+        out["hooks"] = (
+            capo_bedrock_agentcore_control.types.harness_hooks.serialize_json(
+                value["hooks"]
             )
         )
     if "max_iterations" in value:
@@ -294,6 +307,14 @@ def deserialize_json(data: dict) -> CreateHarnessRequest:
         out["truncation"] = (
             capo_bedrock_agentcore_control.types.harness_truncation_configuration.deserialize_json(
                 data["truncation"]
+            )
+        )
+    if data.get("hooks") is not None:
+        import capo_bedrock_agentcore_control.types.harness_hooks
+
+        out["hooks"] = (
+            capo_bedrock_agentcore_control.types.harness_hooks.deserialize_json(
+                data["hooks"]
             )
         )
     if data.get("maxIterations") is not None:

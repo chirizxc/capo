@@ -4,7 +4,11 @@ from typing import Literal, TypeAlias, cast
 
 from capo_ec2._protocol.xml import Element
 
-FleetReservationType: TypeAlias = Literal["interruptible-capacity-reservation",]
+FleetReservationType: TypeAlias = Literal[
+    "on-demand-capacity-reservation",
+    "capacity-block",
+    "interruptible-capacity-reservation",
+]
 
 
 # --- ec2Query ser/de ---

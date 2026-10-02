@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_customer_profiles.types.recommender_config
     import capo_customer_profiles.types.recommender_status
+    import capo_customer_profiles.types.recommender_version_name
     import capo_customer_profiles.types.timestamp
 
 
@@ -25,6 +26,10 @@ class RecommenderUpdate(TypedDict, closed=True):
     """<p>The timestamp of when the recommender was edited.</p>"""
     failure_reason: NotRequired["str"]
     """<p>If the update operation failed, provides the reason for the failure.</p>"""
+    recommender_version_name: NotRequired[
+        "capo_customer_profiles.types.recommender_version_name.RecommenderVersionName"
+    ]
+    """<p>The name of the recommender version associated with this update operation.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -58,6 +63,8 @@ def serialize_json(value: RecommenderUpdate) -> dict:
         )
     if "failure_reason" in value:
         out["FailureReason"] = value["failure_reason"]
+    if "recommender_version_name" in value:
+        out["RecommenderVersionName"] = value["recommender_version_name"]
     return out
 
 
@@ -95,4 +102,6 @@ def deserialize_json(data: dict) -> RecommenderUpdate:
         )
     if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
+    if data.get("RecommenderVersionName") is not None:
+        out["recommender_version_name"] = data["RecommenderVersionName"]
     return out

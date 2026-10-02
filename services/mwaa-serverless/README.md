@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_mwaa_serverless import AsyncMWAAServerlessClient
+
+
+async def main():
+    async with AsyncMWAAServerlessClient() as mwaa_serverless:
+        # Example: paginate over list_task_instances
+        async for item in mwaa_serverless.iter_list_task_instances():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

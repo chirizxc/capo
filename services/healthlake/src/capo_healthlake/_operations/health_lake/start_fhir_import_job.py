@@ -12,6 +12,7 @@ import capo_healthlake._auth._signers
 import capo_healthlake._auth._sigv4
 import capo_healthlake._protocol.eventstream
 import capo_healthlake.errors.access_denied_exception
+import capo_healthlake.errors.failed_dependency_exception
 import capo_healthlake.errors.internal_server_exception
 import capo_healthlake.errors.resource_not_found_exception
 import capo_healthlake.errors.throttling_exception
@@ -24,7 +25,11 @@ import capo_healthlake.types.start_fhir_import_job_response
 import capo_healthlake.types.validation_level
 from capo_healthlake._protocol.errors import parse_error_metadata_json
 from capo_healthlake._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_healthlake._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_healthlake._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_healthlake.errors import UnknownServiceError
 
 
@@ -34,6 +39,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_healthlake.errors.access_denied_exception.AccessDeniedException.from_aws_json_1_0(
+                data, message
+            )
+        case "FailedDependencyException":
+            raise capo_healthlake.errors.failed_dependency_exception.FailedDependencyException.from_aws_json_1_0(
                 data, message
             )
         case "InternalServerException":
@@ -145,7 +154,7 @@ def start_fhir_import_job(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -163,7 +172,7 @@ async def async_start_fhir_import_job(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -24,11 +24,15 @@ from capo_devops_agent._pagination import resolve_path as _resolve_path
 from capo_devops_agent._resources.dev_ops_agent.agent_space_resource import (
     AsyncAgentSpaceResource,
 )
+from capo_devops_agent._resources.dev_ops_agent.asset_resource import AsyncAssetResource
 from capo_devops_agent._resources.dev_ops_agent.private_connection_resource import (
     AsyncPrivateConnectionResource,
 )
 from capo_devops_agent._resources.dev_ops_agent.service_resource import (
     AsyncServiceResource,
+)
+from capo_devops_agent._resources.dev_ops_agent.trigger_resource import (
+    AsyncTriggerResource,
 )
 from capo_devops_agent._services._aws_config import aaws_config
 from capo_devops_agent._services._pipeline import (
@@ -41,7 +45,15 @@ from capo_devops_agent._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_devops_agent.types.agent_space
     import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
+    import capo_devops_agent.types.agent_space_name
+    import capo_devops_agent.types.agent_space_preferences
+    import capo_devops_agent.types.approval_action_type
+    import capo_devops_agent.types.approval_id
+    import capo_devops_agent.types.approval_pattern
+    import capo_devops_agent.types.approval_reason
     import capo_devops_agent.types.asset
     import capo_devops_agent.types.asset_content
     import capo_devops_agent.types.asset_file_body
@@ -51,9 +63,18 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.asset_type
     import capo_devops_agent.types.asset_type_summary
     import capo_devops_agent.types.asset_version_metadata
+    import capo_devops_agent.types.associate_service_input
+    import capo_devops_agent.types.associate_service_output
+    import capo_devops_agent.types.association
+    import capo_devops_agent.types.association_capabilities
+    import capo_devops_agent.types.association_id
+    import capo_devops_agent.types.auth_flow
     import capo_devops_agent.types.backlog_task_description
     import capo_devops_agent.types.backlog_task_title
+    import capo_devops_agent.types.certificate_string
     import capo_devops_agent.types.chat_execution_id
+    import capo_devops_agent.types.create_agent_space_input
+    import capo_devops_agent.types.create_agent_space_output
     import capo_devops_agent.types.create_asset_file_request
     import capo_devops_agent.types.create_asset_file_response
     import capo_devops_agent.types.create_asset_request
@@ -62,28 +83,63 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.create_backlog_task_response
     import capo_devops_agent.types.create_chat_request
     import capo_devops_agent.types.create_chat_response
+    import capo_devops_agent.types.create_private_connection_input
+    import capo_devops_agent.types.create_private_connection_output
+    import capo_devops_agent.types.create_trigger_request
+    import capo_devops_agent.types.create_trigger_response
+    import capo_devops_agent.types.delete_agent_space_input
+    import capo_devops_agent.types.delete_agent_space_output
     import capo_devops_agent.types.delete_asset_file_request
     import capo_devops_agent.types.delete_asset_file_response
     import capo_devops_agent.types.delete_asset_request
     import capo_devops_agent.types.delete_asset_response
+    import capo_devops_agent.types.delete_private_connection_input
+    import capo_devops_agent.types.delete_private_connection_output
+    import capo_devops_agent.types.delete_trigger_request
+    import capo_devops_agent.types.delete_trigger_response
+    import capo_devops_agent.types.deregister_service_input
+    import capo_devops_agent.types.deregister_service_output
+    import capo_devops_agent.types.describe_private_connection_input
+    import capo_devops_agent.types.describe_private_connection_output
+    import capo_devops_agent.types.description
+    import capo_devops_agent.types.disable_operator_app_input
+    import capo_devops_agent.types.disassociate_service_input
+    import capo_devops_agent.types.disassociate_service_output
+    import capo_devops_agent.types.enable_operator_app_input
+    import capo_devops_agent.types.enable_operator_app_output
     import capo_devops_agent.types.execution
     import capo_devops_agent.types.get_account_usage_input
     import capo_devops_agent.types.get_account_usage_output
+    import capo_devops_agent.types.get_agent_space_input
+    import capo_devops_agent.types.get_agent_space_output
     import capo_devops_agent.types.get_asset_content_request
     import capo_devops_agent.types.get_asset_content_response
     import capo_devops_agent.types.get_asset_file_request
     import capo_devops_agent.types.get_asset_file_response
     import capo_devops_agent.types.get_asset_request
     import capo_devops_agent.types.get_asset_response
+    import capo_devops_agent.types.get_association_input
+    import capo_devops_agent.types.get_association_output
     import capo_devops_agent.types.get_backlog_task_request
     import capo_devops_agent.types.get_backlog_task_response
+    import capo_devops_agent.types.get_operator_app_input
+    import capo_devops_agent.types.get_operator_app_output
     import capo_devops_agent.types.get_recommendation_request
     import capo_devops_agent.types.get_recommendation_response
+    import capo_devops_agent.types.get_service_input
+    import capo_devops_agent.types.get_service_output
+    import capo_devops_agent.types.get_trigger_request
+    import capo_devops_agent.types.get_trigger_response
     import capo_devops_agent.types.goal
     import capo_devops_agent.types.goal_schedule_input
     import capo_devops_agent.types.goal_status
     import capo_devops_agent.types.goal_type
+    import capo_devops_agent.types.idp_client_id
+    import capo_devops_agent.types.idp_client_secret
     import capo_devops_agent.types.journal_record
+    import capo_devops_agent.types.kms_key_arn
+    import capo_devops_agent.types.list_agent_spaces_input
+    import capo_devops_agent.types.list_agent_spaces_output
     import capo_devops_agent.types.list_asset_files_request
     import capo_devops_agent.types.list_asset_files_response
     import capo_devops_agent.types.list_asset_types_request
@@ -92,6 +148,8 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.list_asset_versions_response
     import capo_devops_agent.types.list_assets_request
     import capo_devops_agent.types.list_assets_response
+    import capo_devops_agent.types.list_associations_input
+    import capo_devops_agent.types.list_associations_output
     import capo_devops_agent.types.list_backlog_tasks_request
     import capo_devops_agent.types.list_backlog_tasks_response
     import capo_devops_agent.types.list_chats_request
@@ -104,21 +162,42 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.list_journal_records_response
     import capo_devops_agent.types.list_pending_messages_request
     import capo_devops_agent.types.list_pending_messages_response
+    import capo_devops_agent.types.list_private_connections_input
+    import capo_devops_agent.types.list_private_connections_output
     import capo_devops_agent.types.list_recommendations_request
     import capo_devops_agent.types.list_recommendations_response
+    import capo_devops_agent.types.list_services_input
+    import capo_devops_agent.types.list_services_output
     import capo_devops_agent.types.list_tags_for_resource_request
     import capo_devops_agent.types.list_tags_for_resource_response
+    import capo_devops_agent.types.list_triggers_request
+    import capo_devops_agent.types.list_triggers_response
+    import capo_devops_agent.types.list_webhooks_input
+    import capo_devops_agent.types.list_webhooks_output
+    import capo_devops_agent.types.locale
     import capo_devops_agent.types.message_content
     import capo_devops_agent.types.next_token
     import capo_devops_agent.types.order_type
+    import capo_devops_agent.types.post_register_service_supported_service
     import capo_devops_agent.types.priority
+    import capo_devops_agent.types.private_connection_mode
+    import capo_devops_agent.types.private_connection_name
     import capo_devops_agent.types.recommendation_priority
     import capo_devops_agent.types.recommendation_status
     import capo_devops_agent.types.reference_input
+    import capo_devops_agent.types.register_service_input
+    import capo_devops_agent.types.register_service_output
+    import capo_devops_agent.types.registered_service
     import capo_devops_agent.types.resource_id
+    import capo_devops_agent.types.role_arn
     import capo_devops_agent.types.send_message_context
     import capo_devops_agent.types.send_message_request
     import capo_devops_agent.types.send_message_response
+    import capo_devops_agent.types.service
+    import capo_devops_agent.types.service_configuration
+    import capo_devops_agent.types.service_details
+    import capo_devops_agent.types.service_id
+    import capo_devops_agent.types.service_name
     import capo_devops_agent.types.tag_key_list
     import capo_devops_agent.types.tag_resource_request
     import capo_devops_agent.types.tag_resource_response
@@ -129,19 +208,38 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.task_sort_order
     import capo_devops_agent.types.task_status
     import capo_devops_agent.types.task_type
+    import capo_devops_agent.types.trigger
+    import capo_devops_agent.types.trigger_action
+    import capo_devops_agent.types.trigger_condition
+    import capo_devops_agent.types.trigger_status
+    import capo_devops_agent.types.trigger_type
     import capo_devops_agent.types.untag_resource_request
     import capo_devops_agent.types.untag_resource_response
+    import capo_devops_agent.types.update_agent_space_input
+    import capo_devops_agent.types.update_agent_space_output
+    import capo_devops_agent.types.update_approval_action_request
+    import capo_devops_agent.types.update_approval_action_response
     import capo_devops_agent.types.update_asset_file_request
     import capo_devops_agent.types.update_asset_file_response
     import capo_devops_agent.types.update_asset_request
     import capo_devops_agent.types.update_asset_response
+    import capo_devops_agent.types.update_association_input
+    import capo_devops_agent.types.update_association_output
     import capo_devops_agent.types.update_backlog_task_request
     import capo_devops_agent.types.update_backlog_task_response
     import capo_devops_agent.types.update_goal_request
     import capo_devops_agent.types.update_goal_response
+    import capo_devops_agent.types.update_operator_app_idp_config_input
+    import capo_devops_agent.types.update_operator_app_idp_config_output
+    import capo_devops_agent.types.update_private_connection_certificate_input
+    import capo_devops_agent.types.update_private_connection_certificate_output
     import capo_devops_agent.types.update_recommendation_request
     import capo_devops_agent.types.update_recommendation_response
+    import capo_devops_agent.types.update_trigger_request
+    import capo_devops_agent.types.update_trigger_response
     import capo_devops_agent.types.user_type
+    import capo_devops_agent.types.validate_aws_associations_input
+    import capo_devops_agent.types.validate_aws_associations_output
 
 
 class AsyncDevOpsAgentClientConfig(TypedDict, total=False, closed=True):
@@ -207,8 +305,10 @@ class AsyncDevOpsAgentClient:
 
         # resources
         self.agent_space_resource = AsyncAgentSpaceResource(self)
+        self.asset_resource = AsyncAssetResource(self)
         self.private_connection_resource = AsyncPrivateConnectionResource(self)
         self.service_resource = AsyncServiceResource(self)
+        self.trigger_resource = AsyncTriggerResource(self)
 
     def operation_options(
         self, config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None
@@ -237,7 +337,7 @@ class AsyncDevOpsAgentClient:
 
     async def create_asset(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_type: "capo_devops_agent.types.asset_type.AssetType",
         content: "capo_devops_agent.types.asset_content.AssetContent",
         *,
@@ -251,7 +351,7 @@ class AsyncDevOpsAgentClient:
             agent_space_id: <p>The unique identifier for the agent space where the asset will be created</p>
             asset_type: <p>The type of asset to create</p>
             metadata: <p>The metadata describing this asset</p>
-            content: <p>The content for the asset. Provide a single file or a zip bundle.</p>
+            content: <p>The content for the asset. Provide a single file, a zip bundle, or a sourceUrl to import from an external source.</p>
             client_token: <p>A unique, case-sensitive identifier used for idempotent asset creation</p>
 
         Raises:
@@ -304,7 +404,7 @@ class AsyncDevOpsAgentClient:
 
     async def create_asset_file(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         path: "capo_devops_agent.types.asset_file_path.AssetFilePath",
         content: "capo_devops_agent.types.asset_file_body.AssetFileBody",
@@ -374,7 +474,7 @@ class AsyncDevOpsAgentClient:
 
     async def create_backlog_task(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_type: "capo_devops_agent.types.task_type.TaskType",
         title: "capo_devops_agent.types.backlog_task_title.BacklogTaskTitle",
         priority: "capo_devops_agent.types.priority.Priority",
@@ -454,7 +554,7 @@ class AsyncDevOpsAgentClient:
 
     async def create_chat(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
         user_id: Optional["capo_devops_agent.types.resource_id.ResourceId"] = None,
@@ -463,6 +563,7 @@ class AsyncDevOpsAgentClient:
         """<p>Creates a new chat execution in the specified agent space</p>
 
         Args:
+            agent_space_id: <p>The unique identifier for the agent space where the chat will be created.</p>
             user_id: <p>The user identifier for the chat. This field is deprecated and will be ignored — the service resolves user identity from the authenticated session.</p>
             user_type: <p>The authentication type of the user</p>
 
@@ -511,9 +612,79 @@ class AsyncDevOpsAgentClient:
         await response.response.aclose()
         return response.output
 
+    async def create_trigger(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        type: "capo_devops_agent.types.trigger_type.TriggerType",
+        condition: "capo_devops_agent.types.trigger_condition.TriggerCondition",
+        action: "capo_devops_agent.types.trigger_action.TriggerAction",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        status: Optional["capo_devops_agent.types.trigger_status.TriggerStatus"] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_devops_agent.types.create_trigger_response.CreateTriggerResponse":
+        """<p>Creates a new Trigger in the specified agent space</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space where the Trigger will be created</p>
+            type: <p>How the new Trigger fires</p>
+            condition: <p>The condition that fires the new Trigger</p>
+            action: <p>The action the new Trigger performs when it fires</p>
+            status: <p>The initial status of the Trigger</p>
+            client_token: <p>A unique, case-sensitive identifier used for idempotent Trigger creation</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.create_trigger_request.CreateTriggerRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.create_trigger_response.CreateTriggerResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.create_trigger
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.create_trigger.async_create_trigger(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.create_trigger_request.CreateTriggerRequest = {
+            "agent_space_id": agent_space_id,
+            "type": type,
+            "condition": condition,
+            "action": action,
+        }
+        if status is not None:
+            input_["status"] = status
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_asset(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -568,7 +739,7 @@ class AsyncDevOpsAgentClient:
 
     async def delete_asset_file(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         path: "capo_devops_agent.types.asset_file_path.AssetFilePath",
         *,
@@ -614,6 +785,61 @@ class AsyncDevOpsAgentClient:
             "agent_space_id": agent_space_id,
             "asset_id": asset_id,
             "path": path,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_trigger(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        trigger_id: "capo_devops_agent.types.resource_id.ResourceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.delete_trigger_response.DeleteTriggerResponse":
+        """<p>Deletes a Trigger from the specified agent space</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space containing the Trigger</p>
+            trigger_id: <p>The unique identifier of the Trigger to delete</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.delete_trigger_request.DeleteTriggerRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.delete_trigger_response.DeleteTriggerResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.delete_trigger
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.delete_trigger.async_delete_trigger(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.delete_trigger_request.DeleteTriggerRequest = {
+            "agent_space_id": agent_space_id,
+            "trigger_id": trigger_id,
         }
 
         response = await aexecute_pipeline(
@@ -670,7 +896,7 @@ class AsyncDevOpsAgentClient:
 
     async def get_asset(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -729,7 +955,7 @@ class AsyncDevOpsAgentClient:
 
     async def get_asset_content(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -788,7 +1014,7 @@ class AsyncDevOpsAgentClient:
 
     async def get_asset_file(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         path: "capo_devops_agent.types.asset_file_path.AssetFilePath",
         *,
@@ -850,7 +1076,7 @@ class AsyncDevOpsAgentClient:
 
     async def get_backlog_task(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -905,7 +1131,7 @@ class AsyncDevOpsAgentClient:
 
     async def get_recommendation(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         recommendation_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -964,9 +1190,64 @@ class AsyncDevOpsAgentClient:
         await response.response.aclose()
         return response.output
 
+    async def get_trigger(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        trigger_id: "capo_devops_agent.types.resource_id.ResourceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.get_trigger_response.GetTriggerResponse":
+        """<p>Gets a Trigger from the specified agent space</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space containing the Trigger</p>
+            trigger_id: <p>The unique identifier of the Trigger to retrieve</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.get_trigger_request.GetTriggerRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.get_trigger_response.GetTriggerResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.get_trigger
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.get_trigger.async_get_trigger(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.get_trigger_request.GetTriggerRequest = {
+            "agent_space_id": agent_space_id,
+            "trigger_id": trigger_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def list_asset_files(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -1033,7 +1314,7 @@ class AsyncDevOpsAgentClient:
 
     async def iter_list_asset_files(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -1060,7 +1341,7 @@ class AsyncDevOpsAgentClient:
 
     async def list_assets(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
         asset_type: Optional["capo_devops_agent.types.asset_type.AssetType"] = None,
@@ -1132,7 +1413,7 @@ class AsyncDevOpsAgentClient:
 
     async def iter_list_assets(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
         asset_type: Optional["capo_devops_agent.types.asset_type.AssetType"] = None,
@@ -1238,7 +1519,7 @@ class AsyncDevOpsAgentClient:
 
     async def list_asset_versions(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -1303,7 +1584,7 @@ class AsyncDevOpsAgentClient:
 
     async def iter_list_asset_versions(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -1328,7 +1609,7 @@ class AsyncDevOpsAgentClient:
 
     async def list_backlog_tasks(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
         filter: Optional["capo_devops_agent.types.task_filter.TaskFilter"] = None,
@@ -1402,7 +1683,7 @@ class AsyncDevOpsAgentClient:
 
     async def iter_list_backlog_tasks(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
         filter: Optional["capo_devops_agent.types.task_filter.TaskFilter"] = None,
@@ -1433,7 +1714,7 @@ class AsyncDevOpsAgentClient:
 
     async def list_chats(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
         user_id: Optional["capo_devops_agent.types.resource_id.ResourceId"] = None,
@@ -1443,6 +1724,7 @@ class AsyncDevOpsAgentClient:
         """<p>Retrieves a paginated list of the user's recent chat executions</p>
 
         Args:
+            agent_space_id: <p>The unique identifier for the agent space to list chats from.</p>
             user_id: <p>The user identifier to list chats for. This field is deprecated and will be ignored — the service resolves user identity from the authenticated session.</p>
             max_results: <p>Maximum number of results to return</p>
             next_token: <p>Token for pagination</p>
@@ -1496,7 +1778,7 @@ class AsyncDevOpsAgentClient:
 
     async def list_executions(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -1559,7 +1841,7 @@ class AsyncDevOpsAgentClient:
 
     async def iter_list_executions(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -1584,7 +1866,7 @@ class AsyncDevOpsAgentClient:
 
     async def list_goals(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
         status: Optional["capo_devops_agent.types.goal_status.GoalStatus"] = None,
@@ -1652,7 +1934,7 @@ class AsyncDevOpsAgentClient:
 
     async def iter_list_goals(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
         status: Optional["capo_devops_agent.types.goal_status.GoalStatus"] = None,
@@ -1679,7 +1961,7 @@ class AsyncDevOpsAgentClient:
 
     async def list_journal_records(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         execution_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -1750,7 +2032,7 @@ class AsyncDevOpsAgentClient:
 
     async def iter_list_journal_records(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         execution_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -1833,7 +2115,7 @@ class AsyncDevOpsAgentClient:
 
     async def list_recommendations(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
         task_id: Optional["capo_devops_agent.types.resource_id.ResourceId"] = None,
@@ -1963,10 +2245,99 @@ class AsyncDevOpsAgentClient:
         await response.response.aclose()
         return response.output
 
+    async def list_triggers(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        status: Optional["capo_devops_agent.types.trigger_status.TriggerStatus"] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_devops_agent.types.list_triggers_response.ListTriggersResponse":
+        """<p>Lists Triggers in the specified agent space</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space whose Triggers should be listed</p>
+            status: <p>Filter results to Triggers in this status</p>
+            next_token: <p>Pagination token from a previous response to retrieve the next page of results</p>
+            max_results: <p>The maximum number of results to return in a single response</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.list_triggers_request.ListTriggersRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.list_triggers_response.ListTriggersResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.list_triggers
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.list_triggers.async_list_triggers(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.list_triggers_request.ListTriggersRequest = {
+            "agent_space_id": agent_space_id
+        }
+        if status is not None:
+            input_["status"] = status
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_triggers(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        status: Optional["capo_devops_agent.types.trigger_status.TriggerStatus"] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+        max_results: Optional[int] = None,
+    ) -> "AsyncIterator[capo_devops_agent.types.trigger.Trigger]":
+        _token = next_token
+        while True:
+            _response = await self.list_triggers(
+                agent_space_id,
+                config_overrides=config_overrides,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     @asynccontextmanager
     async def send_message(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         execution_id: "capo_devops_agent.types.chat_execution_id.ChatExecutionId",
         content: "capo_devops_agent.types.message_content.MessageContent",
         *,
@@ -1976,6 +2347,7 @@ class AsyncDevOpsAgentClient:
         ] = None,
         user_id: Optional["capo_devops_agent.types.resource_id.ResourceId"] = None,
         asset_ids: Optional["capo_devops_agent.types.asset_id_list.AssetIdList"] = None,
+        model_tier: Optional[str] = None,
     ) -> "AsyncGenerator[capo_devops_agent.types.send_message_response.SendMessageResponse]":
         """<p>Sends a chat message and streams the response for the specified agent space execution</p>
 
@@ -1986,6 +2358,7 @@ class AsyncDevOpsAgentClient:
             context: <p>Optional context for the message</p>
             user_id: <p>User identifier. This field is deprecated and will be ignored — the service resolves user identity from the authenticated session.</p>
             asset_ids: <p>Optional list of asset identifiers to attach to the message</p>
+            model_tier: <p>Optional model tier selection. Valid values: smart, balanced, fast. Absent or unrecognized values default to balanced.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -2027,6 +2400,8 @@ class AsyncDevOpsAgentClient:
             input_["user_id"] = user_id
         if asset_ids is not None:
             input_["asset_ids"] = asset_ids
+        if model_tier is not None:
+            input_["model_tier"] = model_tier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2148,9 +2523,87 @@ class AsyncDevOpsAgentClient:
         await response.response.aclose()
         return response.output
 
+    async def update_approval_action(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        approval_id: "capo_devops_agent.types.approval_id.ApprovalId",
+        action: "capo_devops_agent.types.approval_action_type.ApprovalActionType",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        final_pattern: Optional[
+            "capo_devops_agent.types.approval_pattern.ApprovalPattern"
+        ] = None,
+        reason: Optional[
+            "capo_devops_agent.types.approval_reason.ApprovalReason"
+        ] = None,
+        ttl_seconds: Optional[int] = None,
+        single_use: Optional[bool] = None,
+    ) -> "capo_devops_agent.types.update_approval_action_response.UpdateApprovalActionResponse":
+        """<p>Updates an approval request with the terminal decision (APPROVED or REJECTED). A single operation handles both verbs via the action enum.</p>
+
+        Args:
+            agent_space_id: <p>The agent space identifier — multi-tenant workspace scope. Bound from the request URI.</p>
+            approval_id: <p>Identifier of the approval request being resolved. A UUID. Bound from the request URI.</p>
+            action: <p>The action to take on the approval request — APPROVED or REJECTED.</p>
+            final_pattern: <p>The finalized pattern (tool + argumentPins) that scopes the approval. Required when `action` is APPROVED; must be absent when `action` is REJECTED. The pattern narrows, and must not widen, the invocation originally requested by the agent. This cross-field invariant is enforced by service-side validation.</p>
+            reason: <p>Optional free-text rationale for the decision. Permitted when `action` is REJECTED; ignored when `action` is APPROVED.</p>
+            ttl_seconds: <p>Approval lifetime in seconds, starting from when the decision is submitted. Required when `action` is APPROVED AND `singleUse` is false; must be absent when `action` is REJECTED or when `singleUse` is true (a single-use approval backs one executed action and the redemption window collapses). Cross-field invariants are enforced by service-side validation; the @range bound here is the operation-boundary check that always applies (a maximum of 4 hours).</p>
+            single_use: <p>Whether the approved action backs a single executed tool call (true) or is reusable within ttlSeconds (false). Required when `action` is APPROVED; must be absent when `action` is REJECTED. When true, ttlSeconds must be absent (the redemption window collapses to the single use). When false, ttlSeconds is required and bounds the reuse window. Cross-field invariants are enforced by service-side validation.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.update_approval_action_request.UpdateApprovalActionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.update_approval_action_response.UpdateApprovalActionResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.update_approval_action
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.update_approval_action.async_update_approval_action(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.update_approval_action_request.UpdateApprovalActionRequest = {
+            "agent_space_id": agent_space_id,
+            "approval_id": approval_id,
+            "action": action,
+        }
+        if final_pattern is not None:
+            input_["final_pattern"] = final_pattern
+        if reason is not None:
+            input_["reason"] = reason
+        if ttl_seconds is not None:
+            input_["ttl_seconds"] = ttl_seconds
+        if single_use is not None:
+            input_["single_use"] = single_use
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def update_asset(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -2164,7 +2617,7 @@ class AsyncDevOpsAgentClient:
             agent_space_id: <p>The unique identifier for the agent space containing the asset</p>
             asset_id: <p>The unique identifier of the asset to update</p>
             metadata: <p>Metadata fields to update. Only the fields present in this document are updated. Omitted fields retain their current values.</p>
-            content: <p>Optional content to set or replace. A single file adds or replaces one file; a zip replaces all files.</p>
+            content: <p>Optional content update. A single file adds or replaces one file; a zip replaces all files; a sourceUrl re-syncs from the original source.</p>
             client_token: <p>A unique, case-sensitive identifier used for idempotent asset update</p>
 
         Raises:
@@ -2218,7 +2671,7 @@ class AsyncDevOpsAgentClient:
 
     async def update_asset_file(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         path: "capo_devops_agent.types.asset_file_path.AssetFilePath",
         *,
@@ -2291,7 +2744,7 @@ class AsyncDevOpsAgentClient:
 
     async def update_backlog_task(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -2357,7 +2810,7 @@ class AsyncDevOpsAgentClient:
 
     async def update_goal(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         goal_id: str,
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -2423,7 +2876,7 @@ class AsyncDevOpsAgentClient:
 
     async def update_recommendation(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         recommendation_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
@@ -2490,6 +2943,1623 @@ class AsyncDevOpsAgentClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def update_trigger(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        trigger_id: "capo_devops_agent.types.resource_id.ResourceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        status: Optional["capo_devops_agent.types.trigger_status.TriggerStatus"] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_devops_agent.types.update_trigger_response.UpdateTriggerResponse":
+        """<p>Updates the status of an existing Trigger</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space containing the Trigger</p>
+            trigger_id: <p>The unique identifier of the Trigger to update</p>
+            status: <p>The new status for the Trigger</p>
+            client_token: <p>A unique, case-sensitive identifier used for idempotent Trigger update</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.update_trigger_request.UpdateTriggerRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.update_trigger_response.UpdateTriggerResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.update_trigger
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.update_trigger.async_update_trigger(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.update_trigger_request.UpdateTriggerRequest = {
+            "agent_space_id": agent_space_id,
+            "trigger_id": trigger_id,
+        }
+        if status is not None:
+            input_["status"] = status
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_agent_space(
+        self,
+        name: "capo_devops_agent.types.agent_space_name.AgentSpaceName",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        description: Optional["capo_devops_agent.types.description.Description"] = None,
+        locale: Optional["capo_devops_agent.types.locale.Locale"] = None,
+        kms_key_arn: Optional["capo_devops_agent.types.kms_key_arn.KmsKeyArn"] = None,
+        client_token: Optional[str] = None,
+        tags: Optional["capo_devops_agent.types.tags.Tags"] = None,
+        preferences: Optional[
+            "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+        ] = None,
+    ) -> "capo_devops_agent.types.create_agent_space_output.CreateAgentSpaceOutput":
+        """<p>Creates a new AgentSpace with the specified name and description. Duplicate space names are allowed.</p>
+
+        Args:
+            name: <p>The name of the AgentSpace.</p>
+            description: <p>The description of the AgentSpace.</p>
+            locale: <p>The locale for the AgentSpace, which determines the language used in agent responses.</p>
+            kms_key_arn: <p>The ARN of the AWS Key Management Service (AWS KMS) customer managed key that's used to encrypt resources.</p>
+            client_token: <p>Client-provided token to ensure request idempotency. When the same token is provided in subsequent calls, the same response is returned within a 8-hour window.</p>
+            tags: <p>Tags to add to the AgentSpace at creation time.</p>
+            preferences: <p>The preferences to configure on the agent space. Preferences not provided take their default values.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.create_agent_space_input.CreateAgentSpaceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.create_agent_space_output.CreateAgentSpaceOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.create_agent_space
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.create_agent_space.async_create_agent_space(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.create_agent_space_input.CreateAgentSpaceInput = {
+            "name": name
+        }
+        if description is not None:
+            input_["description"] = description
+        if locale is not None:
+            input_["locale"] = locale
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+        if preferences is not None:
+            input_["preferences"] = preferences
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_agent_space(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.get_agent_space_output.GetAgentSpaceOutput":
+        """<p>Retrieves detailed information about a specific AgentSpace.</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.get_agent_space_input.GetAgentSpaceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.get_agent_space_output.GetAgentSpaceOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.get_agent_space
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.get_agent_space.async_get_agent_space(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.get_agent_space_input.GetAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_agent_space(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        name: Optional[
+            "capo_devops_agent.types.agent_space_name.AgentSpaceName"
+        ] = None,
+        description: Optional["capo_devops_agent.types.description.Description"] = None,
+        locale: Optional["capo_devops_agent.types.locale.Locale"] = None,
+        preferences: Optional[
+            "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+        ] = None,
+    ) -> "capo_devops_agent.types.update_agent_space_output.UpdateAgentSpaceOutput":
+        """<p>Updates the information of an existing AgentSpace.</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            name: <p>The updated name of the AgentSpace.</p>
+            description: <p>The updated description of the AgentSpace.</p>
+            locale: <p>The updated locale for the AgentSpace, which determines the language used in agent responses.</p>
+            preferences: <p>The preferences to configure on the agent space. When provided, this replaces the full set of configured preferences; preferences not included revert to their default values. When omitted, the current preferences are left unchanged.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.update_agent_space_input.UpdateAgentSpaceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.update_agent_space_output.UpdateAgentSpaceOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.update_agent_space
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.update_agent_space.async_update_agent_space(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.update_agent_space_input.UpdateAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if locale is not None:
+            input_["locale"] = locale
+        if preferences is not None:
+            input_["preferences"] = preferences
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_agent_space(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.delete_agent_space_output.DeleteAgentSpaceOutput":
+        """<p>Deletes an AgentSpace. This operation is idempotent and returns a 204 No Content response on success.</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.delete_agent_space_input.DeleteAgentSpaceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.delete_agent_space_output.DeleteAgentSpaceOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.delete_agent_space
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.delete_agent_space.async_delete_agent_space(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.delete_agent_space_input.DeleteAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def disable_operator_app(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        auth_flow: Optional["capo_devops_agent.types.auth_flow.AuthFlow"] = None,
+    ) -> None:
+        """<p>Disable the Operator App for the specified AgentSpace</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            auth_flow: <p>The authentication flow configured for the operator App. e.g. idc</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.identity_center_service_exception.IdentityCenterServiceException: <p>Calls to the customer Identity Center have failed</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.disable_operator_app_input.DisableOperatorAppInput]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_devops_agent._operations.dev_ops_agent.disable_operator_app
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.disable_operator_app.async_disable_operator_app(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.disable_operator_app_input.DisableOperatorAppInput = {
+            "agent_space_id": agent_space_id
+        }
+        if auth_flow is not None:
+            input_["auth_flow"] = auth_flow
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def enable_operator_app(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        auth_flow: "capo_devops_agent.types.auth_flow.AuthFlow",
+        operator_app_role_arn: "capo_devops_agent.types.role_arn.RoleArn",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        idc_instance_arn: Optional[str] = None,
+        issuer_url: Optional[str] = None,
+        idp_client_id: Optional[
+            "capo_devops_agent.types.idp_client_id.IdpClientId"
+        ] = None,
+        idp_client_secret: Optional[
+            "capo_devops_agent.types.idp_client_secret.IdpClientSecret"
+        ] = None,
+        provider: Optional[str] = None,
+    ) -> "capo_devops_agent.types.enable_operator_app_output.EnableOperatorAppOutput":
+        """<p>Enable the Operator App to access the given AgentSpace</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            auth_flow: <p>The authentication flow configured for the operator App. e.g. iam or idc</p>
+            operator_app_role_arn: <p>The IAM role end users assume to access AIDevOps APIs</p>
+            idc_instance_arn: <p>The IdC instance Arn used to create an IdC auth application</p>
+            issuer_url: <p>The OIDC issuer URL of the external Identity Provider</p>
+            idp_client_id: <p>The OIDC client ID for the IdP application</p>
+            idp_client_secret: <p>The OIDC client secret for the IdP application</p>
+            provider: <p>The Identity Provider name (e.g., Entra, Okta, Google)</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.identity_center_service_exception.IdentityCenterServiceException: <p>Calls to the customer Identity Center have failed</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.enable_operator_app_input.EnableOperatorAppInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.enable_operator_app_output.EnableOperatorAppOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.enable_operator_app
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.enable_operator_app.async_enable_operator_app(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.enable_operator_app_input.EnableOperatorAppInput = {
+            "agent_space_id": agent_space_id,
+            "auth_flow": auth_flow,
+            "operator_app_role_arn": operator_app_role_arn,
+        }
+        if idc_instance_arn is not None:
+            input_["idc_instance_arn"] = idc_instance_arn
+        if issuer_url is not None:
+            input_["issuer_url"] = issuer_url
+        if idp_client_id is not None:
+            input_["idp_client_id"] = idp_client_id
+        if idp_client_secret is not None:
+            input_["idp_client_secret"] = idp_client_secret
+        if provider is not None:
+            input_["provider"] = provider
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_operator_app(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.get_operator_app_output.GetOperatorAppOutput":
+        """<p>Get the full auth configuration of operator including any enabled auth flow</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.get_operator_app_input.GetOperatorAppInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.get_operator_app_output.GetOperatorAppOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.get_operator_app
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.get_operator_app.async_get_operator_app(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.get_operator_app_input.GetOperatorAppInput = {
+            "agent_space_id": agent_space_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_operator_app_idp_config(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        idp_client_secret: Optional[
+            "capo_devops_agent.types.idp_client_secret.IdpClientSecret"
+        ] = None,
+    ) -> "capo_devops_agent.types.update_operator_app_idp_config_output.UpdateOperatorAppIdpConfigOutput":
+        """<p>Update the external Identity Provider configuration for the Operator App</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            idp_client_secret: <p>The OIDC client secret for the IdP application</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.update_operator_app_idp_config_input.UpdateOperatorAppIdpConfigInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.update_operator_app_idp_config_output.UpdateOperatorAppIdpConfigOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.update_operator_app_idp_config
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.update_operator_app_idp_config.async_update_operator_app_idp_config(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.update_operator_app_idp_config_input.UpdateOperatorAppIdpConfigInput = {
+            "agent_space_id": agent_space_id
+        }
+        if idp_client_secret is not None:
+            input_["idp_client_secret"] = idp_client_secret
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_agent_spaces(
+        self,
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+    ) -> "capo_devops_agent.types.list_agent_spaces_output.ListAgentSpacesOutput":
+        """<p>Lists all AgentSpaces with optional pagination.</p>
+
+        Args:
+            max_results: <p>Maximum number of results to return in a single call.</p>
+            next_token: <p>Token for the next page of results.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.list_agent_spaces_input.ListAgentSpacesInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.list_agent_spaces_output.ListAgentSpacesOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.list_agent_spaces
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.list_agent_spaces.async_list_agent_spaces(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.list_agent_spaces_input.ListAgentSpacesInput = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_agent_spaces(
+        self,
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_devops_agent.types.agent_space.AgentSpace]":
+        _token = next_token
+        while True:
+            _response = await self.list_agent_spaces(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("agent_spaces",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def associate_service(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        service_id: "capo_devops_agent.types.service_id.ServiceId",
+        configuration: "capo_devops_agent.types.service_configuration.ServiceConfiguration",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        capabilities: Optional[
+            "capo_devops_agent.types.association_capabilities.AssociationCapabilities"
+        ] = None,
+    ) -> "capo_devops_agent.types.associate_service_output.AssociateServiceOutput":
+        """<p>Adds a specific service association to an AgentSpace. It overwrites the existing association of the same service. Returns 201 Created on success.</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            service_id: <p>The unique identifier of the service.</p>
+            configuration: <p>The configuration that directs how AgentSpace interacts with the given service.</p>
+            capabilities: <p>Enabled capabilities for this association.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.associate_service_input.AssociateServiceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.associate_service_output.AssociateServiceOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.associate_service
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.associate_service.async_associate_service(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.associate_service_input.AssociateServiceInput = {
+            "agent_space_id": agent_space_id,
+            "service_id": service_id,
+            "configuration": configuration,
+        }
+        if capabilities is not None:
+            input_["capabilities"] = capabilities
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_association(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        association_id: "capo_devops_agent.types.association_id.AssociationId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.get_association_output.GetAssociationOutput":
+        """<p>Retrieves given associations configured for a specific AgentSpace.</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            association_id: <p>The unique identifier of the given association.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.get_association_input.GetAssociationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.get_association_output.GetAssociationOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.get_association
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.get_association.async_get_association(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.get_association_input.GetAssociationInput = {
+            "agent_space_id": agent_space_id,
+            "association_id": association_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_association(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        association_id: "capo_devops_agent.types.association_id.AssociationId",
+        configuration: "capo_devops_agent.types.service_configuration.ServiceConfiguration",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        capabilities: Optional[
+            "capo_devops_agent.types.association_capabilities.AssociationCapabilities"
+        ] = None,
+    ) -> "capo_devops_agent.types.update_association_output.UpdateAssociationOutput":
+        """<p>Partially updates the configuration of an existing service association for an AgentSpace. Present fields are fully replaced; absent fields are left unchanged. Returns 200 OK on success.</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            association_id: <p>The unique identifier of the given association.</p>
+            configuration: <p>The configuration that directs how AgentSpace interacts with the given service. The entire configuration is replaced on update.</p>
+            capabilities: <p>Enabled capabilities for this association.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.update_association_input.UpdateAssociationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.update_association_output.UpdateAssociationOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.update_association
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.update_association.async_update_association(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.update_association_input.UpdateAssociationInput = {
+            "agent_space_id": agent_space_id,
+            "association_id": association_id,
+            "configuration": configuration,
+        }
+        if capabilities is not None:
+            input_["capabilities"] = capabilities
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def disassociate_service(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        association_id: "capo_devops_agent.types.association_id.AssociationId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> (
+        "capo_devops_agent.types.disassociate_service_output.DisassociateServiceOutput"
+    ):
+        """<p>Deletes a specific service association from an AgentSpace. This operation is idempotent and returns a 204 No Content response on success.</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            association_id: <p>The unique identifier of the given association.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.disassociate_service_input.DisassociateServiceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.disassociate_service_output.DisassociateServiceOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.disassociate_service
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.disassociate_service.async_disassociate_service(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.disassociate_service_input.DisassociateServiceInput = {
+            "agent_space_id": agent_space_id,
+            "association_id": association_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_webhooks(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        association_id: "capo_devops_agent.types.association_id.AssociationId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.list_webhooks_output.ListWebhooksOutput":
+        """<p>List all webhooks for given Association</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            association_id: <p>The unique identifier of the given association.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.list_webhooks_input.ListWebhooksInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.list_webhooks_output.ListWebhooksOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.list_webhooks
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.list_webhooks.async_list_webhooks(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.list_webhooks_input.ListWebhooksInput = {
+            "agent_space_id": agent_space_id,
+            "association_id": association_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_associations(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+        filter_service_types: Optional[str] = None,
+    ) -> "capo_devops_agent.types.list_associations_output.ListAssociationsOutput":
+        """<p>List all associations for given AgentSpace</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+            max_results: <p>Maximum number of results to return in a single call.</p>
+            next_token: <p>Token for the next page of results.</p>
+            filter_service_types: <p>A comma-separated list of service types to filter list associations output</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.list_associations_input.ListAssociationsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.list_associations_output.ListAssociationsOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.list_associations
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.list_associations.async_list_associations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.list_associations_input.ListAssociationsInput = {
+            "agent_space_id": agent_space_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if filter_service_types is not None:
+            input_["filter_service_types"] = filter_service_types
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_associations(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+        filter_service_types: Optional[str] = None,
+    ) -> "AsyncIterator[capo_devops_agent.types.association.Association]":
+        _token = next_token
+        while True:
+            _response = await self.list_associations(
+                agent_space_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                filter_service_types=filter_service_types,
+            )
+            _page = _resolve_path(_response, ("associations",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def validate_aws_associations(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.validate_aws_associations_output.ValidateAwsAssociationsOutput":
+        """<p>Validates an aws association and set status and returns a 204 No Content response on success.</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier of the AgentSpace</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.validate_aws_associations_input.ValidateAwsAssociationsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.validate_aws_associations_output.ValidateAwsAssociationsOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.validate_aws_associations
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.validate_aws_associations.async_validate_aws_associations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.validate_aws_associations_input.ValidateAwsAssociationsInput = {
+            "agent_space_id": agent_space_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_private_connection(
+        self,
+        name: "capo_devops_agent.types.private_connection_name.PrivateConnectionName",
+        mode: "capo_devops_agent.types.private_connection_mode.PrivateConnectionMode",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        tags: Optional["capo_devops_agent.types.tags.Tags"] = None,
+    ) -> "capo_devops_agent.types.create_private_connection_output.CreatePrivateConnectionOutput":
+        """<p>Creates a Private Connection to a target resource.</p>
+
+        Args:
+            name: <p>Unique name for this Private Connection within the account.</p>
+            mode: <p>Private Connection mode configuration.</p>
+            tags: <p>Tags to add to the Private Connection at creation time.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.create_private_connection_input.CreatePrivateConnectionInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.create_private_connection_output.CreatePrivateConnectionOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.create_private_connection
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.create_private_connection.async_create_private_connection(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.create_private_connection_input.CreatePrivateConnectionInput = {
+            "name": name,
+            "mode": mode,
+        }
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_private_connection(
+        self,
+        name: "capo_devops_agent.types.private_connection_name.PrivateConnectionName",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.describe_private_connection_output.DescribePrivateConnectionOutput":
+        """<p>Retrieves details of an existing Private Connection.</p>
+
+        Args:
+            name: <p>The name of the Private Connection.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.describe_private_connection_input.DescribePrivateConnectionInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.describe_private_connection_output.DescribePrivateConnectionOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.describe_private_connection
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.describe_private_connection.async_describe_private_connection(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.describe_private_connection_input.DescribePrivateConnectionInput = {
+            "name": name
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_private_connection(
+        self,
+        name: "capo_devops_agent.types.private_connection_name.PrivateConnectionName",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.delete_private_connection_output.DeletePrivateConnectionOutput":
+        """<p>Deletes a Private Connection. The deletion is asynchronous and returns DELETE_IN_PROGRESS status.</p>
+
+        Args:
+            name: <p>The name of the Private Connection.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.delete_private_connection_input.DeletePrivateConnectionInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.delete_private_connection_output.DeletePrivateConnectionOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.delete_private_connection
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.delete_private_connection.async_delete_private_connection(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.delete_private_connection_input.DeletePrivateConnectionInput = {
+            "name": name
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_private_connections(
+        self, *, config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None
+    ) -> "capo_devops_agent.types.list_private_connections_output.ListPrivateConnectionsOutput":
+        """<p>Lists all Private Connections in the caller's account.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.list_private_connections_input.ListPrivateConnectionsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.list_private_connections_output.ListPrivateConnectionsOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.list_private_connections
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.list_private_connections.async_list_private_connections(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.list_private_connections_input.ListPrivateConnectionsInput = {}
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_private_connection_certificate(
+        self,
+        name: "capo_devops_agent.types.private_connection_name.PrivateConnectionName",
+        certificate: "capo_devops_agent.types.certificate_string.CertificateString",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.update_private_connection_certificate_output.UpdatePrivateConnectionCertificateOutput":
+        """<p>Updates the certificate associated with a Private Connection.</p>
+
+        Args:
+            name: <p>The name of the Private Connection.</p>
+            certificate: <p>The new certificate for the Private Connection.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.update_private_connection_certificate_input.UpdatePrivateConnectionCertificateInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.update_private_connection_certificate_output.UpdatePrivateConnectionCertificateOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.update_private_connection_certificate
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.update_private_connection_certificate.async_update_private_connection_certificate(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.update_private_connection_certificate_input.UpdatePrivateConnectionCertificateInput = {
+            "name": name,
+            "certificate": certificate,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def register_service(
+        self,
+        service: "capo_devops_agent.types.post_register_service_supported_service.PostRegisterServiceSupportedService",
+        service_details: "capo_devops_agent.types.service_details.ServiceDetails",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        kms_key_arn: Optional["capo_devops_agent.types.kms_key_arn.KmsKeyArn"] = None,
+        private_connection_name: Optional[
+            "capo_devops_agent.types.private_connection_name.PrivateConnectionName"
+        ] = None,
+        target_url_private_connection_name: Optional[
+            "capo_devops_agent.types.private_connection_name.PrivateConnectionName"
+        ] = None,
+        exchange_url_private_connection_name: Optional[
+            "capo_devops_agent.types.private_connection_name.PrivateConnectionName"
+        ] = None,
+        name: Optional["capo_devops_agent.types.service_name.ServiceName"] = None,
+        tags: Optional["capo_devops_agent.types.tags.Tags"] = None,
+    ) -> "capo_devops_agent.types.register_service_output.RegisterServiceOutput":
+        """<p>This operation registers the specified service</p>
+
+        Args:
+            service_details: <p>Service-specific authorization configuration parameters</p>
+            kms_key_arn: <p>The ARN of the AWS Key Management Service (AWS KMS) customer managed key that's used to encrypt resources.</p>
+            private_connection_name: <p>The name of the private connection to use for VPC connectivity.</p>
+            target_url_private_connection_name: <p>The name of the private connection to use for API calls (target URL) only. Cannot be specified when privateConnectionName is provided.</p>
+            exchange_url_private_connection_name: <p>The name of the private connection to use for OAuth token exchange requests only. Cannot be specified when privateConnectionName is provided.</p>
+            name: <p>The display name for the service registration.</p>
+            tags: <p>Tags to add to the Service at registration time.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.register_service_input.RegisterServiceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.register_service_output.RegisterServiceOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.register_service
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.register_service.async_register_service(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.register_service_input.RegisterServiceInput = {
+            "service": service,
+            "service_details": service_details,
+        }
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+        if private_connection_name is not None:
+            input_["private_connection_name"] = private_connection_name
+        if target_url_private_connection_name is not None:
+            input_["target_url_private_connection_name"] = (
+                target_url_private_connection_name
+            )
+        if exchange_url_private_connection_name is not None:
+            input_["exchange_url_private_connection_name"] = (
+                exchange_url_private_connection_name
+            )
+        if name is not None:
+            input_["name"] = name
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_service(
+        self,
+        service_id: "capo_devops_agent.types.service_id.ServiceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.get_service_output.GetServiceOutput":
+        """<p>Retrieves given service by it's unique identifier</p>
+
+        Args:
+            service_id: <p>The unique identifier of the given service.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.get_service_input.GetServiceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.get_service_output.GetServiceOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.get_service
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.get_service.async_get_service(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.get_service_input.GetServiceInput = {
+            "service_id": service_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def deregister_service(
+        self,
+        service_id: "capo_devops_agent.types.service_id.ServiceId",
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.deregister_service_output.DeregisterServiceOutput":
+        """<p>Deregister a service</p>
+
+        Args:
+            service_id: <p>The service id to deregister. A service can only be deregistered if it is not associated with any AgentSpace.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.deregister_service_input.DeregisterServiceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.deregister_service_output.DeregisterServiceOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.deregister_service
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.deregister_service.async_deregister_service(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.deregister_service_input.DeregisterServiceInput = {
+            "service_id": service_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_services(
+        self,
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+        filter_service_type: Optional["capo_devops_agent.types.service.Service"] = None,
+    ) -> "capo_devops_agent.types.list_services_output.ListServicesOutput":
+        """<p>List a list of registered service on the account level.</p>
+
+        Args:
+            max_results: <p>Maximum number of results to return in a single call.</p>
+            next_token: <p>Token for the next page of results.</p>
+            filter_service_type: <p>Optional filter to list only services of a specific type.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_devops_agent.types.list_services_input.ListServicesInput]",
+        ) -> AsyncOperationResponse[
+            "capo_devops_agent.types.list_services_output.ListServicesOutput"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.list_services
+
+            (
+                output,
+                http_response,
+            ) = await capo_devops_agent._operations.dev_ops_agent.list_services.async_list_services(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.list_services_input.ListServicesInput = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if filter_service_type is not None:
+            input_["filter_service_type"] = filter_service_type
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_services(
+        self,
+        *,
+        config_overrides: Optional[AsyncDevOpsAgentClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+        filter_service_type: Optional["capo_devops_agent.types.service.Service"] = None,
+    ) -> "AsyncIterator[capo_devops_agent.types.registered_service.RegisteredService]":
+        _token = next_token
+        while True:
+            _response = await self.list_services(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                filter_service_type=filter_service_type,
+            )
+            _page = _resolve_path(_response, ("services",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def __aenter__(self) -> Self:
         return self

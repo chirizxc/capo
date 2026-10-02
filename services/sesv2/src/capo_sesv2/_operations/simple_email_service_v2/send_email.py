@@ -19,6 +19,7 @@ import capo_sesv2.errors.message_rejected
 import capo_sesv2.errors.not_found_exception
 import capo_sesv2.errors.sending_paused_exception
 import capo_sesv2.errors.too_many_requests_exception
+import capo_sesv2.types.configuration_overrides
 import capo_sesv2.types.destination
 import capo_sesv2.types.email_address_list
 import capo_sesv2.types.email_content
@@ -28,7 +29,11 @@ import capo_sesv2.types.send_email_request
 import capo_sesv2.types.send_email_response
 from capo_sesv2._protocol.errors import parse_error_metadata_json
 from capo_sesv2._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_sesv2._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_sesv2._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_sesv2.errors import UnknownServiceError
 
 
@@ -159,7 +164,7 @@ def send_email(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -174,7 +179,7 @@ async def async_send_email(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

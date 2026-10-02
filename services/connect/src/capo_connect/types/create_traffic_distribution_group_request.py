@@ -7,9 +7,9 @@ from typing_extensions import NotRequired, TypedDict
 from capo_connect.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_connect.types.acgr_instance_id_or_arn
     import capo_connect.types.client_token
     import capo_connect.types.description250
-    import capo_connect.types.instance_id_or_arn
     import capo_connect.types.name128
     import capo_connect.types.tag_map
 
@@ -19,7 +19,7 @@ class CreateTrafficDistributionGroupRequest(TypedDict, closed=True):
     """<p>The name for the traffic distribution group. </p>"""
     description: NotRequired["capo_connect.types.description250.Description250"]
     """<p>A description for the traffic distribution group.</p>"""
-    instance_id: "capo_connect.types.instance_id_or_arn.InstanceIdOrArn"
+    instance_id: "capo_connect.types.acgr_instance_id_or_arn.ACGRInstanceIdOrArn"
     """<p>The identifier of the Connect Customer instance that has been replicated. You can find the <code>instanceId</code> in the ARN of the instance.</p>"""
     client_token: NotRequired["capo_connect.types.client_token.ClientToken"]
     r"""<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>"""

@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_timestream_influxdb.errors import DeserializationError
 
@@ -13,12 +13,16 @@ if TYPE_CHECKING:
 class DeleteDbClusterInput(TypedDict, closed=True):
     db_cluster_id: "capo_timestream_influxdb.types.db_cluster_id.DbClusterId"
     """<p>Service-generated unique identifier of the DB cluster.</p>"""
+    retain_automated_backups: NotRequired["bool"]
+    """<p>Specifies whether to retain automated backups after the DB cluster is deleted. If set to true, automated backups are not deleted and can be restored later.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: DeleteDbClusterInput) -> dict:
     out: dict = {}
     out["dbClusterId"] = value["db_cluster_id"]
+    if "retain_automated_backups" in value:
+        out["retainAutomatedBackups"] = value["retain_automated_backups"]
     return out
 
 
@@ -28,4 +32,6 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbClusterInput:
         out["db_cluster_id"] = data["dbClusterId"]
     else:
         raise DeserializationError("DeleteDbClusterInput.db_cluster_id required")
+    if data.get("retainAutomatedBackups") is not None:
+        out["retain_automated_backups"] = data["retainAutomatedBackups"]
     return out

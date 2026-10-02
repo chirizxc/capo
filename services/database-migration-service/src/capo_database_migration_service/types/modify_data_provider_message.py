@@ -22,7 +22,7 @@ class ModifyDataProviderMessage(TypedDict, closed=True):
     description: NotRequired["capo_database_migration_service.types.string.String"]
     """<p>A user-friendly description of the data provider.</p>"""
     engine: NotRequired["capo_database_migration_service.types.string.String"]
-    r"""<p>The type of database engine for the data provider. Valid values include <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"sqlserver\"</code>, <code>redshift</code>, <code>mariadb</code>, <code>mongodb</code>, <code>db2</code>, <code>db2-zos</code>, <code>docdb</code>, and <code>sybase</code>. A value of <code>\"aurora\"</code> represents Amazon Aurora MySQL-Compatible Edition.</p>"""
+    """<p>The type of database engine for the data provider.</p> <p>Valid values: <code>aurora</code>, <code>aurora-postgresql</code>, <code>db2</code>, <code>db2-zos</code>, <code>docdb</code>, <code>mariadb</code>, <code>mongodb</code>, <code>mysql</code>, <code>oracle</code>, <code>postgres</code>, <code>redshift</code>, <code>sqlserver</code>, and <code>sybase</code>. A value of <code>aurora</code> represents Amazon Aurora MySQL-Compatible Edition.</p>"""
     virtual: NotRequired[
         "capo_database_migration_service.types.boolean_optional.BooleanOptional"
     ]

@@ -24,7 +24,7 @@ class UpdateGatewayTargetRequest(TypedDict, closed=True):
     """<p>The unique identifier of the gateway associated with the target.</p>"""
     target_id: "capo_bedrock_agentcore_control.types.target_id.TargetId"
     """<p>The unique identifier of the gateway target to update.</p>"""
-    name: "capo_bedrock_agentcore_control.types.target_name.TargetName"
+    name: NotRequired["capo_bedrock_agentcore_control.types.target_name.TargetName"]
     """<p>The updated name for the gateway target.</p>"""
     description: NotRequired[
         "capo_bedrock_agentcore_control.types.target_description.TargetDescription"
@@ -50,7 +50,8 @@ class UpdateGatewayTargetRequest(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: UpdateGatewayTargetRequest) -> dict:
     out: dict = {}
-    out["name"] = value["name"]
+    if "name" in value:
+        out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     import capo_bedrock_agentcore_control.types.target_configuration
@@ -91,8 +92,6 @@ def deserialize_json(data: dict) -> UpdateGatewayTargetRequest:
     out: UpdateGatewayTargetRequest = {}  # type: ignore[typeddict-item]
     if data.get("name") is not None:
         out["name"] = data["name"]
-    else:
-        raise DeserializationError("UpdateGatewayTargetRequest.name required")
     if data.get("description") is not None:
         out["description"] = data["description"]
     if data.get("targetConfiguration") is not None:

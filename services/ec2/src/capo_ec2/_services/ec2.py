@@ -167,9 +167,9 @@ if TYPE_CHECKING:
     import capo_ec2.types.batch_modify_ipam_routing_policy_registrations_result
     import capo_ec2.types.billing_product_list
     import capo_ec2.types.blob
-    import capo_ec2.types.blob_attribute_value
     import capo_ec2.types.block_device_mapping_request_list
     import capo_ec2.types.boolean
+    import capo_ec2.types.boot_mode_override_values
     import capo_ec2.types.boot_mode_values
     import capo_ec2.types.boxed_boolean
     import capo_ec2.types.boxed_integer
@@ -225,6 +225,9 @@ if TYPE_CHECKING:
     import capo_ec2.types.capacity_reservation_id
     import capo_ec2.types.capacity_reservation_id_set
     import capo_ec2.types.capacity_reservation_instance_platform
+    import capo_ec2.types.capacity_reservation_modification_quote
+    import capo_ec2.types.capacity_reservation_modification_quote_id
+    import capo_ec2.types.capacity_reservation_modification_quote_id_set
     import capo_ec2.types.capacity_reservation_specification
     import capo_ec2.types.capacity_reservation_tenancy
     import capo_ec2.types.carrier_gateway
@@ -284,6 +287,8 @@ if TYPE_CHECKING:
     import capo_ec2.types.create_capacity_reservation_by_splitting_result
     import capo_ec2.types.create_capacity_reservation_cancellation_quote_request
     import capo_ec2.types.create_capacity_reservation_cancellation_quote_result
+    import capo_ec2.types.create_capacity_reservation_date_change_quote_request
+    import capo_ec2.types.create_capacity_reservation_date_change_quote_result
     import capo_ec2.types.create_capacity_reservation_fleet_request
     import capo_ec2.types.create_capacity_reservation_fleet_result
     import capo_ec2.types.create_capacity_reservation_request
@@ -764,6 +769,9 @@ if TYPE_CHECKING:
     import capo_ec2.types.describe_capacity_reservation_cancellation_quotes_request
     import capo_ec2.types.describe_capacity_reservation_cancellation_quotes_request_max_results
     import capo_ec2.types.describe_capacity_reservation_cancellation_quotes_result
+    import capo_ec2.types.describe_capacity_reservation_date_change_quotes_request
+    import capo_ec2.types.describe_capacity_reservation_date_change_quotes_request_max_results
+    import capo_ec2.types.describe_capacity_reservation_date_change_quotes_result
     import capo_ec2.types.describe_capacity_reservation_fleets_max_results
     import capo_ec2.types.describe_capacity_reservation_fleets_request
     import capo_ec2.types.describe_capacity_reservation_fleets_result
@@ -1662,6 +1670,7 @@ if TYPE_CHECKING:
     import capo_ec2.types.instance_type_info_from_instance_requirements
     import capo_ec2.types.instance_type_list
     import capo_ec2.types.instance_type_offering
+    import capo_ec2.types.instance_type_specification_request
     import capo_ec2.types.instance_types
     import capo_ec2.types.integer
     import capo_ec2.types.integrate_services
@@ -2132,6 +2141,8 @@ if TYPE_CHECKING:
     import capo_ec2.types.replace_iam_instance_profile_association_result
     import capo_ec2.types.replace_image_criteria_in_allowed_images_settings_request
     import capo_ec2.types.replace_image_criteria_in_allowed_images_settings_result
+    import capo_ec2.types.replace_image_instance_type_specification_request
+    import capo_ec2.types.replace_image_instance_type_specification_result
     import capo_ec2.types.replace_network_acl_association_request
     import capo_ec2.types.replace_network_acl_association_result
     import capo_ec2.types.replace_network_acl_entry_request
@@ -2260,6 +2271,7 @@ if TYPE_CHECKING:
     import capo_ec2.types.secondary_subnet_id
     import capo_ec2.types.secondary_subnet_id_list
     import capo_ec2.types.secret_arn
+    import capo_ec2.types.secure_blob_attribute_value
     import capo_ec2.types.security_group
     import capo_ec2.types.security_group_for_vpc
     import capo_ec2.types.security_group_id
@@ -2441,6 +2453,8 @@ if TYPE_CHECKING:
     import capo_ec2.types.user_group_string_list
     import capo_ec2.types.user_id_string_list
     import capo_ec2.types.user_trust_provider_type
+    import capo_ec2.types.validate_security_group_quotas_for_interface_request
+    import capo_ec2.types.validate_security_group_quotas_for_interface_result
     import capo_ec2.types.value_string_list
     import capo_ec2.types.verification_method
     import capo_ec2.types.verified_access_endpoint
@@ -2516,6 +2530,7 @@ if TYPE_CHECKING:
     import capo_ec2.types.vpn_tunnel_bandwidth
     import capo_ec2.types.withdraw_byoip_cidr_request
     import capo_ec2.types.withdraw_byoip_cidr_result
+    import capo_ec2.types.zero_size_preference
     import capo_ec2.types.zone_id_string_list
     import capo_ec2.types.zone_name_string_list
 
@@ -3742,13 +3757,13 @@ class EC2Client:
         client_token: Optional["capo_ec2.types.string.String"] = None,
         dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
     ) -> "capo_ec2.types.associate_application_status_check_result.AssociateApplicationStatusCheckResult":
-        r"""<p>Associates an application status check with instances or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">tags</a>. Once you create an association, health monitoring automatically begins for the specified instances or for instances that match the specified tags. The following rules apply:</p> <ul> <li> <p>You must specify either <code>TargetTagAssociations</code> or <code>InstanceIds</code>, but not both. Specifying both results in an <code>InvalidParameterCombination</code> error.</p> </li> <li> <p>The application status check must already exist and belong to your account.</p> </li> <li> <p>Tag keys must not be blank.</p> </li> <li> <p>Maximum 50 tag associations per application status check.</p> </li> <li> <p>Use <code>DisassociateApplicationStatusCheck</code> to remove associations.</p> </li> <li> <p>When you associate <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">tags</a>, the application status check automatically monitors all current and future instances that have the specified tags.</p> </li> </ul>
+        r"""<p>Associates an application status check with instances or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">tags</a>. Once you create an association, health monitoring automatically begins for the specified instances or for instances that match the specified tags. The following rules apply:</p> <ul> <li> <p>You must specify either <code>TargetTagAssociations</code> or <code>InstanceIds</code>, but not both. Specifying both results in an <code>InvalidParameterCombination</code> error.</p> </li> <li> <p>You must own the application status check. The check must already exist in your account.</p> </li> <li> <p>You must not leave tag keys blank.</p> </li> <li> <p>You can create a maximum of 50 tag associations for each application status check.</p> </li> <li> <p>You can use <code>DisassociateApplicationStatusCheck</code> to remove associations.</p> </li> <li> <p>You can associate <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">tags</a> so that the application status check automatically monitors all current and future instances that have the specified tags.</p> </li> </ul>
 
         Args:
             application_status_check_id: <p>The ID of the application status check to associate.</p>
             target_tag_associations: <p>The <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">tags</a> to associate the application status check with. Each tag is a key-value pair. When you associate tags, the application status check automatically monitors all instances that have the specified tags.</p>
             instance_ids: <p>The IDs of the instances to associate with the application status check.</p>
-            client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             dry_run: <p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
 
         Raises:
@@ -6555,6 +6570,8 @@ class EC2Client:
         multi_attach_enabled: Optional["capo_ec2.types.boolean.Boolean"] = None,
         throughput: Optional["capo_ec2.types.integer.Integer"] = None,
         client_token: Optional["capo_ec2.types.string.String"] = None,
+        encrypted: Optional["capo_ec2.types.boolean.Boolean"] = None,
+        kms_key_id: Optional["capo_ec2.types.kms_key_id.KmsKeyId"] = None,
     ) -> "capo_ec2.types.copy_volumes_result.CopyVolumesResult":
         r"""<p>Creates a crash-consistent, point-in-time copy of an existing Amazon EBS volume within the same Availability Zone. The volume copy can be attached to an Amazon EC2 instance once it reaches the <code>available</code> state. For more information, see <a href=\"https://docs.aws.amazon.com/ebs/latest/userguide/ebs-copying-volume.html\">Copy an Amazon EBS volume</a>.</p>
 
@@ -6568,6 +6585,8 @@ class EC2Client:
             multi_attach_enabled: <p>Indicates whether to enable Amazon EBS Multi-Attach for the volume copy. If you enable Multi-Attach, you can attach the volume to up to 16 Nitro instances in the same Availability Zone simultaneously. Supported with <code>io1</code> and <code>io2</code> volumes only. For more information, see <a href=\"https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes-multi.html\"> Amazon EBS Multi-Attach</a>.</p>
             throughput: <p>The throughput to provision for the volume copy, in MiB/s. Supported for <code>gp3</code> volumes only. Omit for all other volume types. Full provisioned throughput performance can be achieved only once the volume copy is fully initialized.</p> <p>Valid Range: <code>125 - 2000</code> MiB/s</p> <p></p>
             client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\"> Ensure Idempotency</a>.</p>
+            encrypted: <p>Indicates whether to encrypt the volume copy. If the source volume is encrypted, the service always encrypts the copy regardless of this value. Set to <code>true</code> to encrypt a copy of an unencrypted source volume during the copy operation. If you set <code>Encrypted</code> to <code>true</code> but do not specify <code>KmsKeyId</code>, the service uses the default KMS key for EBS encryption in your account.</p>
+            kms_key_id: <p>The identifier of the KMS key to use for encryption of the volume copy. Specify a symmetric encryption KMS key. You can specify a KMS key using the key ID, key ARN, alias name, or alias ARN. If you set <code>Encrypted</code> to <code>true</code> but do not specify this parameter, the service uses the default KMS key for EBS encryption in your account. For cross-account volume copies, this must be a KMS key in the calling account.</p>
 
         Raises:
             capo_ec2.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -6606,6 +6625,10 @@ class EC2Client:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if encrypted is not None:
+            input_["encrypted"] = encrypted
+        if kms_key_id is not None:
+            input_["kms_key_id"] = kms_key_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -6647,7 +6670,7 @@ class EC2Client:
         client_token: Optional["capo_ec2.types.string.String"] = None,
         dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
     ) -> "capo_ec2.types.create_application_status_check_result.CreateApplicationStatusCheckResult":
-        r"""<p>Creates an application status check for monitoring the health of applications running on your instances. You can configure the protocol, port, path, and thresholds for the health check. The following rules apply:</p> <ul> <li> <p>You can create a maximum of 50 application status checks per account.</p> </li> <li> <p>Health checks do not start until you associate the check with instances or tags using <code>AssociateApplicationStatusCheck</code>.</p> </li> <li> <p>The <code>Timeout</code> value must be less than the <code>Interval</code> value.</p> </li> <li> <p>The <code>Path</code> must start with a forward slash (<code>/</code>). Default: <code>/</code>.</p> </li> <li> <p>If you do not specify <code>Aggregation</code>, it defaults to <code>included</code>, which means the check contributes to the instance-level application status.</p> </li> <li> <p>Default values: <code>Interval</code> is 60 seconds, <code>Timeout</code> is 6 seconds, <code>FailureThreshold</code> is 2, <code>SuccessThreshold</code> is 2, <code>StatusCodeMatcher</code> is <code>200</code>, <code>InitializationGracePeriodSeconds</code> is 300 seconds.</p> </li> <li> <p>You can tag the application status check during creation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tag your Amazon EC2 resources</a>.</p> </li> </ul>
+        r"""<p>Creates an application status check for monitoring the health of applications running on your instances. You can configure the protocol, port, path, and thresholds for the health check. The following rules apply:</p> <ul> <li> <p>You can create a maximum of 50 application status checks for each account.</p> </li> <li> <p>You must associate the check with instances or tags using <code>AssociateApplicationStatusCheck</code> before health checks start.</p> </li> <li> <p>You must set the <code>Timeout</code> value to less than the <code>Interval</code> value.</p> </li> <li> <p>You must start the <code>Path</code> with a forward slash (<code>/</code>). Default: <code>/</code>.</p> </li> <li> <p>You can specify <code>Aggregation</code> as <code>included</code> or <code>excluded</code>. If you do not specify a value, it defaults to <code>included</code>, which means the check contributes to the instance-level application status.</p> </li> <li> <p>You can use the following default values: <code>Interval</code> is 60 seconds, <code>Timeout</code> is 6 seconds, <code>FailureThreshold</code> is 2, <code>SuccessThreshold</code> is 2, <code>StatusCodeMatcher</code> is <code>200</code>, <code>InitializationGracePeriodSeconds</code> is 300 seconds.</p> </li> <li> <p>You can tag the application status check during creation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tag your Amazon EC2 resources</a>.</p> </li> </ul>
 
         Args:
             health_check_paths: <p>The health check paths to use for the application status check. Health check paths define the network path from a source subnet to one or more destination subnets for cross-Availability Zone or Availability Zone to Local Zone health checking. If omitted, health checks are performed in the same subnet as the instance.</p>
@@ -6665,7 +6688,7 @@ class EC2Client:
             status_code_matcher: <p>The HTTP status codes that indicate a successful health check response. Specify a comma-separated list of individual status codes or ranges, for example, <code>200,202,300-399</code>. For a range, the first value must be less than the second value. Maximum length: 64 characters. Default: <code>200</code>.</p>
             initialization_grace_period_seconds: <p>The number of seconds to wait before starting health checks after an instance is launched. Valid values: 1 to 600.</p>
             tag_specifications: <p>The tags to apply to the application status check.</p>
-            client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             dry_run: <p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
 
         Raises:
@@ -7049,6 +7072,71 @@ class EC2Client:
         input_: capo_ec2.types.create_capacity_reservation_cancellation_quote_request.CreateCapacityReservationCancellationQuoteRequest = {}
         if capacity_reservation_id is not None:
             input_["capacity_reservation_id"] = capacity_reservation_id
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tag_specifications is not None:
+            input_["tag_specifications"] = tag_specifications
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_capacity_reservation_date_change_quote(
+        self,
+        *,
+        config_overrides: Optional[EC2ClientConfig] = None,
+        capacity_reservation_id: Optional[
+            "capo_ec2.types.capacity_reservation_id.CapacityReservationId"
+        ] = None,
+        new_start_date: Optional[
+            "capo_ec2.types.millisecond_date_time.MillisecondDateTime"
+        ] = None,
+        client_token: Optional["capo_ec2.types.string.String"] = None,
+        tag_specifications: Optional[
+            "capo_ec2.types.tag_specification_list.TagSpecificationList"
+        ] = None,
+        dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
+    ) -> "capo_ec2.types.create_capacity_reservation_date_change_quote_result.CreateCapacityReservationDateChangeQuoteResult":
+        r"""<p>Generates a quote for changing the start date of a future-dated Capacity Reservation that has not yet been delivered. The quote includes the new start date, the resulting commitment end date, and a quote ID. Pass the quote ID to <code>ModifyCapacityReservation</code> to apply the change.</p> <p>The cumulative pushout across all changes is limited to 30 days from the Capacity Reservation's original start date. Quotes are valid for 24 hours, and always expire at least one hour before the start date.</p>
+
+        Args:
+            capacity_reservation_id: <p>The ID of the Capacity Reservation.</p>
+            new_start_date: <p>The requested new start date for the Capacity Reservation, in the ISO8601 format in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>). The new start date must be later than the current start date and within the cumulative 30-day pushout limit.</p>
+            client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensure Idempotency</a>.</p>
+            tag_specifications: <p>The tags to apply to the date change quote.</p>
+            dry_run: <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+
+        Raises:
+            capo_ec2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ec2.types.create_capacity_reservation_date_change_quote_request.CreateCapacityReservationDateChangeQuoteRequest]",
+        ) -> OperationResponse[
+            "capo_ec2.types.create_capacity_reservation_date_change_quote_result.CreateCapacityReservationDateChangeQuoteResult"
+        ]:
+            import capo_ec2._operations.amazon_ec2.create_capacity_reservation_date_change_quote
+
+            output, http_response = (
+                capo_ec2._operations.amazon_ec2.create_capacity_reservation_date_change_quote.create_capacity_reservation_date_change_quote(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ec2.types.create_capacity_reservation_date_change_quote_request.CreateCapacityReservationDateChangeQuoteRequest = {}
+        if capacity_reservation_id is not None:
+            input_["capacity_reservation_id"] = capacity_reservation_id
+        if new_start_date is not None:
+            input_["new_start_date"] = new_start_date
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -8211,6 +8299,9 @@ class EC2Client:
         snapshot_location: Optional[
             "capo_ec2.types.snapshot_location_enum.SnapshotLocationEnum"
         ] = None,
+        boot_mode_override: Optional[
+            "capo_ec2.types.boot_mode_override_values.BootModeOverrideValues"
+        ] = None,
         dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
         instance_id: Optional["capo_ec2.types.instance_id.InstanceId"] = None,
         name: Optional["capo_ec2.types.image_name_request.ImageNameRequest"] = None,
@@ -8222,11 +8313,12 @@ class EC2Client:
             "capo_ec2.types.block_device_mapping_request_list.BlockDeviceMappingRequestList"
         ] = None,
     ) -> "capo_ec2.types.create_image_result.CreateImageResult":
-        r"""<p>Creates an Amazon EBS-backed AMI from an Amazon EBS-backed instance that is either running or stopped.</p> <p>If you customized your instance with instance store volumes or Amazon EBS volumes in addition to the root device volume, the new AMI contains block device mapping information for those volumes. When you launch an instance from this new AMI, the instance automatically launches with those additional volumes.</p> <p>The location of the source instance determines where you can create the snapshots of the AMI:</p> <ul> <li> <p>If the source instance is in a Region, you must create the snapshots in the same Region as the instance.</p> </li> <li> <p>If the source instance is in a Local Zone, you can create the snapshots in the same Local Zone or in its parent Region.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html\">Create an Amazon EBS-backed AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+        r"""<p>Creates an Amazon EBS-backed AMI from an Amazon EBS-backed instance that is either running or stopped.</p> <p>If you customized your instance with instance store volumes or Amazon EBS volumes in addition to the root device volume, the new AMI contains block device mapping information for those volumes. When you launch an instance from this new AMI, the instance automatically launches with those additional volumes.</p> <p>The location of the source instance determines where you can create the snapshots of the AMI:</p> <ul> <li> <p>If the source instance is in a Region, you must create the snapshots in the same Region as the instance.</p> </li> <li> <p>If the source instance is in a Local Zone, you can create the snapshots in the same Local Zone or in its parent Region.</p> </li> <li> <p>If the source instance is on an Outpost that supports local snapshots, you can create the snapshots on the same Outpost or in the parent Region of that Outpost. In this case, you must use the <code>SnapshotLocation</code> parameter to specify where to create the snapshots.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html\">Create an Amazon EBS-backed AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
 
         Args:
             tag_specifications: <p>The tags to apply to the AMI and snapshots on creation. You can tag the AMI, the snapshots, or both.</p> <ul> <li> <p>To tag the AMI, the value for <code>ResourceType</code> must be <code>image</code>.</p> </li> <li> <p>To tag the snapshots that are created of the root volume and of other Amazon EBS volumes that are attached to the instance, the value for <code>ResourceType</code> must be <code>snapshot</code>. The same tag is applied to all of the snapshots that are created.</p> </li> </ul> <p>If you specify other values for <code>ResourceType</code>, the request fails.</p> <p>To tag an AMI or snapshot after it has been created, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html\">CreateTags</a>. </p>
-            snapshot_location: <note> <p>Only supported for instances in Local Zones. If the source instance is not in a Local Zone, omit this parameter.</p> </note> <p>The Amazon S3 location where the snapshots will be stored.</p> <ul> <li> <p>To create local snapshots in the same Local Zone as the source instance, specify <code>local</code>.</p> </li> <li> <p>To create regional snapshots in the parent Region of the Local Zone, specify <code>regional</code> or omit this parameter.</p> </li> </ul> <p>Default: <code>regional</code> </p>
+            snapshot_location: <note> <p>Only supported for instances in Local Zones and for instances on Outposts that support local snapshots. If the source instance is not in one of these locations, omit this parameter.</p> </note> <p>The Amazon S3 location where the snapshots will be stored.</p> <ul> <li> <p>To create local snapshots in the same Local Zone or on the same Outpost as the source instance, specify <code>local</code>.</p> </li> <li> <p>To create regional snapshots in the parent Region of the Local Zone or Outpost, specify <code>regional</code>.</p> </li> </ul> <p>If the source instance is in a Local Zone and you omit this parameter, regional snapshots are created in the parent Region of the Local Zone.</p> <p>If the source instance is on an Outpost that supports local snapshots, this parameter is required. If you omit it, the request fails with an <code>InvalidParameterValue</code> error.</p> <p>Default: <code>regional</code> (for instances in Local Zones only)</p>
+            boot_mode_override: <p>The boot mode of the new image, which overrides the default boot mode. By default, if you do not specify this parameter, the new image inherits the <code>boot-mode</code> from the source instance.</p> <p>A value of <code>uefi</code> indicates that the image only supports UEFI boot mode. You can specify this parameter only if the <code>current-instance-boot-mode</code> of the source instance is <code>uefi</code>. To find the <code>boot-mode</code> or <code>current-instance-boot-mode</code> of an instance, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html\">DescribeInstances</a>.</p> <note> <p>The operating system contained in the AMI must be configured to support the specified boot mode.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html\">Instance launch behavior with Amazon EC2 boot modes</a> in the <i>Amazon EC2 User Guide</i>.</p>
             dry_run: <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
             instance_id: <p>The ID of the instance.</p>
             name: <p>A name for the new image.</p> <p>Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('), at-signs (@), or underscores(_)</p>
@@ -8256,6 +8348,8 @@ class EC2Client:
             input_["tag_specifications"] = tag_specifications
         if snapshot_location is not None:
             input_["snapshot_location"] = snapshot_location
+        if boot_mode_override is not None:
+            input_["boot_mode_override"] = boot_mode_override
         if dry_run is not None:
             input_["dry_run"] = dry_run
         if instance_id is not None:
@@ -8616,6 +8710,9 @@ class EC2Client:
         tag_specifications: Optional[
             "capo_ec2.types.tag_specification_list.TagSpecificationList"
         ] = None,
+        zero_size_preference: Optional[
+            "capo_ec2.types.zero_size_preference.ZeroSizePreference"
+        ] = None,
     ) -> "capo_ec2.types.create_interruptible_capacity_reservation_allocation_result.CreateInterruptibleCapacityReservationAllocationResult":
         """<p> Creates an interruptible Capacity Reservation by specifying the number of unused instances you want to allocate from your source reservation. This helps you make unused capacity available for other workloads within your account while maintaining control to reclaim it. </p>
 
@@ -8625,6 +8722,7 @@ class EC2Client:
             client_token: <p> Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. </p>
             dry_run: <p> Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. </p>
             tag_specifications: <p> The tags to apply to the interruptible Capacity Reservation during creation. </p>
+            zero_size_preference: <p> Specifies the behavior for the interruptible Capacity Reservation when you reduce its allocation to zero instances. Specify <code>retain</code> to keep the interruptible Capacity Reservation active at zero capacity so that you can allocate instances to it again later. Specify <code>default</code> to cancel the interruptible Capacity Reservation and return the capacity to your source Capacity Reservation. The default value is <code>default</code>. </p>
 
         Raises:
             capo_ec2.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -8657,6 +8755,8 @@ class EC2Client:
             input_["dry_run"] = dry_run
         if tag_specifications is not None:
             input_["tag_specifications"] = tag_specifications
+        if zero_size_preference is not None:
+            input_["zero_size_preference"] = zero_size_preference
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -14792,7 +14892,7 @@ class EC2Client:
 
         Args:
             application_status_check_id: <p>The ID of the application status check to delete.</p>
-            client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             dry_run: <p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
 
         Raises:
@@ -20505,7 +20605,7 @@ class EC2Client:
         next_token: Optional["capo_ec2.types.string.String"] = None,
         dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
     ) -> "capo_ec2.types.describe_application_status_result.DescribeApplicationStatusResult":
-        r"""<p>Describes the application status for the specified instances. Returns the aggregated application health status for each instance. The following rules apply:</p> <ul> <li> <p>The instance-level status is derived from all application status checks with the aggregation setting set to <code>included</code>.</p> </li> <li> <p>Use <code>DescribeApplicationStatusChecks</code> to view the configuration of individual checks.</p> </li> <li> <p>Use <code>EnableApplicationStatusCheckSuppression</code> to temporarily suppress health check results from affecting the instance-level status.</p> </li> </ul>
+        r"""<p>Describes the aggregated application health status for the specified instances. The following rules apply:</p> <ul> <li> <p>The instance-level status is derived from all application status checks with the aggregation setting set to <code>included</code>.</p> </li> <li> <p>Use <code>DescribeApplicationStatusChecks</code> to view the configuration of individual checks.</p> </li> <li> <p>Use <code>EnableApplicationStatusCheckSuppression</code> to temporarily suppress health check results from affecting the instance-level status.</p> </li> </ul>
 
         Args:
             instance_ids: <p>The IDs of the instances for which to describe application status.</p>
@@ -20646,7 +20746,7 @@ class EC2Client:
         include_all: Optional["capo_ec2.types.boolean.Boolean"] = None,
         dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
     ) -> "capo_ec2.types.describe_application_status_checks_result.DescribeApplicationStatusChecksResult":
-        r"""<p>Describes one or more application status checks. Returns configuration details for your application status checks, including protocol, port, path, thresholds, and associations. The following rules apply:</p> <ul> <li> <p>If you do not specify any application status check IDs, all checks in your account are returned.</p> </li> <li> <p>Use <code>DescribeApplicationStatus</code> to see the actual health status of instances.</p> </li> </ul>
+        r"""<p>Describes application status checks, including configuration details such as protocol, port, path, thresholds, and associations. Results are paginated. Use the <code>NextToken</code> parameter to retrieve additional results. The following rules apply:</p> <ul> <li> <p>If you do not specify any application status check IDs, all checks in your account are returned.</p> </li> <li> <p>Use <code>DescribeApplicationStatus</code> to see the actual health status of instances.</p> </li> </ul>
 
         Args:
             application_status_check_ids: <p>The IDs of the application status checks to describe.</p>
@@ -21755,6 +21855,103 @@ class EC2Client:
         )
         response.response.close()
         return response.output
+
+    def describe_capacity_reservation_date_change_quotes(
+        self,
+        *,
+        config_overrides: Optional[EC2ClientConfig] = None,
+        capacity_reservation_modification_quote_ids: Optional[
+            "capo_ec2.types.capacity_reservation_modification_quote_id_set.CapacityReservationModificationQuoteIdSet"
+        ] = None,
+        max_results: Optional[
+            "capo_ec2.types.describe_capacity_reservation_date_change_quotes_request_max_results.DescribeCapacityReservationDateChangeQuotesRequestMaxResults"
+        ] = None,
+        next_token: Optional["capo_ec2.types.string.String"] = None,
+        dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
+        filters: Optional["capo_ec2.types.filter_list.FilterList"] = None,
+    ) -> "capo_ec2.types.describe_capacity_reservation_date_change_quotes_result.DescribeCapacityReservationDateChangeQuotesResult":
+        r"""<p>Describes one or more Capacity Reservation date change quotes that you generated by using the <code>CreateCapacityReservationDateChangeQuote</code> operation.</p>
+
+        Args:
+            capacity_reservation_modification_quote_ids: <p>The IDs of the date change quotes to describe.</p>
+            max_results: <p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p>
+            next_token: <p>The token to use to retrieve the next page of results.</p>
+            dry_run: <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+            filters: <p>One or more filters. Filter names and values are case-sensitive.</p>
+
+        Raises:
+            capo_ec2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ec2.types.describe_capacity_reservation_date_change_quotes_request.DescribeCapacityReservationDateChangeQuotesRequest]",
+        ) -> OperationResponse[
+            "capo_ec2.types.describe_capacity_reservation_date_change_quotes_result.DescribeCapacityReservationDateChangeQuotesResult"
+        ]:
+            import capo_ec2._operations.amazon_ec2.describe_capacity_reservation_date_change_quotes
+
+            output, http_response = (
+                capo_ec2._operations.amazon_ec2.describe_capacity_reservation_date_change_quotes.describe_capacity_reservation_date_change_quotes(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ec2.types.describe_capacity_reservation_date_change_quotes_request.DescribeCapacityReservationDateChangeQuotesRequest = {}
+        if capacity_reservation_modification_quote_ids is not None:
+            input_["capacity_reservation_modification_quote_ids"] = (
+                capacity_reservation_modification_quote_ids
+            )
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
+        if filters is not None:
+            input_["filters"] = filters
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_describe_capacity_reservation_date_change_quotes(
+        self,
+        *,
+        config_overrides: Optional[EC2ClientConfig] = None,
+        capacity_reservation_modification_quote_ids: Optional[
+            "capo_ec2.types.capacity_reservation_modification_quote_id_set.CapacityReservationModificationQuoteIdSet"
+        ] = None,
+        max_results: Optional[
+            "capo_ec2.types.describe_capacity_reservation_date_change_quotes_request_max_results.DescribeCapacityReservationDateChangeQuotesRequestMaxResults"
+        ] = None,
+        next_token: Optional["capo_ec2.types.string.String"] = None,
+        dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
+        filters: Optional["capo_ec2.types.filter_list.FilterList"] = None,
+    ) -> "Iterator[capo_ec2.types.capacity_reservation_modification_quote.CapacityReservationModificationQuote]":
+        _token = next_token
+        while True:
+            _response = self.describe_capacity_reservation_date_change_quotes(
+                config_overrides=config_overrides,
+                capacity_reservation_modification_quote_ids=capacity_reservation_modification_quote_ids,
+                max_results=max_results,
+                next_token=_token,
+                dry_run=dry_run,
+                filters=filters,
+            )
+            _page = _resolve_path(
+                _response, ("capacity_reservation_modification_quotes",)
+            )
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_capacity_reservation_fleets(
         self,
@@ -24568,7 +24765,7 @@ class EC2Client:
             max_results: <p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p>
             next_token: <p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>
             dry_run: <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-            filters: <p>The filters.</p> <ul> <li> <p> <code>architecture</code> - The image architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code> | <code>x86_64_mac</code> | <code>arm64_mac</code>).</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean value that indicates whether the Amazon EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.snapshot-id</code> - The ID of the snapshot used for the Amazon EBS volume.</p> </li> <li> <p> <code>block-device-mapping.volume-size</code> - The volume size of the Amazon EBS volume, in GiB.</p> </li> <li> <p> <code>block-device-mapping.volume-type</code> - The volume type of the Amazon EBS volume (<code>io1</code> | <code>io2</code> | <code>gp2</code> | <code>gp3</code> | <code>sc1 </code>| <code>st1</code> | <code>standard</code>).</p> </li> <li> <p> <code>block-device-mapping.encrypted</code> - A Boolean that indicates whether the Amazon EBS volume is encrypted.</p> </li> <li> <p> <code>creation-date</code> - The time when the image was created, in the ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), for example, <code>2021-09-29T11:04:43.305Z</code>. You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>description</code> - The description of the image (provided during image creation).</p> </li> <li> <p> <code>ena-support</code> - A Boolean that indicates whether enhanced networking with ENA is enabled.</p> </li> <li> <p> <code>free-tier-eligible</code> - A Boolean that indicates whether this image can be used under the Amazon Web Services Free Tier (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type (<code>ovm</code> | <code>xen</code>).</p> </li> <li> <p> <code>image-allowed</code> - A Boolean that indicates whether the image meets the criteria specified for Allowed AMIs.</p> </li> <li> <p> <code>image-id</code> - The ID of the image.</p> </li> <li> <p> <code>image-watermark.source-image-creation-time</code> - The creation date of the source AMI, in the ISO 8601 format in the UTC time zone (<code> <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>.<i>ssssss</i>+<i>HH</i>:<i>MM</i> </code>). You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>image-watermark.source-image-id</code> - The ID of the AMI to which the watermark was originally attached.</p> </li> <li> <p> <code>image-watermark.source-image-region</code> - The Region where the watermark was originally attached.</p> </li> <li> <p> <code>image-watermark.watermark-creation-time</code> - The date and time the watermark was attached to the AMI, in the ISO 8601 format in the UTC time zone (<code> <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>.<i>ssssss</i>+<i>HH</i>:<i>MM</i> </code>). You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>image-watermark.watermark-key</code> - The watermark identifier, in <code>accountId:watermarkName</code> format (for example, <code>123456789012:approvedAmi</code>).</p> </li> <li> <p> <code>image-type</code> - The image type (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).</p> </li> <li> <p> <code>is-public</code> - A Boolean that indicates whether the image is public.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>manifest-location</code> - The location of the image manifest.</p> </li> <li> <p> <code>name</code> - The name of the AMI (provided during image creation).</p> </li> <li> <p> <code>owner-alias</code> - The owner alias (<code>amazon</code> | <code>aws-backup-vault</code> | <code>aws-marketplace</code>). The valid aliases are defined in an Amazon-maintained list. This is not the Amazon Web Services account alias that can be set using the IAM console. We recommend that you use the <b>Owner</b> request parameter instead of this filter.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the owner. We recommend that you use the <b>Owner</b> request parameter instead of this filter.</p> </li> <li> <p> <code>platform</code> - The platform. The only supported value is <code>windows</code>.</p> </li> <li> <p> <code>product-code</code> - The product code.</p> </li> <li> <p> <code>product-code.type</code> - The type of the product code (<code>marketplace</code>).</p> </li> <li> <p> <code>public-ssm-parameter-name</code> - The name of a public Systems Manager parameter associated with the AMI. The parameter must be in a trusted Amazon Web Services namespace under <code>aws/service/</code>. Returns all AMIs that have ever been associated with the parameter, including previous versions.</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-image-id</code> - The ID of the source AMI from which the AMI was created.</p> </li> <li> <p> <code>source-image-region</code> - The Region of the source AMI.</p> </li> <li> <p> <code>source-instance-id</code> - The ID of the instance that the AMI was created from if the AMI was created using CreateImage. This filter is applicable only if the AMI was created using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateImage.html\">CreateImage</a>.</p> </li> <li> <p> <code>state</code> - The state of the image (<code>available</code> | <code>pending</code> | <code>failed</code>).</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - The message for the state change.</p> </li> <li> <p> <code>sriov-net-support</code> - A value of <code>simple</code> indicates that enhanced networking with the Intel 82599 VF interface is enabled.</p> </li> <li> <p> <code>tag:<key></code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type (<code>paravirtual</code> | <code>hvm</code>).</p> </li> </ul>
+            filters: <p>The filters.</p> <ul> <li> <p> <code>architecture</code> - The image architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code> | <code>x86_64_mac</code> | <code>arm64_mac</code>).</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean value that indicates whether the Amazon EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.snapshot-id</code> - The ID of the snapshot used for the Amazon EBS volume.</p> </li> <li> <p> <code>block-device-mapping.volume-size</code> - The volume size of the Amazon EBS volume, in GiB.</p> </li> <li> <p> <code>block-device-mapping.volume-type</code> - The volume type of the Amazon EBS volume (<code>io1</code> | <code>io2</code> | <code>gp2</code> | <code>gp3</code> | <code>sc1 </code>| <code>st1</code> | <code>standard</code>).</p> </li> <li> <p> <code>block-device-mapping.encrypted</code> - A Boolean that indicates whether the Amazon EBS volume is encrypted.</p> </li> <li> <p> <code>boot-mode</code> – The boot mode of the image (<code>legacy-bios</code> | <code>uefi</code> | <code>uefi-preferred</code>).</p> </li> <li> <p> <code>creation-date</code> - The time when the image was created, in the ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), for example, <code>2021-09-29T11:04:43.305Z</code>. You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>description</code> - The description of the image (provided during image creation).</p> </li> <li> <p> <code>ena-support</code> - A Boolean that indicates whether enhanced networking with ENA is enabled.</p> </li> <li> <p> <code>free-tier-eligible</code> - A Boolean that indicates whether this image can be used under the Amazon Web Services Free Tier (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type (<code>ovm</code> | <code>xen</code>).</p> </li> <li> <p> <code>image-allowed</code> - A Boolean that indicates whether the image meets the criteria specified for Allowed AMIs.</p> </li> <li> <p> <code>image-id</code> - The ID of the image.</p> </li> <li> <p> <code>image-watermark.source-image-creation-time</code> - The creation date of the source AMI, in the ISO 8601 format in the UTC time zone (<code> <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>.<i>ssssss</i>+<i>HH</i>:<i>MM</i> </code>). You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>image-watermark.source-image-id</code> - The ID of the AMI to which the watermark was originally attached.</p> </li> <li> <p> <code>image-watermark.source-image-region</code> - The Region where the watermark was originally attached.</p> </li> <li> <p> <code>image-watermark.watermark-creation-time</code> - The date and time the watermark was attached to the AMI, in the ISO 8601 format in the UTC time zone (<code> <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>.<i>ssssss</i>+<i>HH</i>:<i>MM</i> </code>). You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>image-watermark.watermark-key</code> - The watermark identifier, in <code>accountId:watermarkName</code> format (for example, <code>123456789012:approvedAmi</code>).</p> </li> <li> <p> <code>image-type</code> - The image type (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).</p> </li> <li> <p> <code>instance-type-specification.supported-instance-type</code> – The instance types that are compatible with the AMI, as specified by the AMI owner. Values can be individual instance types (for example, <code>t3.micro</code>) or wildcard patterns that match multiple instance types (for example, <code>t3.*</code>).</p> </li> <li> <p> <code>instance-type-specification.unsupported-instance-type</code> – The instance types that are not compatible with the AMI, as specified by the AMI owner. Values can be individual instance types (for example, <code>t3.micro</code>) or wildcard patterns that match multiple instance types (for example, <code>t3.*</code>).</p> </li> <li> <p> <code>is-public</code> - A Boolean that indicates whether the image is public.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>manifest-location</code> - The location of the image manifest.</p> </li> <li> <p> <code>name</code> - The name of the AMI (provided during image creation).</p> </li> <li> <p> <code>owner-alias</code> - The owner alias (<code>amazon</code> | <code>aws-backup-vault</code> | <code>aws-marketplace</code>). The valid aliases are defined in an Amazon-maintained list. This is not the Amazon Web Services account alias that can be set using the IAM console. We recommend that you use the <b>Owner</b> request parameter instead of this filter.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the owner. We recommend that you use the <b>Owner</b> request parameter instead of this filter.</p> </li> <li> <p> <code>platform</code> - The platform. The only supported value is <code>windows</code>.</p> </li> <li> <p> <code>product-code</code> - The product code.</p> </li> <li> <p> <code>product-code.type</code> - The type of the product code (<code>marketplace</code>).</p> </li> <li> <p> <code>public-ssm-parameter-name</code> - The name of a public Systems Manager parameter associated with the AMI. The parameter must be in a trusted Amazon Web Services namespace under <code>aws/service/</code>. Returns all AMIs that have ever been associated with the parameter, including previous versions.</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-image-id</code> - The ID of the source AMI from which the AMI was created.</p> </li> <li> <p> <code>source-image-region</code> - The Region of the source AMI.</p> </li> <li> <p> <code>source-instance-id</code> - The ID of the instance that the AMI was created from if the AMI was created using CreateImage. This filter is applicable only if the AMI was created using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateImage.html\">CreateImage</a>.</p> </li> <li> <p> <code>state</code> - The state of the image (<code>available</code> | <code>pending</code> | <code>failed</code>).</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - The message for the state change.</p> </li> <li> <p> <code>sriov-net-support</code> - A value of <code>simple</code> indicates that enhanced networking with the Intel 82599 VF interface is enabled.</p> </li> <li> <p> <code>tag:<key></code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type (<code>paravirtual</code> | <code>hvm</code>).</p> </li> </ul>
 
         Raises:
             capo_ec2.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -25215,7 +25412,7 @@ class EC2Client:
         ] = None,
         next_token: Optional["capo_ec2.types.string.String"] = None,
     ) -> "capo_ec2.types.describe_instance_credit_specifications_result.DescribeInstanceCreditSpecificationsResult":
-        r"""<p>Describes the credit option for CPU usage of the specified burstable performance instances. The credit options are <code>standard</code> and <code>unlimited</code>.</p> <p>If you do not specify an instance ID, Amazon EC2 returns burstable performance instances with the <code>unlimited</code> credit option, as well as instances that were previously configured as T2, T3, and T3a with the <code>unlimited</code> credit option. For example, if you resize a T2 instance, while it is configured as <code>unlimited</code>, to an M4 instance, Amazon EC2 returns the M4 instance.</p> <p>If you specify one or more instance IDs, Amazon EC2 returns the credit option (<code>standard</code> or <code>unlimited</code>) of those instances. If you specify an instance ID that is not valid, such as an instance that is not a burstable performance instance, an error is returned.</p> <p>Recently terminated instances might appear in the returned results. This interval is usually less than one hour.</p> <p>If an Availability Zone is experiencing a service disruption and you specify instance IDs in the affected zone, or do not specify any instance IDs at all, the call fails. If you specify only instance IDs in an unaffected zone, the call works normally.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a> in the <i>Amazon EC2 User Guide</i>.</p>
+        r"""<p>Describes the credit option for CPU usage of the specified burstable performance instances. The credit options are <code>standard</code> and <code>unlimited</code>.</p> <p>If you do not specify an instance ID, Amazon EC2 returns burstable performance instances with the <code>unlimited</code> credit option, as well as instances that were previously configured as T2, T3, and T3a with the <code>unlimited</code> credit option. For example, if you resize a T2 instance, while it is configured as <code>unlimited</code>, to an M4 instance, Amazon EC2 returns the M4 instance.</p> <p>If you specify one or more instance IDs, Amazon EC2 returns the credit option (<code>standard</code> or <code>unlimited</code>) of those instances. If you specify an instance ID that is not a burstable performance instance, Amazon EC2 returns the <code>standard</code> credit option.</p> <p>Recently terminated instances might appear in the returned results. This interval is usually less than one hour.</p> <p>If an Availability Zone is experiencing a service disruption and you specify instance IDs in the affected zone, or do not specify any instance IDs at all, the call fails. If you specify only instance IDs in an unaffected zone, the call works normally.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a> in the <i>Amazon EC2 User Guide</i>.</p>
 
         Args:
             dry_run: <p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
@@ -37094,11 +37291,11 @@ class EC2Client:
         client_token: Optional["capo_ec2.types.string.String"] = None,
         dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
     ) -> "capo_ec2.types.disable_application_status_check_suppression_result.DisableApplicationStatusCheckSuppressionResult":
-        r"""<p>Disables suppression of application status checks for the specified instances. After suppression is disabled, health check results resume affecting the instance-level application status. You can specify a maximum of 100 instance IDs per request.</p>
+        r"""<p>Disables suppression of application status checks for the specified instances. After suppression is disabled, health check results resume affecting the instance-level application status. You can specify a maximum of 100 instance IDs for each request.</p>
 
         Args:
             instance_ids: <p>The IDs of the instances for which to disable application status check suppression.</p>
-            client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             dry_run: <p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
 
         Raises:
@@ -38144,7 +38341,7 @@ class EC2Client:
             application_status_check_id: <p>The ID of the application status check to disassociate.</p>
             target_tag_associations: <p>The <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">tags</a> to disassociate from the application status check. Specify the same key-value pairs that were used during association.</p>
             instance_ids: <p>The IDs of the instances to disassociate from the application status check.</p>
-            client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             dry_run: <p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
 
         Raises:
@@ -39189,12 +39386,12 @@ class EC2Client:
         client_token: Optional["capo_ec2.types.string.String"] = None,
         dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
     ) -> "capo_ec2.types.enable_application_status_check_suppression_result.EnableApplicationStatusCheckSuppressionResult":
-        r"""<p>Suppresses application status checks for the specified instances. While suppressed, health checks continue to run but do not affect the instance-level application status. The following rules apply:</p> <ul> <li> <p>Maximum 100 instance IDs per request.</p> </li> <li> <p>Use <code>DisableApplicationStatusCheckSuppression</code> to resume normal health check reporting.</p> </li> <li> <p>If you do not specify <code>DurationSeconds</code>, suppression continues indefinitely until you call <code>DisableApplicationStatusCheckSuppression</code>.</p> </li> </ul>
+        r"""<p>Suppresses application status checks for the specified instances. While suppressed, health checks continue to run but do not affect the instance-level application status. The following rules apply:</p> <ul> <li> <p>You can specify a maximum of 100 instance IDs for each request.</p> </li> <li> <p>Use <code>DisableApplicationStatusCheckSuppression</code> to resume normal health check reporting.</p> </li> <li> <p>If you do not specify <code>DurationSeconds</code>, suppression continues indefinitely until you call <code>DisableApplicationStatusCheckSuppression</code>.</p> </li> </ul>
 
         Args:
             instance_ids: <p>The IDs of the instances for which to suppress application status checks.</p>
             duration_seconds: <p>The duration, in seconds, for which to suppress application status checks. If omitted, the application status check is suppressed indefinitely until you call <code>DisableApplicationStatusCheckSuppression</code>.</p>
-            client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             dry_run: <p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
 
         Raises:
@@ -46915,7 +47112,7 @@ class EC2Client:
             success_threshold: <p>The number of consecutive successful health checks before the application status is considered healthy. The value must be greater than 0.</p>
             status_code_matcher: <p>The HTTP status codes that indicate a successful health check response. Specify a comma-separated list of individual status codes or ranges, for example, <code>200,202,300-399</code>. For a range, the first value must be less than the second value. Maximum length: 64 characters.</p>
             initialization_grace_period_seconds: <p>The number of seconds to wait before starting health checks after an instance is launched. Valid values: 1 to 600.</p>
-            client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             dry_run: <p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
 
         Raises:
@@ -47058,8 +47255,15 @@ class EC2Client:
         instance_match_criteria: Optional[
             "capo_ec2.types.instance_match_criteria.InstanceMatchCriteria"
         ] = None,
+        accept_modification_terms: Optional["capo_ec2.types.boolean.Boolean"] = None,
+        start_date: Optional[
+            "capo_ec2.types.millisecond_date_time.MillisecondDateTime"
+        ] = None,
+        quote_id: Optional[
+            "capo_ec2.types.capacity_reservation_modification_quote_id.CapacityReservationModificationQuoteId"
+        ] = None,
     ) -> "capo_ec2.types.modify_capacity_reservation_result.ModifyCapacityReservationResult":
-        r"""<p>Modifies a Capacity Reservation's capacity, instance eligibility, and the conditions under which it is to be released. You can't modify a Capacity Reservation's instance type, EBS optimization, platform, instance store settings, Availability Zone, or tenancy. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-modify.html\"> Modify an active Capacity Reservation</a>.</p> <p>The allowed modifications depend on the state of the Capacity Reservation:</p> <ul> <li> <p> <code>assessing</code> or <code>scheduled</code> state - You can modify the tags only.</p> </li> <li> <p> <code>pending</code> state - You can't modify the Capacity Reservation in any way.</p> </li> <li> <p> <code>active</code> state but still within the commitment duration - You can't decrease the instance count or set an end date that is within the commitment duration. All other modifications are allowed.</p> </li> <li> <p> <code>active</code> state with no commitment duration or elapsed commitment duration - All modifications are allowed.</p> </li> <li> <p> <code>expired</code>, <code>cancelled</code>, <code>unsupported</code>, or <code>failed</code> state - You can't modify the Capacity Reservation in any way.</p> </li> </ul>
+        r"""<p>Modifies a Capacity Reservation's capacity, instance eligibility, and the conditions under which it is to be released. You can't modify a Capacity Reservation's instance type, EBS optimization, platform, instance store settings, Availability Zone, or tenancy. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-modify.html\"> Modify an active Capacity Reservation</a>.</p> <p>The allowed modifications depend on the state of the Capacity Reservation:</p> <ul> <li> <p> <code>assessing</code> or <code>scheduled</code> state - You can modify the tags only.</p> </li> <li> <p> <code>pending</code> state - You can't modify the Capacity Reservation in any way.</p> </li> <li> <p> <code>active</code> state but still within the commitment duration - You can't decrease the instance count or set an end date that is within the commitment duration. All other modifications are allowed.</p> </li> <li> <p> <code>active</code> state with no commitment duration or elapsed commitment duration - All modifications are allowed.</p> </li> <li> <p> <code>expired</code>, <code>cancelled</code>, <code>unsupported</code>, or <code>failed</code> state - You can't modify the Capacity Reservation in any way.</p> </li> </ul> <p>For a future-dated Capacity Reservation that has not yet been delivered, pushing out the start date requires a quote generated by <code>CreateCapacityReservationDateChangeQuote</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-modify.html\">Modify an active Capacity Reservation</a> in the <i>Amazon EC2 User Guide</i>.</p>
 
         Args:
             capacity_reservation_id: <p>The ID of the Capacity Reservation.</p>
@@ -47070,6 +47274,9 @@ class EC2Client:
             dry_run: <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
             additional_info: <p>Reserved for future use.</p>
             instance_match_criteria: <p> The matching criteria (instance eligibility) that you want to use in the modified Capacity Reservation. If you change the instance eligibility of an existing Capacity Reservation from <code>targeted</code> to <code>open</code>, any running instances that match the attributes of the Capacity Reservation, have the <code>CapacityReservationPreference</code> set to <code>open</code>, and are not yet running in the Capacity Reservation, will automatically use the modified Capacity Reservation. </p> <p>To modify the instance eligibility, the Capacity Reservation must be completely idle (zero usage).</p>
+            accept_modification_terms: <p>Indicates that you accept the modification terms of the quote identified by <code>QuoteId</code>. To apply a quoted modification, set this parameter to <code>true</code>.</p>
+            start_date: <p>The new start date for the Capacity Reservation, in the ISO8601 format in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>). Applies to future-dated Capacity Reservations only. Requires a quote from <code>CreateCapacityReservationDateChangeQuote</code>; pass the quote ID in <code>QuoteId</code> with <code>AcceptModificationTerms</code> set to <code>true</code>.</p>
+            quote_id: <p>The ID of the quote that describes the modification you want to apply. Generate a quote by using <code>CreateCapacityReservationDateChangeQuote</code>. The quote must be in the <code>active</code> state, and each quote can be used only once.</p>
 
         Raises:
             capo_ec2.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -47107,6 +47314,12 @@ class EC2Client:
             input_["additional_info"] = additional_info
         if instance_match_criteria is not None:
             input_["instance_match_criteria"] = instance_match_criteria
+        if accept_modification_terms is not None:
+            input_["accept_modification_terms"] = accept_modification_terms
+        if start_date is not None:
+            input_["start_date"] = start_date
+        if quote_id is not None:
+            input_["quote_id"] = quote_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -47859,7 +48072,7 @@ class EC2Client:
         kernel: Optional["capo_ec2.types.attribute_value.AttributeValue"] = None,
         ramdisk: Optional["capo_ec2.types.attribute_value.AttributeValue"] = None,
         user_data: Optional[
-            "capo_ec2.types.blob_attribute_value.BlobAttributeValue"
+            "capo_ec2.types.secure_blob_attribute_value.SecureBlobAttributeValue"
         ] = None,
         instance_initiated_shutdown_behavior: Optional[
             "capo_ec2.types.attribute_value.AttributeValue"
@@ -54377,6 +54590,58 @@ class EC2Client:
         response.response.close()
         return response.output
 
+    def replace_image_instance_type_specification(
+        self,
+        *,
+        config_overrides: Optional[EC2ClientConfig] = None,
+        image_id: Optional["capo_ec2.types.image_id.ImageId"] = None,
+        instance_type_specification: Optional[
+            "capo_ec2.types.instance_type_specification_request.InstanceTypeSpecificationRequest"
+        ] = None,
+        dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
+    ) -> "capo_ec2.types.replace_image_instance_type_specification_result.ReplaceImageInstanceTypeSpecificationResult":
+        r"""<p>Replaces or removes the instance type specification for an AMI. The instance type specification defines which instance types are compatible with the AMI.</p> <p>When you launch an instance using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances</a>, Amazon EC2 validates the requested instance type against the AMI's instance type specification. If the instance type is not compatible, the request fails with an <code>InvalidParameterCombination</code> error.</p> <p>You can specify supported instance types, unsupported instance types, or both. The evaluation logic is as follows:</p> <ul> <li> <p>No specification set – all instance types are allowed.</p> </li> <li> <p>Only <code>UnsupportedInstanceTypes</code> set – All instance types are allowed except those that match the unsupported list.</p> </li> <li> <p> <code>SupportedInstanceTypes</code> set – The instance type must match the supported list and must not match the unsupported list.</p> </li> </ul> <p>Instance type entries support wildcard patterns using <code>*</code> (for example, <code>t3.*</code> matches all t3 sizes).</p> <p>To remove an existing instance type specification, omit the <code>InstanceTypeSpecification</code> parameter or set it to <code>null</code>.</p> <p>To set the instance type specification, you must be the AMI owner. You cannot set an instance type specification on an AMI that is listed in Amazon Web Services Marketplace, and you cannot list an AMI in Amazon Web Services Marketplace if it has an instance type specification set.</p>
+
+        Args:
+            image_id: <p>The ID of the AMI.</p>
+            instance_type_specification: <p>The instance type specification to set on the AMI. Omit this parameter to remove the existing instance type specification.</p>
+            dry_run: <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+
+        Raises:
+            capo_ec2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ec2.types.replace_image_instance_type_specification_request.ReplaceImageInstanceTypeSpecificationRequest]",
+        ) -> OperationResponse[
+            "capo_ec2.types.replace_image_instance_type_specification_result.ReplaceImageInstanceTypeSpecificationResult"
+        ]:
+            import capo_ec2._operations.amazon_ec2.replace_image_instance_type_specification
+
+            output, http_response = (
+                capo_ec2._operations.amazon_ec2.replace_image_instance_type_specification.replace_image_instance_type_specification(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ec2.types.replace_image_instance_type_specification_request.ReplaceImageInstanceTypeSpecificationRequest = {}
+        if image_id is not None:
+            input_["image_id"] = image_id
+        if instance_type_specification is not None:
+            input_["instance_type_specification"] = instance_type_specification
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def replace_network_acl_association(
         self,
         *,
@@ -57487,6 +57752,9 @@ class EC2Client:
         ] = None,
         target_instance_count: Optional["capo_ec2.types.integer.Integer"] = None,
         dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
+        zero_size_preference: Optional[
+            "capo_ec2.types.zero_size_preference.ZeroSizePreference"
+        ] = None,
     ) -> "capo_ec2.types.update_interruptible_capacity_reservation_allocation_result.UpdateInterruptibleCapacityReservationAllocationResult":
         """<p> Modifies the number of instances allocated to an interruptible reservation, allowing you to add more capacity or reclaim capacity to your source Capacity Reservation. </p>
 
@@ -57494,6 +57762,7 @@ class EC2Client:
             capacity_reservation_id: <p> The ID of the source Capacity Reservation containing the interruptible allocation to modify. </p>
             target_instance_count: <p> The new number of instances to allocate. Enter a higher number to add more capacity to share, or a lower number to reclaim capacity to your source Capacity Reservation. </p>
             dry_run: <p> Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. </p>
+            zero_size_preference: <p> Specifies the updated behavior for the interruptible Capacity Reservation when you reduce its allocation to zero instances. Specify <code>retain</code> to keep the interruptible Capacity Reservation active at zero capacity so that you can allocate instances to it again later. Specify <code>default</code> to cancel the interruptible Capacity Reservation and return the capacity to your source Capacity Reservation. </p>
 
         Raises:
             capo_ec2.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -57521,6 +57790,8 @@ class EC2Client:
             input_["target_instance_count"] = target_instance_count
         if dry_run is not None:
             input_["dry_run"] = dry_run
+        if zero_size_preference is not None:
+            input_["zero_size_preference"] = zero_size_preference
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -57665,6 +57936,54 @@ class EC2Client:
             input_["security_group_rule_descriptions"] = (
                 security_group_rule_descriptions
             )
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def validate_security_group_quotas_for_interface(
+        self,
+        *,
+        config_overrides: Optional[EC2ClientConfig] = None,
+        security_group_ids: Optional[
+            "capo_ec2.types.security_group_id_list.SecurityGroupIdList"
+        ] = None,
+        dry_run: Optional["capo_ec2.types.boolean.Boolean"] = None,
+    ) -> "capo_ec2.types.validate_security_group_quotas_for_interface_result.ValidateSecurityGroupQuotasForInterfaceResult":
+        r"""<p>Validates whether the specified security groups can be associated with a single network interface. The operation checks Amazon Virtual Private Cloud (Amazon VPC) quotas. It checks inbound or outbound rules per security group and security groups per network interface. Only authorized Amazon Web Services services can call this operation.</p> <p>For more information about security group quotas, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html#vpc-limits-security-groups\">Amazon VPC quotas</a> in the <i>Amazon VPC User Guide</i>.</p>
+
+        Args:
+            security_group_ids: <p>The IDs of the security groups to validate for association with a single network interface. You must specify at least one ID, and each ID must be unique. The number of IDs cannot exceed the maximum number of security groups allowed per network interface.</p>
+            dry_run: <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+
+        Raises:
+            capo_ec2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ec2.types.validate_security_group_quotas_for_interface_request.ValidateSecurityGroupQuotasForInterfaceRequest]",
+        ) -> OperationResponse[
+            "capo_ec2.types.validate_security_group_quotas_for_interface_result.ValidateSecurityGroupQuotasForInterfaceResult"
+        ]:
+            import capo_ec2._operations.amazon_ec2.validate_security_group_quotas_for_interface
+
+            output, http_response = (
+                capo_ec2._operations.amazon_ec2.validate_security_group_quotas_for_interface.validate_security_group_quotas_for_interface(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ec2.types.validate_security_group_quotas_for_interface_request.ValidateSecurityGroupQuotasForInterfaceRequest = {}
+        if security_group_ids is not None:
+            input_["security_group_ids"] = security_group_ids
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

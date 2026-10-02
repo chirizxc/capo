@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_codebuild.types.environment_variables
     import capo_codebuild.types.git_clone_depth
     import capo_codebuild.types.git_submodules_config
+    import capo_codebuild.types.host_kernel
     import capo_codebuild.types.image_pull_credentials_type
     import capo_codebuild.types.logs_config
     import capo_codebuild.types.non_empty_string
@@ -139,6 +140,8 @@ class StartBuildInput(TypedDict, closed=True):
         "capo_codebuild.types.wrapper_int.WrapperInt"
     ]
     """<p>The maximum number of additional automatic retries after a failed build. For example, if the auto-retry limit is set to 2, CodeBuild will call the <code>RetryBuild</code> API to automatically retry your build for up to 2 additional times.</p>"""
+    host_kernel_override: NotRequired["capo_codebuild.types.host_kernel.HostKernel"]
+    """<p>The host operating system kernel for this build that overrides the one specified in the build project.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -307,6 +310,14 @@ def serialize_aws_json_1_1(value: StartBuildInput) -> dict:
         )
     if "auto_retry_limit_override" in value:
         out["autoRetryLimitOverride"] = value["auto_retry_limit_override"]
+    if "host_kernel_override" in value:
+        import capo_codebuild.types.host_kernel
+
+        out["hostKernelOverride"] = (
+            capo_codebuild.types.host_kernel.serialize_aws_json_1_1(
+                value["host_kernel_override"]
+            )
+        )
     return out
 
 
@@ -478,4 +489,12 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildInput:
         )
     if data.get("autoRetryLimitOverride") is not None:
         out["auto_retry_limit_override"] = data["autoRetryLimitOverride"]
+    if data.get("hostKernelOverride") is not None:
+        import capo_codebuild.types.host_kernel
+
+        out["host_kernel_override"] = (
+            capo_codebuild.types.host_kernel.deserialize_aws_json_1_1(
+                data["hostKernelOverride"]
+            )
+        )
     return out

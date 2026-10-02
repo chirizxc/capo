@@ -35,6 +35,9 @@ if TYPE_CHECKING:
     import capo_s3.types.last_modified
     import capo_s3.types.metadata
     import capo_s3.types.missing_meta
+    import capo_s3.types.object_lock_event_hold
+    import capo_s3.types.object_lock_event_hold_duration_days
+    import capo_s3.types.object_lock_event_hold_duration_years
     import capo_s3.types.object_lock_legal_hold_status
     import capo_s3.types.object_lock_mode
     import capo_s3.types.object_lock_retain_until_date
@@ -158,6 +161,18 @@ class HeadObjectOutput(TypedDict, closed=True):
         "capo_s3.types.object_lock_legal_hold_status.ObjectLockLegalHoldStatus"
     ]
     r"""<p>Specifies whether a legal hold is in effect for this object. This header is only returned if the requester has the <code>s3:GetObjectLegalHold</code> permission. This header is not returned if the specified version of this object has never had a legal hold applied. For more information about S3 Object Lock, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html\">Object Lock</a>.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
+    object_lock_event_hold: NotRequired[
+        "capo_s3.types.object_lock_event_hold.ObjectLockEventHold"
+    ]
+    """<p>The event hold status for this object. This header is only returned if the requester has the <code>s3:GetObjectRetention</code> permission.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
+    object_lock_event_hold_duration_days: NotRequired[
+        "capo_s3.types.object_lock_event_hold_duration_days.ObjectLockEventHoldDurationDays"
+    ]
+    """<p>The event hold duration in days for this object. Only returned when the event hold is enabled.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
+    object_lock_event_hold_duration_years: NotRequired[
+        "capo_s3.types.object_lock_event_hold_duration_years.ObjectLockEventHoldDurationYears"
+    ]
+    """<p>The event hold duration in years for this object. Only returned when the event hold is enabled.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
 
 
 # --- restXml ser/de ---

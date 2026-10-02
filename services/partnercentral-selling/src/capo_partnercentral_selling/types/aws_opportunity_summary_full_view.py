@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_partnercentral_selling.types.aws_opportunity_project
     import capo_partnercentral_selling.types.aws_opportunity_related_entities
     import capo_partnercentral_selling.types.aws_opportunity_team_members_list
+    import capo_partnercentral_selling.types.aws_software_revenue
     import capo_partnercentral_selling.types.involvement_type_change_reason
     import capo_partnercentral_selling.types.opportunity_identifier
     import capo_partnercentral_selling.types.opportunity_origin
@@ -56,6 +57,12 @@ class AwsOpportunitySummaryFullView(TypedDict, closed=True):
     project: NotRequired[
         "capo_partnercentral_selling.types.aws_opportunity_project.AwsOpportunityProject"
     ]
+    cosell_motion: NotRequired["str"]
+    """<p>Engagement classification for this opportunity. Read-only. Null before scoring. Known values: <code>AWS Field-engaged</code>, <code>Agent-engaged</code>, <code>Partner-led</code>.</p>"""
+    software_revenue: NotRequired[
+        "capo_partnercentral_selling.types.aws_software_revenue.AwsSoftwareRevenue"
+    ]
+    """<p>Seller-provided PARC deal terms: commitment value, discount, and contract dates.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -143,6 +150,16 @@ def serialize_aws_json_1_0(value: AwsOpportunitySummaryFullView) -> dict:
                 value["project"]
             )
         )
+    if "cosell_motion" in value:
+        out["CosellMotion"] = value["cosell_motion"]
+    if "software_revenue" in value:
+        import capo_partnercentral_selling.types.aws_software_revenue
+
+        out["SoftwareRevenue"] = (
+            capo_partnercentral_selling.types.aws_software_revenue.serialize_aws_json_1_0(
+                value["software_revenue"]
+            )
+        )
     return out
 
 
@@ -228,6 +245,16 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
         out["project"] = (
             capo_partnercentral_selling.types.aws_opportunity_project.deserialize_aws_json_1_0(
                 data["Project"]
+            )
+        )
+    if data.get("CosellMotion") is not None:
+        out["cosell_motion"] = data["CosellMotion"]
+    if data.get("SoftwareRevenue") is not None:
+        import capo_partnercentral_selling.types.aws_software_revenue
+
+        out["software_revenue"] = (
+            capo_partnercentral_selling.types.aws_software_revenue.deserialize_aws_json_1_0(
+                data["SoftwareRevenue"]
             )
         )
     return out

@@ -9,6 +9,7 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.authorizer_configuration
     import capo_bedrock_agentcore_control.types.client_token
+    import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.payment_manager_name
     import capo_bedrock_agentcore_control.types.payments_authorizer_type
     import capo_bedrock_agentcore_control.types.payments_description
@@ -37,6 +38,10 @@ class CreatePaymentManagerRequest(TypedDict, closed=True):
     r"""<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>"""
     tags: NotRequired["capo_bedrock_agentcore_control.types.tags_map.TagsMap"]
     """<p>A map of tag keys and values to assign to the payment manager.</p>"""
+    kms_key_arn: NotRequired[
+        "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the customer managed KMS key to use for encrypting sensitive payment manager data at rest. If you don't specify a key, the data is encrypted with an Amazon Web Services owned key.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -69,6 +74,8 @@ def serialize_json(value: CreatePaymentManagerRequest) -> dict:
         out["tags"] = capo_bedrock_agentcore_control.types.tags_map.serialize_json(
             value["tags"]
         )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -112,4 +119,6 @@ def deserialize_json(data: dict) -> CreatePaymentManagerRequest:
         out["tags"] = capo_bedrock_agentcore_control.types.tags_map.deserialize_json(
             data["tags"]
         )
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     return out

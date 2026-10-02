@@ -23,8 +23,10 @@ async def main():
 
 Some operations accept a streaming request body. Pass an async iterator of `bytes` chunks, or the whole body as `bytes`, for the streaming parameter.
 
+A plain iterator can be sent only once, so if a request fails after its body was transmitted the operation is not retried. To get retries for streamed uploads, pass a `Body` instead: it wraps a source that can be reopened, and every attempt streams a fresh copy. `Body.from_path` (sync client) and `Body.async_from_path` (async client, needs `anyio`) stream a file from disk; `Body(opener)` takes any context manager that yields a `(stream, length)` pair.
+
 ```python
-from capo_sagemaker_runtime_http2 import AsyncSageMakerRuntimeHTTP2Client
+from capo_sagemaker_runtime_http2 import AsyncSageMakerRuntimeHTTP2Client, Body
 
 
 async def main():
@@ -38,6 +40,11 @@ async def main():
 
         # Or pass the whole body as bytes
         response = await sage_maker_runtime_http2.invoke_endpoint_with_bidirectional_stream(body=b'Hello, World!')
+        print(response)
+
+        # Or stream a file with Body: the file is reopened on every retry
+        # and Content-Length is taken from its size, so no content_length needed
+        response = await sage_maker_runtime_http2.invoke_endpoint_with_bidirectional_stream(body=Body.async_from_path("hello.txt"))
         print(response)
 ```
 

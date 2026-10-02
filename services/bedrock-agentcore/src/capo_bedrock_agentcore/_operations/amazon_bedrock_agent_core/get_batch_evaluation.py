@@ -23,9 +23,13 @@ import capo_bedrock_agentcore.types.data_source_config
 import capo_bedrock_agentcore.types.error_details_list
 import capo_bedrock_agentcore.types.evaluation_job_results
 import capo_bedrock_agentcore.types.evaluator_list
+import capo_bedrock_agentcore.types.execution_summary_clustering_result_content
+import capo_bedrock_agentcore.types.failure_analysis_result_content
 import capo_bedrock_agentcore.types.get_batch_evaluation_request
 import capo_bedrock_agentcore.types.get_batch_evaluation_response
+import capo_bedrock_agentcore.types.insight_list
 import capo_bedrock_agentcore.types.output_config
+import capo_bedrock_agentcore.types.user_intent_clustering_result_content
 from capo_bedrock_agentcore._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agentcore._rule_engine._endpoint_rule_set import (
     EndpointParams,
@@ -34,6 +38,7 @@ from capo_bedrock_agentcore._rule_engine._endpoint_rule_set import (
 from capo_bedrock_agentcore._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agentcore.errors import UnknownServiceError
 
@@ -155,7 +160,7 @@ def get_batch_evaluation(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -173,7 +178,7 @@ async def async_get_batch_evaluation(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

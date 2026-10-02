@@ -21,6 +21,10 @@ class Achievability(TypedDict, closed=True):
         "capo_resiliencehubv2.types.achievability_status.AchievabilityStatus"
     ]
     """<p>The achievability status of the multi-Region RTO and RPO targets for the service.</p>"""
+    data_recovery_time_between_backups: NotRequired[
+        "capo_resiliencehubv2.types.achievability_status.AchievabilityStatus"
+    ]
+    """<p>The achievability status of the data recovery time between backups for the service.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -50,6 +54,14 @@ def serialize_json(value: Achievability) -> dict:
                 value["multi_region_rto_rpo"]
             )
         )
+    if "data_recovery_time_between_backups" in value:
+        import capo_resiliencehubv2.types.achievability_status
+
+        out["dataRecoveryTimeBetweenBackups"] = (
+            capo_resiliencehubv2.types.achievability_status.serialize_json(
+                value["data_recovery_time_between_backups"]
+            )
+        )
     return out
 
 
@@ -77,6 +89,14 @@ def deserialize_json(data: dict) -> Achievability:
         out["multi_region_rto_rpo"] = (
             capo_resiliencehubv2.types.achievability_status.deserialize_json(
                 data["multiRegionRtoRpo"]
+            )
+        )
+    if data.get("dataRecoveryTimeBetweenBackups") is not None:
+        import capo_resiliencehubv2.types.achievability_status
+
+        out["data_recovery_time_between_backups"] = (
+            capo_resiliencehubv2.types.achievability_status.deserialize_json(
+                data["dataRecoveryTimeBetweenBackups"]
             )
         )
     return out

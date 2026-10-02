@@ -36,9 +36,9 @@ class GetResourceGatewayResponse(TypedDict, closed=True):
     subnet_ids: NotRequired["capo_vpc_lattice.types.subnet_list.SubnetList"]
     """<p>The IDs of the VPC subnets for resource gateway.</p>"""
     service_managed: NotRequired["bool"]
-    """<p>Indicates whether the resource gateway is managed by an AWS service.</p>"""
+    """<p>Indicates whether the resource gateway is managed by an Amazon Web Services service.</p>"""
     managed_by: NotRequired["str"]
-    """<p>The AWS service that manages the resource gateway.</p>"""
+    """<p>The Amazon Web Services service that manages the resource gateway.</p>"""
     security_group_ids: NotRequired[
         "capo_vpc_lattice.types.security_group_list.SecurityGroupList"
     ]

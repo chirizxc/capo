@@ -24,8 +24,11 @@ import capo_network_firewall.types.enabled_analysis_types
 import capo_network_firewall.types.encryption_configuration
 import capo_network_firewall.types.firewall
 import capo_network_firewall.types.firewall_status
+import capo_network_firewall.types.nat_gateway_mappings_list
+import capo_network_firewall.types.proxy_settings
 import capo_network_firewall.types.subnet_mappings
 import capo_network_firewall.types.tag_list
+import capo_network_firewall.types.vpc_endpoint
 from capo_network_firewall._protocol.errors import parse_error_metadata_json
 from capo_network_firewall._rule_engine._endpoint_rule_set import (
     EndpointParams,
@@ -34,6 +37,7 @@ from capo_network_firewall._rule_engine._endpoint_rule_set import (
 from capo_network_firewall._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_network_firewall.errors import UnknownServiceError
 
@@ -163,7 +167,7 @@ def create_firewall(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -181,7 +185,7 @@ async def async_create_firewall(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

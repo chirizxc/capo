@@ -7,6 +7,7 @@ from typing_extensions import TypedDict
 from capo_securityhub.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
+    import capo_securityhub.types.azure_provider_configuration
     import capo_securityhub.types.jira_cloud_provider_configuration
     import capo_securityhub.types.service_now_provider_configuration
 
@@ -19,8 +20,16 @@ class _ProviderConfiguration_ServiceNow(TypedDict, closed=True):
     ServiceNow: "capo_securityhub.types.service_now_provider_configuration.ServiceNowProviderConfiguration"
 
 
+class _ProviderConfiguration_Azure(TypedDict, closed=True):
+    Azure: (
+        "capo_securityhub.types.azure_provider_configuration.AzureProviderConfiguration"
+    )
+
+
 ProviderConfiguration: TypeAlias = (
-    _ProviderConfiguration_JiraCloud | _ProviderConfiguration_ServiceNow
+    _ProviderConfiguration_JiraCloud
+    | _ProviderConfiguration_ServiceNow
+    | _ProviderConfiguration_Azure
 )
 
 
@@ -42,6 +51,14 @@ def serialize_json(value: ProviderConfiguration) -> dict:
                 value["ServiceNow"]
             )
         }
+    elif "Azure" in value:
+        import capo_securityhub.types.azure_provider_configuration
+
+        return {
+            "Azure": capo_securityhub.types.azure_provider_configuration.serialize_json(
+                value["Azure"]
+            )
+        }
     else:
         raise SerializationError("ProviderConfiguration: no variant present")
 
@@ -61,6 +78,14 @@ def deserialize_json(data: dict) -> ProviderConfiguration:
         return {
             "ServiceNow": capo_securityhub.types.service_now_provider_configuration.deserialize_json(
                 data["ServiceNow"]
+            )
+        }
+    elif data.get("Azure") is not None:
+        import capo_securityhub.types.azure_provider_configuration
+
+        return {
+            "Azure": capo_securityhub.types.azure_provider_configuration.deserialize_json(
+                data["Azure"]
             )
         }
     else:

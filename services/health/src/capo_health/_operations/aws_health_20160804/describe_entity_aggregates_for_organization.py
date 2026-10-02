@@ -18,7 +18,11 @@ import capo_health.types.organization_entity_aggregates_list
 import capo_health.types.organization_event_arns_list
 from capo_health._protocol.errors import parse_error_metadata_json
 from capo_health._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_health._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_health._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_health.errors import UnknownServiceError
 
 
@@ -121,7 +125,7 @@ def describe_entity_aggregates_for_organization(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -139,7 +143,7 @@ async def async_describe_entity_aggregates_for_organization(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

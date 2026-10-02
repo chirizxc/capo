@@ -5,7 +5,9 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_transcribe.types.data_access_role_arn
     import capo_transcribe.types.date_time
+    import capo_transcribe.types.encryption_configuration
     import capo_transcribe.types.failure_reason
     import capo_transcribe.types.language_code
     import capo_transcribe.types.uri
@@ -28,6 +30,14 @@ class GetVocabularyResponse(TypedDict, closed=True):
     r"""<p>If <code>VocabularyState</code> is <code>FAILED</code>, <code>FailureReason</code> contains information about why the custom vocabulary request failed. See also: <a href=\"https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html\">Common Errors</a>.</p>"""
     download_uri: NotRequired["capo_transcribe.types.uri.Uri"]
     """<p>The Amazon S3 location where the custom vocabulary is stored; use this URI to view or download the custom vocabulary.</p>"""
+    data_access_role_arn: NotRequired[
+        "capo_transcribe.types.data_access_role_arn.DataAccessRoleArn"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the IAM role used to access the Amazon S3 bucket that contains your input files and, if applicable, the KMS key specified in <code>EncryptionConfiguration</code>.</p>"""
+    encryption_configuration: NotRequired[
+        "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+    ]
+    """<p>The encryption configuration used for your custom vocabulary.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -63,6 +73,16 @@ def serialize_aws_json_1_1(value: GetVocabularyResponse) -> dict:
         out["FailureReason"] = value["failure_reason"]
     if "download_uri" in value:
         out["DownloadUri"] = value["download_uri"]
+    if "data_access_role_arn" in value:
+        out["DataAccessRoleArn"] = value["data_access_role_arn"]
+    if "encryption_configuration" in value:
+        import capo_transcribe.types.encryption_configuration
+
+        out["EncryptionConfiguration"] = (
+            capo_transcribe.types.encryption_configuration.serialize_aws_json_1_1(
+                value["encryption_configuration"]
+            )
+        )
     return out
 
 
@@ -98,4 +118,14 @@ def deserialize_aws_json_1_1(data: dict) -> GetVocabularyResponse:
         out["failure_reason"] = data["FailureReason"]
     if data.get("DownloadUri") is not None:
         out["download_uri"] = data["DownloadUri"]
+    if data.get("DataAccessRoleArn") is not None:
+        out["data_access_role_arn"] = data["DataAccessRoleArn"]
+    if data.get("EncryptionConfiguration") is not None:
+        import capo_transcribe.types.encryption_configuration
+
+        out["encryption_configuration"] = (
+            capo_transcribe.types.encryption_configuration.deserialize_aws_json_1_1(
+                data["EncryptionConfiguration"]
+            )
+        )
     return out

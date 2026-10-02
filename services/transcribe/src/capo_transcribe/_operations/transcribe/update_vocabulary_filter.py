@@ -12,17 +12,23 @@ import capo_transcribe._auth._signers
 import capo_transcribe._auth._sigv4
 import capo_transcribe._protocol.eventstream
 import capo_transcribe.errors.bad_request_exception
+import capo_transcribe.errors.conflict_exception
 import capo_transcribe.errors.internal_failure_exception
 import capo_transcribe.errors.limit_exceeded_exception
 import capo_transcribe.errors.not_found_exception
 import capo_transcribe.types.date_time
+import capo_transcribe.types.encryption_configuration
 import capo_transcribe.types.language_code
 import capo_transcribe.types.update_vocabulary_filter_request
 import capo_transcribe.types.update_vocabulary_filter_response
 import capo_transcribe.types.words
 from capo_transcribe._protocol.errors import parse_error_metadata_json
 from capo_transcribe._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_transcribe._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_transcribe._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_transcribe.errors import UnknownServiceError
 
 
@@ -32,6 +38,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "BadRequestException":
             raise capo_transcribe.errors.bad_request_exception.BadRequestException.from_aws_json_1_1(
+                data, message
+            )
+        case "ConflictException":
+            raise capo_transcribe.errors.conflict_exception.ConflictException.from_aws_json_1_1(
                 data, message
             )
         case "InternalFailureException":
@@ -139,7 +149,7 @@ def update_vocabulary_filter(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -157,7 +167,7 @@ async def async_update_vocabulary_filter(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -26,6 +26,7 @@ ConnectionType: TypeAlias = Literal[
     "AMAZON_Q",
     "MLFLOW",
     "VPC",
+    "GIT",
 ]
 
 

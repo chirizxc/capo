@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_securityhub.types.non_empty_string
     import capo_securityhub.types.parameter_definitions
     import capo_securityhub.types.region_availability_status
+    import capo_securityhub.types.security_controls_provider
     import capo_securityhub.types.severity_rating
 
 
@@ -41,6 +42,10 @@ class SecurityControlDefinition(TypedDict, closed=True):
         "capo_securityhub.types.parameter_definitions.ParameterDefinitions"
     ]
     """<p> An object that provides a security control parameter name, description, and the options for customizing it. This object is excluded for a control that doesn't support custom parameters. </p>"""
+    provider: NotRequired[
+        "capo_securityhub.types.security_controls_provider.SecurityControlsProvider"
+    ]
+    """<p>The cloud provider whose resources the security control evaluates. For example, <code>AWS</code> or <code>Azure</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -82,6 +87,14 @@ def serialize_json(value: SecurityControlDefinition) -> dict:
         out["ParameterDefinitions"] = (
             capo_securityhub.types.parameter_definitions.serialize_json(
                 value["parameter_definitions"]
+            )
+        )
+    if "provider" in value:
+        import capo_securityhub.types.security_controls_provider
+
+        out["Provider"] = (
+            capo_securityhub.types.security_controls_provider.serialize_json(
+                value["provider"]
             )
         )
     return out
@@ -127,6 +140,14 @@ def deserialize_json(data: dict) -> SecurityControlDefinition:
         out["parameter_definitions"] = (
             capo_securityhub.types.parameter_definitions.deserialize_json(
                 data["ParameterDefinitions"]
+            )
+        )
+    if data.get("Provider") is not None:
+        import capo_securityhub.types.security_controls_provider
+
+        out["provider"] = (
+            capo_securityhub.types.security_controls_provider.deserialize_json(
+                data["Provider"]
             )
         )
     return out

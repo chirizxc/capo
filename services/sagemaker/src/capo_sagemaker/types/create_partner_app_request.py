@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_sagemaker.types.boolean
     import capo_sagemaker.types.client_token
+    import capo_sagemaker.types.idc_config_input
     import capo_sagemaker.types.kms_key_id
     import capo_sagemaker.types.non_empty_string64
     import capo_sagemaker.types.partner_app_auth_type
@@ -37,10 +38,12 @@ class CreatePartnerAppRequest(TypedDict, closed=True):
         "capo_sagemaker.types.partner_app_config.PartnerAppConfig"
     ]
     """<p>Configuration settings for the SageMaker Partner AI App.</p>"""
+    idc_config: NotRequired["capo_sagemaker.types.idc_config_input.IdcConfigInput"]
+    """<p>Specifies the Amazon Web Services IAM Identity Center configuration for the SageMaker Partner AI App. Specify this parameter when <code>AuthType</code> is <code>IDC</code>. Apps that use <code>IAM</code> authorization don't use this parameter.</p>"""
     auth_type: NotRequired[
         "capo_sagemaker.types.partner_app_auth_type.PartnerAppAuthType"
     ]
-    """<p>The authorization type that users use to access the SageMaker Partner AI App.</p>"""
+    """<p>The authorization type that users use to access the SageMaker Partner AI App. Valid values:</p> <ul> <li> <p> <code>IAM</code>: Users access the SageMaker Partner AI App with their Amazon Web Services IAM identity.</p> </li> <li> <p> <code>IDC</code>: Users access the SageMaker Partner AI App with their Amazon Web Services IAM Identity Center identity. Specify the Identity Center instance to use in <code>IdcConfig</code>.</p> </li> </ul>"""
     enable_iam_session_based_identity: NotRequired[
         "capo_sagemaker.types.boolean.Boolean"
     ]
@@ -87,6 +90,12 @@ def serialize_aws_json_1_1(value: CreatePartnerAppRequest) -> dict:
             capo_sagemaker.types.partner_app_config.serialize_aws_json_1_1(
                 value["application_config"]
             )
+        )
+    if "idc_config" in value:
+        import capo_sagemaker.types.idc_config_input
+
+        out["IdcConfig"] = capo_sagemaker.types.idc_config_input.serialize_aws_json_1_1(
+            value["idc_config"]
         )
     if "auth_type" in value:
         import capo_sagemaker.types.partner_app_auth_type
@@ -145,6 +154,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePartnerAppRequest:
         out["application_config"] = (
             capo_sagemaker.types.partner_app_config.deserialize_aws_json_1_1(
                 data["ApplicationConfig"]
+            )
+        )
+    if data.get("IdcConfig") is not None:
+        import capo_sagemaker.types.idc_config_input
+
+        out["idc_config"] = (
+            capo_sagemaker.types.idc_config_input.deserialize_aws_json_1_1(
+                data["IdcConfig"]
             )
         )
     if data.get("AuthType") is not None:

@@ -16,7 +16,7 @@ async def main():
     async with AsyncMarketplaceDiscoveryClient() as marketplace_discovery:
         # Example: call the get_listing operation
         response = await marketplace_discovery.get_listing()
-        print(response["associated_entities"])
+        print(response["locale"])
 ```
 
 ## Pagination

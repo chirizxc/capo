@@ -15,7 +15,7 @@ class TargetContainerRepository(TypedDict, closed=True):
     service: "capo_imagebuilder.types.container_repository_service.ContainerRepositoryService"
     """<p>Specifies the service in which this image was registered.</p>"""
     repository_name: "capo_imagebuilder.types.non_empty_string.NonEmptyString"
-    """<p>The name of the container repository where the output container image is stored. This name is prefixed by the repository location. For example, <code><repository location url>/repository_name</code>.</p>"""
+    """<p>The name of the container repository where the output container image is stored. Provide the repository name only (a namespace path such as <code>team-a/my-repo</code> is allowed, but not the registry hostname).</p>"""
 
 
 # --- restJson1 ser/de ---

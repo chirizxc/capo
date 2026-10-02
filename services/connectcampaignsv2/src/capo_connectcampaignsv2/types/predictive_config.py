@@ -2,18 +2,23 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_connectcampaignsv2.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_connectcampaignsv2.types.bandwidth_allocation
+    import capo_connectcampaignsv2.types.pacing_strategy_list
 
 
 class PredictiveConfig(TypedDict, closed=True):
     bandwidth_allocation: (
         "capo_connectcampaignsv2.types.bandwidth_allocation.BandwidthAllocation"
     )
+    pacing_strategies: NotRequired[
+        "capo_connectcampaignsv2.types.pacing_strategy_list.PacingStrategyList"
+    ]
+    """Pacing strategies the dialer enforces simultaneously."""
 
 
 # --- restJson1 ser/de ---
@@ -28,6 +33,14 @@ def serialize_json(value: PredictiveConfig) -> dict:
         if value["bandwidth_allocation"] == float("-inf")
         else value["bandwidth_allocation"]
     )
+    if "pacing_strategies" in value:
+        import capo_connectcampaignsv2.types.pacing_strategy_list
+
+        out["pacingStrategies"] = (
+            capo_connectcampaignsv2.types.pacing_strategy_list.serialize_json(
+                value["pacing_strategies"]
+            )
+        )
     return out
 
 
@@ -37,4 +50,12 @@ def deserialize_json(data: dict) -> PredictiveConfig:
         out["bandwidth_allocation"] = float(data["bandwidthAllocation"])
     else:
         raise DeserializationError("PredictiveConfig.bandwidth_allocation required")
+    if data.get("pacingStrategies") is not None:
+        import capo_connectcampaignsv2.types.pacing_strategy_list
+
+        out["pacing_strategies"] = (
+            capo_connectcampaignsv2.types.pacing_strategy_list.deserialize_json(
+                data["pacingStrategies"]
+            )
+        )
     return out

@@ -24,6 +24,7 @@ import capo_bedrock_agentcore.types.ab_test_status
 import capo_bedrock_agentcore.types.create_ab_test_request
 import capo_bedrock_agentcore.types.create_ab_test_response
 import capo_bedrock_agentcore.types.gateway_filter
+import capo_bedrock_agentcore.types.tags_map
 import capo_bedrock_agentcore.types.variant_list
 from capo_bedrock_agentcore._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agentcore._rule_engine._endpoint_rule_set import (
@@ -33,6 +34,7 @@ from capo_bedrock_agentcore._rule_engine._endpoint_rule_set import (
 from capo_bedrock_agentcore._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agentcore.errors import UnknownServiceError
 
@@ -163,7 +165,7 @@ def create_ab_test(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -181,7 +183,7 @@ async def async_create_ab_test(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

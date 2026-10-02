@@ -12,7 +12,7 @@ class TerminateJobRequest(TypedDict, closed=True):
     job_id: NotRequired["capo_batch.types.string.String"]
     """<p>The Batch job ID of the job to terminate.</p>"""
     reason: NotRequired["capo_batch.types.string.String"]
-    """<p>A message to attach to the job that explains the reason for canceling it. This message is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded in the Batch activity logs.</p> <p>This parameter has as limit of 1024 characters.</p>"""
+    """<p>A message to attach to the job that explains the reason for terminating it. This message is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded in the Batch activity logs.</p> <p>This parameter has a limit of 1024 characters.</p>"""
 
 
 # --- restJson1 ser/de ---

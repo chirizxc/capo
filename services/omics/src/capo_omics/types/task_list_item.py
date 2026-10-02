@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_omics.types.task_name
     import capo_omics.types.task_status
     import capo_omics.types.task_timestamp
+    import capo_omics.types.task_uuid
 
 
 class TaskListItem(TypedDict, closed=True):
@@ -40,6 +41,8 @@ class TaskListItem(TypedDict, closed=True):
     """<p> The number of Graphics Processing Units (GPU) specified for the task. </p>"""
     instance_type: NotRequired["capo_omics.types.task_instance_type.TaskInstanceType"]
     """<p> The instance type for a task.</p>"""
+    uuid: NotRequired["capo_omics.types.task_uuid.TaskUuid"]
+    """<p>The universally unique identifier (UUID) for the workflow task.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -81,6 +84,8 @@ def serialize_json(value: TaskListItem) -> dict:
         out["gpus"] = value["gpus"]
     if "instance_type" in value:
         out["instanceType"] = value["instance_type"]
+    if "uuid" in value:
+        out["uuid"] = value["uuid"]
     return out
 
 
@@ -122,4 +127,6 @@ def deserialize_json(data: dict) -> TaskListItem:
         out["gpus"] = data["gpus"]
     if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
+    if data.get("uuid") is not None:
+        out["uuid"] = data["uuid"]
     return out

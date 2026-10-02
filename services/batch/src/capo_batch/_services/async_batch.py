@@ -34,6 +34,8 @@ if TYPE_CHECKING:
     import capo_batch.types.boolean
     import capo_batch.types.cancel_job_request
     import capo_batch.types.cancel_job_response
+    import capo_batch.types.cancel_jobs_request
+    import capo_batch.types.cancel_jobs_response
     import capo_batch.types.capacity_limits
     import capo_batch.types.ce_state
     import capo_batch.types.ce_type
@@ -92,6 +94,7 @@ if TYPE_CHECKING:
     import capo_batch.types.describe_service_job_response
     import capo_batch.types.ecs_properties
     import capo_batch.types.ecs_properties_override
+    import capo_batch.types.ecs_settings
     import capo_batch.types.eks_configuration
     import capo_batch.types.eks_properties
     import capo_batch.types.eks_properties_override
@@ -164,8 +167,12 @@ if TYPE_CHECKING:
     import capo_batch.types.tagris_tags_map
     import capo_batch.types.terminate_job_request
     import capo_batch.types.terminate_job_response
+    import capo_batch.types.terminate_jobs_request
+    import capo_batch.types.terminate_jobs_response
     import capo_batch.types.terminate_service_job_request
     import capo_batch.types.terminate_service_job_response
+    import capo_batch.types.terminate_service_jobs_request
+    import capo_batch.types.terminate_service_jobs_response
     import capo_batch.types.untag_resource_request
     import capo_batch.types.untag_resource_response
     import capo_batch.types.update_compute_environment_request
@@ -285,11 +292,11 @@ class AsyncBatchClient:
         job_id: Optional["capo_batch.types.string.String"] = None,
         reason: Optional["capo_batch.types.string.String"] = None,
     ) -> "capo_batch.types.cancel_job_response.CancelJobResponse":
-        """<p>Cancels a job in an Batch job queue. Jobs that are in a <code>SUBMITTED</code>, <code>PENDING</code>, or <code>RUNNABLE</code> state are cancelled and the job status is updated to <code>FAILED</code>.</p> <note> <p>A <code>PENDING</code> job is canceled after all dependency jobs are completed. Therefore, it may take longer than expected to cancel a job in <code>PENDING</code> status.</p> <p>When you try to cancel an array parent job in <code>PENDING</code>, Batch attempts to cancel all child jobs. The array parent job is canceled when all child jobs are completed.</p> </note> <p>Jobs that progressed to the <code>STARTING</code> or <code>RUNNING</code> state aren't canceled. However, the API operation still succeeds, even if no job is canceled. These jobs must be terminated with the <a>TerminateJob</a> operation.</p>
+        """<p>Cancels a job in an Batch job queue. Jobs that are in a <code>SUBMITTED</code>, <code>PENDING</code>, or <code>RUNNABLE</code> state are cancelled and the job status is updated to <code>FAILED</code>.</p> <note> <p>A <code>PENDING</code> job is cancelled after all dependency jobs are completed. Therefore, it might take longer than expected to cancel a job in <code>PENDING</code> status.</p> <p>When you try to cancel an array parent job in <code>PENDING</code>, Batch attempts to cancel all child jobs. The array parent job is cancelled when all child jobs are completed.</p> </note> <p>Jobs that progressed to the <code>STARTING</code> or <code>RUNNING</code> state aren't cancelled. However, the API operation still succeeds, even if no job is cancelled. These jobs must be terminated with the <a>TerminateJob</a> or <a>TerminateJobs</a> operation.</p>
 
         Args:
             job_id: <p>The Batch job ID of the job to cancel.</p>
-            reason: <p>A message to attach to the job that explains the reason for canceling it. This message is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded in the Batch activity logs.</p> <p>This parameter has as limit of 1024 characters.</p>
+            reason: <p>A message to attach to the job that explains the reason for cancelling it. This message is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded in the Batch activity logs.</p> <p>This parameter has a limit of 1024 characters.</p>
 
         Raises:
             capo_batch.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. One example cause is using an action or resource on behalf of a user that doesn't have permissions to use the action or resource. Another cause is specifying an identifier that's not valid.</p>
@@ -333,6 +340,61 @@ class AsyncBatchClient:
         await response.response.aclose()
         return response.output
 
+    async def cancel_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncBatchClientConfig] = None,
+        jobs: Optional["capo_batch.types.string_list.StringList"] = None,
+        reason: Optional["capo_batch.types.string.String"] = None,
+    ) -> "capo_batch.types.cancel_jobs_response.CancelJobsResponse":
+        """<p>Cancels up to 50 jobs in an Batch job queue. This is a bulk version of <a>CancelJob</a>. Jobs that are in a <code>SUBMITTED</code>, <code>PENDING</code>, or <code>RUNNABLE</code> state are cancelled and the job status is updated to <code>FAILED</code>.</p> <note> <p>A <code>PENDING</code> job is cancelled after all dependency jobs are completed. Therefore, it might take longer than expected to cancel a job in <code>PENDING</code> status.</p> <p>When you try to cancel an array parent job in <code>PENDING</code>, Batch attempts to cancel all child jobs. The array parent job is cancelled when all child jobs are completed.</p> </note> <p>Jobs that progressed to the <code>STARTING</code> or <code>RUNNING</code> state aren't cancelled. These jobs must be terminated with the <a>TerminateJob</a> or <a>TerminateJobs</a> operation.</p> <p>Batch reports the result for each job individually in the response. Jobs that were processed successfully are reported in the <code>successful</code> list. Jobs that encountered errors are reported in the <code>errors</code> list. The response returns an HTTP status code of <code>200</code> even when some jobs encountered errors, so check the <code>errors</code> list. Jobs that can't be found are treated as successfully processed.</p>
+
+        Args:
+            jobs: <p>An array of up to 50 Batch job IDs of the jobs to cancel.</p>
+            reason: <p>A message to attach to the job that explains the reason for cancelling it. This message is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded in the Batch activity logs.</p> <p>This parameter has a limit of 1024 characters.</p>
+
+        Raises:
+            capo_batch.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. One example cause is using an action or resource on behalf of a user that doesn't have permissions to use the action or resource. Another cause is specifying an identifier that's not valid.</p>
+            capo_batch.errors.server_exception.ServerException: <p>These errors are usually caused by a server issue.</p>
+            capo_batch.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To cancel multiple jobs
+            This example cancels the jobs with the specified job IDs.
+
+            >>> await client.cancel_jobs(jobs=['1d828f65-7a4d-42e8-996d-3b900ed59dc4', 'b3d0f26e-6d3a-4a5b-9c2e-7f4a1b2c3d4e'], reason='Cancelling jobs.')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_batch.types.cancel_jobs_request.CancelJobsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_batch.types.cancel_jobs_response.CancelJobsResponse"
+        ]:
+            import capo_batch._operations.aws_batch_v20160810.cancel_jobs
+
+            (
+                output,
+                http_response,
+            ) = await capo_batch._operations.aws_batch_v20160810.cancel_jobs.async_cancel_jobs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_batch.types.cancel_jobs_request.CancelJobsRequest = {}
+        if jobs is not None:
+            input_["jobs"] = jobs
+        if reason is not None:
+            input_["reason"] = reason
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def create_compute_environment(
         self,
         *,
@@ -350,6 +412,7 @@ class AsyncBatchClient:
             "capo_batch.types.eks_configuration.EksConfiguration"
         ] = None,
         context: Optional["capo_batch.types.string.String"] = None,
+        ecs_settings: Optional["capo_batch.types.ecs_settings.EcsSettings"] = None,
     ) -> "capo_batch.types.create_compute_environment_response.CreateComputeEnvironmentResponse":
         r"""<p>Creates an Batch compute environment. You can create <code>MANAGED</code> or <code>UNMANAGED</code> compute environments. <code>MANAGED</code> compute environments can use Amazon EC2 or Fargate resources. <code>UNMANAGED</code> compute environments can only use EC2 resources.</p> <p>In a managed compute environment, Batch manages the capacity and instance types of the compute resources within the environment. This is based on the compute resource specification that you define or the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html\">launch template</a> that you specify when you create the compute environment. Either, you can choose to use EC2 On-Demand Instances and EC2 Spot Instances. Or, you can use Fargate and Fargate Spot capacity in your managed compute environment. You can optionally set a maximum price so that Spot Instances only launch when the Spot Instance price is less than a specified percentage of the On-Demand price.</p> <p>In an unmanaged compute environment, you can manage your own EC2 compute resources and have flexibility with how you configure your compute resources. For example, you can use custom AMIs. However, you must verify that each of your AMIs meet the Amazon ECS container instance AMI specification. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container_instance_AMIs.html\">container instance AMIs</a> in the <i>Amazon Elastic Container Service Developer Guide</i>. After you created your unmanaged compute environment, you can use the <a>DescribeComputeEnvironments</a> operation to find the Amazon ECS cluster that's associated with it. Then, launch your container instances into that Amazon ECS cluster. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html\">Launching an Amazon ECS container instance</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p> <note> <p>Batch doesn't automatically upgrade the AMIs in a compute environment after it's created. For more information on how to update a compute environment's AMI, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html\">Updating compute environments</a> in the <i>Batch User Guide</i>.</p> </note>
 
@@ -363,6 +426,7 @@ class AsyncBatchClient:
             tags: <p>The tags that you apply to the compute environment to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services Resources</a> in <i>Amazon Web Services General Reference</i>.</p> <p>These tags can be updated or removed using the <a href=\"https://docs.aws.amazon.com/batch/latest/APIReference/API_TagResource.html\">TagResource</a> and <a href=\"https://docs.aws.amazon.com/batch/latest/APIReference/API_UntagResource.html\">UntagResource</a> API operations. These tags don't propagate to the underlying compute resources.</p>
             eks_configuration: <p>The details for the Amazon EKS cluster that supports the compute environment.</p> <note> <p>To create a compute environment that uses EKS resources, the caller must have permissions to call <code>eks:DescribeCluster</code>.</p> </note>
             context: <p>Reserved.</p>
+            ecs_settings: <p>The Amazon ECS settings for the compute environment. These settings control CloudWatch Container Insights collection for the compute environment.</p>
 
         Raises:
             capo_batch.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. One example cause is using an action or resource on behalf of a user that doesn't have permissions to use the action or resource. Another cause is specifying an identifier that's not valid.</p>
@@ -378,6 +442,18 @@ class AsyncBatchClient:
             This example creates a managed compute environment with the M4 instance type that is launched when the Spot bid price is at or below 20% of the On-Demand price for the instance type. The compute environment is called M4Spot.
 
             >>> await client.create_compute_environment(compute_environment_name='M4Spot', state='ENABLED', type='MANAGED', compute_resources={'subnets': ['subnet-220c0e0a', 'subnet-1a95556d', 'subnet-978f6dce'], 'type': 'SPOT', 'spotIamFleetRole': 'arn:aws:iam::012345678910:role/aws-ec2-spot-fleet-role', 'tags': {'Name': 'Batch Instance - M4Spot'}, 'desiredvCpus': 4, 'minvCpus': 0, 'instanceTypes': ['m4'], 'securityGroupIds': ['sg-cf5093b2'], 'instanceRole': 'ecsInstanceRole', 'maxvCpus': 128, 'bidPercentage': 20, 'ec2KeyPair': 'id_rsa'}, service_role='arn:aws:iam::012345678910:role/AWSBatchServiceRole')
+            To create an ECS Managed Instances compute environment with capacity reservations
+            This example creates an ECS Managed Instances compute environment that targets On-Demand Capacity Reservations for predictable capacity.
+
+            >>> await client.create_compute_environment(compute_environment_name='my-reserved-managed-instances-ce', state='ENABLED', type='MANAGED', compute_resources={'type': 'ECS_MANAGED_INSTANCES', 'maxvCpus': 512, 'managedInstancesProvider': {'infrastructureRoleArn': 'arn:aws:iam::123456789012:role/ecsInfrastructureRole', 'instanceLaunchTemplate': {'ec2InstanceProfileArn': 'arn:aws:iam::123456789012:instance-profile/ecsInstanceProfile', 'networkConfiguration': {'subnets': ['subnet-abcde012', 'subnet-bcde012a'], 'securityGroups': ['sg-abcde012']}, 'instanceRequirements': {'allowedInstanceTypes': ['m5.xlarge', 'm5.2xlarge']}, 'capacityReservations': {'reservationGroupArn': 'arn:aws:ec2:us-east-1:123456789012:capacity-reservation-group/my-reservation-group', 'reservationPreference': 'RESERVATIONS_FIRST'}}}})
+            To create an ECS Managed Instances compute environment
+            This example creates a managed compute environment that uses ECS Managed Instances.
+
+            >>> await client.create_compute_environment(compute_environment_name='my-managed-instances-ce', state='ENABLED', type='MANAGED', compute_resources={'type': 'ECS_MANAGED_INSTANCES', 'maxvCpus': 256, 'managedInstancesProvider': {'infrastructureRoleArn': 'arn:aws:iam::123456789012:role/ecsInfrastructureRole', 'instanceLaunchTemplate': {'ec2InstanceProfileArn': 'arn:aws:iam::123456789012:instance-profile/ecsInstanceProfile', 'networkConfiguration': {'subnets': ['subnet-abcde012', 'subnet-bcde012a'], 'securityGroups': ['sg-abcde012']}}}})
+            To create an ECS Managed Instances Spot compute environment
+            This example creates a Spot-backed ECS Managed Instances compute environment constrained to specific instance types.
+
+            >>> await client.create_compute_environment(compute_environment_name='my-spot-managed-instances-ce', state='ENABLED', type='MANAGED', compute_resources={'type': 'ECS_MANAGED_INSTANCES', 'maxvCpus': 1000, 'managedInstancesProvider': {'infrastructureRoleArn': 'arn:aws:iam::123456789012:role/ecsInfrastructureRole', 'instanceLaunchTemplate': {'ec2InstanceProfileArn': 'arn:aws:iam::123456789012:instance-profile/ecsInstanceProfile', 'networkConfiguration': {'subnets': ['subnet-abcde012', 'subnet-bcde012a'], 'securityGroups': ['sg-abcde012']}, 'instanceRequirements': {'allowedInstanceTypes': ['m5.large', 'm5.xlarge', 'm6i.large', 'm6i.xlarge']}, 'capacityOptionType': 'SPOT'}}})
         """
 
         async def _handler(
@@ -415,6 +491,8 @@ class AsyncBatchClient:
             input_["eks_configuration"] = eks_configuration
         if context is not None:
             input_["context"] = context
+        if ecs_settings is not None:
+            input_["ecs_settings"] = ecs_settings
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -530,10 +608,18 @@ class AsyncBatchClient:
             This example creates a job queue called LowPriority that uses the M4Spot compute environment.
 
             >>> await client.create_job_queue(priority=1, state='ENABLED', compute_environment_order=[{'computeEnvironment': 'M4Spot', 'order': 1}], job_queue_name='LowPriority')
+            To create a job queue with an ECS Managed Instances compute environment
+            This example creates a job queue called ManagedInstancesQueue that uses an ECS Managed Instances compute environment.
+
+            >>> await client.create_job_queue(priority=10, state='ENABLED', compute_environment_order=[{'computeEnvironment': 'my-managed-instances-ce', 'order': 1}], job_queue_name='ManagedInstancesQueue')
             To create a job queue with multiple compute environments
             This example creates a job queue called HighPriority that uses the C4OnDemand compute environment with an order of 1 and the M4Spot compute environment with an order of 2.
 
             >>> await client.create_job_queue(priority=10, state='ENABLED', compute_environment_order=[{'computeEnvironment': 'C4OnDemand', 'order': 1}, {'computeEnvironment': 'M4Spot', 'order': 2}], job_queue_name='HighPriority')
+            To create a job queue with On-Demand and Spot ECS Managed Instances compute environments
+            This example creates a job queue that uses both On-Demand and Spot ECS Managed Instances compute environments. On-Demand environments must be ordered before Spot environments.
+
+            >>> await client.create_job_queue(priority=5, state='ENABLED', compute_environment_order=[{'computeEnvironment': 'my-managed-instances-ce', 'order': 1}, {'computeEnvironment': 'my-spot-managed-instances-ce', 'order': 2}], job_queue_name='ManagedInstancesMixedQueue')
         """
 
         async def _handler(
@@ -2377,7 +2463,7 @@ class AsyncBatchClient:
             propagate_tags: <p>Specifies whether to propagate the tags from the job or job definition to the corresponding Amazon ECS task. If no value is specified, the tags are not propagated. Tags can only be propagated to the tasks during task creation. For tags with the same name, job tags are given priority over job definitions tags. If the total number of combined tags from the job and job definition is over 50, the job is moved to the <code>FAILED</code> state.</p> <note> <p>If the job runs on Amazon EKS resources, then you must not specify <code>propagateTags</code>.</p> </note>
             timeout: <p>The timeout configuration for jobs that are submitted with this job definition, after which Batch terminates your jobs if they have not finished. If a job is terminated due to a timeout, it isn't retried. The minimum value for the timeout is 60 seconds. Any timeout configuration that's specified during a <a>SubmitJob</a> operation overrides the timeout configuration defined here. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/job_timeouts.html\">Job Timeouts</a> in the <i>Batch User Guide</i>.</p>
             tags: <p>The tags that you apply to the job definition to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/using-tags.html\">Tagging Amazon Web Services Resources</a> in <i>Batch User Guide</i>.</p>
-            platform_capabilities: <p>The platform capabilities required by the job definition. If no value is specified, it defaults to <code>EC2</code>. To run the job on Fargate resources, specify <code>FARGATE</code>.</p> <note> <p>If the job runs on Amazon EKS resources, then you must not specify <code>platformCapabilities</code>.</p> </note>
+            platform_capabilities: <p>The platform capabilities required by the job definition. If no value is specified, it defaults to <code>EC2</code>. To run the job on Fargate resources, specify <code>FARGATE</code>. To run the job on Amazon ECS Managed Instances, specify <code>MANAGED_INSTANCES</code>.</p> <p>Jobs with the <code>MANAGED_INSTANCES</code> platform capability must use <code>ecsProperties</code> (not <code>containerProperties</code>) and do not support multi-node parallel jobs.</p> <note> <p>If the job runs on Amazon EKS resources, then you must not specify <code>platformCapabilities</code>.</p> </note>
             eks_properties: <p>An object with properties that are specific to Amazon EKS-based jobs. This must not be specified for Amazon ECS based job definitions.</p>
             ecs_properties: <p>An object with properties that are specific to Amazon ECS-based jobs. This must not be specified for Amazon EKS-based job definitions.</p>
             consumable_resource_properties: <p>Contains a list of consumable resources required by the job.</p>
@@ -2392,10 +2478,22 @@ class AsyncBatchClient:
             This demonstrates calling the RegisterJobDefinition action, including tags.
 
             >>> await client.register_job_definition(job_definition_name='sleep30', type='container', container_properties={'image': 'busybox', 'command': ['sleep', '30'], 'resourceRequirements': [{'type': 'MEMORY', 'value': '128'}, {'type': 'VCPU', 'value': '1'}]}, tags={'Department': 'Engineering', 'User': 'JaneDoe'})
+            To register a GPU job definition on ECS Managed Instances
+            This example registers a job definition that requests GPU resources on ECS Managed Instances.
+
+            >>> await client.register_job_definition(job_definition_name='my-gpu-managed-instances-job-def', type='container', platform_capabilities=['MANAGED_INSTANCES'], ecs_properties={'taskProperties': [{'containers': [{'image': '123456789012.dkr.ecr.us-east-1.amazonaws.com/my-gpu-image:latest', 'name': 'main', 'command': ['nvidia-smi'], 'resourceRequirements': [{'type': 'VCPU', 'value': '4'}, {'type': 'MEMORY', 'value': '16384'}, {'type': 'GPU', 'value': '1'}]}], 'executionRoleArn': 'arn:aws:iam::123456789012:role/ecsTaskExecutionRole'}]})
             To register a job definition
             This example registers a job definition for a simple container job.
 
             >>> await client.register_job_definition(container_properties={'image': 'busybox', 'command': ['sleep', '10'], 'resourceRequirements': [{'type': 'MEMORY', 'value': '128'}, {'type': 'VCPU', 'value': '1'}]}, type='container', job_definition_name='sleep10')
+            To register a job definition on ECS Managed Instances
+            This example registers a job definition that runs on ECS Managed Instances using ecsProperties with the MANAGED_INSTANCES platform capability.
+
+            >>> await client.register_job_definition(job_definition_name='my-managed-instances-job-def', type='container', platform_capabilities=['MANAGED_INSTANCES'], ecs_properties={'taskProperties': [{'containers': [{'image': 'public.ecr.aws/amazonlinux/amazonlinux:2023', 'name': 'main', 'command': ['echo', 'hello managed instances'], 'resourceRequirements': [{'type': 'VCPU', 'value': '1'}, {'type': 'MEMORY', 'value': '1024'}]}], 'executionRoleArn': 'arn:aws:iam::123456789012:role/ecsTaskExecutionRole'}]})
+            To register a multi-container job definition on ECS Managed Instances
+            This example registers a job definition with a main container and a sidecar logging container on ECS Managed Instances.
+
+            >>> await client.register_job_definition(job_definition_name='my-sidecar-managed-instances-job-def', type='container', platform_capabilities=['MANAGED_INSTANCES'], ecs_properties={'taskProperties': [{'containers': [{'image': 'public.ecr.aws/amazonlinux/amazonlinux:2023', 'name': 'main', 'command': ['echo', 'processing data'], 'essential': True, 'resourceRequirements': [{'type': 'VCPU', 'value': '2'}, {'type': 'MEMORY', 'value': '4096'}]}, {'image': 'public.ecr.aws/amazonlinux/amazonlinux:2023', 'name': 'sidecar', 'command': ['echo', 'logging sidecar'], 'essential': False, 'resourceRequirements': [{'type': 'VCPU', 'value': '1'}, {'type': 'MEMORY', 'value': '512'}]}], 'executionRoleArn': 'arn:aws:iam::123456789012:role/ecsTaskExecutionRole'}]})
         """
 
         async def _handler(
@@ -2753,7 +2851,7 @@ class AsyncBatchClient:
 
         Args:
             job_id: <p>The Batch job ID of the job to terminate.</p>
-            reason: <p>A message to attach to the job that explains the reason for canceling it. This message is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded in the Batch activity logs.</p> <p>This parameter has as limit of 1024 characters.</p>
+            reason: <p>A message to attach to the job that explains the reason for terminating it. This message is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded in the Batch activity logs.</p> <p>This parameter has a limit of 1024 characters.</p>
 
         Raises:
             capo_batch.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. One example cause is using an action or resource on behalf of a user that doesn't have permissions to use the action or resource. Another cause is specifying an identifier that's not valid.</p>
@@ -2797,6 +2895,61 @@ class AsyncBatchClient:
         await response.response.aclose()
         return response.output
 
+    async def terminate_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncBatchClientConfig] = None,
+        jobs: Optional["capo_batch.types.string_list.StringList"] = None,
+        reason: Optional["capo_batch.types.string.String"] = None,
+    ) -> "capo_batch.types.terminate_jobs_response.TerminateJobsResponse":
+        """<p>Terminates up to 50 jobs in a job queue. This is a bulk version of <a>TerminateJob</a>. Jobs that are in the <code>STARTING</code> or <code>RUNNING</code> state are terminated, which causes them to transition to <code>FAILED</code>. Jobs that have not progressed to the <code>STARTING</code> state are cancelled.</p> <p>Batch reports the result for each job individually in the response. Jobs that were processed successfully are reported in the <code>successful</code> list. Jobs that encountered errors are reported in the <code>errors</code> list. The response returns an HTTP status code of <code>200</code> even when some jobs encountered errors, so check the <code>errors</code> list. Jobs that can't be found are treated as successfully processed.</p>
+
+        Args:
+            jobs: <p>An array of up to 50 Batch job IDs of the jobs to terminate.</p>
+            reason: <p>A message to attach to the job that explains the reason for terminating it. This message is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded in the Batch activity logs.</p> <p>This parameter has a limit of 1024 characters.</p>
+
+        Raises:
+            capo_batch.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. One example cause is using an action or resource on behalf of a user that doesn't have permissions to use the action or resource. Another cause is specifying an identifier that's not valid.</p>
+            capo_batch.errors.server_exception.ServerException: <p>These errors are usually caused by a server issue.</p>
+            capo_batch.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To terminate multiple jobs
+            This example terminates the jobs with the specified job IDs.
+
+            >>> await client.terminate_jobs(jobs=['61e743ed-35e4-48da-b2de-5c8333821c84', 'b3d0f26e-6d3a-4a5b-9c2e-7f4a1b2c3d4e'], reason='Terminating jobs.')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_batch.types.terminate_jobs_request.TerminateJobsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_batch.types.terminate_jobs_response.TerminateJobsResponse"
+        ]:
+            import capo_batch._operations.aws_batch_v20160810.terminate_jobs
+
+            (
+                output,
+                http_response,
+            ) = await capo_batch._operations.aws_batch_v20160810.terminate_jobs.async_terminate_jobs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_batch.types.terminate_jobs_request.TerminateJobsRequest = {}
+        if jobs is not None:
+            input_["jobs"] = jobs
+        if reason is not None:
+            input_["reason"] = reason
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def terminate_service_job(
         self,
         *,
@@ -2808,7 +2961,7 @@ class AsyncBatchClient:
 
         Args:
             job_id: <p>The service job ID of the service job to terminate.</p>
-            reason: <p>A message to attach to the service job that explains the reason for canceling it. This message is returned by <code>DescribeServiceJob</code> operations on the service job.</p>
+            reason: <p>A message to attach to the service job that explains the reason for terminating it. This message is returned by <code>DescribeServiceJob</code> operations on the service job.</p>
 
         Raises:
             capo_batch.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. One example cause is using an action or resource on behalf of a user that doesn't have permissions to use the action or resource. Another cause is specifying an identifier that's not valid.</p>
@@ -2835,6 +2988,63 @@ class AsyncBatchClient:
         input_: capo_batch.types.terminate_service_job_request.TerminateServiceJobRequest = {}
         if job_id is not None:
             input_["job_id"] = job_id
+        if reason is not None:
+            input_["reason"] = reason
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def terminate_service_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncBatchClientConfig] = None,
+        jobs: Optional["capo_batch.types.string_list.StringList"] = None,
+        reason: Optional["capo_batch.types.string.String"] = None,
+    ) -> (
+        "capo_batch.types.terminate_service_jobs_response.TerminateServiceJobsResponse"
+    ):
+        """<p>Terminates up to 50 service jobs in a job queue. This is a bulk version of <a>TerminateServiceJob</a>.</p> <p>Batch reports the result for each service job individually in the response. Service jobs that were processed successfully are reported in the <code>successful</code> list. Service jobs that encountered errors are reported in the <code>errors</code> list. The response returns an HTTP status code of <code>200</code> even when some service jobs encountered errors, so check the <code>errors</code> list. Service jobs that can't be found are treated as successfully processed.</p>
+
+        Args:
+            jobs: <p>An array of up to 50 service job IDs of the service jobs to terminate.</p>
+            reason: <p>A message to attach to the service job that explains the reason for terminating it. This message is returned by <code>DescribeServiceJob</code> operations on the service job.</p>
+
+        Raises:
+            capo_batch.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. One example cause is using an action or resource on behalf of a user that doesn't have permissions to use the action or resource. Another cause is specifying an identifier that's not valid.</p>
+            capo_batch.errors.server_exception.ServerException: <p>These errors are usually caused by a server issue.</p>
+            capo_batch.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To terminate multiple service jobs
+            This example terminates the specified service jobs with a reason.
+
+            >>> await client.terminate_service_jobs(jobs=['a4d6c728-8ee8-4c65-8e2a-9a5e8f4b7c3d', 'b3d0f26e-6d3a-4a5b-9c2e-7f4a1b2c3d4e'], reason='Job terminated by user request')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_batch.types.terminate_service_jobs_request.TerminateServiceJobsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_batch.types.terminate_service_jobs_response.TerminateServiceJobsResponse"
+        ]:
+            import capo_batch._operations.aws_batch_v20160810.terminate_service_jobs
+
+            (
+                output,
+                http_response,
+            ) = await capo_batch._operations.aws_batch_v20160810.terminate_service_jobs.async_terminate_service_jobs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_batch.types.terminate_service_jobs_request.TerminateServiceJobsRequest = {}
+        if jobs is not None:
+            input_["jobs"] = jobs
         if reason is not None:
             input_["reason"] = reason
 
@@ -2914,6 +3124,7 @@ class AsyncBatchClient:
         service_role: Optional["capo_batch.types.string.String"] = None,
         update_policy: Optional["capo_batch.types.update_policy.UpdatePolicy"] = None,
         context: Optional["capo_batch.types.string.String"] = None,
+        ecs_settings: Optional["capo_batch.types.ecs_settings.EcsSettings"] = None,
     ) -> "capo_batch.types.update_compute_environment_response.UpdateComputeEnvironmentResponse":
         r"""<p>Updates an Batch compute environment.</p>
 
@@ -2925,6 +3136,7 @@ class AsyncBatchClient:
             service_role: <p>The full Amazon Resource Name (ARN) of the IAM role that allows Batch to make calls to other Amazon Web Services services on your behalf. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/service_IAM_role.html\">Batch service IAM role</a> in the <i>Batch User Guide</i>.</p> <important> <p>If the compute environment has a service-linked role, it can't be changed to use a regular IAM role. Likewise, if the compute environment has a regular IAM role, it can't be changed to use a service-linked role. To update the parameters for the compute environment that require an infrastructure update to change, the <b>AWSServiceRoleForBatch</b> service-linked role must be used. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html\">Updating compute environments</a> in the <i>Batch User Guide</i>.</p> </important> <p>If your specified role has a path other than <code>/</code>, then you must either specify the full role ARN (recommended) or prefix the role name with the path.</p> <note> <p>Depending on how you created your Batch service role, its ARN might contain the <code>service-role</code> path prefix. When you only specify the name of the service role, Batch assumes that your ARN doesn't use the <code>service-role</code> path prefix. Because of this, we recommend that you specify the full ARN of your service role when you create compute environments.</p> </note>
             update_policy: <p>Specifies the updated infrastructure update policy for the compute environment. For more information about infrastructure updates, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html\">Updating compute environments</a> in the <i>Batch User Guide</i>.</p>
             context: <p>Reserved.</p>
+            ecs_settings: <p>The Amazon ECS settings for the compute environment. These settings control CloudWatch Container Insights collection for the compute environment.</p>
 
         Raises:
             capo_batch.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. One example cause is using an action or resource on behalf of a user that doesn't have permissions to use the action or resource. Another cause is specifying an identifier that's not valid.</p>
@@ -2969,6 +3181,8 @@ class AsyncBatchClient:
             input_["update_policy"] = update_policy
         if context is not None:
             input_["context"] = context
+        if ecs_settings is not None:
+            input_["ecs_settings"] = ecs_settings
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

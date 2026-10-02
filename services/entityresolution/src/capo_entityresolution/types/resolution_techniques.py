@@ -24,6 +24,8 @@ class ResolutionTechniques(TypedDict, closed=True):
         "capo_entityresolution.types.rule_condition_properties.RuleConditionProperties"
     ]
     """<p>An object containing the <code>rules</code> for a matching workflow.</p>"""
+    enable_real_time_matching: NotRequired["bool"]
+    """<p>Specifies whether real-time matching is enabled for the rule-based matching workflow. When you enable real-time matching, you can use the <code>GenerateMatchId</code> operation with the workflow.</p>"""
     provider_properties: NotRequired[
         "capo_entityresolution.types.provider_properties.ProviderProperties"
     ]
@@ -54,6 +56,8 @@ def serialize_json(value: ResolutionTechniques) -> dict:
                 value["rule_condition_properties"]
             )
         )
+    if "enable_real_time_matching" in value:
+        out["enableRealTimeMatching"] = value["enable_real_time_matching"]
     if "provider_properties" in value:
         import capo_entityresolution.types.provider_properties
 
@@ -93,6 +97,8 @@ def deserialize_json(data: dict) -> ResolutionTechniques:
                 data["ruleConditionProperties"]
             )
         )
+    if data.get("enableRealTimeMatching") is not None:
+        out["enable_real_time_matching"] = data["enableRealTimeMatching"]
     if data.get("providerProperties") is not None:
         import capo_entityresolution.types.provider_properties
 

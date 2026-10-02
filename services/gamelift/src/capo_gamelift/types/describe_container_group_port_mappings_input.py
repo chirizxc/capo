@@ -7,9 +7,9 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_gamelift.types.compute_name_or_arn
     import capo_gamelift.types.container_group_type
+    import capo_gamelift.types.container_name_query_filter
     import capo_gamelift.types.fleet_id_or_arn
     import capo_gamelift.types.instance_id
-    import capo_gamelift.types.non_zero_and128_max_ascii_string
 
 
 class DescribeContainerGroupPortMappingsInput(TypedDict, closed=True):
@@ -26,7 +26,7 @@ class DescribeContainerGroupPortMappingsInput(TypedDict, closed=True):
     instance_id: NotRequired["capo_gamelift.types.instance_id.InstanceId"]
     """<p>A unique identifier for the fleet instance to retrieve port mappings for.</p> <p>When <code>ContainerGroupType</code> is <code>PER_INSTANCE</code>, this parameter is required.</p> <p>When <code>ContainerGroupType</code> is <code>GAME_SERVER</code>, this parameter is optional. If you provide an instance ID, it must match the instance that's running the specified compute. If the instance ID doesn't match, the request fails with an <code>InvalidRequestException</code>.</p>"""
     container_name: NotRequired[
-        "capo_gamelift.types.non_zero_and128_max_ascii_string.NonZeroAnd128MaxAsciiString"
+        "capo_gamelift.types.container_name_query_filter.ContainerNameQueryFilter"
     ]
     """<p>A container name to filter the results. When provided, the operation returns port mappings for the specified container only. If no container with the specified name exists in the container group, the request fails with a <code>NotFoundException</code>.</p> <p>If not provided, the operation returns port mappings for all containers in the container group.</p>"""
 

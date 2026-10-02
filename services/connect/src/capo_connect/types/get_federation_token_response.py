@@ -12,19 +12,23 @@ if TYPE_CHECKING:
 
 
 class GetFederationTokenResponse(TypedDict, closed=True):
+    user_id: NotRequired["capo_connect.types.agent_resource_id.AgentResourceId"]
+    """<p>The identifier for the user. This can be the ID or the ARN of the user.</p>"""
+    user_arn: NotRequired["capo_connect.types.arn.ARN"]
+    """<p>The Amazon Resource Name (ARN) of the user.</p>"""
     credentials: NotRequired["capo_connect.types.credentials.Credentials"]
     """<p>The credentials to use for federation.</p>"""
     sign_in_url: NotRequired["capo_connect.types.url.Url"]
     """<p>The URL to sign into the user's instance. </p>"""
-    user_arn: NotRequired["capo_connect.types.arn.ARN"]
-    """<p>The Amazon Resource Name (ARN) of the user.</p>"""
-    user_id: NotRequired["capo_connect.types.agent_resource_id.AgentResourceId"]
-    """<p>The identifier for the user. This can be the ID or the ARN of the user.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: GetFederationTokenResponse) -> dict:
     out: dict = {}
+    if "user_id" in value:
+        out["UserId"] = value["user_id"]
+    if "user_arn" in value:
+        out["UserArn"] = value["user_arn"]
     if "credentials" in value:
         import capo_connect.types.credentials
 
@@ -33,15 +37,15 @@ def serialize_json(value: GetFederationTokenResponse) -> dict:
         )
     if "sign_in_url" in value:
         out["SignInUrl"] = value["sign_in_url"]
-    if "user_arn" in value:
-        out["UserArn"] = value["user_arn"]
-    if "user_id" in value:
-        out["UserId"] = value["user_id"]
     return out
 
 
 def deserialize_json(data: dict) -> GetFederationTokenResponse:
     out: GetFederationTokenResponse = {}  # type: ignore[typeddict-item]
+    if data.get("UserId") is not None:
+        out["user_id"] = data["UserId"]
+    if data.get("UserArn") is not None:
+        out["user_arn"] = data["UserArn"]
     if data.get("Credentials") is not None:
         import capo_connect.types.credentials
 
@@ -50,8 +54,4 @@ def deserialize_json(data: dict) -> GetFederationTokenResponse:
         )
     if data.get("SignInUrl") is not None:
         out["sign_in_url"] = data["SignInUrl"]
-    if data.get("UserArn") is not None:
-        out["user_arn"] = data["UserArn"]
-    if data.get("UserId") is not None:
-        out["user_id"] = data["UserId"]
     return out

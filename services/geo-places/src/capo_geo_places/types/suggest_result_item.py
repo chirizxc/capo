@@ -34,7 +34,13 @@ class SuggestResultItem(TypedDict, closed=True):
 def serialize_json(value: SuggestResultItem) -> dict:
     out: dict = {}
     out["Title"] = value["title"]
-    out["SuggestResultItemType"] = value["suggest_result_item_type"]
+    import capo_geo_places.types.suggest_result_item_type
+
+    out["SuggestResultItemType"] = (
+        capo_geo_places.types.suggest_result_item_type.serialize_json(
+            value["suggest_result_item_type"]
+        )
+    )
     if "place" in value:
         import capo_geo_places.types.suggest_place_result
 
@@ -63,7 +69,13 @@ def deserialize_json(data: dict) -> SuggestResultItem:
     else:
         raise DeserializationError("SuggestResultItem.title required")
     if data.get("SuggestResultItemType") is not None:
-        out["suggest_result_item_type"] = data["SuggestResultItemType"]
+        import capo_geo_places.types.suggest_result_item_type
+
+        out["suggest_result_item_type"] = (
+            capo_geo_places.types.suggest_result_item_type.deserialize_json(
+                data["SuggestResultItemType"]
+            )
+        )
     else:
         raise DeserializationError(
             "SuggestResultItem.suggest_result_item_type required"

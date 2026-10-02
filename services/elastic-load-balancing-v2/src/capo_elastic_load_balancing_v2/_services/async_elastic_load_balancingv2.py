@@ -751,7 +751,7 @@ class AsyncElasticLoadBalancingv2Client:
             "capo_elastic_load_balancing_v2.types.rule_transform_list.RuleTransformList"
         ] = None,
     ) -> "capo_elastic_load_balancing_v2.types.create_rule_output.CreateRuleOutput":
-        r"""<p>Creates a rule for the specified listener. The listener must be associated with an Application Load Balancer.</p> <p>Each rule consists of a priority, one or more actions, one or more conditions, and up to two optional transforms. Rules are evaluated in priority order, from the lowest value to the highest value. When the conditions for a rule are met, its actions are performed. If the conditions for no rules are met, the actions for the default rule are performed. For more information, see <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-rules\">Listener rules</a> in the <i>Application Load Balancers Guide</i>.</p>
+        r"""<p>Creates a rule for the specified listener. The listener must be associated with an Application Load Balancer or a dual-stack Network Load Balancer.</p> <p>Each rule consists of a priority, one or more actions, and one or more conditions. Rules are evaluated in priority order, from the lowest value to the highest value. When the conditions for a rule are met, its actions are performed. If the conditions for no rules are met, the actions for the default rule are performed. For more information, see <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-rules\">Listener rules</a> in the <i>Application Load Balancers Guide</i> or <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html#listener-rules\">Listener rules</a> in the <i>Network Load Balancers Guide</i>.</p>
 
         Args:
             listener_arn: <p>The Amazon Resource Name (ARN) of the listener.</p>
@@ -784,6 +784,10 @@ class AsyncElasticLoadBalancingv2Client:
             This example creates a rule that forwards requests to the specified target group if the URL contains the specified pattern (for example, /img/*).
 
             >>> await client.create_rule(listener_arn='arn:aws:elasticloadbalancing:us-west-2:123456789012:listener/app/my-load-balancer/50dc6c495c0c9188/f2f7dc8efc522ab2', conditions=[{'Field': 'path-pattern', 'Values': ['/img/*']}], priority=10, actions=[{'Type': 'forward', 'TargetGroupArn': 'arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067'}])
+            To create a listener rule that routes IPv4 traffic on a Network Load Balancer
+            This example creates a rule on a dual-stack Network Load Balancer that routes IPv4 source traffic to an IPv4 target group.
+
+            >>> await client.create_rule(listener_arn='arn:aws:elasticloadbalancing:us-west-2:123456789012:listener/net/my-nlb/1234567890abcdef/1234567890abcdef', conditions=[{'Field': 'source-ip', 'SourceIpConfig': {'IpAddressType': 'ipv4'}}], priority=10, actions=[{'Type': 'forward', 'TargetGroupArn': 'arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-ipv4-targets/1234567890abcdef'}])
         """
 
         async def _handler(
@@ -2031,6 +2035,10 @@ class AsyncElasticLoadBalancingv2Client:
             This example describes the specified rule.
 
             >>> await client.describe_rules(rule_arns=['arn:aws:elasticloadbalancing:us-west-2:123456789012:listener-rule/app/my-load-balancer/50dc6c495c0c9188/f2f7dc8efc522ab2/9683b2d02a6cabee'])
+            To describe rules for a Network Load Balancer listener
+            This example describes the rules for the specified Network Load Balancer listener, including rules that route based on source IP address type.
+
+            >>> await client.describe_rules(listener_arn='arn:aws:elasticloadbalancing:us-west-2:123456789012:listener/net/my-nlb/1234567890abcdef/1234567890abcdef')
         """
 
         async def _handler(
@@ -3280,6 +3288,10 @@ class AsyncElasticLoadBalancingv2Client:
             This example modifies the condition for the specified rule.
 
             >>> await client.modify_rule(rule_arn='arn:aws:elasticloadbalancing:us-west-2:123456789012:listener-rule/app/my-load-balancer/50dc6c495c0c9188/f2f7dc8efc522ab2/9683b2d02a6cabee', conditions=[{'Field': 'path-pattern', 'Values': ['/images/*']}])
+            To modify a Network Load Balancer listener rule
+            This example modifies an NLB listener rule to forward traffic to a different target group.
+
+            >>> await client.modify_rule(rule_arn='arn:aws:elasticloadbalancing:us-west-2:123456789012:listener-rule/net/my-nlb/1234567890abcdef/1234567890abcdef/1234567890abcdef', actions=[{'Type': 'forward', 'TargetGroupArn': 'arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-new-ipv4-targets/1234567890abcdef'}])
         """
 
         async def _handler(

@@ -32,6 +32,9 @@ from .contact_flow_not_published_exception import (
 from .contact_not_found_exception import (
     ContactNotFoundException as ContactNotFoundException,
 )
+from .contact_not_terminated_exception import (
+    ContactNotTerminatedException as ContactNotTerminatedException,
+)
 from .destination_not_allowed_exception import (
     DestinationNotAllowedException as DestinationNotAllowedException,
 )

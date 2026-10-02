@@ -14,6 +14,9 @@ OfferSortBy: TypeAlias = Literal[
     "Targeting",
     "LastModifiedDate",
     "OfferSetId",
+    "TargetAgreementId",
+    "TargetAgreementIntent",
+    "CreatedBySource",
 ]
 
 

@@ -37,6 +37,7 @@ if TYPE_CHECKING:
     import capo_pcs.types.update_cluster_request
     import capo_pcs.types.update_cluster_response
     import capo_pcs.types.update_cluster_slurm_configuration_request
+    import capo_pcs.types.update_scheduler_request
     from capo_pcs._services.async_pcs import AsyncPCSClient, AsyncPCSClientConfig
     from capo_pcs._services.pcs import PCSClient, PCSClientConfig
 
@@ -126,13 +127,17 @@ class ClusterResource:
         slurm_configuration: Optional[
             "capo_pcs.types.update_cluster_slurm_configuration_request.UpdateClusterSlurmConfigurationRequest"
         ] = None,
+        scheduler: Optional[
+            "capo_pcs.types.update_scheduler_request.UpdateSchedulerRequest"
+        ] = None,
     ) -> "capo_pcs.types.update_cluster_response.UpdateClusterResponse":
-        """<p>Updates a cluster configuration. You can modify Slurm scheduler settings, accounting configuration, and security groups for an existing cluster. </p> <note> <p>You can only update clusters that are in <code>ACTIVE</code>, <code>UPDATE_FAILED</code>, or <code>SUSPENDED</code> state. All associated resources (queues and compute node groups) must be in <code>ACTIVE</code> state before you can update the cluster.</p> </note>
+        r"""<p>Updates a cluster configuration. You can update the scheduler version, modify scheduler settings, and update accounting configuration for an existing cluster. For more information about updating the scheduler version, see <a href=\"https://docs.aws.amazon.com/pcs/latest/userguide/working-with_clusters_version_update.html\">Updating the scheduler version on a cluster</a> in the <i>PCS User Guide</i>. </p> <note> <p>You can only update clusters that are in <code>ACTIVE</code>, <code>UPDATE_FAILED</code>, or <code>SUSPENDED</code> state. All associated resources (queues and compute node groups) must be in <code>ACTIVE</code> state before you can update the cluster.</p> </note>
 
         Args:
             cluster_identifier: <p>The name or ID of the cluster to update.</p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.</p>
             slurm_configuration: <p>Additional options related to the Slurm scheduler.</p>
+            scheduler: <p>The scheduler configuration to update for the cluster. Use this to update the scheduler version. For more information, see <a href=\"https://docs.aws.amazon.com/pcs/latest/userguide/working-with_clusters_version_update.html\">Updating the scheduler version on a cluster</a> in the <i>PCS User Guide</i>.</p>
 
         Raises:
             capo_pcs.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action.</p> <p> <u>Examples</u> </p> <ul> <li> <p>The launch template instance profile doesn't pass <code>iam:PassRole</code> verification.</p> </li> <li> <p>There is a mismatch between the account ID and cluster ID.</p> </li> <li> <p>The cluster ID doesn't exist.</p> </li> <li> <p>The EC2 instance isn't present.</p> </li> </ul>
@@ -167,6 +172,8 @@ class ClusterResource:
         input_["client_token"] = client_token
         if slurm_configuration is not None:
             input_["slurm_configuration"] = slurm_configuration
+        if scheduler is not None:
+            input_["scheduler"] = scheduler
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -463,13 +470,17 @@ class AsyncClusterResource:
         slurm_configuration: Optional[
             "capo_pcs.types.update_cluster_slurm_configuration_request.UpdateClusterSlurmConfigurationRequest"
         ] = None,
+        scheduler: Optional[
+            "capo_pcs.types.update_scheduler_request.UpdateSchedulerRequest"
+        ] = None,
     ) -> "capo_pcs.types.update_cluster_response.UpdateClusterResponse":
-        """<p>Updates a cluster configuration. You can modify Slurm scheduler settings, accounting configuration, and security groups for an existing cluster. </p> <note> <p>You can only update clusters that are in <code>ACTIVE</code>, <code>UPDATE_FAILED</code>, or <code>SUSPENDED</code> state. All associated resources (queues and compute node groups) must be in <code>ACTIVE</code> state before you can update the cluster.</p> </note>
+        r"""<p>Updates a cluster configuration. You can update the scheduler version, modify scheduler settings, and update accounting configuration for an existing cluster. For more information about updating the scheduler version, see <a href=\"https://docs.aws.amazon.com/pcs/latest/userguide/working-with_clusters_version_update.html\">Updating the scheduler version on a cluster</a> in the <i>PCS User Guide</i>. </p> <note> <p>You can only update clusters that are in <code>ACTIVE</code>, <code>UPDATE_FAILED</code>, or <code>SUSPENDED</code> state. All associated resources (queues and compute node groups) must be in <code>ACTIVE</code> state before you can update the cluster.</p> </note>
 
         Args:
             cluster_identifier: <p>The name or ID of the cluster to update.</p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.</p>
             slurm_configuration: <p>Additional options related to the Slurm scheduler.</p>
+            scheduler: <p>The scheduler configuration to update for the cluster. Use this to update the scheduler version. For more information, see <a href=\"https://docs.aws.amazon.com/pcs/latest/userguide/working-with_clusters_version_update.html\">Updating the scheduler version on a cluster</a> in the <i>PCS User Guide</i>.</p>
 
         Raises:
             capo_pcs.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action.</p> <p> <u>Examples</u> </p> <ul> <li> <p>The launch template instance profile doesn't pass <code>iam:PassRole</code> verification.</p> </li> <li> <p>There is a mismatch between the account ID and cluster ID.</p> </li> <li> <p>The cluster ID doesn't exist.</p> </li> <li> <p>The EC2 instance isn't present.</p> </li> </ul>
@@ -505,6 +516,8 @@ class AsyncClusterResource:
         input_["client_token"] = client_token
         if slurm_configuration is not None:
             input_["slurm_configuration"] = slurm_configuration
+        if scheduler is not None:
+            input_["scheduler"] = scheduler
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

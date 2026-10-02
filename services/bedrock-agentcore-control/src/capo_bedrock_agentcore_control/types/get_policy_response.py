@@ -9,6 +9,7 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.date_timestamp
     import capo_bedrock_agentcore_control.types.description
+    import capo_bedrock_agentcore_control.types.enforcement_mode
     import capo_bedrock_agentcore_control.types.policy_arn
     import capo_bedrock_agentcore_control.types.policy_definition
     import capo_bedrock_agentcore_control.types.policy_name
@@ -32,10 +33,14 @@ class GetPolicyResponse(TypedDict, closed=True):
     """<p>The Amazon Resource Name (ARN) of the policy. This globally unique identifier can be used for cross-service references and IAM policy statements.</p>"""
     status: "capo_bedrock_agentcore_control.types.policy_status.PolicyStatus"
     """<p>The current status of the policy.</p>"""
+    enforcement_mode: (
+        "capo_bedrock_agentcore_control.types.enforcement_mode.EnforcementMode"
+    )
+    """<p>The current enforcement mode of the policy.</p>"""
     definition: (
         "capo_bedrock_agentcore_control.types.policy_definition.PolicyDefinition"
     )
-    """<p>The Cedar policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.</p>"""
+    """<p>The Cedar or Dogwood policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.</p>"""
     description: NotRequired[
         "capo_bedrock_agentcore_control.types.description.Description"
     ]
@@ -71,6 +76,13 @@ def serialize_json(value: GetPolicyResponse) -> dict:
 
     out["status"] = capo_bedrock_agentcore_control.types.policy_status.serialize_json(
         value["status"]
+    )
+    import capo_bedrock_agentcore_control.types.enforcement_mode
+
+    out["enforcementMode"] = (
+        capo_bedrock_agentcore_control.types.enforcement_mode.serialize_json(
+            value.get("enforcement_mode", "ACTIVE")
+        )
     )
     import capo_bedrock_agentcore_control.types.policy_definition
 
@@ -139,6 +151,16 @@ def deserialize_json(data: dict) -> GetPolicyResponse:
         )
     else:
         raise DeserializationError("GetPolicyResponse.status required")
+    if data.get("enforcementMode") is not None:
+        import capo_bedrock_agentcore_control.types.enforcement_mode
+
+        out["enforcement_mode"] = (
+            capo_bedrock_agentcore_control.types.enforcement_mode.deserialize_json(
+                data["enforcementMode"]
+            )
+        )
+    else:
+        out["enforcement_mode"] = "ACTIVE"
     if data.get("definition") is not None:
         import capo_bedrock_agentcore_control.types.policy_definition
 

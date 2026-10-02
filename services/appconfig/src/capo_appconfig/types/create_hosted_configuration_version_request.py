@@ -9,19 +9,20 @@ from capo_appconfig.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_appconfig.types.blob
     import capo_appconfig.types.description
-    import capo_appconfig.types.id
     import capo_appconfig.types.integer
+    import capo_appconfig.types.long_name
+    import capo_appconfig.types.name
     import capo_appconfig.types.string_with_length_between1_and255
     import capo_appconfig.types.version_label
 
 
 class CreateHostedConfigurationVersionRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
-    configuration_profile_id: "capo_appconfig.types.id.Id"
+    configuration_profile_id: "capo_appconfig.types.long_name.LongName"
     """<p>The configuration profile ID.</p>"""
     description: NotRequired["capo_appconfig.types.description.Description"]
-    """<p>A description of the configuration.</p>"""
+    """<p>A description of the configuration.</p> <note> <p>Due to HTTP limitations, this field only supports ASCII characters.</p> </note>"""
     content: "capo_appconfig.types.blob.Blob"
     """<p>The configuration data, as bytes.</p> <note> <p>AppConfig accepts any type of data, including text formats like JSON or TOML, or binary formats like protocol buffers or compressed data.</p> </note>"""
     content_type: "capo_appconfig.types.string_with_length_between1_and255.StringWithLengthBetween1And255"

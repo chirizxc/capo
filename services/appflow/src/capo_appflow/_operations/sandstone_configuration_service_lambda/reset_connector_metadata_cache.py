@@ -20,7 +20,11 @@ import capo_appflow.types.reset_connector_metadata_cache_request
 import capo_appflow.types.reset_connector_metadata_cache_response
 from capo_appflow._protocol.errors import parse_error_metadata_json
 from capo_appflow._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_appflow._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_appflow._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_appflow.errors import UnknownServiceError
 
 
@@ -132,7 +136,7 @@ def reset_connector_metadata_cache(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -150,7 +154,7 @@ async def async_reset_connector_metadata_cache(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

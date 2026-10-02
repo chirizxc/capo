@@ -7,7 +7,7 @@ from typing_extensions import TypedDict
 from capo_quicksight.errors import DeserializationError
 
 if TYPE_CHECKING:
-    import capo_quicksight.types.string
+    import capo_quicksight.types.sensitive_string
     import capo_quicksight.types.topic_filter_attribute
     import capo_quicksight.types.topic_filter_operator
 
@@ -17,7 +17,7 @@ class TopicSearchFilter(TypedDict, closed=True):
     """<p>The operator like equals or like.</p>"""
     name: "capo_quicksight.types.topic_filter_attribute.TopicFilterAttribute"
     """<p>The name of the topic search filter.</p>"""
-    value: "capo_quicksight.types.string.String"
+    value: "capo_quicksight.types.sensitive_string.SensitiveString"
     """<p>The value of the topic search filter.</p>"""
 
 

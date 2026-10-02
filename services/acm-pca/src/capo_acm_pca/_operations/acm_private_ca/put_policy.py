@@ -21,7 +21,11 @@ import capo_acm_pca.errors.resource_not_found_exception
 import capo_acm_pca.types.put_policy_request
 from capo_acm_pca._protocol.errors import parse_error_metadata_json
 from capo_acm_pca._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_acm_pca._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_acm_pca._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_acm_pca.errors import UnknownServiceError
 
 
@@ -127,7 +131,7 @@ def put_policy(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -142,7 +146,7 @@ async def async_put_policy(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

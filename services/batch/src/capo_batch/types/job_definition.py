@@ -53,7 +53,7 @@ class JobDefinition(TypedDict, closed=True):
     platform_capabilities: NotRequired[
         "capo_batch.types.platform_capability_list.PlatformCapabilityList"
     ]
-    """<p>The platform capabilities required by the job definition. If no value is specified, it defaults to <code>EC2</code>. Jobs run on Fargate resources specify <code>FARGATE</code>.</p>"""
+    """<p>The platform capabilities required by the job definition. If no value is specified, it defaults to <code>EC2</code>. Jobs run on Fargate resources specify <code>FARGATE</code>. Jobs run on Amazon ECS Managed Instances specify <code>MANAGED_INSTANCES</code>.</p>"""
     ecs_properties: NotRequired["capo_batch.types.ecs_properties.EcsProperties"]
     """<p>An object that contains the properties for the Amazon ECS resources of a job.When <code>ecsProperties</code> is used in the job definition, it can't be used in addition to <code>containerProperties</code>, <code>eksProperties</code>, or <code>nodeProperties</code>.</p>"""
     eks_properties: NotRequired["capo_batch.types.eks_properties.EksProperties"]

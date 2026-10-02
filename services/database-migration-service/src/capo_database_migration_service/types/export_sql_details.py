@@ -10,9 +10,9 @@ if TYPE_CHECKING:
 
 class ExportSqlDetails(TypedDict, closed=True):
     s3_object_key: NotRequired["capo_database_migration_service.types.string.String"]
-    """<p>The Amazon S3 object key for the object containing the exported metadata model assessment.</p>"""
+    """<p>The Amazon S3 URI of the object that contains the ZIP archive with exported DDL scripts.</p>"""
     object_url: NotRequired["capo_database_migration_service.types.string.String"]
-    """<p>The URL for the object containing the exported metadata model assessment.</p>"""
+    """<p>The URL of the Amazon S3 object that contains the ZIP archive with exported DDL scripts.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

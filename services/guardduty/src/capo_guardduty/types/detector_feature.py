@@ -10,6 +10,8 @@ DetectorFeature: TypeAlias = Literal[
     "LAMBDA_NETWORK_LOGS",
     "EKS_RUNTIME_MONITORING",
     "RUNTIME_MONITORING",
+    "AI_PROTECTION",
+    "AI_ANALYST",
 ]
 
 

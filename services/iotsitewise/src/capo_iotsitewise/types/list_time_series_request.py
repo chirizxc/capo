@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.max_results
     import capo_iotsitewise.types.next_token
     import capo_iotsitewise.types.property_alias
+    import capo_iotsitewise.types.workspace_name
 
 
 class ListTimeSeriesRequest(TypedDict, closed=True):
@@ -25,6 +26,8 @@ class ListTimeSeriesRequest(TypedDict, closed=True):
         "capo_iotsitewise.types.list_time_series_type.ListTimeSeriesType"
     ]
     """<p>The type of the time series. The time series type can be one of the following values:</p> <ul> <li> <p> <code>ASSOCIATED</code> – The time series is associated with an asset property.</p> </li> <li> <p> <code>DISASSOCIATED</code> – The time series isn't associated with any asset property.</p> </li> </ul>"""
+    workspace_name: NotRequired["capo_iotsitewise.types.workspace_name.WorkspaceName"]
+    """<p>The name of the workspace.</p>"""
 
 
 # --- restJson1 ser/de ---

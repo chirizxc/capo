@@ -14,6 +14,8 @@ if TYPE_CHECKING:
     import capo_connect.types.contact_participant_role
     import capo_connect.types.evaluation_acknowledger_comment_string
     import capo_connect.types.evaluation_score_percentage
+    import capo_connect.types.integer
+    import capo_connect.types.performance_category_name
     import capo_connect.types.resource_id
     import capo_connect.types.timestamp
 
@@ -59,6 +61,14 @@ class EvaluationSearchMetadata(TypedDict, closed=True):
     """<p>Role of a contact participant in the evaluation.</p>"""
     contact_participant_id: NotRequired["capo_connect.types.resource_id.ResourceId"]
     """<p>Identifier for a contact participant in the evaluation.</p>"""
+    earned_points: NotRequired["capo_connect.types.integer.Integer"]
+    """<p>The points earned for the evaluation.</p>"""
+    max_base_point: NotRequired["capo_connect.types.integer.Integer"]
+    """<p>The maximum base points possible for the evaluation.</p>"""
+    performance_category: NotRequired[
+        "capo_connect.types.performance_category_name.PerformanceCategoryName"
+    ]
+    """<p>The performance category for the evaluation score.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -114,6 +124,18 @@ def serialize_json(value: EvaluationSearchMetadata) -> dict:
         )
     if "contact_participant_id" in value:
         out["ContactParticipantId"] = value["contact_participant_id"]
+    if "earned_points" in value:
+        out["EarnedPoints"] = value["earned_points"]
+    if "max_base_point" in value:
+        out["MaxBasePoint"] = value["max_base_point"]
+    if "performance_category" in value:
+        import capo_connect.types.performance_category_name
+
+        out["PerformanceCategory"] = (
+            capo_connect.types.performance_category_name.serialize_json(
+                value["performance_category"]
+            )
+        )
     return out
 
 
@@ -179,4 +201,16 @@ def deserialize_json(data: dict) -> EvaluationSearchMetadata:
         )
     if data.get("ContactParticipantId") is not None:
         out["contact_participant_id"] = data["ContactParticipantId"]
+    if data.get("EarnedPoints") is not None:
+        out["earned_points"] = data["EarnedPoints"]
+    if data.get("MaxBasePoint") is not None:
+        out["max_base_point"] = data["MaxBasePoint"]
+    if data.get("PerformanceCategory") is not None:
+        import capo_connect.types.performance_category_name
+
+        out["performance_category"] = (
+            capo_connect.types.performance_category_name.deserialize_json(
+                data["PerformanceCategory"]
+            )
+        )
     return out

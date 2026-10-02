@@ -7,14 +7,20 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_ssm.types.agent_type
     import capo_ssm.types.agent_version
+    import capo_ssm.types.availability_zone
+    import capo_ssm.types.availability_zone_id
     import capo_ssm.types.computer_name
     import capo_ssm.types.instance_status
     import capo_ssm.types.ip_address
     import capo_ssm.types.managed_status
+    import capo_ssm.types.node_name
     import capo_ssm.types.platform_name
     import capo_ssm.types.platform_type
     import capo_ssm.types.platform_version
     import capo_ssm.types.resource_type
+    import capo_ssm.types.source_id
+    import capo_ssm.types.source_location
+    import capo_ssm.types.source_type
 
 
 class InstanceInfo(TypedDict, closed=True):
@@ -30,6 +36,8 @@ class InstanceInfo(TypedDict, closed=True):
     """<p>The IP address of the managed node.</p>"""
     managed_status: NotRequired["capo_ssm.types.managed_status.ManagedStatus"]
     """<p>Indicates whether the node is managed by Systems Manager.</p>"""
+    name: NotRequired["capo_ssm.types.node_name.NodeName"]
+    """<p>The name assigned to the managed node.</p>"""
     platform_type: NotRequired["capo_ssm.types.platform_type.PlatformType"]
     """<p>The operating system platform type of the managed node.</p>"""
     platform_name: NotRequired["capo_ssm.types.platform_name.PlatformName"]
@@ -38,6 +46,18 @@ class InstanceInfo(TypedDict, closed=True):
     """<p>The version of the OS platform running on your managed node. </p>"""
     resource_type: NotRequired["capo_ssm.types.resource_type.ResourceType"]
     """<p>The type of instance, either an EC2 instance or another supported machine type in a hybrid fleet.</p>"""
+    source_type: NotRequired["capo_ssm.types.source_type.SourceType"]
+    """<p>The type of the source resource. For IoT Greengrass devices, <code>SourceType</code> is <code>AWS::IoT::Thing</code>.</p>"""
+    source_id: NotRequired["capo_ssm.types.source_id.SourceId"]
+    """<p>The ID of the source resource. For IoT Greengrass devices, <code>SourceId</code> is the Thing name.</p>"""
+    source_location: NotRequired["capo_ssm.types.source_location.SourceLocation"]
+    """<p>The location of the source resource in the third-party cloud environment.</p>"""
+    availability_zone: NotRequired["capo_ssm.types.availability_zone.AvailabilityZone"]
+    """<p>The Availability Zone where the managed node is located.</p>"""
+    availability_zone_id: NotRequired[
+        "capo_ssm.types.availability_zone_id.AvailabilityZoneId"
+    ]
+    """<p>The Availability Zone ID where the managed node is located.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -59,6 +79,8 @@ def serialize_aws_json_1_1(value: InstanceInfo) -> dict:
         out["ManagedStatus"] = capo_ssm.types.managed_status.serialize_aws_json_1_1(
             value["managed_status"]
         )
+    if "name" in value:
+        out["Name"] = value["name"]
     if "platform_type" in value:
         import capo_ssm.types.platform_type
 
@@ -75,6 +97,20 @@ def serialize_aws_json_1_1(value: InstanceInfo) -> dict:
         out["ResourceType"] = capo_ssm.types.resource_type.serialize_aws_json_1_1(
             value["resource_type"]
         )
+    if "source_type" in value:
+        import capo_ssm.types.source_type
+
+        out["SourceType"] = capo_ssm.types.source_type.serialize_aws_json_1_1(
+            value["source_type"]
+        )
+    if "source_id" in value:
+        out["SourceId"] = value["source_id"]
+    if "source_location" in value:
+        out["SourceLocation"] = value["source_location"]
+    if "availability_zone" in value:
+        out["AvailabilityZone"] = value["availability_zone"]
+    if "availability_zone_id" in value:
+        out["AvailabilityZoneId"] = value["availability_zone_id"]
     return out
 
 
@@ -96,6 +132,8 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceInfo:
         out["managed_status"] = capo_ssm.types.managed_status.deserialize_aws_json_1_1(
             data["ManagedStatus"]
         )
+    if data.get("Name") is not None:
+        out["name"] = data["Name"]
     if data.get("PlatformType") is not None:
         import capo_ssm.types.platform_type
 
@@ -112,4 +150,18 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceInfo:
         out["resource_type"] = capo_ssm.types.resource_type.deserialize_aws_json_1_1(
             data["ResourceType"]
         )
+    if data.get("SourceType") is not None:
+        import capo_ssm.types.source_type
+
+        out["source_type"] = capo_ssm.types.source_type.deserialize_aws_json_1_1(
+            data["SourceType"]
+        )
+    if data.get("SourceId") is not None:
+        out["source_id"] = data["SourceId"]
+    if data.get("SourceLocation") is not None:
+        out["source_location"] = data["SourceLocation"]
+    if data.get("AvailabilityZone") is not None:
+        out["availability_zone"] = data["AvailabilityZone"]
+    if data.get("AvailabilityZoneId") is not None:
+        out["availability_zone_id"] = data["AvailabilityZoneId"]
     return out

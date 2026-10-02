@@ -2,7 +2,10 @@
 
 from typing import Literal, TypeAlias, cast
 
-MedicalScribeLanguageCode: TypeAlias = Literal["en-US",]
+MedicalScribeLanguageCode: TypeAlias = Literal[
+    "en-US",
+    "multi",
+]
 
 
 # --- restJson1 ser/de ---

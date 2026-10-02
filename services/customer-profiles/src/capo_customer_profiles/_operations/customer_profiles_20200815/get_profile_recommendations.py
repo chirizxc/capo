@@ -21,6 +21,7 @@ import capo_customer_profiles.types.candidate_id_list
 import capo_customer_profiles.types.get_profile_recommendations_request
 import capo_customer_profiles.types.get_profile_recommendations_response
 import capo_customer_profiles.types.metadata_config
+import capo_customer_profiles.types.recommendation_diversity_config
 import capo_customer_profiles.types.recommendations
 import capo_customer_profiles.types.recommender_context
 import capo_customer_profiles.types.recommender_filters
@@ -33,6 +34,7 @@ from capo_customer_profiles._rule_engine._endpoint_rule_set import (
 from capo_customer_profiles._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_customer_profiles.errors import UnknownServiceError
 
@@ -158,7 +160,7 @@ def get_profile_recommendations(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -176,7 +178,7 @@ async def async_get_profile_recommendations(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

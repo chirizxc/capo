@@ -16,11 +16,11 @@ class StartMetadataModelCreationMessage(TypedDict, closed=True):
     migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier"
     """<p>The migration project name or Amazon Resource Name (ARN).</p>"""
     selection_rules: "capo_database_migration_service.types.string.String"
-    """<p>The JSON string that specifies the location where the metadata model will be created. Selection rules must specify a single schema. For more information, see Selection Rules in the DMS User Guide.</p>"""
+    r"""<p>A JSON string that identifies the source schema for the metadata model. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts only source selection rules, where <code>server-name</code> in the object locator matches the source data provider.</p> </li> <li> <p>Supports only <code>explicit</code> rule actions.</p> </li> <li> <p>Exactly one rule is allowed.</p> </li> </ul>"""
     metadata_model_name: "capo_database_migration_service.types.string.String"
-    """<p>The name of the metadata model.</p>"""
+    """<p>The name for the metadata model to use in subsequent operations.</p>"""
     properties: "capo_database_migration_service.types.metadata_model_properties.MetadataModelProperties"
-    """<p>The properties of metadata model in JSON format. This object is a Union. Only one member of this object can be specified or returned.</p>"""
+    """<p>The properties of the metadata model.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

@@ -6,15 +6,13 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.next_token_string
-    import capo_chime_sdk_voice.types.non_empty_string128
     import capo_chime_sdk_voice.types.proxy_session_status
     import capo_chime_sdk_voice.types.result_max
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class ListProxySessionsRequest(TypedDict, closed=True):
-    voice_connector_id: (
-        "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128"
-    )
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
     status: NotRequired[
         "capo_chime_sdk_voice.types.proxy_session_status.ProxySessionStatus"

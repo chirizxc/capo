@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.glue#AWSGlue``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -33,6 +34,17 @@ if TYPE_CHECKING:
     import capo_glue.types.additional_plan_options_map
     import capo_glue.types.api_version
     import capo_glue.types.arn_string
+    import capo_glue.types.asset_description
+    import capo_glue.types.asset_form_map
+    import capo_glue.types.asset_id
+    import capo_glue.types.asset_name
+    import capo_glue.types.asset_type_forms_map
+    import capo_glue.types.asset_type_id
+    import capo_glue.types.asset_type_item
+    import capo_glue.types.asset_type_name
+    import capo_glue.types.associate_glossary_terms_request
+    import capo_glue.types.associate_glossary_terms_response
+    import capo_glue.types.attachment_name
     import capo_glue.types.audit_context
     import capo_glue.types.auth_token_string
     import capo_glue.types.batch_create_partition_request
@@ -57,8 +69,12 @@ if TYPE_CHECKING:
     import capo_glue.types.batch_get_custom_entity_types_response
     import capo_glue.types.batch_get_data_quality_result_request
     import capo_glue.types.batch_get_data_quality_result_response
+    import capo_glue.types.batch_get_data_quality_ruleset_evaluation_run_request
+    import capo_glue.types.batch_get_data_quality_ruleset_evaluation_run_response
     import capo_glue.types.batch_get_dev_endpoints_request
     import capo_glue.types.batch_get_dev_endpoints_response
+    import capo_glue.types.batch_get_iterable_forms_request
+    import capo_glue.types.batch_get_iterable_forms_response
     import capo_glue.types.batch_get_jobs_request
     import capo_glue.types.batch_get_jobs_response
     import capo_glue.types.batch_get_partition_request
@@ -139,6 +155,10 @@ if TYPE_CHECKING:
     import capo_glue.types.create_database_response
     import capo_glue.types.create_dev_endpoint_request
     import capo_glue.types.create_dev_endpoint_response
+    import capo_glue.types.create_glossary_request
+    import capo_glue.types.create_glossary_response
+    import capo_glue.types.create_glossary_term_request
+    import capo_glue.types.create_glossary_term_response
     import capo_glue.types.create_glue_identity_center_configuration_request
     import capo_glue.types.create_glue_identity_center_configuration_response
     import capo_glue.types.create_grok_classifier_request
@@ -189,8 +209,10 @@ if TYPE_CHECKING:
     import capo_glue.types.data_quality_evaluation_run_additional_run_options
     import capo_glue.types.data_quality_result_filter_criteria
     import capo_glue.types.data_quality_result_ids
+    import capo_glue.types.data_quality_rule_recommendation_run_additional_run_options
     import capo_glue.types.data_quality_rule_recommendation_run_filter
     import capo_glue.types.data_quality_ruleset_evaluation_run_filter
+    import capo_glue.types.data_quality_ruleset_evaluation_run_id_list
     import capo_glue.types.data_quality_ruleset_filter_criteria
     import capo_glue.types.data_quality_ruleset_string
     import capo_glue.types.data_quality_target_table
@@ -199,6 +221,12 @@ if TYPE_CHECKING:
     import capo_glue.types.database_attributes_list
     import capo_glue.types.database_input
     import capo_glue.types.database_name
+    import capo_glue.types.delete_asset_request
+    import capo_glue.types.delete_asset_response
+    import capo_glue.types.delete_asset_type_request
+    import capo_glue.types.delete_asset_type_response
+    import capo_glue.types.delete_attachment_request
+    import capo_glue.types.delete_attachment_response
     import capo_glue.types.delete_blueprint_request
     import capo_glue.types.delete_blueprint_response
     import capo_glue.types.delete_catalog_request
@@ -226,6 +254,12 @@ if TYPE_CHECKING:
     import capo_glue.types.delete_database_response
     import capo_glue.types.delete_dev_endpoint_request
     import capo_glue.types.delete_dev_endpoint_response
+    import capo_glue.types.delete_form_type_request
+    import capo_glue.types.delete_form_type_response
+    import capo_glue.types.delete_glossary_request
+    import capo_glue.types.delete_glossary_response
+    import capo_glue.types.delete_glossary_term_request
+    import capo_glue.types.delete_glossary_term_response
     import capo_glue.types.delete_glue_identity_center_configuration_request
     import capo_glue.types.delete_glue_identity_center_configuration_response
     import capo_glue.types.delete_integration_request
@@ -281,6 +315,8 @@ if TYPE_CHECKING:
     import capo_glue.types.description_string_removable
     import capo_glue.types.dev_endpoint_custom_libraries
     import capo_glue.types.dev_endpoint_names
+    import capo_glue.types.disassociate_glossary_terms_request
+    import capo_glue.types.disassociate_glossary_terms_response
     import capo_glue.types.enable_hybrid_values
     import capo_glue.types.encryption_configuration
     import capo_glue.types.entity
@@ -289,13 +325,24 @@ if TYPE_CHECKING:
     import capo_glue.types.execution_class
     import capo_glue.types.execution_property
     import capo_glue.types.exist_condition
+    import capo_glue.types.export_encryption_configuration
+    import capo_glue.types.export_setting
     import capo_glue.types.field
     import capo_glue.types.filter_predicate
     import capo_glue.types.filter_string
+    import capo_glue.types.form_content
+    import capo_glue.types.form_type_id
+    import capo_glue.types.form_type_item
+    import capo_glue.types.form_type_name
+    import capo_glue.types.form_type_schema
     import capo_glue.types.function_type
     import capo_glue.types.generic512_char_string
     import capo_glue.types.generic_map
     import capo_glue.types.generic_string
+    import capo_glue.types.get_asset_input
+    import capo_glue.types.get_asset_output
+    import capo_glue.types.get_asset_type_request
+    import capo_glue.types.get_asset_type_response
     import capo_glue.types.get_blueprint_request
     import capo_glue.types.get_blueprint_response
     import capo_glue.types.get_blueprint_run_request
@@ -340,6 +387,8 @@ if TYPE_CHECKING:
     import capo_glue.types.get_dashboard_url_response
     import capo_glue.types.get_data_catalog_encryption_settings_request
     import capo_glue.types.get_data_catalog_encryption_settings_response
+    import capo_glue.types.get_data_catalog_export_configuration_input
+    import capo_glue.types.get_data_catalog_export_configuration_output
     import capo_glue.types.get_data_quality_model_request
     import capo_glue.types.get_data_quality_model_response
     import capo_glue.types.get_data_quality_model_result_request
@@ -364,6 +413,12 @@ if TYPE_CHECKING:
     import capo_glue.types.get_dev_endpoints_response
     import capo_glue.types.get_entity_records_request
     import capo_glue.types.get_entity_records_response
+    import capo_glue.types.get_form_type_request
+    import capo_glue.types.get_form_type_response
+    import capo_glue.types.get_glossary_request
+    import capo_glue.types.get_glossary_response
+    import capo_glue.types.get_glossary_term_request
+    import capo_glue.types.get_glossary_term_response
     import capo_glue.types.get_glue_identity_center_configuration_request
     import capo_glue.types.get_glue_identity_center_configuration_response
     import capo_glue.types.get_integration_resource_property_request
@@ -460,6 +515,15 @@ if TYPE_CHECKING:
     import capo_glue.types.get_workflow_run_response
     import capo_glue.types.get_workflow_runs_request
     import capo_glue.types.get_workflow_runs_response
+    import capo_glue.types.glossary_id
+    import capo_glue.types.glossary_item
+    import capo_glue.types.glossary_long_description
+    import capo_glue.types.glossary_name
+    import capo_glue.types.glossary_short_description
+    import capo_glue.types.glossary_term_id
+    import capo_glue.types.glossary_term_id_list
+    import capo_glue.types.glossary_term_item
+    import capo_glue.types.glossary_term_name
     import capo_glue.types.glue_policy
     import capo_glue.types.glue_resource_arn
     import capo_glue.types.glue_resource_type
@@ -480,8 +544,13 @@ if TYPE_CHECKING:
     import capo_glue.types.integration_filter_list
     import capo_glue.types.integration_integer
     import capo_glue.types.integration_resource_property_filter_list
+    import capo_glue.types.integration_table_properties_filter_list
     import capo_glue.types.integration_tags_list
     import capo_glue.types.integration_type
+    import capo_glue.types.item_identifier
+    import capo_glue.types.item_identifier_list
+    import capo_glue.types.iterable_form_list_item
+    import capo_glue.types.iterable_form_name
     import capo_glue.types.job
     import capo_glue.types.job_command
     import capo_glue.types.job_mode
@@ -493,6 +562,8 @@ if TYPE_CHECKING:
     import capo_glue.types.language
     import capo_glue.types.limit
     import capo_glue.types.lineage_configuration
+    import capo_glue.types.list_asset_types_request
+    import capo_glue.types.list_asset_types_response
     import capo_glue.types.list_blueprints_request
     import capo_glue.types.list_blueprints_response
     import capo_glue.types.list_column_statistics_task_runs_request
@@ -521,8 +592,18 @@ if TYPE_CHECKING:
     import capo_glue.types.list_dev_endpoints_response
     import capo_glue.types.list_entities_request
     import capo_glue.types.list_entities_response
+    import capo_glue.types.list_form_types_request
+    import capo_glue.types.list_form_types_response
+    import capo_glue.types.list_glossaries_request
+    import capo_glue.types.list_glossaries_response
+    import capo_glue.types.list_glossary_terms_request
+    import capo_glue.types.list_glossary_terms_response
     import capo_glue.types.list_integration_resource_properties_request
     import capo_glue.types.list_integration_resource_properties_response
+    import capo_glue.types.list_integration_table_properties_request
+    import capo_glue.types.list_integration_table_properties_response
+    import capo_glue.types.list_iterable_forms_request
+    import capo_glue.types.list_iterable_forms_response
     import capo_glue.types.list_jobs_request
     import capo_glue.types.list_jobs_response
     import capo_glue.types.list_materialized_view_refresh_task_runs_request
@@ -557,6 +638,7 @@ if TYPE_CHECKING:
     import capo_glue.types.max_results
     import capo_glue.types.max_results_number
     import capo_glue.types.max_retries
+    import capo_glue.types.metadata_description
     import capo_glue.types.metadata_key_value_pair
     import capo_glue.types.metadata_list
     import capo_glue.types.modify_integration_request
@@ -593,10 +675,20 @@ if TYPE_CHECKING:
     import capo_glue.types.predicate_string
     import capo_glue.types.profile_configuration
     import capo_glue.types.public_keys_list
+    import capo_glue.types.put_asset_request
+    import capo_glue.types.put_asset_response
+    import capo_glue.types.put_asset_type_request
+    import capo_glue.types.put_asset_type_response
+    import capo_glue.types.put_attachment_request
+    import capo_glue.types.put_attachment_response
     import capo_glue.types.put_data_catalog_encryption_settings_request
     import capo_glue.types.put_data_catalog_encryption_settings_response
+    import capo_glue.types.put_data_catalog_export_configuration_input
+    import capo_glue.types.put_data_catalog_export_configuration_output
     import capo_glue.types.put_data_quality_profile_annotation_request
     import capo_glue.types.put_data_quality_profile_annotation_response
+    import capo_glue.types.put_form_type_request
+    import capo_glue.types.put_form_type_response
     import capo_glue.types.put_resource_policy_request
     import capo_glue.types.put_resource_policy_response
     import capo_glue.types.put_schema_version_metadata_input
@@ -608,6 +700,7 @@ if TYPE_CHECKING:
     import capo_glue.types.query_schema_version_metadata_max_results
     import capo_glue.types.query_schema_version_metadata_response
     import capo_glue.types.query_session_context
+    import capo_glue.types.recommendation_mode
     import capo_glue.types.recrawl_policy
     import capo_glue.types.register_connection_type_request
     import capo_glue.types.register_connection_type_response
@@ -642,9 +735,17 @@ if TYPE_CHECKING:
     import capo_glue.types.schema_version_id_string
     import capo_glue.types.schema_version_list_item
     import capo_glue.types.schema_version_number
+    import capo_glue.types.search_assets_input
+    import capo_glue.types.search_assets_output
+    import capo_glue.types.search_filter_clause
+    import capo_glue.types.search_max_results
+    import capo_glue.types.search_next_token
     import capo_glue.types.search_property_predicates
+    import capo_glue.types.search_result_item
+    import capo_glue.types.search_sort
     import capo_glue.types.search_tables_request
     import capo_glue.types.search_tables_response
+    import capo_glue.types.search_text
     import capo_glue.types.security_configuration
     import capo_glue.types.segment
     import capo_glue.types.selected_fields
@@ -704,8 +805,8 @@ if TYPE_CHECKING:
     import capo_glue.types.stop_workflow_run_response
     import capo_glue.types.string128
     import capo_glue.types.string512
-    import capo_glue.types.string1024
     import capo_glue.types.string2048
+    import capo_glue.types.string4096
     import capo_glue.types.string_list
     import capo_glue.types.supported_dialect
     import capo_glue.types.table_attributes_list
@@ -714,6 +815,7 @@ if TYPE_CHECKING:
     import capo_glue.types.table_optimizer_run
     import capo_glue.types.table_optimizer_type
     import capo_glue.types.table_prefix
+    import capo_glue.types.table_resource_share_type
     import capo_glue.types.tag_keys_list
     import capo_glue.types.tag_resource_request
     import capo_glue.types.tag_resource_response
@@ -740,6 +842,8 @@ if TYPE_CHECKING:
     import capo_glue.types.trigger_update
     import capo_glue.types.untag_resource_request
     import capo_glue.types.untag_resource_response
+    import capo_glue.types.update_asset_request
+    import capo_glue.types.update_asset_response
     import capo_glue.types.update_blueprint_request
     import capo_glue.types.update_blueprint_response
     import capo_glue.types.update_catalog_request
@@ -766,6 +870,10 @@ if TYPE_CHECKING:
     import capo_glue.types.update_database_response
     import capo_glue.types.update_dev_endpoint_request
     import capo_glue.types.update_dev_endpoint_response
+    import capo_glue.types.update_glossary_request
+    import capo_glue.types.update_glossary_response
+    import capo_glue.types.update_glossary_term_request
+    import capo_glue.types.update_glossary_term_response
     import capo_glue.types.update_glue_identity_center_configuration_request
     import capo_glue.types.update_glue_identity_center_configuration_response
     import capo_glue.types.update_grok_classifier_request
@@ -910,6 +1018,75 @@ class AsyncGlueClient:
             ),
         )
         return interceptors_, options_
+
+    async def associate_glossary_terms(
+        self,
+        asset_identifier: "capo_glue.types.asset_id.AssetId",
+        glossary_term_identifiers: "capo_glue.types.glossary_term_id_list.GlossaryTermIdList",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        iterable_form_name: Optional[
+            "capo_glue.types.iterable_form_name.IterableFormName"
+        ] = None,
+        item_identifier: Optional[
+            "capo_glue.types.item_identifier.ItemIdentifier"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.associate_glossary_terms_response.AssociateGlossaryTermsResponse":
+        """<p>Associates one or more glossary terms with an asset in Glue Data Catalog.</p>
+
+        Args:
+            asset_identifier: <p>The unique identifier of the asset to associate glossary terms with.</p>
+            iterable_form_name: <p>The name of the iterable form. When specified along with <code>itemIdentifier</code>, the glossary terms are associated with an item within the iterable form rather than the asset itself.</p>
+            item_identifier: <p>The identifier of the item within the iterable form. Required when <code>iterableFormName</code> is specified.</p>
+            glossary_term_identifiers: <p>The list of glossary term identifiers to associate with the asset.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.associate_glossary_terms_request.AssociateGlossaryTermsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.associate_glossary_terms_response.AssociateGlossaryTermsResponse"
+        ]:
+            import capo_glue._operations.aws_glue.associate_glossary_terms
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.associate_glossary_terms.async_associate_glossary_terms(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.associate_glossary_terms_request.AssociateGlossaryTermsRequest = {
+            "asset_identifier": asset_identifier,
+            "glossary_term_identifiers": glossary_term_identifiers,
+        }
+        if iterable_form_name is not None:
+            input_["iterable_form_name"] = iterable_form_name
+        if item_identifier is not None:
+            input_["item_identifier"] = item_identifier
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     async def batch_create_partition(
         self,
@@ -1403,6 +1580,52 @@ class AsyncGlueClient:
         await response.response.aclose()
         return response.output
 
+    async def batch_get_data_quality_ruleset_evaluation_run(
+        self,
+        run_ids: "capo_glue.types.data_quality_ruleset_evaluation_run_id_list.DataQualityRulesetEvaluationRunIdList",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.batch_get_data_quality_ruleset_evaluation_run_response.BatchGetDataQualityRulesetEvaluationRunResponse":
+        """<p>Retrieves the details of multiple evaluation runs in a single request.</p>
+
+        Args:
+            run_ids: <p>A list of unique run identifiers for the evaluation runs to retrieve.</p>
+
+        Raises:
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.operation_timeout_exception.OperationTimeoutException: <p>The operation timed out.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.batch_get_data_quality_ruleset_evaluation_run_request.BatchGetDataQualityRulesetEvaluationRunRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.batch_get_data_quality_ruleset_evaluation_run_response.BatchGetDataQualityRulesetEvaluationRunResponse"
+        ]:
+            import capo_glue._operations.aws_glue.batch_get_data_quality_ruleset_evaluation_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.batch_get_data_quality_ruleset_evaluation_run.async_batch_get_data_quality_ruleset_evaluation_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.batch_get_data_quality_ruleset_evaluation_run_request.BatchGetDataQualityRulesetEvaluationRunRequest = {
+            "run_ids": run_ids
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def batch_get_dev_endpoints(
         self,
         dev_endpoint_names: "capo_glue.types.dev_endpoint_names.DevEndpointNames",
@@ -1442,6 +1665,60 @@ class AsyncGlueClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_glue.types.batch_get_dev_endpoints_request.BatchGetDevEndpointsRequest = {
             "dev_endpoint_names": dev_endpoint_names
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def batch_get_iterable_forms(
+        self,
+        asset_identifier: "capo_glue.types.asset_id.AssetId",
+        iterable_form_name: "capo_glue.types.iterable_form_name.IterableFormName",
+        item_identifiers: "capo_glue.types.item_identifier_list.ItemIdentifierList",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.batch_get_iterable_forms_response.BatchGetIterableFormsResponse":
+        """<p>Retrieves multiple items from an iterable form on an asset in Glue Data Catalog in a single request.</p>
+
+        Args:
+            asset_identifier: <p>The unique identifier of the asset.</p>
+            iterable_form_name: <p>The name of the iterable form to retrieve items from.</p>
+            item_identifiers: <p>The list of item identifiers to retrieve. Each identifier can be an item ID or item name.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.batch_get_iterable_forms_request.BatchGetIterableFormsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.batch_get_iterable_forms_response.BatchGetIterableFormsResponse"
+        ]:
+            import capo_glue._operations.aws_glue.batch_get_iterable_forms
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.batch_get_iterable_forms.async_batch_get_iterable_forms(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.batch_get_iterable_forms_request.BatchGetIterableFormsRequest = {
+            "asset_identifier": asset_identifier,
+            "iterable_form_name": iterable_form_name,
+            "item_identifiers": item_identifiers,
         }
 
         response = await aexecute_pipeline(
@@ -2883,6 +3160,136 @@ class AsyncGlueClient:
             input_["tags"] = tags
         if arguments is not None:
             input_["arguments"] = arguments
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_glossary(
+        self,
+        name: "capo_glue.types.glossary_name.GlossaryName",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        description: Optional[
+            "capo_glue.types.metadata_description.MetadataDescription"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.create_glossary_response.CreateGlossaryResponse":
+        """<p>Creates a business glossary in Glue Data Catalog. A glossary is a container for glossary terms that define business concepts.</p>
+
+        Args:
+            name: <p>The name of the glossary.</p>
+            description: <p>The description of the glossary.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.already_exists_exception.AlreadyExistsException: <p>A resource to be created or added already exists.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.create_glossary_request.CreateGlossaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.create_glossary_response.CreateGlossaryResponse"
+        ]:
+            import capo_glue._operations.aws_glue.create_glossary
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.create_glossary.async_create_glossary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.create_glossary_request.CreateGlossaryRequest = {
+            "name": name
+        }
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_glossary_term(
+        self,
+        glossary_identifier: "capo_glue.types.glossary_id.GlossaryId",
+        name: "capo_glue.types.glossary_term_name.GlossaryTermName",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        short_description: Optional[
+            "capo_glue.types.glossary_short_description.GlossaryShortDescription"
+        ] = None,
+        long_description: Optional[
+            "capo_glue.types.glossary_long_description.GlossaryLongDescription"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.create_glossary_term_response.CreateGlossaryTermResponse":
+        """<p>Creates a glossary term within a business glossary in Glue Data Catalog.</p>
+
+        Args:
+            glossary_identifier: <p>The unique identifier of the glossary in which to create the term.</p>
+            name: <p>The name of the glossary term.</p>
+            short_description: <p>A short description of the glossary term.</p>
+            long_description: <p>A long description of the glossary term.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.already_exists_exception.AlreadyExistsException: <p>A resource to be created or added already exists.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.create_glossary_term_request.CreateGlossaryTermRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.create_glossary_term_response.CreateGlossaryTermResponse"
+        ]:
+            import capo_glue._operations.aws_glue.create_glossary_term
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.create_glossary_term.async_create_glossary_term(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.create_glossary_term_request.CreateGlossaryTermRequest = {
+            "glossary_identifier": glossary_identifier,
+            "name": name,
+        }
+        if short_description is not None:
+            input_["short_description"] = short_description
+        if long_description is not None:
+            input_["long_description"] = long_description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -4379,6 +4786,166 @@ class AsyncGlueClient:
         await response.response.aclose()
         return response.output
 
+    async def delete_asset(
+        self,
+        identifier: "capo_glue.types.asset_id.AssetId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.delete_asset_response.DeleteAssetResponse":
+        """<p>Deletes an asset from Glue Data Catalog.</p>
+
+        Args:
+            identifier: <p>The unique identifier of the asset to delete.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.delete_asset_request.DeleteAssetRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.delete_asset_response.DeleteAssetResponse"
+        ]:
+            import capo_glue._operations.aws_glue.delete_asset
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.delete_asset.async_delete_asset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.delete_asset_request.DeleteAssetRequest = {
+            "identifier": identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_asset_type(
+        self,
+        identifier: "capo_glue.types.asset_type_id.AssetTypeId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.delete_asset_type_response.DeleteAssetTypeResponse":
+        """<p>Deletes an asset type from Glue Data Catalog.</p>
+
+        Args:
+            identifier: <p>The identifier of the asset type to delete.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.delete_asset_type_request.DeleteAssetTypeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.delete_asset_type_response.DeleteAssetTypeResponse"
+        ]:
+            import capo_glue._operations.aws_glue.delete_asset_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.delete_asset_type.async_delete_asset_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.delete_asset_type_request.DeleteAssetTypeRequest = {
+            "identifier": identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_attachment(
+        self,
+        asset_identifier: "capo_glue.types.asset_id.AssetId",
+        attachment_name: "capo_glue.types.attachment_name.AttachmentName",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        iterable_form_name: Optional[
+            "capo_glue.types.iterable_form_name.IterableFormName"
+        ] = None,
+        item_identifier: Optional[
+            "capo_glue.types.item_identifier.ItemIdentifier"
+        ] = None,
+    ) -> "capo_glue.types.delete_attachment_response.DeleteAttachmentResponse":
+        """<p>Deletes a form attachment from an asset in Glue Data Catalog.</p>
+
+        Args:
+            asset_identifier: <p>The unique identifier of the asset from which to delete the attachment.</p>
+            iterable_form_name: <p>The name of the iterable form. When specified along with <code>itemIdentifier</code>, the attachment is deleted from an item within the iterable form rather than from the asset itself.</p>
+            item_identifier: <p>The identifier of the item within the iterable form. Required when <code>iterableFormName</code> is specified.</p>
+            attachment_name: <p>The name of the attachment to delete.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.delete_attachment_request.DeleteAttachmentRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.delete_attachment_response.DeleteAttachmentResponse"
+        ]:
+            import capo_glue._operations.aws_glue.delete_attachment
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.delete_attachment.async_delete_attachment(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.delete_attachment_request.DeleteAttachmentRequest = {
+            "asset_identifier": asset_identifier,
+            "attachment_name": attachment_name,
+        }
+        if iterable_form_name is not None:
+            input_["iterable_form_name"] = iterable_form_name
+        if item_identifier is not None:
+            input_["item_identifier"] = item_identifier
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_blueprint(
         self,
         name: "capo_glue.types.name_string.NameString",
@@ -5028,6 +5595,152 @@ class AsyncGlueClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_glue.types.delete_dev_endpoint_request.DeleteDevEndpointRequest = {
             "endpoint_name": endpoint_name
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_form_type(
+        self,
+        identifier: "capo_glue.types.form_type_id.FormTypeId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.delete_form_type_response.DeleteFormTypeResponse":
+        """<p>Deletes a form type from Glue Data Catalog. A form type cannot be deleted if it is still referenced by an asset type.</p>
+
+        Args:
+            identifier: <p>The identifier of the form type to delete.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.conflict_exception.ConflictException: <p>The <code>CreatePartitions</code> API was called on a table that has indexes enabled. </p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.delete_form_type_request.DeleteFormTypeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.delete_form_type_response.DeleteFormTypeResponse"
+        ]:
+            import capo_glue._operations.aws_glue.delete_form_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.delete_form_type.async_delete_form_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.delete_form_type_request.DeleteFormTypeRequest = {
+            "identifier": identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_glossary(
+        self,
+        identifier: "capo_glue.types.glossary_id.GlossaryId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.delete_glossary_response.DeleteGlossaryResponse":
+        """<p>Deletes a business glossary from Glue Data Catalog. A glossary cannot be deleted if it still contains glossary terms.</p>
+
+        Args:
+            identifier: <p>The unique identifier of the glossary to delete.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.conflict_exception.ConflictException: <p>The <code>CreatePartitions</code> API was called on a table that has indexes enabled. </p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.delete_glossary_request.DeleteGlossaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.delete_glossary_response.DeleteGlossaryResponse"
+        ]:
+            import capo_glue._operations.aws_glue.delete_glossary
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.delete_glossary.async_delete_glossary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.delete_glossary_request.DeleteGlossaryRequest = {
+            "identifier": identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_glossary_term(
+        self,
+        identifier: "capo_glue.types.glossary_term_id.GlossaryTermId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.delete_glossary_term_response.DeleteGlossaryTermResponse":
+        """<p>Deletes a glossary term from Glue Data Catalog.</p>
+
+        Args:
+            identifier: <p>The unique identifier of the glossary term to delete.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.delete_glossary_term_request.DeleteGlossaryTermRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.delete_glossary_term_response.DeleteGlossaryTermResponse"
+        ]:
+            import capo_glue._operations.aws_glue.delete_glossary_term
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.delete_glossary_term.async_delete_glossary_term(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.delete_glossary_term_request.DeleteGlossaryTermRequest = {
+            "identifier": identifier
         }
 
         response = await aexecute_pipeline(
@@ -6398,6 +7111,169 @@ class AsyncGlueClient:
             input_["max_records"] = max_records
         if filters is not None:
             input_["filters"] = filters
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def disassociate_glossary_terms(
+        self,
+        asset_identifier: "capo_glue.types.asset_id.AssetId",
+        glossary_term_identifiers: "capo_glue.types.glossary_term_id_list.GlossaryTermIdList",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        iterable_form_name: Optional[
+            "capo_glue.types.iterable_form_name.IterableFormName"
+        ] = None,
+        item_identifier: Optional[
+            "capo_glue.types.item_identifier.ItemIdentifier"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.disassociate_glossary_terms_response.DisassociateGlossaryTermsResponse":
+        """<p>Removes the association of one or more glossary terms from an asset in Glue Data Catalog.</p>
+
+        Args:
+            asset_identifier: <p>The unique identifier of the asset to disassociate glossary terms from.</p>
+            iterable_form_name: <p>The name of the iterable form. When specified along with <code>itemIdentifier</code>, the glossary terms are disassociated from an item within the iterable form rather than the asset itself.</p>
+            item_identifier: <p>The identifier of the item within the iterable form. Required when <code>iterableFormName</code> is specified.</p>
+            glossary_term_identifiers: <p>The list of glossary term identifiers to disassociate from the asset.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.disassociate_glossary_terms_request.DisassociateGlossaryTermsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.disassociate_glossary_terms_response.DisassociateGlossaryTermsResponse"
+        ]:
+            import capo_glue._operations.aws_glue.disassociate_glossary_terms
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.disassociate_glossary_terms.async_disassociate_glossary_terms(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.disassociate_glossary_terms_request.DisassociateGlossaryTermsRequest = {
+            "asset_identifier": asset_identifier,
+            "glossary_term_identifiers": glossary_term_identifiers,
+        }
+        if iterable_form_name is not None:
+            input_["iterable_form_name"] = iterable_form_name
+        if item_identifier is not None:
+            input_["item_identifier"] = item_identifier
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_asset(
+        self,
+        identifier: "capo_glue.types.asset_id.AssetId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.get_asset_output.GetAssetOutput":
+        """<p>Retrieves the metadata for an asset in Glue Data Catalog, including its forms, additional attachments, and associated glossary terms.</p>
+
+        Args:
+            identifier: <p>The unique identifier of the asset to retrieve.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.get_asset_input.GetAssetInput]",
+        ) -> AsyncOperationResponse["capo_glue.types.get_asset_output.GetAssetOutput"]:
+            import capo_glue._operations.aws_glue.get_asset
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.get_asset.async_get_asset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.get_asset_input.GetAssetInput = {
+            "identifier": identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_asset_type(
+        self,
+        identifier: "capo_glue.types.asset_type_id.AssetTypeId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.get_asset_type_response.GetAssetTypeResponse":
+        """<p>Retrieves an asset type in Glue Data Catalog by its identifier.</p>
+
+        Args:
+            identifier: <p>The identifier of the asset type to retrieve.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.get_asset_type_request.GetAssetTypeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.get_asset_type_response.GetAssetTypeResponse"
+        ]:
+            import capo_glue._operations.aws_glue.get_asset_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.get_asset_type.async_get_asset_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.get_asset_type_request.GetAssetTypeRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -7840,6 +8716,45 @@ class AsyncGlueClient:
         await response.response.aclose()
         return response.output
 
+    async def get_data_catalog_export_configuration(
+        self, *, config_overrides: Optional[AsyncGlueClientConfig] = None
+    ) -> "capo_glue.types.get_data_catalog_export_configuration_output.GetDataCatalogExportConfigurationOutput":
+        """<p>Retrieves the current export configuration for the Glue Data Catalog. The export configuration controls whether catalog metadata is exported to S3 Tables.</p>
+
+        Raises:
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.get_data_catalog_export_configuration_input.GetDataCatalogExportConfigurationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.get_data_catalog_export_configuration_output.GetDataCatalogExportConfigurationOutput"
+        ]:
+            import capo_glue._operations.aws_glue.get_data_catalog_export_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.get_data_catalog_export_configuration.async_get_data_catalog_export_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.get_data_catalog_export_configuration_input.GetDataCatalogExportConfigurationInput = {}
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_dataflow_graph(
         self,
         *,
@@ -8380,6 +9295,148 @@ class AsyncGlueClient:
             input_["order_by"] = order_by
         if selected_fields is not None:
             input_["selected_fields"] = selected_fields
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_form_type(
+        self,
+        identifier: "capo_glue.types.form_type_id.FormTypeId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.get_form_type_response.GetFormTypeResponse":
+        """<p>Retrieves a form type in Glue Data Catalog by its identifier.</p>
+
+        Args:
+            identifier: <p>The identifier of the form type to retrieve.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.get_form_type_request.GetFormTypeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.get_form_type_response.GetFormTypeResponse"
+        ]:
+            import capo_glue._operations.aws_glue.get_form_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.get_form_type.async_get_form_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.get_form_type_request.GetFormTypeRequest = {
+            "identifier": identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_glossary(
+        self,
+        identifier: "capo_glue.types.glossary_id.GlossaryId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.get_glossary_response.GetGlossaryResponse":
+        """<p>Retrieves a business glossary in Glue Data Catalog by its identifier.</p>
+
+        Args:
+            identifier: <p>The unique identifier of the glossary to retrieve.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.get_glossary_request.GetGlossaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.get_glossary_response.GetGlossaryResponse"
+        ]:
+            import capo_glue._operations.aws_glue.get_glossary
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.get_glossary.async_get_glossary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.get_glossary_request.GetGlossaryRequest = {
+            "identifier": identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_glossary_term(
+        self,
+        identifier: "capo_glue.types.glossary_term_id.GlossaryTermId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+    ) -> "capo_glue.types.get_glossary_term_response.GetGlossaryTermResponse":
+        """<p>Retrieves a glossary term in Glue Data Catalog by its identifier.</p>
+
+        Args:
+            identifier: <p>The unique identifier of the glossary term to retrieve.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.get_glossary_term_request.GetGlossaryTermRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.get_glossary_term_response.GetGlossaryTermResponse"
+        ]:
+            import capo_glue._operations.aws_glue.get_glossary_term
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.get_glossary_term.async_get_glossary_term(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.get_glossary_term_request.GetGlossaryTermRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -10263,6 +11320,9 @@ class AsyncGlueClient:
         include_status_details: Optional[
             "capo_glue.types.boolean_nullable.BooleanNullable"
         ] = None,
+        attributes_to_get: Optional[
+            "capo_glue.types.table_attributes_list.TableAttributesList"
+        ] = None,
     ) -> "capo_glue.types.get_table_response.GetTableResponse":
         r"""<p>Retrieves the <code>Table</code> definition in a Data Catalog for a specified table.</p>
 
@@ -10274,6 +11334,7 @@ class AsyncGlueClient:
             query_as_of_time: <p>The time as of when to read the table contents. If not set, the most recent transaction commit time will be used. Cannot be specified along with <code>TransactionId</code>.</p>
             audit_context: <p>A structure containing the Lake Formation <a href=\"https://docs.aws.amazon.com/glue/latest/webapi/API_AuditContext.html\">audit context</a>.</p>
             include_status_details: <p>Specifies whether to include status details related to a request to create or update an Glue Data Catalog view.</p>
+            attributes_to_get: <p>Specifies the table fields returned by the <code>GetTable</code> call. This parameter doesn't accept an empty list.</p> <p>The following are the valid combinations of values:</p> <ul> <li> <p> <code>DEFAULT</code> - Returns the Hive-style table definition only.</p> </li> <li> <p> <code>LATEST_ICEBERG_METADATA</code> - Returns only the latest Apache Iceberg table metadata.</p> </li> <li> <p> <code>DEFAULT</code>, <code>LATEST_ICEBERG_METADATA</code> - Returns both the Hive-style table definition and the latest Apache Iceberg table metadata.</p> </li> </ul>
 
         Raises:
             capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
@@ -10317,6 +11378,8 @@ class AsyncGlueClient:
             input_["audit_context"] = audit_context
         if include_status_details is not None:
             input_["include_status_details"] = include_status_details
+        if attributes_to_get is not None:
+            input_["attributes_to_get"] = attributes_to_get
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -10401,6 +11464,9 @@ class AsyncGlueClient:
         ] = None,
         query_as_of_time: Optional["capo_glue.types.timestamp.Timestamp"] = None,
         audit_context: Optional["capo_glue.types.audit_context.AuditContext"] = None,
+        resource_share_type: Optional[
+            "capo_glue.types.table_resource_share_type.TableResourceShareType"
+        ] = None,
         include_status_details: Optional[
             "capo_glue.types.boolean_nullable.BooleanNullable"
         ] = None,
@@ -10419,6 +11485,7 @@ class AsyncGlueClient:
             transaction_id: <p>The transaction ID at which to read the table contents.</p>
             query_as_of_time: <p>The time as of when to read the table contents. If not set, the most recent transaction commit time will be used. Cannot be specified along with <code>TransactionId</code>.</p>
             audit_context: <p>A structure containing the Lake Formation <a href=\"https://docs.aws.amazon.com/glue/latest/webapi/API_AuditContext.html\">audit context</a>.</p>
+            resource_share_type: <p>Specifies which tables the <code>GetTables</code> call returns. The allowable values are <code>FEDERATED</code> or <code>ALL</code>. </p> <ul> <li> <p>If set to <code>FEDERATED</code>, returns only federated tables, which reference an entity outside the Glue Data Catalog.</p> </li> <li> <p>If set to <code>ALL</code>, returns all tables in the database, both federated and non-federated. </p> </li> </ul>
             include_status_details: <p>Specifies whether to include status details related to a request to create or update an Glue Data Catalog view.</p>
             attributes_to_get: <p> Specifies the table fields returned by the <code>GetTables</code> call. This parameter doesn’t accept an empty list. The request must include <code>NAME</code>.</p> <p>The following are the valid combinations of values:</p> <ul> <li> <p> <code>NAME</code> - Names of all tables in the database.</p> </li> <li> <p> <code>NAME</code>, <code>TABLE_TYPE</code> - Names of all tables and the table types.</p> </li> </ul>
 
@@ -10466,6 +11533,8 @@ class AsyncGlueClient:
             input_["query_as_of_time"] = query_as_of_time
         if audit_context is not None:
             input_["audit_context"] = audit_context
+        if resource_share_type is not None:
+            input_["resource_share_type"] = resource_share_type
         if include_status_details is not None:
             input_["include_status_details"] = include_status_details
         if attributes_to_get is not None:
@@ -10497,6 +11566,9 @@ class AsyncGlueClient:
         ] = None,
         query_as_of_time: Optional["capo_glue.types.timestamp.Timestamp"] = None,
         audit_context: Optional["capo_glue.types.audit_context.AuditContext"] = None,
+        resource_share_type: Optional[
+            "capo_glue.types.table_resource_share_type.TableResourceShareType"
+        ] = None,
         include_status_details: Optional[
             "capo_glue.types.boolean_nullable.BooleanNullable"
         ] = None,
@@ -10516,6 +11588,7 @@ class AsyncGlueClient:
                 transaction_id=transaction_id,
                 query_as_of_time=query_as_of_time,
                 audit_context=audit_context,
+                resource_share_type=resource_share_type,
                 include_status_details=include_status_details,
                 attributes_to_get=attributes_to_get,
             )
@@ -11661,6 +12734,78 @@ class AsyncGlueClient:
         await response.response.aclose()
         return response.output
 
+    async def list_asset_types(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "capo_glue.types.list_asset_types_response.ListAssetTypesResponse":
+        """<p>Lists the asset types defined in Glue Data Catalog.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return in the response.</p>
+            next_token: <p>A continuation token, if this is a continuation call.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.list_asset_types_request.ListAssetTypesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.list_asset_types_response.ListAssetTypesResponse"
+        ]:
+            import capo_glue._operations.aws_glue.list_asset_types
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.list_asset_types.async_list_asset_types(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.list_asset_types_request.ListAssetTypesRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_asset_types(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_glue.types.asset_type_item.AssetTypeItem]":
+        _token = next_token
+        while True:
+            _response = await self.list_asset_types(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_blueprints(
         self,
         *,
@@ -12173,6 +13318,7 @@ class AsyncGlueClient:
         ] = None,
         next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
         max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        tags: Optional["capo_glue.types.tags_map.TagsMap"] = None,
     ) -> "capo_glue.types.list_data_quality_rule_recommendation_runs_response.ListDataQualityRuleRecommendationRunsResponse":
         """<p>Lists the recommendation runs meeting the filter criteria.</p>
 
@@ -12180,6 +13326,7 @@ class AsyncGlueClient:
             filter: <p>The filter criteria.</p>
             next_token: <p>A paginated token to offset the results.</p>
             max_results: <p>The maximum number of results to return.</p>
+            tags: <p>A list of key-value pair tags to filter recommendation runs.</p>
 
         Raises:
             capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
@@ -12211,6 +13358,8 @@ class AsyncGlueClient:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
+        if tags is not None:
+            input_["tags"] = tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -12229,6 +13378,7 @@ class AsyncGlueClient:
         ] = None,
         next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
         max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        tags: Optional["capo_glue.types.tags_map.TagsMap"] = None,
     ) -> "AsyncIterator[capo_glue.types.list_data_quality_rule_recommendation_runs_response.ListDataQualityRuleRecommendationRunsResponse]":
         _token = next_token
         while True:
@@ -12237,6 +13387,7 @@ class AsyncGlueClient:
                 filter=filter,
                 next_token=_token,
                 max_results=max_results,
+                tags=tags,
             )
             yield _response
             _token = _resolve_path(_response, ("next_token",))
@@ -12712,11 +13863,233 @@ class AsyncGlueClient:
             if not _token:
                 break
 
+    async def list_form_types(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "capo_glue.types.list_form_types_response.ListFormTypesResponse":
+        """<p>Lists the form types defined in Glue Data Catalog.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return in the response.</p>
+            next_token: <p>A continuation token, if this is a continuation call.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.list_form_types_request.ListFormTypesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.list_form_types_response.ListFormTypesResponse"
+        ]:
+            import capo_glue._operations.aws_glue.list_form_types
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.list_form_types.async_list_form_types(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.list_form_types_request.ListFormTypesRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_form_types(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_glue.types.form_type_item.FormTypeItem]":
+        _token = next_token
+        while True:
+            _response = await self.list_form_types(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_glossaries(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "capo_glue.types.list_glossaries_response.ListGlossariesResponse":
+        """<p>Lists business glossaries in Glue Data Catalog.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return in the response.</p>
+            next_token: <p>A continuation token, if this is a continuation call.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.list_glossaries_request.ListGlossariesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.list_glossaries_response.ListGlossariesResponse"
+        ]:
+            import capo_glue._operations.aws_glue.list_glossaries
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.list_glossaries.async_list_glossaries(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.list_glossaries_request.ListGlossariesRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_glossaries(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_glue.types.glossary_item.GlossaryItem]":
+        _token = next_token
+        while True:
+            _response = await self.list_glossaries(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_glossary_terms(
+        self,
+        glossary_identifier: "capo_glue.types.glossary_id.GlossaryId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "capo_glue.types.list_glossary_terms_response.ListGlossaryTermsResponse":
+        """<p>Lists glossary terms within a business glossary in Glue Data Catalog.</p>
+
+        Args:
+            glossary_identifier: <p>The unique identifier of the glossary whose terms to list.</p>
+            max_results: <p>The maximum number of results to return in the response.</p>
+            next_token: <p>A continuation token, if this is a continuation call.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.list_glossary_terms_request.ListGlossaryTermsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.list_glossary_terms_response.ListGlossaryTermsResponse"
+        ]:
+            import capo_glue._operations.aws_glue.list_glossary_terms
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.list_glossary_terms.async_list_glossary_terms(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.list_glossary_terms_request.ListGlossaryTermsRequest = {
+            "glossary_identifier": glossary_identifier
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_glossary_terms(
+        self,
+        glossary_identifier: "capo_glue.types.glossary_id.GlossaryId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_glue.types.glossary_term_item.GlossaryTermItem]":
+        _token = next_token
+        while True:
+            _response = await self.list_glossary_terms(
+                glossary_identifier,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_integration_resource_properties(
         self,
         *,
         config_overrides: Optional[AsyncGlueClientConfig] = None,
-        marker: Optional["capo_glue.types.string1024.String1024"] = None,
+        marker: Optional["capo_glue.types.string4096.String4096"] = None,
         filters: Optional[
             "capo_glue.types.integration_resource_property_filter_list.IntegrationResourcePropertyFilterList"
         ] = None,
@@ -12773,6 +14146,152 @@ class AsyncGlueClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def list_integration_table_properties(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        marker: Optional["capo_glue.types.string4096.String4096"] = None,
+        filters: Optional[
+            "capo_glue.types.integration_table_properties_filter_list.IntegrationTablePropertiesFilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_glue.types.integration_integer.IntegrationInteger"
+        ] = None,
+    ) -> "capo_glue.types.list_integration_table_properties_response.ListIntegrationTablePropertiesResponse":
+        """<p>Lists the integration table properties in your account. This operation supports filtering and pagination.</p>
+
+        Args:
+            marker: <p>The pagination token for the next page of results. The initial value is <code>null</code>.</p>
+            filters: <p>A list of filters. Supported filter keys are <code>SourceArn</code>, <code>TargetArn</code>, <code>SourceTableName</code>, and <code>TargetTableName</code>.</p>
+            max_records: <p>The maximum number of records to return in the response.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource could not be found.</p>
+            capo_glue.errors.validation_exception.ValidationException: <p>A value could not be validated.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.list_integration_table_properties_request.ListIntegrationTablePropertiesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.list_integration_table_properties_response.ListIntegrationTablePropertiesResponse"
+        ]:
+            import capo_glue._operations.aws_glue.list_integration_table_properties
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.list_integration_table_properties.async_list_integration_table_properties(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.list_integration_table_properties_request.ListIntegrationTablePropertiesRequest = {}
+        if marker is not None:
+            input_["marker"] = marker
+        if filters is not None:
+            input_["filters"] = filters
+        if max_records is not None:
+            input_["max_records"] = max_records
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_iterable_forms(
+        self,
+        asset_identifier: "capo_glue.types.asset_id.AssetId",
+        iterable_form_name: "capo_glue.types.iterable_form_name.IterableFormName",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "capo_glue.types.list_iterable_forms_response.ListIterableFormsResponse":
+        """<p>Lists the items in an iterable form on an asset in Glue Data Catalog. For example, lists the columns of a table asset.</p>
+
+        Args:
+            asset_identifier: <p>The unique identifier of the asset.</p>
+            iterable_form_name: <p>The name of the iterable form to list items from.</p>
+            max_results: <p>The maximum number of results to return in the response.</p>
+            next_token: <p>A continuation token, if this is a continuation call.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.list_iterable_forms_request.ListIterableFormsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.list_iterable_forms_response.ListIterableFormsResponse"
+        ]:
+            import capo_glue._operations.aws_glue.list_iterable_forms
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.list_iterable_forms.async_list_iterable_forms(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.list_iterable_forms_request.ListIterableFormsRequest = {
+            "asset_identifier": asset_identifier,
+            "iterable_form_name": iterable_form_name,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_iterable_forms(
+        self,
+        asset_identifier: "capo_glue.types.asset_id.AssetId",
+        iterable_form_name: "capo_glue.types.iterable_form_name.IterableFormName",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_glue.types.iterable_form_list_item.IterableFormListItem]":
+        _token = next_token
+        while True:
+            _response = await self.list_iterable_forms(
+                asset_identifier,
+                iterable_form_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_jobs(
         self,
@@ -12867,7 +14386,7 @@ class AsyncGlueClient:
         Args:
             catalog_id: <p>The ID of the Data Catalog where the table resides. If none is supplied, the account ID is used by default.</p>
             database_name: <p>The database where the table resides.</p>
-            table_name: <p>The name of the table for which statistics is generated.</p>
+            table_name: <p>The name of the materialized view.</p>
             max_results: <p>The maximum size of the response.</p>
             next_token: <p>A continuation token, if this is a continuation call.</p>
 
@@ -13863,6 +15382,207 @@ class AsyncGlueClient:
         await response.response.aclose()
         return response.output
 
+    async def put_asset(
+        self,
+        asset_type_id: "capo_glue.types.asset_type_id.AssetTypeId",
+        identifier: "capo_glue.types.asset_id.AssetId",
+        name: "capo_glue.types.asset_name.AssetName",
+        forms: "capo_glue.types.asset_form_map.AssetFormMap",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        description: Optional[
+            "capo_glue.types.asset_description.AssetDescription"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.put_asset_response.PutAssetResponse":
+        """<p>Creates or updates an asset in Glue Data Catalog. If the asset already exists, this operation updates it; otherwise, a new asset is created.</p>
+
+        Args:
+            asset_type_id: <p>The identifier of the asset type for the asset.</p>
+            identifier: <p>The unique identifier of the asset. If an asset with this identifier already exists, it is updated.</p>
+            name: <p>The name of the asset.</p>
+            description: <p>The description of the asset.</p>
+            forms: <p>The forms to set on the asset, keyed by form name. Each entry specifies the form type and its JSON content.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.put_asset_request.PutAssetRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.put_asset_response.PutAssetResponse"
+        ]:
+            import capo_glue._operations.aws_glue.put_asset
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.put_asset.async_put_asset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.put_asset_request.PutAssetRequest = {
+            "asset_type_id": asset_type_id,
+            "identifier": identifier,
+            "name": name,
+            "forms": forms,
+        }
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def put_asset_type(
+        self,
+        name: "capo_glue.types.asset_type_name.AssetTypeName",
+        forms: "capo_glue.types.asset_type_forms_map.AssetTypeFormsMap",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.put_asset_type_response.PutAssetTypeResponse":
+        """<p>Creates or updates an asset type in Glue Data Catalog. An asset type defines the structure of assets by specifying which forms they include. If an asset type with the given name already exists, it is updated.</p>
+
+        Args:
+            name: <p>The name of the asset type.</p>
+            forms: <p>The forms that make up the asset type, keyed by form name. Each entry references the form type that defines the form's schema.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.put_asset_type_request.PutAssetTypeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.put_asset_type_response.PutAssetTypeResponse"
+        ]:
+            import capo_glue._operations.aws_glue.put_asset_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.put_asset_type.async_put_asset_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.put_asset_type_request.PutAssetTypeRequest = {
+            "name": name,
+            "forms": forms,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def put_attachment(
+        self,
+        asset_identifier: "capo_glue.types.asset_id.AssetId",
+        attachment_name: "capo_glue.types.attachment_name.AttachmentName",
+        content: "capo_glue.types.form_content.FormContent",
+        form_type_id: "capo_glue.types.form_type_id.FormTypeId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        iterable_form_name: Optional[
+            "capo_glue.types.iterable_form_name.IterableFormName"
+        ] = None,
+        item_identifier: Optional[
+            "capo_glue.types.item_identifier.ItemIdentifier"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.put_attachment_response.PutAttachmentResponse":
+        """<p>Attaches a form to an asset or an iterable form item in Glue Data Catalog. If an attachment with the same name already exists, it is overwritten.</p>
+
+        Args:
+            asset_identifier: <p>The unique identifier of the asset to attach the form to.</p>
+            iterable_form_name: <p>The name of the iterable form. When specified along with <code>itemIdentifier</code>, the attachment targets an item within the iterable form rather than the asset itself.</p>
+            item_identifier: <p>The identifier of the item within the iterable form. Required when <code>iterableFormName</code> is specified.</p>
+            attachment_name: <p>The name of the attachment.</p>
+            content: <p>The JSON content of the form, conforming to the schema of the specified form type.</p>
+            form_type_id: <p>The identifier of the form type for this attachment.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.put_attachment_request.PutAttachmentRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.put_attachment_response.PutAttachmentResponse"
+        ]:
+            import capo_glue._operations.aws_glue.put_attachment
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.put_attachment.async_put_attachment(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.put_attachment_request.PutAttachmentRequest = {
+            "asset_identifier": asset_identifier,
+            "attachment_name": attachment_name,
+            "content": content,
+            "form_type_id": form_type_id,
+        }
+        if iterable_form_name is not None:
+            input_["iterable_form_name"] = iterable_form_name
+        if item_identifier is not None:
+            input_["item_identifier"] = item_identifier
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def put_data_catalog_encryption_settings(
         self,
         data_catalog_encryption_settings: "capo_glue.types.data_catalog_encryption_settings.DataCatalogEncryptionSettings",
@@ -13915,6 +15635,65 @@ class AsyncGlueClient:
         await response.response.aclose()
         return response.output
 
+    async def put_data_catalog_export_configuration(
+        self,
+        export_setting: "capo_glue.types.export_setting.ExportSetting",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        encryption_configuration: Optional[
+            "capo_glue.types.export_encryption_configuration.ExportEncryptionConfiguration"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.put_data_catalog_export_configuration_output.PutDataCatalogExportConfigurationOutput":
+        """<p>Creates or updates the export configuration for the Glue Data Catalog. Use this operation to enable or disable the export of catalog metadata to S3 Tables.</p>
+
+        Args:
+            export_setting: <p>The export setting for the data catalog. Specify <code>ENABLED</code> to start exporting catalog metadata to S3 Tables, or <code>DISABLED</code> to stop exporting. This field is required.</p>
+            encryption_configuration: <p>The encryption configuration for the exported data. If not specified, the default encryption settings are used.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.conflict_exception.ConflictException: <p>The <code>CreatePartitions</code> API was called on a table that has indexes enabled. </p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.put_data_catalog_export_configuration_input.PutDataCatalogExportConfigurationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.put_data_catalog_export_configuration_output.PutDataCatalogExportConfigurationOutput"
+        ]:
+            import capo_glue._operations.aws_glue.put_data_catalog_export_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.put_data_catalog_export_configuration.async_put_data_catalog_export_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.put_data_catalog_export_configuration_input.PutDataCatalogExportConfigurationInput = {
+            "export_setting": export_setting
+        }
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def put_data_quality_profile_annotation(
         self,
         profile_id: "capo_glue.types.hash_string.HashString",
@@ -13955,6 +15734,62 @@ class AsyncGlueClient:
             "profile_id": profile_id,
             "inclusion_annotation": inclusion_annotation,
         }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def put_form_type(
+        self,
+        name: "capo_glue.types.form_type_name.FormTypeName",
+        schema: "capo_glue.types.form_type_schema.FormTypeSchema",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.put_form_type_response.PutFormTypeResponse":
+        """<p>Creates or updates a form type in Glue Data Catalog. A form type defines the schema for structured metadata that can be attached to assets.</p>
+
+        Args:
+            name: <p>The name of the form type. Must start with an uppercase letter.</p>
+            schema: <p>The Smithy IDL schema definition for the form type.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.put_form_type_request.PutFormTypeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.put_form_type_response.PutFormTypeResponse"
+        ]:
+            import capo_glue._operations.aws_glue.put_form_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.put_form_type.async_put_form_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.put_form_type_request.PutFormTypeRequest = {
+            "name": name,
+            "schema": schema,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -14583,6 +16418,108 @@ class AsyncGlueClient:
         await response.response.aclose()
         return response.output
 
+    async def search_assets(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        search_text: Optional["capo_glue.types.search_text.SearchText"] = None,
+        max_results: Optional[
+            "capo_glue.types.search_max_results.SearchMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_glue.types.search_next_token.SearchNextToken"
+        ] = None,
+        sort: Optional["capo_glue.types.search_sort.SearchSort"] = None,
+        filter_clause: Optional[
+            "capo_glue.types.search_filter_clause.SearchFilterClause"
+        ] = None,
+    ) -> "capo_glue.types.search_assets_output.SearchAssetsOutput":
+        """<p>Searches for assets in Glue Data Catalog using full-text search, filters, sorting, and aggregations. Returns matching assets with relevance-ranked results.</p>
+
+        Args:
+            search_text: <p>The text to search for. At least one of <code>searchText</code> or <code>filterClause</code> must be provided.</p>
+            max_results: <p>The maximum number of results to return in the response.</p>
+            next_token: <p>A continuation token, if this is a continuation call.</p>
+            sort: <p>The sort criteria for the search results.</p>
+            filter_clause: <p>The filter clause to apply to the search. Supports nested AND/OR logic with attribute-level and map-level filters.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.search_assets_input.SearchAssetsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.search_assets_output.SearchAssetsOutput"
+        ]:
+            import capo_glue._operations.aws_glue.search_assets
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.search_assets.async_search_assets(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.search_assets_input.SearchAssetsInput = {}
+        if search_text is not None:
+            input_["search_text"] = search_text
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if sort is not None:
+            input_["sort"] = sort
+        if filter_clause is not None:
+            input_["filter_clause"] = filter_clause
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_search_assets(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        search_text: Optional["capo_glue.types.search_text.SearchText"] = None,
+        max_results: Optional[
+            "capo_glue.types.search_max_results.SearchMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_glue.types.search_next_token.SearchNextToken"
+        ] = None,
+        sort: Optional["capo_glue.types.search_sort.SearchSort"] = None,
+        filter_clause: Optional[
+            "capo_glue.types.search_filter_clause.SearchFilterClause"
+        ] = None,
+    ) -> "AsyncIterator[capo_glue.types.search_result_item.SearchResultItem]":
+        _token = next_token
+        while True:
+            _response = await self.search_assets(
+                config_overrides=config_overrides,
+                search_text=search_text,
+                max_results=max_results,
+                next_token=_token,
+                sort=sort,
+                filter_clause=filter_clause,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def search_tables(
         self,
         *,
@@ -14998,17 +16935,25 @@ class AsyncGlueClient:
             "capo_glue.types.name_string.NameString"
         ] = None,
         client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+        additional_run_options: Optional[
+            "capo_glue.types.data_quality_rule_recommendation_run_additional_run_options.DataQualityRuleRecommendationRunAdditionalRunOptions"
+        ] = None,
+        recommendation_mode: Optional[
+            "capo_glue.types.recommendation_mode.RecommendationMode"
+        ] = None,
     ) -> "capo_glue.types.start_data_quality_rule_recommendation_run_response.StartDataQualityRuleRecommendationRunResponse":
-        """<p>Starts a recommendation run that is used to generate rules when you don't know what rules to write. Glue Data Quality analyzes the data and comes up with recommendations for a potential ruleset. You can then triage the ruleset and modify the generated ruleset to your liking.</p> <p>Recommendation runs are automatically deleted after 90 days.</p>
+        r"""<p>Starts a recommendation run that is used to generate rules when you don't know what rules to write. Glue Data Quality analyzes the data and comes up with recommendations for a potential ruleset. You can then triage the ruleset and modify the generated ruleset to your liking.</p> <p>Recommendation runs are automatically deleted after 90 days.</p>
 
         Args:
             data_source: <p>The data source (Glue table) associated with this run.</p>
-            role: <p>An IAM role supplied to encrypt the results of the run.</p>
+            role: <p>The IAM role that Glue assumes to access resources for the run.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/data-quality-authorization.html\">Configure IAM permissions for Glue Data Quality</a>.</p>
             number_of_workers: <p>The number of <code>G.1X</code> workers to be used in the run. The default is 5.</p>
             timeout: <p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>
             created_ruleset_name: <p>A name for the ruleset.</p>
             data_quality_security_configuration: <p>The name of the security configuration created with the data quality encryption option.</p>
             client_token: <p>Used for idempotency and is recommended to be set to a random ID (such as a UUID) to avoid creating or starting multiple instances of the same resource.</p>
+            additional_run_options: <p>Additional run options you can specify for a recommendation run.</p>
+            recommendation_mode: <p>The mode that Glue Data Quality uses to recommend rules.</p> <p>The default is <code>BASIC</code>.</p>
 
         Raises:
             capo_glue.errors.conflict_exception.ConflictException: <p>The <code>CreatePartitions</code> API was called on a table that has indexes enabled. </p>
@@ -15050,6 +16995,10 @@ class AsyncGlueClient:
             )
         if client_token is not None:
             input_["client_token"] = client_token
+        if additional_run_options is not None:
+            input_["additional_run_options"] = additional_run_options
+        if recommendation_mode is not None:
+            input_["recommendation_mode"] = recommendation_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -15368,12 +17317,12 @@ class AsyncGlueClient:
             "capo_glue.types.nullable_boolean.NullableBoolean"
         ] = None,
     ) -> "capo_glue.types.start_materialized_view_refresh_task_run_response.StartMaterializedViewRefreshTaskRunResponse":
-        """<p>Starts a materialized view refresh task run, for a specified table and columns.</p>
+        """<p>Starts a materialized view refresh task run for a specified materialized view.</p>
 
         Args:
             catalog_id: <p>The ID of the Data Catalog where the table reside. If none is supplied, the account ID is used by default.</p>
             database_name: <p>The name of the database where the table resides.</p>
-            table_name: <p>The name of the table to generate run the materialized view refresh task.</p>
+            table_name: <p>The name of the materialized view to run the refresh task for.</p>
             full_refresh: <p>Specifies whether this is a full refresh of the task run.</p>
 
         Raises:
@@ -15821,12 +17770,12 @@ class AsyncGlueClient:
         *,
         config_overrides: Optional[AsyncGlueClientConfig] = None,
     ) -> "capo_glue.types.stop_materialized_view_refresh_task_run_response.StopMaterializedViewRefreshTaskRunResponse":
-        """<p>Stops a materialized view refresh task run, for a specified table and columns.</p>
+        """<p>Stops a materialized view refresh task run for a specified materialized view.</p>
 
         Args:
             catalog_id: <p>The ID of the Data Catalog where the table reside. If none is supplied, the account ID is used by default.</p>
             database_name: <p>The name of the database where the table resides.</p>
-            table_name: <p>The name of the table to generate statistics.</p>
+            table_name: <p>The name of the materialized view.</p>
 
         Raises:
             capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
@@ -16172,6 +18121,70 @@ class AsyncGlueClient:
             "resource_arn": resource_arn,
             "tags_to_remove": tags_to_remove,
         }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_asset(
+        self,
+        identifier: "capo_glue.types.asset_id.AssetId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        name: Optional["capo_glue.types.asset_name.AssetName"] = None,
+        description: Optional[
+            "capo_glue.types.asset_description.AssetDescription"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.update_asset_response.UpdateAssetResponse":
+        """<p>Updates the name and description of an existing asset in Glue Data Catalog. Only the fields that you provide are updated.</p>
+
+        Args:
+            identifier: <p>The unique identifier of the asset to update.</p>
+            name: <p>The new name of the asset.</p>
+            description: <p>The new description of the asset.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.update_asset_request.UpdateAssetRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.update_asset_response.UpdateAssetResponse"
+        ]:
+            import capo_glue._operations.aws_glue.update_asset
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.update_asset.async_update_asset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.update_asset_request.UpdateAssetRequest = {
+            "identifier": identifier
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -16986,6 +18999,142 @@ class AsyncGlueClient:
             input_["delete_arguments"] = delete_arguments
         if add_arguments is not None:
             input_["add_arguments"] = add_arguments
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_glossary(
+        self,
+        identifier: "capo_glue.types.glossary_id.GlossaryId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        name: Optional["capo_glue.types.glossary_name.GlossaryName"] = None,
+        description: Optional[
+            "capo_glue.types.metadata_description.MetadataDescription"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.update_glossary_response.UpdateGlossaryResponse":
+        """<p>Updates a business glossary in Glue Data Catalog.</p>
+
+        Args:
+            identifier: <p>The unique identifier of the glossary to update.</p>
+            name: <p>The updated name of the glossary.</p>
+            description: <p>The updated description of the glossary.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.already_exists_exception.AlreadyExistsException: <p>A resource to be created or added already exists.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.update_glossary_request.UpdateGlossaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.update_glossary_response.UpdateGlossaryResponse"
+        ]:
+            import capo_glue._operations.aws_glue.update_glossary
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.update_glossary.async_update_glossary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.update_glossary_request.UpdateGlossaryRequest = {
+            "identifier": identifier
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_glossary_term(
+        self,
+        identifier: "capo_glue.types.glossary_term_id.GlossaryTermId",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        name: Optional["capo_glue.types.glossary_term_name.GlossaryTermName"] = None,
+        short_description: Optional[
+            "capo_glue.types.glossary_short_description.GlossaryShortDescription"
+        ] = None,
+        long_description: Optional[
+            "capo_glue.types.glossary_long_description.GlossaryLongDescription"
+        ] = None,
+        client_token: Optional["capo_glue.types.hash_string.HashString"] = None,
+    ) -> "capo_glue.types.update_glossary_term_response.UpdateGlossaryTermResponse":
+        """<p>Updates a glossary term in Glue Data Catalog.</p>
+
+        Args:
+            identifier: <p>The unique identifier of the glossary term to update.</p>
+            name: <p>The updated name of the glossary term.</p>
+            short_description: <p>The updated short description of the glossary term.</p>
+            long_description: <p>The updated long description of the glossary term.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_glue.errors.access_denied_exception.AccessDeniedException: <p>Access to a resource was denied.</p>
+            capo_glue.errors.already_exists_exception.AlreadyExistsException: <p>A resource to be created or added already exists.</p>
+            capo_glue.errors.concurrent_modification_exception.ConcurrentModificationException: <p>Two processes are trying to modify a resource simultaneously.</p>
+            capo_glue.errors.entity_not_found_exception.EntityNotFoundException: <p>A specified entity does not exist</p>
+            capo_glue.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred.</p>
+            capo_glue.errors.invalid_input_exception.InvalidInputException: <p>The input provided was not valid.</p>
+            capo_glue.errors.throttling_exception.ThrottlingException: <p>The throttling threshhold was exceeded.</p>
+            capo_glue.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_glue.types.update_glossary_term_request.UpdateGlossaryTermRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_glue.types.update_glossary_term_response.UpdateGlossaryTermResponse"
+        ]:
+            import capo_glue._operations.aws_glue.update_glossary_term
+
+            (
+                output,
+                http_response,
+            ) = await capo_glue._operations.aws_glue.update_glossary_term.async_update_glossary_term(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_glue.types.update_glossary_term_request.UpdateGlossaryTermRequest = {
+            "identifier": identifier
+        }
+        if name is not None:
+            input_["name"] = name
+        if short_description is not None:
+            input_["short_description"] = short_description
+        if long_description is not None:
+            input_["long_description"] = long_description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

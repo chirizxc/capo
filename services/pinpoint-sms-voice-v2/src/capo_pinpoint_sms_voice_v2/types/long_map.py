@@ -1,0 +1,22 @@
+"""Generated from Smithy shape ``com.amazonaws.pinpointsmsvoicev2#LongMap``."""
+
+from typing import TypeAlias
+
+LongMap: TypeAlias = dict["str", "int"]
+
+
+# --- awsJson1_0 ser/de ---
+def serialize_aws_json_1_0(input_to_serialize: LongMap) -> dict:
+    out: dict = {}
+    for key, value in input_to_serialize.items():
+        out[key] = value
+    return out
+
+
+def deserialize_aws_json_1_0(data: dict) -> LongMap:
+    out: LongMap = {}
+    for key, value in data.items():
+        if value is None:
+            continue
+        out[key] = value
+    return out

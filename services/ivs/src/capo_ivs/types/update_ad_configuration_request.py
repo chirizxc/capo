@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_ivs.types.ad_configuration_arn
     import capo_ivs.types.ad_configuration_name
     import capo_ivs.types.media_tailor_playback_configurations_list
+    import capo_ivs.types.post_roll_configuration
 
 
 class UpdateAdConfigurationRequest(TypedDict, closed=True):
@@ -21,6 +22,10 @@ class UpdateAdConfigurationRequest(TypedDict, closed=True):
         "capo_ivs.types.media_tailor_playback_configurations_list.MediaTailorPlaybackConfigurationsList"
     ]
     r"""<p>List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see <a href=\"https://docs.aws.amazon.com/ivs/latest/LowLatencyUserGuide/private-channels-generate-tokens.html\">Generate and Sign IVS Playback Tokens</a>.</p>"""
+    post_roll_configuration: NotRequired[
+        "capo_ivs.types.post_roll_configuration.PostRollConfiguration"
+    ]
+    """<p>Configuration for the post-roll ad break to use for this ad configuration.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -35,6 +40,14 @@ def serialize_json(value: UpdateAdConfigurationRequest) -> dict:
         out["mediaTailorPlaybackConfigurations"] = (
             capo_ivs.types.media_tailor_playback_configurations_list.serialize_json(
                 value["media_tailor_playback_configurations"]
+            )
+        )
+    if "post_roll_configuration" in value:
+        import capo_ivs.types.post_roll_configuration
+
+        out["postRollConfiguration"] = (
+            capo_ivs.types.post_roll_configuration.serialize_json(
+                value["post_roll_configuration"]
             )
         )
     return out
@@ -54,6 +67,14 @@ def deserialize_json(data: dict) -> UpdateAdConfigurationRequest:
         out["media_tailor_playback_configurations"] = (
             capo_ivs.types.media_tailor_playback_configurations_list.deserialize_json(
                 data["mediaTailorPlaybackConfigurations"]
+            )
+        )
+    if data.get("postRollConfiguration") is not None:
+        import capo_ivs.types.post_roll_configuration
+
+        out["post_roll_configuration"] = (
+            capo_ivs.types.post_roll_configuration.deserialize_json(
+                data["postRollConfiguration"]
             )
         )
     return out

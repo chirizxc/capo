@@ -35,6 +35,7 @@ if TYPE_CHECKING:
     import capo_securityhub.types.accept_invitation_request
     import capo_securityhub.types.accept_invitation_response
     import capo_securityhub.types.account_details_list
+    import capo_securityhub.types.account_free_trial_status
     import capo_securityhub.types.account_id_list
     import capo_securityhub.types.action_list
     import capo_securityhub.types.action_target
@@ -96,6 +97,8 @@ if TYPE_CHECKING:
     import capo_securityhub.types.create_automation_rule_v2_response
     import capo_securityhub.types.create_configuration_policy_request
     import capo_securityhub.types.create_configuration_policy_response
+    import capo_securityhub.types.create_connector_request
+    import capo_securityhub.types.create_connector_response
     import capo_securityhub.types.create_connector_v2_request
     import capo_securityhub.types.create_connector_v2_response
     import capo_securityhub.types.create_finding_aggregator_request
@@ -108,6 +111,11 @@ if TYPE_CHECKING:
     import capo_securityhub.types.create_ticket_v2_response
     import capo_securityhub.types.criteria
     import capo_securityhub.types.cross_account_max_results
+    import capo_securityhub.types.cspm_connector_provider_name
+    import capo_securityhub.types.cspm_connector_status
+    import capo_securityhub.types.cspm_enablement_status
+    import capo_securityhub.types.cspm_provider_configuration
+    import capo_securityhub.types.cspm_provider_update_configuration
     import capo_securityhub.types.decline_invitations_request
     import capo_securityhub.types.decline_invitations_response
     import capo_securityhub.types.delete_action_target_request
@@ -118,6 +126,8 @@ if TYPE_CHECKING:
     import capo_securityhub.types.delete_automation_rule_v2_response
     import capo_securityhub.types.delete_configuration_policy_request
     import capo_securityhub.types.delete_configuration_policy_response
+    import capo_securityhub.types.delete_connector_request
+    import capo_securityhub.types.delete_connector_response
     import capo_securityhub.types.delete_connector_v2_request
     import capo_securityhub.types.delete_connector_v2_response
     import capo_securityhub.types.delete_finding_aggregator_request
@@ -148,6 +158,8 @@ if TYPE_CHECKING:
     import capo_securityhub.types.disable_import_findings_for_product_response
     import capo_securityhub.types.disable_organization_admin_account_request
     import capo_securityhub.types.disable_organization_admin_account_response
+    import capo_securityhub.types.disable_security_hub_feature_v2_request
+    import capo_securityhub.types.disable_security_hub_feature_v2_response
     import capo_securityhub.types.disable_security_hub_request
     import capo_securityhub.types.disable_security_hub_response
     import capo_securityhub.types.disable_security_hub_v2_request
@@ -162,15 +174,21 @@ if TYPE_CHECKING:
     import capo_securityhub.types.enable_import_findings_for_product_response
     import capo_securityhub.types.enable_organization_admin_account_request
     import capo_securityhub.types.enable_organization_admin_account_response
+    import capo_securityhub.types.enable_security_hub_feature_v2_request
+    import capo_securityhub.types.enable_security_hub_feature_v2_response
     import capo_securityhub.types.enable_security_hub_request
     import capo_securityhub.types.enable_security_hub_response
     import capo_securityhub.types.enable_security_hub_v2_request
     import capo_securityhub.types.enable_security_hub_v2_response
+    import capo_securityhub.types.enablement_status
+    import capo_securityhub.types.feature_name
     import capo_securityhub.types.field_map
     import capo_securityhub.types.finding_aggregator
     import capo_securityhub.types.finding_history_record
     import capo_securityhub.types.finding_scopes
     import capo_securityhub.types.findings_trends_filters
+    import capo_securityhub.types.free_trial_account_id_list
+    import capo_securityhub.types.free_trial_status_value_list
     import capo_securityhub.types.generate_recommended_policy_v2_request
     import capo_securityhub.types.generate_recommended_policy_v2_response
     import capo_securityhub.types.get_administrator_account_request
@@ -183,6 +201,8 @@ if TYPE_CHECKING:
     import capo_securityhub.types.get_configuration_policy_association_response
     import capo_securityhub.types.get_configuration_policy_request
     import capo_securityhub.types.get_configuration_policy_response
+    import capo_securityhub.types.get_connector_request
+    import capo_securityhub.types.get_connector_response
     import capo_securityhub.types.get_connector_v2_request
     import capo_securityhub.types.get_connector_v2_response
     import capo_securityhub.types.get_enabled_standards_request
@@ -235,12 +255,16 @@ if TYPE_CHECKING:
     import capo_securityhub.types.list_configuration_policies_response
     import capo_securityhub.types.list_configuration_policy_associations_request
     import capo_securityhub.types.list_configuration_policy_associations_response
+    import capo_securityhub.types.list_connectors_request
+    import capo_securityhub.types.list_connectors_response
     import capo_securityhub.types.list_connectors_v2_request
     import capo_securityhub.types.list_connectors_v2_response
     import capo_securityhub.types.list_enabled_products_for_import_request
     import capo_securityhub.types.list_enabled_products_for_import_response
     import capo_securityhub.types.list_finding_aggregators_request
     import capo_securityhub.types.list_finding_aggregators_response
+    import capo_securityhub.types.list_free_trial_statuses_v2_request
+    import capo_securityhub.types.list_free_trial_statuses_v2_response
     import capo_securityhub.types.list_invitations_request
     import capo_securityhub.types.list_invitations_response
     import capo_securityhub.types.list_members_request
@@ -288,6 +312,7 @@ if TYPE_CHECKING:
     import capo_securityhub.types.rule_status
     import capo_securityhub.types.rule_status_v2
     import capo_securityhub.types.security_control_definition
+    import capo_securityhub.types.security_controls_providers
     import capo_securityhub.types.security_hub_feature
     import capo_securityhub.types.severity_update
     import capo_securityhub.types.sort_criteria
@@ -297,6 +322,7 @@ if TYPE_CHECKING:
     import capo_securityhub.types.standards_control_association_ids
     import capo_securityhub.types.standards_control_association_summary
     import capo_securityhub.types.standards_control_association_updates
+    import capo_securityhub.types.standards_providers
     import capo_securityhub.types.standards_subscription
     import capo_securityhub.types.standards_subscription_arns
     import capo_securityhub.types.standards_subscription_requests
@@ -325,6 +351,8 @@ if TYPE_CHECKING:
     import capo_securityhub.types.update_automation_rules_request_items_list
     import capo_securityhub.types.update_configuration_policy_request
     import capo_securityhub.types.update_configuration_policy_response
+    import capo_securityhub.types.update_connector_request
+    import capo_securityhub.types.update_connector_response
     import capo_securityhub.types.update_connector_v2_request
     import capo_securityhub.types.update_connector_v2_response
     import capo_securityhub.types.update_finding_aggregator_request
@@ -1669,6 +1697,86 @@ class AsyncSecurityHubClient:
         await response.response.aclose()
         return response.output
 
+    async def create_connector(
+        self,
+        *,
+        config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
+        name: Optional["capo_securityhub.types.non_empty_string.NonEmptyString"] = None,
+        description: Optional[
+            "capo_securityhub.types.non_empty_string.NonEmptyString"
+        ] = None,
+        provider: Optional[
+            "capo_securityhub.types.cspm_provider_configuration.CspmProviderConfiguration"
+        ] = None,
+        tags: Optional["capo_securityhub.types.tag_map.TagMap"] = None,
+        client_token: Optional[
+            "capo_securityhub.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_securityhub.types.create_connector_response.CreateConnectorResponse":
+        """<p>Creates a connector to a third-party cloud provider in Security Hub CSPM. A connector establishes a connection between Security Hub CSPM and a third-party cloud provider, enabling Security Hub CSPM to ingest security findings and resource data from the connected environment.</p>
+
+        Args:
+            name: <p>The name of the connector. Must be unique within the account.</p>
+            description: <p>The description of the connector.</p>
+            provider: <p>The configuration for the cloud provider to connect to. Currently supports Azure.</p>
+            tags: <p>The tags to add to the connector resource.</p>
+            client_token: <p>A unique identifier used to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
+            capo_securityhub.errors.conflict_exception.ConflictException: <p>The request causes conflict with the current state of the service resource.</p>
+            capo_securityhub.errors.internal_server_exception.InternalServerException: <p> The request has failed due to an internal failure of the service. </p>
+            capo_securityhub.errors.invalid_access_exception.InvalidAccessException: <p>The account doesn't have permission to perform this action.</p>
+            capo_securityhub.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request was rejected because we can't find the specified resource.</p>
+            capo_securityhub.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request was rejected because it would exceed the service quota limit.</p>
+            capo_securityhub.errors.throttling_exception.ThrottlingException: <p> The limit on the number of requests per second was exceeded. </p>
+            capo_securityhub.errors.validation_exception.ValidationException: <p>The request has failed validation because it's missing required fields or has invalid inputs.</p>
+            capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To create a CSPM connector
+            This operation creates a CSPM connector to connect Security Hub to an Azure environment.
+
+            >>> await client.create_connector(name='MyAzureConnector', description='Connector for Azure tenant monitoring', provider={'Azure': {'AWSConfigConnectorArn': 'arn:aws:config:us-east-1:123456789012:connector/azure-connector-1234', 'ScopeConfiguration': {'ScopeType': 'TENANT'}, 'AzureRegions': ['eastus', 'westus2']}})
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_securityhub.types.create_connector_request.CreateConnectorRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_securityhub.types.create_connector_response.CreateConnectorResponse"
+        ]:
+            import capo_securityhub._operations.security_hub_api_service.create_connector
+
+            (
+                output,
+                http_response,
+            ) = await capo_securityhub._operations.security_hub_api_service.create_connector.async_create_connector(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_securityhub.types.create_connector_request.CreateConnectorRequest = {}
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if provider is not None:
+            input_["provider"] = provider
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def create_connector_v2(
         self,
         *,
@@ -2257,6 +2365,62 @@ class AsyncSecurityHubClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_securityhub.types.delete_configuration_policy_request.DeleteConfigurationPolicyRequest = {
             "identifier": identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_connector(
+        self,
+        connector_id: "capo_securityhub.types.non_empty_string.NonEmptyString",
+        *,
+        config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
+    ) -> "capo_securityhub.types.delete_connector_response.DeleteConnectorResponse":
+        """<p>Deletes a CSPM connector. When you delete a connector, Security Hub CSPM stops ingesting findings and resource data from the connected cloud provider environment.</p>
+
+        Args:
+            connector_id: <p>The unique identifier of the connector to delete.</p>
+
+        Raises:
+            capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
+            capo_securityhub.errors.conflict_exception.ConflictException: <p>The request causes conflict with the current state of the service resource.</p>
+            capo_securityhub.errors.internal_server_exception.InternalServerException: <p> The request has failed due to an internal failure of the service. </p>
+            capo_securityhub.errors.invalid_access_exception.InvalidAccessException: <p>The account doesn't have permission to perform this action.</p>
+            capo_securityhub.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request was rejected because we can't find the specified resource.</p>
+            capo_securityhub.errors.throttling_exception.ThrottlingException: <p> The limit on the number of requests per second was exceeded. </p>
+            capo_securityhub.errors.validation_exception.ValidationException: <p>The request has failed validation because it's missing required fields or has invalid inputs.</p>
+            capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To delete a CSPM connector
+            This operation deletes a CSPM connector.
+
+            >>> await client.delete_connector(connector_id='cspm-a1b2c3d4-5678-90ab-cdef-EXAMPLE11111')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_securityhub.types.delete_connector_request.DeleteConnectorRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_securityhub.types.delete_connector_response.DeleteConnectorResponse"
+        ]:
+            import capo_securityhub._operations.security_hub_api_service.delete_connector
+
+            (
+                output,
+                http_response,
+            ) = await capo_securityhub._operations.security_hub_api_service.delete_connector.async_delete_connector(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_securityhub.types.delete_connector_request.DeleteConnectorRequest = {
+            "connector_id": connector_id
         }
 
         response = await aexecute_pipeline(
@@ -2930,12 +3094,16 @@ class AsyncSecurityHubClient:
         config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
         next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
         max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
+        providers: Optional[
+            "capo_securityhub.types.standards_providers.StandardsProviders"
+        ] = None,
     ) -> "capo_securityhub.types.describe_standards_response.DescribeStandardsResponse":
         """<p>Returns a list of the available standards in Security Hub CSPM.</p> <p>For each standard, the results include the standard ARN, the name, and a description. </p>
 
         Args:
             next_token: <p>The token that is required for pagination. On your first call to the <code>DescribeStandards</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>
             max_results: <p>The maximum number of standards to return.</p>
+            providers: <p>A list of cloud providers to filter the standards by. For example, specify <code>Azure</code> to return only standards that evaluate Azure resources.</p>
 
         Raises:
             capo_securityhub.errors.internal_exception.InternalException: <p>Internal server error.</p>
@@ -2944,6 +3112,10 @@ class AsyncSecurityHubClient:
             capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
+            To get available Azure security standards
+            The following example returns a list of available security standards from a specified provider.
+
+            >>> await client.describe_standards(providers=['Azure'])
             To get available Security Hub standards
             The following example returns a list of available security standards in Security Hub.
 
@@ -2971,6 +3143,8 @@ class AsyncSecurityHubClient:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
+        if providers is not None:
+            input_["providers"] = providers
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2986,6 +3160,9 @@ class AsyncSecurityHubClient:
         config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
         next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
         max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
+        providers: Optional[
+            "capo_securityhub.types.standards_providers.StandardsProviders"
+        ] = None,
     ) -> "AsyncIterator[capo_securityhub.types.standard.Standard]":
         _token = next_token
         while True:
@@ -2993,6 +3170,7 @@ class AsyncSecurityHubClient:
                 config_overrides=config_overrides,
                 next_token=_token,
                 max_results=max_results,
+                providers=providers,
             )
             _page = _resolve_path(_response, ("standards",))
             for _item in _page or []:
@@ -3241,10 +3419,58 @@ class AsyncSecurityHubClient:
         await response.response.aclose()
         return response.output
 
+    async def disable_security_hub_feature_v2(
+        self,
+        feature_name: "capo_securityhub.types.feature_name.FeatureName",
+        *,
+        config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
+    ) -> "capo_securityhub.types.disable_security_hub_feature_v2_response.DisableSecurityHubFeatureV2Response":
+        """<p>Disables an opt-in feature for the calling account in the current Amazon Web Services Region. The operation is idempotent. If the feature is already disabled, no changes are made. You cannot disable a feature that is managed by an organization policy.</p>
+
+        Args:
+            feature_name: <p>The name of the feature to disable.</p>
+
+        Raises:
+            capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
+            capo_securityhub.errors.internal_server_exception.InternalServerException: <p> The request has failed due to an internal failure of the service. </p>
+            capo_securityhub.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request was rejected because we can't find the specified resource.</p>
+            capo_securityhub.errors.throttling_exception.ThrottlingException: <p> The limit on the number of requests per second was exceeded. </p>
+            capo_securityhub.errors.validation_exception.ValidationException: <p>The request has failed validation because it's missing required fields or has invalid inputs.</p>
+            capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_securityhub.types.disable_security_hub_feature_v2_request.DisableSecurityHubFeatureV2Request]",
+        ) -> AsyncOperationResponse[
+            "capo_securityhub.types.disable_security_hub_feature_v2_response.DisableSecurityHubFeatureV2Response"
+        ]:
+            import capo_securityhub._operations.security_hub_api_service.disable_security_hub_feature_v2
+
+            (
+                output,
+                http_response,
+            ) = await capo_securityhub._operations.security_hub_api_service.disable_security_hub_feature_v2.async_disable_security_hub_feature_v2(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_securityhub.types.disable_security_hub_feature_v2_request.DisableSecurityHubFeatureV2Request = {
+            "feature_name": feature_name
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def disable_security_hub_v2(
         self, *, config_overrides: Optional[AsyncSecurityHubClientConfig] = None
     ) -> "capo_securityhub.types.disable_security_hub_v2_response.DisableSecurityHubV2Response":
-        """<p>Disable the service for the current Amazon Web Services Region or specified Amazon Web Services Region.</p>
+        """<p>Disable the service for the current Amazon Web Services Region or specified Amazon Web Services Region. Disabling the service also disables all opt-in features that are currently enabled in that Region.</p>
 
         Raises:
             capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
@@ -3609,6 +3835,54 @@ class AsyncSecurityHubClient:
         await response.response.aclose()
         return response.output
 
+    async def enable_security_hub_feature_v2(
+        self,
+        feature_name: "capo_securityhub.types.feature_name.FeatureName",
+        *,
+        config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
+    ) -> "capo_securityhub.types.enable_security_hub_feature_v2_response.EnableSecurityHubFeatureV2Response":
+        """<p>Enables an opt-in feature for the calling account in the current Amazon Web Services Region. The service must be enabled before you can enable a feature. The operation is idempotent. If the feature is already enabled, no changes are made. You cannot enable a feature that is managed by an organization policy.</p>
+
+        Args:
+            feature_name: <p>The name of the feature to enable.</p>
+
+        Raises:
+            capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
+            capo_securityhub.errors.internal_server_exception.InternalServerException: <p> The request has failed due to an internal failure of the service. </p>
+            capo_securityhub.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request was rejected because we can't find the specified resource.</p>
+            capo_securityhub.errors.throttling_exception.ThrottlingException: <p> The limit on the number of requests per second was exceeded. </p>
+            capo_securityhub.errors.validation_exception.ValidationException: <p>The request has failed validation because it's missing required fields or has invalid inputs.</p>
+            capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_securityhub.types.enable_security_hub_feature_v2_request.EnableSecurityHubFeatureV2Request]",
+        ) -> AsyncOperationResponse[
+            "capo_securityhub.types.enable_security_hub_feature_v2_response.EnableSecurityHubFeatureV2Response"
+        ]:
+            import capo_securityhub._operations.security_hub_api_service.enable_security_hub_feature_v2
+
+            (
+                output,
+                http_response,
+            ) = await capo_securityhub._operations.security_hub_api_service.enable_security_hub_feature_v2.async_enable_security_hub_feature_v2(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_securityhub.types.enable_security_hub_feature_v2_request.EnableSecurityHubFeatureV2Request = {
+            "feature_name": feature_name
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def enable_security_hub_v2(
         self,
         *,
@@ -3953,6 +4227,62 @@ class AsyncSecurityHubClient:
         await response.response.aclose()
         return response.output
 
+    async def get_connector(
+        self,
+        connector_id: "capo_securityhub.types.non_empty_string.NonEmptyString",
+        *,
+        config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
+    ) -> "capo_securityhub.types.get_connector_response.GetConnectorResponse":
+        """<p>Retrieves details for a CSPM connector based on the connector ID.</p>
+
+        Args:
+            connector_id: <p>The unique identifier of the connector to retrieve.</p>
+
+        Raises:
+            capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
+            capo_securityhub.errors.conflict_exception.ConflictException: <p>The request causes conflict with the current state of the service resource.</p>
+            capo_securityhub.errors.internal_server_exception.InternalServerException: <p> The request has failed due to an internal failure of the service. </p>
+            capo_securityhub.errors.invalid_access_exception.InvalidAccessException: <p>The account doesn't have permission to perform this action.</p>
+            capo_securityhub.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request was rejected because we can't find the specified resource.</p>
+            capo_securityhub.errors.throttling_exception.ThrottlingException: <p> The limit on the number of requests per second was exceeded. </p>
+            capo_securityhub.errors.validation_exception.ValidationException: <p>The request has failed validation because it's missing required fields or has invalid inputs.</p>
+            capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To get details of a CSPM connector
+            This operation retrieves details for a CSPM connector.
+
+            >>> await client.get_connector(connector_id='cspm-a1b2c3d4-5678-90ab-cdef-EXAMPLE11111')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_securityhub.types.get_connector_request.GetConnectorRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_securityhub.types.get_connector_response.GetConnectorResponse"
+        ]:
+            import capo_securityhub._operations.security_hub_api_service.get_connector
+
+            (
+                output,
+                http_response,
+            ) = await capo_securityhub._operations.security_hub_api_service.get_connector.async_get_connector(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_securityhub.types.get_connector_request.GetConnectorRequest = {
+            "connector_id": connector_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_connector_v2(
         self,
         connector_id: "capo_securityhub.types.non_empty_string.NonEmptyString",
@@ -4011,6 +4341,9 @@ class AsyncSecurityHubClient:
         ] = None,
         next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
         max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
+        providers: Optional[
+            "capo_securityhub.types.standards_providers.StandardsProviders"
+        ] = None,
     ) -> "capo_securityhub.types.get_enabled_standards_response.GetEnabledStandardsResponse":
         """<p>Returns a list of the standards that are currently enabled.</p>
 
@@ -4018,6 +4351,7 @@ class AsyncSecurityHubClient:
             standards_subscription_arns: <p>The list of the standards subscription ARNs for the standards to retrieve.</p>
             next_token: <p>The token that is required for pagination. On your first call to the <code>GetEnabledStandards</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>
             max_results: <p>The maximum number of results to return in the response.</p>
+            providers: <p>A list of cloud providers to filter the enabled standards by. For example, specify <code>Azure</code> to return only enabled standards that evaluate Azure resources.</p>
 
         Raises:
             capo_securityhub.errors.internal_exception.InternalException: <p>Internal server error.</p>
@@ -4056,6 +4390,8 @@ class AsyncSecurityHubClient:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
+        if providers is not None:
+            input_["providers"] = providers
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -4074,6 +4410,9 @@ class AsyncSecurityHubClient:
         ] = None,
         next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
         max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
+        providers: Optional[
+            "capo_securityhub.types.standards_providers.StandardsProviders"
+        ] = None,
     ) -> "AsyncIterator[capo_securityhub.types.standards_subscription.StandardsSubscription]":
         _token = next_token
         while True:
@@ -4082,6 +4421,7 @@ class AsyncSecurityHubClient:
                 standards_subscription_arns=standards_subscription_arns,
                 next_token=_token,
                 max_results=max_results,
+                providers=providers,
             )
             _page = _resolve_path(_response, ("standards_subscriptions",))
             for _item in _page or []:
@@ -4974,7 +5314,7 @@ class AsyncSecurityHubClient:
             "capo_securityhub.types.max_statistic_results.MaxStatisticResults"
         ] = None,
     ) -> "capo_securityhub.types.get_resources_statistics_v2_response.GetResourcesStatisticsV2Response":
-        """<p>Retrieves statistical information about Amazon Web Services resources and their associated security findings.</p> <p>You can use the <code>Scopes</code> parameter to define the data boundary for the query. Currently, <code>Scopes</code> supports <code>AwsOrganizations</code>, which lets you aggregate resources from your entire organization or from specific organizational units. Only the delegated administrator account can use <code>Scopes</code>.</p>
+        """<p>Retrieves statistical information about Amazon Web Services resources and their associated security findings.</p> <p>You can use the <code>Scopes</code> parameter to define the data boundary for the query. Currently, <code>Scopes</code> supports <code>AwsOrganizations</code>, which lets you aggregate resources from your entire organization or from specific organizational units. Only the delegated administrator account can use <code>Scopes</code>.</p> <p>If you set <code>GroupByField</code> to <code>ResourceSubCategory</code>, <code>ResourceInfo.AIDetails.HostResourceType</code>, or <code>ResourceInfo.AIDetails.CanonicalId</code>, you must include a <code>ResourceCategory</code> string filter with comparison set to <code>EQUALS</code> and value <code>AI/ML</code> in the corresponding <code>ResourceGroupByRule</code>.</p>
 
         Args:
             group_by_rules: <p>How resource statistics should be aggregated and organized in the response.</p>
@@ -5138,7 +5478,7 @@ class AsyncSecurityHubClient:
         next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
         max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
     ) -> "capo_securityhub.types.get_resources_v2_response.GetResourcesV2Response":
-        """<p>Returns a list of resources.</p> <p>You can use the <code>Scopes</code> parameter to define the data boundary for the query. Currently, <code>Scopes</code> supports <code>AwsOrganizations</code>, which lets you retrieve resources from your entire organization or from specific organizational units. Only the delegated administrator account can use <code>Scopes</code>.</p> <p>You can use the <code>Filters</code> parameter to refine results based on resource attributes. You can use <code>Scopes</code> and <code>Filters</code> independently or together. When both are provided, <code>Scopes</code> narrows the data set first, and then <code>Filters</code> refines results within that scoped data set.</p>
+        """<p>Returns a list of resources.</p> <p>You can use the <code>Scopes</code> parameter to define the data boundary for the query. Currently, <code>Scopes</code> supports <code>AwsOrganizations</code>, which lets you retrieve resources from your entire organization or from specific organizational units. Only the delegated administrator account can use <code>Scopes</code>.</p> <p>You can use the <code>Filters</code> parameter to refine results based on resource attributes. You can use <code>Scopes</code> and <code>Filters</code> independently or together. When both are provided, <code>Scopes</code> narrows the data set first, and then <code>Filters</code> refines results within that scoped data set.</p> <p>For AI/ML resources, the response includes the <code>ResourceSubCategory</code> field. For self-hosted AI resources and their host resources, the response also includes <code>ResourceInfo</code> with AI-specific details. Self-hosted AI resources use a <code>ResourceType</code> with the <code>SelfHosted::AI::</code> prefix, such as <code>SelfHosted::AI::Model</code>, <code>SelfHosted::AI::Agent</code>, <code>SelfHosted::AI::InferenceEndpoint</code>, and <code>SelfHosted::AI::ExternalEndpoint</code>.</p> <p>If you filter by <code>ResourceSubCategory</code>, you must also include a <code>ResourceCategory</code> string filter with comparison set to <code>EQUALS</code> and value <code>AI/ML</code> in the same request.</p>
 
         Args:
             filters: <p>Filters resources based on a set of criteria.</p>
@@ -5696,6 +6036,84 @@ class AsyncSecurityHubClient:
             if not _token:
                 break
 
+    async def list_connectors(
+        self,
+        *,
+        config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
+        next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
+        provider_name: Optional[
+            "capo_securityhub.types.cspm_connector_provider_name.CspmConnectorProviderName"
+        ] = None,
+        connector_status: Optional[
+            "capo_securityhub.types.cspm_connector_status.CspmConnectorStatus"
+        ] = None,
+        enablement_status: Optional[
+            "capo_securityhub.types.cspm_enablement_status.CspmEnablementStatus"
+        ] = None,
+    ) -> "capo_securityhub.types.list_connectors_response.ListConnectorsResponse":
+        """<p>Lists the CSPM connectors and their metadata for the calling account.</p>
+
+        Args:
+            next_token: <p>The pagination token to request the next page of results.</p>
+            max_results: <p>The maximum number of results to return.</p>
+            provider_name: <p>The name of the cloud provider to filter connectors by.</p>
+            connector_status: <p>The connectivity status to filter connectors by.</p>
+            enablement_status: <p>The enablement status to filter connectors by.</p>
+
+        Raises:
+            capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
+            capo_securityhub.errors.conflict_exception.ConflictException: <p>The request causes conflict with the current state of the service resource.</p>
+            capo_securityhub.errors.internal_server_exception.InternalServerException: <p> The request has failed due to an internal failure of the service. </p>
+            capo_securityhub.errors.invalid_access_exception.InvalidAccessException: <p>The account doesn't have permission to perform this action.</p>
+            capo_securityhub.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request was rejected because we can't find the specified resource.</p>
+            capo_securityhub.errors.throttling_exception.ThrottlingException: <p> The limit on the number of requests per second was exceeded. </p>
+            capo_securityhub.errors.validation_exception.ValidationException: <p>The request has failed validation because it's missing required fields or has invalid inputs.</p>
+            capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To list CSPM connectors
+            This operation lists the CSPM connectors for the calling account.
+
+            >>> await client.list_connectors(max_results=10)
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_securityhub.types.list_connectors_request.ListConnectorsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_securityhub.types.list_connectors_response.ListConnectorsResponse"
+        ]:
+            import capo_securityhub._operations.security_hub_api_service.list_connectors
+
+            (
+                output,
+                http_response,
+            ) = await capo_securityhub._operations.security_hub_api_service.list_connectors.async_list_connectors(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_securityhub.types.list_connectors_request.ListConnectorsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if provider_name is not None:
+            input_["provider_name"] = provider_name
+        if connector_status is not None:
+            input_["connector_status"] = connector_status
+        if enablement_status is not None:
+            input_["enablement_status"] = enablement_status
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def list_connectors_v2(
         self,
         *,
@@ -5708,6 +6126,9 @@ class AsyncSecurityHubClient:
         connector_status: Optional[
             "capo_securityhub.types.connector_status.ConnectorStatus"
         ] = None,
+        enablement_status: Optional[
+            "capo_securityhub.types.enablement_status.EnablementStatus"
+        ] = None,
     ) -> "capo_securityhub.types.list_connectors_v2_response.ListConnectorsV2Response":
         """<p>Grants permission to retrieve a list of connectorsV2 and their metadata for the calling account.</p>
 
@@ -5716,6 +6137,7 @@ class AsyncSecurityHubClient:
             max_results: <p>The maximum number of results to be returned.</p>
             provider_name: <p>The name of the third-party provider.</p>
             connector_status: <p>The status for the connectorV2.</p>
+            enablement_status: <p>The enablement status to filter connectors by.</p>
 
         Raises:
             capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
@@ -5752,6 +6174,8 @@ class AsyncSecurityHubClient:
             input_["provider_name"] = provider_name
         if connector_status is not None:
             input_["connector_status"] = connector_status
+        if enablement_status is not None:
+            input_["enablement_status"] = enablement_status
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -5911,6 +6335,99 @@ class AsyncSecurityHubClient:
                 max_results=max_results,
             )
             _page = _resolve_path(_response, ("finding_aggregators",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_free_trial_statuses_v2(
+        self,
+        *,
+        config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
+        account_ids: Optional[
+            "capo_securityhub.types.free_trial_account_id_list.FreeTrialAccountIdList"
+        ] = None,
+        statuses: Optional[
+            "capo_securityhub.types.free_trial_status_value_list.FreeTrialStatusValueList"
+        ] = None,
+        max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
+    ) -> "capo_securityhub.types.list_free_trial_statuses_v2_response.ListFreeTrialStatusesV2Response":
+        """<p>Lists the free trial status of Security Hub features. A delegated Security Hub administrator can list the status for accounts in its organization. Any other account can list the status only for itself. Free trial status remains available after a feature is disabled.</p>
+
+        Args:
+            account_ids: <p>The Amazon Web Services account identifiers to list free trial status for. You can specify accounts other than your own only if you are a delegated Security Hub administrator.</p>
+            statuses: <p>The free trial statuses to filter the results by. Valid values:</p> <ul> <li> <p> <code>ACTIVE</code> returns only features with an ongoing free trial period.</p> </li> <li> <p> <code>INACTIVE</code> returns only features whose free trial period has ended, or that never started.</p> </li> </ul>
+            max_results: <p>The maximum number of results to return. If you don't specify a value, Security Hub returns up to 100 results.</p>
+            next_token: <p>The pagination token to request the next page of results.</p>
+
+        Raises:
+            capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
+            capo_securityhub.errors.internal_server_exception.InternalServerException: <p> The request has failed due to an internal failure of the service. </p>
+            capo_securityhub.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request was rejected because we can't find the specified resource.</p>
+            capo_securityhub.errors.throttling_exception.ThrottlingException: <p> The limit on the number of requests per second was exceeded. </p>
+            capo_securityhub.errors.validation_exception.ValidationException: <p>The request has failed validation because it's missing required fields or has invalid inputs.</p>
+            capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_securityhub.types.list_free_trial_statuses_v2_request.ListFreeTrialStatusesV2Request]",
+        ) -> AsyncOperationResponse[
+            "capo_securityhub.types.list_free_trial_statuses_v2_response.ListFreeTrialStatusesV2Response"
+        ]:
+            import capo_securityhub._operations.security_hub_api_service.list_free_trial_statuses_v2
+
+            (
+                output,
+                http_response,
+            ) = await capo_securityhub._operations.security_hub_api_service.list_free_trial_statuses_v2.async_list_free_trial_statuses_v2(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_securityhub.types.list_free_trial_statuses_v2_request.ListFreeTrialStatusesV2Request = {}
+        if account_ids is not None:
+            input_["account_ids"] = account_ids
+        if statuses is not None:
+            input_["statuses"] = statuses
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_free_trial_statuses_v2(
+        self,
+        *,
+        config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
+        account_ids: Optional[
+            "capo_securityhub.types.free_trial_account_id_list.FreeTrialAccountIdList"
+        ] = None,
+        statuses: Optional[
+            "capo_securityhub.types.free_trial_status_value_list.FreeTrialStatusValueList"
+        ] = None,
+        max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_securityhub.types.account_free_trial_status.AccountFreeTrialStatus]":
+        _token = next_token
+        while True:
+            _response = await self.list_free_trial_statuses_v2(
+                config_overrides=config_overrides,
+                account_ids=account_ids,
+                statuses=statuses,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("account_free_trial_statuses",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -6176,6 +6693,9 @@ class AsyncSecurityHubClient:
         ] = None,
         next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
         max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
+        providers: Optional[
+            "capo_securityhub.types.security_controls_providers.SecurityControlsProviders"
+        ] = None,
     ) -> "capo_securityhub.types.list_security_control_definitions_response.ListSecurityControlDefinitionsResponse":
         """<p> Lists all of the security controls that apply to a specified standard. </p>
 
@@ -6183,6 +6703,7 @@ class AsyncSecurityHubClient:
             standards_arn: <p> The Amazon Resource Name (ARN) of the standard that you want to view controls for. </p>
             next_token: <p> Optional pagination parameter. </p>
             max_results: <p> An optional parameter that limits the total results of the API response to the specified number. If this parameter isn't provided in the request, the results include the first 25 security controls that apply to the specified standard. The results also include a <code>NextToken</code> parameter that you can use in a subsequent API call to get the next 25 controls. This repeats until all controls for the standard are returned. </p>
+            providers: <p>A list of cloud providers to filter the security control definitions by. For example, specify <code>Azure</code> to return only controls that evaluate Azure resources.</p>
 
         Raises:
             capo_securityhub.errors.internal_exception.InternalException: <p>Internal server error.</p>
@@ -6192,6 +6713,10 @@ class AsyncSecurityHubClient:
             capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
+            To list Azure security control definitions
+            The following example lists security control definitions for a specified provider.
+
+            >>> await client.list_security_control_definitions(providers=['Azure'], max_results=3)
             To list security controls that apply to a standard
             The following example lists security controls that apply to a specified Security Hub standard.
 
@@ -6221,6 +6746,8 @@ class AsyncSecurityHubClient:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
+        if providers is not None:
+            input_["providers"] = providers
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -6239,6 +6766,9 @@ class AsyncSecurityHubClient:
         ] = None,
         next_token: Optional["capo_securityhub.types.next_token.NextToken"] = None,
         max_results: Optional["capo_securityhub.types.max_results.MaxResults"] = None,
+        providers: Optional[
+            "capo_securityhub.types.security_controls_providers.SecurityControlsProviders"
+        ] = None,
     ) -> "AsyncIterator[capo_securityhub.types.security_control_definition.SecurityControlDefinition]":
         _token = next_token
         while True:
@@ -6247,6 +6777,7 @@ class AsyncSecurityHubClient:
                 standards_arn=standards_arn,
                 next_token=_token,
                 max_results=max_results,
+                providers=providers,
             )
             _page = _resolve_path(_response, ("security_control_definitions",))
             for _item in _page or []:
@@ -6956,6 +7487,74 @@ class AsyncSecurityHubClient:
             input_["updated_reason"] = updated_reason
         if configuration_policy is not None:
             input_["configuration_policy"] = configuration_policy
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_connector(
+        self,
+        connector_id: "capo_securityhub.types.non_empty_string.NonEmptyString",
+        *,
+        config_overrides: Optional[AsyncSecurityHubClientConfig] = None,
+        description: Optional[
+            "capo_securityhub.types.non_empty_string.NonEmptyString"
+        ] = None,
+        provider: Optional[
+            "capo_securityhub.types.cspm_provider_update_configuration.CspmProviderUpdateConfiguration"
+        ] = None,
+    ) -> "capo_securityhub.types.update_connector_response.UpdateConnectorResponse":
+        """<p>Updates a CSPM connector's configuration, such as the scope or regions for the connected cloud provider.</p>
+
+        Args:
+            connector_id: <p>The unique identifier of the connector to update.</p>
+            description: <p>The updated description of the connector.</p>
+            provider: <p>The updated cloud provider configuration for the connector.</p>
+
+        Raises:
+            capo_securityhub.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform the action specified in the request.</p>
+            capo_securityhub.errors.conflict_exception.ConflictException: <p>The request causes conflict with the current state of the service resource.</p>
+            capo_securityhub.errors.internal_server_exception.InternalServerException: <p> The request has failed due to an internal failure of the service. </p>
+            capo_securityhub.errors.invalid_access_exception.InvalidAccessException: <p>The account doesn't have permission to perform this action.</p>
+            capo_securityhub.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request was rejected because we can't find the specified resource.</p>
+            capo_securityhub.errors.throttling_exception.ThrottlingException: <p> The limit on the number of requests per second was exceeded. </p>
+            capo_securityhub.errors.validation_exception.ValidationException: <p>The request has failed validation because it's missing required fields or has invalid inputs.</p>
+            capo_securityhub.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To update a CSPM connector
+            This operation updates the configuration of a CSPM connector.
+
+            >>> await client.update_connector(connector_id='cspm-a1b2c3d4-5678-90ab-cdef-EXAMPLE11111', description='Updated connector description', provider={'Azure': {'ScopeConfiguration': {'ScopeType': 'SUBSCRIPTION', 'ScopeValues': ['sub-1234-5678-abcd', 'sub-9012-3456-efgh']}, 'AzureRegions': ['eastus', 'westus2', 'northeurope']}})
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_securityhub.types.update_connector_request.UpdateConnectorRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_securityhub.types.update_connector_response.UpdateConnectorResponse"
+        ]:
+            import capo_securityhub._operations.security_hub_api_service.update_connector
+
+            (
+                output,
+                http_response,
+            ) = await capo_securityhub._operations.security_hub_api_service.update_connector.async_update_connector(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_securityhub.types.update_connector_request.UpdateConnectorRequest = {
+            "connector_id": connector_id
+        }
+        if description is not None:
+            input_["description"] = description
+        if provider is not None:
+            input_["provider"] = provider
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

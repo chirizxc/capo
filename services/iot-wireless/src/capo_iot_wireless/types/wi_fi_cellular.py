@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class WiFiCellular(TypedDict, closed=True):
     confidence_percent: "capo_iot_wireless.types.confidence_percent.ConfidencePercent"
-    """Confidence level for WiFi and cellular position estimates, expressed as a percentage. Valid range: 50–99 inclusive. Defaults to 68 if not specified."""
+    """<p>The confidence level for WiFi and cellular position estimates, expressed as a percentage. This value determines the size of the confidence area or uncertainty radius for the estimated position. A higher confidence level produces a larger uncertainty radius, while a lower confidence level produces a smaller, more precise radius.</p> <p>Valid range: 50 to 99 inclusive. If not specified, the default value of 68 is used, which corresponds to approximately one standard deviation of the normal distribution.</p>"""
 
 
 # --- restJson1 ser/de ---

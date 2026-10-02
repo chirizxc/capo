@@ -28,6 +28,7 @@ import capo_auto_scaling.types.launch_template_specification
 import capo_auto_scaling.types.lifecycle_hook_specifications
 import capo_auto_scaling.types.load_balancer_names
 import capo_auto_scaling.types.mixed_instances_policy
+import capo_auto_scaling.types.operator
 import capo_auto_scaling.types.tags
 import capo_auto_scaling.types.target_group_ar_ns
 import capo_auto_scaling.types.termination_policies
@@ -38,6 +39,7 @@ from capo_auto_scaling._rule_engine._endpoint_rule_set import EndpointParams, re
 from capo_auto_scaling._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_auto_scaling.errors import UnknownServiceError
 
@@ -135,7 +137,7 @@ def create_auto_scaling_group(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -150,7 +152,7 @@ async def async_create_auto_scaling_group(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

@@ -13,6 +13,7 @@ import capo_appintegrations._auth._signers
 import capo_appintegrations._auth._sigv4
 import capo_appintegrations._protocol.eventstream
 import capo_appintegrations.errors.access_denied_exception
+import capo_appintegrations.errors.conflict_exception
 import capo_appintegrations.errors.internal_service_error
 import capo_appintegrations.errors.invalid_request_exception
 import capo_appintegrations.errors.resource_not_found_exception
@@ -21,6 +22,7 @@ import capo_appintegrations.errors.unsupported_operation_exception
 import capo_appintegrations.types.application_config
 import capo_appintegrations.types.application_source_config
 import capo_appintegrations.types.application_type
+import capo_appintegrations.types.auth_config
 import capo_appintegrations.types.iframe_config
 import capo_appintegrations.types.permission_list
 import capo_appintegrations.types.publication_list
@@ -32,6 +34,7 @@ from capo_appintegrations._rule_engine._endpoint_rule_set import EndpointParams,
 from capo_appintegrations._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_appintegrations.errors import UnknownServiceError
 
@@ -42,6 +45,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_appintegrations.errors.access_denied_exception.AccessDeniedException.from_json(
+                data, message
+            )
+        case "ConflictException":
+            raise capo_appintegrations.errors.conflict_exception.ConflictException.from_json(
                 data, message
             )
         case "InternalServiceError":
@@ -151,7 +158,7 @@ def update_application(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -169,7 +176,7 @@ async def async_update_application(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

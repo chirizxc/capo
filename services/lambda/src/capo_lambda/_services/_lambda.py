@@ -20,6 +20,7 @@ from capo_lambda._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_lambda._auth._zapros_handler import AuthMiddleware
+from capo_lambda._body import Body, closing_bodies
 from capo_lambda._iter import ensure_sync_iterator
 from capo_lambda._pagination import resolve_path as _resolve_path
 from capo_lambda._resources.aws_gir_api_service.capacity_provider_resource import (
@@ -120,6 +121,7 @@ if TYPE_CHECKING:
     import capo_lambda.types.delete_function_url_config_request
     import capo_lambda.types.delete_layer_version_request
     import capo_lambda.types.delete_provisioned_concurrency_config_request
+    import capo_lambda.types.delete_resource_policy_request
     import capo_lambda.types.description
     import capo_lambda.types.destination_config
     import capo_lambda.types.document_db_event_source_config
@@ -190,6 +192,8 @@ if TYPE_CHECKING:
     import capo_lambda.types.get_policy_response
     import capo_lambda.types.get_provisioned_concurrency_config_request
     import capo_lambda.types.get_provisioned_concurrency_config_response
+    import capo_lambda.types.get_resource_policy_request
+    import capo_lambda.types.get_resource_policy_response
     import capo_lambda.types.get_runtime_management_config_request
     import capo_lambda.types.get_runtime_management_config_response
     import capo_lambda.types.handler
@@ -269,6 +273,7 @@ if TYPE_CHECKING:
     import capo_lambda.types.organization_id
     import capo_lambda.types.package_type
     import capo_lambda.types.parallelization_factor
+    import capo_lambda.types.policy_resource_arn
     import capo_lambda.types.positive_integer
     import capo_lambda.types.principal
     import capo_lambda.types.principal_org_id
@@ -288,6 +293,8 @@ if TYPE_CHECKING:
     import capo_lambda.types.put_function_scaling_config_response
     import capo_lambda.types.put_provisioned_concurrency_config_request
     import capo_lambda.types.put_provisioned_concurrency_config_response
+    import capo_lambda.types.put_resource_policy_request
+    import capo_lambda.types.put_resource_policy_response
     import capo_lambda.types.put_runtime_management_config_request
     import capo_lambda.types.put_runtime_management_config_response
     import capo_lambda.types.qualifier
@@ -296,8 +303,10 @@ if TYPE_CHECKING:
     import capo_lambda.types.remove_layer_version_permission_request
     import capo_lambda.types.remove_permission_request
     import capo_lambda.types.reserved_concurrent_executions
+    import capo_lambda.types.resource_policy
     import capo_lambda.types.response_streaming_invocation_type
     import capo_lambda.types.reverse_order
+    import capo_lambda.types.revision_id
     import capo_lambda.types.role_arn
     import capo_lambda.types.runtime
     import capo_lambda.types.runtime_version_arn
@@ -572,6 +581,56 @@ class LambdaClient:
         response.response.close()
         return response.output
 
+    def delete_resource_policy(
+        self,
+        resource_arn: "capo_lambda.types.policy_resource_arn.PolicyResourceArn",
+        *,
+        config_overrides: Optional[LambdaClientConfig] = None,
+        revision_id: Optional["capo_lambda.types.revision_id.RevisionId"] = None,
+    ) -> None:
+        r"""<p>Deletes a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html\">resource-based policy</a> from a Lambda resource.</p>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the Lambda resource you want to delete the policy from. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.</p>
+            revision_id: <p>The revision ID that the existing policy must match for the deletion to proceed. If the revision ID doesn't match, the operation fails with a <code>PreconditionFailedException</code> error. To retrieve the current revision ID, use the <a>GetResourcePolicy</a> operation.</p>
+
+        Raises:
+            capo_lambda.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One of the parameters in the request is not valid.</p>
+            capo_lambda.errors.precondition_failed_exception.PreconditionFailedException: <p>The RevisionId provided does not match the latest RevisionId for the Lambda function or alias.</p> <ul> <li> <p> <b>For AddPermission and RemovePermission API operations:</b> Call <code>GetPolicy</code> to retrieve the latest RevisionId for your resource.</p> </li> <li> <p> <b>For all other API operations:</b> Call <code>GetFunction</code> or <code>GetAlias</code> to retrieve the latest RevisionId for your resource.</p> </li> </ul>
+            capo_lambda.errors.resource_conflict_exception.ResourceConflictException: <p>The resource already exists, or another operation is in progress.</p>
+            capo_lambda.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request does not exist.</p>
+            capo_lambda.errors.service_exception.ServiceException: <p>The Lambda service encountered an internal error.</p>
+            capo_lambda.errors.too_many_requests_exception.TooManyRequestsException: <p>The request throughput limit was exceeded. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests\">Lambda quotas</a>.</p>
+            capo_lambda.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_lambda.types.delete_resource_policy_request.DeleteResourcePolicyRequest]",
+        ) -> OperationResponse[None]:
+            import capo_lambda._operations.aws_gir_api_service.delete_resource_policy
+
+            output, http_response = (
+                capo_lambda._operations.aws_gir_api_service.delete_resource_policy.delete_resource_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_lambda.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
+        if revision_id is not None:
+            input_["revision_id"] = revision_id
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def get_account_settings(
         self, *, config_overrides: Optional[LambdaClientConfig] = None
     ) -> "capo_lambda.types.get_account_settings_response.GetAccountSettingsResponse":
@@ -663,6 +722,52 @@ class LambdaClient:
         }
         if qualifier is not None:
             input_["qualifier"] = qualifier
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_resource_policy(
+        self,
+        resource_arn: "capo_lambda.types.policy_resource_arn.PolicyResourceArn",
+        *,
+        config_overrides: Optional[LambdaClientConfig] = None,
+    ) -> "capo_lambda.types.get_resource_policy_response.GetResourcePolicyResponse":
+        r"""<p>Retrieves the <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html\">resource-based policy</a> attached to a Lambda resource.</p>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the Lambda resource you want to retrieve the policy for. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.</p>
+
+        Raises:
+            capo_lambda.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One of the parameters in the request is not valid.</p>
+            capo_lambda.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request does not exist.</p>
+            capo_lambda.errors.service_exception.ServiceException: <p>The Lambda service encountered an internal error.</p>
+            capo_lambda.errors.too_many_requests_exception.TooManyRequestsException: <p>The request throughput limit was exceeded. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests\">Lambda quotas</a>.</p>
+            capo_lambda.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_lambda.types.get_resource_policy_request.GetResourcePolicyRequest]",
+        ) -> OperationResponse[
+            "capo_lambda.types.get_resource_policy_response.GetResourcePolicyResponse"
+        ]:
+            import capo_lambda._operations.aws_gir_api_service.get_resource_policy
+
+            output, http_response = (
+                capo_lambda._operations.aws_gir_api_service.get_resource_policy.get_resource_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_lambda.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -852,6 +957,63 @@ class LambdaClient:
             input_["maximum_event_age_in_seconds"] = maximum_event_age_in_seconds
         if destination_config is not None:
             input_["destination_config"] = destination_config
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def put_resource_policy(
+        self,
+        resource_arn: "capo_lambda.types.policy_resource_arn.PolicyResourceArn",
+        policy: "capo_lambda.types.resource_policy.ResourcePolicy",
+        *,
+        config_overrides: Optional[LambdaClientConfig] = None,
+        revision_id: Optional["capo_lambda.types.revision_id.RevisionId"] = None,
+    ) -> "capo_lambda.types.put_resource_policy_response.PutResourcePolicyResponse":
+        r"""<p>Adds a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html\">resource-based policy</a> to a Lambda resource. Resource-based policies grant access to other <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-cross-account.html\">Amazon Web Services accounts</a>, <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-organization.html\">organizations</a>, or <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-services.html\">services</a>. Resource-based policies apply to a single Lambda resource (for example, a function, function version, or function alias).</p> <important> <p>This operation replaces any existing policy on the Lambda resource. If you previously added permissions using the <a>AddPermission</a> operation, the new policy overwrites those permissions.</p> </important>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the Lambda resource you want to add the policy to. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.</p>
+            policy: <p>The policy document you want to add to your Lambda resource. This is formatted as a JSON string.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html\">Working with resource-based policies in Lambda</a> in the <i>Lambda Developer Guide</i>.</p>
+            revision_id: <p>The revision ID that the existing policy must match for the replacement to proceed. If the revision ID doesn't match, the operation fails with a <code>PreconditionFailedException</code> error. To retrieve the current revision ID, use the <a>GetResourcePolicy</a> operation.</p>
+
+        Raises:
+            capo_lambda.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One of the parameters in the request is not valid.</p>
+            capo_lambda.errors.policy_length_exceeded_exception.PolicyLengthExceededException: <p>The permissions policy for the resource is too large. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html\">Lambda quotas</a>.</p>
+            capo_lambda.errors.precondition_failed_exception.PreconditionFailedException: <p>The RevisionId provided does not match the latest RevisionId for the Lambda function or alias.</p> <ul> <li> <p> <b>For AddPermission and RemovePermission API operations:</b> Call <code>GetPolicy</code> to retrieve the latest RevisionId for your resource.</p> </li> <li> <p> <b>For all other API operations:</b> Call <code>GetFunction</code> or <code>GetAlias</code> to retrieve the latest RevisionId for your resource.</p> </li> </ul>
+            capo_lambda.errors.public_policy_exception.PublicPolicyException: <p>The resource-based policy you tried to add to the Lambda resource would grant public access to it, which isn't allowed.</p>
+            capo_lambda.errors.resource_conflict_exception.ResourceConflictException: <p>The resource already exists, or another operation is in progress.</p>
+            capo_lambda.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request does not exist.</p>
+            capo_lambda.errors.service_exception.ServiceException: <p>The Lambda service encountered an internal error.</p>
+            capo_lambda.errors.too_many_requests_exception.TooManyRequestsException: <p>The request throughput limit was exceeded. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests\">Lambda quotas</a>.</p>
+            capo_lambda.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_lambda.types.put_resource_policy_request.PutResourcePolicyRequest]",
+        ) -> OperationResponse[
+            "capo_lambda.types.put_resource_policy_response.PutResourcePolicyResponse"
+        ]:
+            import capo_lambda._operations.aws_gir_api_service.put_resource_policy
+
+            output, http_response = (
+                capo_lambda._operations.aws_gir_api_service.put_resource_policy.put_resource_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_lambda.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
+        if revision_id is not None:
+            input_["revision_id"] = revision_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2904,7 +3066,7 @@ class LambdaClient:
             handler: <p>The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html\">Lambda programming model</a>.</p>
             code: <p>The code for the function.</p>
             description: <p>A description of the function.</p>
-            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
+            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds, and the maximum allowed value is 900 seconds. For functions using Lambda Managed Instances, asynchronous invocations and event source mapping invocations (except Amazon MQ and Amazon DocumentDB) support a maximum allowed value of 5,400 seconds (90 minutes). For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
             memory_size: <p>The amount of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console\">memory available to the function</a> at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.</p>
             publish: <p>Set to true to publish the first version of the function during creation.</p>
             publish_to: <p>Specifies where to publish the function version or configuration.</p>
@@ -3471,7 +3633,7 @@ class LambdaClient:
             role: <p>The Amazon Resource Name (ARN) of the function's execution role.</p>
             handler: <p>The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html\">Lambda programming model</a>.</p>
             description: <p>A description of the function.</p>
-            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
+            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds, and the maximum allowed value is 900 seconds. For functions using Lambda Managed Instances, asynchronous invocations and event source mapping invocations (except Amazon MQ and Amazon DocumentDB) support a maximum allowed value of 5,400 seconds (90 minutes). For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
             memory_size: <p>The amount of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console\">memory available to the function</a> at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.</p>
             vpc_config: <p>For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html\">Configuring a Lambda function to access resources in a VPC</a>.</p>
             environment: <p>Environment variables that are accessible from function code during execution.</p>
@@ -4336,7 +4498,7 @@ class LambdaClient:
     def invoke_async(
         self,
         function_name: "capo_lambda.types.namespaced_function_name.NamespacedFunctionName",
-        invoke_args: Iterator[bytes] | bytes,
+        invoke_args: Body[Iterator[bytes]] | Iterator[bytes] | bytes,
         *,
         config_overrides: Optional[LambdaClientConfig] = None,
     ) -> "capo_lambda.types.invoke_async_response.InvokeAsyncResponse":
@@ -4405,13 +4567,14 @@ class LambdaClient:
             "invoke_args": ensure_sync_iterator(invoke_args),
         }
 
-        response = execute_pipeline(
-            OperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        response.response.close()
-        return response.output
+        with closing_bodies(input_):
+            response = execute_pipeline(
+                OperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            response.response.close()
+            return response.output
 
     @contextmanager
     def invoke_with_response_stream(
@@ -6084,7 +6247,7 @@ class LambdaClient:
             capo_lambda.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One of the parameters in the request is not valid.</p>
             capo_lambda.errors.policy_length_exceeded_exception.PolicyLengthExceededException: <p>The permissions policy for the resource is too large. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html\">Lambda quotas</a>.</p>
             capo_lambda.errors.precondition_failed_exception.PreconditionFailedException: <p>The RevisionId provided does not match the latest RevisionId for the Lambda function or alias.</p> <ul> <li> <p> <b>For AddPermission and RemovePermission API operations:</b> Call <code>GetPolicy</code> to retrieve the latest RevisionId for your resource.</p> </li> <li> <p> <b>For all other API operations:</b> Call <code>GetFunction</code> or <code>GetAlias</code> to retrieve the latest RevisionId for your resource.</p> </li> </ul>
-            capo_lambda.errors.public_policy_exception.PublicPolicyException: <p>The resource-based policy you tried to add to the Lambda function would grant public access to it, and your account's <code>BlockPublicAccess</code> setting prevents public access. For more information about blocking public access to Lambda functions, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#access-control-block-public-access\">Block public access to Lambda resources</a>.</p>
+            capo_lambda.errors.public_policy_exception.PublicPolicyException: <p>The resource-based policy you tried to add to the Lambda resource would grant public access to it, which isn't allowed.</p>
             capo_lambda.errors.resource_conflict_exception.ResourceConflictException: <p>The resource already exists, or another operation is in progress.</p>
             capo_lambda.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request does not exist.</p>
             capo_lambda.errors.service_exception.ServiceException: <p>The Lambda service encountered an internal error.</p>
@@ -6170,7 +6333,7 @@ class LambdaClient:
         Raises:
             capo_lambda.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>One of the parameters in the request is not valid.</p>
             capo_lambda.errors.precondition_failed_exception.PreconditionFailedException: <p>The RevisionId provided does not match the latest RevisionId for the Lambda function or alias.</p> <ul> <li> <p> <b>For AddPermission and RemovePermission API operations:</b> Call <code>GetPolicy</code> to retrieve the latest RevisionId for your resource.</p> </li> <li> <p> <b>For all other API operations:</b> Call <code>GetFunction</code> or <code>GetAlias</code> to retrieve the latest RevisionId for your resource.</p> </li> </ul>
-            capo_lambda.errors.public_policy_exception.PublicPolicyException: <p>The resource-based policy you tried to add to the Lambda function would grant public access to it, and your account's <code>BlockPublicAccess</code> setting prevents public access. For more information about blocking public access to Lambda functions, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#access-control-block-public-access\">Block public access to Lambda resources</a>.</p>
+            capo_lambda.errors.public_policy_exception.PublicPolicyException: <p>The resource-based policy you tried to add to the Lambda resource would grant public access to it, which isn't allowed.</p>
             capo_lambda.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request does not exist.</p>
             capo_lambda.errors.service_exception.ServiceException: <p>The Lambda service encountered an internal error.</p>
             capo_lambda.errors.too_many_requests_exception.TooManyRequestsException: <p>The request throughput limit was exceeded. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests\">Lambda quotas</a>.</p>

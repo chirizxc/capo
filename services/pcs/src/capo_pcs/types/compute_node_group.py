@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_pcs.types.error_info_list
     import capo_pcs.types.instance_list
     import capo_pcs.types.instance_profile_arn
+    import capo_pcs.types.node_lifecycle_actions
     import capo_pcs.types.purchase_option
     import capo_pcs.types.scaling_configuration
     import capo_pcs.types.spot_options
@@ -54,6 +55,10 @@ class ComputeNodeGroup(TypedDict, closed=True):
     slurm_configuration: NotRequired[
         "capo_pcs.types.compute_node_group_slurm_configuration.ComputeNodeGroupSlurmConfiguration"
     ]
+    node_lifecycle_actions: NotRequired[
+        "capo_pcs.types.node_lifecycle_actions.NodeLifecycleActions"
+    ]
+    """<p>The lifecycle actions to run on compute nodes in the compute node group. Use lifecycle actions to run custom scripts at defined stages of a compute node's lifecycle, such as when a compute node finishes bootstrapping or becomes ready to accept jobs.</p>"""
     error_info: NotRequired["capo_pcs.types.error_info_list.ErrorInfoList"]
     """<p>The list of errors that occurred during compute node group provisioning.</p>"""
 
@@ -121,6 +126,14 @@ def serialize_aws_json_1_0(value: ComputeNodeGroup) -> dict:
         out["slurmConfiguration"] = (
             capo_pcs.types.compute_node_group_slurm_configuration.serialize_aws_json_1_0(
                 value["slurm_configuration"]
+            )
+        )
+    if "node_lifecycle_actions" in value:
+        import capo_pcs.types.node_lifecycle_actions
+
+        out["nodeLifecycleActions"] = (
+            capo_pcs.types.node_lifecycle_actions.serialize_aws_json_1_0(
+                value["node_lifecycle_actions"]
             )
         )
     if "error_info" in value:
@@ -238,6 +251,14 @@ def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroup:
         out["slurm_configuration"] = (
             capo_pcs.types.compute_node_group_slurm_configuration.deserialize_aws_json_1_0(
                 data["slurmConfiguration"]
+            )
+        )
+    if data.get("nodeLifecycleActions") is not None:
+        import capo_pcs.types.node_lifecycle_actions
+
+        out["node_lifecycle_actions"] = (
+            capo_pcs.types.node_lifecycle_actions.deserialize_aws_json_1_0(
+                data["nodeLifecycleActions"]
             )
         )
     if data.get("errorInfo") is not None:

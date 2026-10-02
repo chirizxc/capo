@@ -22,7 +22,11 @@ import capo_geo_maps.types.get_tile_response
 import capo_geo_maps.types.tile_additional_feature_list
 from capo_geo_maps._protocol.errors import parse_error_metadata_json
 from capo_geo_maps._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_geo_maps._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_geo_maps._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_geo_maps.errors import UnknownServiceError
 
 
@@ -126,7 +130,9 @@ def build_request(
             Region=options.region,
         )
     )  # noqa: F841
-    url = endpoint.url.rstrip("/") + "/tiles/{Tileset}/{Z}/{X}/{Y}"
+    import capo_geo_maps.types.tile_additional_feature
+
+    url = endpoint.url.rstrip("/") + "/v2/tiles/{Tileset}/{Z}/{X}/{Y}"
     url = url.replace("{Tileset}", quote(input_["tileset"], safe=""))
     url = url.replace("{Z}", quote(input_["z"], safe=""))
     url = url.replace("{X}", quote(input_["x"], safe=""))
@@ -134,7 +140,12 @@ def build_request(
     params: list[tuple[str, str]] = []
     if "additional_features" in input_:
         for item in input_["additional_features"]:
-            params.append(("additional-features", item))
+            params.append(
+                (
+                    "additional-features",
+                    capo_geo_maps.types.tile_additional_feature.serialize_json(item),
+                )
+            )
     if "key" in input_:
         params.append(("key", input_["key"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
@@ -156,7 +167,7 @@ def get_tile(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -171,7 +182,7 @@ async def async_get_tile(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

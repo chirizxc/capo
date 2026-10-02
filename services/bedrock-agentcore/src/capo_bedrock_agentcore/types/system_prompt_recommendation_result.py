@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.recommendation_error_code
     import capo_bedrock_agentcore.types.recommendation_error_message
+    import capo_bedrock_agentcore.types.recommendation_explanation
     import capo_bedrock_agentcore.types.recommendation_result_configuration_bundle
     import capo_bedrock_agentcore.types.system_prompt_text
 
@@ -20,6 +21,10 @@ class SystemPromptRecommendationResult(TypedDict, closed=True):
         "capo_bedrock_agentcore.types.recommendation_result_configuration_bundle.RecommendationResultConfigurationBundle"
     ]
     """<p>The configuration bundle containing the recommended system prompt, if the input was sourced from a configuration bundle.</p>"""
+    explanation: NotRequired[
+        "capo_bedrock_agentcore.types.recommendation_explanation.RecommendationExplanation"
+    ]
+    """<p>An explanation of why the recommendation was generated and what patterns were identified in the agent traces.</p>"""
     error_code: NotRequired[
         "capo_bedrock_agentcore.types.recommendation_error_code.RecommendationErrorCode"
     ]
@@ -43,6 +48,8 @@ def serialize_json(value: SystemPromptRecommendationResult) -> dict:
                 value["configuration_bundle"]
             )
         )
+    if "explanation" in value:
+        out["explanation"] = value["explanation"]
     if "error_code" in value:
         out["errorCode"] = value["error_code"]
     if "error_message" in value:
@@ -62,6 +69,8 @@ def deserialize_json(data: dict) -> SystemPromptRecommendationResult:
                 data["configurationBundle"]
             )
         )
+    if data.get("explanation") is not None:
+        out["explanation"] = data["explanation"]
     if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     if data.get("errorMessage") is not None:

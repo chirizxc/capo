@@ -2,27 +2,33 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_appflow.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_appflow.types.password
+    import capo_appflow.types.private_key
     import capo_appflow.types.username
 
 
 class SnowflakeConnectorProfileCredentials(TypedDict, closed=True):
     username: "capo_appflow.types.username.Username"
     """<p> The name of the user. </p>"""
-    password: "capo_appflow.types.password.Password"
+    password: NotRequired["capo_appflow.types.password.Password"]
     """<p> The password that corresponds to the user name. </p>"""
+    private_key: NotRequired["capo_appflow.types.private_key.PrivateKey"]
+    """<p> The RSA private key used for key pair authentication with Snowflake. Provide this instead of a password when your Snowflake account uses key pair authentication. </p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: SnowflakeConnectorProfileCredentials) -> dict:
     out: dict = {}
     out["username"] = value["username"]
-    out["password"] = value["password"]
+    if "password" in value:
+        out["password"] = value["password"]
+    if "private_key" in value:
+        out["privateKey"] = value["private_key"]
     return out
 
 
@@ -36,8 +42,6 @@ def deserialize_json(data: dict) -> SnowflakeConnectorProfileCredentials:
         )
     if data.get("password") is not None:
         out["password"] = data["password"]
-    else:
-        raise DeserializationError(
-            "SnowflakeConnectorProfileCredentials.password required"
-        )
+    if data.get("privateKey") is not None:
+        out["private_key"] = data["privateKey"]
     return out

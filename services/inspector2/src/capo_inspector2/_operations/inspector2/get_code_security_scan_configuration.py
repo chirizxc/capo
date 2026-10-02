@@ -24,7 +24,11 @@ import capo_inspector2.types.scope_settings
 import capo_inspector2.types.tag_map
 from capo_inspector2._protocol.errors import parse_error_metadata_json
 from capo_inspector2._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_inspector2._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_inspector2._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_inspector2.errors import UnknownServiceError
 
 
@@ -144,7 +148,7 @@ def get_code_security_scan_configuration(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -162,7 +166,7 @@ async def async_get_code_security_scan_configuration(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

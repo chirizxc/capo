@@ -8,6 +8,9 @@ if TYPE_CHECKING:
     import capo_eks.types.boxed_boolean
     import capo_eks.types.compute_config_request
     import capo_eks.types.control_plane_scaling_config
+    import capo_eks.types.kube_api_server_config_request
+    import capo_eks.types.kube_controller_manager_config_request
+    import capo_eks.types.kube_scheduler_config_request
     import capo_eks.types.kubernetes_network_config_request
     import capo_eks.types.logging
     import capo_eks.types.remote_network_config_request
@@ -25,6 +28,7 @@ class UpdateClusterConfigRequest(TypedDict, closed=True):
     resources_vpc_config: NotRequired[
         "capo_eks.types.vpc_config_request.VpcConfigRequest"
     ]
+    """<p>An object representing the VPC configuration to use for the cluster update. You can use this parameter to update the control plane egress mode, the subnets used by the cluster, the security groups, and the endpoint access settings.</p>"""
     logging: NotRequired["capo_eks.types.logging.Logging"]
     r"""<p>Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs . By default, cluster control plane logs aren't exported to CloudWatch Logs . For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html\">Amazon EKS cluster control plane logs</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p> <note> <p>CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see <a href=\"http://aws.amazon.com/cloudwatch/pricing/\">CloudWatch Pricing</a>.</p> </note>"""
     client_request_token: NotRequired["capo_eks.types.string.String"]
@@ -61,6 +65,18 @@ class UpdateClusterConfigRequest(TypedDict, closed=True):
         "capo_eks.types.control_plane_scaling_config.ControlPlaneScalingConfig"
     ]
     """<p>The control plane scaling tier configuration. For more information, see EKS Provisioned Control Plane in the Amazon EKS User Guide.</p>"""
+    kube_api_server_config: NotRequired[
+        "capo_eks.types.kube_api_server_config_request.KubeApiServerConfigRequest"
+    ]
+    """<p>The Kubernetes API server configuration for the updated cluster.</p>"""
+    kube_scheduler_config: NotRequired[
+        "capo_eks.types.kube_scheduler_config_request.KubeSchedulerConfigRequest"
+    ]
+    """<p>The Kubernetes scheduler configuration for the updated cluster.</p>"""
+    kube_controller_manager_config: NotRequired[
+        "capo_eks.types.kube_controller_manager_config_request.KubeControllerManagerConfigRequest"
+    ]
+    """<p>The Kubernetes controller manager configuration for the updated cluster.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -136,6 +152,30 @@ def serialize_json(value: UpdateClusterConfigRequest) -> dict:
         out["controlPlaneScalingConfig"] = (
             capo_eks.types.control_plane_scaling_config.serialize_json(
                 value["control_plane_scaling_config"]
+            )
+        )
+    if "kube_api_server_config" in value:
+        import capo_eks.types.kube_api_server_config_request
+
+        out["kubeApiServerConfig"] = (
+            capo_eks.types.kube_api_server_config_request.serialize_json(
+                value["kube_api_server_config"]
+            )
+        )
+    if "kube_scheduler_config" in value:
+        import capo_eks.types.kube_scheduler_config_request
+
+        out["kubeSchedulerConfig"] = (
+            capo_eks.types.kube_scheduler_config_request.serialize_json(
+                value["kube_scheduler_config"]
+            )
+        )
+    if "kube_controller_manager_config" in value:
+        import capo_eks.types.kube_controller_manager_config_request
+
+        out["kubeControllerManagerConfig"] = (
+            capo_eks.types.kube_controller_manager_config_request.serialize_json(
+                value["kube_controller_manager_config"]
             )
         )
     return out
@@ -215,6 +255,30 @@ def deserialize_json(data: dict) -> UpdateClusterConfigRequest:
         out["control_plane_scaling_config"] = (
             capo_eks.types.control_plane_scaling_config.deserialize_json(
                 data["controlPlaneScalingConfig"]
+            )
+        )
+    if data.get("kubeApiServerConfig") is not None:
+        import capo_eks.types.kube_api_server_config_request
+
+        out["kube_api_server_config"] = (
+            capo_eks.types.kube_api_server_config_request.deserialize_json(
+                data["kubeApiServerConfig"]
+            )
+        )
+    if data.get("kubeSchedulerConfig") is not None:
+        import capo_eks.types.kube_scheduler_config_request
+
+        out["kube_scheduler_config"] = (
+            capo_eks.types.kube_scheduler_config_request.deserialize_json(
+                data["kubeSchedulerConfig"]
+            )
+        )
+    if data.get("kubeControllerManagerConfig") is not None:
+        import capo_eks.types.kube_controller_manager_config_request
+
+        out["kube_controller_manager_config"] = (
+            capo_eks.types.kube_controller_manager_config_request.deserialize_json(
+                data["kubeControllerManagerConfig"]
             )
         )
     return out

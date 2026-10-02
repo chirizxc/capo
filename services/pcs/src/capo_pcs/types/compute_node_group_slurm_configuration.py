@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_pcs.types.gres_custom_settings
     import capo_pcs.types.slurm_custom_settings
 
 
@@ -15,6 +16,10 @@ class ComputeNodeGroupSlurmConfiguration(TypedDict, closed=True):
         "capo_pcs.types.slurm_custom_settings.SlurmCustomSettings"
     ]
     """<p>Additional Slurm-specific configuration that directly maps to Slurm settings.</p>"""
+    gres_custom_settings: NotRequired[
+        "capo_pcs.types.gres_custom_settings.GresCustomSettings"
+    ]
+    """<p>The additional Slurm <code>gres.conf</code> records for the compute node group. Each item is a map of <code>gres.conf</code> attribute names to values that describes one <code>gres.conf</code> record, such as a GPU topology, MIG, MPS, or custom GRES entry. PCS adds the <code>NodeName=</code> prefix and merges these records with the GPU record it derives from the instance type.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -30,6 +35,14 @@ def serialize_aws_json_1_0(value: ComputeNodeGroupSlurmConfiguration) -> dict:
                 value["slurm_custom_settings"]
             )
         )
+    if "gres_custom_settings" in value:
+        import capo_pcs.types.gres_custom_settings
+
+        out["gresCustomSettings"] = (
+            capo_pcs.types.gres_custom_settings.serialize_aws_json_1_0(
+                value["gres_custom_settings"]
+            )
+        )
     return out
 
 
@@ -43,6 +56,14 @@ def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroupSlurmConfiguration:
         out["slurm_custom_settings"] = (
             capo_pcs.types.slurm_custom_settings.deserialize_aws_json_1_0(
                 data["slurmCustomSettings"]
+            )
+        )
+    if data.get("gresCustomSettings") is not None:
+        import capo_pcs.types.gres_custom_settings
+
+        out["gres_custom_settings"] = (
+            capo_pcs.types.gres_custom_settings.deserialize_aws_json_1_0(
+                data["gresCustomSettings"]
             )
         )
     return out

@@ -29,6 +29,7 @@ from capo_marketplace_agreement._rule_engine._endpoint_rule_set import (
 from capo_marketplace_agreement._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_marketplace_agreement.errors import UnknownServiceError
 
@@ -154,7 +155,7 @@ def batch_create_billing_adjustment_request(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -172,7 +173,7 @@ async def async_batch_create_billing_adjustment_request(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

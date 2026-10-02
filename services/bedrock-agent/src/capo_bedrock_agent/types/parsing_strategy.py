@@ -5,6 +5,8 @@ from typing import Literal, TypeAlias, cast
 ParsingStrategy: TypeAlias = Literal[
     "BEDROCK_FOUNDATION_MODEL",
     "BEDROCK_DATA_AUTOMATION",
+    "SMART_PARSING",
+    "MULTI_MODAL_EMBEDDINGS",
 ]
 
 

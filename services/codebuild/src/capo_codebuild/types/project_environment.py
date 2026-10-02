@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_codebuild.types.docker_server
     import capo_codebuild.types.environment_type
     import capo_codebuild.types.environment_variables
+    import capo_codebuild.types.host_kernel
     import capo_codebuild.types.image_pull_credentials_type
     import capo_codebuild.types.non_empty_string
     import capo_codebuild.types.project_fleet
@@ -51,6 +52,8 @@ class ProjectEnvironment(TypedDict, closed=True):
     """<p> The type of credentials CodeBuild uses to pull images in your build. There are two valid values: </p> <ul> <li> <p> <code>CODEBUILD</code> specifies that CodeBuild uses its own credentials. This requires that you modify your ECR repository policy to trust CodeBuild service principal. </p> </li> <li> <p> <code>SERVICE_ROLE</code> specifies that CodeBuild uses your build project's service role. </p> </li> </ul> <p> When you use a cross-account or private registry image, you must use SERVICE_ROLE credentials. When you use an CodeBuild curated image, you must use CODEBUILD credentials. </p>"""
     docker_server: NotRequired["capo_codebuild.types.docker_server.DockerServer"]
     """<p>A DockerServer object to use for this build project.</p>"""
+    host_kernel: NotRequired["capo_codebuild.types.host_kernel.HostKernel"]
+    """<p>The host operating system kernel used for on-demand builds in the build project. The host kernel does not affect the build environment operating system, which is determined by the image you specify. Valid values are:</p> <ul> <li> <p> <code>LINUX_KERNEL_4</code>: Runs on an Amazon Linux 2 host (kernel 4.x).</p> </li> <li> <p> <code>LINUX_KERNEL_6</code>: Runs on an Amazon Linux 2023 host (kernel 6.x).</p> </li> <li> <p> <code>LINUX_KERNEL_LATEST</code>: Runs on the latest supported host kernel.</p> </li> </ul> <p>This setting applies to the <code>LINUX_CONTAINER</code>, <code>ARM_CONTAINER</code>, <code>LINUX_EC2</code>, and <code>ARM_EC2</code> environment types. It is not applicable to Windows, Lambda, or Mac environment types.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -114,6 +117,12 @@ def serialize_aws_json_1_1(value: ProjectEnvironment) -> dict:
 
         out["dockerServer"] = capo_codebuild.types.docker_server.serialize_aws_json_1_1(
             value["docker_server"]
+        )
+    if "host_kernel" in value:
+        import capo_codebuild.types.host_kernel
+
+        out["hostKernel"] = capo_codebuild.types.host_kernel.serialize_aws_json_1_1(
+            value["host_kernel"]
         )
     return out
 
@@ -191,5 +200,11 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectEnvironment:
             capo_codebuild.types.docker_server.deserialize_aws_json_1_1(
                 data["dockerServer"]
             )
+        )
+    if data.get("hostKernel") is not None:
+        import capo_codebuild.types.host_kernel
+
+        out["host_kernel"] = capo_codebuild.types.host_kernel.deserialize_aws_json_1_1(
+            data["hostKernel"]
         )
     return out

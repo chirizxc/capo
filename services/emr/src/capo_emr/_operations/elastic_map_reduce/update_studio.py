@@ -17,7 +17,11 @@ import capo_emr.types.subnet_id_list
 import capo_emr.types.update_studio_input
 from capo_emr._protocol.errors import parse_error_metadata_json
 from capo_emr._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_emr._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_emr._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_emr.errors import UnknownServiceError
 
 
@@ -103,7 +107,7 @@ def update_studio(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -118,7 +122,7 @@ async def async_update_studio(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

@@ -24,6 +24,7 @@ import capo_pcs.types.create_compute_node_group_request
 import capo_pcs.types.create_compute_node_group_response
 import capo_pcs.types.custom_launch_template
 import capo_pcs.types.instance_list
+import capo_pcs.types.node_lifecycle_actions_request
 import capo_pcs.types.purchase_option
 import capo_pcs.types.request_tag_map
 import capo_pcs.types.scaling_configuration_request
@@ -31,7 +32,11 @@ import capo_pcs.types.spot_options
 import capo_pcs.types.string_list
 from capo_pcs._protocol.errors import parse_error_metadata_json
 from capo_pcs._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_pcs._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_pcs._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_pcs.errors import UnknownServiceError
 
 
@@ -158,7 +163,7 @@ def create_compute_node_group(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -176,7 +181,7 @@ async def async_create_compute_node_group(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -39,6 +39,9 @@ from capo_cleanrooms._resources.aws_bastion_control_plane_service_lambda.id_mapp
 from capo_cleanrooms._resources.aws_bastion_control_plane_service_lambda.id_namespace_association_resource import (
     IdNamespaceAssociationResource,
 )
+from capo_cleanrooms._resources.aws_bastion_control_plane_service_lambda.intermediate_table_resource import (
+    IntermediateTableResource,
+)
 from capo_cleanrooms._resources.aws_bastion_control_plane_service_lambda.membership_resource import (
     MembershipResource,
 )
@@ -60,6 +63,10 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.allowed_column_list
     import capo_cleanrooms.types.allowed_result_regions
     import capo_cleanrooms.types.analysis_format
+    import capo_cleanrooms.types.analysis_log_export_identifier
+    import capo_cleanrooms.types.analysis_log_export_result_configuration
+    import capo_cleanrooms.types.analysis_log_export_status
+    import capo_cleanrooms.types.analysis_log_export_summary
     import capo_cleanrooms.types.analysis_method
     import capo_cleanrooms.types.analysis_parameter_list
     import capo_cleanrooms.types.analysis_rule_type
@@ -123,6 +130,10 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.create_id_mapping_table_output
     import capo_cleanrooms.types.create_id_namespace_association_input
     import capo_cleanrooms.types.create_id_namespace_association_output
+    import capo_cleanrooms.types.create_intermediate_table_analysis_rule_input
+    import capo_cleanrooms.types.create_intermediate_table_analysis_rule_output
+    import capo_cleanrooms.types.create_intermediate_table_input
+    import capo_cleanrooms.types.create_intermediate_table_output
     import capo_cleanrooms.types.create_membership_input
     import capo_cleanrooms.types.create_membership_output
     import capo_cleanrooms.types.create_privacy_budget_template_input
@@ -146,16 +157,24 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.delete_id_mapping_table_output
     import capo_cleanrooms.types.delete_id_namespace_association_input
     import capo_cleanrooms.types.delete_id_namespace_association_output
+    import capo_cleanrooms.types.delete_intermediate_table_analysis_rule_input
+    import capo_cleanrooms.types.delete_intermediate_table_analysis_rule_output
+    import capo_cleanrooms.types.delete_intermediate_table_input
+    import capo_cleanrooms.types.delete_intermediate_table_output
     import capo_cleanrooms.types.delete_member_input
     import capo_cleanrooms.types.delete_member_output
     import capo_cleanrooms.types.delete_membership_input
     import capo_cleanrooms.types.delete_membership_output
     import capo_cleanrooms.types.delete_privacy_budget_template_input
     import capo_cleanrooms.types.delete_privacy_budget_template_output
+    import capo_cleanrooms.types.disallow_intermediate_table_input
+    import capo_cleanrooms.types.disallow_intermediate_table_output
     import capo_cleanrooms.types.display_name
     import capo_cleanrooms.types.error_message_configuration
     import capo_cleanrooms.types.filterable_member_status
     import capo_cleanrooms.types.generic_resource_name
+    import capo_cleanrooms.types.get_analysis_log_export_input
+    import capo_cleanrooms.types.get_analysis_log_export_output
     import capo_cleanrooms.types.get_analysis_template_input
     import capo_cleanrooms.types.get_analysis_template_output
     import capo_cleanrooms.types.get_collaboration_analysis_template_input
@@ -184,6 +203,10 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.get_id_mapping_table_output
     import capo_cleanrooms.types.get_id_namespace_association_input
     import capo_cleanrooms.types.get_id_namespace_association_output
+    import capo_cleanrooms.types.get_intermediate_table_analysis_rule_input
+    import capo_cleanrooms.types.get_intermediate_table_analysis_rule_output
+    import capo_cleanrooms.types.get_intermediate_table_input
+    import capo_cleanrooms.types.get_intermediate_table_output
     import capo_cleanrooms.types.get_membership_input
     import capo_cleanrooms.types.get_membership_output
     import capo_cleanrooms.types.get_privacy_budget_template_input
@@ -202,8 +225,17 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.id_namespace_association_identifier
     import capo_cleanrooms.types.id_namespace_association_input_reference_config
     import capo_cleanrooms.types.id_namespace_association_summary
+    import capo_cleanrooms.types.intermediate_table_analysis_rule_policy
+    import capo_cleanrooms.types.intermediate_table_analysis_rule_type
+    import capo_cleanrooms.types.intermediate_table_column_list
+    import capo_cleanrooms.types.intermediate_table_compute_configuration
+    import capo_cleanrooms.types.intermediate_table_identifier
+    import capo_cleanrooms.types.intermediate_table_summary
+    import capo_cleanrooms.types.intermediate_table_version_summary
     import capo_cleanrooms.types.job_type
     import capo_cleanrooms.types.kms_key_arn
+    import capo_cleanrooms.types.list_analysis_log_exports_input
+    import capo_cleanrooms.types.list_analysis_log_exports_output
     import capo_cleanrooms.types.list_analysis_templates_input
     import capo_cleanrooms.types.list_analysis_templates_output
     import capo_cleanrooms.types.list_collaboration_analysis_templates_input
@@ -230,6 +262,10 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.list_id_mapping_tables_output
     import capo_cleanrooms.types.list_id_namespace_associations_input
     import capo_cleanrooms.types.list_id_namespace_associations_output
+    import capo_cleanrooms.types.list_intermediate_table_versions_input
+    import capo_cleanrooms.types.list_intermediate_table_versions_output
+    import capo_cleanrooms.types.list_intermediate_tables_input
+    import capo_cleanrooms.types.list_intermediate_tables_output
     import capo_cleanrooms.types.list_members_input
     import capo_cleanrooms.types.list_members_output
     import capo_cleanrooms.types.list_memberships_input
@@ -246,6 +282,7 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.list_schemas_output
     import capo_cleanrooms.types.list_tags_for_resource_input
     import capo_cleanrooms.types.list_tags_for_resource_output
+    import capo_cleanrooms.types.log_export_analysis_type
     import capo_cleanrooms.types.max_results
     import capo_cleanrooms.types.member_abilities
     import capo_cleanrooms.types.member_list
@@ -258,9 +295,13 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.membership_status
     import capo_cleanrooms.types.ml_member_abilities
     import capo_cleanrooms.types.pagination_token
+    import capo_cleanrooms.types.parameter_map
     import capo_cleanrooms.types.payment_configuration
     import capo_cleanrooms.types.populate_id_mapping_table_input
     import capo_cleanrooms.types.populate_id_mapping_table_output
+    import capo_cleanrooms.types.populate_intermediate_table_input
+    import capo_cleanrooms.types.populate_intermediate_table_output
+    import capo_cleanrooms.types.population_analysis_configuration
     import capo_cleanrooms.types.preview_privacy_impact_input
     import capo_cleanrooms.types.preview_privacy_impact_output
     import capo_cleanrooms.types.preview_privacy_impact_parameters_input
@@ -290,6 +331,8 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.schema_analysis_rule_request_list
     import capo_cleanrooms.types.schema_type
     import capo_cleanrooms.types.selected_analysis_methods
+    import capo_cleanrooms.types.start_analysis_log_export_input
+    import capo_cleanrooms.types.start_analysis_log_export_output
     import capo_cleanrooms.types.start_protected_job_input
     import capo_cleanrooms.types.start_protected_job_output
     import capo_cleanrooms.types.start_protected_query_input
@@ -327,6 +370,10 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.update_id_mapping_table_output
     import capo_cleanrooms.types.update_id_namespace_association_input
     import capo_cleanrooms.types.update_id_namespace_association_output
+    import capo_cleanrooms.types.update_intermediate_table_analysis_rule_input
+    import capo_cleanrooms.types.update_intermediate_table_analysis_rule_output
+    import capo_cleanrooms.types.update_intermediate_table_input
+    import capo_cleanrooms.types.update_intermediate_table_output
     import capo_cleanrooms.types.update_membership_input
     import capo_cleanrooms.types.update_membership_output
     import capo_cleanrooms.types.update_membership_payment_configuration
@@ -416,6 +463,7 @@ class CleanRoomsClient:
         self.configured_table_resource = ConfiguredTableResource(self)
         self.id_mapping_table_resource = IdMappingTableResource(self)
         self.id_namespace_association_resource = IdNamespaceAssociationResource(self)
+        self.intermediate_table_resource = IntermediateTableResource(self)
         self.membership_resource = MembershipResource(self)
         self.privacy_budget_template_resource = PrivacyBudgetTemplateResource(self)
 
@@ -893,12 +941,14 @@ class CleanRoomsClient:
         self,
         members: "capo_cleanrooms.types.member_list.MemberList",
         name: "capo_cleanrooms.types.collaboration_name.CollaborationName",
-        description: "capo_cleanrooms.types.collaboration_description.CollaborationDescription",
         creator_member_abilities: "capo_cleanrooms.types.member_abilities.MemberAbilities",
         creator_display_name: "capo_cleanrooms.types.display_name.DisplayName",
         query_log_status: "capo_cleanrooms.types.collaboration_query_log_status.CollaborationQueryLogStatus",
         *,
         config_overrides: Optional[CleanRoomsClientConfig] = None,
+        description: Optional[
+            "capo_cleanrooms.types.collaboration_description.CollaborationDescription"
+        ] = None,
         creator_ml_member_abilities: Optional[
             "capo_cleanrooms.types.ml_member_abilities.MLMemberAbilities"
         ] = None,
@@ -969,11 +1019,12 @@ class CleanRoomsClient:
         input_: capo_cleanrooms.types.create_collaboration_input.CreateCollaborationInput = {
             "members": members,
             "name": name,
-            "description": description,
             "creator_member_abilities": creator_member_abilities,
             "creator_display_name": creator_display_name,
             "query_log_status": query_log_status,
         }
+        if description is not None:
+            input_["description"] = description
         if creator_ml_member_abilities is not None:
             input_["creator_ml_member_abilities"] = creator_ml_member_abilities
         if data_encryption_metadata is not None:
@@ -3801,6 +3852,7 @@ class CleanRoomsClient:
             capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
             capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
             capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request denied because service quota has been exceeded.</p>
             capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
             capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
             capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -4527,6 +4579,707 @@ class CleanRoomsClient:
             if not _token:
                 break
 
+    def create_intermediate_table(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        name: "capo_cleanrooms.types.display_name.DisplayName",
+        population_analysis_configuration: "capo_cleanrooms.types.population_analysis_configuration.PopulationAnalysisConfiguration",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        description: Optional[
+            "capo_cleanrooms.types.resource_description.ResourceDescription"
+        ] = None,
+        kms_key_arn: Optional["capo_cleanrooms.types.kms_key_arn.KMSKeyArn"] = None,
+        retention_in_days: Optional[int] = None,
+        tags: Optional["capo_cleanrooms.types.tag_map.TagMap"] = None,
+    ) -> "capo_cleanrooms.types.create_intermediate_table_output.CreateIntermediateTableOutput":
+        """<p>Creates an intermediate table in a membership. The intermediate table is owned by the member with the CAN_QUERY ability. To populate the table with results, use <code>PopulateIntermediateTable</code>.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership where the intermediate table is created.</p>
+            name: <p>The display name for the intermediate table.</p>
+            description: <p>A description of the intermediate table.</p>
+            population_analysis_configuration: <p>The configuration that defines the analysis used to populate the intermediate table.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the customer-managed KMS key used to encrypt the intermediate table data.</p>
+            retention_in_days: <p>The number of days to retain populated data versions.</p>
+            tags: <p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request denied because service quota has been exceeded.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.create_intermediate_table_input.CreateIntermediateTableInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.create_intermediate_table_output.CreateIntermediateTableOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.create_intermediate_table
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.create_intermediate_table.create_intermediate_table(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.create_intermediate_table_input.CreateIntermediateTableInput = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "population_analysis_configuration": population_analysis_configuration,
+        }
+        if description is not None:
+            input_["description"] = description
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+        if retention_in_days is not None:
+            input_["retention_in_days"] = retention_in_days
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_intermediate_table(
+        self,
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> (
+        "capo_cleanrooms.types.get_intermediate_table_output.GetIntermediateTableOutput"
+    ):
+        """<p>Retrieves an intermediate table. Returns the full details of the intermediate table, including schema, table dependencies, inherited constraints, child resources, and status. Only the intermediate table owner can call this operation.</p>
+
+        Args:
+            intermediate_table_identifier: <p>The unique identifier of the intermediate table to retrieve.</p>
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.get_intermediate_table_input.GetIntermediateTableInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.get_intermediate_table_output.GetIntermediateTableOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_intermediate_table
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_intermediate_table.get_intermediate_table(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.get_intermediate_table_input.GetIntermediateTableInput = {
+            "intermediate_table_identifier": intermediate_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_intermediate_table(
+        self,
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        description: Optional[
+            "capo_cleanrooms.types.resource_description.ResourceDescription"
+        ] = None,
+        kms_key_arn: Optional["capo_cleanrooms.types.kms_key_arn.KMSKeyArn"] = None,
+        columns: Optional[
+            "capo_cleanrooms.types.intermediate_table_column_list.IntermediateTableColumnList"
+        ] = None,
+    ) -> "capo_cleanrooms.types.update_intermediate_table_output.UpdateIntermediateTableOutput":
+        """<p>Updates an intermediate table. You can update the description, KMS key ARN, and column types of existing columns. Only the intermediate table owner can call this operation.</p>
+
+        Args:
+            intermediate_table_identifier: <p>The unique identifier of the intermediate table to update.</p>
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table.</p>
+            description: <p>A new description for the intermediate table.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the customer-managed KMS key to use for encrypting future population data.</p>
+            columns: <p>The list of columns with updated type definitions. Only the type of existing columns can be updated.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.update_intermediate_table_input.UpdateIntermediateTableInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.update_intermediate_table_output.UpdateIntermediateTableOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.update_intermediate_table
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.update_intermediate_table.update_intermediate_table(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.update_intermediate_table_input.UpdateIntermediateTableInput = {
+            "intermediate_table_identifier": intermediate_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
+        if description is not None:
+            input_["description"] = description
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+        if columns is not None:
+            input_["columns"] = columns
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_intermediate_table(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.delete_intermediate_table_output.DeleteIntermediateTableOutput":
+        """<p>Deletes an intermediate table. The delete is idempotent. Only the intermediate table owner can call this operation.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table.</p>
+            intermediate_table_identifier: <p>The unique identifier of the intermediate table to delete.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.delete_intermediate_table_input.DeleteIntermediateTableInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.delete_intermediate_table_output.DeleteIntermediateTableOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.delete_intermediate_table
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.delete_intermediate_table.delete_intermediate_table(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.delete_intermediate_table_input.DeleteIntermediateTableInput = {
+            "membership_identifier": membership_identifier,
+            "intermediate_table_identifier": intermediate_table_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_intermediate_tables(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        next_token: Optional[
+            "capo_cleanrooms.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_cleanrooms.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanrooms.types.list_intermediate_tables_output.ListIntermediateTablesOutput":
+        """<p>Lists intermediate tables owned by the caller in a membership. We recommend using pagination to ensure that the operation returns quickly and successfully.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership for which to list intermediate tables.</p>
+            next_token: <p>The pagination token that's used to fetch the next set of results.</p>
+            max_results: <p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a <code>nextToken</code> even if the <code>maxResults</code> value has not been met.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.list_intermediate_tables_input.ListIntermediateTablesInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.list_intermediate_tables_output.ListIntermediateTablesOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_intermediate_tables
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_intermediate_tables.list_intermediate_tables(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.list_intermediate_tables_input.ListIntermediateTablesInput = {
+            "membership_identifier": membership_identifier
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_intermediate_tables(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        next_token: Optional[
+            "capo_cleanrooms.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_cleanrooms.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cleanrooms.types.intermediate_table_summary.IntermediateTableSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_intermediate_tables(
+                membership_identifier,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("intermediate_table_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_intermediate_table_analysis_rule(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        analysis_rule_type: "capo_cleanrooms.types.intermediate_table_analysis_rule_type.IntermediateTableAnalysisRuleType",
+        analysis_rule_policy: "capo_cleanrooms.types.intermediate_table_analysis_rule_policy.IntermediateTableAnalysisRulePolicy",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.create_intermediate_table_analysis_rule_output.CreateIntermediateTableAnalysisRuleOutput":
+        """<p>Creates an analysis rule for an intermediate table. Only the CUSTOM analysis rule type is supported. Only the intermediate table owner can call this operation.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table.</p>
+            intermediate_table_identifier: <p>The unique identifier of the intermediate table for which to create the analysis rule.</p>
+            analysis_rule_type: <p>The type of analysis rule to create. Currently, only <code>CUSTOM</code> is supported.</p>
+            analysis_rule_policy: <p>The analysis rule policy to apply to the intermediate table.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request denied because service quota has been exceeded.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.create_intermediate_table_analysis_rule_input.CreateIntermediateTableAnalysisRuleInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.create_intermediate_table_analysis_rule_output.CreateIntermediateTableAnalysisRuleOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.create_intermediate_table_analysis_rule
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.create_intermediate_table_analysis_rule.create_intermediate_table_analysis_rule(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.create_intermediate_table_analysis_rule_input.CreateIntermediateTableAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "intermediate_table_identifier": intermediate_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_intermediate_table_analysis_rule(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        analysis_rule_type: "capo_cleanrooms.types.intermediate_table_analysis_rule_type.IntermediateTableAnalysisRuleType",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.delete_intermediate_table_analysis_rule_output.DeleteIntermediateTableAnalysisRuleOutput":
+        """<p>Deletes an analysis rule from an intermediate table. After the analysis rule is deleted, the intermediate table becomes unqueryable until a new analysis rule is attached. Only the intermediate table owner can call this operation.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table.</p>
+            intermediate_table_identifier: <p>The unique identifier of the intermediate table from which to delete the analysis rule.</p>
+            analysis_rule_type: <p>The type of analysis rule to delete. Currently, only <code>CUSTOM</code> is supported.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.delete_intermediate_table_analysis_rule_input.DeleteIntermediateTableAnalysisRuleInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.delete_intermediate_table_analysis_rule_output.DeleteIntermediateTableAnalysisRuleOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.delete_intermediate_table_analysis_rule
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.delete_intermediate_table_analysis_rule.delete_intermediate_table_analysis_rule(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.delete_intermediate_table_analysis_rule_input.DeleteIntermediateTableAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "intermediate_table_identifier": intermediate_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_intermediate_table_analysis_rule(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        analysis_rule_type: "capo_cleanrooms.types.intermediate_table_analysis_rule_type.IntermediateTableAnalysisRuleType",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.get_intermediate_table_analysis_rule_output.GetIntermediateTableAnalysisRuleOutput":
+        """<p>Retrieves the analysis rule for an intermediate table.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table.</p>
+            intermediate_table_identifier: <p>The unique identifier of the intermediate table for which to retrieve the analysis rule.</p>
+            analysis_rule_type: <p>The type of analysis rule to retrieve. Currently, only <code>CUSTOM</code> is supported.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.get_intermediate_table_analysis_rule_input.GetIntermediateTableAnalysisRuleInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.get_intermediate_table_analysis_rule_output.GetIntermediateTableAnalysisRuleOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_intermediate_table_analysis_rule
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_intermediate_table_analysis_rule.get_intermediate_table_analysis_rule(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.get_intermediate_table_analysis_rule_input.GetIntermediateTableAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "intermediate_table_identifier": intermediate_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_intermediate_table_versions(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        next_token: Optional[
+            "capo_cleanrooms.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_cleanrooms.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanrooms.types.list_intermediate_table_versions_output.ListIntermediateTableVersionsOutput":
+        """<p>Lists the version history of an intermediate table. Each call to <code>PopulateIntermediateTable</code> creates a new version. We recommend using pagination to ensure that the operation returns quickly and successfully.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table.</p>
+            intermediate_table_identifier: <p>The unique identifier of the intermediate table for which to list versions.</p>
+            next_token: <p>The pagination token that's used to fetch the next set of results.</p>
+            max_results: <p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a <code>nextToken</code> even if the <code>maxResults</code> value has not been met.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.list_intermediate_table_versions_input.ListIntermediateTableVersionsInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.list_intermediate_table_versions_output.ListIntermediateTableVersionsOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_intermediate_table_versions
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_intermediate_table_versions.list_intermediate_table_versions(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.list_intermediate_table_versions_input.ListIntermediateTableVersionsInput = {
+            "membership_identifier": membership_identifier,
+            "intermediate_table_identifier": intermediate_table_identifier,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_intermediate_table_versions(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        next_token: Optional[
+            "capo_cleanrooms.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_cleanrooms.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cleanrooms.types.intermediate_table_version_summary.IntermediateTableVersionSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_intermediate_table_versions(
+                membership_identifier,
+                intermediate_table_identifier,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("intermediate_table_version_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def populate_intermediate_table(
+        self,
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        parameters: Optional["capo_cleanrooms.types.parameter_map.ParameterMap"] = None,
+        compute_configuration: Optional[
+            "capo_cleanrooms.types.intermediate_table_compute_configuration.IntermediateTableComputeConfiguration"
+        ] = None,
+        analysis_payer_account_id: Optional[
+            "capo_cleanrooms.types.account_id.AccountId"
+        ] = None,
+    ) -> "capo_cleanrooms.types.populate_intermediate_table_output.PopulateIntermediateTableOutput":
+        """<p>Runs the stored query of an intermediate table and makes the results available for querying. Each call creates a new version. Use <code>GetProtectedQuery</code> with the returned analysis ID to track progress. Only the intermediate table owner can call this operation.</p>
+
+        Args:
+            intermediate_table_identifier: <p>The unique identifier of the intermediate table to populate.</p>
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table.</p>
+            parameters: <p>The runtime parameter values that override the defaults in the stored query.</p>
+            compute_configuration: <p>The compute configuration for the population query execution.</p>
+            analysis_payer_account_id: <p>The account ID of the member that pays for the analysis compute costs.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request denied because service quota has been exceeded.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.populate_intermediate_table_input.PopulateIntermediateTableInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.populate_intermediate_table_output.PopulateIntermediateTableOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.populate_intermediate_table
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.populate_intermediate_table.populate_intermediate_table(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.populate_intermediate_table_input.PopulateIntermediateTableInput = {
+            "intermediate_table_identifier": intermediate_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
+        if parameters is not None:
+            input_["parameters"] = parameters
+        if compute_configuration is not None:
+            input_["compute_configuration"] = compute_configuration
+        if analysis_payer_account_id is not None:
+            input_["analysis_payer_account_id"] = analysis_payer_account_id
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_intermediate_table_analysis_rule(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_identifier: "capo_cleanrooms.types.intermediate_table_identifier.IntermediateTableIdentifier",
+        analysis_rule_type: "capo_cleanrooms.types.intermediate_table_analysis_rule_type.IntermediateTableAnalysisRuleType",
+        analysis_rule_policy: "capo_cleanrooms.types.intermediate_table_analysis_rule_policy.IntermediateTableAnalysisRulePolicy",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.update_intermediate_table_analysis_rule_output.UpdateIntermediateTableAnalysisRuleOutput":
+        """<p>Updates the analysis rule policy for an intermediate table. Only the intermediate table owner can call this operation.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table.</p>
+            intermediate_table_identifier: <p>The unique identifier of the intermediate table for which to update the analysis rule.</p>
+            analysis_rule_type: <p>The type of analysis rule to update. Currently, only <code>CUSTOM</code> is supported.</p>
+            analysis_rule_policy: <p>The updated analysis rule policy for the intermediate table.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.update_intermediate_table_analysis_rule_input.UpdateIntermediateTableAnalysisRuleInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.update_intermediate_table_analysis_rule_output.UpdateIntermediateTableAnalysisRuleOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.update_intermediate_table_analysis_rule
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.update_intermediate_table_analysis_rule.update_intermediate_table_analysis_rule(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.update_intermediate_table_analysis_rule_input.UpdateIntermediateTableAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "intermediate_table_identifier": intermediate_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_membership(
         self,
         collaboration_identifier: "capo_cleanrooms.types.collaboration_identifier.CollaborationIdentifier",
@@ -4848,6 +5601,111 @@ class CleanRoomsClient:
         response.response.close()
         return response.output
 
+    def disallow_intermediate_table(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_name: "capo_cleanrooms.types.display_name.DisplayName",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        include_descendants: Optional[bool] = None,
+    ) -> "capo_cleanrooms.types.disallow_intermediate_table_output.DisallowIntermediateTableOutput":
+        """<p>Marks an intermediate table as invalid when it references the caller's base table. The data provider (base table owner) calls this operation, not the intermediate table owner. By default, the operation also marks all descendant intermediate tables as invalid.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table to disallow.</p>
+            intermediate_table_name: <p>The name of the intermediate table to disallow.</p>
+            include_descendants: <p>Specifies whether to cascade the disallow action to descendant intermediate tables. Default is <code>true</code>.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.disallow_intermediate_table_input.DisallowIntermediateTableInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.disallow_intermediate_table_output.DisallowIntermediateTableOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.disallow_intermediate_table
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.disallow_intermediate_table.disallow_intermediate_table(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.disallow_intermediate_table_input.DisallowIntermediateTableInput = {
+            "membership_identifier": membership_identifier,
+            "intermediate_table_name": intermediate_table_name,
+        }
+        if include_descendants is not None:
+            input_["include_descendants"] = include_descendants
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_analysis_log_export(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        analysis_log_export_identifier: "capo_cleanrooms.types.analysis_log_export_identifier.AnalysisLogExportIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.get_analysis_log_export_output.GetAnalysisLogExportOutput":
+        """<p>Returns information about an analysis log export, including its current status and, if the export failed, the reason for the failure.</p> <p>Poll this operation until the <code>status</code> is <code>SUCCESS</code> or <code>FAILED</code>. An export can't be canceled after it starts.</p>
+
+        Args:
+            membership_identifier: <p>A unique identifier for the membership that the analysis log export belongs to. Currently accepts the membership ID.</p>
+            analysis_log_export_identifier: <p>The unique identifier of the analysis log export to retrieve.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.get_analysis_log_export_input.GetAnalysisLogExportInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.get_analysis_log_export_output.GetAnalysisLogExportOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_analysis_log_export
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_analysis_log_export.get_analysis_log_export(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.get_analysis_log_export_input.GetAnalysisLogExportInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_log_export_identifier": analysis_log_export_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def get_protected_job(
         self,
         membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
@@ -4947,6 +5805,104 @@ class CleanRoomsClient:
         )
         response.response.close()
         return response.output
+
+    def list_analysis_log_exports(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        analysis_identifier: Optional["capo_cleanrooms.types.uuid.UUID"] = None,
+        status: Optional[
+            "capo_cleanrooms.types.analysis_log_export_status.AnalysisLogExportStatus"
+        ] = None,
+        next_token: Optional[
+            "capo_cleanrooms.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_cleanrooms.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanrooms.types.list_analysis_log_exports_output.ListAnalysisLogExportsOutput":
+        """<p>Lists analysis log exports, sorted by the most recent export. Results are paginated. Use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            membership_identifier: <p>A unique identifier for the membership to list analysis log exports for. Currently accepts the membership ID.</p>
+            analysis_identifier: <p>A filter on the unique identifier of the protected query that the analysis logs were exported for.</p>
+            status: <p>A filter on the status of the analysis log export.</p>
+            next_token: <p>The pagination token that's used to fetch the next set of results.</p>
+            max_results: <p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a <code>nextToken</code> even if the <code>maxResults</code> value has not been met.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.list_analysis_log_exports_input.ListAnalysisLogExportsInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.list_analysis_log_exports_output.ListAnalysisLogExportsOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_analysis_log_exports
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_analysis_log_exports.list_analysis_log_exports(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.list_analysis_log_exports_input.ListAnalysisLogExportsInput = {
+            "membership_identifier": membership_identifier
+        }
+        if analysis_identifier is not None:
+            input_["analysis_identifier"] = analysis_identifier
+        if status is not None:
+            input_["status"] = status
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_analysis_log_exports(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        analysis_identifier: Optional["capo_cleanrooms.types.uuid.UUID"] = None,
+        status: Optional[
+            "capo_cleanrooms.types.analysis_log_export_status.AnalysisLogExportStatus"
+        ] = None,
+        next_token: Optional[
+            "capo_cleanrooms.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_cleanrooms.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cleanrooms.types.analysis_log_export_summary.AnalysisLogExportSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_analysis_log_exports(
+                membership_identifier,
+                config_overrides=config_overrides,
+                analysis_identifier=analysis_identifier,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("analysis_log_exports",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_privacy_budgets(
         self,
@@ -5275,6 +6231,63 @@ class CleanRoomsClient:
         input_: capo_cleanrooms.types.preview_privacy_impact_input.PreviewPrivacyImpactInput = {
             "membership_identifier": membership_identifier,
             "parameters": parameters,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def start_analysis_log_export(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        analysis_id: "capo_cleanrooms.types.uuid.UUID",
+        analysis_type: "capo_cleanrooms.types.log_export_analysis_type.LogExportAnalysisType",
+        result_configuration: "capo_cleanrooms.types.analysis_log_export_result_configuration.AnalysisLogExportResultConfiguration",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.start_analysis_log_export_output.StartAnalysisLogExportOutput":
+        r"""<p>Starts an export of the Apache Spark logs for a protected query to an Amazon S3 bucket that you own. Use the exported logs to diagnose a query that failed or that ran more slowly than you expected.</p> <p>Clean Rooms exports a redacted copy of the Spark logs instead of the raw logs. Analyze the exported logs with the tooling of your choice, such as Spark History Server. For details about what the exported logs contain, see <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs-contents.html\">https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs-contents.html</a>.</p> <p>The export runs asynchronously and returns with a <code>status</code> of <code>IN_PROGRESS</code>. Call <code>GetAnalysisLogExport</code> to poll for the final status.</p> <important> <p>To use this operation, you must have the <code>CAN_EXPORT_QUERY_ANALYSIS_LOG</code> ability for your membership. You must also be the query runner or the query payer. Having the ability alone is not sufficient.</p> <p>The query must have reached a terminal state, and it must have reached the execution stage. A query that failed validation or that was canceled before it started produces no Spark logs.</p> <p>Log export isn't supported for queries that use differential privacy, and isn't supported for PySpark jobs.</p> <p>The destination bucket must be in the same Amazon Web Services Region as the collaboration. Cross-Region export isn't supported.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs.html\">https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs.html</a>.</p>
+
+        Args:
+            membership_identifier: <p>A unique identifier for the membership to export the analysis logs for. Currently accepts a membership ID.</p>
+            analysis_id: <p>The unique identifier of the protected query that you want to export the analysis logs for.</p>
+            analysis_type: <p>The type of analysis that the logs are exported for. Currently, only <code>PROTECTED_QUERY</code> is supported.</p>
+            result_configuration: <p>The details needed to write the exported analysis logs.</p> <p>You don't need to create an IAM role for log export. Clean Rooms writes the exported logs using your own identity, so Clean Rooms writes the exported logs only where your existing permissions allow.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request denied because service quota has been exceeded.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.start_analysis_log_export_input.StartAnalysisLogExportInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.start_analysis_log_export_output.StartAnalysisLogExportOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.start_analysis_log_export
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.start_analysis_log_export.start_analysis_log_export(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.start_analysis_log_export_input.StartAnalysisLogExportInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_id": analysis_id,
+            "analysis_type": analysis_type,
+            "result_configuration": result_configuration,
         }
 
         response = execute_pipeline(

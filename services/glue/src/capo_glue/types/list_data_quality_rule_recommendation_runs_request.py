@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_glue.types.data_quality_rule_recommendation_run_filter
     import capo_glue.types.page_size
     import capo_glue.types.pagination_token
+    import capo_glue.types.tags_map
 
 
 class ListDataQualityRuleRecommendationRunsRequest(TypedDict, closed=True):
@@ -19,6 +20,8 @@ class ListDataQualityRuleRecommendationRunsRequest(TypedDict, closed=True):
     """<p>A paginated token to offset the results.</p>"""
     max_results: NotRequired["capo_glue.types.page_size.PageSize"]
     """<p>The maximum number of results to return.</p>"""
+    tags: NotRequired["capo_glue.types.tags_map.TagsMap"]
+    """<p>A list of key-value pair tags to filter recommendation runs.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -36,6 +39,10 @@ def serialize_aws_json_1_1(value: ListDataQualityRuleRecommendationRunsRequest) 
         out["NextToken"] = value["next_token"]
     if "max_results" in value:
         out["MaxResults"] = value["max_results"]
+    if "tags" in value:
+        import capo_glue.types.tags_map
+
+        out["Tags"] = capo_glue.types.tags_map.serialize_aws_json_1_1(value["tags"])
     return out
 
 
@@ -55,4 +62,8 @@ def deserialize_aws_json_1_1(
         out["next_token"] = data["NextToken"]
     if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
+    if data.get("Tags") is not None:
+        import capo_glue.types.tags_map
+
+        out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])
     return out

@@ -19,6 +19,21 @@ async def main():
         print(response["verification_type"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_partnercentral_account import AsyncPartnerCentralAccountClient
+
+
+async def main():
+    async with AsyncPartnerCentralAccountClient() as partner_central_account:
+        # Example: paginate over list_connection_invitations
+        async for item in partner_central_account.iter_list_connection_invitations():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

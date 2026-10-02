@@ -12,6 +12,7 @@ from capo_partnercentral_selling._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_partnercentral_selling.types.aws_marketplace_solution_arn_list
     import capo_partnercentral_selling.types.catalog_identifier
     import capo_partnercentral_selling.types.filter_status
     import capo_partnercentral_selling.types.list_solutions_request
@@ -56,6 +57,9 @@ class Solution:
         category: Optional[
             "capo_partnercentral_selling.types.string_list.StringList"
         ] = None,
+        aws_marketplace_solution_arn: Optional[
+            "capo_partnercentral_selling.types.aws_marketplace_solution_arn_list.AwsMarketplaceSolutionArnList"
+        ] = None,
     ) -> "capo_partnercentral_selling.types.list_solutions_response.ListSolutionsResponse":
         """<p>Retrieves a list of Partner Solutions that the partner registered on Partner Central. This API is used to generate a list of solutions that an end user selects from for association with an opportunity.</p>
 
@@ -67,6 +71,7 @@ class Solution:
             status: <p>Filters solutions based on their status. This filter helps partners manage their solution portfolios effectively.</p>
             identifier: <p>Filters the solutions based on their unique identifier. Use this filter to retrieve specific solutions by providing the solution's identifier for accurate results.</p>
             category: <p>Filters the solutions based on the category to which they belong. This allows partners to search for solutions within specific categories, such as <code>Software</code>, <code>Consulting</code>, or <code>Managed Services</code>.</p>
+            aws_marketplace_solution_arn: <p>Filters results by AWS Marketplace solution ARN. You can provide up to 10 ARNs.</p>
 
         Raises:
             capo_partnercentral_selling.errors.access_denied_exception.AccessDeniedException: <p>This error occurs when you don't have permission to perform the requested action.</p> <p>You don’t have access to this action or resource. Review IAM policies or contact your AWS administrator for assistance.</p>
@@ -107,6 +112,8 @@ class Solution:
             input_["identifier"] = identifier
         if category is not None:
             input_["category"] = category
+        if aws_marketplace_solution_arn is not None:
+            input_["aws_marketplace_solution_arn"] = aws_marketplace_solution_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -142,6 +149,9 @@ class AsyncSolution:
         category: Optional[
             "capo_partnercentral_selling.types.string_list.StringList"
         ] = None,
+        aws_marketplace_solution_arn: Optional[
+            "capo_partnercentral_selling.types.aws_marketplace_solution_arn_list.AwsMarketplaceSolutionArnList"
+        ] = None,
     ) -> "capo_partnercentral_selling.types.list_solutions_response.ListSolutionsResponse":
         """<p>Retrieves a list of Partner Solutions that the partner registered on Partner Central. This API is used to generate a list of solutions that an end user selects from for association with an opportunity.</p>
 
@@ -153,6 +163,7 @@ class AsyncSolution:
             status: <p>Filters solutions based on their status. This filter helps partners manage their solution portfolios effectively.</p>
             identifier: <p>Filters the solutions based on their unique identifier. Use this filter to retrieve specific solutions by providing the solution's identifier for accurate results.</p>
             category: <p>Filters the solutions based on the category to which they belong. This allows partners to search for solutions within specific categories, such as <code>Software</code>, <code>Consulting</code>, or <code>Managed Services</code>.</p>
+            aws_marketplace_solution_arn: <p>Filters results by AWS Marketplace solution ARN. You can provide up to 10 ARNs.</p>
 
         Raises:
             capo_partnercentral_selling.errors.access_denied_exception.AccessDeniedException: <p>This error occurs when you don't have permission to perform the requested action.</p> <p>You don’t have access to this action or resource. Review IAM policies or contact your AWS administrator for assistance.</p>
@@ -194,6 +205,8 @@ class AsyncSolution:
             input_["identifier"] = identifier
         if category is not None:
             input_["category"] = category
+        if aws_marketplace_solution_arn is not None:
+            input_["aws_marketplace_solution_arn"] = aws_marketplace_solution_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

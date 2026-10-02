@@ -5,14 +5,16 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_quicksight.types.limited_string
-    import capo_quicksight.types.string_list
+    import capo_quicksight.types.sensitive_string_list
+    import capo_quicksight.types.synonym_string
 
 
 class CellValueSynonym(TypedDict, closed=True):
-    cell_value: NotRequired["capo_quicksight.types.limited_string.LimitedString"]
+    cell_value: NotRequired["capo_quicksight.types.synonym_string.SynonymString"]
     """<p>The cell value.</p>"""
-    synonyms: NotRequired["capo_quicksight.types.string_list.StringList"]
+    synonyms: NotRequired[
+        "capo_quicksight.types.sensitive_string_list.SensitiveStringList"
+    ]
     """<p>Other names or aliases for the cell value.</p>"""
 
 
@@ -22,9 +24,9 @@ def serialize_json(value: CellValueSynonym) -> dict:
     if "cell_value" in value:
         out["CellValue"] = value["cell_value"]
     if "synonyms" in value:
-        import capo_quicksight.types.string_list
+        import capo_quicksight.types.sensitive_string_list
 
-        out["Synonyms"] = capo_quicksight.types.string_list.serialize_json(
+        out["Synonyms"] = capo_quicksight.types.sensitive_string_list.serialize_json(
             value["synonyms"]
         )
     return out
@@ -35,9 +37,9 @@ def deserialize_json(data: dict) -> CellValueSynonym:
     if data.get("CellValue") is not None:
         out["cell_value"] = data["CellValue"]
     if data.get("Synonyms") is not None:
-        import capo_quicksight.types.string_list
+        import capo_quicksight.types.sensitive_string_list
 
-        out["synonyms"] = capo_quicksight.types.string_list.deserialize_json(
+        out["synonyms"] = capo_quicksight.types.sensitive_string_list.deserialize_json(
             data["Synonyms"]
         )
     return out

@@ -47,7 +47,7 @@ class GetWhatsAppFlowOutput(TypedDict, closed=True):
     endpoint_uri: NotRequired[
         "capo_socialmessaging.types.meta_flow_endpoint_uri.MetaFlowEndpointUri"
     ]
-    """<p>The endpoint URI for data exchange Flows, if configured.</p>"""
+    """<p>The HTTPS endpoint that Meta calls for a data exchange Flow.</p>"""
     preview: NotRequired[
         "capo_socialmessaging.types.meta_flow_preview_info.MetaFlowPreviewInfo"
     ]

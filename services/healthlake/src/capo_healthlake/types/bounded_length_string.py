@@ -2,4 +2,5 @@
 
 from typing import TypeAlias
 
+"""A bounded-length string value."""
 BoundedLengthString: TypeAlias = str

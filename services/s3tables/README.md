@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_s3tables import AsyncS3TablesClient
+
+
+async def main():
+    async with AsyncS3TablesClient() as s3_tables:
+        # Example: paginate over list_namespaces
+        async for item in s3_tables.iter_list_namespaces():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

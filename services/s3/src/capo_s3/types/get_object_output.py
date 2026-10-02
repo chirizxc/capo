@@ -32,6 +32,9 @@ if TYPE_CHECKING:
     import capo_s3.types.last_modified
     import capo_s3.types.metadata
     import capo_s3.types.missing_meta
+    import capo_s3.types.object_lock_event_hold
+    import capo_s3.types.object_lock_event_hold_duration_days
+    import capo_s3.types.object_lock_event_hold_duration_years
     import capo_s3.types.object_lock_legal_hold_status
     import capo_s3.types.object_lock_mode
     import capo_s3.types.object_lock_retain_until_date
@@ -68,7 +71,7 @@ class GetObjectOutput(TypedDict, closed=True):
     e_tag: NotRequired["capo_s3.types.e_tag.ETag"]
     """<p>An entity tag (ETag) is an opaque identifier assigned by a web server to a specific version of a resource found at a URL.</p>"""
     checksum_crc32: NotRequired["capo_s3.types.checksum_crc32.ChecksumCRC32"]
-    r"""<p>The Base64 encoded, 32-bit <code>CRC32</code> checksum of the object. This checksum is only present if the object was uploaded with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"""
+    r"""<p>The Base64 encoded, 32-bit <code>CRC32</code> checksum of the object. This checksum is only present if the checksum was uploaded with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"""
     checksum_crc32_c: NotRequired["capo_s3.types.checksum_crc32_c.ChecksumCRC32C"]
     r"""<p>The Base64 encoded, 32-bit <code>CRC32C</code> checksum of the object. This checksum is only present if the checksum was uploaded with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"""
     checksum_crc64_nvme: NotRequired[
@@ -156,3 +159,15 @@ class GetObjectOutput(TypedDict, closed=True):
         "capo_s3.types.object_lock_legal_hold_status.ObjectLockLegalHoldStatus"
     ]
     """<p>Indicates whether this object has an active legal hold. This field is only returned if you have permission to view an object's legal hold status. </p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
+    object_lock_event_hold: NotRequired[
+        "capo_s3.types.object_lock_event_hold.ObjectLockEventHold"
+    ]
+    """<p>The event hold status for this object. This header is only returned if the requester has the <code>s3:GetObjectRetention</code> permission.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
+    object_lock_event_hold_duration_days: NotRequired[
+        "capo_s3.types.object_lock_event_hold_duration_days.ObjectLockEventHoldDurationDays"
+    ]
+    """<p>The event hold duration in days for this object. Only returned when the event hold is enabled.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""
+    object_lock_event_hold_duration_years: NotRequired[
+        "capo_s3.types.object_lock_event_hold_duration_years.ObjectLockEventHoldDurationYears"
+    ]
+    """<p>The event hold duration in years for this object. Only returned when the event hold is enabled.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>"""

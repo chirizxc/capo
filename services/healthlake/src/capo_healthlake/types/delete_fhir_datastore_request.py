@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class DeleteFHIRDatastoreRequest(TypedDict, closed=True):
     datastore_id: "capo_healthlake.types.datastore_id.DatastoreId"
-    """<p> The AWS-generated identifier for the data store to be deleted.</p>"""
+    """<p> The Amazon Web Services-generated identifier for the data store to be deleted.</p>"""
 
 
 # --- awsJson1_0 ser/de ---

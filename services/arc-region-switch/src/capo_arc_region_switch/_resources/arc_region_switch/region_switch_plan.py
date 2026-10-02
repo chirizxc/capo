@@ -77,6 +77,7 @@ class RegionSwitchPlan:
         report_configuration: Optional[
             "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
         ] = None,
+        service_quota_checks_enabled: Optional[bool] = None,
         primary_region: Optional["capo_arc_region_switch.types.region.Region"] = None,
         tags: Optional["capo_arc_region_switch.types.tags.Tags"] = None,
     ) -> "capo_arc_region_switch.types.create_plan_response.CreatePlanResponse":
@@ -89,6 +90,7 @@ class RegionSwitchPlan:
             recovery_time_objective_minutes: <p>Optionally, you can specify an recovery time objective for a Region switch plan, in minutes.</p>
             associated_alarms: <p>The alarms associated with a Region switch plan.</p>
             triggers: <p>The triggers associated with a Region switch plan.</p>
+            service_quota_checks_enabled: <p>Specifies whether to enable service quota checks for the Region switch plan.</p>
             name: <p>The name of a Region switch plan.</p>
             regions: <p>An array that specifies the Amazon Web Services Regions for a Region switch plan. Specify two Regions.</p>
             recovery_approach: <p>The recovery approach for a Region switch plan, which can be active/active (activeActive) or active/passive (activePassive).</p>
@@ -131,6 +133,8 @@ class RegionSwitchPlan:
             input_["triggers"] = triggers
         if report_configuration is not None:
             input_["report_configuration"] = report_configuration
+        if service_quota_checks_enabled is not None:
+            input_["service_quota_checks_enabled"] = service_quota_checks_enabled
         if primary_region is not None:
             input_["primary_region"] = primary_region
         if tags is not None:
@@ -205,6 +209,7 @@ class RegionSwitchPlan:
         report_configuration: Optional[
             "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
         ] = None,
+        service_quota_checks_enabled: Optional[bool] = None,
     ) -> "capo_arc_region_switch.types.update_plan_response.UpdatePlanResponse":
         """<p>Updates an existing Region switch plan. You can modify the plan's description, workflows, execution role, recovery time objective, associated alarms, and triggers.</p>
 
@@ -217,6 +222,7 @@ class RegionSwitchPlan:
             associated_alarms: <p>The updated CloudWatch alarms associated with the plan.</p>
             triggers: <p>The updated conditions that can automatically trigger the execution of the plan.</p>
             report_configuration: <p>The updated report configuration for the plan.</p>
+            service_quota_checks_enabled: <p>Specifies whether service quota checks are enabled for the Region switch plan.</p>
 
         Raises:
             capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
@@ -253,6 +259,8 @@ class RegionSwitchPlan:
             input_["triggers"] = triggers
         if report_configuration is not None:
             input_["report_configuration"] = report_configuration
+        if service_quota_checks_enabled is not None:
+            input_["service_quota_checks_enabled"] = service_quota_checks_enabled
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -519,6 +527,7 @@ class AsyncRegionSwitchPlan:
         report_configuration: Optional[
             "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
         ] = None,
+        service_quota_checks_enabled: Optional[bool] = None,
         primary_region: Optional["capo_arc_region_switch.types.region.Region"] = None,
         tags: Optional["capo_arc_region_switch.types.tags.Tags"] = None,
     ) -> "capo_arc_region_switch.types.create_plan_response.CreatePlanResponse":
@@ -531,6 +540,7 @@ class AsyncRegionSwitchPlan:
             recovery_time_objective_minutes: <p>Optionally, you can specify an recovery time objective for a Region switch plan, in minutes.</p>
             associated_alarms: <p>The alarms associated with a Region switch plan.</p>
             triggers: <p>The triggers associated with a Region switch plan.</p>
+            service_quota_checks_enabled: <p>Specifies whether to enable service quota checks for the Region switch plan.</p>
             name: <p>The name of a Region switch plan.</p>
             regions: <p>An array that specifies the Amazon Web Services Regions for a Region switch plan. Specify two Regions.</p>
             recovery_approach: <p>The recovery approach for a Region switch plan, which can be active/active (activeActive) or active/passive (activePassive).</p>
@@ -574,6 +584,8 @@ class AsyncRegionSwitchPlan:
             input_["triggers"] = triggers
         if report_configuration is not None:
             input_["report_configuration"] = report_configuration
+        if service_quota_checks_enabled is not None:
+            input_["service_quota_checks_enabled"] = service_quota_checks_enabled
         if primary_region is not None:
             input_["primary_region"] = primary_region
         if tags is not None:
@@ -649,6 +661,7 @@ class AsyncRegionSwitchPlan:
         report_configuration: Optional[
             "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
         ] = None,
+        service_quota_checks_enabled: Optional[bool] = None,
     ) -> "capo_arc_region_switch.types.update_plan_response.UpdatePlanResponse":
         """<p>Updates an existing Region switch plan. You can modify the plan's description, workflows, execution role, recovery time objective, associated alarms, and triggers.</p>
 
@@ -661,6 +674,7 @@ class AsyncRegionSwitchPlan:
             associated_alarms: <p>The updated CloudWatch alarms associated with the plan.</p>
             triggers: <p>The updated conditions that can automatically trigger the execution of the plan.</p>
             report_configuration: <p>The updated report configuration for the plan.</p>
+            service_quota_checks_enabled: <p>Specifies whether service quota checks are enabled for the Region switch plan.</p>
 
         Raises:
             capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
@@ -698,6 +712,8 @@ class AsyncRegionSwitchPlan:
             input_["triggers"] = triggers
         if report_configuration is not None:
             input_["report_configuration"] = report_configuration
+        if service_quota_checks_enabled is not None:
+            input_["service_quota_checks_enabled"] = service_quota_checks_enabled
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

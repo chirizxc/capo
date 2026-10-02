@@ -6,15 +6,14 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_appconfig.types.description
-    import capo_appconfig.types.id
     import capo_appconfig.types.monitor_list
     import capo_appconfig.types.name
 
 
 class UpdateEnvironmentRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
-    environment_id: "capo_appconfig.types.id.Id"
+    environment_id: "capo_appconfig.types.name.Name"
     """<p>The environment ID.</p>"""
     name: NotRequired["capo_appconfig.types.name.Name"]
     """<p>The name of the environment.</p>"""

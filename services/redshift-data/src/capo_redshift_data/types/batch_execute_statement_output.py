@@ -7,9 +7,12 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import datetime
 
+    import capo_redshift_data.types.boxed_boolean
+    import capo_redshift_data.types.boxed_long
     import capo_redshift_data.types.cluster_identifier_string
     import capo_redshift_data.types.db_group_list
     import capo_redshift_data.types.secret_arn
+    import capo_redshift_data.types.statement_status_string
     import capo_redshift_data.types.string
     import capo_redshift_data.types.uuid
     import capo_redshift_data.types.workgroup_name_string
@@ -38,6 +41,14 @@ class BatchExecuteStatementOutput(TypedDict, closed=True):
     """<p>The serverless workgroup name or Amazon Resource Name (ARN). This element is not returned when connecting to a provisioned cluster.</p>"""
     session_id: NotRequired["capo_redshift_data.types.uuid.UUID"]
     """<p>The session identifier of the query.</p>"""
+    status: NotRequired[
+        "capo_redshift_data.types.statement_status_string.StatementStatusString"
+    ]
+    """<p>The status of the SQL statement. Status values are defined as follows: </p> <ul> <li> <p>ABORTED - The query run was stopped by the user. </p> </li> <li> <p>FAILED - The query run failed. </p> </li> <li> <p>FINISHED - The query has finished running. </p> </li> <li> <p>PICKED - The query has been chosen to be run. </p> </li> <li> <p>STARTED - The query run has started. </p> </li> <li> <p>SUBMITTED - The query was submitted, but not yet processed. </p> </li> </ul>"""
+    redshift_pid: NotRequired["capo_redshift_data.types.boxed_long.BoxedLong"]
+    """<p>The process identifier from Amazon Redshift. </p>"""
+    has_result_set: NotRequired["capo_redshift_data.types.boxed_boolean.BoxedBoolean"]
+    """<p>A value that indicates whether the statement has a result set. The result set can be empty. The value is true for an empty result set. The value is true if any substatement returns a result set.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -71,6 +82,12 @@ def serialize_aws_json_1_1(value: BatchExecuteStatementOutput) -> dict:
         out["WorkgroupName"] = value["workgroup_name"]
     if "session_id" in value:
         out["SessionId"] = value["session_id"]
+    if "status" in value:
+        out["Status"] = value["status"]
+    if "redshift_pid" in value:
+        out["RedshiftPid"] = value["redshift_pid"]
+    if "has_result_set" in value:
+        out["HasResultSet"] = value["has_result_set"]
     return out
 
 
@@ -106,4 +123,10 @@ def deserialize_aws_json_1_1(data: dict) -> BatchExecuteStatementOutput:
         out["workgroup_name"] = data["WorkgroupName"]
     if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
+    if data.get("Status") is not None:
+        out["status"] = data["Status"]
+    if data.get("RedshiftPid") is not None:
+        out["redshift_pid"] = data["RedshiftPid"]
+    if data.get("HasResultSet") is not None:
+        out["has_result_set"] = data["HasResultSet"]
     return out

@@ -2,23 +2,28 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_emr_containers.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_emr_containers.types.kms_key_arn
     import capo_emr_containers.types.uri_string
 
 
 class S3MonitoringConfiguration(TypedDict, closed=True):
     log_uri: "capo_emr_containers.types.uri_string.UriString"
     """<p>Amazon S3 destination URI for log publishing.</p>"""
+    encryption_key_arn: NotRequired["capo_emr_containers.types.kms_key_arn.KmsKeyArn"]
+    """<p>The Amazon Resource Name (ARN) of the encryption key for logs.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: S3MonitoringConfiguration) -> dict:
     out: dict = {}
     out["logUri"] = value["log_uri"]
+    if "encryption_key_arn" in value:
+        out["encryptionKeyArn"] = value["encryption_key_arn"]
     return out
 
 
@@ -28,4 +33,6 @@ def deserialize_json(data: dict) -> S3MonitoringConfiguration:
         out["log_uri"] = data["logUri"]
     else:
         raise DeserializationError("S3MonitoringConfiguration.log_uri required")
+    if data.get("encryptionKeyArn") is not None:
+        out["encryption_key_arn"] = data["encryptionKeyArn"]
     return out

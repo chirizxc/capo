@@ -31,6 +31,10 @@ from capo_backup._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_backup.types.access_point_arn
+    import capo_backup.types.access_point_metadata_map
+    import capo_backup.types.access_point_name
+    import capo_backup.types.access_point_policy
     import capo_backup.types.account_id
     import capo_backup.types.aggregation_period
     import capo_backup.types.arn
@@ -54,6 +58,8 @@ if TYPE_CHECKING:
     import capo_backup.types.copy_job
     import capo_backup.types.copy_job_state
     import capo_backup.types.copy_job_status
+    import capo_backup.types.create_backup_access_point_request
+    import capo_backup.types.create_backup_access_point_response
     import capo_backup.types.create_backup_plan_input
     import capo_backup.types.create_backup_plan_output
     import capo_backup.types.create_backup_selection_input
@@ -77,6 +83,7 @@ if TYPE_CHECKING:
     import capo_backup.types.create_tiering_configuration_input
     import capo_backup.types.create_tiering_configuration_output
     import capo_backup.types.creator_request_id
+    import capo_backup.types.delete_backup_access_point_input
     import capo_backup.types.delete_backup_plan_input
     import capo_backup.types.delete_backup_plan_output
     import capo_backup.types.delete_backup_selection_input
@@ -91,6 +98,8 @@ if TYPE_CHECKING:
     import capo_backup.types.delete_restore_testing_selection_input
     import capo_backup.types.delete_tiering_configuration_input
     import capo_backup.types.delete_tiering_configuration_output
+    import capo_backup.types.describe_backup_access_point_input
+    import capo_backup.types.describe_backup_access_point_response
     import capo_backup.types.describe_backup_job_input
     import capo_backup.types.describe_backup_job_output
     import capo_backup.types.describe_backup_vault_input
@@ -162,6 +171,16 @@ if TYPE_CHECKING:
     import capo_backup.types.indexed_recovery_point
     import capo_backup.types.legal_hold
     import capo_backup.types.lifecycle
+    import capo_backup.types.list_access_points_member
+    import capo_backup.types.list_backup_access_points_by_recovery_point_request
+    import capo_backup.types.list_backup_access_points_by_recovery_point_request_max_results_integer
+    import capo_backup.types.list_backup_access_points_by_recovery_point_response
+    import capo_backup.types.list_backup_access_points_by_resource_request
+    import capo_backup.types.list_backup_access_points_by_resource_request_max_results_integer
+    import capo_backup.types.list_backup_access_points_by_resource_response
+    import capo_backup.types.list_backup_access_points_request
+    import capo_backup.types.list_backup_access_points_request_max_results_integer
+    import capo_backup.types.list_backup_access_points_response
     import capo_backup.types.list_backup_job_summaries_input
     import capo_backup.types.list_backup_job_summaries_output
     import capo_backup.types.list_backup_jobs_input
@@ -235,6 +254,7 @@ if TYPE_CHECKING:
     import capo_backup.types.put_backup_vault_lock_configuration_input
     import capo_backup.types.put_backup_vault_notifications_input
     import capo_backup.types.put_restore_validation_result_input
+    import capo_backup.types.recovery_point_arn
     import capo_backup.types.recovery_point_by_backup_vault
     import capo_backup.types.recovery_point_by_resource
     import capo_backup.types.recovery_point_member
@@ -245,6 +265,7 @@ if TYPE_CHECKING:
     import capo_backup.types.report_plan_name
     import capo_backup.types.report_setting
     import capo_backup.types.requester_comment
+    import capo_backup.types.resource_arn
     import capo_backup.types.resource_type
     import capo_backup.types.resource_type_management_preference
     import capo_backup.types.resource_type_opt_in_preference
@@ -283,6 +304,7 @@ if TYPE_CHECKING:
     import capo_backup.types.string
     import capo_backup.types.string_map
     import capo_backup.types.tag_key_list
+    import capo_backup.types.tag_map
     import capo_backup.types.tag_resource_input
     import capo_backup.types.tags
     import capo_backup.types.tiering_configuration_input_for_create
@@ -507,6 +529,76 @@ class AsyncBackupClient:
         }
         if retain_record_in_days is not None:
             input_["retain_record_in_days"] = retain_record_in_days
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_backup_access_point(
+        self,
+        name: "capo_backup.types.access_point_name.AccessPointName",
+        recovery_point_arn: "capo_backup.types.recovery_point_arn.RecoveryPointArn",
+        *,
+        config_overrides: Optional[AsyncBackupClientConfig] = None,
+        access_point_metadata: Optional[
+            "capo_backup.types.access_point_metadata_map.AccessPointMetadataMap"
+        ] = None,
+        access_point_policy: Optional[
+            "capo_backup.types.access_point_policy.AccessPointPolicy"
+        ] = None,
+        tags: Optional["capo_backup.types.tag_map.TagMap"] = None,
+    ) -> "capo_backup.types.create_backup_access_point_response.CreateBackupAccessPointResponse":
+        r"""<p>Creates a backup access point for an Amazon S3 recovery point. A backup access point provides on-demand, read-only access to the backup data in a recovery point through an Amazon S3 access point, without initiating a restore.</p> <p>While a backup access point is active for a recovery point, Backup pauses lifecycle transitions and blocks deletion of that recovery point.</p>
+
+        Args:
+            access_point_metadata: <p>Metadata for the backup access point. For continuous (point-in-time) recovery points, you must include an <code>AccessPointInTime</code> timestamp (in format <code>2021-11-27T03:30:27Z</code>). The access point provides access to the content present in the backup at that specific time. You can specify any time within the continuous backup's retention period, up to the latest restorable time. For snapshot recovery points, do not include <code>AccessPointInTime</code>.</p>
+            access_point_policy: <p>An optional resource-based policy, in JSON format, to apply to the underlying Amazon S3 access point. The policy controls how backup data can be accessed through the access point. If you do not specify a policy, access is governed by the caller's IAM permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-policies.html\">Configuring IAM policies for using access points</a> in the <i>Amazon S3 User Guide</i>.</p>
+            name: <p>The name of the backup access point. This name is shared with the Amazon S3 access point namespace. It must be unique within your account and Region and cannot conflict with an existing Amazon S3 access point. For more information about access point naming, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-restrictions-limitations-naming-rules.html\">Access points naming rules, restrictions, and limitations</a> in the <i>Amazon S3 User Guide</i>.</p>
+            recovery_point_arn: <p>The Amazon Resource Name (ARN) of the recovery point for which to create the backup access point. The recovery point must be an Amazon S3 recovery point in the <code>AVAILABLE</code>, <code>STOPPED</code>, or <code>COMPLETED</code> state.</p>
+            tags: <p>The tags to assign to the backup access point.</p>
+
+        Raises:
+            capo_backup.errors.already_exists_exception.AlreadyExistsException: <p>The required resource already exists.</p>
+            capo_backup.errors.conflict_exception.ConflictException: <p>Backup can't perform the action that you requested until it finishes performing a previous action. Try again later.</p>
+            capo_backup.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>Indicates that something is wrong with a parameter's value. For example, the value is out of range.</p>
+            capo_backup.errors.invalid_request_exception.InvalidRequestException: <p>Indicates that something is wrong with the input to the request. For example, a parameter is of the wrong type.</p>
+            capo_backup.errors.limit_exceeded_exception.LimitExceededException: <p>A limit in the request has been exceeded; for example, a maximum number of items allowed in a request.</p>
+            capo_backup.errors.missing_parameter_value_exception.MissingParameterValueException: <p>Indicates that a required parameter is missing.</p>
+            capo_backup.errors.resource_not_found_exception.ResourceNotFoundException: <p>A resource that is required for the action doesn't exist.</p>
+            capo_backup.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request failed due to a temporary failure of the server.</p>
+            capo_backup.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_backup.types.create_backup_access_point_request.CreateBackupAccessPointRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_backup.types.create_backup_access_point_response.CreateBackupAccessPointResponse"
+        ]:
+            import capo_backup._operations.cryo_controller_user_manager.create_backup_access_point
+
+            (
+                output,
+                http_response,
+            ) = await capo_backup._operations.cryo_controller_user_manager.create_backup_access_point.async_create_backup_access_point(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_backup.types.create_backup_access_point_request.CreateBackupAccessPointRequest = {
+            "name": name,
+            "recovery_point_arn": recovery_point_arn,
+        }
+        if access_point_metadata is not None:
+            input_["access_point_metadata"] = access_point_metadata
+        if access_point_policy is not None:
+            input_["access_point_policy"] = access_point_policy
+        if tags is not None:
+            input_["tags"] = tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1204,6 +1296,52 @@ class AsyncBackupClient:
         await response.response.aclose()
         return response.output
 
+    async def delete_backup_access_point(
+        self,
+        access_point_arn: "capo_backup.types.access_point_arn.AccessPointArn",
+        *,
+        config_overrides: Optional[AsyncBackupClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a backup access point. This deletes the underlying Amazon S3 access point and, if no other backup access points remain for the recovery point, resumes lifecycle transitions for that recovery point.</p> <p>Always delete backup access points using this operation rather than deleting the underlying Amazon S3 access point directly.</p>
+
+        Args:
+            access_point_arn: <p>The Amazon Resource Name (ARN) of the backup access point to delete.</p>
+
+        Raises:
+            capo_backup.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>Indicates that something is wrong with a parameter's value. For example, the value is out of range.</p>
+            capo_backup.errors.invalid_request_exception.InvalidRequestException: <p>Indicates that something is wrong with the input to the request. For example, a parameter is of the wrong type.</p>
+            capo_backup.errors.missing_parameter_value_exception.MissingParameterValueException: <p>Indicates that a required parameter is missing.</p>
+            capo_backup.errors.resource_not_found_exception.ResourceNotFoundException: <p>A resource that is required for the action doesn't exist.</p>
+            capo_backup.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request failed due to a temporary failure of the server.</p>
+            capo_backup.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_backup.types.delete_backup_access_point_input.DeleteBackupAccessPointInput]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_backup._operations.cryo_controller_user_manager.delete_backup_access_point
+
+            (
+                output,
+                http_response,
+            ) = await capo_backup._operations.cryo_controller_user_manager.delete_backup_access_point.async_delete_backup_access_point(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_backup.types.delete_backup_access_point_input.DeleteBackupAccessPointInput = {
+            "access_point_arn": access_point_arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_backup_plan(
         self,
         backup_plan_id: "capo_backup.types.string.string",
@@ -1750,6 +1888,54 @@ class AsyncBackupClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_backup.types.delete_tiering_configuration_input.DeleteTieringConfigurationInput = {
             "tiering_configuration_name": tiering_configuration_name
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_backup_access_point(
+        self,
+        access_point_arn: "capo_backup.types.access_point_arn.AccessPointArn",
+        *,
+        config_overrides: Optional[AsyncBackupClientConfig] = None,
+    ) -> "capo_backup.types.describe_backup_access_point_response.DescribeBackupAccessPointResponse":
+        """<p>Returns metadata about a backup access point, including its status and the details of the underlying Amazon S3 access point.</p> <p>After a backup access point reaches the <code>AVAILABLE</code> status, use this operation to retrieve the Amazon S3 access point ARN and alias that you need to read the backup data.</p>
+
+        Args:
+            access_point_arn: <p>The Amazon Resource Name (ARN) of the backup access point to describe.</p>
+
+        Raises:
+            capo_backup.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>Indicates that something is wrong with a parameter's value. For example, the value is out of range.</p>
+            capo_backup.errors.invalid_request_exception.InvalidRequestException: <p>Indicates that something is wrong with the input to the request. For example, a parameter is of the wrong type.</p>
+            capo_backup.errors.missing_parameter_value_exception.MissingParameterValueException: <p>Indicates that a required parameter is missing.</p>
+            capo_backup.errors.resource_not_found_exception.ResourceNotFoundException: <p>A resource that is required for the action doesn't exist.</p>
+            capo_backup.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request failed due to a temporary failure of the server.</p>
+            capo_backup.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_backup.types.describe_backup_access_point_input.DescribeBackupAccessPointInput]",
+        ) -> AsyncOperationResponse[
+            "capo_backup.types.describe_backup_access_point_response.DescribeBackupAccessPointResponse"
+        ]:
+            import capo_backup._operations.cryo_controller_user_manager.describe_backup_access_point
+
+            (
+                output,
+                http_response,
+            ) = await capo_backup._operations.cryo_controller_user_manager.describe_backup_access_point.async_describe_backup_access_point(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_backup.types.describe_backup_access_point_input.DescribeBackupAccessPointInput = {
+            "access_point_arn": access_point_arn
         }
 
         response = await aexecute_pipeline(
@@ -3306,6 +3492,240 @@ class AsyncBackupClient:
         await response.response.aclose()
         return response.output
 
+    async def list_backup_access_points(
+        self,
+        *,
+        config_overrides: Optional[AsyncBackupClientConfig] = None,
+        max_results: Optional[
+            "capo_backup.types.list_backup_access_points_request_max_results_integer.ListBackupAccessPointsRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_backup.types.list_backup_access_points_response.ListBackupAccessPointsResponse":
+        """<p>Returns a list of the backup access points in your account and Region.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to be returned.</p>
+            next_token: <p>The next item following a partial list of returned items. For example, if a request is made to return <code>MaxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
+
+        Raises:
+            capo_backup.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>Indicates that something is wrong with a parameter's value. For example, the value is out of range.</p>
+            capo_backup.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request failed due to a temporary failure of the server.</p>
+            capo_backup.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_backup.types.list_backup_access_points_request.ListBackupAccessPointsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_backup.types.list_backup_access_points_response.ListBackupAccessPointsResponse"
+        ]:
+            import capo_backup._operations.cryo_controller_user_manager.list_backup_access_points
+
+            (
+                output,
+                http_response,
+            ) = await capo_backup._operations.cryo_controller_user_manager.list_backup_access_points.async_list_backup_access_points(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_backup.types.list_backup_access_points_request.ListBackupAccessPointsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_backup_access_points(
+        self,
+        *,
+        config_overrides: Optional[AsyncBackupClientConfig] = None,
+        max_results: Optional[
+            "capo_backup.types.list_backup_access_points_request_max_results_integer.ListBackupAccessPointsRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional[str] = None,
+    ) -> "AsyncIterator[capo_backup.types.list_access_points_member.ListAccessPointsMember]":
+        _token = next_token
+        while True:
+            _response = await self.list_backup_access_points(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("backup_access_points",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_backup_access_points_by_recovery_point(
+        self,
+        recovery_point_arn: "capo_backup.types.recovery_point_arn.RecoveryPointArn",
+        *,
+        config_overrides: Optional[AsyncBackupClientConfig] = None,
+        max_results: Optional[
+            "capo_backup.types.list_backup_access_points_by_recovery_point_request_max_results_integer.ListBackupAccessPointsByRecoveryPointRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_backup.types.list_backup_access_points_by_recovery_point_response.ListBackupAccessPointsByRecoveryPointResponse":
+        """<p>Returns the backup access points associated with the specified recovery point.</p> <p>If you own the recovery point and have shared it with other accounts, the response includes backup access points created by those accounts.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to be returned.</p>
+            next_token: <p>The next item following a partial list of returned items. For example, if a request is made to return <code>MaxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
+            recovery_point_arn: <p>The Amazon Resource Name (ARN) of the recovery point whose backup access points you want to list.</p>
+
+        Raises:
+            capo_backup.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>Indicates that something is wrong with a parameter's value. For example, the value is out of range.</p>
+            capo_backup.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request failed due to a temporary failure of the server.</p>
+            capo_backup.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_backup.types.list_backup_access_points_by_recovery_point_request.ListBackupAccessPointsByRecoveryPointRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_backup.types.list_backup_access_points_by_recovery_point_response.ListBackupAccessPointsByRecoveryPointResponse"
+        ]:
+            import capo_backup._operations.cryo_controller_user_manager.list_backup_access_points_by_recovery_point
+
+            (
+                output,
+                http_response,
+            ) = await capo_backup._operations.cryo_controller_user_manager.list_backup_access_points_by_recovery_point.async_list_backup_access_points_by_recovery_point(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_backup.types.list_backup_access_points_by_recovery_point_request.ListBackupAccessPointsByRecoveryPointRequest = {
+            "recovery_point_arn": recovery_point_arn
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_backup_access_points_by_recovery_point(
+        self,
+        recovery_point_arn: "capo_backup.types.recovery_point_arn.RecoveryPointArn",
+        *,
+        config_overrides: Optional[AsyncBackupClientConfig] = None,
+        max_results: Optional[
+            "capo_backup.types.list_backup_access_points_by_recovery_point_request_max_results_integer.ListBackupAccessPointsByRecoveryPointRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional[str] = None,
+    ) -> "AsyncIterator[capo_backup.types.list_access_points_member.ListAccessPointsMember]":
+        _token = next_token
+        while True:
+            _response = await self.list_backup_access_points_by_recovery_point(
+                recovery_point_arn,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("backup_access_points",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_backup_access_points_by_resource(
+        self,
+        resource_arn: "capo_backup.types.resource_arn.ResourceArn",
+        *,
+        config_overrides: Optional[AsyncBackupClientConfig] = None,
+        max_results: Optional[
+            "capo_backup.types.list_backup_access_points_by_resource_request_max_results_integer.ListBackupAccessPointsByResourceRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_backup.types.list_backup_access_points_by_resource_response.ListBackupAccessPointsByResourceResponse":
+        """<p>Returns the backup access points associated with the specified resource, such as an Amazon S3 bucket.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to be returned.</p>
+            next_token: <p>The next item following a partial list of returned items. For example, if a request is made to return <code>MaxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
+            resource_arn: <p>The Amazon Resource Name (ARN) of the resource whose backup access points you want to list.</p>
+
+        Raises:
+            capo_backup.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>Indicates that something is wrong with a parameter's value. For example, the value is out of range.</p>
+            capo_backup.errors.service_unavailable_exception.ServiceUnavailableException: <p>The request failed due to a temporary failure of the server.</p>
+            capo_backup.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_backup.types.list_backup_access_points_by_resource_request.ListBackupAccessPointsByResourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_backup.types.list_backup_access_points_by_resource_response.ListBackupAccessPointsByResourceResponse"
+        ]:
+            import capo_backup._operations.cryo_controller_user_manager.list_backup_access_points_by_resource
+
+            (
+                output,
+                http_response,
+            ) = await capo_backup._operations.cryo_controller_user_manager.list_backup_access_points_by_resource.async_list_backup_access_points_by_resource(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_backup.types.list_backup_access_points_by_resource_request.ListBackupAccessPointsByResourceRequest = {
+            "resource_arn": resource_arn
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_backup_access_points_by_resource(
+        self,
+        resource_arn: "capo_backup.types.resource_arn.ResourceArn",
+        *,
+        config_overrides: Optional[AsyncBackupClientConfig] = None,
+        max_results: Optional[
+            "capo_backup.types.list_backup_access_points_by_resource_request_max_results_integer.ListBackupAccessPointsByResourceRequestMaxResultsInteger"
+        ] = None,
+        next_token: Optional[str] = None,
+    ) -> "AsyncIterator[capo_backup.types.list_access_points_member.ListAccessPointsMember]":
+        _token = next_token
+        while True:
+            _response = await self.list_backup_access_points_by_resource(
+                resource_arn,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("backup_access_points",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_backup_jobs(
         self,
         *,
@@ -3466,7 +3886,7 @@ class AsyncBackupClient:
         max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
         next_token: Optional["capo_backup.types.string.string"] = None,
     ) -> "capo_backup.types.list_backup_job_summaries_output.ListBackupJobSummariesOutput":
-        r"""<p>This is a request for a summary of backup jobs created or running within the most recent 30 days. You can include parameters AccountID, State, ResourceType, MessageCategory, AggregationPeriod, MaxResults, or NextToken to filter results.</p> <p>This request returns a summary that contains Region, Account, State, ResourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>
+        r"""<p>This is a request for a summary of backup jobs created or running within the most recent 14 days. You can include parameters AccountID, State, ResourceType, MessageCategory, AggregationPeriod, MaxResults, or NextToken to filter results.</p> <p>This request returns a summary that contains Region, Account, State, ResourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>
 
         Args:
             account_id: <p>Returns the job count for the specified account.</p> <p>If the request is sent from a member account or an account not part of Amazon Web Services Organizations, jobs within requestor's account will be returned.</p> <p>Root, admin, and delegated administrator accounts can use the value ANY to return job counts from every account in the organization.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts from all accounts within the authenticated organization, then returns the sum.</p>
@@ -4112,7 +4532,7 @@ class AsyncBackupClient:
         max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
         next_token: Optional["capo_backup.types.string.string"] = None,
     ) -> "capo_backup.types.list_copy_job_summaries_output.ListCopyJobSummariesOutput":
-        r"""<p>This request obtains a list of copy jobs created or running within the the most recent 30 days. You can include parameters AccountID, State, ResourceType, MessageCategory, AggregationPeriod, MaxResults, or NextToken to filter results.</p> <p>This request returns a summary that contains Region, Account, State, RestourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>
+        r"""<p>This request obtains a list of copy jobs created or running within the the most recent 14 days. You can include parameters AccountID, State, ResourceType, MessageCategory, AggregationPeriod, MaxResults, or NextToken to filter results.</p> <p>This request returns a summary that contains Region, Account, State, RestourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>
 
         Args:
             account_id: <p>Returns the job count for the specified account.</p> <p>If the request is sent from a member account or an account not part of Amazon Web Services Organizations, jobs within requestor's account will be returned.</p> <p>Root, admin, and delegated administrator accounts can use the value ANY to return job counts from every account in the organization.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts from all accounts within the authenticated organization, then returns the sum.</p>
@@ -4454,7 +4874,7 @@ class AsyncBackupClient:
     ) -> (
         "capo_backup.types.list_protected_resources_output.ListProtectedResourcesOutput"
     ):
-        """<p>Returns an array of resources successfully backed up by Backup, including the time the resource was saved, an Amazon Resource Name (ARN) of the resource, and a resource type.</p>
+        r"""<p>Returns an array of resources with recovery points created by Backup (regardless of the recovery point's <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DescribeRecoveryPoint.html#Backup-DescribeRecoveryPoint-response-Status\">status</a>), including the time the resource was saved, an Amazon Resource Name (ARN) of the resource, and a resource type.</p>
 
         Args:
             next_token: <p>The next item following a partial list of returned items. For example, if a request is made to return <code>MaxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
@@ -4826,7 +5246,7 @@ class AsyncBackupClient:
             resource_arn: <p>An ARN that uniquely identifies a resource. The format of the ARN depends on the resource type.</p>
             next_token: <p>The next item following a partial list of returned items. For example, if a request is made to return <code>MaxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
             max_results: <p>The maximum number of items to be returned.</p> <note> <p>Amazon RDS requires a value of at least 20.</p> </note>
-            managed_by_aws_backup_only: <p>This attribute filters recovery points based on ownership.</p> <p>If this is set to <code>TRUE</code>, the response will contain recovery points associated with the selected resources that are managed by Backup.</p> <p>If this is set to <code>FALSE</code>, the response will contain all recovery points associated with the selected resource.</p> <p>Type: Boolean</p>
+            managed_by_aws_backup_only: <p>This attribute filters recovery points based on ownership.</p> <p>If this is set to <code>TRUE</code>, the response will contain recovery points associated with the selected resources that are managed by Backup.</p> <p>If this is set to <code>FALSE</code>, the response will contain all recovery points associated with the selected resource, except for EBS snapshots copied within the same Region and account.</p> <p>Type: Boolean</p>
 
         Raises:
             capo_backup.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>Indicates that something is wrong with a parameter's value. For example, the value is out of range.</p>
@@ -5401,7 +5821,7 @@ class AsyncBackupClient:
         max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
         next_token: Optional["capo_backup.types.string.string"] = None,
     ) -> "capo_backup.types.list_restore_job_summaries_output.ListRestoreJobSummariesOutput":
-        """<p>This request obtains a summary of restore jobs created or running within the the most recent 30 days. You can include parameters AccountID, State, ResourceType, AggregationPeriod, MaxResults, or NextToken to filter results.</p> <p>This request returns a summary that contains Region, Account, State, RestourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>
+        """<p>This request obtains a summary of restore jobs created or running within the the most recent 14 days. You can include parameters AccountID, State, ResourceType, AggregationPeriod, MaxResults, or NextToken to filter results.</p> <p>This request returns a summary that contains Region, Account, State, RestourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>
 
         Args:
             account_id: <p>Returns the job count for the specified account.</p> <p>If the request is sent from a member account or an account not part of Amazon Web Services Organizations, jobs within requestor's account will be returned.</p> <p>Root, admin, and delegated administrator accounts can use the value ANY to return job counts from every account in the organization.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts from all accounts within the authenticated organization, then returns the sum.</p>
@@ -5804,7 +6224,7 @@ class AsyncBackupClient:
         max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
         next_token: Optional["capo_backup.types.string.string"] = None,
     ) -> "capo_backup.types.list_scan_job_summaries_output.ListScanJobSummariesOutput":
-        """<p>This is a request for a summary of scan jobs created or running within the most recent 30 days.</p>
+        """<p>This is a request for a summary of scan jobs created or running within the most recent 14 days.</p>
 
         Args:
             account_id: <p>Returns the job count for the specified account.</p> <p>If the request is sent from a member account or an account not part of Amazon Web Services Organizations, jobs within requestor's account will be returned.</p> <p>Root, admin, and delegated administrator accounts can use the value <code>ANY</code> to return job counts from every account in the organization.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts from all accounts within the authenticated organization, then returns the sum.</p>

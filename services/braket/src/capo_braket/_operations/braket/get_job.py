@@ -34,7 +34,11 @@ import capo_braket.types.job_stopping_condition
 import capo_braket.types.tags_map
 from capo_braket._protocol.errors import parse_error_metadata_json
 from capo_braket._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_braket._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_braket._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_braket.errors import UnknownServiceError
 
 
@@ -150,7 +154,7 @@ def get_job(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -165,7 +169,7 @@ async def async_get_job(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

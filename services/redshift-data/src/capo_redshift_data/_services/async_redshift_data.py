@@ -43,6 +43,7 @@ if TYPE_CHECKING:
     import capo_redshift_data.types.describe_table_response
     import capo_redshift_data.types.execute_statement_input
     import capo_redshift_data.types.execute_statement_output
+    import capo_redshift_data.types.execution_mode
     import capo_redshift_data.types.field_list
     import capo_redshift_data.types.get_statement_result_request
     import capo_redshift_data.types.get_statement_result_response
@@ -52,6 +53,8 @@ if TYPE_CHECKING:
     import capo_redshift_data.types.list_databases_response
     import capo_redshift_data.types.list_schemas_request
     import capo_redshift_data.types.list_schemas_response
+    import capo_redshift_data.types.list_sessions_request
+    import capo_redshift_data.types.list_sessions_response
     import capo_redshift_data.types.list_statements_limit
     import capo_redshift_data.types.list_statements_request
     import capo_redshift_data.types.list_statements_response
@@ -62,6 +65,8 @@ if TYPE_CHECKING:
     import capo_redshift_data.types.result_format_string
     import capo_redshift_data.types.secret_arn
     import capo_redshift_data.types.session_alive_seconds
+    import capo_redshift_data.types.session_data
+    import capo_redshift_data.types.session_status_string
     import capo_redshift_data.types.sql_list
     import capo_redshift_data.types.sql_parameters_list
     import capo_redshift_data.types.statement_data
@@ -71,6 +76,7 @@ if TYPE_CHECKING:
     import capo_redshift_data.types.string
     import capo_redshift_data.types.table_member
     import capo_redshift_data.types.uuid
+    import capo_redshift_data.types.wait_time_seconds
     import capo_redshift_data.types.workgroup_name_string
 
 
@@ -198,23 +204,31 @@ class AsyncRedshiftDataClient:
             "capo_redshift_data.types.session_alive_seconds.SessionAliveSeconds"
         ] = None,
         session_id: Optional["capo_redshift_data.types.uuid.UUID"] = None,
+        execution_mode: Optional[
+            "capo_redshift_data.types.execution_mode.ExecutionMode"
+        ] = None,
+        wait_time_seconds: Optional[
+            "capo_redshift_data.types.wait_time_seconds.WaitTimeSeconds"
+        ] = None,
     ) -> "capo_redshift_data.types.batch_execute_statement_output.BatchExecuteStatementOutput":
         r"""<p>Runs one or more SQL statements, which can be data manipulation language (DML) or data definition language (DDL). Depending on the authorization method, use one of the following combinations of request parameters: </p> <ul> <li> <p>Secrets Manager - when connecting to a cluster, provide the <code>secret-arn</code> of a secret stored in Secrets Manager which has <code>username</code> and <code>password</code>. The specified secret contains credentials to connect to the <code>database</code> you specify. When you are connecting to a cluster, you also supply the database name, If you provide a cluster identifier (<code>dbClusterIdentifier</code>), it must match the cluster identifier stored in the secret. When you are connecting to a serverless workgroup, you also supply the database name.</p> </li> <li> <p>Temporary credentials - when connecting to your data warehouse, choose one of the following options:</p> <ul> <li> <p>When connecting to a serverless workgroup, specify the workgroup name and database name. The database user name is derived from the IAM identity. For example, <code>arn:iam::123456789012:user:foo</code> has the database user name <code>IAM:foo</code>. Also, permission to call the <code>redshift-serverless:GetCredentials</code> operation is required.</p> </li> <li> <p>When connecting to a cluster as an IAM identity, specify the cluster identifier and the database name. The database user name is derived from the IAM identity. For example, <code>arn:iam::123456789012:user:foo</code> has the database user name <code>IAM:foo</code>. Also, permission to call the <code>redshift:GetClusterCredentialsWithIAM</code> operation is required.</p> </li> <li> <p>When connecting to a cluster as a database user, specify the cluster identifier, the database name, and the database user name. Also, permission to call the <code>redshift:GetClusterCredentials</code> operation is required.</p> </li> </ul> </li> </ul> <p>For more information about the Amazon Redshift Data API and CLI usage examples, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html\">Using the Amazon Redshift Data API</a> in the <i>Amazon Redshift Management Guide</i>. </p>
 
         Args:
-            sqls: <p>One or more SQL statements to run. The SQL statements are run as a single transaction. They run serially in the order of the array. Subsequent SQL statements don't start until the previous statement in the array completes. If any SQL statement fails, then because they are run as one transaction, all work is rolled back.</p>
+            sqls: <p>One or more SQL statements to run. The SQL statements run serially in the order of the array. Subsequent SQL statements don't start until the previous statement in the array completes. By default, the SQL statements are run as a single transaction. If any SQL statement fails, all work is rolled back. To change this behavior, see the <code>ExecutionMode</code> parameter.</p>
             cluster_identifier: <p>The cluster identifier. This parameter is required when connecting to a cluster and authenticating using either Secrets Manager or temporary credentials. </p>
             secret_arn: <p>The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using Secrets Manager. </p>
             db_user: <p>The database user name. This parameter is required when connecting to a cluster as a database user and authenticating using temporary credentials. </p>
             database: <p>The name of the database. This parameter is required when authenticating using either Secrets Manager or temporary credentials. </p>
             with_event: <p>A value that indicates whether to send an event to the Amazon EventBridge event bus after the SQL statements run. </p>
             statement_name: <p>The name of the SQL statements. You can name the SQL statements when you create them to identify the query. </p>
-            parameters: <p>The parameters for the SQL statements. The parameters are shared across all SQL statements in the batch.</p>
+            parameters: <p>The parameters for the SQL statements. The parameters are available to all SQL statements in the batch. Each statement can reference any subset of the provided parameters. Each provided parameter must be referenced by at least one SQL statement in the batch.</p>
             workgroup_name: <p>The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
             result_format: <p>The data format of the result of the SQL statement. If no format is specified, the default is JSON.</p>
             session_keep_alive_seconds: <p>The number of seconds to keep the session alive after the query finishes. The maximum time a session can keep alive is 24 hours. After 24 hours, the session is forced closed and the query is terminated.</p>
             session_id: <p>The session identifier of the query.</p>
+            execution_mode: <p>Determines how the SQL statements in the batch are run. If set to <code>TRANSACTION</code> (the default), all SQL statements are run as a single transaction and they are committed or rolled back together. If set to <code>AUTO_COMMIT</code>, each SQL statement is committed individually, and a failure of one statement does not affect the others.</p>
+            wait_time_seconds: <p>The number of seconds to wait for all SQL statements in the batch to complete execution before returning the response. If the SQL statements do not complete within the specified time, the response returns the current status. The maximum value is 30 seconds.</p>
 
         Raises:
             capo_redshift_data.errors.active_sessions_exceeded_exception.ActiveSessionsExceededException: <p>The Amazon Redshift Data API operation failed because the maximum number of active sessions exceeded.</p>
@@ -270,6 +284,10 @@ class AsyncRedshiftDataClient:
             input_["session_keep_alive_seconds"] = session_keep_alive_seconds
         if session_id is not None:
             input_["session_id"] = session_id
+        if execution_mode is not None:
+            input_["execution_mode"] = execution_mode
+        if wait_time_seconds is not None:
+            input_["wait_time_seconds"] = wait_time_seconds
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -332,6 +350,9 @@ class AsyncRedshiftDataClient:
         id: "capo_redshift_data.types.uuid.UUID",
         *,
         config_overrides: Optional[AsyncRedshiftDataClientConfig] = None,
+        wait_time_seconds: Optional[
+            "capo_redshift_data.types.wait_time_seconds.WaitTimeSeconds"
+        ] = None,
     ) -> (
         "capo_redshift_data.types.describe_statement_response.DescribeStatementResponse"
     ):
@@ -339,8 +360,10 @@ class AsyncRedshiftDataClient:
 
         Args:
             id: <p>The identifier of the SQL statement to describe. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. A suffix indicates the number of the SQL statement. For example, <code>d9b6c0c9-0747-4bf4-b142-e8883122f766:2</code> has a suffix of <code>:2</code> that indicates the second SQL statement of a batch query. This identifier is returned by <code>BatchExecuteStatment</code>, <code>ExecuteStatement</code>, and <code>ListStatements</code>. </p>
+            wait_time_seconds: <p>The number of seconds to wait for the SQL statement to complete execution before returning the description. The maximum value is 30 seconds.</p>
 
         Raises:
+            capo_redshift_data.errors.active_waiting_requests_exceeded_exception.ActiveWaitingRequestsExceededException: <p>The number of active requests with <code>WaitTimeSeconds</code> for the same SQL statement exceeds the limit.</p>
             capo_redshift_data.errors.internal_server_exception.InternalServerException: <p>The Amazon Redshift Data API operation failed due to invalid input. </p>
             capo_redshift_data.errors.resource_not_found_exception.ResourceNotFoundException: <p>The Amazon Redshift Data API operation failed due to a missing resource. </p>
             capo_redshift_data.errors.validation_exception.ValidationException: <p>The Amazon Redshift Data API operation failed due to invalid input. </p>
@@ -366,6 +389,8 @@ class AsyncRedshiftDataClient:
         input_: capo_redshift_data.types.describe_statement_request.DescribeStatementRequest = {
             "id": id
         }
+        if wait_time_seconds is not None:
+            input_["wait_time_seconds"] = wait_time_seconds
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -535,6 +560,9 @@ class AsyncRedshiftDataClient:
             "capo_redshift_data.types.session_alive_seconds.SessionAliveSeconds"
         ] = None,
         session_id: Optional["capo_redshift_data.types.uuid.UUID"] = None,
+        wait_time_seconds: Optional[
+            "capo_redshift_data.types.wait_time_seconds.WaitTimeSeconds"
+        ] = None,
     ) -> "capo_redshift_data.types.execute_statement_output.ExecuteStatementOutput":
         r"""<p>Runs an SQL statement, which can be data manipulation language (DML) or data definition language (DDL). This statement must be a single SQL statement. Depending on the authorization method, use one of the following combinations of request parameters: </p> <ul> <li> <p>Secrets Manager - when connecting to a cluster, provide the <code>secret-arn</code> of a secret stored in Secrets Manager which has <code>username</code> and <code>password</code>. The specified secret contains credentials to connect to the <code>database</code> you specify. When you are connecting to a cluster, you also supply the database name, If you provide a cluster identifier (<code>dbClusterIdentifier</code>), it must match the cluster identifier stored in the secret. When you are connecting to a serverless workgroup, you also supply the database name.</p> </li> <li> <p>Temporary credentials - when connecting to your data warehouse, choose one of the following options:</p> <ul> <li> <p>When connecting to a serverless workgroup, specify the workgroup name and database name. The database user name is derived from the IAM identity. For example, <code>arn:iam::123456789012:user:foo</code> has the database user name <code>IAM:foo</code>. Also, permission to call the <code>redshift-serverless:GetCredentials</code> operation is required.</p> </li> <li> <p>When connecting to a cluster as an IAM identity, specify the cluster identifier and the database name. The database user name is derived from the IAM identity. For example, <code>arn:iam::123456789012:user:foo</code> has the database user name <code>IAM:foo</code>. Also, permission to call the <code>redshift:GetClusterCredentialsWithIAM</code> operation is required.</p> </li> <li> <p>When connecting to a cluster as a database user, specify the cluster identifier, the database name, and the database user name. Also, permission to call the <code>redshift:GetClusterCredentials</code> operation is required.</p> </li> </ul> </li> </ul> <p>For more information about the Amazon Redshift Data API and CLI usage examples, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html\">Using the Amazon Redshift Data API</a> in the <i>Amazon Redshift Management Guide</i>. </p>
 
@@ -552,6 +580,7 @@ class AsyncRedshiftDataClient:
             result_format: <p>The data format of the result of the SQL statement. If no format is specified, the default is JSON.</p>
             session_keep_alive_seconds: <p>The number of seconds to keep the session alive after the query finishes. The maximum time a session can keep alive is 24 hours. After 24 hours, the session is forced closed and the query is terminated.</p>
             session_id: <p>The session identifier of the query.</p>
+            wait_time_seconds: <p>The number of seconds to wait for the SQL statement to complete execution before returning the response. If the SQL statement does not complete within the specified time, the response returns the current status. The maximum value is 30 seconds.</p>
 
         Raises:
             capo_redshift_data.errors.active_sessions_exceeded_exception.ActiveSessionsExceededException: <p>The Amazon Redshift Data API operation failed because the maximum number of active sessions exceeded.</p>
@@ -607,6 +636,8 @@ class AsyncRedshiftDataClient:
             input_["session_keep_alive_seconds"] = session_keep_alive_seconds
         if session_id is not None:
             input_["session_id"] = session_id
+        if wait_time_seconds is not None:
+            input_["wait_time_seconds"] = wait_time_seconds
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -622,14 +653,19 @@ class AsyncRedshiftDataClient:
         *,
         config_overrides: Optional[AsyncRedshiftDataClientConfig] = None,
         next_token: Optional["capo_redshift_data.types.string.String"] = None,
+        wait_time_seconds: Optional[
+            "capo_redshift_data.types.wait_time_seconds.WaitTimeSeconds"
+        ] = None,
     ) -> "capo_redshift_data.types.get_statement_result_response.GetStatementResultResponse":
         r"""<p>Fetches the temporarily cached result of an SQL statement in JSON format. The <code>ExecuteStatement</code> or <code>BatchExecuteStatement</code> operation that ran the SQL statement must have specified <code>ResultFormat</code> as <code>JSON</code> , or let the format default to JSON. A token is returned to page through the statement results.</p> <p>For more information about the Amazon Redshift Data API and CLI usage examples, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html\">Using the Amazon Redshift Data API</a> in the <i>Amazon Redshift Management Guide</i>. </p>
 
         Args:
             id: <p>The identifier of the SQL statement whose results are to be fetched. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. A suffix indicates then number of the SQL statement. For example, <code>d9b6c0c9-0747-4bf4-b142-e8883122f766:2</code> has a suffix of <code>:2</code> that indicates the second SQL statement of a batch query. This identifier is returned by <code>BatchExecuteStatment</code>, <code>ExecuteStatment</code>, and <code>ListStatements</code>. </p>
             next_token: <p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned NextToken value in the next NextToken parameter and retrying the command. If the NextToken field is empty, all response records have been retrieved for the request. </p>
+            wait_time_seconds: <p>The number of seconds to wait for the SQL statement to complete execution before returning the result. The maximum value is 30 seconds.</p>
 
         Raises:
+            capo_redshift_data.errors.active_waiting_requests_exceeded_exception.ActiveWaitingRequestsExceededException: <p>The number of active requests with <code>WaitTimeSeconds</code> for the same SQL statement exceeds the limit.</p>
             capo_redshift_data.errors.internal_server_exception.InternalServerException: <p>The Amazon Redshift Data API operation failed due to invalid input. </p>
             capo_redshift_data.errors.resource_not_found_exception.ResourceNotFoundException: <p>The Amazon Redshift Data API operation failed due to a missing resource. </p>
             capo_redshift_data.errors.validation_exception.ValidationException: <p>The Amazon Redshift Data API operation failed due to invalid input. </p>
@@ -657,6 +693,8 @@ class AsyncRedshiftDataClient:
         }
         if next_token is not None:
             input_["next_token"] = next_token
+        if wait_time_seconds is not None:
+            input_["wait_time_seconds"] = wait_time_seconds
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -672,6 +710,9 @@ class AsyncRedshiftDataClient:
         *,
         config_overrides: Optional[AsyncRedshiftDataClientConfig] = None,
         next_token: Optional["capo_redshift_data.types.string.String"] = None,
+        wait_time_seconds: Optional[
+            "capo_redshift_data.types.wait_time_seconds.WaitTimeSeconds"
+        ] = None,
     ) -> "AsyncIterator[capo_redshift_data.types.field_list.FieldList]":
         _token = next_token
         while True:
@@ -679,6 +720,7 @@ class AsyncRedshiftDataClient:
                 id,
                 config_overrides=config_overrides,
                 next_token=_token,
+                wait_time_seconds=wait_time_seconds,
             )
             _page = _resolve_path(_response, ("records",))
             for _item in _page or []:
@@ -693,14 +735,19 @@ class AsyncRedshiftDataClient:
         *,
         config_overrides: Optional[AsyncRedshiftDataClientConfig] = None,
         next_token: Optional["capo_redshift_data.types.string.String"] = None,
+        wait_time_seconds: Optional[
+            "capo_redshift_data.types.wait_time_seconds.WaitTimeSeconds"
+        ] = None,
     ) -> "capo_redshift_data.types.get_statement_result_v2_response.GetStatementResultV2Response":
         r"""<p>Fetches the temporarily cached result of an SQL statement in CSV format. The <code>ExecuteStatement</code> or <code>BatchExecuteStatement</code> operation that ran the SQL statement must have specified <code>ResultFormat</code> as <code>CSV</code>. A token is returned to page through the statement results.</p> <p>For more information about the Amazon Redshift Data API and CLI usage examples, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html\">Using the Amazon Redshift Data API</a> in the <i>Amazon Redshift Management Guide</i>. </p>
 
         Args:
             id: <p>The identifier of the SQL statement whose results are to be fetched. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. A suffix indicates then number of the SQL statement. For example, <code>d9b6c0c9-0747-4bf4-b142-e8883122f766:2</code> has a suffix of <code>:2</code> that indicates the second SQL statement of a batch query. This identifier is returned by <code>BatchExecuteStatment</code>, <code>ExecuteStatment</code>, and <code>ListStatements</code>. </p>
             next_token: <p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned NextToken value in the next NextToken parameter and retrying the command. If the NextToken field is empty, all response records have been retrieved for the request.</p>
+            wait_time_seconds: <p>The number of seconds to wait for the SQL statement to complete execution before returning the result. The maximum value is 30 seconds.</p>
 
         Raises:
+            capo_redshift_data.errors.active_waiting_requests_exceeded_exception.ActiveWaitingRequestsExceededException: <p>The number of active requests with <code>WaitTimeSeconds</code> for the same SQL statement exceeds the limit.</p>
             capo_redshift_data.errors.internal_server_exception.InternalServerException: <p>The Amazon Redshift Data API operation failed due to invalid input. </p>
             capo_redshift_data.errors.resource_not_found_exception.ResourceNotFoundException: <p>The Amazon Redshift Data API operation failed due to a missing resource. </p>
             capo_redshift_data.errors.validation_exception.ValidationException: <p>The Amazon Redshift Data API operation failed due to invalid input. </p>
@@ -728,6 +775,8 @@ class AsyncRedshiftDataClient:
         }
         if next_token is not None:
             input_["next_token"] = next_token
+        if wait_time_seconds is not None:
+            input_["wait_time_seconds"] = wait_time_seconds
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -743,6 +792,9 @@ class AsyncRedshiftDataClient:
         *,
         config_overrides: Optional[AsyncRedshiftDataClientConfig] = None,
         next_token: Optional["capo_redshift_data.types.string.String"] = None,
+        wait_time_seconds: Optional[
+            "capo_redshift_data.types.wait_time_seconds.WaitTimeSeconds"
+        ] = None,
     ) -> "AsyncIterator[capo_redshift_data.types.query_records.QueryRecords]":
         _token = next_token
         while True:
@@ -750,6 +802,7 @@ class AsyncRedshiftDataClient:
                 id,
                 config_overrides=config_overrides,
                 next_token=_token,
+                wait_time_seconds=wait_time_seconds,
             )
             _page = _resolve_path(_response, ("records",))
             for _item in _page or []:
@@ -760,12 +813,12 @@ class AsyncRedshiftDataClient:
 
     async def list_databases(
         self,
-        database: "capo_redshift_data.types.string.String",
         *,
         config_overrides: Optional[AsyncRedshiftDataClientConfig] = None,
         cluster_identifier: Optional[
             "capo_redshift_data.types.cluster_identifier_string.ClusterIdentifierString"
         ] = None,
+        database: Optional["capo_redshift_data.types.string.String"] = None,
         secret_arn: Optional["capo_redshift_data.types.secret_arn.SecretArn"] = None,
         db_user: Optional["capo_redshift_data.types.string.String"] = None,
         next_token: Optional["capo_redshift_data.types.string.String"] = None,
@@ -810,11 +863,11 @@ class AsyncRedshiftDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.list_databases_request.ListDatabasesRequest = {
-            "database": database
-        }
+        input_: capo_redshift_data.types.list_databases_request.ListDatabasesRequest = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
+        if database is not None:
+            input_["database"] = database
         if secret_arn is not None:
             input_["secret_arn"] = secret_arn
         if db_user is not None:
@@ -836,12 +889,12 @@ class AsyncRedshiftDataClient:
 
     async def iter_list_databases(
         self,
-        database: "capo_redshift_data.types.string.String",
         *,
         config_overrides: Optional[AsyncRedshiftDataClientConfig] = None,
         cluster_identifier: Optional[
             "capo_redshift_data.types.cluster_identifier_string.ClusterIdentifierString"
         ] = None,
+        database: Optional["capo_redshift_data.types.string.String"] = None,
         secret_arn: Optional["capo_redshift_data.types.secret_arn.SecretArn"] = None,
         db_user: Optional["capo_redshift_data.types.string.String"] = None,
         next_token: Optional["capo_redshift_data.types.string.String"] = None,
@@ -853,9 +906,9 @@ class AsyncRedshiftDataClient:
         _token = next_token
         while True:
             _response = await self.list_databases(
-                database,
                 config_overrides=config_overrides,
                 cluster_identifier=cluster_identifier,
+                database=database,
                 secret_arn=secret_arn,
                 db_user=db_user,
                 next_token=_token,
@@ -986,6 +1039,129 @@ class AsyncRedshiftDataClient:
                 workgroup_name=workgroup_name,
             )
             _page = _resolve_path(_response, ("schemas",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_sessions(
+        self,
+        *,
+        config_overrides: Optional[AsyncRedshiftDataClientConfig] = None,
+        next_token: Optional["capo_redshift_data.types.string.String"] = None,
+        max_results: Optional[
+            "capo_redshift_data.types.list_statements_limit.ListStatementsLimit"
+        ] = None,
+        session_id: Optional["capo_redshift_data.types.uuid.UUID"] = None,
+        status: Optional[
+            "capo_redshift_data.types.session_status_string.SessionStatusString"
+        ] = None,
+        role_level: Optional[bool] = None,
+        cluster_identifier: Optional[
+            "capo_redshift_data.types.cluster_identifier_string.ClusterIdentifierString"
+        ] = None,
+        workgroup_name: Optional[
+            "capo_redshift_data.types.workgroup_name_string.WorkgroupNameString"
+        ] = None,
+        database: Optional["capo_redshift_data.types.string.String"] = None,
+    ) -> "capo_redshift_data.types.list_sessions_response.ListSessionsResponse":
+        r"""<p>Lists the sessions that the caller created in the last 24 hours. By default, only sessions with a status of <code>AVAILABLE</code> or <code>BUSY</code> are returned. You can filter the results by session status, compute target (cluster or serverless workgroup), or database. To retrieve the metadata for a single session, provide the <code>SessionId</code> parameter. Use <code>NextToken</code> to page through the session list.</p> <p>Returns only the sessions that the caller created. When identity-enhanced role sessions are used, you must provide either the <code>ClusterIdentifier</code> or <code>WorkgroupName</code> parameter to ensure that the IAM Identity Center user can only access the Amazon Redshift IAM Identity Center applications they are assigned. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/trustedidentitypropagation-overview.html\"> Trusted identity propagation overview</a>.</p>
+
+        Args:
+            next_token: <p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned NextToken value in the next NextToken parameter and retrying the command. If the NextToken field is empty, all response records have been retrieved for the request.</p>
+            max_results: <p>The maximum number of sessions to return in the response. If more sessions exist than fit in one response, the operation returns <code>NextToken</code> to paginate the results.</p>
+            session_id: <p>The identifier of a specific session to return metadata for. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. When you provide <code>SessionId</code>, you can't specify <code>Status</code>, <code>ClusterIdentifier</code>, <code>WorkgroupName</code>, or <code>Database</code>.</p>
+            status: <p>The status of the sessions to list. If no status is specified, sessions with a status of <code>AVAILABLE</code> or <code>BUSY</code> are returned. Status values are defined as follows:</p> <ul> <li> <p>AVAILABLE – The session is open and ready to run a SQL statement.</p> </li> <li> <p>BUSY – The session is currently running a SQL statement.</p> </li> <li> <p>CLOSED – The session is closed and can no longer run SQL statements.</p> </li> </ul>
+            role_level: <p>Specifies whether to return all sessions created by the caller's IAM role, including sessions from previous IAM sessions. If false, only sessions created in the current IAM session are returned. The default is true.</p>
+            cluster_identifier: <p>The cluster identifier. Only sessions on this cluster are returned. When providing <code>ClusterIdentifier</code>, then <code>WorkgroupName</code> can't be specified.</p>
+            workgroup_name: <p>The serverless workgroup name or Amazon Resource Name (ARN). Only sessions on this workgroup are returned. When providing <code>WorkgroupName</code>, then <code>ClusterIdentifier</code> can't be specified.</p>
+            database: <p>The name of the database. Only sessions connected to this database are returned.</p>
+
+        Raises:
+            capo_redshift_data.errors.internal_server_exception.InternalServerException: <p>The Amazon Redshift Data API operation failed due to invalid input. </p>
+            capo_redshift_data.errors.resource_not_found_exception.ResourceNotFoundException: <p>The Amazon Redshift Data API operation failed due to a missing resource. </p>
+            capo_redshift_data.errors.validation_exception.ValidationException: <p>The Amazon Redshift Data API operation failed due to invalid input. </p>
+            capo_redshift_data.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_redshift_data.types.list_sessions_request.ListSessionsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_redshift_data.types.list_sessions_response.ListSessionsResponse"
+        ]:
+            import capo_redshift_data._operations.redshift_data.list_sessions
+
+            (
+                output,
+                http_response,
+            ) = await capo_redshift_data._operations.redshift_data.list_sessions.async_list_sessions(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_redshift_data.types.list_sessions_request.ListSessionsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if session_id is not None:
+            input_["session_id"] = session_id
+        if status is not None:
+            input_["status"] = status
+        if role_level is not None:
+            input_["role_level"] = role_level
+        if cluster_identifier is not None:
+            input_["cluster_identifier"] = cluster_identifier
+        if workgroup_name is not None:
+            input_["workgroup_name"] = workgroup_name
+        if database is not None:
+            input_["database"] = database
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_sessions(
+        self,
+        *,
+        config_overrides: Optional[AsyncRedshiftDataClientConfig] = None,
+        next_token: Optional["capo_redshift_data.types.string.String"] = None,
+        max_results: Optional[
+            "capo_redshift_data.types.list_statements_limit.ListStatementsLimit"
+        ] = None,
+        session_id: Optional["capo_redshift_data.types.uuid.UUID"] = None,
+        status: Optional[
+            "capo_redshift_data.types.session_status_string.SessionStatusString"
+        ] = None,
+        role_level: Optional[bool] = None,
+        cluster_identifier: Optional[
+            "capo_redshift_data.types.cluster_identifier_string.ClusterIdentifierString"
+        ] = None,
+        workgroup_name: Optional[
+            "capo_redshift_data.types.workgroup_name_string.WorkgroupNameString"
+        ] = None,
+        database: Optional["capo_redshift_data.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_redshift_data.types.session_data.SessionData]":
+        _token = next_token
+        while True:
+            _response = await self.list_sessions(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                session_id=session_id,
+                status=status,
+                role_level=role_level,
+                cluster_identifier=cluster_identifier,
+                workgroup_name=workgroup_name,
+                database=database,
+            )
+            _page = _resolve_path(_response, ("sessions",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))

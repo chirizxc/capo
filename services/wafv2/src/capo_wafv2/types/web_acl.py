@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     import capo_wafv2.types.entity_name
     import capo_wafv2.types.firewall_manager_rule_groups
     import capo_wafv2.types.label_name
+    import capo_wafv2.types.monetization_config
     import capo_wafv2.types.on_source_d_do_s_protection_config
     import capo_wafv2.types.resource_arn
     import capo_wafv2.types.rules
@@ -85,6 +86,10 @@ class WebACL(TypedDict, closed=True):
         "capo_wafv2.types.application_config.ApplicationConfig"
     ]
     """<p>Returns a list of <code>ApplicationAttribute</code>s.</p>"""
+    monetization_config: NotRequired[
+        "capo_wafv2.types.monetization_config.MonetizationConfig"
+    ]
+    """<p>The monetization configuration for the web ACL. Required when any rule in the web ACL uses the <code>Monetize</code> action. Specifies the cryptocurrency payment networks and currency mode for AI bot monetization.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -190,6 +195,14 @@ def serialize_aws_json_1_1(value: WebACL) -> dict:
         out["ApplicationConfig"] = (
             capo_wafv2.types.application_config.serialize_aws_json_1_1(
                 value["application_config"]
+            )
+        )
+    if "monetization_config" in value:
+        import capo_wafv2.types.monetization_config
+
+        out["MonetizationConfig"] = (
+            capo_wafv2.types.monetization_config.serialize_aws_json_1_1(
+                value["monetization_config"]
             )
         )
     return out
@@ -325,6 +338,14 @@ def deserialize_aws_json_1_1(data: dict) -> WebACL:
         out["application_config"] = (
             capo_wafv2.types.application_config.deserialize_aws_json_1_1(
                 data["ApplicationConfig"]
+            )
+        )
+    if data.get("MonetizationConfig") is not None:
+        import capo_wafv2.types.monetization_config
+
+        out["monetization_config"] = (
+            capo_wafv2.types.monetization_config.deserialize_aws_json_1_1(
+                data["MonetizationConfig"]
             )
         )
     return out

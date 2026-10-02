@@ -24,6 +24,7 @@ from capo_ivs_realtime._rule_engine._endpoint_rule_set import EndpointParams, re
 from capo_ivs_realtime._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_ivs_realtime.errors import UnknownServiceError
 
@@ -62,6 +63,24 @@ def handle_response(
     out: capo_ivs_realtime.types.update_ingest_configuration_response.UpdateIngestConfigurationResponse = capo_ivs_realtime.types.update_ingest_configuration_response.deserialize_json(
         json.loads(response.read())
     )
+    if "Access-Control-Allow-Origin" in response.headers:
+        out["access_control_allow_origin"] = response.headers[
+            "Access-Control-Allow-Origin"
+        ]
+    if "Access-Control-Expose-Headers" in response.headers:
+        out["access_control_expose_headers"] = response.headers[
+            "Access-Control-Expose-Headers"
+        ]
+    if "Cache-Control" in response.headers:
+        out["cache_control"] = response.headers["Cache-Control"]
+    if "Content-Security-Policy" in response.headers:
+        out["content_security_policy"] = response.headers["Content-Security-Policy"]
+    if "Strict-Transport-Security" in response.headers:
+        out["strict_transport_security"] = response.headers["Strict-Transport-Security"]
+    if "X-Content-Type-Options" in response.headers:
+        out["x_content_type_options"] = response.headers["X-Content-Type-Options"]
+    if "X-Frame-Options" in response.headers:
+        out["x_frame_options"] = response.headers["X-Frame-Options"]
     return out
 
 
@@ -71,6 +90,24 @@ async def async_handle_response(
     out: capo_ivs_realtime.types.update_ingest_configuration_response.UpdateIngestConfigurationResponse = capo_ivs_realtime.types.update_ingest_configuration_response.deserialize_json(
         json.loads(await response.aread())
     )
+    if "Access-Control-Allow-Origin" in response.headers:
+        out["access_control_allow_origin"] = response.headers[
+            "Access-Control-Allow-Origin"
+        ]
+    if "Access-Control-Expose-Headers" in response.headers:
+        out["access_control_expose_headers"] = response.headers[
+            "Access-Control-Expose-Headers"
+        ]
+    if "Cache-Control" in response.headers:
+        out["cache_control"] = response.headers["Cache-Control"]
+    if "Content-Security-Policy" in response.headers:
+        out["content_security_policy"] = response.headers["Content-Security-Policy"]
+    if "Strict-Transport-Security" in response.headers:
+        out["strict_transport_security"] = response.headers["Strict-Transport-Security"]
+    if "X-Content-Type-Options" in response.headers:
+        out["x_content_type_options"] = response.headers["X-Content-Type-Options"]
+    if "X-Frame-Options" in response.headers:
+        out["x_frame_options"] = response.headers["X-Frame-Options"]
     return out
 
 
@@ -144,7 +181,7 @@ def update_ingest_configuration(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -162,7 +199,7 @@ async def async_update_ingest_configuration(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

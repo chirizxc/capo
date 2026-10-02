@@ -20,6 +20,7 @@ import capo_elastic_beanstalk.types.application_version_description
 import capo_elastic_beanstalk.types.application_version_description_message
 import capo_elastic_beanstalk.types.build_configuration
 import capo_elastic_beanstalk.types.create_application_version_message
+import capo_elastic_beanstalk.types.image_configuration
 import capo_elastic_beanstalk.types.s3_location
 import capo_elastic_beanstalk.types.source_build_information
 import capo_elastic_beanstalk.types.tags
@@ -37,6 +38,7 @@ from capo_elastic_beanstalk._rule_engine._endpoint_rule_set import (
 from capo_elastic_beanstalk._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_elastic_beanstalk.errors import UnknownServiceError
 
@@ -163,7 +165,7 @@ def create_application_version(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -181,7 +183,7 @@ async def async_create_application_version(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

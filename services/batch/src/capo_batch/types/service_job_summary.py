@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_batch.types.boolean
     import capo_batch.types.latest_service_job_attempt
     import capo_batch.types.long
     import capo_batch.types.service_job_capacity_usage_summary_list
@@ -46,6 +47,8 @@ class ServiceJobSummary(TypedDict, closed=True):
     """<p>The Unix timestamp (in milliseconds) for when the service job was started.</p>"""
     stopped_at: NotRequired["capo_batch.types.long.Long"]
     """<p>The Unix timestamp (in milliseconds) for when the service job stopped running.</p>"""
+    is_terminated: NotRequired["capo_batch.types.boolean.Boolean"]
+    """<p>Indicates whether a termination request has been accepted for the service job. This field is only present when the value is <code>true</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -99,6 +102,8 @@ def serialize_json(value: ServiceJobSummary) -> dict:
         out["startedAt"] = value["started_at"]
     if "stopped_at" in value:
         out["stoppedAt"] = value["stopped_at"]
+    if "is_terminated" in value:
+        out["isTerminated"] = value["is_terminated"]
     return out
 
 
@@ -152,4 +157,6 @@ def deserialize_json(data: dict) -> ServiceJobSummary:
         out["started_at"] = data["startedAt"]
     if data.get("stoppedAt") is not None:
         out["stopped_at"] = data["stoppedAt"]
+    if data.get("isTerminated") is not None:
+        out["is_terminated"] = data["isTerminated"]
     return out

@@ -83,13 +83,13 @@ class CloudVmClusterResource:
             cluster_name: <p>A name for the Grid Infrastructure cluster. The name isn't case sensitive.</p>
             data_collection_options: <p>The set of preferences for the various diagnostic collection options for the VM cluster.</p>
             data_storage_size_in_t_bs: <p>The size of the data disk group, in terabytes (TBs), to allocate for the VM cluster.</p>
-            db_node_storage_size_in_g_bs: <p>The amount of local node storage, in gigabytes (GBs), to allocate for the VM cluster.</p>
+            db_node_storage_size_in_g_bs: <p>The amount of local node storage, in gigabytes (GB), to allocate for the VM cluster.</p>
             db_servers: <p>The list of database servers for the VM cluster.</p>
             tags: <p>The list of resource tags to apply to the VM cluster.</p>
             is_local_backup_enabled: <p>Specifies whether to enable database backups to local Exadata storage for the VM cluster.</p>
             is_sparse_diskgroup_enabled: <p>Specifies whether to create a sparse disk group for the VM cluster.</p>
             license_model: <p>The Oracle license model to apply to the VM cluster.</p> <p>Default: <code>LICENSE_INCLUDED</code> </p>
-            memory_size_in_g_bs: <p>The amount of memory, in gigabytes (GBs), to allocate for the VM cluster.</p>
+            memory_size_in_g_bs: <p>The amount of memory, in gigabytes (GB), to allocate for the VM cluster.</p>
             system_version: <p>The version of the operating system of the image for the VM cluster.</p>
             time_zone: <p>The time zone for the VM cluster. For a list of valid values for time zone, you can check the options in the console.</p> <p>Default: UTC</p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, the Amazon Web Services SDK automatically generates a client token and uses it for the request to ensure idempotency. The client token is valid for up to 24 hours after it's first used.</p>
@@ -367,13 +367,13 @@ class AsyncCloudVmClusterResource:
             cluster_name: <p>A name for the Grid Infrastructure cluster. The name isn't case sensitive.</p>
             data_collection_options: <p>The set of preferences for the various diagnostic collection options for the VM cluster.</p>
             data_storage_size_in_t_bs: <p>The size of the data disk group, in terabytes (TBs), to allocate for the VM cluster.</p>
-            db_node_storage_size_in_g_bs: <p>The amount of local node storage, in gigabytes (GBs), to allocate for the VM cluster.</p>
+            db_node_storage_size_in_g_bs: <p>The amount of local node storage, in gigabytes (GB), to allocate for the VM cluster.</p>
             db_servers: <p>The list of database servers for the VM cluster.</p>
             tags: <p>The list of resource tags to apply to the VM cluster.</p>
             is_local_backup_enabled: <p>Specifies whether to enable database backups to local Exadata storage for the VM cluster.</p>
             is_sparse_diskgroup_enabled: <p>Specifies whether to create a sparse disk group for the VM cluster.</p>
             license_model: <p>The Oracle license model to apply to the VM cluster.</p> <p>Default: <code>LICENSE_INCLUDED</code> </p>
-            memory_size_in_g_bs: <p>The amount of memory, in gigabytes (GBs), to allocate for the VM cluster.</p>
+            memory_size_in_g_bs: <p>The amount of memory, in gigabytes (GB), to allocate for the VM cluster.</p>
             system_version: <p>The version of the operating system of the image for the VM cluster.</p>
             time_zone: <p>The time zone for the VM cluster. For a list of valid values for time zone, you can check the options in the console.</p> <p>Default: UTC</p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, the Amazon Web Services SDK automatically generates a client token and uses it for the request to ensure idempotency. The client token is valid for up to 24 hours after it's first used.</p>

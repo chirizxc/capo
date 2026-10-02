@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class SupplementalDataStorageConfiguration(TypedDict, closed=True):
     storage_locations: "capo_bedrock_agent.types.supplemental_data_storage_locations.SupplementalDataStorageLocations"
-    """<p>A list of objects specifying storage locations for images extracted from multimodal documents in your data source.</p>"""
+    """<p>A list of objects specifying storage locations for multimedia content (images, audio, and video) extracted from multimodal documents in your data source.</p>"""
 
 
 # --- restJson1 ser/de ---

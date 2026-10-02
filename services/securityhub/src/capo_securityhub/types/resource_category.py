@@ -10,6 +10,7 @@ ResourceCategory: TypeAlias = Literal[
     "AI/ML",
     "Identity",
     "Network",
+    "Messaging",
     "Other",
 ]
 

@@ -9,6 +9,7 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.agent_runtime_id
     import capo_bedrock_agentcore_control.types.agent_runtime_status
+    import capo_bedrock_agentcore_control.types.agent_runtime_version
 
 
 class DeleteAgentRuntimeResponse(TypedDict, closed=True):
@@ -20,6 +21,10 @@ class DeleteAgentRuntimeResponse(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.agent_runtime_id.AgentRuntimeId"
     ]
     """<p>The unique identifier of the AgentCore Runtime.</p>"""
+    agent_runtime_version: NotRequired[
+        "capo_bedrock_agentcore_control.types.agent_runtime_version.AgentRuntimeVersion"
+    ]
+    """<p>The version of the AgentCore Runtime that was deleted. This value is present only when you delete a single version.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -34,6 +39,8 @@ def serialize_json(value: DeleteAgentRuntimeResponse) -> dict:
     )
     if "agent_runtime_id" in value:
         out["agentRuntimeId"] = value["agent_runtime_id"]
+    if "agent_runtime_version" in value:
+        out["agentRuntimeVersion"] = value["agent_runtime_version"]
     return out
 
 
@@ -51,4 +58,6 @@ def deserialize_json(data: dict) -> DeleteAgentRuntimeResponse:
         raise DeserializationError("DeleteAgentRuntimeResponse.status required")
     if data.get("agentRuntimeId") is not None:
         out["agent_runtime_id"] = data["agentRuntimeId"]
+    if data.get("agentRuntimeVersion") is not None:
+        out["agent_runtime_version"] = data["agentRuntimeVersion"]
     return out

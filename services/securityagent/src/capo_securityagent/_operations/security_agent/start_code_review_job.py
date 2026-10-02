@@ -11,6 +11,7 @@ from typing_extensions import Never
 import capo_securityagent._auth._signers
 import capo_securityagent._auth._sigv4
 import capo_securityagent._protocol.eventstream
+import capo_securityagent.types.diff_source
 import capo_securityagent.types.job_status
 import capo_securityagent.types.start_code_review_job_input
 import capo_securityagent.types.start_code_review_job_output
@@ -19,6 +20,7 @@ from capo_securityagent._rule_engine._endpoint_rule_set import EndpointParams, r
 from capo_securityagent._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_securityagent.errors import UnknownServiceError
 
@@ -114,7 +116,7 @@ def start_code_review_job(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -132,7 +134,7 @@ async def async_start_code_review_job(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

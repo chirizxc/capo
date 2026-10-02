@@ -1,0 +1,87 @@
+"""Generated from Smithy shape ``com.amazonaws.iotsitewise#DataSegmentRelationshipSummary``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import TypedDict
+
+from capo_iotsitewise.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_iotsitewise.types.id
+    import capo_iotsitewise.types.time_in_nanos
+    import capo_iotsitewise.types.time_series_id
+
+
+class DataSegmentRelationshipSummary(TypedDict, closed=True):
+    target_dataset_id: "capo_iotsitewise.types.id.ID"
+    """<p>The ID of the curated dataset that references the data segment.</p>"""
+    source_dataset_id: "capo_iotsitewise.types.id.ID"
+    """<p>The ID of the source session dataset that contains the data segment.</p>"""
+    time_series_id: "capo_iotsitewise.types.time_series_id.TimeSeriesId"
+    """<p>The ID of the time series.</p>"""
+    start_timestamp: "capo_iotsitewise.types.time_in_nanos.TimeInNanos"
+    """<p>The nanosecond-precision start time of the data segment.</p>"""
+    end_timestamp: "capo_iotsitewise.types.time_in_nanos.TimeInNanos"
+    """<p>The nanosecond-precision end time of the data segment.</p>"""
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: DataSegmentRelationshipSummary) -> dict:
+    out: dict = {}
+    out["targetDatasetId"] = value["target_dataset_id"]
+    out["sourceDatasetId"] = value["source_dataset_id"]
+    out["timeSeriesId"] = value["time_series_id"]
+    import capo_iotsitewise.types.time_in_nanos
+
+    out["startTimestamp"] = capo_iotsitewise.types.time_in_nanos.serialize_json(
+        value["start_timestamp"]
+    )
+    import capo_iotsitewise.types.time_in_nanos
+
+    out["endTimestamp"] = capo_iotsitewise.types.time_in_nanos.serialize_json(
+        value["end_timestamp"]
+    )
+    return out
+
+
+def deserialize_json(data: dict) -> DataSegmentRelationshipSummary:
+    out: DataSegmentRelationshipSummary = {}  # type: ignore[typeddict-item]
+    if data.get("targetDatasetId") is not None:
+        out["target_dataset_id"] = data["targetDatasetId"]
+    else:
+        raise DeserializationError(
+            "DataSegmentRelationshipSummary.target_dataset_id required"
+        )
+    if data.get("sourceDatasetId") is not None:
+        out["source_dataset_id"] = data["sourceDatasetId"]
+    else:
+        raise DeserializationError(
+            "DataSegmentRelationshipSummary.source_dataset_id required"
+        )
+    if data.get("timeSeriesId") is not None:
+        out["time_series_id"] = data["timeSeriesId"]
+    else:
+        raise DeserializationError(
+            "DataSegmentRelationshipSummary.time_series_id required"
+        )
+    if data.get("startTimestamp") is not None:
+        import capo_iotsitewise.types.time_in_nanos
+
+        out["start_timestamp"] = capo_iotsitewise.types.time_in_nanos.deserialize_json(
+            data["startTimestamp"]
+        )
+    else:
+        raise DeserializationError(
+            "DataSegmentRelationshipSummary.start_timestamp required"
+        )
+    if data.get("endTimestamp") is not None:
+        import capo_iotsitewise.types.time_in_nanos
+
+        out["end_timestamp"] = capo_iotsitewise.types.time_in_nanos.deserialize_json(
+            data["endTimestamp"]
+        )
+    else:
+        raise DeserializationError(
+            "DataSegmentRelationshipSummary.end_timestamp required"
+        )
+    return out

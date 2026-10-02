@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_sagemaker_runtime.types.header
     import capo_sagemaker_runtime.types.inference_component_header
     import capo_sagemaker_runtime.types.inference_id
+    import capo_sagemaker_runtime.types.prefix_aware_id_header
     import capo_sagemaker_runtime.types.session_id_header
     import capo_sagemaker_runtime.types.target_container_hostname_header
     import capo_sagemaker_runtime.types.target_variant_header
@@ -47,6 +48,10 @@ class InvokeEndpointWithResponseStreamInput(TypedDict, closed=True):
         "capo_sagemaker_runtime.types.session_id_header.SessionIdHeader"
     ]
     """<p>The ID of a stateful session to handle your request.</p> <p>You can't create a stateful session by using the <code>InvokeEndpointWithResponseStream</code> action. Instead, you can create one by using the <code> <a>InvokeEndpoint</a> </code> action. In your request, you specify <code>NEW_SESSION</code> for the <code>SessionId</code> request parameter. The response to that request provides the session ID for the <code>NewSessionId</code> response parameter.</p>"""
+    prefix_aware_id: NotRequired[
+        "capo_sagemaker_runtime.types.prefix_aware_id_header.PrefixAwareIdHeader"
+    ]
+    """<p>An optional, stable identifier that serves as a routing hint for prefix-aware routing. The service routes requests with the same prefix and the same identifier to the same instance. If requests from different applications might have the same prompt prefix, set a different identifier for each application to differentiate their routing decisions.</p> <p>Applies only to endpoints configured with a <code>RoutingStrategy</code> of <code>PREFIX_AWARE</code>.</p>"""
 
 
 # --- restJson1 ser/de ---

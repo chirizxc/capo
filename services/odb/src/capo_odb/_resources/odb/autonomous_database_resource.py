@@ -14,6 +14,8 @@ from capo_odb._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_odb.types.admin_password_source
+    import capo_odb.types.admin_password_source_configuration_input
     import capo_odb.types.autonomous_database_peer_summary
     import capo_odb.types.autonomous_database_summary
     import capo_odb.types.autonomous_maintenance_schedule_type
@@ -73,6 +75,8 @@ if TYPE_CHECKING:
     import capo_odb.types.transportable_tablespace
     import capo_odb.types.update_autonomous_database_input
     import capo_odb.types.update_autonomous_database_output
+    import capo_odb.types.wallet_password_source
+    import capo_odb.types.wallet_password_source_configuration_input
     import capo_odb.types.wallet_type
     from capo_odb._services.async_odb import AsyncodbClient, AsyncodbClientConfig
     from capo_odb._services.odb import odbClient, odbClientConfig
@@ -155,6 +159,12 @@ class AutonomousDatabaseResource:
         encryption_key_configuration: Optional[
             "capo_odb.types.encryption_key_configuration_input.EncryptionKeyConfigurationInput"
         ] = None,
+        admin_password_source: Optional[
+            "capo_odb.types.admin_password_source.AdminPasswordSource"
+        ] = None,
+        admin_password_source_configuration: Optional[
+            "capo_odb.types.admin_password_source_configuration_input.AdminPasswordSourceConfigurationInput"
+        ] = None,
         client_token: Optional[
             "capo_odb.types.general_input_string.GeneralInputString"
         ] = None,
@@ -200,6 +210,8 @@ class AutonomousDatabaseResource:
             source_configuration: <p>The configuration details for the source used to create the Autonomous Database.</p>
             encryption_key_provider: <p>The provider of the encryption key to use for the Autonomous Database.</p>
             encryption_key_configuration: <p>The configuration of the encryption key to use for the Autonomous Database.</p>
+            admin_password_source: <p>The source of the admin password for the Autonomous Database. When set to <code>CUSTOMER_MANAGED_AWS_SECRET</code>, the admin password is retrieved from an Amazon Web Services Secrets Manager secret.</p>
+            admin_password_source_configuration: <p>The configuration of the admin password source for the Autonomous Database.</p>
             client_token: <p>A client-provided token to ensure the idempotency of the request.</p>
             tags: <p>The list of resource tags to apply to the Autonomous Database. Each tag is a key-value pair with no predefined name, type, or namespace.</p>
 
@@ -310,6 +322,12 @@ class AutonomousDatabaseResource:
             input_["encryption_key_provider"] = encryption_key_provider
         if encryption_key_configuration is not None:
             input_["encryption_key_configuration"] = encryption_key_configuration
+        if admin_password_source is not None:
+            input_["admin_password_source"] = admin_password_source
+        if admin_password_source_configuration is not None:
+            input_["admin_password_source_configuration"] = (
+                admin_password_source_configuration
+            )
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -452,6 +470,12 @@ class AutonomousDatabaseResource:
         encryption_key_configuration: Optional[
             "capo_odb.types.encryption_key_configuration_input.EncryptionKeyConfigurationInput"
         ] = None,
+        admin_password_source: Optional[
+            "capo_odb.types.admin_password_source.AdminPasswordSource"
+        ] = None,
+        admin_password_source_configuration: Optional[
+            "capo_odb.types.admin_password_source_configuration_input.AdminPasswordSourceConfigurationInput"
+        ] = None,
     ) -> "capo_odb.types.update_autonomous_database_output.UpdateAutonomousDatabaseOutput":
         """<p>Updates the properties of an Autonomous Database.</p>
 
@@ -499,6 +523,8 @@ class AutonomousDatabaseResource:
             time_of_auto_refresh_start: <p>The date and time at which the automatic refresh of the refreshable clone Autonomous Database starts.</p>
             encryption_key_provider: <p>The provider of the encryption key to use for the Autonomous Database.</p>
             encryption_key_configuration: <p>The configuration of the encryption key to use for the Autonomous Database.</p>
+            admin_password_source: <p>The source of the admin password for the Autonomous Database. When set to <code>CUSTOMER_MANAGED_AWS_SECRET</code>, the admin password is retrieved from an Amazon Web Services Secrets Manager secret.</p>
+            admin_password_source_configuration: <p>The configuration of the admin password source for the Autonomous Database.</p>
 
         Raises:
             capo_odb.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action. Make sure you have the required permissions and try again.</p>
@@ -624,6 +650,12 @@ class AutonomousDatabaseResource:
             input_["encryption_key_provider"] = encryption_key_provider
         if encryption_key_configuration is not None:
             input_["encryption_key_configuration"] = encryption_key_configuration
+        if admin_password_source is not None:
+            input_["admin_password_source"] = admin_password_source
+        if admin_password_source_configuration is not None:
+            input_["admin_password_source_configuration"] = (
+                admin_password_source_configuration
+            )
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -736,10 +768,16 @@ class AutonomousDatabaseResource:
     def create_autonomous_database_wallet(
         self,
         autonomous_database_id: "capo_odb.types.resource_id_or_arn.ResourceIdOrArn",
-        password: "capo_odb.types.sensitive_string.SensitiveString",
         *,
         config_overrides: Optional[odbClientConfig] = None,
         wallet_type: Optional["capo_odb.types.wallet_type.WalletType"] = None,
+        password: Optional["capo_odb.types.sensitive_string.SensitiveString"] = None,
+        password_source: Optional[
+            "capo_odb.types.wallet_password_source.WalletPasswordSource"
+        ] = None,
+        password_source_configuration: Optional[
+            "capo_odb.types.wallet_password_source_configuration_input.WalletPasswordSourceConfigurationInput"
+        ] = None,
         client_token: Optional[
             "capo_odb.types.general_input_string.GeneralInputString"
         ] = None,
@@ -750,6 +788,8 @@ class AutonomousDatabaseResource:
             autonomous_database_id: <p>The unique identifier of the Autonomous Database to create a wallet for.</p>
             wallet_type: <p>The type of wallet to create, either a regional wallet or an instance wallet.</p>
             password: <p>The password to encrypt the keys inside the wallet.</p>
+            password_source: <p>The source of the password for encrypting the wallet. When set to <code>CUSTOMER_MANAGED_AWS_SECRET</code>, the password is retrieved from an Amazon Web Services Secrets Manager secret.</p>
+            password_source_configuration: <p>The configuration of the password source for the Autonomous Database wallet.</p>
             client_token: <p>A client-provided token to ensure the idempotency of the request.</p>
 
         Raises:
@@ -777,11 +817,16 @@ class AutonomousDatabaseResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.create_autonomous_database_wallet_input.CreateAutonomousDatabaseWalletInput = {
-            "autonomous_database_id": autonomous_database_id,
-            "password": password,
+            "autonomous_database_id": autonomous_database_id
         }
         if wallet_type is not None:
             input_["wallet_type"] = wallet_type
+        if password is not None:
+            input_["password"] = password
+        if password_source is not None:
+            input_["password_source"] = password_source
+        if password_source_configuration is not None:
+            input_["password_source_configuration"] = password_source_configuration
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -1382,6 +1427,12 @@ class AsyncAutonomousDatabaseResource:
         encryption_key_configuration: Optional[
             "capo_odb.types.encryption_key_configuration_input.EncryptionKeyConfigurationInput"
         ] = None,
+        admin_password_source: Optional[
+            "capo_odb.types.admin_password_source.AdminPasswordSource"
+        ] = None,
+        admin_password_source_configuration: Optional[
+            "capo_odb.types.admin_password_source_configuration_input.AdminPasswordSourceConfigurationInput"
+        ] = None,
         client_token: Optional[
             "capo_odb.types.general_input_string.GeneralInputString"
         ] = None,
@@ -1427,6 +1478,8 @@ class AsyncAutonomousDatabaseResource:
             source_configuration: <p>The configuration details for the source used to create the Autonomous Database.</p>
             encryption_key_provider: <p>The provider of the encryption key to use for the Autonomous Database.</p>
             encryption_key_configuration: <p>The configuration of the encryption key to use for the Autonomous Database.</p>
+            admin_password_source: <p>The source of the admin password for the Autonomous Database. When set to <code>CUSTOMER_MANAGED_AWS_SECRET</code>, the admin password is retrieved from an Amazon Web Services Secrets Manager secret.</p>
+            admin_password_source_configuration: <p>The configuration of the admin password source for the Autonomous Database.</p>
             client_token: <p>A client-provided token to ensure the idempotency of the request.</p>
             tags: <p>The list of resource tags to apply to the Autonomous Database. Each tag is a key-value pair with no predefined name, type, or namespace.</p>
 
@@ -1538,6 +1591,12 @@ class AsyncAutonomousDatabaseResource:
             input_["encryption_key_provider"] = encryption_key_provider
         if encryption_key_configuration is not None:
             input_["encryption_key_configuration"] = encryption_key_configuration
+        if admin_password_source is not None:
+            input_["admin_password_source"] = admin_password_source
+        if admin_password_source_configuration is not None:
+            input_["admin_password_source_configuration"] = (
+                admin_password_source_configuration
+            )
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -1681,6 +1740,12 @@ class AsyncAutonomousDatabaseResource:
         encryption_key_configuration: Optional[
             "capo_odb.types.encryption_key_configuration_input.EncryptionKeyConfigurationInput"
         ] = None,
+        admin_password_source: Optional[
+            "capo_odb.types.admin_password_source.AdminPasswordSource"
+        ] = None,
+        admin_password_source_configuration: Optional[
+            "capo_odb.types.admin_password_source_configuration_input.AdminPasswordSourceConfigurationInput"
+        ] = None,
     ) -> "capo_odb.types.update_autonomous_database_output.UpdateAutonomousDatabaseOutput":
         """<p>Updates the properties of an Autonomous Database.</p>
 
@@ -1728,6 +1793,8 @@ class AsyncAutonomousDatabaseResource:
             time_of_auto_refresh_start: <p>The date and time at which the automatic refresh of the refreshable clone Autonomous Database starts.</p>
             encryption_key_provider: <p>The provider of the encryption key to use for the Autonomous Database.</p>
             encryption_key_configuration: <p>The configuration of the encryption key to use for the Autonomous Database.</p>
+            admin_password_source: <p>The source of the admin password for the Autonomous Database. When set to <code>CUSTOMER_MANAGED_AWS_SECRET</code>, the admin password is retrieved from an Amazon Web Services Secrets Manager secret.</p>
+            admin_password_source_configuration: <p>The configuration of the admin password source for the Autonomous Database.</p>
 
         Raises:
             capo_odb.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action. Make sure you have the required permissions and try again.</p>
@@ -1854,6 +1921,12 @@ class AsyncAutonomousDatabaseResource:
             input_["encryption_key_provider"] = encryption_key_provider
         if encryption_key_configuration is not None:
             input_["encryption_key_configuration"] = encryption_key_configuration
+        if admin_password_source is not None:
+            input_["admin_password_source"] = admin_password_source
+        if admin_password_source_configuration is not None:
+            input_["admin_password_source_configuration"] = (
+                admin_password_source_configuration
+            )
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1968,10 +2041,16 @@ class AsyncAutonomousDatabaseResource:
     async def create_autonomous_database_wallet(
         self,
         autonomous_database_id: "capo_odb.types.resource_id_or_arn.ResourceIdOrArn",
-        password: "capo_odb.types.sensitive_string.SensitiveString",
         *,
         config_overrides: Optional[AsyncodbClientConfig] = None,
         wallet_type: Optional["capo_odb.types.wallet_type.WalletType"] = None,
+        password: Optional["capo_odb.types.sensitive_string.SensitiveString"] = None,
+        password_source: Optional[
+            "capo_odb.types.wallet_password_source.WalletPasswordSource"
+        ] = None,
+        password_source_configuration: Optional[
+            "capo_odb.types.wallet_password_source_configuration_input.WalletPasswordSourceConfigurationInput"
+        ] = None,
         client_token: Optional[
             "capo_odb.types.general_input_string.GeneralInputString"
         ] = None,
@@ -1982,6 +2061,8 @@ class AsyncAutonomousDatabaseResource:
             autonomous_database_id: <p>The unique identifier of the Autonomous Database to create a wallet for.</p>
             wallet_type: <p>The type of wallet to create, either a regional wallet or an instance wallet.</p>
             password: <p>The password to encrypt the keys inside the wallet.</p>
+            password_source: <p>The source of the password for encrypting the wallet. When set to <code>CUSTOMER_MANAGED_AWS_SECRET</code>, the password is retrieved from an Amazon Web Services Secrets Manager secret.</p>
+            password_source_configuration: <p>The configuration of the password source for the Autonomous Database wallet.</p>
             client_token: <p>A client-provided token to ensure the idempotency of the request.</p>
 
         Raises:
@@ -2010,11 +2091,16 @@ class AsyncAutonomousDatabaseResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.create_autonomous_database_wallet_input.CreateAutonomousDatabaseWalletInput = {
-            "autonomous_database_id": autonomous_database_id,
-            "password": password,
+            "autonomous_database_id": autonomous_database_id
         }
         if wallet_type is not None:
             input_["wallet_type"] = wallet_type
+        if password is not None:
+            input_["password"] = password
+        if password_source is not None:
+            input_["password_source"] = password_source
+        if password_source_configuration is not None:
+            input_["password_source_configuration"] = password_source_configuration
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token

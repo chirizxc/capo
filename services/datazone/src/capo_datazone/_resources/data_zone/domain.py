@@ -266,13 +266,15 @@ class Domain:
         config_overrides: Optional[DataZoneClientConfig] = None,
         client_token: Optional[str] = None,
         skip_deletion_check: Optional[bool] = None,
+        cascade_delete: Optional[bool] = None,
     ) -> "capo_datazone.types.delete_domain_output.DeleteDomainOutput":
         """<p>Deletes a Amazon DataZone domain.</p>
 
         Args:
             identifier: <p>The identifier of the Amazon Web Services domain that is to be deleted.</p>
             client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
-            skip_deletion_check: <p>Specifies the optional flag to delete all child entities within the domain.</p>
+            skip_deletion_check: <p>Specifies whether to skip the check that prevents deletion of a domain that still contains resources. When you use this parameter, Amazon DataZone deletes the domain but might not remove its associated resources, which can leave orphaned resources behind. To delete a domain and fully clean up its associated resources, use <code>cascadeDelete</code> instead. You can't use this parameter together with <code>cascadeDelete</code>.</p>
+            cascade_delete: <p>Specifies whether to delete the domain along with all of its associated resources. When you use this parameter, Amazon DataZone deletes the domain and cleanly removes its associated resources without leaving orphaned resources behind. Amazon DataZone reports deletion progress in the <code>deleteProgress</code> field. Amazon DataZone reports any resources that it can't delete in the <code>failureReasons</code> field of the <code>GetDomain</code> response. You can't use this parameter together with <code>skipDeletionCheck</code>. If you don't specify a value, the default is <code>false</code>.</p>
 
         Raises:
             capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -308,6 +310,8 @@ class Domain:
         input_["client_token"] = client_token
         if skip_deletion_check is not None:
             input_["skip_deletion_check"] = skip_deletion_check
+        if cascade_delete is not None:
+            input_["cascade_delete"] = cascade_delete
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -609,13 +613,15 @@ class AsyncDomain:
         config_overrides: Optional[AsyncDataZoneClientConfig] = None,
         client_token: Optional[str] = None,
         skip_deletion_check: Optional[bool] = None,
+        cascade_delete: Optional[bool] = None,
     ) -> "capo_datazone.types.delete_domain_output.DeleteDomainOutput":
         """<p>Deletes a Amazon DataZone domain.</p>
 
         Args:
             identifier: <p>The identifier of the Amazon Web Services domain that is to be deleted.</p>
             client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
-            skip_deletion_check: <p>Specifies the optional flag to delete all child entities within the domain.</p>
+            skip_deletion_check: <p>Specifies whether to skip the check that prevents deletion of a domain that still contains resources. When you use this parameter, Amazon DataZone deletes the domain but might not remove its associated resources, which can leave orphaned resources behind. To delete a domain and fully clean up its associated resources, use <code>cascadeDelete</code> instead. You can't use this parameter together with <code>cascadeDelete</code>.</p>
+            cascade_delete: <p>Specifies whether to delete the domain along with all of its associated resources. When you use this parameter, Amazon DataZone deletes the domain and cleanly removes its associated resources without leaving orphaned resources behind. Amazon DataZone reports deletion progress in the <code>deleteProgress</code> field. Amazon DataZone reports any resources that it can't delete in the <code>failureReasons</code> field of the <code>GetDomain</code> response. You can't use this parameter together with <code>skipDeletionCheck</code>. If you don't specify a value, the default is <code>false</code>.</p>
 
         Raises:
             capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -652,6 +658,8 @@ class AsyncDomain:
         input_["client_token"] = client_token
         if skip_deletion_check is not None:
             input_["skip_deletion_check"] = skip_deletion_check
+        if cascade_delete is not None:
+            input_["cascade_delete"] = cascade_delete
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

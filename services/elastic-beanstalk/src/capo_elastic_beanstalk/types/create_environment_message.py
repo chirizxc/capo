@@ -40,7 +40,7 @@ class CreateEnvironmentMessage(TypedDict, closed=True):
     ]
     """<p>If specified, the environment attempts to use this value as the prefix for the CNAME in your Elastic Beanstalk environment URL. If not specified, the CNAME is generated automatically by appending a random alphanumeric string to the environment name.</p>"""
     tier: NotRequired["capo_elastic_beanstalk.types.environment_tier.EnvironmentTier"]
-    """<p>Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources to support a web application that handles HTTP(S) requests or a web application that handles background-processing tasks.</p>"""
+    """<p>Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources on Amazon EC2 instances or on an Amazon EKS cluster, and, for Amazon EC2, whether the environment serves HTTP(S) requests or processes background tasks from a queue.</p>"""
     tags: NotRequired["capo_elastic_beanstalk.types.tags.Tags"]
     """<p>Specifies the tags applied to resources in the environment.</p>"""
     version_label: NotRequired[
@@ -54,13 +54,13 @@ class CreateEnvironmentMessage(TypedDict, closed=True):
     solution_stack_name: NotRequired[
         "capo_elastic_beanstalk.types.solution_stack_name.SolutionStackName"
     ]
-    r"""<p>The name of an Elastic Beanstalk solution stack (platform version) to use with the environment. If specified, Elastic Beanstalk sets the configuration values to the default values associated with the specified solution stack. For a list of current solution stacks, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html\">Elastic Beanstalk Supported Platforms</a> in the <i>AWS Elastic Beanstalk Platforms</i> guide.</p> <note> <p>If you specify <code>SolutionStackName</code>, don't specify <code>PlatformArn</code> or <code>TemplateName</code>.</p> </note>"""
+    r"""<p>The name of an Elastic Beanstalk solution stack (platform version) to use with the environment. If specified, Elastic Beanstalk sets the configuration values to the default values associated with the specified solution stack. For a list of current solution stacks, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html\">Elastic Beanstalk Supported Platforms</a> in the <i>Elastic Beanstalk Platforms</i> guide.</p> <note> <p>If you specify <code>SolutionStackName</code>, don't specify <code>PlatformArn</code> or <code>TemplateName</code>.</p> </note>"""
     platform_arn: NotRequired["capo_elastic_beanstalk.types.platform_arn.PlatformArn"]
-    r"""<p>The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html\">Custom Platforms</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p> <note> <p>If you specify <code>PlatformArn</code>, don't specify <code>SolutionStackName</code>.</p> </note>"""
+    r"""<p>The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html\">Custom Platforms</a> in the <i>Elastic Beanstalk Developer Guide</i>.</p> <note> <p>If you specify <code>PlatformArn</code>, don't specify <code>SolutionStackName</code>.</p> </note>"""
     option_settings: NotRequired[
         "capo_elastic_beanstalk.types.configuration_option_settings_list.ConfigurationOptionSettingsList"
     ]
-    """<p>If specified, AWS Elastic Beanstalk sets the specified configuration options to the requested value in the configuration set for the new environment. These override the values obtained from the solution stack or the configuration template.</p>"""
+    """<p>If specified, Elastic Beanstalk sets the specified configuration options to the requested value in the configuration set for the new environment. These override the values obtained from the solution stack or the configuration template.</p>"""
     options_to_remove: NotRequired[
         "capo_elastic_beanstalk.types.options_specifier_list.OptionsSpecifierList"
     ]
@@ -68,7 +68,7 @@ class CreateEnvironmentMessage(TypedDict, closed=True):
     operations_role: NotRequired[
         "capo_elastic_beanstalk.types.operations_role.OperationsRole"
     ]
-    r"""<p>The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role. If specified, Elastic Beanstalk uses the operations role for permissions to downstream services during this call and during subsequent calls acting on this environment. To specify an operations role, you must have the <code>iam:PassRole</code> permission for the role. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html\">Operations roles</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>"""
+    """<important> <p>The operations role feature of Elastic Beanstalk is in beta release and is subject to change.</p> </important> <p>The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role. If specified, Elastic Beanstalk uses the operations role for permissions to downstream services during this call and during subsequent calls acting on this environment. To specify an operations role, you must have the <code>iam:PassRole</code> permission for the role.</p>"""
 
 
 # --- awsQuery ser/de ---

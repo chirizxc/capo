@@ -12,6 +12,7 @@ import capo_arc_region_switch._auth._signers
 import capo_arc_region_switch._auth._sigv4
 import capo_arc_region_switch._protocol.eventstream
 import capo_arc_region_switch.errors.access_denied_exception
+import capo_arc_region_switch.errors.conflict_exception
 import capo_arc_region_switch.errors.illegal_argument_exception
 import capo_arc_region_switch.errors.illegal_state_exception
 import capo_arc_region_switch.errors.resource_not_found_exception
@@ -27,6 +28,7 @@ from capo_arc_region_switch._rule_engine._endpoint_rule_set import (
 from capo_arc_region_switch._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_arc_region_switch.errors import UnknownServiceError
 
@@ -37,6 +39,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_arc_region_switch.errors.access_denied_exception.AccessDeniedException.from_aws_json_1_0(
+                data, message
+            )
+        case "ConflictException":
+            raise capo_arc_region_switch.errors.conflict_exception.ConflictException.from_aws_json_1_0(
                 data, message
             )
         case "IllegalArgumentException":
@@ -144,7 +150,7 @@ def start_plan_execution(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -162,7 +168,7 @@ async def async_start_plan_execution(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

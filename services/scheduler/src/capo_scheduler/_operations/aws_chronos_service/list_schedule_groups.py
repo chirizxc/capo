@@ -19,7 +19,11 @@ import capo_scheduler.types.list_schedule_groups_output
 import capo_scheduler.types.schedule_group_list
 from capo_scheduler._protocol.errors import parse_error_metadata_json
 from capo_scheduler._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_scheduler._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_scheduler._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_scheduler.errors import UnknownServiceError
 
 
@@ -135,7 +139,7 @@ def list_schedule_groups(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -153,7 +157,7 @@ async def async_list_schedule_groups(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

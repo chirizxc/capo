@@ -13,7 +13,7 @@ class LifecycleExecutionResourceAction(TypedDict, closed=True):
     name: NotRequired[
         "capo_imagebuilder.types.lifecycle_execution_resource_action_name.LifecycleExecutionResourceActionName"
     ]
-    """<p>The name of the resource that was identified for a lifecycle policy action.</p>"""
+    """<p>The name of the lifecycle action that was identified for the resource.</p>"""
     reason: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The reason why the lifecycle policy action is taken.</p>"""
 

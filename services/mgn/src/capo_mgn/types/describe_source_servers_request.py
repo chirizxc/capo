@@ -21,7 +21,7 @@ class DescribeSourceServersRequest(TypedDict, closed=True):
     next_token: NotRequired["capo_mgn.types.pagination_token.PaginationToken"]
     """<p>Request to filter Source Servers list by next token.</p>"""
     account_id: NotRequired["capo_mgn.types.account_id.AccountID"]
-    """<p>Request to filter Source Servers list by Accoun ID.</p>"""
+    """<p>Request to filter Source Servers list by Account ID.</p>"""
 
 
 # --- restJson1 ser/de ---

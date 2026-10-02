@@ -2,10 +2,12 @@
 
 from typing import Literal, TypeAlias, cast
 
-"""<p>The status of the Amazon Machine Image (AMI) version for the HyperPod cluster instance group, node, or cluster. The AMI version is determined at the instance group level, and all nodes within an instance group run the same AMI. The cluster-level status is aggregated across all instance groups.</p> <ul> <li> <p> <code>UpToDate</code>: The resource is running the latest available AMI version.</p> </li> <li> <p> <code>UpdateAvailable</code>: A newer AMI version is available for the resource.</p> </li> </ul>"""
+"""<p>The status of the Amazon Machine Image (AMI) version for the HyperPod cluster instance group, node, or cluster. The AMI version is determined at the instance group level, and all nodes within an instance group run the same AMI. The cluster-level status is aggregated across all instance groups.</p> <ul> <li> <p> <code>UpToDate</code>: The resource is running the latest available AMI version.</p> </li> <li> <p> <code>UpdateAvailable</code>: A newer AMI version is available for the resource.</p> </li> <li> <p> <code>SecurityUpdateRequired</code>: The current AMI has known security vulnerabilities, and a patched version is available.</p> </li> <li> <p> <code>EndOfLife</code>: The AMI variant has reached end of support and an upgrade is required.</p> </li> </ul>"""
 ClusterImageVersionStatus: TypeAlias = Literal[
     "UpToDate",
     "UpdateAvailable",
+    "SecurityUpdateRequired",
+    "EndOfLife",
 ]
 
 

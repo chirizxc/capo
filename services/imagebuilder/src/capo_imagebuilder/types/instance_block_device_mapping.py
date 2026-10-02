@@ -16,11 +16,11 @@ class InstanceBlockDeviceMapping(TypedDict, closed=True):
     ebs: NotRequired[
         "capo_imagebuilder.types.ebs_instance_block_device_specification.EbsInstanceBlockDeviceSpecification"
     ]
-    """<p>Use to manage Amazon EBS-specific configuration for this mapping.</p>"""
+    """<p>The Amazon EBS-specific configuration for this mapping.</p>"""
     virtual_name: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>Use to manage instance ephemeral devices.</p>"""
+    """<p>The virtual device name for instance ephemeral devices.</p>"""
     no_device: NotRequired["capo_imagebuilder.types.empty_string.EmptyString"]
-    """<p>Use to remove a mapping from the base image.</p>"""
+    """<p>Specifies a mapping to remove from the base image.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -79,7 +79,7 @@ def serialize_json(value: CreateCollaborationInput) -> dict:
 
     out["members"] = capo_cleanrooms.types.member_list.serialize_json(value["members"])
     out["name"] = value["name"]
-    out["description"] = value["description"]
+    out["description"] = value.get("description", "")
     import capo_cleanrooms.types.member_abilities
 
     out["creatorMemberAbilities"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
     if data.get("description") is not None:
         out["description"] = data["description"]
     else:
-        raise DeserializationError("CreateCollaborationInput.description required")
+        out["description"] = ""
     if data.get("creatorMemberAbilities") is not None:
         import capo_cleanrooms.types.member_abilities
 

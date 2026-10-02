@@ -1,0 +1,154 @@
+"""Generated from Smithy shape ``com.amazonaws.cloudwatchomni#OrganizationAccessGrant``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+from capo_cloudwatchomni.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import datetime
+
+    import capo_cloudwatchomni.types.access_grant_type
+    import capo_cloudwatchomni.types.arn
+    import capo_cloudwatchomni.types.domain_id
+    import capo_cloudwatchomni.types.grant_id
+    import capo_cloudwatchomni.types.organization_access_grant_principal
+    import capo_cloudwatchomni.types.organization_grant_permission
+
+
+class OrganizationAccessGrant(TypedDict, closed=True):
+    grant_id: "capo_cloudwatchomni.types.grant_id.GrantId"
+    """The unique ID of the access grant."""
+    grant_arn: "capo_cloudwatchomni.types.arn.Arn"
+    """The Amazon Resource Name (ARN) of the access grant."""
+    name: NotRequired["str"]
+    """A name that identifies the access grant."""
+    domain_id: "capo_cloudwatchomni.types.domain_id.DomainId"
+    """The ID of the organization domain the grant belongs to."""
+    principal: "capo_cloudwatchomni.types.organization_access_grant_principal.OrganizationAccessGrantPrincipal"
+    """The principal receiving the grant."""
+    permission: "capo_cloudwatchomni.types.organization_grant_permission.OrganizationGrantPermission"
+    """The permission granted."""
+    grant_type: "capo_cloudwatchomni.types.access_grant_type.AccessGrantType"
+    """Who manages the grant."""
+    created_by: "str"
+    """The principal that created the grant."""
+    created_at: "datetime.datetime"
+    """The timestamp when the grant was created."""
+    updated_at: "datetime.datetime"
+    """The timestamp when the grant was last updated."""
+
+
+# --- rpcv2Cbor ser/de ---
+def serialize_cbor(value: OrganizationAccessGrant) -> dict:
+    out: dict = {}
+    out["grantId"] = value["grant_id"]
+    out["grantArn"] = value["grant_arn"]
+    if "name" in value:
+        out["name"] = value["name"]
+    out["domainId"] = value["domain_id"]
+    import capo_cloudwatchomni.types.organization_access_grant_principal
+
+    out["principal"] = (
+        capo_cloudwatchomni.types.organization_access_grant_principal.serialize_cbor(
+            value["principal"]
+        )
+    )
+    import capo_cloudwatchomni.types.organization_grant_permission
+
+    out["permission"] = (
+        capo_cloudwatchomni.types.organization_grant_permission.serialize_cbor(
+            value["permission"]
+        )
+    )
+    import capo_cloudwatchomni.types.access_grant_type
+
+    out["grantType"] = capo_cloudwatchomni.types.access_grant_type.serialize_cbor(
+        value["grant_type"]
+    )
+    out["createdBy"] = value["created_by"]
+    import capo_cloudwatchomni.types._prelude.timestamp
+
+    out["createdAt"] = capo_cloudwatchomni.types._prelude.timestamp.serialize_cbor(
+        value["created_at"]
+    )
+    import capo_cloudwatchomni.types._prelude.timestamp
+
+    out["updatedAt"] = capo_cloudwatchomni.types._prelude.timestamp.serialize_cbor(
+        value["updated_at"]
+    )
+    return out
+
+
+def deserialize_cbor(data: dict) -> OrganizationAccessGrant:
+    out: OrganizationAccessGrant = {}  # type: ignore[typeddict-item]
+    if data.get("grantId") is not None:
+        out["grant_id"] = data["grantId"]
+    else:
+        raise DeserializationError("OrganizationAccessGrant.grant_id required")
+    if data.get("grantArn") is not None:
+        out["grant_arn"] = data["grantArn"]
+    else:
+        raise DeserializationError("OrganizationAccessGrant.grant_arn required")
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    if data.get("domainId") is not None:
+        out["domain_id"] = data["domainId"]
+    else:
+        raise DeserializationError("OrganizationAccessGrant.domain_id required")
+    if data.get("principal") is not None:
+        import capo_cloudwatchomni.types.organization_access_grant_principal
+
+        out["principal"] = (
+            capo_cloudwatchomni.types.organization_access_grant_principal.deserialize_cbor(
+                data["principal"]
+            )
+        )
+    else:
+        raise DeserializationError("OrganizationAccessGrant.principal required")
+    if data.get("permission") is not None:
+        import capo_cloudwatchomni.types.organization_grant_permission
+
+        out["permission"] = (
+            capo_cloudwatchomni.types.organization_grant_permission.deserialize_cbor(
+                data["permission"]
+            )
+        )
+    else:
+        raise DeserializationError("OrganizationAccessGrant.permission required")
+    if data.get("grantType") is not None:
+        import capo_cloudwatchomni.types.access_grant_type
+
+        out["grant_type"] = (
+            capo_cloudwatchomni.types.access_grant_type.deserialize_cbor(
+                data["grantType"]
+            )
+        )
+    else:
+        raise DeserializationError("OrganizationAccessGrant.grant_type required")
+    if data.get("createdBy") is not None:
+        out["created_by"] = data["createdBy"]
+    else:
+        raise DeserializationError("OrganizationAccessGrant.created_by required")
+    if data.get("createdAt") is not None:
+        import capo_cloudwatchomni.types._prelude.timestamp
+
+        out["created_at"] = (
+            capo_cloudwatchomni.types._prelude.timestamp.deserialize_cbor(
+                data["createdAt"]
+            )
+        )
+    else:
+        raise DeserializationError("OrganizationAccessGrant.created_at required")
+    if data.get("updatedAt") is not None:
+        import capo_cloudwatchomni.types._prelude.timestamp
+
+        out["updated_at"] = (
+            capo_cloudwatchomni.types._prelude.timestamp.deserialize_cbor(
+                data["updatedAt"]
+            )
+        )
+    else:
+        raise DeserializationError("OrganizationAccessGrant.updated_at required")
+    return out

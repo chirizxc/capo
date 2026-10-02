@@ -14,7 +14,7 @@ class CvssScoreDetails(TypedDict, closed=True):
     score_source: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The source for the CVSS score.</p>"""
     cvss_source: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>The source of the finding.</p>"""
+    """<p>The source of the CVSS data that the Amazon Inspector score for the finding is based on, for example NVD or a vendor security feed.</p>"""
     version: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The CVSS version that generated the score.</p>"""
     score: NotRequired["capo_imagebuilder.types.non_negative_double.NonNegativeDouble"]
@@ -26,7 +26,7 @@ class CvssScoreDetails(TypedDict, closed=True):
     adjustments: NotRequired[
         "capo_imagebuilder.types.cvss_score_adjustment_list.CvssScoreAdjustmentList"
     ]
-    """<p>An object that contains details about an adjustment that Amazon Inspector made to the CVSS score for the finding.</p>"""
+    """<p>The adjustments that Amazon Inspector applied to the base CVSS score to produce its own score for the finding. The list is empty when Amazon Inspector made no adjustments.</p>"""
 
 
 # --- restJson1 ser/de ---

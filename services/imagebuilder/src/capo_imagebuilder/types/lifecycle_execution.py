@@ -24,11 +24,11 @@ class LifecycleExecution(TypedDict, closed=True):
     resources_impacted_summary: NotRequired[
         "capo_imagebuilder.types.lifecycle_execution_resources_impacted_summary.LifecycleExecutionResourcesImpactedSummary"
     ]
-    """<p>Contains information about associated resources that are identified for action by the runtime instance of the lifecycle policy.</p>"""
+    """<p>A summary flag that indicates whether the lifecycle execution identified any resources to take lifecycle actions on.</p>"""
     state: NotRequired[
         "capo_imagebuilder.types.lifecycle_execution_state.LifecycleExecutionState"
     ]
-    """<p>Runtime state that reports if the policy action ran successfully, failed, or was skipped.</p>"""
+    """<p>Runtime state that reports whether the lifecycle execution is in progress, succeeded, or failed.</p>"""
     start_time: NotRequired[
         "capo_imagebuilder.types.date_time_timestamp.DateTimeTimestamp"
     ]

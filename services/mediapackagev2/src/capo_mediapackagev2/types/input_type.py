@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 InputType: TypeAlias = Literal[
     "HLS",
     "CMAF",
+    "MULTIVIEW",
 ]
 
 

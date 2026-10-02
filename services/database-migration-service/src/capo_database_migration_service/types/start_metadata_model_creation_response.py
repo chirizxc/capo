@@ -12,7 +12,7 @@ class StartMetadataModelCreationResponse(TypedDict, closed=True):
     request_identifier: NotRequired[
         "capo_database_migration_service.types.string.String"
     ]
-    """<p>The identifier for the metadata model creation operation.</p>"""
+    """<p>The identifier for the creation request.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

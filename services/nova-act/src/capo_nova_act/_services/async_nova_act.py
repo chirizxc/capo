@@ -1,11 +1,15 @@
 """Generated from Smithy shape ``com.amazonaws.novaact#AmazonNovaAgentsDataPlane``."""
 
+import uuid
 import warnings
-from typing import Any, Iterable, Optional
+from collections.abc import AsyncIterator
+from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
 from zapros import AsyncBaseHandler, AsyncClient
 
+import capo_nova_act._auth._signers
+import capo_nova_act._auth._sigv4
 from capo_nova_act._auth._identity import Credentials
 from capo_nova_act._auth._providers import (
     CredentialsProvider,
@@ -14,6 +18,7 @@ from capo_nova_act._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_nova_act._auth._zapros_handler import AuthMiddleware
+from capo_nova_act._pagination import resolve_path as _resolve_path
 from capo_nova_act._resources.amazon_nova_agents_data_plane.act_resource import (
     AsyncActResource,
 )
@@ -36,8 +41,66 @@ from capo_nova_act._services._aws_config import aaws_config
 from capo_nova_act._services._pipeline import (
     AsyncInterceptor,
     AsyncOperationOptions,
+    AsyncOperationRequest,
+    AsyncOperationResponse,
+    aexecute_pipeline,
     aretry,
 )
+
+if TYPE_CHECKING:
+    import capo_nova_act.types.act_error
+    import capo_nova_act.types.act_status
+    import capo_nova_act.types.act_summary
+    import capo_nova_act.types.call_results
+    import capo_nova_act.types.client_info
+    import capo_nova_act.types.client_token
+    import capo_nova_act.types.cloud_watch_log_group_name
+    import capo_nova_act.types.create_act_request
+    import capo_nova_act.types.create_act_response
+    import capo_nova_act.types.create_session_request
+    import capo_nova_act.types.create_session_response
+    import capo_nova_act.types.create_workflow_definition_request
+    import capo_nova_act.types.create_workflow_definition_response
+    import capo_nova_act.types.create_workflow_run_request
+    import capo_nova_act.types.create_workflow_run_response
+    import capo_nova_act.types.delete_workflow_definition_request
+    import capo_nova_act.types.delete_workflow_definition_response
+    import capo_nova_act.types.delete_workflow_run_request
+    import capo_nova_act.types.delete_workflow_run_response
+    import capo_nova_act.types.get_workflow_definition_request
+    import capo_nova_act.types.get_workflow_definition_response
+    import capo_nova_act.types.get_workflow_run_request
+    import capo_nova_act.types.get_workflow_run_response
+    import capo_nova_act.types.invoke_act_step_request
+    import capo_nova_act.types.invoke_act_step_response
+    import capo_nova_act.types.list_acts_request
+    import capo_nova_act.types.list_acts_response
+    import capo_nova_act.types.list_models_request
+    import capo_nova_act.types.list_models_response
+    import capo_nova_act.types.list_sessions_request
+    import capo_nova_act.types.list_sessions_response
+    import capo_nova_act.types.list_workflow_definitions_request
+    import capo_nova_act.types.list_workflow_definitions_response
+    import capo_nova_act.types.list_workflow_runs_request
+    import capo_nova_act.types.list_workflow_runs_response
+    import capo_nova_act.types.max_results
+    import capo_nova_act.types.model_id
+    import capo_nova_act.types.next_token
+    import capo_nova_act.types.session_summary
+    import capo_nova_act.types.sort_order
+    import capo_nova_act.types.task
+    import capo_nova_act.types.tool_specs
+    import capo_nova_act.types.update_act_request
+    import capo_nova_act.types.update_act_response
+    import capo_nova_act.types.update_workflow_run_request
+    import capo_nova_act.types.update_workflow_run_response
+    import capo_nova_act.types.uuid_string
+    import capo_nova_act.types.workflow_definition_name
+    import capo_nova_act.types.workflow_definition_summary
+    import capo_nova_act.types.workflow_description
+    import capo_nova_act.types.workflow_export_config
+    import capo_nova_act.types.workflow_run_status
+    import capo_nova_act.types.workflow_run_summary
 
 
 class AsyncNovaActClientConfig(TypedDict, total=False, closed=True):
@@ -140,6 +203,1050 @@ class AsyncNovaActClient:
             ),
         )
         return interceptors_, options_
+
+    async def create_act(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        workflow_run_id: "capo_nova_act.types.uuid_string.UuidString",
+        session_id: "capo_nova_act.types.uuid_string.UuidString",
+        task: "capo_nova_act.types.task.Task",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        tool_specs: Optional["capo_nova_act.types.tool_specs.ToolSpecs"] = None,
+        client_token: Optional["capo_nova_act.types.client_token.ClientToken"] = None,
+    ) -> "capo_nova_act.types.create_act_response.CreateActResponse":
+        """<p>Creates a new AI task (act) within a session that can interact with tools and perform specific actions.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition containing the session.</p>
+            workflow_run_id: <p>The unique identifier of the workflow run containing the session.</p>
+            session_id: <p>The unique identifier of the session to create the act in.</p>
+            task: <p>The task description that defines what the act should accomplish.</p>
+            tool_specs: <p>A list of tool specifications that the act can invoke to complete its task.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed a service quota limit.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.create_act_request.CreateActRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.create_act_response.CreateActResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.create_act
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.create_act.async_create_act(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.create_act_request.CreateActRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "session_id": session_id,
+            "task": task,
+        }
+        if tool_specs is not None:
+            input_["tool_specs"] = tool_specs
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_acts(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        workflow_run_id: Optional["capo_nova_act.types.uuid_string.UuidString"] = None,
+        session_id: Optional["capo_nova_act.types.uuid_string.UuidString"] = None,
+        max_results: Optional["capo_nova_act.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_nova_act.types.next_token.NextToken"] = None,
+        sort_order: Optional["capo_nova_act.types.sort_order.SortOrder"] = None,
+    ) -> "capo_nova_act.types.list_acts_response.ListActsResponse":
+        """<p>Lists all acts within a specific session with their current status and execution details.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition containing the session.</p>
+            workflow_run_id: <p>The unique identifier of the workflow run containing the session.</p>
+            session_id: <p>The unique identifier of the session to list acts for.</p>
+            max_results: <p>The maximum number of acts to return in a single response.</p>
+            next_token: <p>The token for retrieving the next page of results.</p>
+            sort_order: <p>The sort order for the returned acts (ascending or descending).</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.list_acts_request.ListActsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.list_acts_response.ListActsResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.list_acts
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.list_acts.async_list_acts(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.list_acts_request.ListActsRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
+        if workflow_run_id is not None:
+            input_["workflow_run_id"] = workflow_run_id
+        if session_id is not None:
+            input_["session_id"] = session_id
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if sort_order is not None:
+            input_["sort_order"] = sort_order
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_acts(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        workflow_run_id: Optional["capo_nova_act.types.uuid_string.UuidString"] = None,
+        session_id: Optional["capo_nova_act.types.uuid_string.UuidString"] = None,
+        max_results: Optional["capo_nova_act.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_nova_act.types.next_token.NextToken"] = None,
+        sort_order: Optional["capo_nova_act.types.sort_order.SortOrder"] = None,
+    ) -> "AsyncIterator[capo_nova_act.types.act_summary.ActSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_acts(
+                workflow_definition_name,
+                config_overrides=config_overrides,
+                workflow_run_id=workflow_run_id,
+                session_id=session_id,
+                max_results=max_results,
+                next_token=_token,
+                sort_order=sort_order,
+            )
+            _page = _resolve_path(_response, ("act_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def invoke_act_step(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        workflow_run_id: "capo_nova_act.types.uuid_string.UuidString",
+        session_id: "capo_nova_act.types.uuid_string.UuidString",
+        act_id: "capo_nova_act.types.uuid_string.UuidString",
+        call_results: "capo_nova_act.types.call_results.CallResults",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        previous_step_id: Optional["capo_nova_act.types.uuid_string.UuidString"] = None,
+    ) -> "capo_nova_act.types.invoke_act_step_response.InvokeActStepResponse":
+        """<p>Executes the next step of an act, processing tool call results and returning new tool calls if needed.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition containing the act.</p>
+            workflow_run_id: <p>The unique identifier of the workflow run containing the act.</p>
+            session_id: <p>The unique identifier of the session containing the act.</p>
+            act_id: <p>The unique identifier of the act to invoke the next step for.</p>
+            call_results: <p>The results from previous tool calls that the act requested.</p>
+            previous_step_id: <p>The identifier of the previous step, used for tracking execution flow.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed a service quota limit.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.invoke_act_step_request.InvokeActStepRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.invoke_act_step_response.InvokeActStepResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.invoke_act_step
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.invoke_act_step.async_invoke_act_step(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.invoke_act_step_request.InvokeActStepRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "session_id": session_id,
+            "act_id": act_id,
+            "call_results": call_results,
+        }
+        if previous_step_id is not None:
+            input_["previous_step_id"] = previous_step_id
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_act(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        workflow_run_id: "capo_nova_act.types.uuid_string.UuidString",
+        session_id: "capo_nova_act.types.uuid_string.UuidString",
+        act_id: "capo_nova_act.types.uuid_string.UuidString",
+        status: "capo_nova_act.types.act_status.ActStatus",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        error: Optional["capo_nova_act.types.act_error.ActError"] = None,
+    ) -> "capo_nova_act.types.update_act_response.UpdateActResponse":
+        """<p>Updates an existing act's configuration, status, or error information.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition containing the act.</p>
+            workflow_run_id: <p>The unique identifier of the workflow run containing the act.</p>
+            session_id: <p>The unique identifier of the session containing the act.</p>
+            act_id: <p>The unique identifier of the act to update.</p>
+            status: <p>The new status to set for the act.</p>
+            error: <p>Error information to associate with the act, if applicable.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.update_act_request.UpdateActRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.update_act_response.UpdateActResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.update_act
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.update_act.async_update_act(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.update_act_request.UpdateActRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "session_id": session_id,
+            "act_id": act_id,
+            "status": status,
+        }
+        if error is not None:
+            input_["error"] = error
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_models(
+        self,
+        client_compatibility_version: int,
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+    ) -> "capo_nova_act.types.list_models_response.ListModelsResponse":
+        """<p>Lists all available AI models that can be used for workflow execution, including their status and compatibility information.</p>
+
+        Args:
+            client_compatibility_version: <p>The client compatibility version to filter models by compatibility.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.list_models_request.ListModelsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.list_models_response.ListModelsResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.list_models
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.list_models.async_list_models(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.list_models_request.ListModelsRequest = {
+            "client_compatibility_version": client_compatibility_version
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_session(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        workflow_run_id: "capo_nova_act.types.uuid_string.UuidString",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        client_token: Optional["capo_nova_act.types.client_token.ClientToken"] = None,
+    ) -> "capo_nova_act.types.create_session_response.CreateSessionResponse":
+        """<p>Creates a new session context within a workflow run to manage conversation state and acts.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition containing the workflow run.</p>
+            workflow_run_id: <p>The unique identifier of the workflow run to create the session in.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed a service quota limit.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.create_session_request.CreateSessionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.create_session_response.CreateSessionResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.create_session
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.create_session.async_create_session(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.create_session_request.CreateSessionRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_sessions(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        workflow_run_id: "capo_nova_act.types.uuid_string.UuidString",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        max_results: Optional["capo_nova_act.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_nova_act.types.next_token.NextToken"] = None,
+        sort_order: Optional["capo_nova_act.types.sort_order.SortOrder"] = None,
+    ) -> "capo_nova_act.types.list_sessions_response.ListSessionsResponse":
+        """<p>Lists all sessions within a specific workflow run.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition containing the workflow run.</p>
+            workflow_run_id: <p>The unique identifier of the workflow run to list sessions for.</p>
+            max_results: <p>The maximum number of sessions to return in a single response.</p>
+            next_token: <p>The token for retrieving the next page of results.</p>
+            sort_order: <p>The sort order for the returned sessions (ascending or descending).</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.list_sessions_request.ListSessionsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.list_sessions_response.ListSessionsResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.list_sessions
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.list_sessions.async_list_sessions(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.list_sessions_request.ListSessionsRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if sort_order is not None:
+            input_["sort_order"] = sort_order
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_sessions(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        workflow_run_id: "capo_nova_act.types.uuid_string.UuidString",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        max_results: Optional["capo_nova_act.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_nova_act.types.next_token.NextToken"] = None,
+        sort_order: Optional["capo_nova_act.types.sort_order.SortOrder"] = None,
+    ) -> "AsyncIterator[capo_nova_act.types.session_summary.SessionSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_sessions(
+                workflow_definition_name,
+                workflow_run_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                sort_order=sort_order,
+            )
+            _page = _resolve_path(_response, ("session_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_workflow_definition(
+        self,
+        name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        description: Optional[
+            "capo_nova_act.types.workflow_description.WorkflowDescription"
+        ] = None,
+        export_config: Optional[
+            "capo_nova_act.types.workflow_export_config.WorkflowExportConfig"
+        ] = None,
+        client_token: Optional["capo_nova_act.types.client_token.ClientToken"] = None,
+    ) -> "capo_nova_act.types.create_workflow_definition_response.CreateWorkflowDefinitionResponse":
+        """<p>Creates a new workflow definition template that can be used to execute multiple workflow runs.</p>
+
+        Args:
+            name: <p>The name of the workflow definition. Must be unique within your account and region.</p>
+            description: <p>An optional description of the workflow definition's purpose and functionality.</p>
+            export_config: <p>Configuration for exporting workflow execution data to Amazon Simple Storage Service.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed a service quota limit.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.create_workflow_definition_request.CreateWorkflowDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.create_workflow_definition_response.CreateWorkflowDefinitionResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.create_workflow_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.create_workflow_definition.async_create_workflow_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.create_workflow_definition_request.CreateWorkflowDefinitionRequest = {
+            "name": name
+        }
+        if description is not None:
+            input_["description"] = description
+        if export_config is not None:
+            input_["export_config"] = export_config
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_workflow_definition(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+    ) -> "capo_nova_act.types.get_workflow_definition_response.GetWorkflowDefinitionResponse":
+        """<p>Retrieves the details and configuration of a specific workflow definition.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition to retrieve.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.get_workflow_definition_request.GetWorkflowDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.get_workflow_definition_response.GetWorkflowDefinitionResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.get_workflow_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.get_workflow_definition.async_get_workflow_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.get_workflow_definition_request.GetWorkflowDefinitionRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_workflow_definition(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+    ) -> "capo_nova_act.types.delete_workflow_definition_response.DeleteWorkflowDefinitionResponse":
+        """<p>Deletes a workflow definition and all associated resources. This operation cannot be undone.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition to delete.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.delete_workflow_definition_request.DeleteWorkflowDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.delete_workflow_definition_response.DeleteWorkflowDefinitionResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.delete_workflow_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.delete_workflow_definition.async_delete_workflow_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.delete_workflow_definition_request.DeleteWorkflowDefinitionRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_workflow_definitions(
+        self,
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        max_results: Optional["capo_nova_act.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_nova_act.types.next_token.NextToken"] = None,
+        sort_order: Optional["capo_nova_act.types.sort_order.SortOrder"] = None,
+    ) -> "capo_nova_act.types.list_workflow_definitions_response.ListWorkflowDefinitionsResponse":
+        """<p>Lists all workflow definitions in your account with optional filtering and pagination.</p>
+
+        Args:
+            max_results: <p>The maximum number of workflow definitions to return in a single response.</p>
+            next_token: <p>The token for retrieving the next page of results.</p>
+            sort_order: <p>The sort order for the returned workflow definitions (ascending or descending).</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.list_workflow_definitions_request.ListWorkflowDefinitionsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.list_workflow_definitions_response.ListWorkflowDefinitionsResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.list_workflow_definitions
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.list_workflow_definitions.async_list_workflow_definitions(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.list_workflow_definitions_request.ListWorkflowDefinitionsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if sort_order is not None:
+            input_["sort_order"] = sort_order
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_workflow_definitions(
+        self,
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        max_results: Optional["capo_nova_act.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_nova_act.types.next_token.NextToken"] = None,
+        sort_order: Optional["capo_nova_act.types.sort_order.SortOrder"] = None,
+    ) -> "AsyncIterator[capo_nova_act.types.workflow_definition_summary.WorkflowDefinitionSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_workflow_definitions(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                sort_order=sort_order,
+            )
+            _page = _resolve_path(_response, ("workflow_definition_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_workflow_run(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        model_id: "capo_nova_act.types.model_id.ModelId",
+        client_info: "capo_nova_act.types.client_info.ClientInfo",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        client_token: Optional["capo_nova_act.types.client_token.ClientToken"] = None,
+        log_group_name: Optional[
+            "capo_nova_act.types.cloud_watch_log_group_name.CloudWatchLogGroupName"
+        ] = None,
+    ) -> "capo_nova_act.types.create_workflow_run_response.CreateWorkflowRunResponse":
+        """<p>Creates a new execution instance of a workflow definition with specified parameters.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition to execute.</p>
+            model_id: <p>The ID of the AI model to use for workflow execution.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+            log_group_name: <p>The CloudWatch log group name for storing workflow execution logs.</p>
+            client_info: <p>Information about the client making the request, including compatibility version and SDK version.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.create_workflow_run_request.CreateWorkflowRunRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.create_workflow_run_response.CreateWorkflowRunResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.create_workflow_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.create_workflow_run.async_create_workflow_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.create_workflow_run_request.CreateWorkflowRunRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "model_id": model_id,
+            "client_info": client_info,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if log_group_name is not None:
+            input_["log_group_name"] = log_group_name
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_workflow_run(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        workflow_run_id: "capo_nova_act.types.uuid_string.UuidString",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+    ) -> "capo_nova_act.types.get_workflow_run_response.GetWorkflowRunResponse":
+        """<p>Retrieves the current state, configuration, and execution details of a workflow run.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition containing the workflow run.</p>
+            workflow_run_id: <p>The unique identifier of the workflow run to retrieve.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.get_workflow_run_request.GetWorkflowRunRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.get_workflow_run_response.GetWorkflowRunResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.get_workflow_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.get_workflow_run.async_get_workflow_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.get_workflow_run_request.GetWorkflowRunRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_workflow_run(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        workflow_run_id: "capo_nova_act.types.uuid_string.UuidString",
+        status: "capo_nova_act.types.workflow_run_status.WorkflowRunStatus",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+    ) -> "capo_nova_act.types.update_workflow_run_response.UpdateWorkflowRunResponse":
+        """<p>Updates the configuration or state of an active workflow run.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition containing the workflow run.</p>
+            workflow_run_id: <p>The unique identifier of the workflow run to update.</p>
+            status: <p>The new status to set for the workflow run.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.update_workflow_run_request.UpdateWorkflowRunRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.update_workflow_run_response.UpdateWorkflowRunResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.update_workflow_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.update_workflow_run.async_update_workflow_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.update_workflow_run_request.UpdateWorkflowRunRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "status": status,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_workflow_run(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        workflow_run_id: "capo_nova_act.types.uuid_string.UuidString",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+    ) -> "capo_nova_act.types.delete_workflow_run_response.DeleteWorkflowRunResponse":
+        """<p>Terminates and cleans up a workflow run, stopping all associated acts and sessions.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition containing the workflow run.</p>
+            workflow_run_id: <p>The unique identifier of the workflow run to delete.</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.delete_workflow_run_request.DeleteWorkflowRunRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.delete_workflow_run_response.DeleteWorkflowRunResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.delete_workflow_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.delete_workflow_run.async_delete_workflow_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.delete_workflow_run_request.DeleteWorkflowRunRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_workflow_runs(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        max_results: Optional["capo_nova_act.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_nova_act.types.next_token.NextToken"] = None,
+        sort_order: Optional["capo_nova_act.types.sort_order.SortOrder"] = None,
+    ) -> "capo_nova_act.types.list_workflow_runs_response.ListWorkflowRunsResponse":
+        """<p>Lists all workflow runs for a specific workflow definition with optional filtering and pagination.</p>
+
+        Args:
+            workflow_definition_name: <p>The name of the workflow definition to list workflow runs for.</p>
+            max_results: <p>The maximum number of workflow runs to return in a single response.</p>
+            next_token: <p>The token for retrieving the next page of results.</p>
+            sort_order: <p>The sort order for the returned workflow runs (ascending or descending).</p>
+
+        Raises:
+            capo_nova_act.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_nova_act.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource.</p>
+            capo_nova_act.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Please try again later.</p>
+            capo_nova_act.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource was not found.</p>
+            capo_nova_act.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please try again later.</p>
+            capo_nova_act.errors.validation_exception.ValidationException: <p>The input parameters for the request are invalid.</p>
+            capo_nova_act.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_nova_act.types.list_workflow_runs_request.ListWorkflowRunsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_nova_act.types.list_workflow_runs_response.ListWorkflowRunsResponse"
+        ]:
+            import capo_nova_act._operations.amazon_nova_agents_data_plane.list_workflow_runs
+
+            (
+                output,
+                http_response,
+            ) = await capo_nova_act._operations.amazon_nova_agents_data_plane.list_workflow_runs.async_list_workflow_runs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_nova_act.types.list_workflow_runs_request.ListWorkflowRunsRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if sort_order is not None:
+            input_["sort_order"] = sort_order
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_workflow_runs(
+        self,
+        workflow_definition_name: "capo_nova_act.types.workflow_definition_name.WorkflowDefinitionName",
+        *,
+        config_overrides: Optional[AsyncNovaActClientConfig] = None,
+        max_results: Optional["capo_nova_act.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_nova_act.types.next_token.NextToken"] = None,
+        sort_order: Optional["capo_nova_act.types.sort_order.SortOrder"] = None,
+    ) -> "AsyncIterator[capo_nova_act.types.workflow_run_summary.WorkflowRunSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_workflow_runs(
+                workflow_definition_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                sort_order=sort_order,
+            )
+            _page = _resolve_path(_response, ("workflow_run_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def __aenter__(self) -> Self:
         return self

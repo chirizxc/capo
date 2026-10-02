@@ -5,13 +5,11 @@ from typing import TYPE_CHECKING
 from typing_extensions import TypedDict
 
 if TYPE_CHECKING:
-    import capo_chime_sdk_voice.types.non_empty_string128
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class DeleteVoiceConnectorProxyRequest(TypedDict, closed=True):
-    voice_connector_id: (
-        "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128"
-    )
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
 
 

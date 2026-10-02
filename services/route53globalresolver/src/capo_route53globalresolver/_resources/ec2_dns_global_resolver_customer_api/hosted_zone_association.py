@@ -200,18 +200,20 @@ class HostedZoneAssociation:
 
     def list(
         self,
-        resource_arn: "capo_route53globalresolver.types.resource_arn.ResourceArn",
         *,
         config_overrides: Optional[Route53GlobalResolverClientConfig] = None,
         max_results: Optional[int] = None,
         next_token: Optional[str] = None,
+        resource_arn: Optional[
+            "capo_route53globalresolver.types.resource_arn.ResourceArn"
+        ] = None,
     ) -> "capo_route53globalresolver.types.list_hosted_zone_associations_output.ListHostedZoneAssociationsOutput":
-        """<p>Lists all hosted zone associations for a Route 53 Global Resolver resource with pagination support.</p> <important> <p>Route 53 Global Resolver is a global service that supports resolvers in multiple Amazon Web Services Regions but you must specify the US East (Ohio) Region to create, update, or otherwise work with Route 53 Global Resolver resources. That is, for example, specify <code>--region us-east-2</code> on Amazon Web Services CLI commands.</p> </important>
+        """<p>Lists hosted zone associations with pagination support. Specify a DNS view through the <code>resourceArn</code> parameter to list the hosted zone associations for that DNS view, or omit it to list all hosted zone associations in your Amazon Web Services account.</p> <important> <p>Route 53 Global Resolver is a global service that supports resolvers in multiple Amazon Web Services Regions but you must specify the US East (Ohio) Region to create, update, or otherwise work with Route 53 Global Resolver resources. That is, for example, specify <code>--region us-east-2</code> on Amazon Web Services CLI commands.</p> </important>
 
         Args:
             max_results: <p>The maximum number of results to retrieve in a single call.</p>
             next_token: <p>A pagination token used for large sets of results that can't be returned in a single response.</p>
-            resource_arn: <p>Amazon Resource Name (ARN) of the DNS view.</p>
+            resource_arn: <p>The Amazon Resource Name (ARN) of the DNS view to list hosted zone associations for. This parameter is optional; if you omit it, all hosted zone associations in your Amazon Web Services account are returned.</p>
 
         Raises:
             capo_route53globalresolver.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform this operation. Check your IAM permissions and try again.</p>
@@ -237,13 +239,13 @@ class HostedZoneAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_hosted_zone_associations_input.ListHostedZoneAssociationsInput = {
-            "resource_arn": resource_arn
-        }
+        input_: capo_route53globalresolver.types.list_hosted_zone_associations_input.ListHostedZoneAssociationsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
+        if resource_arn is not None:
+            input_["resource_arn"] = resource_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -420,18 +422,20 @@ class AsyncHostedZoneAssociation:
 
     async def list(
         self,
-        resource_arn: "capo_route53globalresolver.types.resource_arn.ResourceArn",
         *,
         config_overrides: Optional[AsyncRoute53GlobalResolverClientConfig] = None,
         max_results: Optional[int] = None,
         next_token: Optional[str] = None,
+        resource_arn: Optional[
+            "capo_route53globalresolver.types.resource_arn.ResourceArn"
+        ] = None,
     ) -> "capo_route53globalresolver.types.list_hosted_zone_associations_output.ListHostedZoneAssociationsOutput":
-        """<p>Lists all hosted zone associations for a Route 53 Global Resolver resource with pagination support.</p> <important> <p>Route 53 Global Resolver is a global service that supports resolvers in multiple Amazon Web Services Regions but you must specify the US East (Ohio) Region to create, update, or otherwise work with Route 53 Global Resolver resources. That is, for example, specify <code>--region us-east-2</code> on Amazon Web Services CLI commands.</p> </important>
+        """<p>Lists hosted zone associations with pagination support. Specify a DNS view through the <code>resourceArn</code> parameter to list the hosted zone associations for that DNS view, or omit it to list all hosted zone associations in your Amazon Web Services account.</p> <important> <p>Route 53 Global Resolver is a global service that supports resolvers in multiple Amazon Web Services Regions but you must specify the US East (Ohio) Region to create, update, or otherwise work with Route 53 Global Resolver resources. That is, for example, specify <code>--region us-east-2</code> on Amazon Web Services CLI commands.</p> </important>
 
         Args:
             max_results: <p>The maximum number of results to retrieve in a single call.</p>
             next_token: <p>A pagination token used for large sets of results that can't be returned in a single response.</p>
-            resource_arn: <p>Amazon Resource Name (ARN) of the DNS view.</p>
+            resource_arn: <p>The Amazon Resource Name (ARN) of the DNS view to list hosted zone associations for. This parameter is optional; if you omit it, all hosted zone associations in your Amazon Web Services account are returned.</p>
 
         Raises:
             capo_route53globalresolver.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform this operation. Check your IAM permissions and try again.</p>
@@ -458,13 +462,13 @@ class AsyncHostedZoneAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_hosted_zone_associations_input.ListHostedZoneAssociationsInput = {
-            "resource_arn": resource_arn
-        }
+        input_: capo_route53globalresolver.types.list_hosted_zone_associations_input.ListHostedZoneAssociationsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
+        if resource_arn is not None:
+            input_["resource_arn"] = resource_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

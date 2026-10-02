@@ -19,7 +19,11 @@ import capo_ssm.types.ops_item_related_item_summaries
 import capo_ssm.types.ops_item_related_items_filters
 from capo_ssm._protocol.errors import parse_error_metadata_json
 from capo_ssm._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_ssm._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_ssm._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_ssm.errors import UnknownServiceError
 
 
@@ -132,7 +136,7 @@ def list_ops_item_related_items(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -150,7 +154,7 @@ async def async_list_ops_item_related_items(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

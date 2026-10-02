@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import AsyncIterator, Iterator
 from typing import Any, cast
 from urllib.parse import quote
 
@@ -11,6 +12,7 @@ from typing_extensions import Never
 
 import capo_omics._auth._signers
 import capo_omics._auth._sigv4
+import capo_omics._body
 import capo_omics._protocol.eventstream
 import capo_omics.errors.access_denied_exception
 import capo_omics.errors.internal_server_exception
@@ -25,7 +27,11 @@ import capo_omics.types.upload_read_set_part_request
 import capo_omics.types.upload_read_set_part_response
 from capo_omics._protocol.errors import parse_error_metadata_json
 from capo_omics._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_omics._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_omics._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_omics.errors import UnknownServiceError
 
 
@@ -114,7 +120,9 @@ def get_signer(
             )
             if sigv4_config is not None:
                 return capo_omics._auth._signers.SigV4Signer(
-                    options.credentials_provider, auth_scheme=sigv4_config
+                    options.credentials_provider,
+                    auth_scheme=sigv4_config,
+                    unsigned_payload=True,
                 )
     raise RuntimeError("Auth was not resolved")
 
@@ -144,6 +152,68 @@ def build_request(
         params.append(("partNumber", str(input_["part_number"])))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body = input_["payload"]
+    if isinstance(body, capo_omics._body.Body):
+        body = cast(capo_omics._body.Body[Iterator[bytes]], body)
+        stream = body.stream
+        if stream is None:
+            rebuilt = body.rebuild()
+            if rebuilt is None:
+                raise RuntimeError("streaming body could not be rebuilt")
+            stream, _ = rebuilt
+        if "content-length" not in [header.lower() for header in headers]:
+            headers["Content-Length"] = str(body.length)
+        body = stream
+    if isinstance(body, capo_omics._iter.StaticAnyIterator):
+        body = cast(bytes, body.content)
+    if not isinstance(body, bytes) and "content-length" not in [
+        header.lower() for header in headers
+    ]:
+        raise ValueError("Content-Length is required for streaming input")
+    signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
+    normalized_url = zapros.URL(url)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
+    return zapros.Request(
+        normalized_url, "PUT", headers=headers, body=body, context={"signer": signer}
+    )
+
+
+async def async_build_request(
+    options: OperationOptions | AsyncOperationOptions,
+    input_: capo_omics.types.upload_read_set_part_request.UploadReadSetPartRequest,
+) -> zapros.Request:
+    endpoint = resolve(
+        EndpointParams(
+            Region=options.region,
+            UseDualStack=options.use_dual_stack,
+            UseFIPS=options.use_fips,
+            Endpoint=options.endpoint,
+        )
+    )  # noqa: F841
+    url = (
+        endpoint.url.rstrip("/")
+        + "/sequencestore/{sequenceStoreId}/upload/{uploadId}/part"
+    )
+    url = url.replace("{sequenceStoreId}", quote(input_["sequence_store_id"], safe=""))
+    url = url.replace("{uploadId}", quote(input_["upload_id"], safe=""))
+    params: list[tuple[str, str]] = []
+    if "part_source" in input_:
+        params.append(("partSource", input_["part_source"]))
+    if "part_number" in input_:
+        params.append(("partNumber", str(input_["part_number"])))
+    headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
+    body = input_["payload"]
+    if isinstance(body, capo_omics._body.Body):
+        body = cast(capo_omics._body.Body[AsyncIterator[bytes]], body)
+        stream = body.stream
+        if stream is None:
+            rebuilt = await body.arebuild()
+            if rebuilt is None:
+                raise RuntimeError("streaming body could not be rebuilt")
+            stream, _ = rebuilt
+        if "content-length" not in [header.lower() for header in headers]:
+            headers["Content-Length"] = str(body.length)
+        body = stream
     if isinstance(body, capo_omics._iter.StaticAnyIterator):
         body = cast(bytes, body.content)
     if not isinstance(body, bytes) and "content-length" not in [
@@ -170,7 +240,7 @@ def upload_read_set_part(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -184,11 +254,13 @@ async def async_upload_read_set_part(
     capo_omics.types.upload_read_set_part_response.UploadReadSetPartResponse,
     zapros.Response,
 ]:
-    response = await options.client.handler.ahandle(build_request(options, input_))
+    response = await options.client.handler.ahandle(
+        await async_build_request(options, input_)
+    )
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -13,7 +13,7 @@ class TransactWriteItemsOutput(TypedDict, closed=True):
     consumed_capacity: NotRequired[
         "capo_dynamodb.types.consumed_capacity_multiple.ConsumedCapacityMultiple"
     ]
-    """<p>The capacity units consumed by the entire <code>TransactWriteItems</code> operation. The values of the list are ordered according to the ordering of the <code>TransactItems</code> request parameter. </p>"""
+    """<p>The capacity units consumed by the entire <code>TransactWriteItems</code> operation. The values of the list are ordered according to the ordering of the <code>TransactItems</code> request parameter. </p> <p>If the table has vector indexes, each element also includes a <code>VectorIndexes</code> field with <code>VectorWriteRequestBytes</code> consumed for each affected vector index.</p>"""
     item_collection_metrics: NotRequired[
         "capo_dynamodb.types.item_collection_metrics_per_table.ItemCollectionMetricsPerTable"
     ]

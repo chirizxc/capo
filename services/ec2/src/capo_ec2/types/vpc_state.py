@@ -7,6 +7,7 @@ from capo_ec2._protocol.xml import Element
 VpcState: TypeAlias = Literal[
     "pending",
     "available",
+    "deleting",
 ]
 
 

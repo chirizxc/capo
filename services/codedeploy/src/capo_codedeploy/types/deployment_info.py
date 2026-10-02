@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     import capo_codedeploy.types.deployment_creator
     import capo_codedeploy.types.deployment_group_name
     import capo_codedeploy.types.deployment_id
+    import capo_codedeploy.types.deployment_mode
     import capo_codedeploy.types.deployment_overview
     import capo_codedeploy.types.deployment_status
     import capo_codedeploy.types.deployment_status_message_list
@@ -109,6 +110,8 @@ class DeploymentInfo(TypedDict, closed=True):
         "capo_codedeploy.types.file_exists_behavior.FileExistsBehavior"
     ]
     """<p>Information about how CodeDeploy handles files that already exist in a deployment target location but weren't part of the previous successful deployment.</p> <ul> <li> <p> <code>DISALLOW</code>: The deployment fails. This is also the default behavior if no option is specified.</p> </li> <li> <p> <code>OVERWRITE</code>: The version of the file from the application revision currently being deployed replaces the version already on the instance.</p> </li> <li> <p> <code>RETAIN</code>: The version of the file already on the instance is kept and used as part of the new deployment.</p> </li> </ul>"""
+    deployment_mode: NotRequired["capo_codedeploy.types.deployment_mode.DeploymentMode"]
+    """<p>The deployment's type. Valid values are:</p> <ul> <li> <p> <code>STANDARD</code>: The deployment installed the specified revision.</p> </li> <li> <p> <code>RESTART</code>: The deployment restarted the application on the target instances using the revision from the deployment group's last successful deployment, without downloading a new revision.</p> </li> </ul> <p>This field is absent for deployments created before <code>deploymentMode</code> existed, and for <code>STANDARD</code> deployments. An absent value must not be interpreted as <code>STANDARD</code>; it simply means no value was recorded either way.</p>"""
     deployment_status_messages: NotRequired[
         "capo_codedeploy.types.deployment_status_message_list.DeploymentStatusMessageList"
     ]
@@ -271,6 +274,14 @@ def serialize_aws_json_1_1(value: DeploymentInfo) -> dict:
         out["fileExistsBehavior"] = (
             capo_codedeploy.types.file_exists_behavior.serialize_aws_json_1_1(
                 value["file_exists_behavior"]
+            )
+        )
+    if "deployment_mode" in value:
+        import capo_codedeploy.types.deployment_mode
+
+        out["deploymentMode"] = (
+            capo_codedeploy.types.deployment_mode.serialize_aws_json_1_1(
+                value["deployment_mode"]
             )
         )
     if "deployment_status_messages" in value:
@@ -460,6 +471,14 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
         out["file_exists_behavior"] = (
             capo_codedeploy.types.file_exists_behavior.deserialize_aws_json_1_1(
                 data["fileExistsBehavior"]
+            )
+        )
+    if data.get("deploymentMode") is not None:
+        import capo_codedeploy.types.deployment_mode
+
+        out["deployment_mode"] = (
+            capo_codedeploy.types.deployment_mode.deserialize_aws_json_1_1(
+                data["deploymentMode"]
             )
         )
     if data.get("deploymentStatusMessages") is not None:

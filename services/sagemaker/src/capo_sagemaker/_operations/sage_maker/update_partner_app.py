@@ -13,6 +13,8 @@ import capo_sagemaker._auth._sigv4
 import capo_sagemaker._protocol.eventstream
 import capo_sagemaker.errors.conflict_exception
 import capo_sagemaker.errors.resource_not_found
+import capo_sagemaker.types.idc_config_input
+import capo_sagemaker.types.partner_app_auth_type
 import capo_sagemaker.types.partner_app_config
 import capo_sagemaker.types.partner_app_maintenance_config
 import capo_sagemaker.types.tag_list
@@ -20,7 +22,11 @@ import capo_sagemaker.types.update_partner_app_request
 import capo_sagemaker.types.update_partner_app_response
 from capo_sagemaker._protocol.errors import parse_error_metadata_json
 from capo_sagemaker._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_sagemaker._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_sagemaker._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_sagemaker.errors import UnknownServiceError
 
 
@@ -131,7 +137,7 @@ def update_partner_app(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -149,7 +155,7 @@ async def async_update_partner_app(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -7,14 +7,34 @@ from typing_extensions import TypedDict
 from capo_securityagent.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
+    import capo_securityagent.types.bitbucket_resource_capabilities
+    import capo_securityagent.types.confluence_resource_capabilities
     import capo_securityagent.types.git_hub_resource_capabilities
+    import capo_securityagent.types.git_lab_resource_capabilities
 
 
 class _ProviderResourceCapabilities_github(TypedDict, closed=True):
     github: "capo_securityagent.types.git_hub_resource_capabilities.GitHubResourceCapabilities"
 
 
-ProviderResourceCapabilities: TypeAlias = _ProviderResourceCapabilities_github
+class _ProviderResourceCapabilities_gitlab(TypedDict, closed=True):
+    gitlab: "capo_securityagent.types.git_lab_resource_capabilities.GitLabResourceCapabilities"
+
+
+class _ProviderResourceCapabilities_bitbucket(TypedDict, closed=True):
+    bitbucket: "capo_securityagent.types.bitbucket_resource_capabilities.BitbucketResourceCapabilities"
+
+
+class _ProviderResourceCapabilities_confluence(TypedDict, closed=True):
+    confluence: "capo_securityagent.types.confluence_resource_capabilities.ConfluenceResourceCapabilities"
+
+
+ProviderResourceCapabilities: TypeAlias = (
+    _ProviderResourceCapabilities_github
+    | _ProviderResourceCapabilities_gitlab
+    | _ProviderResourceCapabilities_bitbucket
+    | _ProviderResourceCapabilities_confluence
+)
 
 
 # --- restJson1 ser/de ---
@@ -25,6 +45,30 @@ def serialize_json(value: ProviderResourceCapabilities) -> dict:
         return {
             "github": capo_securityagent.types.git_hub_resource_capabilities.serialize_json(
                 value["github"]
+            )
+        }
+    elif "gitlab" in value:
+        import capo_securityagent.types.git_lab_resource_capabilities
+
+        return {
+            "gitlab": capo_securityagent.types.git_lab_resource_capabilities.serialize_json(
+                value["gitlab"]
+            )
+        }
+    elif "bitbucket" in value:
+        import capo_securityagent.types.bitbucket_resource_capabilities
+
+        return {
+            "bitbucket": capo_securityagent.types.bitbucket_resource_capabilities.serialize_json(
+                value["bitbucket"]
+            )
+        }
+    elif "confluence" in value:
+        import capo_securityagent.types.confluence_resource_capabilities
+
+        return {
+            "confluence": capo_securityagent.types.confluence_resource_capabilities.serialize_json(
+                value["confluence"]
             )
         }
     else:
@@ -38,6 +82,30 @@ def deserialize_json(data: dict) -> ProviderResourceCapabilities:
         return {
             "github": capo_securityagent.types.git_hub_resource_capabilities.deserialize_json(
                 data["github"]
+            )
+        }
+    elif data.get("gitlab") is not None:
+        import capo_securityagent.types.git_lab_resource_capabilities
+
+        return {
+            "gitlab": capo_securityagent.types.git_lab_resource_capabilities.deserialize_json(
+                data["gitlab"]
+            )
+        }
+    elif data.get("bitbucket") is not None:
+        import capo_securityagent.types.bitbucket_resource_capabilities
+
+        return {
+            "bitbucket": capo_securityagent.types.bitbucket_resource_capabilities.deserialize_json(
+                data["bitbucket"]
+            )
+        }
+    elif data.get("confluence") is not None:
+        import capo_securityagent.types.confluence_resource_capabilities
+
+        return {
+            "confluence": capo_securityagent.types.confluence_resource_capabilities.deserialize_json(
+                data["confluence"]
             )
         }
     else:

@@ -51,7 +51,7 @@ class GetMetricStreamOutput(TypedDict, closed=True):
     statistics_configurations: NotRequired[
         "capo_cloudwatch.types.metric_stream_statistics_configurations.MetricStreamStatisticsConfigurations"
     ]
-    r"""<p>Each entry in this array displays information about one or more metrics that include additional statistics in the metric stream. For more information about the additional statistics, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.html\"> CloudWatch statistics definitions</a>. </p>"""
+    r"""<p>Each entry in this array displays information about one or more metrics that include additional statistics in the metric stream. For more information about the additional statistics, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html\"> CloudWatch statistics definitions</a>. </p>"""
     include_linked_accounts_metrics: NotRequired[
         "capo_cloudwatch.types.include_linked_accounts_metrics.IncludeLinkedAccountsMetrics"
     ]

@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_partnercentral_account.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_partnercentral_account.types.headquarters
     import capo_partnercentral_account.types.industry_segment_list
     import capo_partnercentral_account.types.locale
     import capo_partnercentral_account.types.localized_content_list
@@ -38,6 +39,10 @@ class TaskDetails(TypedDict, closed=True):
         "capo_partnercentral_account.types.localized_content_list.LocalizedContentList"
     ]
     """<p>The updated localized content for the partner profile.</p>"""
+    headquarters: NotRequired[
+        "capo_partnercentral_account.types.headquarters.Headquarters"
+    ]
+    """<p>The ISO 3166 country and subdivision codes for the partner's headquarters location. If you omit this field, the service retains the existing headquarters value.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -68,6 +73,14 @@ def serialize_aws_json_1_0(value: TaskDetails) -> dict:
         out["LocalizedContents"] = (
             capo_partnercentral_account.types.localized_content_list.serialize_aws_json_1_0(
                 value["localized_contents"]
+            )
+        )
+    if "headquarters" in value:
+        import capo_partnercentral_account.types.headquarters
+
+        out["Headquarters"] = (
+            capo_partnercentral_account.types.headquarters.serialize_aws_json_1_0(
+                value["headquarters"]
             )
         )
     return out
@@ -121,6 +134,14 @@ def deserialize_aws_json_1_0(data: dict) -> TaskDetails:
         out["localized_contents"] = (
             capo_partnercentral_account.types.localized_content_list.deserialize_aws_json_1_0(
                 data["LocalizedContents"]
+            )
+        )
+    if data.get("Headquarters") is not None:
+        import capo_partnercentral_account.types.headquarters
+
+        out["headquarters"] = (
+            capo_partnercentral_account.types.headquarters.deserialize_aws_json_1_0(
+                data["Headquarters"]
             )
         )
     return out

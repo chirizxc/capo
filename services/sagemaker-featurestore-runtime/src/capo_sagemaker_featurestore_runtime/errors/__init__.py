@@ -22,6 +22,7 @@ from ._base import (
     WaiterTimeoutError as WaiterTimeoutError,
 )
 from .access_forbidden import AccessForbidden as AccessForbidden
+from .conflict_exception import ConflictException as ConflictException
 from .internal_failure import InternalFailure as InternalFailure
 from .resource_not_found import ResourceNotFound as ResourceNotFound
 from .service_unavailable import ServiceUnavailable as ServiceUnavailable

@@ -16,11 +16,11 @@ class ListLifecycleExecutionsRequest(TypedDict, closed=True):
     max_results: NotRequired[
         "capo_imagebuilder.types.restricted_integer.RestrictedInteger"
     ]
-    """<p>Specify the maximum number of items to return in a request.</p>"""
+    """<p>The maximum number of items to return in a single request.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
-    """<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>"""
+    """<p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>"""
     resource_arn: "capo_imagebuilder.types.image_builder_arn.ImageBuilderArn"
-    """<p>The Amazon Resource Name (ARN) of the resource for which to get a list of lifecycle runtime instances.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the resource for which to list lifecycle executions. Specify a lifecycle policy ARN to list its executions, or an image build version ARN to list the executions that <a>StartResourceStateUpdate</a> started for that image. Other ARN types aren't valid for this request.</p>"""
 
 
 # --- restJson1 ser/de ---

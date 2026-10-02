@@ -15,6 +15,7 @@ TermType: TypeAlias = Literal[
     "SupportTerm",
     "ValidityTerm",
     "VariablePaymentTerm",
+    "NetPaymentTerm",
 ]
 
 

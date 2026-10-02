@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Optional
 
 import capo_lambda._auth._signers
 import capo_lambda._auth._sigv4
+from capo_lambda._body import Body, aclosing_bodies, closing_bodies
 from capo_lambda._iter import ensure_async_iterator, ensure_sync_iterator
 from capo_lambda._services._pipeline import (
     AsyncOperationRequest,
@@ -208,7 +209,7 @@ class Function:
             handler: <p>The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html\">Lambda programming model</a>.</p>
             code: <p>The code for the function.</p>
             description: <p>A description of the function.</p>
-            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
+            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds, and the maximum allowed value is 900 seconds. For functions using Lambda Managed Instances, asynchronous invocations and event source mapping invocations (except Amazon MQ and Amazon DocumentDB) support a maximum allowed value of 5,400 seconds (90 minutes). For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
             memory_size: <p>The amount of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console\">memory available to the function</a> at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.</p>
             publish: <p>Set to true to publish the first version of the function during creation.</p>
             publish_to: <p>Specifies where to publish the function version or configuration.</p>
@@ -775,7 +776,7 @@ class Function:
             role: <p>The Amazon Resource Name (ARN) of the function's execution role.</p>
             handler: <p>The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html\">Lambda programming model</a>.</p>
             description: <p>A description of the function.</p>
-            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
+            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds, and the maximum allowed value is 900 seconds. For functions using Lambda Managed Instances, asynchronous invocations and event source mapping invocations (except Amazon MQ and Amazon DocumentDB) support a maximum allowed value of 5,400 seconds (90 minutes). For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
             memory_size: <p>The amount of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console\">memory available to the function</a> at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.</p>
             vpc_config: <p>For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html\">Configuring a Lambda function to access resources in a VPC</a>.</p>
             environment: <p>Environment variables that are accessible from function code during execution.</p>
@@ -1592,7 +1593,7 @@ class Function:
     def invoke_async(
         self,
         function_name: "capo_lambda.types.namespaced_function_name.NamespacedFunctionName",
-        invoke_args: Iterator[bytes] | bytes,
+        invoke_args: Body[Iterator[bytes]] | Iterator[bytes] | bytes,
         *,
         config_overrides: Optional[LambdaClientConfig] = None,
     ) -> "capo_lambda.types.invoke_async_response.InvokeAsyncResponse":
@@ -1661,13 +1662,14 @@ class Function:
             "invoke_args": ensure_sync_iterator(invoke_args),
         }
 
-        response = execute_pipeline(
-            OperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        response.response.close()
-        return response.output
+        with closing_bodies(input_):
+            response = execute_pipeline(
+                OperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            response.response.close()
+            return response.output
 
     @contextmanager
     def invoke_with_response_stream(
@@ -2276,7 +2278,7 @@ class AsyncFunction:
             handler: <p>The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html\">Lambda programming model</a>.</p>
             code: <p>The code for the function.</p>
             description: <p>A description of the function.</p>
-            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
+            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds, and the maximum allowed value is 900 seconds. For functions using Lambda Managed Instances, asynchronous invocations and event source mapping invocations (except Amazon MQ and Amazon DocumentDB) support a maximum allowed value of 5,400 seconds (90 minutes). For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
             memory_size: <p>The amount of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console\">memory available to the function</a> at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.</p>
             publish: <p>Set to true to publish the first version of the function during creation.</p>
             publish_to: <p>Specifies where to publish the function version or configuration.</p>
@@ -2850,7 +2852,7 @@ class AsyncFunction:
             role: <p>The Amazon Resource Name (ARN) of the function's execution role.</p>
             handler: <p>The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html\">Lambda programming model</a>.</p>
             description: <p>A description of the function.</p>
-            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
+            timeout: <p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds, and the maximum allowed value is 900 seconds. For functions using Lambda Managed Instances, asynchronous invocations and event source mapping invocations (except Amazon MQ and Amazon DocumentDB) support a maximum allowed value of 5,400 seconds (90 minutes). For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>
             memory_size: <p>The amount of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console\">memory available to the function</a> at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.</p>
             vpc_config: <p>For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html\">Configuring a Lambda function to access resources in a VPC</a>.</p>
             environment: <p>Environment variables that are accessible from function code during execution.</p>
@@ -3680,7 +3682,7 @@ class AsyncFunction:
     async def invoke_async(
         self,
         function_name: "capo_lambda.types.namespaced_function_name.NamespacedFunctionName",
-        invoke_args: AsyncIterator[bytes] | bytes,
+        invoke_args: Body[AsyncIterator[bytes]] | AsyncIterator[bytes] | bytes,
         *,
         config_overrides: Optional[AsyncLambdaClientConfig] = None,
     ) -> "capo_lambda.types.invoke_async_response.InvokeAsyncResponse":
@@ -3750,13 +3752,14 @@ class AsyncFunction:
             "invoke_args": ensure_async_iterator(invoke_args),
         }
 
-        response = await aexecute_pipeline(
-            AsyncOperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        await response.response.aclose()
-        return response.output
+        async with aclosing_bodies(input_):
+            response = await aexecute_pipeline(
+                AsyncOperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            await response.response.aclose()
+            return response.output
 
     @asynccontextmanager
     async def invoke_with_response_stream(

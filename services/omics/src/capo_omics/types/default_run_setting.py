@@ -20,6 +20,8 @@ if TYPE_CHECKING:
     import capo_omics.types.run_parameters
     import capo_omics.types.run_retention_mode
     import capo_omics.types.run_role_arn
+    import capo_omics.types.scratch_storage_mode
+    import capo_omics.types.session_policy
     import capo_omics.types.storage_type
     import capo_omics.types.tag_map
     import capo_omics.types.workflow_id
@@ -34,7 +36,7 @@ class DefaultRunSetting(TypedDict, closed=True):
     workflow_type: NotRequired["capo_omics.types.workflow_type.WorkflowType"]
     """<p>The type of the originating workflow. Batch runs are not supported with <code>READY2RUN</code> workflows.</p>"""
     role_arn: "capo_omics.types.run_role_arn.RunRoleArn"
-    """<p>The IAM role ARN that grants HealthOmics permissions to access required AWS resources such as Amazon S3 and CloudWatch. The role must have the same permissions required for individual <code>StartRun</code> calls.</p>"""
+    """<p>The IAM role ARN that grants HealthOmics permissions to access required Amazon Web Services resources such as Amazon S3 and CloudWatch. The role must have the same permissions required for individual <code>StartRun</code> calls.</p>"""
     name: NotRequired["capo_omics.types.run_name.RunName"]
     """<p>An optional user-friendly name applied to each workflow run. Can be overridden per run.</p>"""
     cache_id: NotRequired["capo_omics.types.numeric_id_in_arn.NumericIdInArn"]
@@ -54,15 +56,15 @@ class DefaultRunSetting(TypedDict, closed=True):
     log_level: NotRequired["capo_omics.types.run_log_level.RunLogLevel"]
     """<p>The verbosity level for CloudWatch Logs emitted during each run.</p>"""
     run_tags: NotRequired["capo_omics.types.tag_map.TagMap"]
-    """<p>AWS tags to associate with each workflow run. Merged with per-run <code>runTags</code>; run-specific values take precedence when keys overlap.</p>"""
+    """<p>Amazon Web Services tags to associate with each workflow run. Merged with per-run <code>runTags</code>; run-specific values take precedence when keys overlap.</p>"""
     retention_mode: NotRequired["capo_omics.types.run_retention_mode.RunRetentionMode"]
     """<p>The retention behavior for runs after completion.</p>"""
     storage_type: NotRequired["capo_omics.types.storage_type.StorageType"]
     """<p>The storage type for the workflow runs.</p>"""
     workflow_owner_id: NotRequired["capo_omics.types.workflow_owner_id.WorkflowOwnerId"]
-    """<p>The AWS account ID of the workflow owner, used for cross-account workflow sharing.</p>"""
+    """<p>The Amazon Web Services account ID of the workflow owner, used for cross-account workflow sharing.</p>"""
     output_bucket_owner_id: NotRequired["capo_omics.types.aws_account_id.AwsAccountId"]
-    """<p>The expected AWS account ID of the owner of the output S3 bucket. Can be overridden per run.</p>"""
+    """<p>The expected Amazon Web Services account ID of the owner of the output S3 bucket. Can be overridden per run.</p>"""
     workflow_version_name: NotRequired[
         "capo_omics.types.workflow_version_name.WorkflowVersionName"
     ]
@@ -73,8 +75,14 @@ class DefaultRunSetting(TypedDict, closed=True):
         "capo_omics.types.configuration_name.ConfigurationName"
     ]
     """<p>Optional configuration name to use for the workflow run.</p>"""
+    session_policy: NotRequired["capo_omics.types.session_policy.SessionPolicy"]
+    """Optional inline policy json for scoping down permissions via a session policy on the IAM role provided in the roleArn parameter."""
     engine_settings: NotRequired["capo_omics.types.engine_settings.EngineSettings"]
     """<p>Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).</p>"""
+    scratch_storage_mode: NotRequired[
+        "capo_omics.types.scratch_storage_mode.ScratchStorageMode"
+    ]
+    """<p>Optional configuration for enabling scratch ephemeral storage mounted at /tmp. If not specified, this will default to SHARED. This configuration is applicable only for CPU tasks. For tasks using GPUs, scratch storage is always LOCAL.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -120,8 +128,12 @@ def serialize_json(value: DefaultRunSetting) -> dict:
         out["networkingMode"] = value["networking_mode"]
     if "configuration_name" in value:
         out["configurationName"] = value["configuration_name"]
+    if "session_policy" in value:
+        out["sessionPolicy"] = value["session_policy"]
     if "engine_settings" in value:
         out["engineSettings"] = value["engine_settings"]
+    if "scratch_storage_mode" in value:
+        out["scratchStorageMode"] = value["scratch_storage_mode"]
     return out
 
 
@@ -173,6 +185,10 @@ def deserialize_json(data: dict) -> DefaultRunSetting:
         out["networking_mode"] = data["networkingMode"]
     if data.get("configurationName") is not None:
         out["configuration_name"] = data["configurationName"]
+    if data.get("sessionPolicy") is not None:
+        out["session_policy"] = data["sessionPolicy"]
     if data.get("engineSettings") is not None:
         out["engine_settings"] = data["engineSettings"]
+    if data.get("scratchStorageMode") is not None:
+        out["scratch_storage_mode"] = data["scratchStorageMode"]
     return out

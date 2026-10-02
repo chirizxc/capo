@@ -34,3 +34,6 @@ from .service_quota_exceeded_exception import (
 from .too_many_requests_exception import (
     TooManyRequestsException as TooManyRequestsException,
 )
+from .unprocessable_entity_exception import (
+    UnprocessableEntityException as UnprocessableEntityException,
+)

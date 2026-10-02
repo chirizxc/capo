@@ -22,7 +22,7 @@ class OriginAccessControlSummary(TypedDict, closed=True):
     name: "capo_cloudfront.types.string.string"
     """<p>A unique name that identifies the origin access control.</p>"""
     signing_protocol: "capo_cloudfront.types.origin_access_control_signing_protocols.OriginAccessControlSigningProtocols"
-    """<p>The signing protocol of the origin access control. The signing protocol determines how CloudFront signs (authenticates) requests. The only valid value is <code>sigv4</code>.</p>"""
+    """<p>The signing protocol of the origin access control. The signing protocol determines how CloudFront signs (authenticates) requests. The only valid values are <code>sigv4</code> and <code>sigv4a</code>.</p>"""
     signing_behavior: "capo_cloudfront.types.origin_access_control_signing_behaviors.OriginAccessControlSigningBehaviors"
     """<p>A value that specifies which requests CloudFront signs (adds authentication information to). This field can have one of the following values:</p> <ul> <li> <p> <code>never</code> – CloudFront doesn't sign any origin requests.</p> </li> <li> <p> <code>always</code> – CloudFront signs all origin requests, overwriting the <code>Authorization</code> header from the viewer request if necessary.</p> </li> <li> <p> <code>no-override</code> – If the viewer request doesn't contain the <code>Authorization</code> header, CloudFront signs the origin request. If the viewer request contains the <code>Authorization</code> header, CloudFront doesn't sign the origin request, but instead passes along the <code>Authorization</code> header that it received in the viewer request.</p> </li> </ul>"""
     origin_access_control_origin_type: "capo_cloudfront.types.origin_access_control_origin_types.OriginAccessControlOriginTypes"

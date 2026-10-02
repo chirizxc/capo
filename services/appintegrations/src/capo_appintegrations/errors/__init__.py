@@ -22,6 +22,7 @@ from ._base import (
     WaiterTimeoutError as WaiterTimeoutError,
 )
 from .access_denied_exception import AccessDeniedException as AccessDeniedException
+from .conflict_exception import ConflictException as ConflictException
 from .duplicate_resource_exception import (
     DuplicateResourceException as DuplicateResourceException,
 )

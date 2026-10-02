@@ -2,11 +2,12 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_devops_agent.types.slack_bidirectional_configuration
     import capo_devops_agent.types.slack_transmission_target
 
 
@@ -19,6 +20,10 @@ class SlackConfiguration(TypedDict, closed=True):
         "capo_devops_agent.types.slack_transmission_target.SlackTransmissionTarget"
     )
     """<p>Transmission targets for agent notifications</p>"""
+    bidirectional: NotRequired[
+        "capo_devops_agent.types.slack_bidirectional_configuration.SlackBidirectionalConfiguration"
+    ]
+    """<p>Optional bidirectional communication configuration. Supply this configuration and set enabled to true so you can interact with the agent directly from Slack.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -33,6 +38,14 @@ def serialize_json(value: SlackConfiguration) -> dict:
             value["transmission_target"]
         )
     )
+    if "bidirectional" in value:
+        import capo_devops_agent.types.slack_bidirectional_configuration
+
+        out["bidirectional"] = (
+            capo_devops_agent.types.slack_bidirectional_configuration.serialize_json(
+                value["bidirectional"]
+            )
+        )
     return out
 
 
@@ -56,4 +69,12 @@ def deserialize_json(data: dict) -> SlackConfiguration:
         )
     else:
         raise DeserializationError("SlackConfiguration.transmission_target required")
+    if data.get("bidirectional") is not None:
+        import capo_devops_agent.types.slack_bidirectional_configuration
+
+        out["bidirectional"] = (
+            capo_devops_agent.types.slack_bidirectional_configuration.deserialize_json(
+                data["bidirectional"]
+            )
+        )
     return out

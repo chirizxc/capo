@@ -10,6 +10,7 @@ from capo_sts.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_sts.types.arn_type
     import capo_sts.types.external_id_type
+    import capo_sts.types.minimum_session_token_size_type
     import capo_sts.types.policy_descriptor_list_type
     import capo_sts.types.provided_contexts_list_type
     import capo_sts.types.role_duration_seconds_type
@@ -57,6 +58,9 @@ class AssumeRoleRequest(TypedDict, closed=True):
         "capo_sts.types.provided_contexts_list_type.ProvidedContextsListType"
     ]
     r"""<p>A list of previously acquired trusted context assertions in the format of a JSON array. The trusted context assertion is signed and encrypted by Amazon Web Services STS.</p> <p>The following is an example of a <code>ProvidedContext</code> value that includes a single trusted context assertion and the ARN of the context provider from which the trusted context assertion was generated.</p> <p> <code>[{\"ProviderArn\":\"arn:aws:iam::aws:contextProvider/IdentityCenter\",\"ContextAssertion\":\"trusted-context-assertion\"}]</code> </p>"""
+    minimum_session_token_size: NotRequired[
+        "capo_sts.types.minimum_session_token_size_type.minimumSessionTokenSizeType"
+    ]
 
 
 # --- awsQuery ser/de ---
@@ -101,6 +105,13 @@ def serialize_query(
 
         capo_sts.types.provided_contexts_list_type.serialize_query(
             value["provided_contexts"], pairs, f"{key_prefix}ProvidedContexts"
+        )
+    if "minimum_session_token_size" in value:
+        pairs.append(
+            (
+                f"{key_prefix}MinimumSessionTokenSize",
+                str(value["minimum_session_token_size"]),
+            )
         )
 
 
@@ -163,5 +174,10 @@ def deserialize_query(el: Element) -> AssumeRoleRequest:
             capo_sts.types.provided_contexts_list_type.deserialize_query(
                 child_provided_contexts
             )
+        )
+    child_minimum_session_token_size = el.find("MinimumSessionTokenSize")
+    if child_minimum_session_token_size is not None:
+        out["minimum_session_token_size"] = int(
+            child_minimum_session_token_size.text or ""
         )
     return out

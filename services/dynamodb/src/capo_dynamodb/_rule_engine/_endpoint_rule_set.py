@@ -10,6 +10,7 @@ from ._endpoint_runtime import (
     get_attr,
     interpolate,
     is_valid_host_label,
+    parse_url,
     string_equals,
 )
 
@@ -26,6 +27,7 @@ class EndpointParams:
         AccountIdEndpointMode: str | None = None,
         ResourceArn: str | None = None,
         ResourceArnList: list[str] | None = None,
+        IsSearchOperation: bool | None = None,
     ):
         self.UseDualStack = UseDualStack if UseDualStack is not None else False
         self.UseFIPS = UseFIPS if UseFIPS is not None else False
@@ -37,6 +39,9 @@ class EndpointParams:
         )
         self.ResourceArn = ResourceArn if ResourceArn is not None else None
         self.ResourceArnList = ResourceArnList if ResourceArnList is not None else None
+        self.IsSearchOperation = (
+            IsSearchOperation if IsSearchOperation is not None else None
+        )
 
 
 def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
@@ -46,40 +51,65 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
         if p.Region is not None:
             _locals["PartitionResult"] = aws_partition(p.Region)
             if _locals["PartitionResult"] is not None:
-                if p.UseFIPS is True:
-                    raise EndpointError(
+                _locals["parsedEndpoint"] = parse_url(p.Endpoint)
+                if _locals["parsedEndpoint"] is not None:
+                    if p.UseFIPS is True:
+                        raise EndpointError(
+                            interpolate(
+                                "Invalid Configuration: FIPS and custom endpoint are not supported",
+                                p,
+                                _locals,
+                            )
+                        )
+                    if p.UseDualStack is True:
+                        raise EndpointError(
+                            interpolate(
+                                "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                p,
+                                _locals,
+                            )
+                        )
+                    if string_equals(
+                        get_attr(
+                            _locals["parsedEndpoint"],
+                            interpolate("authority", p, _locals),
+                        ),
                         interpolate(
-                            "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
                             p,
                             _locals,
+                        ),
+                    ):
+                        raise EndpointError(
+                            interpolate(
+                                "Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html",
+                                p,
+                                _locals,
+                            )
                         )
-                    )
-                if p.UseDualStack is True:
-                    raise EndpointError(
+                    if string_equals(
+                        get_attr(
+                            _locals["parsedEndpoint"],
+                            interpolate("authority", p, _locals),
+                        ),
                         interpolate(
-                            "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "search-dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
                             p,
                             _locals,
+                        ),
+                    ):
+                        raise EndpointError(
+                            interpolate(
+                                "Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html",
+                                p,
+                                _locals,
+                            )
                         )
+                    return Endpoint(
+                        url=interpolate("{Endpoint}", p, _locals),
+                        properties={},
+                        headers={},
                     )
-                if string_equals(
-                    p.Endpoint,
-                    interpolate(
-                        "https://dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                        p,
-                        _locals,
-                    ),
-                ):
-                    raise EndpointError(
-                        interpolate(
-                            "Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html",
-                            p,
-                            _locals,
-                        )
-                    )
-                return Endpoint(
-                    url=interpolate("{Endpoint}", p, _locals), properties={}, headers={}
-                )
     _locals: dict[str, Any] = {}
     if p.Endpoint is not None:
         if p.UseFIPS is True:
@@ -127,9 +157,9 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                     properties={
                         "authSchemes": [
                             {
+                                "signingRegion": interpolate("us-east-1", p, _locals),
                                 "name": interpolate("sigv4", p, _locals),
                                 "signingName": interpolate("dynamodb", p, _locals),
-                                "signingRegion": interpolate("us-east-1", p, _locals),
                             }
                         ]
                     },
@@ -162,6 +192,17 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                             p,
                                             _locals,
                                         )
+                                    )
+                            if p.IsSearchOperation is not None:
+                                if p.IsSearchOperation is True:
+                                    return Endpoint(
+                                        url=interpolate(
+                                            "https://search-dynamodb-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                            p,
+                                            _locals,
+                                        ),
+                                        properties={},
+                                        headers={},
                                     )
                             return Endpoint(
                                 url=interpolate(
@@ -205,6 +246,17 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                         _locals,
                                     )
                                 )
+                        if p.IsSearchOperation is not None:
+                            if p.IsSearchOperation is True:
+                                return Endpoint(
+                                    url=interpolate(
+                                        "https://search-dynamodb.{Region}.{PartitionResult#dnsSuffix}",
+                                        p,
+                                        _locals,
+                                    ),
+                                    properties={},
+                                    headers={},
+                                )
                         return Endpoint(
                             url=interpolate(
                                 "https://dynamodb.{Region}.{PartitionResult#dnsSuffix}",
@@ -224,6 +276,17 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                     p,
                                     _locals,
                                 )
+                            )
+                    if p.IsSearchOperation is not None:
+                        if p.IsSearchOperation is True:
+                            return Endpoint(
+                                url=interpolate(
+                                    "https://search-dynamodb-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                    p,
+                                    _locals,
+                                ),
+                                properties={},
+                                headers={},
                             )
                     return Endpoint(
                         url=interpolate(
@@ -307,6 +370,31 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                                             ),
                                                             False,
                                                         ):
+                                                            if (
+                                                                p.IsSearchOperation
+                                                                is not None
+                                                            ):
+                                                                if (
+                                                                    p.IsSearchOperation
+                                                                    is True
+                                                                ):
+                                                                    return Endpoint(
+                                                                        url=interpolate(
+                                                                            "https://{ParsedArn#accountId}.search-ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                            p,
+                                                                            _locals,
+                                                                        ),
+                                                                        properties={
+                                                                            "metricValues": [
+                                                                                interpolate(
+                                                                                    "O",
+                                                                                    p,
+                                                                                    _locals,
+                                                                                )
+                                                                            ]
+                                                                        },
+                                                                        headers={},
+                                                                    )
                                                             return Endpoint(
                                                                 url=interpolate(
                                                                     "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
@@ -391,6 +479,31 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                                                 ),
                                                                 False,
                                                             ):
+                                                                if (
+                                                                    p.IsSearchOperation
+                                                                    is not None
+                                                                ):
+                                                                    if (
+                                                                        p.IsSearchOperation
+                                                                        is True
+                                                                    ):
+                                                                        return Endpoint(
+                                                                            url=interpolate(
+                                                                                "https://{ParsedArn#accountId}.search-ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                                p,
+                                                                                _locals,
+                                                                            ),
+                                                                            properties={
+                                                                                "metricValues": [
+                                                                                    interpolate(
+                                                                                        "O",
+                                                                                        p,
+                                                                                        _locals,
+                                                                                    )
+                                                                                ]
+                                                                            },
+                                                                            headers={},
+                                                                        )
                                                                 return Endpoint(
                                                                     url=interpolate(
                                                                         "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
@@ -425,6 +538,23 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                 if p.UseFIPS is not True:
                                     if p.AccountId is not None:
                                         if is_valid_host_label(p.AccountId, False):
+                                            if p.IsSearchOperation is not None:
+                                                if p.IsSearchOperation is True:
+                                                    return Endpoint(
+                                                        url=interpolate(
+                                                            "https://{AccountId}.search-ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                            p,
+                                                            _locals,
+                                                        ),
+                                                        properties={
+                                                            "metricValues": [
+                                                                interpolate(
+                                                                    "O", p, _locals
+                                                                )
+                                                            ]
+                                                        },
+                                                        headers={},
+                                                    )
                                             return Endpoint(
                                                 url=interpolate(
                                                     "https://{AccountId}.ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
@@ -477,6 +607,17 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                     p,
                                     _locals,
                                 )
+                            )
+                    if p.IsSearchOperation is not None:
+                        if p.IsSearchOperation is True:
+                            return Endpoint(
+                                url=interpolate(
+                                    "https://search-dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                    p,
+                                    _locals,
+                                ),
+                                properties={},
+                                headers={},
                             )
                     return Endpoint(
                         url=interpolate(
@@ -540,6 +681,25 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                                     ),
                                                     False,
                                                 ):
+                                                    if p.IsSearchOperation is not None:
+                                                        if p.IsSearchOperation is True:
+                                                            return Endpoint(
+                                                                url=interpolate(
+                                                                    "https://{ParsedArn#accountId}.search-ddb.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    p,
+                                                                    _locals,
+                                                                ),
+                                                                properties={
+                                                                    "metricValues": [
+                                                                        interpolate(
+                                                                            "O",
+                                                                            p,
+                                                                            _locals,
+                                                                        )
+                                                                    ]
+                                                                },
+                                                                headers={},
+                                                            )
                                                     return Endpoint(
                                                         url=interpolate(
                                                             "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dnsSuffix}",
@@ -609,6 +769,31 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                                         ),
                                                         False,
                                                     ):
+                                                        if (
+                                                            p.IsSearchOperation
+                                                            is not None
+                                                        ):
+                                                            if (
+                                                                p.IsSearchOperation
+                                                                is True
+                                                            ):
+                                                                return Endpoint(
+                                                                    url=interpolate(
+                                                                        "https://{ParsedArn#accountId}.search-ddb.{Region}.{PartitionResult#dnsSuffix}",
+                                                                        p,
+                                                                        _locals,
+                                                                    ),
+                                                                    properties={
+                                                                        "metricValues": [
+                                                                            interpolate(
+                                                                                "O",
+                                                                                p,
+                                                                                _locals,
+                                                                            )
+                                                                        ]
+                                                                    },
+                                                                    headers={},
+                                                                )
                                                         return Endpoint(
                                                             url=interpolate(
                                                                 "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dnsSuffix}",
@@ -639,6 +824,21 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                         if p.UseFIPS is not True:
                             if p.AccountId is not None:
                                 if is_valid_host_label(p.AccountId, False):
+                                    if p.IsSearchOperation is not None:
+                                        if p.IsSearchOperation is True:
+                                            return Endpoint(
+                                                url=interpolate(
+                                                    "https://{AccountId}.search-ddb.{Region}.{PartitionResult#dnsSuffix}",
+                                                    p,
+                                                    _locals,
+                                                ),
+                                                properties={
+                                                    "metricValues": [
+                                                        interpolate("O", p, _locals)
+                                                    ]
+                                                },
+                                                headers={},
+                                            )
                                     return Endpoint(
                                         url=interpolate(
                                             "https://{AccountId}.ddb.{Region}.{PartitionResult#dnsSuffix}",
@@ -691,6 +891,17 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                             p,
                             _locals,
                         )
+                    )
+            if p.IsSearchOperation is not None:
+                if p.IsSearchOperation is True:
+                    return Endpoint(
+                        url=interpolate(
+                            "https://search-dynamodb.{Region}.{PartitionResult#dnsSuffix}",
+                            p,
+                            _locals,
+                        ),
+                        properties={},
+                        headers={},
                     )
             return Endpoint(
                 url=interpolate(

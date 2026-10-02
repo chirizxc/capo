@@ -22,6 +22,7 @@ import capo_s3.types.copy_source_if_unmodified_since
 import capo_s3.types.metadata
 import capo_s3.types.metadata_directive
 import capo_s3.types.object_canned_acl
+import capo_s3.types.object_lock_event_hold
 import capo_s3.types.object_lock_legal_hold_status
 import capo_s3.types.object_lock_mode
 import capo_s3.types.object_lock_retain_until_date
@@ -37,7 +38,11 @@ from capo_s3._protocol.errors import (
 )
 from capo_s3._protocol.xml import Element, fromstring
 from capo_s3._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_s3._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_s3._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_s3.errors import UnknownServiceError
 
 STATUS_CODE_TO_CODE = {403: "ObjectNotInActiveTierError"}
@@ -216,6 +221,7 @@ def build_request(
     import capo_s3.types.checksum_algorithm
     import capo_s3.types.metadata_directive
     import capo_s3.types.object_canned_acl
+    import capo_s3.types.object_lock_event_hold
     import capo_s3.types.object_lock_legal_hold_status
     import capo_s3.types.object_lock_mode
     import capo_s3.types.request_payer
@@ -359,6 +365,20 @@ def build_request(
                 input_["object_lock_legal_hold_status"]
             )
         )
+    if "object_lock_event_hold" in input_:
+        headers["x-amz-object-lock-event-hold"] = (
+            capo_s3.types.object_lock_event_hold.to_xml_text(
+                input_["object_lock_event_hold"]
+            )
+        )
+    if "object_lock_event_hold_duration_days" in input_:
+        headers["x-amz-object-lock-event-hold-duration-days"] = str(
+            input_["object_lock_event_hold_duration_days"]
+        )
+    if "object_lock_event_hold_duration_years" in input_:
+        headers["x-amz-object-lock-event-hold-duration-years"] = str(
+            input_["object_lock_event_hold_duration_years"]
+        )
     if "expected_bucket_owner" in input_:
         headers["x-amz-expected-bucket-owner"] = input_["expected_bucket_owner"]
     if "expected_source_bucket_owner" in input_:
@@ -384,8 +404,9 @@ def copy_object(
 ) -> tuple[capo_s3.types.copy_object_output.CopyObjectOutput, zapros.Response]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 300 or is_xml_error_body(response.read()):
-            handle_error(response)
+        body = response.read()
+        if response.status >= 300 or is_xml_error_body(body):
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -398,8 +419,9 @@ async def async_copy_object(
 ) -> tuple[capo_s3.types.copy_object_output.CopyObjectOutput, zapros.Response]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 300 or is_xml_error_body(await response.aread()):
-            handle_error(response)
+        body = await response.aread()
+        if response.status >= 300 or is_xml_error_body(body):
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

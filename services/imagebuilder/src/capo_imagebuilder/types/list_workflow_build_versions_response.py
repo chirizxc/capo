@@ -13,7 +13,7 @@ class ListWorkflowBuildVersionsResponse(TypedDict, closed=True):
     workflow_summary_list: NotRequired[
         "capo_imagebuilder.types.workflow_summary_list.WorkflowSummaryList"
     ]
-    """<p>A list that contains metadata for the workflow builds that have run for the workflow resource specified in the request.</p>"""
+    """<p>A list that contains metadata for the build versions of the workflow resource specified in the request.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
     """<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>"""
 

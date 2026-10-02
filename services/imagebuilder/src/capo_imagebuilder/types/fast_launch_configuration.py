@@ -14,11 +14,11 @@ if TYPE_CHECKING:
 
 class FastLaunchConfiguration(TypedDict, closed=True):
     enabled: "capo_imagebuilder.types.boolean.Boolean"
-    """<p>A Boolean that represents the current state of faster launching for the Windows AMI. Set to <code>true</code> to start using Windows faster launching, or <code>false</code> to stop using it.</p>"""
+    """<p>Specifies whether to enable Windows fast launch on the output AMI during distribution. A value of <code>false</code> means Image Builder takes no fast-launch action for this configuration.</p>"""
     snapshot_configuration: NotRequired[
         "capo_imagebuilder.types.fast_launch_snapshot_configuration.FastLaunchSnapshotConfiguration"
     ]
-    """<p>Configuration settings for managing the number of snapshots that are created from pre-provisioned instances for the Windows AMI when faster launching is enabled.</p>"""
+    """<p>Configuration settings for managing the number of snapshots that are created from pre-provisioned instances for the Windows AMI when Windows fast launch is enabled.</p>"""
     max_parallel_launches: NotRequired[
         "capo_imagebuilder.types.max_parallel_launches.MaxParallelLaunches"
     ]

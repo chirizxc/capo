@@ -7,11 +7,15 @@ from typing_extensions import NotRequired, TypedDict
 from capo_healthlake.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_healthlake.types.analytics_configuration
+    import capo_healthlake.types.backup_configuration
     import capo_healthlake.types.client_token_string
     import capo_healthlake.types.datastore_name
     import capo_healthlake.types.fhir_version
     import capo_healthlake.types.identity_provider_configuration
+    import capo_healthlake.types.nlp_configuration
     import capo_healthlake.types.preload_data_config
+    import capo_healthlake.types.profile_configuration
     import capo_healthlake.types.sse_configuration
     import capo_healthlake.types.tag_list
 
@@ -39,6 +43,22 @@ class CreateFHIRDatastoreRequest(TypedDict, closed=True):
         "capo_healthlake.types.identity_provider_configuration.IdentityProviderConfiguration"
     ]
     """<p>The identity provider configuration to use for the data store.</p>"""
+    analytics_configuration: NotRequired[
+        "capo_healthlake.types.analytics_configuration.AnalyticsConfiguration"
+    ]
+    """<p>The analytics configuration for the data store.</p>"""
+    nlp_configuration: NotRequired[
+        "capo_healthlake.types.nlp_configuration.NlpConfiguration"
+    ]
+    """<p>The natural language processing (NLP) configuration for the data store.</p>"""
+    profile_configuration: NotRequired[
+        "capo_healthlake.types.profile_configuration.ProfileConfiguration"
+    ]
+    """<p>The profile configuration for the data store.</p>"""
+    backup_configuration: NotRequired[
+        "capo_healthlake.types.backup_configuration.BackupConfiguration"
+    ]
+    """The backup configuration for the data store."""
 
 
 # --- awsJson1_0 ser/de ---
@@ -83,6 +103,38 @@ def serialize_aws_json_1_0(value: CreateFHIRDatastoreRequest) -> dict:
         out["IdentityProviderConfiguration"] = (
             capo_healthlake.types.identity_provider_configuration.serialize_aws_json_1_0(
                 value["identity_provider_configuration"]
+            )
+        )
+    if "analytics_configuration" in value:
+        import capo_healthlake.types.analytics_configuration
+
+        out["AnalyticsConfiguration"] = (
+            capo_healthlake.types.analytics_configuration.serialize_aws_json_1_0(
+                value["analytics_configuration"]
+            )
+        )
+    if "nlp_configuration" in value:
+        import capo_healthlake.types.nlp_configuration
+
+        out["NlpConfiguration"] = (
+            capo_healthlake.types.nlp_configuration.serialize_aws_json_1_0(
+                value["nlp_configuration"]
+            )
+        )
+    if "profile_configuration" in value:
+        import capo_healthlake.types.profile_configuration
+
+        out["ProfileConfiguration"] = (
+            capo_healthlake.types.profile_configuration.serialize_aws_json_1_0(
+                value["profile_configuration"]
+            )
+        )
+    if "backup_configuration" in value:
+        import capo_healthlake.types.backup_configuration
+
+        out["BackupConfiguration"] = (
+            capo_healthlake.types.backup_configuration.serialize_aws_json_1_0(
+                value["backup_configuration"]
             )
         )
     return out
@@ -134,6 +186,38 @@ def deserialize_aws_json_1_0(data: dict) -> CreateFHIRDatastoreRequest:
         out["identity_provider_configuration"] = (
             capo_healthlake.types.identity_provider_configuration.deserialize_aws_json_1_0(
                 data["IdentityProviderConfiguration"]
+            )
+        )
+    if data.get("AnalyticsConfiguration") is not None:
+        import capo_healthlake.types.analytics_configuration
+
+        out["analytics_configuration"] = (
+            capo_healthlake.types.analytics_configuration.deserialize_aws_json_1_0(
+                data["AnalyticsConfiguration"]
+            )
+        )
+    if data.get("NlpConfiguration") is not None:
+        import capo_healthlake.types.nlp_configuration
+
+        out["nlp_configuration"] = (
+            capo_healthlake.types.nlp_configuration.deserialize_aws_json_1_0(
+                data["NlpConfiguration"]
+            )
+        )
+    if data.get("ProfileConfiguration") is not None:
+        import capo_healthlake.types.profile_configuration
+
+        out["profile_configuration"] = (
+            capo_healthlake.types.profile_configuration.deserialize_aws_json_1_0(
+                data["ProfileConfiguration"]
+            )
+        )
+    if data.get("BackupConfiguration") is not None:
+        import capo_healthlake.types.backup_configuration
+
+        out["backup_configuration"] = (
+            capo_healthlake.types.backup_configuration.deserialize_aws_json_1_0(
+                data["BackupConfiguration"]
             )
         )
     return out

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.bucket
     import capo_timestream_influxdb.types.create_db_instance_input
     import capo_timestream_influxdb.types.create_db_instance_output
+    import capo_timestream_influxdb.types.db_backup_configuration_input_list
     import capo_timestream_influxdb.types.db_instance_identifier
     import capo_timestream_influxdb.types.db_instance_name
     import capo_timestream_influxdb.types.db_instance_summary
@@ -27,6 +28,7 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.deployment_type
     import capo_timestream_influxdb.types.get_db_instance_input
     import capo_timestream_influxdb.types.get_db_instance_output
+    import capo_timestream_influxdb.types.kms_key_id
     import capo_timestream_influxdb.types.list_db_instances_input
     import capo_timestream_influxdb.types.list_db_instances_output
     import capo_timestream_influxdb.types.log_delivery_configuration
@@ -97,6 +99,12 @@ class DbInstanceResource:
         network_type: Optional[
             "capo_timestream_influxdb.types.network_type.NetworkType"
         ] = None,
+        db_backup_configurations: Optional[
+            "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+        ] = None,
+        kms_key_id: Optional[
+            "capo_timestream_influxdb.types.kms_key_id.KmsKeyId"
+        ] = None,
     ) -> "capo_timestream_influxdb.types.create_db_instance_output.CreateDbInstanceOutput":
         """<p>Creates a new Timestream for InfluxDB DB instance.</p>
 
@@ -119,6 +127,8 @@ class DbInstanceResource:
             tags: <p>A list of key-value pairs to associate with the DB instance.</p>
             port: <p>The port number on which InfluxDB accepts connections.</p> <p>Valid Values: 1024-65535</p> <p>Default: 8086</p> <p>Constraints: The value can't be 2375-2376, 7788-7799, 8090, or 51678-51680</p>
             network_type: <p>Specifies whether the networkType of the Timestream for InfluxDB instance is IPV4, which can communicate over IPv4 protocol only, or DUAL, which can communicate over both IPv4 and IPv6 protocols.</p>
+            db_backup_configurations: <p>A list of backup configurations to enable automated backups for the DB instance.</p>
+            kms_key_id: <p>The Amazon Web Services KMS key identifier to use for encryption of the DB instance. Can be a key ID, key ARN, alias name, or alias ARN.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -178,6 +188,10 @@ class DbInstanceResource:
             input_["port"] = port
         if network_type is not None:
             input_["network_type"] = network_type
+        if db_backup_configurations is not None:
+            input_["db_backup_configurations"] = db_backup_configurations
+        if kms_key_id is not None:
+            input_["kms_key_id"] = kms_key_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -261,6 +275,9 @@ class DbInstanceResource:
         maintenance_schedule: Optional[
             "capo_timestream_influxdb.types.maintenance_schedule.MaintenanceSchedule"
         ] = None,
+        db_backup_configurations: Optional[
+            "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+        ] = None,
     ) -> "capo_timestream_influxdb.types.update_db_instance_output.UpdateDbInstanceOutput":
         """<p>Updates a Timestream for InfluxDB DB instance.</p>
 
@@ -274,6 +291,7 @@ class DbInstanceResource:
             db_storage_type: <p>The Timestream for InfluxDB DB storage type that InfluxDB stores data on.</p>
             allocated_storage: <p>The amount of storage to allocate for your DB storage type (in gibibytes).</p>
             maintenance_schedule: <p>Specifies the maintenance schedule for the DB instance, including the preferred maintenance window and timezone.</p>
+            db_backup_configurations: <p>A list of backup configurations to update for the DB instance.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -319,6 +337,8 @@ class DbInstanceResource:
             input_["allocated_storage"] = allocated_storage
         if maintenance_schedule is not None:
             input_["maintenance_schedule"] = maintenance_schedule
+        if db_backup_configurations is not None:
+            input_["db_backup_configurations"] = db_backup_configurations
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -333,11 +353,13 @@ class DbInstanceResource:
         identifier: "capo_timestream_influxdb.types.db_instance_identifier.DbInstanceIdentifier",
         *,
         config_overrides: Optional[TimestreamInfluxDBClientConfig] = None,
+        retain_automated_backups: Optional[bool] = None,
     ) -> "capo_timestream_influxdb.types.delete_db_instance_output.DeleteDbInstanceOutput":
         """<p>Deletes a Timestream for InfluxDB DB instance.</p>
 
         Args:
             identifier: <p>The id of the DB instance.</p>
+            retain_automated_backups: <p>Specifies whether to retain automated backups after the DB instance is deleted. If set to true, automated backups are not deleted and can be restored later.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -367,6 +389,8 @@ class DbInstanceResource:
         input_: capo_timestream_influxdb.types.delete_db_instance_input.DeleteDbInstanceInput = {
             "identifier": identifier
         }
+        if retain_automated_backups is not None:
+            input_["retain_automated_backups"] = retain_automated_backups
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -524,6 +548,12 @@ class AsyncDbInstanceResource:
         network_type: Optional[
             "capo_timestream_influxdb.types.network_type.NetworkType"
         ] = None,
+        db_backup_configurations: Optional[
+            "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+        ] = None,
+        kms_key_id: Optional[
+            "capo_timestream_influxdb.types.kms_key_id.KmsKeyId"
+        ] = None,
     ) -> "capo_timestream_influxdb.types.create_db_instance_output.CreateDbInstanceOutput":
         """<p>Creates a new Timestream for InfluxDB DB instance.</p>
 
@@ -546,6 +576,8 @@ class AsyncDbInstanceResource:
             tags: <p>A list of key-value pairs to associate with the DB instance.</p>
             port: <p>The port number on which InfluxDB accepts connections.</p> <p>Valid Values: 1024-65535</p> <p>Default: 8086</p> <p>Constraints: The value can't be 2375-2376, 7788-7799, 8090, or 51678-51680</p>
             network_type: <p>Specifies whether the networkType of the Timestream for InfluxDB instance is IPV4, which can communicate over IPv4 protocol only, or DUAL, which can communicate over both IPv4 and IPv6 protocols.</p>
+            db_backup_configurations: <p>A list of backup configurations to enable automated backups for the DB instance.</p>
+            kms_key_id: <p>The Amazon Web Services KMS key identifier to use for encryption of the DB instance. Can be a key ID, key ARN, alias name, or alias ARN.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -606,6 +638,10 @@ class AsyncDbInstanceResource:
             input_["port"] = port
         if network_type is not None:
             input_["network_type"] = network_type
+        if db_backup_configurations is not None:
+            input_["db_backup_configurations"] = db_backup_configurations
+        if kms_key_id is not None:
+            input_["kms_key_id"] = kms_key_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -690,6 +726,9 @@ class AsyncDbInstanceResource:
         maintenance_schedule: Optional[
             "capo_timestream_influxdb.types.maintenance_schedule.MaintenanceSchedule"
         ] = None,
+        db_backup_configurations: Optional[
+            "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+        ] = None,
     ) -> "capo_timestream_influxdb.types.update_db_instance_output.UpdateDbInstanceOutput":
         """<p>Updates a Timestream for InfluxDB DB instance.</p>
 
@@ -703,6 +742,7 @@ class AsyncDbInstanceResource:
             db_storage_type: <p>The Timestream for InfluxDB DB storage type that InfluxDB stores data on.</p>
             allocated_storage: <p>The amount of storage to allocate for your DB storage type (in gibibytes).</p>
             maintenance_schedule: <p>Specifies the maintenance schedule for the DB instance, including the preferred maintenance window and timezone.</p>
+            db_backup_configurations: <p>A list of backup configurations to update for the DB instance.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -749,6 +789,8 @@ class AsyncDbInstanceResource:
             input_["allocated_storage"] = allocated_storage
         if maintenance_schedule is not None:
             input_["maintenance_schedule"] = maintenance_schedule
+        if db_backup_configurations is not None:
+            input_["db_backup_configurations"] = db_backup_configurations
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -763,11 +805,13 @@ class AsyncDbInstanceResource:
         identifier: "capo_timestream_influxdb.types.db_instance_identifier.DbInstanceIdentifier",
         *,
         config_overrides: Optional[AsyncTimestreamInfluxDBClientConfig] = None,
+        retain_automated_backups: Optional[bool] = None,
     ) -> "capo_timestream_influxdb.types.delete_db_instance_output.DeleteDbInstanceOutput":
         """<p>Deletes a Timestream for InfluxDB DB instance.</p>
 
         Args:
             identifier: <p>The id of the DB instance.</p>
+            retain_automated_backups: <p>Specifies whether to retain automated backups after the DB instance is deleted. If set to true, automated backups are not deleted and can be restored later.</p>
 
         Raises:
             capo_timestream_influxdb.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -798,6 +842,8 @@ class AsyncDbInstanceResource:
         input_: capo_timestream_influxdb.types.delete_db_instance_input.DeleteDbInstanceInput = {
             "identifier": identifier
         }
+        if retain_automated_backups is not None:
+            input_["retain_automated_backups"] = retain_automated_backups
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

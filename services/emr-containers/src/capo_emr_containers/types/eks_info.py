@@ -6,7 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_emr_containers.types.kubernetes_namespace
-    import capo_emr_containers.types.resource_name_string
+    import capo_emr_containers.types.node_label_string
 
 
 class EksInfo(TypedDict, closed=True):
@@ -15,7 +15,7 @@ class EksInfo(TypedDict, closed=True):
     ]
     """<p>The namespaces of the Amazon EKS cluster.</p>"""
     node_label: NotRequired[
-        "capo_emr_containers.types.resource_name_string.ResourceNameString"
+        "capo_emr_containers.types.node_label_string.NodeLabelString"
     ]
     """<p>The nodeLabel of the nodes where the resources of this virtual cluster can get scheduled. It requires relevant scaling and policy engine addons.</p>"""
 

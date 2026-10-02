@@ -742,7 +742,7 @@ class RekognitionClient:
             "capo_rekognition.types.client_request_token.ClientRequestToken"
         ] = None,
     ) -> "capo_rekognition.types.create_face_liveness_session_response.CreateFaceLivenessSessionResponse":
-        """<p>This API operation initiates a Face Liveness session. It returns a <code>SessionId</code>, which you can use to start streaming Face Liveness video and get the results for a Face Liveness session. </p> <p>You can use the <code>OutputConfig</code> option in the Settings parameter to provide an Amazon S3 bucket location. The Amazon S3 bucket stores reference images and audit images. If no Amazon S3 bucket is defined, raw bytes are sent instead. </p> <p>You can use <code>AuditImagesLimit</code> to limit the number of audit images returned when <code>GetFaceLivenessSessionResults</code> is called. This number is between 0 and 4. By default, it is set to 0. The limit is best effort and based on the duration of the selfie-video. </p>
+        r"""<p>This API operation initiates a Face Liveness session. It returns a <code>SessionId</code>, which you can use to start streaming Face Liveness video and get the results for a Face Liveness session. </p> <p>You can use the <code>OutputConfig</code> option in the Settings parameter to provide an Amazon S3 bucket location. The Amazon S3 bucket stores reference images and audit images. If no Amazon S3 bucket is defined, raw bytes are sent instead. </p> <p>You can use <code>AuditImagesLimit</code> to limit the number of audit images returned when <code>GetFaceLivenessSessionResults</code> is called. This number is between 0 and 4. By default, it is set to 0. The limit is best effort and based on the duration of the selfie-video. </p> <p>You can use the <code>ChallengePreferences</code> option in the <code>Settings</code> parameter to choose between the 'FaceMovementAndLightChallenge' or FaceMovementChallenge' settings. See the <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/face-liveness-shared-responsibility-model.html\">Shared Responsibility</a> page for details on guidance for which setting to choose between these two settings depending on your use case and preferences. This parameter is optional and if no parameter is provided, then the 'FaceMovementAndLightChallenge' settings is applied by default.</p>
 
         Args:
             kms_key_id: <p> The identifier for your AWS Key Management Service key (AWS KMS key). Used to encrypt audit images and reference images.</p>
@@ -976,7 +976,7 @@ class RekognitionClient:
             "capo_rekognition.types.stream_processor_data_sharing_preference.StreamProcessorDataSharingPreference"
         ] = None,
     ) -> "capo_rekognition.types.create_stream_processor_response.CreateStreamProcessorResponse":
-        """<p>Creates an Amazon Rekognition stream processor that you can use to detect and recognize faces or to detect labels in a streaming video.</p> <p>Amazon Rekognition Video is a consumer of live video from Amazon Kinesis Video Streams. There are two different settings for stream processors in Amazon Rekognition: detecting faces and detecting labels.</p> <ul> <li> <p>If you are creating a stream processor for detecting faces, you provide as input a Kinesis video stream (<code>Input</code>) and a Kinesis data stream (<code>Output</code>) stream for receiving the output. You must use the <code>FaceSearch</code> option in <code>Settings</code>, specifying the collection that contains the faces you want to recognize. After you have finished analyzing a streaming video, use <a>StopStreamProcessor</a> to stop processing.</p> </li> <li> <p>If you are creating a stream processor to detect labels, you provide as input a Kinesis video stream (<code>Input</code>), Amazon S3 bucket information (<code>Output</code>), and an Amazon SNS topic ARN (<code>NotificationChannel</code>). You can also provide a KMS key ID to encrypt the data sent to your Amazon S3 bucket. You specify what you want to detect by using the <code>ConnectedHome</code> option in settings, and selecting one of the following: <code>PERSON</code>, <code>PET</code>, <code>PACKAGE</code>, <code>ALL</code> You can also specify where in the frame you want Amazon Rekognition to monitor with <code>RegionsOfInterest</code>. When you run the <a>StartStreamProcessor</a> operation on a label detection stream processor, you input start and stop information to determine the length of the processing time.</p> </li> </ul> <p> Use <code>Name</code> to assign an identifier for the stream processor. You use <code>Name</code> to manage the stream processor. For example, you can start processing the source video by calling <a>StartStreamProcessor</a> with the <code>Name</code> field. </p> <p>This operation requires permissions to perform the <code>rekognition:CreateStreamProcessor</code> action. If you want to tag your stream processor, you also require permission to perform the <code>rekognition:TagResource</code> operation.</p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p>Creates an Amazon Rekognition stream processor that you can use to detect and recognize faces or to detect labels in a streaming video.</p> <p>Amazon Rekognition Video is a consumer of live video from Amazon Kinesis Video Streams. There are two different settings for stream processors in Amazon Rekognition: detecting faces and detecting labels.</p> <ul> <li> <p>If you are creating a stream processor for detecting faces, you provide as input a Kinesis video stream (<code>Input</code>) and a Kinesis data stream (<code>Output</code>) stream for receiving the output. You must use the <code>FaceSearch</code> option in <code>Settings</code>, specifying the collection that contains the faces you want to recognize. After you have finished analyzing a streaming video, use <a>StopStreamProcessor</a> to stop processing.</p> </li> <li> <p>If you are creating a stream processor to detect labels, you provide as input a Kinesis video stream (<code>Input</code>), Amazon S3 bucket information (<code>Output</code>), and an Amazon SNS topic ARN (<code>NotificationChannel</code>). You can also provide a KMS key ID to encrypt the data sent to your Amazon S3 bucket. You specify what you want to detect by using the <code>ConnectedHome</code> option in settings, and selecting one of the following: <code>PERSON</code>, <code>PET</code>, <code>PACKAGE</code>, <code>ALL</code> You can also specify where in the frame you want Amazon Rekognition to monitor with <code>RegionsOfInterest</code>. When you run the <a>StartStreamProcessor</a> operation on a label detection stream processor, you input start and stop information to determine the length of the processing time.</p> </li> </ul> <p> Use <code>Name</code> to assign an identifier for the stream processor. You use <code>Name</code> to manage the stream processor. For example, you can start processing the source video by calling <a>StartStreamProcessor</a> with the <code>Name</code> field. </p> <p>This operation requires permissions to perform the <code>rekognition:CreateStreamProcessor</code> action. If you want to tag your stream processor, you also require permission to perform the <code>rekognition:TagResource</code> operation.</p>
 
         Args:
             input: <p>Kinesis video stream stream that provides the source streaming video. If you are using the AWS CLI, the parameter name is <code>StreamProcessorInput</code>. This is required for both face search and label detection stream processors.</p>
@@ -1456,7 +1456,7 @@ class RekognitionClient:
         *,
         config_overrides: Optional[RekognitionClientConfig] = None,
     ) -> "capo_rekognition.types.delete_stream_processor_response.DeleteStreamProcessorResponse":
-        """<p>Deletes the stream processor identified by <code>Name</code>. You assign the value for <code>Name</code> when you create the stream processor with <a>CreateStreamProcessor</a>. You might not be able to use the same name for a stream processor for a few seconds after calling <code>DeleteStreamProcessor</code>.</p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p>Deletes the stream processor identified by <code>Name</code>. You assign the value for <code>Name</code> when you create the stream processor with <a>CreateStreamProcessor</a>. You might not be able to use the same name for a stream processor for a few seconds after calling <code>DeleteStreamProcessor</code>.</p>
 
         Args:
             name: <p>The name of the stream processor you want to delete.</p>
@@ -1868,7 +1868,7 @@ class RekognitionClient:
         *,
         config_overrides: Optional[RekognitionClientConfig] = None,
     ) -> "capo_rekognition.types.describe_stream_processor_response.DescribeStreamProcessorResponse":
-        """<p>Provides information about a stream processor created by <a>CreateStreamProcessor</a>. You can get information about the input and output streams, the input parameters for the face recognition being performed, and the current status of the stream processor.</p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p>Provides information about a stream processor created by <a>CreateStreamProcessor</a>. You can get information about the input and output streams, the input parameters for the face recognition being performed, and the current status of the stream processor.</p>
 
         Args:
             name: <p>Name of the stream processor for which you want information.</p>
@@ -2750,7 +2750,7 @@ class RekognitionClient:
         *,
         config_overrides: Optional[RekognitionClientConfig] = None,
     ) -> "capo_rekognition.types.get_face_liveness_session_results_response.GetFaceLivenessSessionResultsResponse":
-        """<p>Retrieves the results of a specific Face Liveness session. It requires the <code>sessionId</code> as input, which was created using <code>CreateFaceLivenessSession</code>. Returns the corresponding Face Liveness confidence score, a reference image that includes a face bounding box, and audit images that also contain face bounding boxes. The Face Liveness confidence score ranges from 0 to 100. </p> <p>The number of audit images returned by <code>GetFaceLivenessSessionResults</code> is defined by the <code>AuditImagesLimit</code> paramater when calling <code>CreateFaceLivenessSession</code>. Reference images are always returned when possible.</p>
+        """<p>Retrieves the results of a specific Face Liveness session. It requires the <code>sessionId</code> as input, which was created using <code>CreateFaceLivenessSession</code>. Returns the corresponding Face Liveness confidence score, a reference image that includes a face bounding box, and audit images that also contain face bounding boxes. The Face Liveness confidence score ranges from 0 to 100. </p> <p>The number of audit images returned by <code>GetFaceLivenessSessionResults</code> is defined by the <code>AuditImagesLimit</code> paramater when calling <code>CreateFaceLivenessSession</code>. Reference images are always returned when possible.</p> <p>For a session that has completed, the response can also include a <code>Feedback</code> list describing conditions that were detected in the selfie-video, such as low lighting or an obstructed face, and <code>Metadata</code> about the client that streamed the session.</p>
 
         Args:
             session_id: <p>A unique 128-bit UUID. This is used to uniquely identify the session and also acts as an idempotency token for all operations associated with the session.</p>
@@ -2994,7 +2994,7 @@ class RekognitionClient:
         *,
         config_overrides: Optional[RekognitionClientConfig] = None,
     ) -> "capo_rekognition.types.get_media_analysis_job_response.GetMediaAnalysisJobResponse":
-        """<p>Retrieves the results for a given media analysis job. Takes a <code>JobId</code> returned by StartMediaAnalysisJob.</p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p>Retrieves the results for a given media analysis job. Takes a <code>JobId</code> returned by StartMediaAnalysisJob.</p>
 
         Args:
             job_id: <p>Unique identifier for the media analysis job for which you want to retrieve results.</p>
@@ -3802,7 +3802,7 @@ class RekognitionClient:
             "capo_rekognition.types.list_media_analysis_jobs_page_size.ListMediaAnalysisJobsPageSize"
         ] = None,
     ) -> "capo_rekognition.types.list_media_analysis_jobs_response.ListMediaAnalysisJobsResponse":
-        """<p>Returns a list of media analysis jobs. Results are sorted by <code>CreationTimestamp</code> in descending order.</p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p>Returns a list of media analysis jobs. Results are sorted by <code>CreationTimestamp</code> in descending order.</p>
 
         Args:
             next_token: <p>Pagination token, if the previous response was incomplete.</p>
@@ -3967,7 +3967,7 @@ class RekognitionClient:
         ] = None,
         max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
     ) -> "capo_rekognition.types.list_stream_processors_response.ListStreamProcessorsResponse":
-        """<p>Gets a list of stream processors that you have created with <a>CreateStreamProcessor</a>. </p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p>Gets a list of stream processors that you have created with <a>CreateStreamProcessor</a>. </p>
 
         Args:
             next_token: <p>If the previous response was incomplete (because there are more stream processors to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of stream processors. </p>
@@ -4966,7 +4966,7 @@ class RekognitionClient:
         ] = None,
         kms_key_id: Optional["capo_rekognition.types.kms_key_id.KmsKeyId"] = None,
     ) -> "capo_rekognition.types.start_media_analysis_job_response.StartMediaAnalysisJobResponse":
-        """<p>Initiates a new media analysis job. Accepts a manifest file in an Amazon S3 bucket. The output is a manifest file and a summary of the manifest stored in the Amazon S3 bucket.</p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p>Initiates a new media analysis job. Accepts a manifest file in an Amazon S3 bucket. The output is a manifest file and a summary of the manifest stored in the Amazon S3 bucket.</p>
 
         Args:
             client_request_token: <p>Idempotency token used to prevent the accidental creation of duplicate versions. If you use the same token with multiple <code>StartMediaAnalysisJobRequest</code> requests, the same response is returned. Use <code>ClientRequestToken</code> to prevent the same request from being processed more than once.</p>
@@ -5252,7 +5252,7 @@ class RekognitionClient:
             "capo_rekognition.types.stream_processing_stop_selector.StreamProcessingStopSelector"
         ] = None,
     ) -> "capo_rekognition.types.start_stream_processor_response.StartStreamProcessorResponse":
-        r"""<p>Starts processing a stream processor. You create a stream processor by calling <a>CreateStreamProcessor</a>. To tell <code>StartStreamProcessor</code> which stream processor to start, use the value of the <code>Name</code> field specified in the call to <code>CreateStreamProcessor</code>.</p> <p>If you are using a label detection stream processor to detect labels, you need to provide a <code>Start selector</code> and a <code>Stop selector</code> to determine the length of the stream processing time.</p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p>Starts processing a stream processor. You create a stream processor by calling <a>CreateStreamProcessor</a>. To tell <code>StartStreamProcessor</code> which stream processor to start, use the value of the <code>Name</code> field specified in the call to <code>CreateStreamProcessor</code>.</p> <p>If you are using a label detection stream processor to detect labels, you need to provide a <code>Start selector</code> and a <code>Stop selector</code> to determine the length of the stream processing time.</p>
 
         Args:
             name: <p>The name of the stream processor to start processing.</p>
@@ -5433,7 +5433,7 @@ class RekognitionClient:
         *,
         config_overrides: Optional[RekognitionClientConfig] = None,
     ) -> "capo_rekognition.types.stop_stream_processor_response.StopStreamProcessorResponse":
-        """<p>Stops a running stream processor that was created by <a>CreateStreamProcessor</a>.</p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p>Stops a running stream processor that was created by <a>CreateStreamProcessor</a>.</p>
 
         Args:
             name: <p>The name of a stream processor created by <a>CreateStreamProcessor</a>.</p>
@@ -5656,7 +5656,7 @@ class RekognitionClient:
             "capo_rekognition.types.stream_processor_parameters_to_delete.StreamProcessorParametersToDelete"
         ] = None,
     ) -> "capo_rekognition.types.update_stream_processor_response.UpdateStreamProcessorResponse":
-        """<p> Allows you to update a stream processor. You can change some settings and regions of interest and delete certain parameters. </p>
+        r"""<important> <p>Service availability notice: Streaming Video and Bulk Image Analysis is no longer available to new customers. For more information, see <a href=\"https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html\">Rekognition feature availability changes</a>.</p> <p> <b>This change does not impact the availability of other Amazon Rekognition features.</b> </p> </important> <p> Allows you to update a stream processor. You can change some settings and regions of interest and delete certain parameters. </p>
 
         Args:
             name: <p> Name of the stream processor that you want to update. </p>

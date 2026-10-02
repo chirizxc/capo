@@ -18,12 +18,18 @@ import capo_securityhub.errors.internal_server_exception
 import capo_securityhub.errors.resource_not_found_exception
 import capo_securityhub.errors.throttling_exception
 import capo_securityhub.errors.validation_exception
+import capo_securityhub.types.connector_status
+import capo_securityhub.types.enablement_status
 import capo_securityhub.types.provider_update_configuration
 import capo_securityhub.types.update_connector_v2_request
 import capo_securityhub.types.update_connector_v2_response
 from capo_securityhub._protocol.errors import parse_error_metadata_json
 from capo_securityhub._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_securityhub._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_securityhub._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_securityhub.errors import UnknownServiceError
 
 
@@ -62,14 +68,18 @@ def handle_error(response: zapros.Response) -> Never:
 def handle_response(
     response: zapros.Response,
 ) -> capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response:
-    out: capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response = {}  # type: ignore[typeddict-item]
+    out: capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response = capo_securityhub.types.update_connector_v2_response.deserialize_json(
+        json.loads(response.read())
+    )
     return out
 
 
 async def async_handle_response(
     response: zapros.Response,
 ) -> capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response:
-    out: capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response = {}  # type: ignore[typeddict-item]
+    out: capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response = capo_securityhub.types.update_connector_v2_response.deserialize_json(
+        json.loads(await response.aread())
+    )
     return out
 
 
@@ -142,7 +152,7 @@ def update_connector_v2(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -160,7 +170,7 @@ async def async_update_connector_v2(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

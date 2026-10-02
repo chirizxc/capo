@@ -6,6 +6,7 @@ QuoteConstraintType: TypeAlias = Literal[
     "RACK_MAXIMUM",
     "RACK_MAX_POWER_KVA",
     "RACK_MAX_WEIGHT_LBS",
+    "RACK_SPACE_CONSTRAINED",
 ]
 
 

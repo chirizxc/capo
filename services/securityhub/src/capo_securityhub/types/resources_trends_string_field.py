@@ -7,6 +7,10 @@ ResourcesTrendsStringField: TypeAlias = Literal[
     "region",
     "resource_type",
     "resource_category",
+    "resource_cloud_provider",
+    "resource_region",
+    "resource_owner_id",
+    "resource_owner_organization_id",
 ]
 
 

@@ -16,7 +16,9 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.evaluator_level
     import capo_bedrock_agentcore_control.types.evaluator_name
     import capo_bedrock_agentcore_control.types.evaluator_status
+    import capo_bedrock_agentcore_control.types.evaluator_type
     import capo_bedrock_agentcore_control.types.kms_key_arn
+    import capo_bedrock_agentcore_control.types.provider
 
 
 class GetEvaluatorResponse(TypedDict, closed=True):
@@ -34,6 +36,12 @@ class GetEvaluatorResponse(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.evaluator_config.EvaluatorConfig"
     )
     """<p> The configuration of the evaluator, including LLM-as-a-Judge or code-based settings. </p>"""
+    evaluator_type: NotRequired[
+        "capo_bedrock_agentcore_control.types.evaluator_type.EvaluatorType"
+    ]
+    """<p> The kind of evaluator resource. Valid values: </p> <ul> <li> <p> <code>Builtin</code> – An Amazon Web Services-managed global evaluator.</p> </li> <li> <p> <code>ThirdParty</code> – An Amazon Web Services-managed global evaluator from a third-party provider.</p> </li> <li> <p> <code>Custom</code> – A customer-created evaluator.</p> </li> <li> <p> <code>CustomCode</code> – A customer-created code-based evaluator.</p> </li> <li> <p> <code>CustomDerived</code> – A customer-created evaluator derived from an existing base evaluator.</p> </li> </ul>"""
+    provider: NotRequired["capo_bedrock_agentcore_control.types.provider.Provider"]
+    """<p> The source of the evaluator's logic: Amazon Web Services, a third-party library, or you. </p>"""
     level: "capo_bedrock_agentcore_control.types.evaluator_level.EvaluatorLevel"
     """<p> The evaluation level (<code>TOOL_CALL</code>, <code>TRACE</code>, or <code>SESSION</code>) that determines the scope of evaluation. </p>"""
     status: "capo_bedrock_agentcore_control.types.evaluator_status.EvaluatorStatus"
@@ -65,6 +73,20 @@ def serialize_json(value: GetEvaluatorResponse) -> dict:
             value["evaluator_config"]
         )
     )
+    if "evaluator_type" in value:
+        import capo_bedrock_agentcore_control.types.evaluator_type
+
+        out["evaluatorType"] = (
+            capo_bedrock_agentcore_control.types.evaluator_type.serialize_json(
+                value["evaluator_type"]
+            )
+        )
+    if "provider" in value:
+        import capo_bedrock_agentcore_control.types.provider
+
+        out["provider"] = capo_bedrock_agentcore_control.types.provider.serialize_json(
+            value["provider"]
+        )
     import capo_bedrock_agentcore_control.types.evaluator_level
 
     out["level"] = capo_bedrock_agentcore_control.types.evaluator_level.serialize_json(
@@ -124,6 +146,22 @@ def deserialize_json(data: dict) -> GetEvaluatorResponse:
         )
     else:
         raise DeserializationError("GetEvaluatorResponse.evaluator_config required")
+    if data.get("evaluatorType") is not None:
+        import capo_bedrock_agentcore_control.types.evaluator_type
+
+        out["evaluator_type"] = (
+            capo_bedrock_agentcore_control.types.evaluator_type.deserialize_json(
+                data["evaluatorType"]
+            )
+        )
+    if data.get("provider") is not None:
+        import capo_bedrock_agentcore_control.types.provider
+
+        out["provider"] = (
+            capo_bedrock_agentcore_control.types.provider.deserialize_json(
+                data["provider"]
+            )
+        )
     if data.get("level") is not None:
         import capo_bedrock_agentcore_control.types.evaluator_level
 

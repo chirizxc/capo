@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     import capo_vpc_lattice.types.client_token
     import capo_vpc_lattice.types.dns_options
     import capo_vpc_lattice.types.security_group_list
-    import capo_vpc_lattice.types.service_network_identifier
+    import capo_vpc_lattice.types.service_network_identifier_without_regex
     import capo_vpc_lattice.types.tag_map
     import capo_vpc_lattice.types.vpc_id
 
@@ -19,9 +19,7 @@ if TYPE_CHECKING:
 class CreateServiceNetworkVpcAssociationRequest(TypedDict, closed=True):
     client_token: NotRequired["capo_vpc_lattice.types.client_token.ClientToken"]
     """<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you retry a request that completed successfully using the same client token and parameters, the retry succeeds without performing any actions. If the parameters aren't identical, the retry fails.</p>"""
-    service_network_identifier: (
-        "capo_vpc_lattice.types.service_network_identifier.ServiceNetworkIdentifier"
-    )
+    service_network_identifier: "capo_vpc_lattice.types.service_network_identifier_without_regex.ServiceNetworkIdentifierWithoutRegex"
     """<p>The ID or ARN of the service network. You must use an ARN if the resources are in different accounts.</p>"""
     vpc_identifier: "capo_vpc_lattice.types.vpc_id.VpcId"
     """<p>The ID of the VPC.</p>"""

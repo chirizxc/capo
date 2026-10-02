@@ -14,6 +14,8 @@ if TYPE_CHECKING:
     import capo_quicksight.types.comparative_order
     import capo_quicksight.types.default_aggregation
     import capo_quicksight.types.default_formatting
+    import capo_quicksight.types.description_sensitive_string
+    import capo_quicksight.types.limited_sensitive_string
     import capo_quicksight.types.limited_string
     import capo_quicksight.types.nullable_boolean
     import capo_quicksight.types.semantic_type
@@ -25,11 +27,11 @@ class TopicColumn(TypedDict, closed=True):
     column_name: "capo_quicksight.types.limited_string.LimitedString"
     """<p>The name of the column.</p>"""
     column_friendly_name: NotRequired[
-        "capo_quicksight.types.limited_string.LimitedString"
+        "capo_quicksight.types.limited_sensitive_string.LimitedSensitiveString"
     ]
     """<p>A user-friendly name for the column.</p>"""
     column_description: NotRequired[
-        "capo_quicksight.types.limited_string.LimitedString"
+        "capo_quicksight.types.description_sensitive_string.DescriptionSensitiveString"
     ]
     """<p>A description of the column and its contents.</p>"""
     column_synonyms: NotRequired["capo_quicksight.types.synonyms.Synonyms"]

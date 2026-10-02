@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_securityhub.types.boolean
     import capo_securityhub.types.non_empty_string
     import capo_securityhub.types.standards_managed_by
+    import capo_securityhub.types.standards_provider
 
 
 class Standard(TypedDict, closed=True):
@@ -19,6 +20,8 @@ class Standard(TypedDict, closed=True):
     """<p>A description of the standard.</p>"""
     enabled_by_default: NotRequired["capo_securityhub.types.boolean.Boolean"]
     """<p>Whether the standard is enabled by default. When Security Hub CSPM is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub CSPM is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>"""
+    provider: NotRequired["capo_securityhub.types.standards_provider.StandardsProvider"]
+    """<p>The cloud provider whose resources the standard evaluates. For example, <code>AWS</code> or <code>Azure</code>.</p>"""
     standards_managed_by: NotRequired[
         "capo_securityhub.types.standards_managed_by.StandardsManagedBy"
     ]
@@ -36,6 +39,12 @@ def serialize_json(value: Standard) -> dict:
         out["Description"] = value["description"]
     if "enabled_by_default" in value:
         out["EnabledByDefault"] = value["enabled_by_default"]
+    if "provider" in value:
+        import capo_securityhub.types.standards_provider
+
+        out["Provider"] = capo_securityhub.types.standards_provider.serialize_json(
+            value["provider"]
+        )
     if "standards_managed_by" in value:
         import capo_securityhub.types.standards_managed_by
 
@@ -57,6 +66,12 @@ def deserialize_json(data: dict) -> Standard:
         out["description"] = data["Description"]
     if data.get("EnabledByDefault") is not None:
         out["enabled_by_default"] = data["EnabledByDefault"]
+    if data.get("Provider") is not None:
+        import capo_securityhub.types.standards_provider
+
+        out["provider"] = capo_securityhub.types.standards_provider.deserialize_json(
+            data["Provider"]
+        )
     if data.get("StandardsManagedBy") is not None:
         import capo_securityhub.types.standards_managed_by
 

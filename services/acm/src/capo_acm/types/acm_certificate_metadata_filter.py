@@ -7,7 +7,10 @@ from typing_extensions import TypedDict
 from capo_acm.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
+    import capo_acm.types.acme_account_id
+    import capo_acm.types.arn
     import capo_acm.types.certificate_export
+    import capo_acm.types.certificate_key_pair_origin
     import capo_acm.types.certificate_managed_by
     import capo_acm.types.certificate_status
     import capo_acm.types.certificate_type
@@ -48,6 +51,20 @@ class _AcmCertificateMetadataFilter_ValidationMethod(TypedDict, closed=True):
     ValidationMethod: "capo_acm.types.validation_method.ValidationMethod"
 
 
+class _AcmCertificateMetadataFilter_CertificateKeyPairOrigin(TypedDict, closed=True):
+    CertificateKeyPairOrigin: (
+        "capo_acm.types.certificate_key_pair_origin.CertificateKeyPairOrigin"
+    )
+
+
+class _AcmCertificateMetadataFilter_AcmeEndpointArn(TypedDict, closed=True):
+    AcmeEndpointArn: "capo_acm.types.arn.Arn"
+
+
+class _AcmCertificateMetadataFilter_AcmeAccountId(TypedDict, closed=True):
+    AcmeAccountId: "capo_acm.types.acme_account_id.AcmeAccountId"
+
+
 AcmCertificateMetadataFilter: TypeAlias = (
     _AcmCertificateMetadataFilter_Status
     | _AcmCertificateMetadataFilter_RenewalStatus
@@ -57,6 +74,9 @@ AcmCertificateMetadataFilter: TypeAlias = (
     | _AcmCertificateMetadataFilter_ExportOption
     | _AcmCertificateMetadataFilter_ManagedBy
     | _AcmCertificateMetadataFilter_ValidationMethod
+    | _AcmCertificateMetadataFilter_CertificateKeyPairOrigin
+    | _AcmCertificateMetadataFilter_AcmeEndpointArn
+    | _AcmCertificateMetadataFilter_AcmeAccountId
 )
 
 
@@ -114,6 +134,18 @@ def serialize_aws_json_1_1(value: AcmCertificateMetadataFilter) -> dict:
                 value["ValidationMethod"]
             )
         }
+    elif "CertificateKeyPairOrigin" in value:
+        import capo_acm.types.certificate_key_pair_origin
+
+        return {
+            "CertificateKeyPairOrigin": capo_acm.types.certificate_key_pair_origin.serialize_aws_json_1_1(
+                value["CertificateKeyPairOrigin"]
+            )
+        }
+    elif "AcmeEndpointArn" in value:
+        return {"AcmeEndpointArn": value["AcmeEndpointArn"]}
+    elif "AcmeAccountId" in value:
+        return {"AcmeAccountId": value["AcmeAccountId"]}
     else:
         raise SerializationError("AcmCertificateMetadataFilter: no variant present")
 
@@ -171,6 +203,18 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadataFilter:
                 data["ValidationMethod"]
             )
         }
+    elif data.get("CertificateKeyPairOrigin") is not None:
+        import capo_acm.types.certificate_key_pair_origin
+
+        return {
+            "CertificateKeyPairOrigin": capo_acm.types.certificate_key_pair_origin.deserialize_aws_json_1_1(
+                data["CertificateKeyPairOrigin"]
+            )
+        }
+    elif data.get("AcmeEndpointArn") is not None:
+        return {"AcmeEndpointArn": data["AcmeEndpointArn"]}
+    elif data.get("AcmeAccountId") is not None:
+        return {"AcmeAccountId": data["AcmeAccountId"]}
     else:
         raise DeserializationError(
             "AcmCertificateMetadataFilter: no recognized variant key"

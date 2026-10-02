@@ -1,0 +1,39 @@
+"""Generated from Smithy shape ``com.amazonaws.support#ThrottlingReason``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+if TYPE_CHECKING:
+    import capo_support.types.coral_availability_throttled_resource
+    import capo_support.types.coral_availability_throttling_reason
+
+
+class ThrottlingReason(TypedDict, closed=True):
+    reason: NotRequired[
+        "capo_support.types.coral_availability_throttling_reason.CoralAvailabilityThrottlingReason"
+    ]
+    """<p>The reason that the request was throttled.</p>"""
+    resource: NotRequired[
+        "capo_support.types.coral_availability_throttled_resource.CoralAvailabilityThrottledResource"
+    ]
+    """<p>The resource that caused the request to be throttled.</p>"""
+
+
+# --- awsJson1_1 ser/de ---
+def serialize_aws_json_1_1(value: ThrottlingReason) -> dict:
+    out: dict = {}
+    if "reason" in value:
+        out["reason"] = value["reason"]
+    if "resource" in value:
+        out["resource"] = value["resource"]
+    return out
+
+
+def deserialize_aws_json_1_1(data: dict) -> ThrottlingReason:
+    out: ThrottlingReason = {}  # type: ignore[typeddict-item]
+    if data.get("reason") is not None:
+        out["reason"] = data["reason"]
+    if data.get("resource") is not None:
+        out["resource"] = data["resource"]
+    return out

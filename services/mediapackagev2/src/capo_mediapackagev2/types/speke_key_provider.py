@@ -7,8 +7,10 @@ from typing_extensions import NotRequired, TypedDict
 from capo_mediapackagev2.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_mediapackagev2.types.content_key_period_configuration
     import capo_mediapackagev2.types.drm_systems
     import capo_mediapackagev2.types.encryption_contract_configuration
+    import capo_mediapackagev2.types.speke_version
 
 
 class SpekeKeyProvider(TypedDict, closed=True):
@@ -24,6 +26,12 @@ class SpekeKeyProvider(TypedDict, closed=True):
     """<p>The URL of the API Gateway proxy that you set up to talk to your key server. The API Gateway proxy must reside in the same AWS Region as MediaPackage and must start with https://.</p> <p>The following example shows a URL: <code>https://1wm2dx1f33.execute-api.us-west-2.amazonaws.com/SpekeSample/copyProtection</code> </p>"""
     certificate_arn: NotRequired["str"]
     """<p>The ARN for the certificate that you imported to Amazon Web Services Certificate Manager to add content key encryption to this endpoint. For this feature to work, your DRM key provider must support content key encryption.</p>"""
+    speke_version: NotRequired["capo_mediapackagev2.types.speke_version.SpekeVersion"]
+    r"""<p>Specifies the SPEKE version used with your DRM key provider. If you don't specify a value, the default is <code>V2_0</code>.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>V2_0</code> - Follows the SPEKE Version 2.0 contract and signals only the content key index in key requests. This is the default.</p> </li> <li> <p> <code>V2_1</code> - Follows the SPEKE Version 2.1 contract and additionally supports signaling the start and end times a content key is used for, using <code>ContentKeyPeriodConfiguration</code>.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/speke/latest/documentation/standard-payload-components-v2.html\">SPEKE Version 2.0 payload</a>.</p>"""
+    content_key_period_configuration: NotRequired[
+        "capo_mediapackagev2.types.content_key_period_configuration.ContentKeyPeriodConfiguration"
+    ]
+    """<p>The configuration that controls whether MediaPackage signals the start and end times a content key is used for, in the <code>ContentKeyPeriod</code> sent to your DRM key provider. Signaling this timing is supported only when key rotation is enabled (<code>KeyRotationIntervalSeconds</code> is set to a non-zero value) and <code>SpekeVersion</code> is <code>V2_1</code>. You can update these settings on an existing origin endpoint.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -46,6 +54,20 @@ def serialize_json(value: SpekeKeyProvider) -> dict:
     out["Url"] = value["url"]
     if "certificate_arn" in value:
         out["CertificateArn"] = value["certificate_arn"]
+    if "speke_version" in value:
+        import capo_mediapackagev2.types.speke_version
+
+        out["SpekeVersion"] = capo_mediapackagev2.types.speke_version.serialize_json(
+            value["speke_version"]
+        )
+    if "content_key_period_configuration" in value:
+        import capo_mediapackagev2.types.content_key_period_configuration
+
+        out["ContentKeyPeriodConfiguration"] = (
+            capo_mediapackagev2.types.content_key_period_configuration.serialize_json(
+                value["content_key_period_configuration"]
+            )
+        )
     return out
 
 
@@ -85,4 +107,18 @@ def deserialize_json(data: dict) -> SpekeKeyProvider:
         raise DeserializationError("SpekeKeyProvider.url required")
     if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
+    if data.get("SpekeVersion") is not None:
+        import capo_mediapackagev2.types.speke_version
+
+        out["speke_version"] = capo_mediapackagev2.types.speke_version.deserialize_json(
+            data["SpekeVersion"]
+        )
+    if data.get("ContentKeyPeriodConfiguration") is not None:
+        import capo_mediapackagev2.types.content_key_period_configuration
+
+        out["content_key_period_configuration"] = (
+            capo_mediapackagev2.types.content_key_period_configuration.deserialize_json(
+                data["ContentKeyPeriodConfiguration"]
+            )
+        )
     return out

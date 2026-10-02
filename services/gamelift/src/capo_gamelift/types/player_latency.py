@@ -16,7 +16,7 @@ class PlayerLatency(TypedDict, closed=True):
     region_identifier: NotRequired[
         "capo_gamelift.types.non_zero_and_max_string.NonZeroAndMaxString"
     ]
-    """<p>Name of the Region that is associated with the latency value.</p>"""
+    """<p>Name of the Region or custom location that is associated with the latency value. For Amazon GameLift Servers Anywhere fleets, use the custom location name.</p>"""
     latency_in_milliseconds: NotRequired["capo_gamelift.types.float.Float"]
     """<p>Amount of time that represents the time lag experienced by the player when connected to the specified Region.</p>"""
 

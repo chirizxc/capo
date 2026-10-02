@@ -51,6 +51,8 @@ if TYPE_CHECKING:
     import capo_opensearch.types.associate_package_response
     import capo_opensearch.types.associate_packages_request
     import capo_opensearch.types.associate_packages_response
+    import capo_opensearch.types.attach_data_source_request
+    import capo_opensearch.types.attach_data_source_response
     import capo_opensearch.types.authorize_vpc_endpoint_access_request
     import capo_opensearch.types.authorize_vpc_endpoint_access_response
     import capo_opensearch.types.auto_tune_options
@@ -110,6 +112,8 @@ if TYPE_CHECKING:
     import capo_opensearch.types.deployment_strategy_options
     import capo_opensearch.types.deregister_capability_request
     import capo_opensearch.types.deregister_capability_response
+    import capo_opensearch.types.describe_data_source_attachment_request
+    import capo_opensearch.types.describe_data_source_attachment_response
     import capo_opensearch.types.describe_domain_auto_tunes_request
     import capo_opensearch.types.describe_domain_auto_tunes_response
     import capo_opensearch.types.describe_domain_change_progress_request
@@ -143,6 +147,8 @@ if TYPE_CHECKING:
     import capo_opensearch.types.describe_reserved_instances_response
     import capo_opensearch.types.describe_vpc_endpoints_request
     import capo_opensearch.types.describe_vpc_endpoints_response
+    import capo_opensearch.types.detach_data_source_request
+    import capo_opensearch.types.detach_data_source_response
     import capo_opensearch.types.direct_query_data_source_description
     import capo_opensearch.types.direct_query_data_source_name
     import capo_opensearch.types.direct_query_data_source_type
@@ -156,10 +162,12 @@ if TYPE_CHECKING:
     import capo_opensearch.types.domain_information_container
     import capo_opensearch.types.domain_name
     import capo_opensearch.types.domain_name_list
+    import capo_opensearch.types.domain_use_case
     import capo_opensearch.types.dry_run
     import capo_opensearch.types.dry_run_mode
     import capo_opensearch.types.ebs_options
     import capo_opensearch.types.encryption_at_rest_options
+    import capo_opensearch.types.engine_mode
     import capo_opensearch.types.engine_type
     import capo_opensearch.types.engine_version
     import capo_opensearch.types.filter_list
@@ -179,6 +187,8 @@ if TYPE_CHECKING:
     import capo_opensearch.types.get_domain_maintenance_status_response
     import capo_opensearch.types.get_index_request
     import capo_opensearch.types.get_index_response
+    import capo_opensearch.types.get_migration_request
+    import capo_opensearch.types.get_migration_response
     import capo_opensearch.types.get_package_version_history_request
     import capo_opensearch.types.get_package_version_history_response
     import capo_opensearch.types.get_upgrade_history_request
@@ -192,15 +202,23 @@ if TYPE_CHECKING:
     import capo_opensearch.types.index_name
     import capo_opensearch.types.index_schema
     import capo_opensearch.types.insight_entity
+    import capo_opensearch.types.insight_feedback_entity
+    import capo_opensearch.types.insight_feedback_request
+    import capo_opensearch.types.insight_feedback_response
+    import capo_opensearch.types.insight_feedback_text
+    import capo_opensearch.types.insight_feedback_thumbs
     import capo_opensearch.types.insight_page_size
     import capo_opensearch.types.insight_sort_order
     import capo_opensearch.types.insight_time_range
     import capo_opensearch.types.instance_count
     import capo_opensearch.types.instance_type_string
+    import capo_opensearch.types.integer
     import capo_opensearch.types.ip_address_type
     import capo_opensearch.types.kms_key_arn
     import capo_opensearch.types.list_applications_request
     import capo_opensearch.types.list_applications_response
+    import capo_opensearch.types.list_data_source_attachments_request
+    import capo_opensearch.types.list_data_source_attachments_response
     import capo_opensearch.types.list_data_sources_request
     import capo_opensearch.types.list_data_sources_response
     import capo_opensearch.types.list_direct_query_data_sources_request
@@ -215,6 +233,8 @@ if TYPE_CHECKING:
     import capo_opensearch.types.list_insights_response
     import capo_opensearch.types.list_instance_type_details_request
     import capo_opensearch.types.list_instance_type_details_response
+    import capo_opensearch.types.list_migrations_request
+    import capo_opensearch.types.list_migrations_response
     import capo_opensearch.types.list_packages_for_domain_request
     import capo_opensearch.types.list_packages_for_domain_response
     import capo_opensearch.types.list_scheduled_actions_request
@@ -234,6 +254,7 @@ if TYPE_CHECKING:
     import capo_opensearch.types.maintenance_status
     import capo_opensearch.types.maintenance_type
     import capo_opensearch.types.max_results
+    import capo_opensearch.types.migration_options
     import capo_opensearch.types.next_token
     import capo_opensearch.types.node_id
     import capo_opensearch.types.node_to_node_encryption_options
@@ -274,6 +295,8 @@ if TYPE_CHECKING:
     import capo_opensearch.types.software_update_options
     import capo_opensearch.types.start_domain_maintenance_request
     import capo_opensearch.types.start_domain_maintenance_response
+    import capo_opensearch.types.start_migration_request
+    import capo_opensearch.types.start_migration_response
     import capo_opensearch.types.start_service_software_update_request
     import capo_opensearch.types.start_service_software_update_response
     import capo_opensearch.types.string
@@ -303,6 +326,7 @@ if TYPE_CHECKING:
     import capo_opensearch.types.vpc_endpoint_id
     import capo_opensearch.types.vpc_endpoint_id_list
     import capo_opensearch.types.vpc_options
+    import capo_opensearch.types.workspace_configuration_input
 
 
 class AsyncOpenSearchClientConfig(TypedDict, total=False, closed=True):
@@ -742,6 +766,71 @@ class AsyncOpenSearchClient:
         await response.response.aclose()
         return response.output
 
+    async def attach_data_source(
+        self,
+        id: "capo_opensearch.types.id.Id",
+        data_source_arn: "capo_opensearch.types.arn.ARN",
+        *,
+        config_overrides: Optional[AsyncOpenSearchClientConfig] = None,
+        workspace_id: Optional["capo_opensearch.types.string.String"] = None,
+        workspace_configuration: Optional[
+            "capo_opensearch.types.workspace_configuration_input.WorkspaceConfigurationInput"
+        ] = None,
+        client_token: Optional["capo_opensearch.types.client_token.ClientToken"] = None,
+    ) -> "capo_opensearch.types.attach_data_source_response.AttachDataSourceResponse":
+        """<p>Attaches a data source to an OpenSearch application. The data source must be an Amazon OpenSearch Service domain. If both the application and the data source are active, the attachment completes immediately with a status of <code>ATTACHED</code>. Otherwise, the operation returns <code>PENDING</code> and completes the attachment automatically once both become active. If the attachment cannot be completed, its status becomes <code>FAILED</code>. This operation is idempotent: If the data source is already attached or pending, the operation returns the existing attachment.</p>
+
+        Args:
+            id: <p>The unique identifier or name of the OpenSearch application to attach the data source to. This is the same identifier used with <code>UpdateApplication</code>, <code>GetApplication</code>, and <code>DeleteApplication</code>.</p>
+            workspace_id: <p>The identifier of an existing workspace to update with the new data source. Mutually exclusive with <code>workspaceConfiguration</code>.</p>
+            workspace_configuration: <p>Configuration for creating a new workspace during the attachment. If specified, a workspace is created and linked to the data source after the attachment completes. Mutually exclusive with <code>workspaceId</code>.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. If you retry a request with the same client token and the same parameters, the retry succeeds without performing any further actions.</p>
+
+        Raises:
+            capo_opensearch.errors.access_denied_exception.AccessDeniedException: <p>An error occurred because you don't have permissions to access the resource.</p>
+            capo_opensearch.errors.conflict_exception.ConflictException: <p>An error occurred because the client attempts to remove a resource that is currently in use.</p>
+            capo_opensearch.errors.disabled_operation_exception.DisabledOperationException: <p>An error occured because the client wanted to access an unsupported operation.</p>
+            capo_opensearch.errors.internal_exception.InternalException: <p>Request processing failed because of an unknown error, exception, or internal failure.</p>
+            capo_opensearch.errors.resource_not_found_exception.ResourceNotFoundException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.validation_exception.ValidationException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_opensearch.types.attach_data_source_request.AttachDataSourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_opensearch.types.attach_data_source_response.AttachDataSourceResponse"
+        ]:
+            import capo_opensearch._operations.amazon_open_search_service.attach_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_opensearch._operations.amazon_open_search_service.attach_data_source.async_attach_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearch.types.attach_data_source_request.AttachDataSourceRequest = {
+            "id": id,
+            "data_source_arn": data_source_arn,
+        }
+        if workspace_id is not None:
+            input_["workspace_id"] = workspace_id
+        if workspace_configuration is not None:
+            input_["workspace_configuration"] = workspace_configuration
+        if client_token is not None:
+            input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def authorize_vpc_endpoint_access(
         self,
         domain_name: "capo_opensearch.types.domain_name.DomainName",
@@ -1045,6 +1134,10 @@ class AsyncOpenSearchClient:
         automated_snapshot_pause_options: Optional[
             "capo_opensearch.types.automated_snapshot_pause_request_options.AutomatedSnapshotPauseRequestOptions"
         ] = None,
+        use_case: Optional[
+            "capo_opensearch.types.domain_use_case.DomainUseCase"
+        ] = None,
+        engine_mode: Optional["capo_opensearch.types.engine_mode.EngineMode"] = None,
     ) -> "capo_opensearch.types.create_domain_response.CreateDomainResponse":
         r"""<p>Creates an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html\">Creating and managing Amazon OpenSearch Service domains</a>.</p>
 
@@ -1072,6 +1165,8 @@ class AsyncOpenSearchClient:
             aiml_options: <p>Options for all machine learning features for the specified domain.</p>
             deployment_strategy_options: <p>Specifies the deployment strategy options for the domain.</p>
             automated_snapshot_pause_options: <p>Specifies the automated snapshot pause options for the domain.</p> <important> <p>Suspending snapshots reduces data protection. You cannot restore your domain to points in time when snapshots are suspended. Use this feature only for short-term operational needs such as migrations or maintenance windows.</p> </important> <p>Maximum suspension duration: 3 days.</p>
+            use_case: <p>The primary use case for the domain. For valid values, see <code>DomainUseCase</code>.</p>
+            engine_mode: <p>The engine mode for the domain. For valid values and requirements, see <code>EngineMode</code>.</p>
 
         Raises:
             capo_opensearch.errors.base_exception.BaseException: <p>An error occurred while processing the request.</p>
@@ -1149,6 +1244,10 @@ class AsyncOpenSearchClient:
             input_["automated_snapshot_pause_options"] = (
                 automated_snapshot_pause_options
             )
+        if use_case is not None:
+            input_["use_case"] = use_case
+        if engine_mode is not None:
+            input_["engine_mode"] = engine_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1896,6 +1995,56 @@ class AsyncOpenSearchClient:
         input_: capo_opensearch.types.deregister_capability_request.DeregisterCapabilityRequest = {
             "application_id": application_id,
             "capability_name": capability_name,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_data_source_attachment(
+        self,
+        id: "capo_opensearch.types.id.Id",
+        data_source_arn: "capo_opensearch.types.arn.ARN",
+        *,
+        config_overrides: Optional[AsyncOpenSearchClientConfig] = None,
+    ) -> "capo_opensearch.types.describe_data_source_attachment_response.DescribeDataSourceAttachmentResponse":
+        """<p>Returns the current status and details of a specific data source attachment for an OpenSearch application. Throws a <code>ResourceNotFoundException</code> if no attachment record exists for the specified application and data source combination.</p>
+
+        Args:
+            id: <p>The unique identifier or name of the OpenSearch application.</p>
+
+        Raises:
+            capo_opensearch.errors.access_denied_exception.AccessDeniedException: <p>An error occurred because you don't have permissions to access the resource.</p>
+            capo_opensearch.errors.disabled_operation_exception.DisabledOperationException: <p>An error occured because the client wanted to access an unsupported operation.</p>
+            capo_opensearch.errors.internal_exception.InternalException: <p>Request processing failed because of an unknown error, exception, or internal failure.</p>
+            capo_opensearch.errors.resource_not_found_exception.ResourceNotFoundException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.validation_exception.ValidationException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_opensearch.types.describe_data_source_attachment_request.DescribeDataSourceAttachmentRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_opensearch.types.describe_data_source_attachment_response.DescribeDataSourceAttachmentResponse"
+        ]:
+            import capo_opensearch._operations.amazon_open_search_service.describe_data_source_attachment
+
+            (
+                output,
+                http_response,
+            ) = await capo_opensearch._operations.amazon_open_search_service.describe_data_source_attachment.async_describe_data_source_attachment(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearch.types.describe_data_source_attachment_request.DescribeDataSourceAttachmentRequest = {
+            "id": id,
+            "data_source_arn": data_source_arn,
         }
 
         response = await aexecute_pipeline(
@@ -2870,6 +3019,57 @@ class AsyncOpenSearchClient:
         await response.response.aclose()
         return response.output
 
+    async def detach_data_source(
+        self,
+        id: "capo_opensearch.types.id.Id",
+        data_source_arn: "capo_opensearch.types.arn.ARN",
+        *,
+        config_overrides: Optional[AsyncOpenSearchClientConfig] = None,
+    ) -> "capo_opensearch.types.detach_data_source_response.DetachDataSourceResponse":
+        """<p>Removes a data source from an OpenSearch application. The application must be in the <code>ACTIVE</code> state. This operation removes the data source saved object from the application and deletes the attachment record. Throws a <code>ConflictException</code> if the specified data source has a <code>PENDING</code> attachment, and a <code>ResourceNotFoundException</code> if the data source is not currently attached to the application.</p>
+
+        Args:
+            id: <p>The unique identifier or name of the OpenSearch application to detach the data source from.</p>
+
+        Raises:
+            capo_opensearch.errors.access_denied_exception.AccessDeniedException: <p>An error occurred because you don't have permissions to access the resource.</p>
+            capo_opensearch.errors.conflict_exception.ConflictException: <p>An error occurred because the client attempts to remove a resource that is currently in use.</p>
+            capo_opensearch.errors.disabled_operation_exception.DisabledOperationException: <p>An error occured because the client wanted to access an unsupported operation.</p>
+            capo_opensearch.errors.internal_exception.InternalException: <p>Request processing failed because of an unknown error, exception, or internal failure.</p>
+            capo_opensearch.errors.resource_not_found_exception.ResourceNotFoundException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.validation_exception.ValidationException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_opensearch.types.detach_data_source_request.DetachDataSourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_opensearch.types.detach_data_source_response.DetachDataSourceResponse"
+        ]:
+            import capo_opensearch._operations.amazon_open_search_service.detach_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_opensearch._operations.amazon_open_search_service.detach_data_source.async_detach_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearch.types.detach_data_source_request.DetachDataSourceRequest = {
+            "id": id,
+            "data_source_arn": data_source_arn,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def dissociate_package(
         self,
         package_id: "capo_opensearch.types.package_id.PackageID",
@@ -3365,6 +3565,54 @@ class AsyncOpenSearchClient:
         await response.response.aclose()
         return response.output
 
+    async def get_migration(
+        self,
+        migration_id: "capo_opensearch.types.string.String",
+        *,
+        config_overrides: Optional[AsyncOpenSearchClientConfig] = None,
+    ) -> "capo_opensearch.types.get_migration_response.GetMigrationResponse":
+        """<p>Retrieves the current status and progress of a migration job, including the number of exported and imported objects and error details if the migration failed.</p>
+
+        Args:
+            migration_id: <p>The unique identifier of the migration job to retrieve.</p>
+
+        Raises:
+            capo_opensearch.errors.access_denied_exception.AccessDeniedException: <p>An error occurred because you don't have permissions to access the resource.</p>
+            capo_opensearch.errors.disabled_operation_exception.DisabledOperationException: <p>An error occured because the client wanted to access an unsupported operation.</p>
+            capo_opensearch.errors.internal_exception.InternalException: <p>Request processing failed because of an unknown error, exception, or internal failure.</p>
+            capo_opensearch.errors.resource_not_found_exception.ResourceNotFoundException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.validation_exception.ValidationException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_opensearch.types.get_migration_request.GetMigrationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_opensearch.types.get_migration_response.GetMigrationResponse"
+        ]:
+            import capo_opensearch._operations.amazon_open_search_service.get_migration
+
+            (
+                output,
+                http_response,
+            ) = await capo_opensearch._operations.amazon_open_search_service.get_migration.async_get_migration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearch.types.get_migration_request.GetMigrationRequest = {
+            "migration_id": migration_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_package_version_history(
         self,
         package_id: "capo_opensearch.types.package_id.PackageID",
@@ -3567,6 +3815,67 @@ class AsyncOpenSearchClient:
         await response.response.aclose()
         return response.output
 
+    async def insight_feedback(
+        self,
+        entity: "capo_opensearch.types.insight_feedback_entity.InsightFeedbackEntity",
+        insight_id: "capo_opensearch.types.guid.GUID",
+        thumbs: "capo_opensearch.types.insight_feedback_thumbs.InsightFeedbackThumbs",
+        *,
+        config_overrides: Optional[AsyncOpenSearchClientConfig] = None,
+        feedback_text: Optional[
+            "capo_opensearch.types.insight_feedback_text.InsightFeedbackText"
+        ] = None,
+    ) -> "capo_opensearch.types.insight_feedback_response.InsightFeedbackResponse":
+        """<p>Submits feedback for an existing insight in an Amazon OpenSearch Service domain. Allows users to provide a thumbs up or thumbs down rating and optional text feedback for a specific insight.</p>
+
+        Args:
+            entity: <p>The entity for which to submit insight feedback. Specifies the type and value of the entity, such as a domain name.</p>
+            insight_id: <p>The unique identifier of the insight for which to submit feedback.</p>
+            thumbs: <p>The thumbs up or thumbs down feedback for the insight. Possible values are <code>Up</code> and <code>Down</code>.</p>
+            feedback_text: <p>Optional text feedback providing additional details about the insight. Maximum length is 1000 characters.</p>
+
+        Raises:
+            capo_opensearch.errors.base_exception.BaseException: <p>An error occurred while processing the request.</p>
+            capo_opensearch.errors.disabled_operation_exception.DisabledOperationException: <p>An error occured because the client wanted to access an unsupported operation.</p>
+            capo_opensearch.errors.internal_exception.InternalException: <p>Request processing failed because of an unknown error, exception, or internal failure.</p>
+            capo_opensearch.errors.limit_exceeded_exception.LimitExceededException: <p>An exception for trying to create more than the allowed number of resources or sub-resources.</p>
+            capo_opensearch.errors.resource_not_found_exception.ResourceNotFoundException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.validation_exception.ValidationException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_opensearch.types.insight_feedback_request.InsightFeedbackRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_opensearch.types.insight_feedback_response.InsightFeedbackResponse"
+        ]:
+            import capo_opensearch._operations.amazon_open_search_service.insight_feedback
+
+            (
+                output,
+                http_response,
+            ) = await capo_opensearch._operations.amazon_open_search_service.insight_feedback.async_insight_feedback(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearch.types.insight_feedback_request.InsightFeedbackRequest = {
+            "entity": entity,
+            "insight_id": insight_id,
+            "thumbs": thumbs,
+        }
+        if feedback_text is not None:
+            input_["feedback_text"] = feedback_text
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def list_applications(
         self,
         *,
@@ -3648,6 +3957,62 @@ class AsyncOpenSearchClient:
             _token = _resolve_path(_response, ("next_token",))
             if not _token:
                 break
+
+    async def list_data_source_attachments(
+        self,
+        id: "capo_opensearch.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncOpenSearchClientConfig] = None,
+        next_token: Optional["capo_opensearch.types.string.String"] = None,
+        max_results: Optional["capo_opensearch.types.integer.Integer"] = None,
+    ) -> "capo_opensearch.types.list_data_source_attachments_response.ListDataSourceAttachmentsResponse":
+        """<p>Returns a paginated list of all data source attachments for an OpenSearch application, including attachments in all states (<code>PENDING</code>, <code>ATTACHED</code>, and <code>FAILED</code>).</p>
+
+        Args:
+            id: <p>The unique identifier or name of the OpenSearch application to list attachments for.</p>
+            next_token: <p>The pagination token from a previous call to retrieve the next set of results.</p>
+            max_results: <p>The maximum number of results to return per page. The default is 50.</p>
+
+        Raises:
+            capo_opensearch.errors.access_denied_exception.AccessDeniedException: <p>An error occurred because you don't have permissions to access the resource.</p>
+            capo_opensearch.errors.disabled_operation_exception.DisabledOperationException: <p>An error occured because the client wanted to access an unsupported operation.</p>
+            capo_opensearch.errors.internal_exception.InternalException: <p>Request processing failed because of an unknown error, exception, or internal failure.</p>
+            capo_opensearch.errors.resource_not_found_exception.ResourceNotFoundException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.validation_exception.ValidationException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_opensearch.types.list_data_source_attachments_request.ListDataSourceAttachmentsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_opensearch.types.list_data_source_attachments_response.ListDataSourceAttachmentsResponse"
+        ]:
+            import capo_opensearch._operations.amazon_open_search_service.list_data_source_attachments
+
+            (
+                output,
+                http_response,
+            ) = await capo_opensearch._operations.amazon_open_search_service.list_data_source_attachments.async_list_data_source_attachments(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearch.types.list_data_source_attachments_request.ListDataSourceAttachmentsRequest = {
+            "id": id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     async def list_data_sources(
         self,
@@ -4130,6 +4495,65 @@ class AsyncOpenSearchClient:
             _token = _resolve_path(_response, ("next_token",))
             if not _token:
                 break
+
+    async def list_migrations(
+        self,
+        application_id: "capo_opensearch.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncOpenSearchClientConfig] = None,
+        status: Optional["capo_opensearch.types.string.String"] = None,
+        max_results: Optional["capo_opensearch.types.integer.Integer"] = None,
+        next_token: Optional["capo_opensearch.types.string.String"] = None,
+    ) -> "capo_opensearch.types.list_migrations_response.ListMigrationsResponse":
+        """<p>Lists migration jobs for an Amazon OpenSearch Service application. You can filter results by migration status. Use pagination to ensure that the operation returns quickly and successfully.</p>
+
+        Args:
+            application_id: <p>The unique identifier of the OpenSearch application to list migrations for.</p>
+            status: <p>Filters the results by migration status. Valid values are <code>PENDING</code>, <code>IN_PROGRESS</code>, <code>SUCCEEDED</code>, and <code>FAILED</code>.</p>
+            max_results: <p>The maximum number of results to return in a single call.</p>
+            next_token: <p>The pagination token from a previous call to retrieve the next set of results.</p>
+
+        Raises:
+            capo_opensearch.errors.access_denied_exception.AccessDeniedException: <p>An error occurred because you don't have permissions to access the resource.</p>
+            capo_opensearch.errors.disabled_operation_exception.DisabledOperationException: <p>An error occured because the client wanted to access an unsupported operation.</p>
+            capo_opensearch.errors.internal_exception.InternalException: <p>Request processing failed because of an unknown error, exception, or internal failure.</p>
+            capo_opensearch.errors.validation_exception.ValidationException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_opensearch.types.list_migrations_request.ListMigrationsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_opensearch.types.list_migrations_response.ListMigrationsResponse"
+        ]:
+            import capo_opensearch._operations.amazon_open_search_service.list_migrations
+
+            (
+                output,
+                http_response,
+            ) = await capo_opensearch._operations.amazon_open_search_service.list_migrations.async_list_migrations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearch.types.list_migrations_request.ListMigrationsRequest = {
+            "application_id": application_id
+        }
+        if status is not None:
+            input_["status"] = status
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     async def list_packages_for_domain(
         self,
@@ -4972,6 +5396,62 @@ class AsyncOpenSearchClient:
         await response.response.aclose()
         return response.output
 
+    async def start_migration(
+        self,
+        application_id: "capo_opensearch.types.application_id.ApplicationId",
+        migration_options: "capo_opensearch.types.migration_options.MigrationOptions",
+        *,
+        config_overrides: Optional[AsyncOpenSearchClientConfig] = None,
+        client_token: Optional["capo_opensearch.types.client_token.ClientToken"] = None,
+    ) -> "capo_opensearch.types.start_migration_response.StartMigrationResponse":
+        """<p>Initiates a migration job to migrate saved objects from a data source to an Amazon OpenSearch Service application workspace. Saved objects include dashboards, visualizations, index patterns, and searches. You can specify export filters to control the scope of the migration and a conflict resolution strategy for handling existing objects in the target workspace.</p>
+
+        Args:
+            application_id: <p>The unique identifier of the OpenSearch application to migrate saved objects into.</p>
+            migration_options: <p>The configuration options for the migration, including the source data source, target workspace, export filters, and conflict resolution strategy.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, Amazon OpenSearch Service ignores the request but does not return an error.</p>
+
+        Raises:
+            capo_opensearch.errors.access_denied_exception.AccessDeniedException: <p>An error occurred because you don't have permissions to access the resource.</p>
+            capo_opensearch.errors.conflict_exception.ConflictException: <p>An error occurred because the client attempts to remove a resource that is currently in use.</p>
+            capo_opensearch.errors.disabled_operation_exception.DisabledOperationException: <p>An error occured because the client wanted to access an unsupported operation.</p>
+            capo_opensearch.errors.internal_exception.InternalException: <p>Request processing failed because of an unknown error, exception, or internal failure.</p>
+            capo_opensearch.errors.resource_not_found_exception.ResourceNotFoundException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.validation_exception.ValidationException: <p>An exception for accessing or deleting a resource that doesn't exist.</p>
+            capo_opensearch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_opensearch.types.start_migration_request.StartMigrationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_opensearch.types.start_migration_response.StartMigrationResponse"
+        ]:
+            import capo_opensearch._operations.amazon_open_search_service.start_migration
+
+            (
+                output,
+                http_response,
+            ) = await capo_opensearch._operations.amazon_open_search_service.start_migration.async_start_migration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearch.types.start_migration_request.StartMigrationRequest = {
+            "application_id": application_id,
+            "migration_options": migration_options,
+        }
+        if client_token is not None:
+            input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def start_service_software_update(
         self,
         domain_name: "capo_opensearch.types.domain_name.DomainName",
@@ -5034,6 +5514,9 @@ class AsyncOpenSearchClient:
         config_overrides: Optional[AsyncOpenSearchClientConfig] = None,
         data_sources: Optional["capo_opensearch.types.data_sources.DataSources"] = None,
         app_configs: Optional["capo_opensearch.types.app_configs.AppConfigs"] = None,
+        iam_identity_center_options: Optional[
+            "capo_opensearch.types.iam_identity_center_options_input.IamIdentityCenterOptionsInput"
+        ] = None,
     ) -> "capo_opensearch.types.update_application_response.UpdateApplicationResponse":
         """<p>Updates the configuration and settings of an existing OpenSearch application.</p>
 
@@ -5041,6 +5524,7 @@ class AsyncOpenSearchClient:
             id: <p>The unique identifier for the OpenSearch application to be updated.</p>
             data_sources: <p>The data sources to associate with the OpenSearch application.</p>
             app_configs: <p>The configuration settings to modify for the OpenSearch application.</p>
+            iam_identity_center_options: <p>Configuration settings for integrating IAM Identity Center with the OpenSearch application.</p>
 
         Raises:
             capo_opensearch.errors.access_denied_exception.AccessDeniedException: <p>An error occurred because you don't have permissions to access the resource.</p>
@@ -5076,6 +5560,8 @@ class AsyncOpenSearchClient:
             input_["data_sources"] = data_sources
         if app_configs is not None:
             input_["app_configs"] = app_configs
+        if iam_identity_center_options is not None:
+            input_["iam_identity_center_options"] = iam_identity_center_options
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -5285,6 +5771,10 @@ class AsyncOpenSearchClient:
         automated_snapshot_pause_options: Optional[
             "capo_opensearch.types.automated_snapshot_pause_request_options.AutomatedSnapshotPauseRequestOptions"
         ] = None,
+        use_case: Optional[
+            "capo_opensearch.types.domain_use_case.DomainUseCase"
+        ] = None,
+        engine_mode: Optional["capo_opensearch.types.engine_mode.EngineMode"] = None,
     ) -> (
         "capo_opensearch.types.update_domain_config_response.UpdateDomainConfigResponse"
     ):
@@ -5313,6 +5803,8 @@ class AsyncOpenSearchClient:
             aiml_options: <p>Options for all machine learning features for the specified domain.</p>
             deployment_strategy_options: <p>Specifies the deployment strategy options for the domain.</p>
             automated_snapshot_pause_options: <p>Specifies the automated snapshot pause options for the domain.</p> <important> <p>Suspending snapshots reduces data protection. You cannot restore your domain to points in time when snapshots are suspended. Use this feature only for short-term operational needs such as migrations or maintenance windows.</p> </important> <p>Maximum suspension duration: 3 days.</p>
+            use_case: <p>The primary use case for the domain. For valid values, see <code>DomainUseCase</code>.</p>
+            engine_mode: <p>The engine mode for the domain. The engine mode can't be changed after the domain is created. For valid values, see <code>EngineMode</code>.</p>
 
         Raises:
             capo_opensearch.errors.base_exception.BaseException: <p>An error occurred while processing the request.</p>
@@ -5389,6 +5881,10 @@ class AsyncOpenSearchClient:
             input_["automated_snapshot_pause_options"] = (
                 automated_snapshot_pause_options
             )
+        if use_case is not None:
+            input_["use_case"] = use_case
+        if engine_mode is not None:
+            input_["engine_mode"] = engine_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

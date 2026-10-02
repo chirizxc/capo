@@ -76,8 +76,11 @@ if TYPE_CHECKING:
     import capo_datazone.types.asset_filter_summary
     import capo_datazone.types.asset_id
     import capo_datazone.types.asset_identifier
+    import capo_datazone.types.asset_name
     import capo_datazone.types.asset_permissions
     import capo_datazone.types.asset_target_names
+    import capo_datazone.types.asset_type_identifier
+    import capo_datazone.types.asset_type_identifiers
     import capo_datazone.types.associate_environment_role_input
     import capo_datazone.types.associate_environment_role_output
     import capo_datazone.types.associate_governed_terms_input
@@ -93,10 +96,15 @@ if TYPE_CHECKING:
     import capo_datazone.types.batch_get_attributes_metadata_output
     import capo_datazone.types.batch_put_attributes_metadata_input
     import capo_datazone.types.batch_put_attributes_metadata_output
+    import capo_datazone.types.blueprint_category
+    import capo_datazone.types.cancel_metadata_generation_run_input
+    import capo_datazone.types.cancel_metadata_generation_run_output
     import capo_datazone.types.cancel_subscription_input
     import capo_datazone.types.cancel_subscription_output
+    import capo_datazone.types.cell_order
     import capo_datazone.types.change_action
     import capo_datazone.types.client_token
+    import capo_datazone.types.compute_config
     import capo_datazone.types.configurations
     import capo_datazone.types.connection_id
     import capo_datazone.types.connection_name
@@ -109,8 +117,24 @@ if TYPE_CHECKING:
     import capo_datazone.types.create_account_pool_output
     import capo_datazone.types.create_asset_filter_input
     import capo_datazone.types.create_asset_filter_output
+    import capo_datazone.types.create_asset_input
+    import capo_datazone.types.create_asset_output
+    import capo_datazone.types.create_asset_revision_input
+    import capo_datazone.types.create_asset_revision_output
+    import capo_datazone.types.create_asset_type_input
+    import capo_datazone.types.create_asset_type_output
     import capo_datazone.types.create_connection_input
     import capo_datazone.types.create_connection_output
+    import capo_datazone.types.create_data_product_input
+    import capo_datazone.types.create_data_product_output
+    import capo_datazone.types.create_data_product_revision_input
+    import capo_datazone.types.create_data_product_revision_output
+    import capo_datazone.types.create_data_source_input
+    import capo_datazone.types.create_data_source_output
+    import capo_datazone.types.create_domain_input
+    import capo_datazone.types.create_domain_output
+    import capo_datazone.types.create_domain_unit_input
+    import capo_datazone.types.create_domain_unit_output
     import capo_datazone.types.create_environment_action_input
     import capo_datazone.types.create_environment_action_output
     import capo_datazone.types.create_environment_blueprint_input
@@ -119,16 +143,26 @@ if TYPE_CHECKING:
     import capo_datazone.types.create_environment_output
     import capo_datazone.types.create_environment_profile_input
     import capo_datazone.types.create_environment_profile_output
+    import capo_datazone.types.create_form_type_input
+    import capo_datazone.types.create_form_type_output
+    import capo_datazone.types.create_glossary_input
+    import capo_datazone.types.create_glossary_output
+    import capo_datazone.types.create_glossary_term_input
+    import capo_datazone.types.create_glossary_term_output
     import capo_datazone.types.create_group_profile_input
     import capo_datazone.types.create_group_profile_output
     import capo_datazone.types.create_listing_change_set_input
     import capo_datazone.types.create_listing_change_set_output
+    import capo_datazone.types.create_notebook_input
+    import capo_datazone.types.create_notebook_output
     import capo_datazone.types.create_project_input
     import capo_datazone.types.create_project_membership_input
     import capo_datazone.types.create_project_membership_output
     import capo_datazone.types.create_project_output
     import capo_datazone.types.create_project_profile_input
     import capo_datazone.types.create_project_profile_output
+    import capo_datazone.types.create_rule_input
+    import capo_datazone.types.create_rule_output
     import capo_datazone.types.create_subscription_grant_input
     import capo_datazone.types.create_subscription_grant_output
     import capo_datazone.types.create_subscription_request_input
@@ -139,29 +173,67 @@ if TYPE_CHECKING:
     import capo_datazone.types.create_user_profile_output
     import capo_datazone.types.custom_parameter_list
     import capo_datazone.types.data_asset_activity_status
+    import capo_datazone.types.data_product_description
     import capo_datazone.types.data_product_id
+    import capo_datazone.types.data_product_items
+    import capo_datazone.types.data_product_name
     import capo_datazone.types.data_product_revision
+    import capo_datazone.types.data_source_configuration_input
+    import capo_datazone.types.data_source_id
     import capo_datazone.types.data_source_run_activity
     import capo_datazone.types.data_source_run_id
+    import capo_datazone.types.data_source_run_status
+    import capo_datazone.types.data_source_run_summary
+    import capo_datazone.types.data_source_status
+    import capo_datazone.types.data_source_summary
+    import capo_datazone.types.data_source_type
     import capo_datazone.types.data_zone_entity_type
     import capo_datazone.types.decision_comment
     import capo_datazone.types.delete_account_pool_input
     import capo_datazone.types.delete_account_pool_output
     import capo_datazone.types.delete_asset_filter_input
+    import capo_datazone.types.delete_asset_input
+    import capo_datazone.types.delete_asset_output
+    import capo_datazone.types.delete_asset_type_input
+    import capo_datazone.types.delete_asset_type_output
     import capo_datazone.types.delete_connection_input
     import capo_datazone.types.delete_connection_output
     import capo_datazone.types.delete_data_export_configuration_input
     import capo_datazone.types.delete_data_export_configuration_output
+    import capo_datazone.types.delete_data_product_input
+    import capo_datazone.types.delete_data_product_output
+    import capo_datazone.types.delete_data_source_input
+    import capo_datazone.types.delete_data_source_output
+    import capo_datazone.types.delete_domain_input
+    import capo_datazone.types.delete_domain_output
+    import capo_datazone.types.delete_domain_unit_input
+    import capo_datazone.types.delete_domain_unit_output
     import capo_datazone.types.delete_environment_action_input
+    import capo_datazone.types.delete_environment_blueprint_configuration_input
+    import capo_datazone.types.delete_environment_blueprint_configuration_output
     import capo_datazone.types.delete_environment_blueprint_input
     import capo_datazone.types.delete_environment_input
     import capo_datazone.types.delete_environment_profile_input
+    import capo_datazone.types.delete_form_type_input
+    import capo_datazone.types.delete_form_type_output
+    import capo_datazone.types.delete_glossary_input
+    import capo_datazone.types.delete_glossary_output
+    import capo_datazone.types.delete_glossary_term_input
+    import capo_datazone.types.delete_glossary_term_output
+    import capo_datazone.types.delete_lineage_event_input
+    import capo_datazone.types.delete_lineage_event_output
+    import capo_datazone.types.delete_listing_input
+    import capo_datazone.types.delete_listing_output
+    import capo_datazone.types.delete_notebook_input
+    import capo_datazone.types.delete_notebook_output
     import capo_datazone.types.delete_project_input
     import capo_datazone.types.delete_project_membership_input
     import capo_datazone.types.delete_project_membership_output
     import capo_datazone.types.delete_project_output
     import capo_datazone.types.delete_project_profile_input
     import capo_datazone.types.delete_project_profile_output
+    import capo_datazone.types.delete_rule_input
+    import capo_datazone.types.delete_rule_output
     import capo_datazone.types.delete_subscription_grant_input
     import capo_datazone.types.delete_subscription_grant_output
     import capo_datazone.types.delete_subscription_request_input
@@ -174,16 +246,26 @@ if TYPE_CHECKING:
     import capo_datazone.types.disassociate_governed_terms_input
     import capo_datazone.types.disassociate_governed_terms_output
     import capo_datazone.types.domain_id
+    import capo_datazone.types.domain_status
+    import capo_datazone.types.domain_summary
+    import capo_datazone.types.domain_unit_description
     import capo_datazone.types.domain_unit_id
+    import capo_datazone.types.domain_unit_name
+    import capo_datazone.types.domain_unit_summary
+    import capo_datazone.types.domain_version
     import capo_datazone.types.edge_direction
+    import capo_datazone.types.enable_setting
+    import capo_datazone.types.enabled_region_list
     import capo_datazone.types.encryption_configuration
     import capo_datazone.types.entity_id
     import capo_datazone.types.entity_identifier
     import capo_datazone.types.entity_type
     import capo_datazone.types.environment_action_summary
+    import capo_datazone.types.environment_blueprint_configuration_item
     import capo_datazone.types.environment_blueprint_id
     import capo_datazone.types.environment_blueprint_name
     import capo_datazone.types.environment_blueprint_summary
+    import capo_datazone.types.environment_config
     import capo_datazone.types.environment_configuration_name
     import capo_datazone.types.environment_configuration_user_parameters_list
     import capo_datazone.types.environment_configurations_list
@@ -195,21 +277,45 @@ if TYPE_CHECKING:
     import capo_datazone.types.environment_profile_summary
     import capo_datazone.types.environment_status
     import capo_datazone.types.environment_summary
+    import capo_datazone.types.export_id
+    import capo_datazone.types.external_identifier
     import capo_datazone.types.failure_cause
+    import capo_datazone.types.file_format
     import capo_datazone.types.filter_clause
     import capo_datazone.types.filter_id
     import capo_datazone.types.filter_name
     import capo_datazone.types.filter_status
+    import capo_datazone.types.form_input_list
+    import capo_datazone.types.form_type_identifier
+    import capo_datazone.types.form_type_name
+    import capo_datazone.types.form_type_status
+    import capo_datazone.types.forms_input_map
     import capo_datazone.types.get_account_pool_input
     import capo_datazone.types.get_account_pool_output
     import capo_datazone.types.get_asset_filter_input
     import capo_datazone.types.get_asset_filter_output
+    import capo_datazone.types.get_asset_input
+    import capo_datazone.types.get_asset_output
+    import capo_datazone.types.get_asset_type_input
+    import capo_datazone.types.get_asset_type_output
     import capo_datazone.types.get_connection_input
     import capo_datazone.types.get_connection_output
     import capo_datazone.types.get_data_export_configuration_input
     import capo_datazone.types.get_data_export_configuration_output
+    import capo_datazone.types.get_data_product_input
+    import capo_datazone.types.get_data_product_output
+    import capo_datazone.types.get_data_source_input
+    import capo_datazone.types.get_data_source_output
+    import capo_datazone.types.get_data_source_run_input
+    import capo_datazone.types.get_data_source_run_output
+    import capo_datazone.types.get_domain_input
+    import capo_datazone.types.get_domain_output
+    import capo_datazone.types.get_domain_unit_input
+    import capo_datazone.types.get_domain_unit_output
     import capo_datazone.types.get_environment_action_input
     import capo_datazone.types.get_environment_action_output
+    import capo_datazone.types.get_environment_blueprint_configuration_input
+    import capo_datazone.types.get_environment_blueprint_configuration_output
     import capo_datazone.types.get_environment_blueprint_input
     import capo_datazone.types.get_environment_blueprint_output
     import capo_datazone.types.get_environment_credentials_input
@@ -218,6 +324,12 @@ if TYPE_CHECKING:
     import capo_datazone.types.get_environment_output
     import capo_datazone.types.get_environment_profile_input
     import capo_datazone.types.get_environment_profile_output
+    import capo_datazone.types.get_form_type_input
+    import capo_datazone.types.get_form_type_output
+    import capo_datazone.types.get_glossary_input
+    import capo_datazone.types.get_glossary_output
+    import capo_datazone.types.get_glossary_term_input
+    import capo_datazone.types.get_glossary_term_output
     import capo_datazone.types.get_group_profile_input
     import capo_datazone.types.get_group_profile_output
     import capo_datazone.types.get_iam_portal_login_url_input
@@ -228,10 +340,22 @@ if TYPE_CHECKING:
     import capo_datazone.types.get_lineage_event_output
     import capo_datazone.types.get_lineage_node_input
     import capo_datazone.types.get_lineage_node_output
+    import capo_datazone.types.get_listing_input
+    import capo_datazone.types.get_listing_output
+    import capo_datazone.types.get_metadata_generation_run_input
+    import capo_datazone.types.get_metadata_generation_run_output
+    import capo_datazone.types.get_notebook_export_input
+    import capo_datazone.types.get_notebook_export_output
+    import capo_datazone.types.get_notebook_input
+    import capo_datazone.types.get_notebook_output
+    import capo_datazone.types.get_notebook_run_input
+    import capo_datazone.types.get_notebook_run_output
     import capo_datazone.types.get_project_input
     import capo_datazone.types.get_project_output
     import capo_datazone.types.get_project_profile_input
     import capo_datazone.types.get_project_profile_output
+    import capo_datazone.types.get_rule_input
+    import capo_datazone.types.get_rule_output
     import capo_datazone.types.get_subscription_grant_input
     import capo_datazone.types.get_subscription_grant_output
     import capo_datazone.types.get_subscription_input
@@ -244,7 +368,17 @@ if TYPE_CHECKING:
     import capo_datazone.types.get_time_series_data_point_output
     import capo_datazone.types.get_user_profile_input
     import capo_datazone.types.get_user_profile_output
+    import capo_datazone.types.git_metadata
+    import capo_datazone.types.global_parameter_map
+    import capo_datazone.types.glossary_description
+    import capo_datazone.types.glossary_id
+    import capo_datazone.types.glossary_name
+    import capo_datazone.types.glossary_status
+    import capo_datazone.types.glossary_term_id
+    import capo_datazone.types.glossary_term_name
+    import capo_datazone.types.glossary_term_status
     import capo_datazone.types.glossary_terms
+    import capo_datazone.types.glossary_usage_restrictions
     import capo_datazone.types.governed_entity_type
     import capo_datazone.types.governed_glossary_terms
     import capo_datazone.types.grant_identifier
@@ -260,6 +394,7 @@ if TYPE_CHECKING:
     import capo_datazone.types.inventory_search_scope
     import capo_datazone.types.job_run_status
     import capo_datazone.types.job_run_summary
+    import capo_datazone.types.kms_key_arn
     import capo_datazone.types.lineage_event
     import capo_datazone.types.lineage_event_identifier
     import capo_datazone.types.lineage_event_processing_status
@@ -280,10 +415,20 @@ if TYPE_CHECKING:
     import capo_datazone.types.list_data_product_revisions_output
     import capo_datazone.types.list_data_source_run_activities_input
     import capo_datazone.types.list_data_source_run_activities_output
+    import capo_datazone.types.list_data_source_runs_input
+    import capo_datazone.types.list_data_source_runs_output
+    import capo_datazone.types.list_data_sources_input
+    import capo_datazone.types.list_data_sources_output
+    import capo_datazone.types.list_domain_units_for_parent_input
+    import capo_datazone.types.list_domain_units_for_parent_output
+    import capo_datazone.types.list_domains_input
+    import capo_datazone.types.list_domains_output
     import capo_datazone.types.list_entity_owners_input
     import capo_datazone.types.list_entity_owners_output
     import capo_datazone.types.list_environment_actions_input
     import capo_datazone.types.list_environment_actions_output
+    import capo_datazone.types.list_environment_blueprint_configurations_input
+    import capo_datazone.types.list_environment_blueprint_configurations_output
     import capo_datazone.types.list_environment_blueprints_input
     import capo_datazone.types.list_environment_blueprints_output
     import capo_datazone.types.list_environment_profiles_input
@@ -296,6 +441,12 @@ if TYPE_CHECKING:
     import capo_datazone.types.list_lineage_events_output
     import capo_datazone.types.list_lineage_node_history_input
     import capo_datazone.types.list_lineage_node_history_output
+    import capo_datazone.types.list_metadata_generation_runs_input
+    import capo_datazone.types.list_metadata_generation_runs_output
+    import capo_datazone.types.list_notebook_runs_input
+    import capo_datazone.types.list_notebook_runs_output
+    import capo_datazone.types.list_notebooks_input
+    import capo_datazone.types.list_notebooks_output
     import capo_datazone.types.list_notifications_input
     import capo_datazone.types.list_notifications_output
     import capo_datazone.types.list_policy_grants_input
@@ -306,6 +457,8 @@ if TYPE_CHECKING:
     import capo_datazone.types.list_project_profiles_output
     import capo_datazone.types.list_projects_input
     import capo_datazone.types.list_projects_output
+    import capo_datazone.types.list_rules_input
+    import capo_datazone.types.list_rules_output
     import capo_datazone.types.list_subscription_grants_input
     import capo_datazone.types.list_subscription_grants_output
     import capo_datazone.types.list_subscription_requests_input
@@ -319,19 +472,39 @@ if TYPE_CHECKING:
     import capo_datazone.types.list_time_series_data_points_input
     import capo_datazone.types.list_time_series_data_points_output
     import capo_datazone.types.listing_id
+    import capo_datazone.types.long_description
     import capo_datazone.types.managed_policy_type
     import capo_datazone.types.match_clauses
     import capo_datazone.types.max_results
     import capo_datazone.types.max_results_for_list_domains
     import capo_datazone.types.member
+    import capo_datazone.types.metadata
     import capo_datazone.types.metadata_form_inputs
+    import capo_datazone.types.metadata_generation_run_identifier
+    import capo_datazone.types.metadata_generation_run_item
+    import capo_datazone.types.metadata_generation_run_status
+    import capo_datazone.types.metadata_generation_run_target
+    import capo_datazone.types.metadata_generation_run_type
+    import capo_datazone.types.metadata_generation_run_types
+    import capo_datazone.types.model
+    import capo_datazone.types.name
+    import capo_datazone.types.network_config
+    import capo_datazone.types.notebook_id
     import capo_datazone.types.notebook_name
+    import capo_datazone.types.notebook_run_id
+    import capo_datazone.types.notebook_run_status
+    import capo_datazone.types.notebook_run_summary
+    import capo_datazone.types.notebook_status
+    import capo_datazone.types.notebook_summary
+    import capo_datazone.types.notebook_type
     import capo_datazone.types.notification_output
     import capo_datazone.types.notification_subjects
     import capo_datazone.types.notification_type
     import capo_datazone.types.owner_properties
     import capo_datazone.types.owner_properties_output
     import capo_datazone.types.pagination_token
+    import capo_datazone.types.parameters
+    import capo_datazone.types.policy_arn
     import capo_datazone.types.policy_grant_detail
     import capo_datazone.types.policy_grant_member
     import capo_datazone.types.policy_grant_principal
@@ -339,7 +512,9 @@ if TYPE_CHECKING:
     import capo_datazone.types.post_lineage_event_output
     import capo_datazone.types.post_time_series_data_points_input
     import capo_datazone.types.post_time_series_data_points_output
+    import capo_datazone.types.prediction_configuration
     import capo_datazone.types.project_id
+    import capo_datazone.types.project_ids
     import capo_datazone.types.project_member
     import capo_datazone.types.project_membership_assignments
     import capo_datazone.types.project_name
@@ -348,11 +523,17 @@ if TYPE_CHECKING:
     import capo_datazone.types.project_profile_summary
     import capo_datazone.types.project_resource_tag_parameters
     import capo_datazone.types.project_summary
+    import capo_datazone.types.provisioning_configuration_list
     import capo_datazone.types.provisioning_properties
     import capo_datazone.types.put_data_export_configuration_input
     import capo_datazone.types.put_data_export_configuration_output
+    import capo_datazone.types.put_environment_blueprint_configuration_input
+    import capo_datazone.types.put_environment_blueprint_configuration_output
+    import capo_datazone.types.put_resource_configurations
     import capo_datazone.types.query_graph_input
     import capo_datazone.types.query_graph_output
+    import capo_datazone.types.recommendation_configuration
+    import capo_datazone.types.regional_parameter_map
     import capo_datazone.types.reject_choices
     import capo_datazone.types.reject_predictions_input
     import capo_datazone.types.reject_predictions_output
@@ -370,7 +551,18 @@ if TYPE_CHECKING:
     import capo_datazone.types.revoke_subscription_input
     import capo_datazone.types.revoke_subscription_output
     import capo_datazone.types.role_arn
+    import capo_datazone.types.rule_action
+    import capo_datazone.types.rule_detail
+    import capo_datazone.types.rule_id
+    import capo_datazone.types.rule_name
+    import capo_datazone.types.rule_scope
+    import capo_datazone.types.rule_summary
+    import capo_datazone.types.rule_target
+    import capo_datazone.types.rule_target_type
+    import capo_datazone.types.rule_type
     import capo_datazone.types.run_identifier
+    import capo_datazone.types.schedule_configuration
+    import capo_datazone.types.schedule_id
     import capo_datazone.types.search_group_profiles_input
     import capo_datazone.types.search_group_profiles_output
     import capo_datazone.types.search_in_list
@@ -388,15 +580,29 @@ if TYPE_CHECKING:
     import capo_datazone.types.search_types_result_item
     import capo_datazone.types.search_user_profiles_input
     import capo_datazone.types.search_user_profiles_output
+    import capo_datazone.types.short_description
+    import capo_datazone.types.single_sign_on
     import capo_datazone.types.sort_field_account_pool
     import capo_datazone.types.sort_field_connection
     import capo_datazone.types.sort_field_project
     import capo_datazone.types.sort_key
     import capo_datazone.types.sort_order
     import capo_datazone.types.source_location
+    import capo_datazone.types.start_data_source_run_input
+    import capo_datazone.types.start_data_source_run_output
+    import capo_datazone.types.start_metadata_generation_run_input
+    import capo_datazone.types.start_metadata_generation_run_output
+    import capo_datazone.types.start_notebook_export_input
+    import capo_datazone.types.start_notebook_export_output
     import capo_datazone.types.start_notebook_import_input
     import capo_datazone.types.start_notebook_import_output
+    import capo_datazone.types.start_notebook_run_input
+    import capo_datazone.types.start_notebook_run_output
+    import capo_datazone.types.start_notebook_sync_input
+    import capo_datazone.types.start_notebook_sync_output
     import capo_datazone.types.status
+    import capo_datazone.types.stop_notebook_run_input
+    import capo_datazone.types.stop_notebook_run_output
     import capo_datazone.types.subscribed_listing_inputs
     import capo_datazone.types.subscribed_principal_inputs
     import capo_datazone.types.subscription_grant_creation_mode
@@ -419,11 +625,15 @@ if TYPE_CHECKING:
     import capo_datazone.types.tags
     import capo_datazone.types.target_entity_type
     import capo_datazone.types.task_status
+    import capo_datazone.types.term_relations
     import capo_datazone.types.time_series_data_point_form_input_list
     import capo_datazone.types.time_series_data_point_identifier
     import capo_datazone.types.time_series_data_point_summary_form_output
     import capo_datazone.types.time_series_entity_type
     import capo_datazone.types.time_series_form_name
+    import capo_datazone.types.timeout_config
+    import capo_datazone.types.trigger_source
+    import capo_datazone.types.type_name
     import capo_datazone.types.types_search_scope
     import capo_datazone.types.untag_resource_request
     import capo_datazone.types.untag_resource_response
@@ -433,6 +643,12 @@ if TYPE_CHECKING:
     import capo_datazone.types.update_asset_filter_output
     import capo_datazone.types.update_connection_input
     import capo_datazone.types.update_connection_output
+    import capo_datazone.types.update_data_source_input
+    import capo_datazone.types.update_data_source_output
+    import capo_datazone.types.update_domain_input
+    import capo_datazone.types.update_domain_output
+    import capo_datazone.types.update_domain_unit_input
+    import capo_datazone.types.update_domain_unit_output
     import capo_datazone.types.update_environment_action_input
     import capo_datazone.types.update_environment_action_output
     import capo_datazone.types.update_environment_blueprint_input
@@ -441,14 +657,22 @@ if TYPE_CHECKING:
     import capo_datazone.types.update_environment_output
     import capo_datazone.types.update_environment_profile_input
     import capo_datazone.types.update_environment_profile_output
+    import capo_datazone.types.update_glossary_input
+    import capo_datazone.types.update_glossary_output
+    import capo_datazone.types.update_glossary_term_input
+    import capo_datazone.types.update_glossary_term_output
     import capo_datazone.types.update_group_profile_input
     import capo_datazone.types.update_group_profile_output
+    import capo_datazone.types.update_notebook_input
+    import capo_datazone.types.update_notebook_output
     import capo_datazone.types.update_project_input
     import capo_datazone.types.update_project_output
     import capo_datazone.types.update_project_profile_input
     import capo_datazone.types.update_project_profile_output
     import capo_datazone.types.update_root_domain_unit_owner_input
     import capo_datazone.types.update_root_domain_unit_owner_output
+    import capo_datazone.types.update_rule_input
+    import capo_datazone.types.update_rule_output
     import capo_datazone.types.update_subscription_grant_status_input
     import capo_datazone.types.update_subscription_grant_status_output
     import capo_datazone.types.update_subscription_request_input
@@ -1414,7 +1638,7 @@ class AsyncDataZoneClient:
             glossary_terms: <p>The glossary terms that can be used in this Amazon DataZone environment.</p>
             environment_account_identifier: <p>The ID of the account in which the environment is being created.</p>
             environment_account_region: <p>The region of the account in which the environment is being created.</p>
-            environment_blueprint_identifier: <p>The ID of the blueprint with which the environment is being created.</p>
+            environment_blueprint_identifier: <p>The ID of the blueprint with which the environment is being created.</p> <note> <p>This parameter is only valid for V1 domains. If provided for a V2 domain, the service returns a ValidationException.</p> </note>
             deployment_order: <p>The deployment order of the environment.</p>
             environment_configuration_id: <p>The configuration ID of the environment.</p>
             environment_configuration_name: <p>The configuration name of the environment.</p>
@@ -1556,6 +1780,9 @@ class AsyncDataZoneClient:
         user_parameters: Optional[
             "capo_datazone.types.custom_parameter_list.CustomParameterList"
         ] = None,
+        blueprint_category: Optional[
+            "capo_datazone.types.blueprint_category.BlueprintCategory"
+        ] = None,
     ) -> "capo_datazone.types.create_environment_blueprint_output.CreateEnvironmentBlueprintOutput":
         """<p>Creates a Amazon DataZone blueprint.</p>
 
@@ -1565,6 +1792,7 @@ class AsyncDataZoneClient:
             description: <p>The description of the Amazon DataZone blueprint.</p>
             provisioning_properties: <p>The provisioning properties of this Amazon DataZone blueprint.</p>
             user_parameters: <p>The user parameters of this Amazon DataZone blueprint.</p>
+            blueprint_category: <p>The category of the Amazon DataZone blueprint. The only valid value is <code>TOOLING</code>, which creates a blueprint that provisions the tooling resources of a project.</p>
 
         Raises:
             capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -1603,6 +1831,8 @@ class AsyncDataZoneClient:
             input_["description"] = description
         if user_parameters is not None:
             input_["user_parameters"] = user_parameters
+        if blueprint_category is not None:
+            input_["blueprint_category"] = blueprint_category
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2787,6 +3017,58 @@ class AsyncDataZoneClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_datazone.types.delete_environment_profile_input.DeleteEnvironmentProfileInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_lineage_event(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.lineage_event_identifier.LineageEventIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_lineage_event_output.DeleteLineageEventOutput":
+        """<p>Deletes the specified lineage event.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain.</p>
+            identifier: <p>The ID of the lineage event.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_lineage_event_input.DeleteLineageEventInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_lineage_event_output.DeleteLineageEventOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_lineage_event
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_lineage_event.async_delete_lineage_event(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_lineage_event_input.DeleteLineageEventInput = {
             "domain_identifier": domain_identifier,
             "identifier": identifier,
         }
@@ -8594,6 +8876,84 @@ class AsyncDataZoneClient:
         await response.response.aclose()
         return response.output
 
+    async def start_notebook_sync(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        source_location: "capo_datazone.types.source_location.SourceLocation",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        git_metadata: Optional["capo_datazone.types.git_metadata.GitMetadata"] = None,
+        notebook_id: Optional["capo_datazone.types.notebook_id.NotebookId"] = None,
+        name: Optional["capo_datazone.types.notebook_name.NotebookName"] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.start_notebook_sync_output.StartNotebookSyncOutput":
+        """<p>Starts a notebook sync in Amazon SageMaker Unified Studio. This operation syncs a notebook from a Git repository into a project.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which to sync the notebook.</p>
+            owning_project_identifier: <p>The identifier of the project that will own the synced notebook.</p>
+            source_location: <p>The source location of the notebook to sync. This specifies the Amazon Simple Storage Service URI of the notebook file.</p>
+            git_metadata: <p>The Git metadata for the notebook sync, including repository, branch, and commit information.</p>
+            notebook_id: <p>The identifier of an existing notebook to sync. If not specified, a new notebook is created.</p>
+            name: <p>The name of the notebook. The name must be between 1 and 256 characters.</p>
+            description: <p>The description of the notebook.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.start_notebook_sync_input.StartNotebookSyncInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.start_notebook_sync_output.StartNotebookSyncOutput"
+        ]:
+            import capo_datazone._operations.data_zone.start_notebook_sync
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.start_notebook_sync.async_start_notebook_sync(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.start_notebook_sync_input.StartNotebookSyncInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+            "source_location": source_location,
+        }
+        if git_metadata is not None:
+            input_["git_metadata"] = git_metadata
+        if notebook_id is not None:
+            input_["notebook_id"] = notebook_id
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def tag_resource(
         self,
         resource_arn: str,
@@ -9081,6 +9441,9 @@ class AsyncDataZoneClient:
         user_parameters: Optional[
             "capo_datazone.types.custom_parameter_list.CustomParameterList"
         ] = None,
+        blueprint_category: Optional[
+            "capo_datazone.types.blueprint_category.BlueprintCategory"
+        ] = None,
     ) -> "capo_datazone.types.update_environment_blueprint_output.UpdateEnvironmentBlueprintOutput":
         """<p>Updates an environment blueprint in Amazon DataZone.</p>
 
@@ -9090,6 +9453,7 @@ class AsyncDataZoneClient:
             description: <p>The description to be updated as part of the <code>UpdateEnvironmentBlueprint</code> action.</p>
             provisioning_properties: <p>The provisioning properties to be updated as part of the <code>UpdateEnvironmentBlueprint</code> action.</p>
             user_parameters: <p>The user parameters to be updated as part of the <code>UpdateEnvironmentBlueprint</code> action.</p>
+            blueprint_category: <p>The category to update. The only valid value is <code>TOOLING</code>.</p>
 
         Raises:
             capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -9129,6 +9493,8 @@ class AsyncDataZoneClient:
             input_["provisioning_properties"] = provisioning_properties
         if user_parameters is not None:
             input_["user_parameters"] = user_parameters
+        if blueprint_category is not None:
+            input_["blueprint_category"] = blueprint_category
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -9813,6 +10179,4752 @@ class AsyncDataZoneClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def create_asset(
+        self,
+        name: "capo_datazone.types.asset_name.AssetName",
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        type_identifier: "capo_datazone.types.asset_type_identifier.AssetTypeIdentifier",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        external_identifier: Optional[
+            "capo_datazone.types.external_identifier.ExternalIdentifier"
+        ] = None,
+        type_revision: Optional["capo_datazone.types.revision.Revision"] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+        glossary_terms: Optional[
+            "capo_datazone.types.glossary_terms.GlossaryTerms"
+        ] = None,
+        forms_input: Optional[
+            "capo_datazone.types.form_input_list.FormInputList"
+        ] = None,
+        prediction_configuration: Optional[
+            "capo_datazone.types.prediction_configuration.PredictionConfiguration"
+        ] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.create_asset_output.CreateAssetOutput":
+        r"""<p>Creates an asset in Amazon DataZone catalog.</p> <p>Before creating assets, make sure that the following requirements are met:</p> <ul> <li> <p> <code>--domain-identifier</code> must refer to an existing domain.</p> </li> <li> <p> <code>--owning-project-identifier</code> must be a valid project within the domain.</p> </li> <li> <p>Asset type must be created beforehand using <code>create-asset-type</code>, or be a supported system-defined type. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/reference/datazone/create-asset-type.html\">create-asset-type</a>.</p> </li> <li> <p> <code>--type-revision</code> (if used) must match a valid revision of the asset type.</p> </li> <li> <p> <code>formsInput</code> is required when it is associated as required in the <code>asset-type</code>. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/reference/datazone/create-form-type.html\">create-form-type</a>.</p> </li> <li> <p>Form content must include all required fields as per the form schema (e.g., <code>bucketArn</code>).</p> </li> </ul> <p>You must invoke the following pre-requisite commands before invoking this API:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/datazone/latest/APIReference/API_CreateFormType.html\">CreateFormType</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/datazone/latest/APIReference/API_CreateAssetType.html\">CreateAssetType</a> </p> </li> </ul>
+
+        Args:
+            name: <p>Asset name.</p>
+            domain_identifier: <p>Amazon DataZone domain where the asset is created.</p>
+            external_identifier: <p>The external identifier of the asset.</p> <p>If the value for the <code>externalIdentifier</code> parameter is specified, it must be a unique value.</p>
+            type_identifier: <p>The unique identifier of this asset's type.</p>
+            type_revision: <p>The revision of this asset's type.</p>
+            description: <p>Asset description.</p>
+            glossary_terms: <p>Glossary terms attached to the asset.</p>
+            forms_input: <p>Metadata forms attached to the asset.</p>
+            owning_project_identifier: <p>The unique identifier of the project that owns this asset.</p>
+            prediction_configuration: <p>The configuration of the automatically generated business-friendly metadata for the asset.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_asset_input.CreateAssetInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_asset_output.CreateAssetOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_asset
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_asset.async_create_asset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_asset_input.CreateAssetInput = {
+            "name": name,
+            "domain_identifier": domain_identifier,
+            "type_identifier": type_identifier,
+            "owning_project_identifier": owning_project_identifier,
+        }
+        if external_identifier is not None:
+            input_["external_identifier"] = external_identifier
+        if type_revision is not None:
+            input_["type_revision"] = type_revision
+        if description is not None:
+            input_["description"] = description
+        if glossary_terms is not None:
+            input_["glossary_terms"] = glossary_terms
+        if forms_input is not None:
+            input_["forms_input"] = forms_input
+        if prediction_configuration is not None:
+            input_["prediction_configuration"] = prediction_configuration
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_asset(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.asset_identifier.AssetIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        revision: Optional["capo_datazone.types.revision.Revision"] = None,
+    ) -> "capo_datazone.types.get_asset_output.GetAssetOutput":
+        """<p>Gets an Amazon DataZone asset.</p> <p>An asset is the fundamental building block in Amazon DataZone, representing any data resource that needs to be cataloged and managed. It can take many forms, from Amazon S3 buckets and database tables to dashboards and machine learning models. Each asset contains comprehensive metadata about the resource, including its location, schema, ownership, and lineage information. Assets are essential for organizing and managing data resources across an organization, making them discoverable and usable while maintaining proper governance.</p> <p>Before using the Amazon DataZone GetAsset command, ensure the following prerequisites are met:</p> <ul> <li> <p>Domain identifier must exist and be valid</p> </li> <li> <p>Asset identifier must exist</p> </li> <li> <p>User must have the required permissions to perform the action</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain to which the asset belongs.</p>
+            identifier: <p>The ID of the Amazon DataZone asset.</p> <p>This parameter supports either the value of <code>assetId</code> or <code>externalIdentifier</code> as input. If you are passing the value of <code>externalIdentifier</code>, you must prefix this value with <code>externalIdentifer%2F</code>.</p>
+            revision: <p>The revision of the Amazon DataZone asset.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_asset_input.GetAssetInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_asset_output.GetAssetOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_asset
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_asset.async_get_asset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_asset_input.GetAssetInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if revision is not None:
+            input_["revision"] = revision
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_asset(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.asset_identifier.AssetIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_asset_output.DeleteAssetOutput":
+        """<p>Deletes an asset in Amazon DataZone.</p> <ul> <li> <p>--domain-identifier must refer to a valid and existing domain. </p> </li> <li> <p>--identifier must refer to an existing asset in the specified domain.</p> </li> <li> <p>Asset must not be referenced in any existing asset filters.</p> </li> <li> <p>Asset must not be linked to any draft or published data product.</p> </li> <li> <p>User must have delete permissions for the domain and project.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the asset is deleted.</p>
+            identifier: <p>The identifier of the asset that is deleted.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_asset_input.DeleteAssetInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_asset_output.DeleteAssetOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_asset
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_asset.async_delete_asset(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_asset_input.DeleteAssetInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_asset_revision(
+        self,
+        name: "capo_datazone.types.asset_name.AssetName",
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.asset_identifier.AssetIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        type_revision: Optional["capo_datazone.types.revision.Revision"] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+        glossary_terms: Optional[
+            "capo_datazone.types.glossary_terms.GlossaryTerms"
+        ] = None,
+        forms_input: Optional[
+            "capo_datazone.types.form_input_list.FormInputList"
+        ] = None,
+        prediction_configuration: Optional[
+            "capo_datazone.types.prediction_configuration.PredictionConfiguration"
+        ] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.create_asset_revision_output.CreateAssetRevisionOutput":
+        """<p>Creates a revision of the asset.</p> <p>Asset revisions represent new versions of existing assets, capturing changes to either the underlying data or its metadata. They maintain a historical record of how assets evolve over time, who made changes, and when those changes occurred. This versioning capability is crucial for governance and compliance, allowing organizations to track changes, understand their impact, and roll back if necessary.</p> <p>Prerequisites:</p> <ul> <li> <p>Asset must already exist in the domain with identifier. </p> </li> <li> <p> <code>formsInput</code> is required when asset has the form type. <code>typeRevision</code> should be the latest version of form type. </p> </li> <li> <p>The form content must include all required fields (e.g., <code>bucketArn</code> for <code>S3ObjectCollectionForm</code>).</p> </li> <li> <p>The owning project of the original asset must still exist and be active.</p> </li> <li> <p>User must have write access to the project and domain.</p> </li> </ul>
+
+        Args:
+            name: <p>Te revised name of the asset.</p>
+            domain_identifier: <p>The unique identifier of the domain where the asset is being revised.</p>
+            identifier: <p>The identifier of the asset.</p>
+            type_revision: <p>The revision type of the asset.</p>
+            description: <p>The revised description of the asset.</p>
+            glossary_terms: <p>The glossary terms to be attached to the asset as part of asset revision.</p>
+            forms_input: <p>The metadata forms to be attached to the asset as part of asset revision.</p>
+            prediction_configuration: <p>The configuration of the automatically generated business-friendly metadata for the asset.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_asset_revision_input.CreateAssetRevisionInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_asset_revision_output.CreateAssetRevisionOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_asset_revision
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_asset_revision.async_create_asset_revision(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_asset_revision_input.CreateAssetRevisionInput = {
+            "name": name,
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if type_revision is not None:
+            input_["type_revision"] = type_revision
+        if description is not None:
+            input_["description"] = description
+        if glossary_terms is not None:
+            input_["glossary_terms"] = glossary_terms
+        if forms_input is not None:
+            input_["forms_input"] = forms_input
+        if prediction_configuration is not None:
+            input_["prediction_configuration"] = prediction_configuration
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_asset_type(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        name: "capo_datazone.types.type_name.TypeName",
+        forms_input: "capo_datazone.types.forms_input_map.FormsInputMap",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+    ) -> "capo_datazone.types.create_asset_type_output.CreateAssetTypeOutput":
+        """<p>Creates a custom asset type.</p> <p>Prerequisites:</p> <ul> <li> <p>The <code>formsInput</code> field is required, however, can be passed as empty (e.g. <code>-forms-input {})</code>. </p> </li> <li> <p>You must have <code>CreateAssetType</code> permissions.</p> </li> <li> <p>The domain-identifier and owning-project-identifier must be valid and active.</p> </li> <li> <p>The name of the asset type must be unique within the domain — duplicate names will cause failure.</p> </li> <li> <p>JSON input must be valid — incorrect formatting causes Invalid JSON errors.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The unique identifier of the Amazon DataZone domain where the custom asset type is being created.</p>
+            name: <p>The name of the custom asset type.</p>
+            description: <p>The descripton of the custom asset type.</p>
+            forms_input: <p>The metadata forms that are to be attached to the custom asset type.</p>
+            owning_project_identifier: <p>The identifier of the Amazon DataZone project that is to own the custom asset type.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_asset_type_input.CreateAssetTypeInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_asset_type_output.CreateAssetTypeOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_asset_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_asset_type.async_create_asset_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_asset_type_input.CreateAssetTypeInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "forms_input": forms_input,
+            "owning_project_identifier": owning_project_identifier,
+        }
+        if description is not None:
+            input_["description"] = description
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_asset_type(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.asset_type_identifier.AssetTypeIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_asset_type_output.DeleteAssetTypeOutput":
+        """<p>Deletes an asset type in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>The asset type must exist in the domain. </p> </li> <li> <p>You must have DeleteAssetType permission.</p> </li> <li> <p>The asset type must not be in use (e.g., assigned to any asset). If used, deletion will fail.</p> </li> <li> <p>You should retrieve the asset type using get-asset-type to confirm its presence before deletion.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the asset type is deleted.</p>
+            identifier: <p>The identifier of the asset type that is deleted.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_asset_type_input.DeleteAssetTypeInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_asset_type_output.DeleteAssetTypeOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_asset_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_asset_type.async_delete_asset_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_asset_type_input.DeleteAssetTypeInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_asset_type(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.asset_type_identifier.AssetTypeIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        revision: Optional["capo_datazone.types.revision.Revision"] = None,
+    ) -> "capo_datazone.types.get_asset_type_output.GetAssetTypeOutput":
+        """<p>Gets an Amazon DataZone asset type.</p> <p>Asset types define the categories and characteristics of different kinds of data assets within Amazon DataZone.. They determine what metadata fields are required, what operations are possible, and how the asset integrates with other Amazon Web Services services. Asset types can range from built-in types like Amazon S3 buckets and Amazon Web Services Glue tables to custom types defined for specific organizational needs. Understanding asset types is crucial for properly organizing and managing different kinds of data resources.</p> <p>Prerequisites:</p> <ul> <li> <p>The asset type with identifier must exist in the domain. ResourceNotFoundException.</p> </li> <li> <p>You must have the GetAssetType permission.</p> </li> <li> <p>Ensure the domain-identifier value is correct and accessible.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the asset type exists.</p>
+            identifier: <p>The ID of the asset type.</p>
+            revision: <p>The revision of the asset type.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_asset_type_input.GetAssetTypeInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_asset_type_output.GetAssetTypeOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_asset_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_asset_type.async_get_asset_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_asset_type_input.GetAssetTypeInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if revision is not None:
+            input_["revision"] = revision
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_data_product(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        name: "capo_datazone.types.data_product_name.DataProductName",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional[
+            "capo_datazone.types.data_product_description.DataProductDescription"
+        ] = None,
+        glossary_terms: Optional[
+            "capo_datazone.types.glossary_terms.GlossaryTerms"
+        ] = None,
+        forms_input: Optional[
+            "capo_datazone.types.form_input_list.FormInputList"
+        ] = None,
+        items: Optional[
+            "capo_datazone.types.data_product_items.DataProductItems"
+        ] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.create_data_product_output.CreateDataProductOutput":
+        """<p>Creates a data product.</p> <p>A data product is a comprehensive package that combines data assets with their associated metadata, documentation, and access controls. It's designed to serve specific business needs or use cases, making it easier for users to find and consume data appropriately. Data products include important information about data quality, freshness, and usage guidelines, effectively bridging the gap between data producers and consumers while ensuring proper governance.</p> <p>Prerequisites:</p> <ul> <li> <p>The domain must exist and be accessible. </p> </li> <li> <p>The owning project must be valid and active.</p> </li> <li> <p>The name must be unique within the domain (no existing data product with the same name).</p> </li> <li> <p>User must have create permissions for data products in the project.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the domain where the data product is created.</p>
+            name: <p>The name of the data product.</p>
+            owning_project_identifier: <p>The ID of the owning project of the data product.</p>
+            description: <p>The description of the data product.</p>
+            glossary_terms: <p>The glossary terms of the data product.</p>
+            forms_input: <p>The metadata forms of the data product.</p>
+            items: <p>The data assets of the data product.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_data_product_input.CreateDataProductInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_data_product_output.CreateDataProductOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_data_product
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_data_product.async_create_data_product(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_data_product_input.CreateDataProductInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "owning_project_identifier": owning_project_identifier,
+        }
+        if description is not None:
+            input_["description"] = description
+        if glossary_terms is not None:
+            input_["glossary_terms"] = glossary_terms
+        if forms_input is not None:
+            input_["forms_input"] = forms_input
+        if items is not None:
+            input_["items"] = items
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_data_product(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.data_product_id.DataProductId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        revision: Optional["capo_datazone.types.revision.Revision"] = None,
+    ) -> "capo_datazone.types.get_data_product_output.GetDataProductOutput":
+        """<p>Gets the data product.</p> <p>Prerequisites:</p> <ul> <li> <p>The data product ID must exist. </p> </li> <li> <p>The domain must be valid and accessible.</p> </li> <li> <p>User must have read or discovery permissions for the data product.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the domain where the data product lives.</p>
+            identifier: <p>The ID of the data product.</p>
+            revision: <p>The revision of the data product.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_data_product_input.GetDataProductInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_data_product_output.GetDataProductOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_data_product
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_data_product.async_get_data_product(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_data_product_input.GetDataProductInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if revision is not None:
+            input_["revision"] = revision
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_data_product(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.data_product_id.DataProductId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_data_product_output.DeleteDataProductOutput":
+        """<p>Deletes a data product in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>The data product must exist and not be deleted or archived. </p> </li> <li> <p>The user must have delete permissions for the data product.</p> </li> <li> <p>Domain and project must be active.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the data product is deleted.</p>
+            identifier: <p>The identifier of the data product that is deleted.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_data_product_input.DeleteDataProductInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_data_product_output.DeleteDataProductOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_data_product
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_data_product.async_delete_data_product(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_data_product_input.DeleteDataProductInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_data_product_revision(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.data_product_id.DataProductId",
+        name: "capo_datazone.types.data_product_name.DataProductName",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional[
+            "capo_datazone.types.data_product_description.DataProductDescription"
+        ] = None,
+        glossary_terms: Optional[
+            "capo_datazone.types.glossary_terms.GlossaryTerms"
+        ] = None,
+        items: Optional[
+            "capo_datazone.types.data_product_items.DataProductItems"
+        ] = None,
+        forms_input: Optional[
+            "capo_datazone.types.form_input_list.FormInputList"
+        ] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.create_data_product_revision_output.CreateDataProductRevisionOutput":
+        """<p>Creates a data product revision.</p> <p>Prerequisites:</p> <ul> <li> <p>The original data product must exist in the given domain. </p> </li> <li> <p>User must have permissions on the data product.</p> </li> <li> <p>The domain must be valid and accessible.</p> </li> <li> <p>The new revision name must comply with naming constraints (if required).</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the domain where the data product revision is created.</p>
+            identifier: <p>The ID of the data product revision.</p>
+            name: <p>The name of the data product revision.</p>
+            description: <p>The description of the data product revision.</p>
+            glossary_terms: <p>The glossary terms of the data product revision.</p>
+            items: <p>The data assets of the data product revision.</p>
+            forms_input: <p>The metadata forms of the data product revision.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_data_product_revision_input.CreateDataProductRevisionInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_data_product_revision_output.CreateDataProductRevisionOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_data_product_revision
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_data_product_revision.async_create_data_product_revision(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_data_product_revision_input.CreateDataProductRevisionInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+            "name": name,
+        }
+        if description is not None:
+            input_["description"] = description
+        if glossary_terms is not None:
+            input_["glossary_terms"] = glossary_terms
+        if items is not None:
+            input_["items"] = items
+        if forms_input is not None:
+            input_["forms_input"] = forms_input
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_data_source(
+        self,
+        name: "capo_datazone.types.name.Name",
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        project_identifier: str,
+        type: "capo_datazone.types.data_source_type.DataSourceType",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+        environment_identifier: Optional[str] = None,
+        connection_identifier: Optional[str] = None,
+        configuration: Optional[
+            "capo_datazone.types.data_source_configuration_input.DataSourceConfigurationInput"
+        ] = None,
+        recommendation: Optional[
+            "capo_datazone.types.recommendation_configuration.RecommendationConfiguration"
+        ] = None,
+        enable_setting: Optional[
+            "capo_datazone.types.enable_setting.EnableSetting"
+        ] = None,
+        schedule: Optional[
+            "capo_datazone.types.schedule_configuration.ScheduleConfiguration"
+        ] = None,
+        publish_on_import: Optional[bool] = None,
+        asset_forms_input: Optional[
+            "capo_datazone.types.form_input_list.FormInputList"
+        ] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_datazone.types.create_data_source_output.CreateDataSourceOutput":
+        """<p>Creates an Amazon DataZone data source.</p>
+
+        Args:
+            name: <p>The name of the data source.</p>
+            description: <p>The description of the data source.</p>
+            domain_identifier: <p>The ID of the Amazon DataZone domain where the data source is created.</p>
+            project_identifier: <p>The identifier of the Amazon DataZone project in which you want to add this data source.</p>
+            environment_identifier: <p>The unique identifier of the Amazon DataZone environment to which the data source publishes assets. </p>
+            connection_identifier: <p>The ID of the connection.</p>
+            type: <p>The type of the data source. In Amazon DataZone, you can use data sources to import technical metadata of assets (data) from the source databases or data warehouses into Amazon DataZone. In the current release of Amazon DataZone, you can create and run data sources for Amazon Web Services Glue and Amazon Redshift.</p>
+            configuration: <p>Specifies the configuration of the data source. It can be set to either <code>glueRunConfiguration</code> or <code>redshiftRunConfiguration</code>.</p>
+            recommendation: <p>Specifies whether the business name generation is to be enabled for this data source.</p>
+            enable_setting: <p>Specifies whether the data source is enabled.</p>
+            schedule: <p>The schedule of the data source runs.</p>
+            publish_on_import: <p>Specifies whether the assets that this data source creates in the inventory are to be also automatically published to the catalog.</p>
+            asset_forms_input: <p>The metadata forms that are to be attached to the assets that this data source works with.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_data_source_input.CreateDataSourceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_data_source_output.CreateDataSourceOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_data_source.async_create_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_data_source_input.CreateDataSourceInput = {
+            "name": name,
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+            "type": type,
+        }
+        if description is not None:
+            input_["description"] = description
+        if environment_identifier is not None:
+            input_["environment_identifier"] = environment_identifier
+        if connection_identifier is not None:
+            input_["connection_identifier"] = connection_identifier
+        if configuration is not None:
+            input_["configuration"] = configuration
+        if recommendation is not None:
+            input_["recommendation"] = recommendation
+        if enable_setting is not None:
+            input_["enable_setting"] = enable_setting
+        if schedule is not None:
+            input_["schedule"] = schedule
+        if publish_on_import is not None:
+            input_["publish_on_import"] = publish_on_import
+        if asset_forms_input is not None:
+            input_["asset_forms_input"] = asset_forms_input
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_data_source(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.data_source_id.DataSourceId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_data_source_output.GetDataSourceOutput":
+        """<p>Gets an Amazon DataZone data source.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the data source exists.</p>
+            identifier: <p>The ID of the Amazon DataZone data source.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_data_source_input.GetDataSourceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_data_source_output.GetDataSourceOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_data_source.async_get_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_data_source_input.GetDataSourceInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_data_source(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.data_source_id.DataSourceId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        name: Optional["capo_datazone.types.name.Name"] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+        enable_setting: Optional[
+            "capo_datazone.types.enable_setting.EnableSetting"
+        ] = None,
+        publish_on_import: Optional[bool] = None,
+        asset_forms_input: Optional[
+            "capo_datazone.types.form_input_list.FormInputList"
+        ] = None,
+        schedule: Optional[
+            "capo_datazone.types.schedule_configuration.ScheduleConfiguration"
+        ] = None,
+        configuration: Optional[
+            "capo_datazone.types.data_source_configuration_input.DataSourceConfigurationInput"
+        ] = None,
+        recommendation: Optional[
+            "capo_datazone.types.recommendation_configuration.RecommendationConfiguration"
+        ] = None,
+        retain_permissions_on_revoke_failure: Optional[bool] = None,
+    ) -> "capo_datazone.types.update_data_source_output.UpdateDataSourceOutput":
+        """<p>Updates the specified data source in Amazon DataZone.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the domain in which to update a data source.</p>
+            identifier: <p>The identifier of the data source to be updated.</p>
+            name: <p>The name to be updated as part of the <code>UpdateDataSource</code> action.</p>
+            description: <p>The description to be updated as part of the <code>UpdateDataSource</code> action.</p>
+            enable_setting: <p>The enable setting to be updated as part of the <code>UpdateDataSource</code> action.</p>
+            publish_on_import: <p>The publish on import setting to be updated as part of the <code>UpdateDataSource</code> action.</p>
+            asset_forms_input: <p>The asset forms to be updated as part of the <code>UpdateDataSource</code> action.</p>
+            schedule: <p>The schedule to be updated as part of the <code>UpdateDataSource</code> action.</p>
+            configuration: <p>The configuration to be updated as part of the <code>UpdateDataSource</code> action.</p>
+            recommendation: <p>The recommendation to be updated as part of the <code>UpdateDataSource</code> action.</p>
+            retain_permissions_on_revoke_failure: <p>Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.update_data_source_input.UpdateDataSourceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.update_data_source_output.UpdateDataSourceOutput"
+        ]:
+            import capo_datazone._operations.data_zone.update_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.update_data_source.async_update_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.update_data_source_input.UpdateDataSourceInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if enable_setting is not None:
+            input_["enable_setting"] = enable_setting
+        if publish_on_import is not None:
+            input_["publish_on_import"] = publish_on_import
+        if asset_forms_input is not None:
+            input_["asset_forms_input"] = asset_forms_input
+        if schedule is not None:
+            input_["schedule"] = schedule
+        if configuration is not None:
+            input_["configuration"] = configuration
+        if recommendation is not None:
+            input_["recommendation"] = recommendation
+        if retain_permissions_on_revoke_failure is not None:
+            input_["retain_permissions_on_revoke_failure"] = (
+                retain_permissions_on_revoke_failure
+            )
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_data_source(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.data_source_id.DataSourceId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        client_token: Optional[str] = None,
+        retain_permissions_on_revoke_failure: Optional[bool] = None,
+    ) -> "capo_datazone.types.delete_data_source_output.DeleteDataSourceOutput":
+        """<p>Deletes a data source in Amazon DataZone.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the data source is deleted.</p>
+            identifier: <p>The identifier of the data source that is deleted.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+            retain_permissions_on_revoke_failure: <p>Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_data_source_input.DeleteDataSourceInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_data_source_output.DeleteDataSourceOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_data_source.async_delete_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_data_source_input.DeleteDataSourceInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if retain_permissions_on_revoke_failure is not None:
+            input_["retain_permissions_on_revoke_failure"] = (
+                retain_permissions_on_revoke_failure
+            )
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_data_sources(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        project_identifier: str,
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        environment_identifier: Optional[str] = None,
+        connection_identifier: Optional[str] = None,
+        type: Optional["capo_datazone.types.data_source_type.DataSourceType"] = None,
+        status: Optional[
+            "capo_datazone.types.data_source_status.DataSourceStatus"
+        ] = None,
+        name: Optional["capo_datazone.types.name.Name"] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+    ) -> "capo_datazone.types.list_data_sources_output.ListDataSourcesOutput":
+        """<p>Lists data sources in Amazon DataZone.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon DataZone domain in which to list the data sources.</p>
+            project_identifier: <p>The identifier of the project in which to list data sources.</p>
+            environment_identifier: <p>The identifier of the environment in which to list the data sources.</p>
+            connection_identifier: <p>The ID of the connection.</p>
+            type: <p>The type of the data source.</p>
+            status: <p>The status of the data source.</p>
+            name: <p>The name of the data source.</p>
+            next_token: <p>When the number of data sources is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of data sources, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListDataSources</code> to list the next set of data sources.</p>
+            max_results: <p>The maximum number of data sources to return in a single call to <code>ListDataSources</code>. When the number of data sources to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListDataSources</code> to list the next set of data sources.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.list_data_sources_input.ListDataSourcesInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.list_data_sources_output.ListDataSourcesOutput"
+        ]:
+            import capo_datazone._operations.data_zone.list_data_sources
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.list_data_sources.async_list_data_sources(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.list_data_sources_input.ListDataSourcesInput = {
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+        }
+        if environment_identifier is not None:
+            input_["environment_identifier"] = environment_identifier
+        if connection_identifier is not None:
+            input_["connection_identifier"] = connection_identifier
+        if type is not None:
+            input_["type"] = type
+        if status is not None:
+            input_["status"] = status
+        if name is not None:
+            input_["name"] = name
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_data_sources(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        project_identifier: str,
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        environment_identifier: Optional[str] = None,
+        connection_identifier: Optional[str] = None,
+        type: Optional["capo_datazone.types.data_source_type.DataSourceType"] = None,
+        status: Optional[
+            "capo_datazone.types.data_source_status.DataSourceStatus"
+        ] = None,
+        name: Optional["capo_datazone.types.name.Name"] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_datazone.types.data_source_summary.DataSourceSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_data_sources(
+                domain_identifier,
+                project_identifier,
+                config_overrides=config_overrides,
+                environment_identifier=environment_identifier,
+                connection_identifier=connection_identifier,
+                type=type,
+                status=status,
+                name=name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def start_data_source_run(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        data_source_identifier: "capo_datazone.types.data_source_id.DataSourceId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_datazone.types.start_data_source_run_output.StartDataSourceRunOutput":
+        """<p>Start the run of the specified data source in Amazon DataZone.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon DataZone domain in which to start a data source run.</p>
+            data_source_identifier: <p>The identifier of the data source.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.start_data_source_run_input.StartDataSourceRunInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.start_data_source_run_output.StartDataSourceRunOutput"
+        ]:
+            import capo_datazone._operations.data_zone.start_data_source_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.start_data_source_run.async_start_data_source_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.start_data_source_run_input.StartDataSourceRunInput = {
+            "domain_identifier": domain_identifier,
+            "data_source_identifier": data_source_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_data_source_run(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.data_source_run_id.DataSourceRunId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_data_source_run_output.GetDataSourceRunOutput":
+        """<p>Gets an Amazon DataZone data source run.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain in which this data source run was performed.</p>
+            identifier: <p>The ID of the data source run.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_data_source_run_input.GetDataSourceRunInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_data_source_run_output.GetDataSourceRunOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_data_source_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_data_source_run.async_get_data_source_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_data_source_run_input.GetDataSourceRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_data_source_runs(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        data_source_identifier: "capo_datazone.types.data_source_id.DataSourceId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        status: Optional[
+            "capo_datazone.types.data_source_run_status.DataSourceRunStatus"
+        ] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+    ) -> "capo_datazone.types.list_data_source_runs_output.ListDataSourceRunsOutput":
+        """<p>Lists data source runs in Amazon DataZone.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon DataZone domain in which to invoke the <code>ListDataSourceRuns</code> action.</p>
+            data_source_identifier: <p>The identifier of the data source.</p>
+            status: <p>The status of the data source.</p>
+            next_token: <p>When the number of runs is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of runs, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListDataSourceRuns</code> to list the next set of runs.</p>
+            max_results: <p>The maximum number of runs to return in a single call to <code>ListDataSourceRuns</code>. When the number of runs to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListDataSourceRuns</code> to list the next set of runs.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.list_data_source_runs_input.ListDataSourceRunsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.list_data_source_runs_output.ListDataSourceRunsOutput"
+        ]:
+            import capo_datazone._operations.data_zone.list_data_source_runs
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.list_data_source_runs.async_list_data_source_runs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.list_data_source_runs_input.ListDataSourceRunsInput = {
+            "domain_identifier": domain_identifier,
+            "data_source_identifier": data_source_identifier,
+        }
+        if status is not None:
+            input_["status"] = status
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_data_source_runs(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        data_source_identifier: "capo_datazone.types.data_source_id.DataSourceId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        status: Optional[
+            "capo_datazone.types.data_source_run_status.DataSourceRunStatus"
+        ] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_datazone.types.data_source_run_summary.DataSourceRunSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_data_source_runs(
+                domain_identifier,
+                data_source_identifier,
+                config_overrides=config_overrides,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_domain(
+        self,
+        name: str,
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional[str] = None,
+        single_sign_on: Optional[
+            "capo_datazone.types.single_sign_on.SingleSignOn"
+        ] = None,
+        domain_execution_role: Optional["capo_datazone.types.role_arn.RoleArn"] = None,
+        kms_key_identifier: Optional[
+            "capo_datazone.types.kms_key_arn.KmsKeyArn"
+        ] = None,
+        tags: Optional["capo_datazone.types.tags.Tags"] = None,
+        domain_version: Optional[
+            "capo_datazone.types.domain_version.DomainVersion"
+        ] = None,
+        service_role: Optional["capo_datazone.types.role_arn.RoleArn"] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_datazone.types.create_domain_output.CreateDomainOutput":
+        """<p>Creates an Amazon DataZone domain.</p>
+
+        Args:
+            name: <p>The name of the Amazon DataZone domain.</p>
+            description: <p>The description of the Amazon DataZone domain.</p>
+            single_sign_on: <p>The single-sign on configuration of the Amazon DataZone domain.</p>
+            domain_execution_role: <p>The domain execution role that is created when an Amazon DataZone domain is created. The domain execution role is created in the Amazon Web Services account that houses the Amazon DataZone domain.</p>
+            kms_key_identifier: <p>The identifier of the Amazon Web Services Key Management Service (KMS) key that is used to encrypt the Amazon DataZone domain, metadata, and reporting data. </p>
+            tags: <p>The tags specified for the Amazon DataZone domain.</p>
+            domain_version: <p>The version of the domain that is created.</p>
+            service_role: <p>The service role of the domain that is created.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_domain_input.CreateDomainInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_domain_output.CreateDomainOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_domain
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_domain.async_create_domain(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_domain_input.CreateDomainInput = {
+            "name": name
+        }
+        if description is not None:
+            input_["description"] = description
+        if single_sign_on is not None:
+            input_["single_sign_on"] = single_sign_on
+        if domain_execution_role is not None:
+            input_["domain_execution_role"] = domain_execution_role
+        if kms_key_identifier is not None:
+            input_["kms_key_identifier"] = kms_key_identifier
+        if tags is not None:
+            input_["tags"] = tags
+        if domain_version is not None:
+            input_["domain_version"] = domain_version
+        if service_role is not None:
+            input_["service_role"] = service_role
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_domain(
+        self,
+        identifier: "capo_datazone.types.domain_id.DomainId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_domain_output.GetDomainOutput":
+        """<p>Gets an Amazon DataZone domain.</p>
+
+        Args:
+            identifier: <p>The identifier of the specified Amazon DataZone domain.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_domain_input.GetDomainInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_domain_output.GetDomainOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_domain
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_domain.async_get_domain(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_domain_input.GetDomainInput = {
+            "identifier": identifier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_domain(
+        self,
+        identifier: "capo_datazone.types.domain_id.DomainId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional[str] = None,
+        single_sign_on: Optional[
+            "capo_datazone.types.single_sign_on.SingleSignOn"
+        ] = None,
+        domain_execution_role: Optional["capo_datazone.types.role_arn.RoleArn"] = None,
+        service_role: Optional["capo_datazone.types.role_arn.RoleArn"] = None,
+        name: Optional[str] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_datazone.types.update_domain_output.UpdateDomainOutput":
+        """<p>Updates a Amazon DataZone domain.</p>
+
+        Args:
+            identifier: <p>The ID of the Amazon Web Services domain that is to be updated.</p>
+            description: <p>The description to be updated as part of the <code>UpdateDomain</code> action.</p>
+            single_sign_on: <p>The single sign-on option to be updated as part of the <code>UpdateDomain</code> action.</p>
+            domain_execution_role: <p>The domain execution role to be updated as part of the <code>UpdateDomain</code> action.</p>
+            service_role: <p>The service role of the domain.</p>
+            name: <p>The name to be updated as part of the <code>UpdateDomain</code> action.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.update_domain_input.UpdateDomainInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.update_domain_output.UpdateDomainOutput"
+        ]:
+            import capo_datazone._operations.data_zone.update_domain
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.update_domain.async_update_domain(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.update_domain_input.UpdateDomainInput = {
+            "identifier": identifier
+        }
+        if description is not None:
+            input_["description"] = description
+        if single_sign_on is not None:
+            input_["single_sign_on"] = single_sign_on
+        if domain_execution_role is not None:
+            input_["domain_execution_role"] = domain_execution_role
+        if service_role is not None:
+            input_["service_role"] = service_role
+        if name is not None:
+            input_["name"] = name
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_domain(
+        self,
+        identifier: "capo_datazone.types.domain_id.DomainId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        client_token: Optional[str] = None,
+        skip_deletion_check: Optional[bool] = None,
+        cascade_delete: Optional[bool] = None,
+    ) -> "capo_datazone.types.delete_domain_output.DeleteDomainOutput":
+        """<p>Deletes a Amazon DataZone domain.</p>
+
+        Args:
+            identifier: <p>The identifier of the Amazon Web Services domain that is to be deleted.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+            skip_deletion_check: <p>Specifies whether to skip the check that prevents deletion of a domain that still contains resources. When you use this parameter, Amazon DataZone deletes the domain but might not remove its associated resources, which can leave orphaned resources behind. To delete a domain and fully clean up its associated resources, use <code>cascadeDelete</code> instead. You can't use this parameter together with <code>cascadeDelete</code>.</p>
+            cascade_delete: <p>Specifies whether to delete the domain along with all of its associated resources. When you use this parameter, Amazon DataZone deletes the domain and cleanly removes its associated resources without leaving orphaned resources behind. Amazon DataZone reports deletion progress in the <code>deleteProgress</code> field. Amazon DataZone reports any resources that it can't delete in the <code>failureReasons</code> field of the <code>GetDomain</code> response. You can't use this parameter together with <code>skipDeletionCheck</code>. If you don't specify a value, the default is <code>false</code>.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_domain_input.DeleteDomainInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_domain_output.DeleteDomainOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_domain
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_domain.async_delete_domain(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_domain_input.DeleteDomainInput = {
+            "identifier": identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if skip_deletion_check is not None:
+            input_["skip_deletion_check"] = skip_deletion_check
+        if cascade_delete is not None:
+            input_["cascade_delete"] = cascade_delete
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_domains(
+        self,
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        status: Optional["capo_datazone.types.domain_status.DomainStatus"] = None,
+        max_results: Optional[
+            "capo_datazone.types.max_results_for_list_domains.MaxResultsForListDomains"
+        ] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_datazone.types.list_domains_output.ListDomainsOutput":
+        """<p>Lists Amazon DataZone domains.</p>
+
+        Args:
+            status: <p>The status of the data source.</p>
+            max_results: <p>The maximum number of domains to return in a single call to <code>ListDomains</code>. When the number of domains to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListDomains</code> to list the next set of domains.</p>
+            next_token: <p>When the number of domains is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of domains, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListDomains</code> to list the next set of domains.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.list_domains_input.ListDomainsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.list_domains_output.ListDomainsOutput"
+        ]:
+            import capo_datazone._operations.data_zone.list_domains
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.list_domains.async_list_domains(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.list_domains_input.ListDomainsInput = {}
+        if status is not None:
+            input_["status"] = status
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_domains(
+        self,
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        status: Optional["capo_datazone.types.domain_status.DomainStatus"] = None,
+        max_results: Optional[
+            "capo_datazone.types.max_results_for_list_domains.MaxResultsForListDomains"
+        ] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_datazone.types.domain_summary.DomainSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_domains(
+                config_overrides=config_overrides,
+                status=status,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_domain_unit(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        name: "capo_datazone.types.domain_unit_name.DomainUnitName",
+        parent_domain_unit_identifier: "capo_datazone.types.domain_unit_id.DomainUnitId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional[
+            "capo_datazone.types.domain_unit_description.DomainUnitDescription"
+        ] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.create_domain_unit_output.CreateDomainUnitOutput":
+        """<p>Creates a domain unit in Amazon DataZone.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain where you want to crate a domain unit.</p>
+            name: <p>The name of the domain unit.</p>
+            parent_domain_unit_identifier: <p>The ID of the parent domain unit.</p>
+            description: <p>The description of the domain unit.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_domain_unit_input.CreateDomainUnitInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_domain_unit_output.CreateDomainUnitOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_domain_unit
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_domain_unit.async_create_domain_unit(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_domain_unit_input.CreateDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "parent_domain_unit_identifier": parent_domain_unit_identifier,
+        }
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_domain_unit(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.domain_unit_id.DomainUnitId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_domain_unit_output.GetDomainUnitOutput":
+        """<p>Gets the details of the specified domain unit.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain where you want to get a domain unit.</p>
+            identifier: <p>The identifier of the domain unit that you want to get.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_domain_unit_input.GetDomainUnitInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_domain_unit_output.GetDomainUnitOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_domain_unit
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_domain_unit.async_get_domain_unit(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_domain_unit_input.GetDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_domain_unit(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.domain_unit_id.DomainUnitId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional[
+            "capo_datazone.types.domain_unit_description.DomainUnitDescription"
+        ] = None,
+        name: Optional["capo_datazone.types.domain_unit_name.DomainUnitName"] = None,
+    ) -> "capo_datazone.types.update_domain_unit_output.UpdateDomainUnitOutput":
+        """<p>Updates the domain unit.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain where you want to update a domain unit.</p>
+            identifier: <p>The ID of the domain unit that you want to update.</p>
+            description: <p>The description of the domain unit that you want to update.</p>
+            name: <p>The name of the domain unit that you want to update.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.update_domain_unit_input.UpdateDomainUnitInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.update_domain_unit_output.UpdateDomainUnitOutput"
+        ]:
+            import capo_datazone._operations.data_zone.update_domain_unit
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.update_domain_unit.async_update_domain_unit(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.update_domain_unit_input.UpdateDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if description is not None:
+            input_["description"] = description
+        if name is not None:
+            input_["name"] = name
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_domain_unit(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.domain_unit_id.DomainUnitId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_domain_unit_output.DeleteDomainUnitOutput":
+        """<p>Deletes a domain unit.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain where you want to delete a domain unit.</p>
+            identifier: <p>The ID of the domain unit that you want to delete.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_domain_unit_input.DeleteDomainUnitInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_domain_unit_output.DeleteDomainUnitOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_domain_unit
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_domain_unit.async_delete_domain_unit(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_domain_unit_input.DeleteDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_domain_units_for_parent(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        parent_domain_unit_identifier: "capo_datazone.types.domain_unit_id.DomainUnitId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        max_results: Optional[
+            "capo_datazone.types.max_results_for_list_domains.MaxResultsForListDomains"
+        ] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_datazone.types.list_domain_units_for_parent_output.ListDomainUnitsForParentOutput":
+        """<p>Lists child domain units for the specified parent domain unit.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain in which you want to list domain units for a parent domain unit.</p>
+            parent_domain_unit_identifier: <p>The ID of the parent domain unit.</p>
+            max_results: <p>The maximum number of domain units to return in a single call to ListDomainUnitsForParent. When the number of domain units to be listed is greater than the value of MaxResults, the response contains a NextToken value that you can use in a subsequent call to ListDomainUnitsForParent to list the next set of domain units.</p>
+            next_token: <p>When the number of domain units is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of domain units, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListDomainUnitsForParent to list the next set of domain units.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.list_domain_units_for_parent_input.ListDomainUnitsForParentInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.list_domain_units_for_parent_output.ListDomainUnitsForParentOutput"
+        ]:
+            import capo_datazone._operations.data_zone.list_domain_units_for_parent
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.list_domain_units_for_parent.async_list_domain_units_for_parent(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.list_domain_units_for_parent_input.ListDomainUnitsForParentInput = {
+            "domain_identifier": domain_identifier,
+            "parent_domain_unit_identifier": parent_domain_unit_identifier,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_domain_units_for_parent(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        parent_domain_unit_identifier: "capo_datazone.types.domain_unit_id.DomainUnitId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        max_results: Optional[
+            "capo_datazone.types.max_results_for_list_domains.MaxResultsForListDomains"
+        ] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_datazone.types.domain_unit_summary.DomainUnitSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_domain_units_for_parent(
+                domain_identifier,
+                parent_domain_unit_identifier,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def put_environment_blueprint_configuration(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        environment_blueprint_identifier: "capo_datazone.types.environment_blueprint_id.EnvironmentBlueprintId",
+        enabled_regions: "capo_datazone.types.enabled_region_list.EnabledRegionList",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        provisioning_role_arn: Optional["capo_datazone.types.role_arn.RoleArn"] = None,
+        manage_access_role_arn: Optional["capo_datazone.types.role_arn.RoleArn"] = None,
+        environment_role_permission_boundary: Optional[
+            "capo_datazone.types.policy_arn.PolicyArn"
+        ] = None,
+        regional_parameters: Optional[
+            "capo_datazone.types.regional_parameter_map.RegionalParameterMap"
+        ] = None,
+        resource_configurations: Optional[
+            "capo_datazone.types.put_resource_configurations.PutResourceConfigurations"
+        ] = None,
+        allow_user_provided_configurations: Optional[bool] = None,
+        global_parameters: Optional[
+            "capo_datazone.types.global_parameter_map.GlobalParameterMap"
+        ] = None,
+        provisioning_configurations: Optional[
+            "capo_datazone.types.provisioning_configuration_list.ProvisioningConfigurationList"
+        ] = None,
+    ) -> "capo_datazone.types.put_environment_blueprint_configuration_output.PutEnvironmentBlueprintConfigurationOutput":
+        """<p>Writes the configuration for the specified environment blueprint in Amazon DataZone.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon DataZone domain.</p>
+            environment_blueprint_identifier: <p>The identifier of the environment blueprint.</p>
+            provisioning_role_arn: <p>The ARN of the provisioning role.</p>
+            manage_access_role_arn: <p>The ARN of the manage access role.</p>
+            environment_role_permission_boundary: <p>The environment role permissions boundary.</p>
+            enabled_regions: <p>Specifies the enabled Amazon Web Services Regions.</p>
+            regional_parameters: <p>The regional parameters in the environment blueprint.</p>
+            resource_configurations: <p>The resource configurations of the environment blueprint.</p>
+            allow_user_provided_configurations: <p>Specifies whether user-provided resource configurations are allowed for the environment blueprint.</p>
+            global_parameters: <p>Region-agnostic environment blueprint parameters. </p>
+            provisioning_configurations: <p>The provisioning configuration of a blueprint.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.put_environment_blueprint_configuration_input.PutEnvironmentBlueprintConfigurationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.put_environment_blueprint_configuration_output.PutEnvironmentBlueprintConfigurationOutput"
+        ]:
+            import capo_datazone._operations.data_zone.put_environment_blueprint_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.put_environment_blueprint_configuration.async_put_environment_blueprint_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.put_environment_blueprint_configuration_input.PutEnvironmentBlueprintConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+            "enabled_regions": enabled_regions,
+        }
+        if provisioning_role_arn is not None:
+            input_["provisioning_role_arn"] = provisioning_role_arn
+        if manage_access_role_arn is not None:
+            input_["manage_access_role_arn"] = manage_access_role_arn
+        if environment_role_permission_boundary is not None:
+            input_["environment_role_permission_boundary"] = (
+                environment_role_permission_boundary
+            )
+        if regional_parameters is not None:
+            input_["regional_parameters"] = regional_parameters
+        if resource_configurations is not None:
+            input_["resource_configurations"] = resource_configurations
+        if allow_user_provided_configurations is not None:
+            input_["allow_user_provided_configurations"] = (
+                allow_user_provided_configurations
+            )
+        if global_parameters is not None:
+            input_["global_parameters"] = global_parameters
+        if provisioning_configurations is not None:
+            input_["provisioning_configurations"] = provisioning_configurations
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_environment_blueprint_configuration(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        environment_blueprint_identifier: "capo_datazone.types.environment_blueprint_id.EnvironmentBlueprintId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_environment_blueprint_configuration_output.GetEnvironmentBlueprintConfigurationOutput":
+        """<p>Gets the blueprint configuration in Amazon DataZone.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain where this blueprint exists.</p>
+            environment_blueprint_identifier: <p>He ID of the blueprint.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_environment_blueprint_configuration_input.GetEnvironmentBlueprintConfigurationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_environment_blueprint_configuration_output.GetEnvironmentBlueprintConfigurationOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_environment_blueprint_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_environment_blueprint_configuration.async_get_environment_blueprint_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_environment_blueprint_configuration_input.GetEnvironmentBlueprintConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_environment_blueprint_configuration(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        environment_blueprint_identifier: "capo_datazone.types.environment_blueprint_id.EnvironmentBlueprintId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_environment_blueprint_configuration_output.DeleteEnvironmentBlueprintConfigurationOutput":
+        """<p>Deletes the blueprint configuration in Amazon DataZone.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the blueprint configuration is deleted.</p>
+            environment_blueprint_identifier: <p>The ID of the blueprint the configuration of which is deleted.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_environment_blueprint_configuration_input.DeleteEnvironmentBlueprintConfigurationInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_environment_blueprint_configuration_output.DeleteEnvironmentBlueprintConfigurationOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_environment_blueprint_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_environment_blueprint_configuration.async_delete_environment_blueprint_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_environment_blueprint_configuration_input.DeleteEnvironmentBlueprintConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_environment_blueprint_configurations(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_datazone.types.list_environment_blueprint_configurations_output.ListEnvironmentBlueprintConfigurationsOutput":
+        """<p>Lists blueprint configurations for a Amazon DataZone environment.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon DataZone domain.</p>
+            max_results: <p>The maximum number of blueprint configurations to return in a single call to <code>ListEnvironmentBlueprintConfigurations</code>. When the number of configurations to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironmentBlueprintConfigurations</code> to list the next set of configurations.</p>
+            next_token: <p>When the number of blueprint configurations is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of configurations, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironmentBlueprintConfigurations</code> to list the next set of configurations.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.list_environment_blueprint_configurations_input.ListEnvironmentBlueprintConfigurationsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.list_environment_blueprint_configurations_output.ListEnvironmentBlueprintConfigurationsOutput"
+        ]:
+            import capo_datazone._operations.data_zone.list_environment_blueprint_configurations
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.list_environment_blueprint_configurations.async_list_environment_blueprint_configurations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.list_environment_blueprint_configurations_input.ListEnvironmentBlueprintConfigurationsInput = {
+            "domain_identifier": domain_identifier
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_environment_blueprint_configurations(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_datazone.types.environment_blueprint_configuration_item.EnvironmentBlueprintConfigurationItem]":
+        _token = next_token
+        while True:
+            _response = await self.list_environment_blueprint_configurations(
+                domain_identifier,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_form_type(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        name: "capo_datazone.types.form_type_name.FormTypeName",
+        model: "capo_datazone.types.model.Model",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        status: Optional["capo_datazone.types.form_type_status.FormTypeStatus"] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+    ) -> "capo_datazone.types.create_form_type_output.CreateFormTypeOutput":
+        r"""<p>Creates a metadata form type.</p> <p>Prerequisites:</p> <ul> <li> <p>The domain must exist and be in an <code>ENABLED</code> state. </p> </li> <li> <p>The owning project must exist and be accessible.</p> </li> <li> <p>The name must be unique within the domain.</p> </li> </ul> <p>For custom form types, to indicate that a field should be searchable, annotate it with <code>@amazon.datazone#searchable</code>. By default, searchable fields are indexed for semantic search, where related query terms will match the attribute value even if they are not stemmed or keyword matches. To indicate that a field should be indexed for lexical search (which disables semantic search but supports stemmed and partial matches), annotate it with <code>@amazon.datazone#searchable(modes:[\"LEXICAL\"])</code>. To indicate that a field should be indexed for technical identifier search (for more information on technical identifier search, see: <a href=\"https://aws.amazon.com/blogs/big-data/streamline-data-discovery-with-precise-technical-identifier-search-in-amazon-sagemaker-unified-studio/\">https://aws.amazon.com/blogs/big-data/streamline-data-discovery-with-precise-technical-identifier-search-in-amazon-sagemaker-unified-studio/</a>), annotate it with <code>@amazon.datazone#searchable(modes:[\"TECHNICAL\"])</code>.</p> <p>To denote that a field will store glossary term ids (which are filterable via the Search/SearchListings APIs), annotate it with <code>@amazon.datazone#glossaryterm(\"${GLOSSARY_ID}\")</code>, where <code>${GLOSSARY_ID}</code> is the id of the glossary that the glossary terms stored in the field belong to. </p>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which this metadata form type is created.</p>
+            name: <p>The name of this Amazon DataZone metadata form type.</p>
+            model: <p>The model of this Amazon DataZone metadata form type.</p>
+            owning_project_identifier: <p>The ID of the Amazon DataZone project that owns this metadata form type.</p>
+            status: <p>The status of this Amazon DataZone metadata form type.</p>
+            description: <p>The description of this Amazon DataZone metadata form type.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_form_type_input.CreateFormTypeInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_form_type_output.CreateFormTypeOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_form_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_form_type.async_create_form_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_form_type_input.CreateFormTypeInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "model": model,
+            "owning_project_identifier": owning_project_identifier,
+        }
+        if status is not None:
+            input_["status"] = status
+        if description is not None:
+            input_["description"] = description
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_form_type(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        form_type_identifier: "capo_datazone.types.form_type_identifier.FormTypeIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_form_type_output.DeleteFormTypeOutput":
+        """<p>Deletes and metadata form type in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>The form type must exist in the domain. </p> </li> <li> <p>The form type must not be in use by any asset types or assets.</p> </li> <li> <p>The domain must be valid and accessible.</p> </li> <li> <p>User must have delete permissions on the form type.</p> </li> <li> <p>Any dependencies (such as linked asset types) must be removed first.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the metadata form type is deleted.</p>
+            form_type_identifier: <p>The ID of the metadata form type that is deleted.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_form_type_input.DeleteFormTypeInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_form_type_output.DeleteFormTypeOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_form_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_form_type.async_delete_form_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_form_type_input.DeleteFormTypeInput = {
+            "domain_identifier": domain_identifier,
+            "form_type_identifier": form_type_identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_form_type(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        form_type_identifier: "capo_datazone.types.form_type_identifier.FormTypeIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        revision: Optional["capo_datazone.types.revision.Revision"] = None,
+    ) -> "capo_datazone.types.get_form_type_output.GetFormTypeOutput":
+        r"""<p>Gets a metadata form type in Amazon DataZone.</p> <p>Form types define the structure and validation rules for collecting metadata about assets in Amazon DataZone. They act as templates that ensure consistent metadata capture across similar types of assets, while allowing for customization to meet specific organizational needs. Form types can include required fields, validation rules, and dependencies, helping maintain high-quality metadata that makes data assets more discoverable and usable.</p> <ul> <li> <p>The form type with the specified identifier must exist in the given domain. </p> </li> <li> <p>The domain must be valid and active.</p> </li> <li> <p>User must have permission on the form type.</p> </li> <li> <p>The form type should not be deleted or in an invalid state.</p> </li> </ul> <p>One use case for this API is to determine whether a form field is indexed for search. </p> <p>A searchable field will be annotated with <code>@amazon.datazone#searchable</code>. By default, searchable fields are indexed for semantic search, where related query terms will match the attribute value even if they are not stemmed or keyword matches. If a field is indexed technical identifier search, it will be annotated with <code>@amazon.datazone#searchable(modes:[\"TECHNICAL\"])</code>. If a field is indexed for lexical search (supports stemmed and prefix matches but not semantic matches), it will be annotated with <code>@amazon.datazone#searchable(modes:[\"LEXICAL\"])</code>.</p> <p>A field storing glossary term IDs (which is filterable) will be annotated with <code>@amazon.datazone#glossaryterm(\"${glossaryId}\")</code>. </p>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which this metadata form type exists.</p>
+            form_type_identifier: <p>The ID of the metadata form type.</p>
+            revision: <p>The revision of this metadata form type.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_form_type_input.GetFormTypeInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_form_type_output.GetFormTypeOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_form_type
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_form_type.async_get_form_type(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_form_type_input.GetFormTypeInput = {
+            "domain_identifier": domain_identifier,
+            "form_type_identifier": form_type_identifier,
+        }
+        if revision is not None:
+            input_["revision"] = revision
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_glossary(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        name: "capo_datazone.types.glossary_name.GlossaryName",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional[
+            "capo_datazone.types.glossary_description.GlossaryDescription"
+        ] = None,
+        status: Optional["capo_datazone.types.glossary_status.GlossaryStatus"] = None,
+        usage_restrictions: Optional[
+            "capo_datazone.types.glossary_usage_restrictions.GlossaryUsageRestrictions"
+        ] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.create_glossary_output.CreateGlossaryOutput":
+        """<p>Creates an Amazon DataZone business glossary.</p> <p>Specifies that this is a create glossary policy.</p> <p>A glossary serves as the central repository for business terminology and definitions within an organization. It helps establish and maintain a common language across different departments and teams, reducing miscommunication and ensuring consistent interpretation of business concepts. Glossaries can include hierarchical relationships between terms, cross-references, and links to actual data assets, making them invaluable for both business users and technical teams trying to understand and use data correctly.</p> <p>Prerequisites:</p> <ul> <li> <p>Domain must exist and be in an active state. </p> </li> <li> <p>Owning project must exist and be accessible by the caller.</p> </li> <li> <p>The glossary name must be unique within the domain.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which this business glossary is created.</p>
+            name: <p>The name of this business glossary.</p>
+            owning_project_identifier: <p>The ID of the project that currently owns business glossary.</p>
+            description: <p>The description of this business glossary.</p>
+            status: <p>The status of this business glossary.</p>
+            usage_restrictions: <p>The usage restriction of the restricted glossary.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_glossary_input.CreateGlossaryInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_glossary_output.CreateGlossaryOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_glossary
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_glossary.async_create_glossary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_glossary_input.CreateGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "owning_project_identifier": owning_project_identifier,
+        }
+        if description is not None:
+            input_["description"] = description
+        if status is not None:
+            input_["status"] = status
+        if usage_restrictions is not None:
+            input_["usage_restrictions"] = usage_restrictions
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_glossary(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.glossary_id.GlossaryId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_glossary_output.GetGlossaryOutput":
+        """<p>Gets a business glossary in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>The specified glossary ID must exist and be associated with the given domain. </p> </li> <li> <p>The caller must have the <code>datazone:GetGlossary</code> permission on the domain.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which this business glossary exists.</p>
+            identifier: <p>The ID of the business glossary.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_glossary_input.GetGlossaryInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_glossary_output.GetGlossaryOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_glossary
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_glossary.async_get_glossary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_glossary_input.GetGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_glossary(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.glossary_id.GlossaryId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        name: Optional["capo_datazone.types.glossary_name.GlossaryName"] = None,
+        description: Optional[
+            "capo_datazone.types.glossary_description.GlossaryDescription"
+        ] = None,
+        status: Optional["capo_datazone.types.glossary_status.GlossaryStatus"] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.update_glossary_output.UpdateGlossaryOutput":
+        """<p>Updates the business glossary in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>The glossary must exist in the given domain. </p> </li> <li> <p>The caller must have the <code>datazone:UpdateGlossary</code> permission to update it.</p> </li> <li> <p>When updating the name, the new name must be unique within the domain.</p> </li> <li> <p>The glossary must not be deleted or in a terminal state.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon DataZone domain in which a business glossary is to be updated.</p>
+            identifier: <p>The identifier of the business glossary to be updated.</p>
+            name: <p>The name to be updated as part of the <code>UpdateGlossary</code> action.</p>
+            description: <p>The description to be updated as part of the <code>UpdateGlossary</code> action.</p>
+            status: <p>The status to be updated as part of the <code>UpdateGlossary</code> action.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.update_glossary_input.UpdateGlossaryInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.update_glossary_output.UpdateGlossaryOutput"
+        ]:
+            import capo_datazone._operations.data_zone.update_glossary
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.update_glossary.async_update_glossary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.update_glossary_input.UpdateGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if status is not None:
+            input_["status"] = status
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_glossary(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.glossary_id.GlossaryId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_glossary_output.DeleteGlossaryOutput":
+        """<p>Deletes a business glossary in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>The glossary must be in DISABLED state. </p> </li> <li> <p>The glossary must not have any glossary terms associated with it.</p> </li> <li> <p>The glossary must exist in the specified domain.</p> </li> <li> <p>The caller must have the <code>datazone:DeleteGlossary</code> permission in the domain and glossary.</p> </li> <li> <p>Glossary should not be linked to any active metadata forms.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the business glossary is deleted.</p>
+            identifier: <p>The ID of the business glossary that is deleted.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_glossary_input.DeleteGlossaryInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_glossary_output.DeleteGlossaryOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_glossary
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_glossary.async_delete_glossary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_glossary_input.DeleteGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_glossary_term(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        glossary_identifier: "capo_datazone.types.glossary_term_id.GlossaryTermId",
+        name: "capo_datazone.types.glossary_term_name.GlossaryTermName",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        status: Optional[
+            "capo_datazone.types.glossary_term_status.GlossaryTermStatus"
+        ] = None,
+        short_description: Optional[
+            "capo_datazone.types.short_description.ShortDescription"
+        ] = None,
+        long_description: Optional[
+            "capo_datazone.types.long_description.LongDescription"
+        ] = None,
+        term_relations: Optional[
+            "capo_datazone.types.term_relations.TermRelations"
+        ] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.create_glossary_term_output.CreateGlossaryTermOutput":
+        """<p>Creates a business glossary term.</p> <p>A glossary term represents an individual entry within the Amazon DataZone glossary, serving as a standardized definition for a specific business concept or data element. Each term can include rich metadata such as detailed definitions, synonyms, related terms, and usage examples. Glossary terms can be linked directly to data assets, providing business context to technical data elements. This linking capability helps users understand the business meaning of data fields and ensures consistent interpretation across different systems and teams. Terms can also have relationships with other terms, creating a semantic network that reflects the complexity of business concepts.</p> <p>Prerequisites:</p> <ul> <li> <p>Domain must exist. </p> </li> <li> <p>Glossary must exist.</p> </li> <li> <p>The term name must be unique within the glossary.</p> </li> <li> <p>Ensure term does not conflict with existing terms in hierarchy.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which this business glossary term is created.</p>
+            glossary_identifier: <p>The ID of the business glossary in which this term is created.</p>
+            name: <p>The name of this business glossary term.</p>
+            status: <p>The status of this business glossary term.</p>
+            short_description: <p>The short description of this business glossary term.</p>
+            long_description: <p>The long description of this business glossary term.</p>
+            term_relations: <p>The term relations of this business glossary term.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_glossary_term_input.CreateGlossaryTermInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_glossary_term_output.CreateGlossaryTermOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_glossary_term
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_glossary_term.async_create_glossary_term(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_glossary_term_input.CreateGlossaryTermInput = {
+            "domain_identifier": domain_identifier,
+            "glossary_identifier": glossary_identifier,
+            "name": name,
+        }
+        if status is not None:
+            input_["status"] = status
+        if short_description is not None:
+            input_["short_description"] = short_description
+        if long_description is not None:
+            input_["long_description"] = long_description
+        if term_relations is not None:
+            input_["term_relations"] = term_relations
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_glossary_term(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.glossary_term_id.GlossaryTermId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_glossary_term_output.GetGlossaryTermOutput":
+        """<p>Gets a business glossary term in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>Glossary term with identifier must exist in the domain. </p> </li> <li> <p>User must have permission on the glossary term.</p> </li> <li> <p>Domain must be accessible and active.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which this business glossary term exists.</p>
+            identifier: <p>The ID of the business glossary term.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_glossary_term_input.GetGlossaryTermInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_glossary_term_output.GetGlossaryTermOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_glossary_term
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_glossary_term.async_get_glossary_term(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_glossary_term_input.GetGlossaryTermInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_glossary_term(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.glossary_term_id.GlossaryTermId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        glossary_identifier: Optional[
+            "capo_datazone.types.glossary_term_id.GlossaryTermId"
+        ] = None,
+        name: Optional[
+            "capo_datazone.types.glossary_term_name.GlossaryTermName"
+        ] = None,
+        short_description: Optional[
+            "capo_datazone.types.short_description.ShortDescription"
+        ] = None,
+        long_description: Optional[
+            "capo_datazone.types.long_description.LongDescription"
+        ] = None,
+        term_relations: Optional[
+            "capo_datazone.types.term_relations.TermRelations"
+        ] = None,
+        status: Optional[
+            "capo_datazone.types.glossary_term_status.GlossaryTermStatus"
+        ] = None,
+    ) -> "capo_datazone.types.update_glossary_term_output.UpdateGlossaryTermOutput":
+        """<p>Updates a business glossary term in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>Glossary term must exist in the specified domain. </p> </li> <li> <p>New name must not conflict with existing terms in the same glossary.</p> </li> <li> <p>User must have permissions on the term.</p> </li> <li> <p>The term must not be in DELETED status.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon DataZone domain in which a business glossary term is to be updated.</p>
+            glossary_identifier: <p>The identifier of the business glossary in which a term is to be updated.</p>
+            identifier: <p>The identifier of the business glossary term that is to be updated.</p>
+            name: <p>The name to be updated as part of the <code>UpdateGlossaryTerm</code> action.</p>
+            short_description: <p>The short description to be updated as part of the <code>UpdateGlossaryTerm</code> action.</p>
+            long_description: <p>The long description to be updated as part of the <code>UpdateGlossaryTerm</code> action.</p>
+            term_relations: <p>The term relations to be updated as part of the <code>UpdateGlossaryTerm</code> action.</p>
+            status: <p>The status to be updated as part of the <code>UpdateGlossaryTerm</code> action.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.update_glossary_term_input.UpdateGlossaryTermInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.update_glossary_term_output.UpdateGlossaryTermOutput"
+        ]:
+            import capo_datazone._operations.data_zone.update_glossary_term
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.update_glossary_term.async_update_glossary_term(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.update_glossary_term_input.UpdateGlossaryTermInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if glossary_identifier is not None:
+            input_["glossary_identifier"] = glossary_identifier
+        if name is not None:
+            input_["name"] = name
+        if short_description is not None:
+            input_["short_description"] = short_description
+        if long_description is not None:
+            input_["long_description"] = long_description
+        if term_relations is not None:
+            input_["term_relations"] = term_relations
+        if status is not None:
+            input_["status"] = status
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_glossary_term(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.glossary_term_id.GlossaryTermId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_glossary_term_output.DeleteGlossaryTermOutput":
+        """<p>Deletes a business glossary term in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>Glossary term must exist and be active. </p> </li> <li> <p>The term must not be linked to other assets or child terms.</p> </li> <li> <p>Caller must have delete permissions in the domain/glossary.</p> </li> <li> <p>Ensure all associations (such as to assets or parent terms) are removed before deletion.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the business glossary term is deleted.</p>
+            identifier: <p>The ID of the business glossary term that is deleted.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_glossary_term_input.DeleteGlossaryTermInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_glossary_term_output.DeleteGlossaryTermOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_glossary_term
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_glossary_term.async_delete_glossary_term(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_glossary_term_input.DeleteGlossaryTermInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_listing(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.listing_id.ListingId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        listing_revision: Optional["capo_datazone.types.revision.Revision"] = None,
+    ) -> "capo_datazone.types.get_listing_output.GetListingOutput":
+        """<p>Gets a listing (a record of an asset at a given time). If you specify a listing version, only details that are specific to that version are returned.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain.</p>
+            identifier: <p>The ID of the listing.</p>
+            listing_revision: <p>The revision of the listing.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_listing_input.GetListingInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_listing_output.GetListingOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_listing
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_listing.async_get_listing(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_listing_input.GetListingInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if listing_revision is not None:
+            input_["listing_revision"] = listing_revision
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_listing(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.listing_id.ListingId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_listing_output.DeleteListingOutput":
+        """<p>Deletes a listing (a record of an asset at a given time).</p>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain.</p>
+            identifier: <p>The ID of the listing to be deleted.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_listing_input.DeleteListingInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_listing_output.DeleteListingOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_listing
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_listing.async_delete_listing(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_listing_input.DeleteListingInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_metadata_generation_run(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        target: "capo_datazone.types.metadata_generation_run_target.MetadataGenerationRunTarget",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        type: Optional[
+            "capo_datazone.types.metadata_generation_run_type.MetadataGenerationRunType"
+        ] = None,
+        types: Optional[
+            "capo_datazone.types.metadata_generation_run_types.MetadataGenerationRunTypes"
+        ] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.start_metadata_generation_run_output.StartMetadataGenerationRunOutput":
+        """<p>Starts the metadata generation run.</p> <p>Prerequisites:</p> <ul> <li> <p>Asset must be created and belong to the specified domain and project. </p> </li> <li> <p>Asset type must be supported for metadata generation (e.g., Amazon Web Services Glue table).</p> </li> <li> <p>Asset must have a structured schema with valid rows and columns.</p> </li> <li> <p>Valid values for --type: BUSINESS_DESCRIPTIONS, BUSINESS_NAMES, BUSINESS_GLOSSARY_ASSOCIATIONS.</p> </li> <li> <p>The user must have permission to run metadata generation in the domain/project.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain where you want to start a metadata generation run.</p>
+            type: <p>The type of the metadata generation run.</p>
+            types: <p>The types of the metadata generation run.</p>
+            target: <p>The asset for which you want to start a metadata generation run.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>
+            owning_project_identifier: <p>The ID of the project that owns the asset for which you want to start a metadata generation run.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.start_metadata_generation_run_input.StartMetadataGenerationRunInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.start_metadata_generation_run_output.StartMetadataGenerationRunOutput"
+        ]:
+            import capo_datazone._operations.data_zone.start_metadata_generation_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.start_metadata_generation_run.async_start_metadata_generation_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.start_metadata_generation_run_input.StartMetadataGenerationRunInput = {
+            "domain_identifier": domain_identifier,
+            "target": target,
+            "owning_project_identifier": owning_project_identifier,
+        }
+        if type is not None:
+            input_["type"] = type
+        if types is not None:
+            input_["types"] = types
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_metadata_generation_run(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.metadata_generation_run_identifier.MetadataGenerationRunIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        type: Optional[
+            "capo_datazone.types.metadata_generation_run_type.MetadataGenerationRunType"
+        ] = None,
+    ) -> "capo_datazone.types.get_metadata_generation_run_output.GetMetadataGenerationRunOutput":
+        """<p>Gets a metadata generation run in Amazon DataZone.</p> <p>Prerequisites:</p> <ul> <li> <p>Valid domain and run identifier. </p> </li> <li> <p>The metadata generation run must exist.</p> </li> <li> <p>User must have read access to the metadata run.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain the metadata generation run of which you want to get.</p>
+            identifier: <p>The identifier of the metadata generation run.</p>
+            type: <p>The type of the metadata generation run.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_metadata_generation_run_input.GetMetadataGenerationRunInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_metadata_generation_run_output.GetMetadataGenerationRunOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_metadata_generation_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_metadata_generation_run.async_get_metadata_generation_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_metadata_generation_run_input.GetMetadataGenerationRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if type is not None:
+            input_["type"] = type
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def cancel_metadata_generation_run(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.metadata_generation_run_identifier.MetadataGenerationRunIdentifier",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.cancel_metadata_generation_run_output.CancelMetadataGenerationRunOutput":
+        """<p>Cancels the metadata generation run.</p> <p>Prerequisites:</p> <ul> <li> <p>The run must exist and be in a cancelable status (e.g., SUBMITTED, IN_PROGRESS). </p> </li> <li> <p>Runs in SUCCEEDED status cannot be cancelled.</p> </li> <li> <p>User must have access to the run and cancel permissions.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain in which the metadata generation run is to be cancelled.</p>
+            identifier: <p>The ID of the metadata generation run.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.cancel_metadata_generation_run_input.CancelMetadataGenerationRunInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.cancel_metadata_generation_run_output.CancelMetadataGenerationRunOutput"
+        ]:
+            import capo_datazone._operations.data_zone.cancel_metadata_generation_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.cancel_metadata_generation_run.async_cancel_metadata_generation_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.cancel_metadata_generation_run_input.CancelMetadataGenerationRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_metadata_generation_runs(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        status: Optional[
+            "capo_datazone.types.metadata_generation_run_status.MetadataGenerationRunStatus"
+        ] = None,
+        type: Optional[
+            "capo_datazone.types.metadata_generation_run_type.MetadataGenerationRunType"
+        ] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+        target_identifier: Optional["capo_datazone.types.entity_id.EntityId"] = None,
+    ) -> "capo_datazone.types.list_metadata_generation_runs_output.ListMetadataGenerationRunsOutput":
+        """<p>Lists all metadata generation runs.</p> <p>Metadata generation runs represent automated processes that leverage AI/ML capabilities to create or enhance asset metadata at scale. This feature helps organizations maintain comprehensive and consistent metadata across large numbers of assets without manual intervention. It can automatically generate business descriptions, tags, and other metadata elements, significantly reducing the time and effort required for metadata management while improving consistency and completeness.</p> <p>Prerequisites:</p> <ul> <li> <p>Valid domain identifier. </p> </li> <li> <p>User must have access to metadata generation runs in the domain.</p> </li> </ul>
+
+        Args:
+            domain_identifier: <p>The ID of the Amazon DataZone domain where you want to list metadata generation runs.</p>
+            status: <p>The status of the metadata generation runs.</p>
+            type: <p>The type of the metadata generation runs.</p>
+            next_token: <p>When the number of metadata generation runs is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of metadata generation runs, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListMetadataGenerationRuns to list the next set of revisions.</p>
+            max_results: <p>The maximum number of metadata generation runs to return in a single call to ListMetadataGenerationRuns. When the number of metadata generation runs to be listed is greater than the value of MaxResults, the response contains a NextToken value that you can use in a subsequent call to ListMetadataGenerationRuns to list the next set of revisions.</p>
+            target_identifier: <p>The target ID for which you want to list metadata generation runs.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.list_metadata_generation_runs_input.ListMetadataGenerationRunsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.list_metadata_generation_runs_output.ListMetadataGenerationRunsOutput"
+        ]:
+            import capo_datazone._operations.data_zone.list_metadata_generation_runs
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.list_metadata_generation_runs.async_list_metadata_generation_runs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.list_metadata_generation_runs_input.ListMetadataGenerationRunsInput = {
+            "domain_identifier": domain_identifier
+        }
+        if status is not None:
+            input_["status"] = status
+        if type is not None:
+            input_["type"] = type
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if target_identifier is not None:
+            input_["target_identifier"] = target_identifier
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_metadata_generation_runs(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        status: Optional[
+            "capo_datazone.types.metadata_generation_run_status.MetadataGenerationRunStatus"
+        ] = None,
+        type: Optional[
+            "capo_datazone.types.metadata_generation_run_type.MetadataGenerationRunType"
+        ] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+        target_identifier: Optional["capo_datazone.types.entity_id.EntityId"] = None,
+    ) -> "AsyncIterator[capo_datazone.types.metadata_generation_run_item.MetadataGenerationRunItem]":
+        _token = next_token
+        while True:
+            _response = await self.list_metadata_generation_runs(
+                domain_identifier,
+                config_overrides=config_overrides,
+                status=status,
+                type=type,
+                next_token=_token,
+                max_results=max_results,
+                target_identifier=target_identifier,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_notebook(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        name: "capo_datazone.types.notebook_name.NotebookName",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
+        metadata: Optional["capo_datazone.types.metadata.Metadata"] = None,
+        parameters: Optional["capo_datazone.types.parameters.Parameters"] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.create_notebook_output.CreateNotebookOutput":
+        r"""<p>Creates a <a href=\"https://docs.aws.amazon.com/sagemaker-unified-studio/latest/userguide/notebooks.html\">notebook</a> in Amazon SageMaker Unified Studio. A notebook is a collaborative document within a project that contains code cells for interactive computing.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which to create the notebook.</p>
+            owning_project_identifier: <p>The identifier of the project that owns the notebook.</p>
+            name: <p>The name of the notebook. The name must be between 1 and 256 characters.</p>
+            description: <p>The description of the notebook.</p>
+            type: <p>The type of the notebook.</p>
+            metadata: <p>The metadata for the notebook, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.</p>
+            parameters: <p>The sensitive parameters for the notebook, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_notebook_input.CreateNotebookInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_notebook_output.CreateNotebookOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_notebook
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_notebook.async_create_notebook(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_notebook_input.CreateNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+            "name": name,
+        }
+        if description is not None:
+            input_["description"] = description
+        if type is not None:
+            input_["type"] = type
+        if metadata is not None:
+            input_["metadata"] = metadata
+        if parameters is not None:
+            input_["parameters"] = parameters
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_notebook(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.notebook_id.NotebookId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_notebook_output.GetNotebookOutput":
+        r"""<p>Gets the details of a <a href=\"https://docs.aws.amazon.com/sagemaker-unified-studio/latest/userguide/notebooks.html\">notebook</a> in Amazon SageMaker Unified Studio.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which the notebook exists.</p>
+            identifier: <p>The identifier of the notebook.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_notebook_input.GetNotebookInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_notebook_output.GetNotebookOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_notebook
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_notebook.async_get_notebook(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_notebook_input.GetNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_notebook(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.notebook_id.NotebookId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+        status: Optional["capo_datazone.types.notebook_status.NotebookStatus"] = None,
+        name: Optional["capo_datazone.types.notebook_name.NotebookName"] = None,
+        cell_order: Optional["capo_datazone.types.cell_order.CellOrder"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
+        metadata: Optional["capo_datazone.types.metadata.Metadata"] = None,
+        parameters: Optional["capo_datazone.types.parameters.Parameters"] = None,
+        environment_configuration: Optional[
+            "capo_datazone.types.environment_config.EnvironmentConfig"
+        ] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.update_notebook_output.UpdateNotebookOutput":
+        r"""<p>Updates a <a href=\"https://docs.aws.amazon.com/sagemaker-unified-studio/latest/userguide/notebooks.html\">notebook</a> in Amazon SageMaker Unified Studio.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which the notebook exists.</p>
+            identifier: <p>The identifier of the notebook to update.</p>
+            description: <p>The updated description of the notebook.</p>
+            status: <p>The updated status of the notebook.</p>
+            name: <p>The updated name of the notebook.</p>
+            cell_order: <p>The updated ordered list of cells in the notebook.</p>
+            type: <p>The updated type of the notebook.</p>
+            metadata: <p>The updated metadata for the notebook, specified as key-value pairs.</p>
+            parameters: <p>The updated sensitive parameters for the notebook, specified as key-value pairs.</p>
+            environment_configuration: <p>The updated environment configuration for the notebook.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.update_notebook_input.UpdateNotebookInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.update_notebook_output.UpdateNotebookOutput"
+        ]:
+            import capo_datazone._operations.data_zone.update_notebook
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.update_notebook.async_update_notebook(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.update_notebook_input.UpdateNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if description is not None:
+            input_["description"] = description
+        if status is not None:
+            input_["status"] = status
+        if name is not None:
+            input_["name"] = name
+        if cell_order is not None:
+            input_["cell_order"] = cell_order
+        if type is not None:
+            input_["type"] = type
+        if metadata is not None:
+            input_["metadata"] = metadata
+        if parameters is not None:
+            input_["parameters"] = parameters
+        if environment_configuration is not None:
+            input_["environment_configuration"] = environment_configuration
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_notebook(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.notebook_id.NotebookId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_notebook_output.DeleteNotebookOutput":
+        r"""<p>Deletes a <a href=\"https://docs.aws.amazon.com/sagemaker-unified-studio/latest/userguide/notebooks.html\">notebook</a> in Amazon SageMaker Unified Studio.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which the notebook exists.</p>
+            identifier: <p>The identifier of the notebook to delete.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_notebook_input.DeleteNotebookInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_notebook_output.DeleteNotebookOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_notebook
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_notebook.async_delete_notebook(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_notebook_input.DeleteNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_notebooks(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+        sort_order: Optional["capo_datazone.types.sort_order.SortOrder"] = None,
+        sort_by: Optional["capo_datazone.types.sort_key.SortKey"] = None,
+        status: Optional["capo_datazone.types.notebook_status.NotebookStatus"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_datazone.types.list_notebooks_output.ListNotebooksOutput":
+        r"""<p>Lists <a href=\"https://docs.aws.amazon.com/sagemaker-unified-studio/latest/userguide/notebooks.html\">notebooks</a> in Amazon SageMaker Unified Studio.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which to list notebooks.</p>
+            owning_project_identifier: <p>The identifier of the project that owns the notebooks.</p>
+            max_results: <p>The maximum number of notebooks to return in a single call. When the number of notebooks exceeds the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value.</p>
+            sort_order: <p>The sort order for the results.</p>
+            sort_by: <p>The field to sort the results by.</p>
+            status: <p>The status to filter notebooks by.</p>
+            type: <p>The type to filter notebooks by.</p>
+            next_token: <p>When the number of notebooks is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of notebooks, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListNotebooks</code> to list the next set of notebooks.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.list_notebooks_input.ListNotebooksInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.list_notebooks_output.ListNotebooksOutput"
+        ]:
+            import capo_datazone._operations.data_zone.list_notebooks
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.list_notebooks.async_list_notebooks(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.list_notebooks_input.ListNotebooksInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if sort_order is not None:
+            input_["sort_order"] = sort_order
+        if sort_by is not None:
+            input_["sort_by"] = sort_by
+        if status is not None:
+            input_["status"] = status
+        if type is not None:
+            input_["type"] = type
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_notebooks(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+        sort_order: Optional["capo_datazone.types.sort_order.SortOrder"] = None,
+        sort_by: Optional["capo_datazone.types.sort_key.SortKey"] = None,
+        status: Optional["capo_datazone.types.notebook_status.NotebookStatus"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_datazone.types.notebook_summary.NotebookSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_notebooks(
+                domain_identifier,
+                owning_project_identifier,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                sort_order=sort_order,
+                sort_by=sort_by,
+                status=status,
+                type=type,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def start_notebook_export(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        notebook_identifier: "capo_datazone.types.notebook_id.NotebookId",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        file_format: "capo_datazone.types.file_format.FileFormat",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.start_notebook_export_output.StartNotebookExportOutput":
+        """<p>Starts a notebook export in Amazon SageMaker Unified Studio. This operation exports a notebook to a specified file format and stores the output in Amazon Simple Storage Service.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which to export the notebook.</p>
+            notebook_identifier: <p>The identifier of the notebook to export.</p>
+            owning_project_identifier: <p>The identifier of the project that owns the notebook.</p>
+            file_format: <p>The file format for the notebook export. Valid values are <code>PDF</code> and <code>IPYNB</code>.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.start_notebook_export_input.StartNotebookExportInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.start_notebook_export_output.StartNotebookExportOutput"
+        ]:
+            import capo_datazone._operations.data_zone.start_notebook_export
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.start_notebook_export.async_start_notebook_export(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.start_notebook_export_input.StartNotebookExportInput = {
+            "domain_identifier": domain_identifier,
+            "notebook_identifier": notebook_identifier,
+            "owning_project_identifier": owning_project_identifier,
+            "file_format": file_format,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_notebook_export(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.export_id.ExportId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_notebook_export_output.GetNotebookExportOutput":
+        """<p>Gets the details of a notebook export in Amazon SageMaker Unified Studio.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which the notebook export exists.</p>
+            identifier: <p>The identifier of the notebook export.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_notebook_export_input.GetNotebookExportInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_notebook_export_output.GetNotebookExportOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_notebook_export
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_notebook_export.async_get_notebook_export(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_notebook_export_input.GetNotebookExportInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_notebook_run(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        notebook_identifier: "capo_datazone.types.notebook_id.NotebookId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        schedule_identifier: Optional[
+            "capo_datazone.types.schedule_id.ScheduleId"
+        ] = None,
+        compute_configuration: Optional[
+            "capo_datazone.types.compute_config.ComputeConfig"
+        ] = None,
+        network_configuration: Optional[
+            "capo_datazone.types.network_config.NetworkConfig"
+        ] = None,
+        timeout_configuration: Optional[
+            "capo_datazone.types.timeout_config.TimeoutConfig"
+        ] = None,
+        trigger_source: Optional[
+            "capo_datazone.types.trigger_source.TriggerSource"
+        ] = None,
+        metadata: Optional["capo_datazone.types.metadata.Metadata"] = None,
+        parameters: Optional["capo_datazone.types.parameters.Parameters"] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.start_notebook_run_output.StartNotebookRunOutput":
+        r"""<p>Starts a notebook run in Amazon SageMaker Unified Studio. A notebook run represents the execution of an <a href=\"https://docs.aws.amazon.com/sagemaker-unified-studio/latest/userguide/notebooks.html\">Amazon SageMaker notebook</a> within a project. You can configure compute, network, timeout, and environment settings for the run.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which the notebook run is started.</p>
+            owning_project_identifier: <p>The identifier of the project that owns the notebook run.</p>
+            notebook_identifier: <p>The identifier of the notebook to run.</p>
+            schedule_identifier: <p>The identifier of the schedule associated with the notebook run.</p>
+            compute_configuration: <p>The compute configuration for the notebook run, including instance type and environment version.</p>
+            network_configuration: <p>The network configuration for the notebook run, including network access type and optional VPC settings.</p>
+            timeout_configuration: <p>The timeout configuration for the notebook run. The default timeout is 720 minutes (12 hours) and the maximum is 1440 minutes (24 hours).</p>
+            trigger_source: <p>The source that triggered the notebook run.</p>
+            metadata: <p>The metadata for the notebook run, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.</p>
+            parameters: <p>The sensitive parameters for the notebook run, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.start_notebook_run_input.StartNotebookRunInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.start_notebook_run_output.StartNotebookRunOutput"
+        ]:
+            import capo_datazone._operations.data_zone.start_notebook_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.start_notebook_run.async_start_notebook_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.start_notebook_run_input.StartNotebookRunInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+            "notebook_identifier": notebook_identifier,
+        }
+        if schedule_identifier is not None:
+            input_["schedule_identifier"] = schedule_identifier
+        if compute_configuration is not None:
+            input_["compute_configuration"] = compute_configuration
+        if network_configuration is not None:
+            input_["network_configuration"] = network_configuration
+        if timeout_configuration is not None:
+            input_["timeout_configuration"] = timeout_configuration
+        if trigger_source is not None:
+            input_["trigger_source"] = trigger_source
+        if metadata is not None:
+            input_["metadata"] = metadata
+        if parameters is not None:
+            input_["parameters"] = parameters
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_notebook_run(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.notebook_run_id.NotebookRunId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.get_notebook_run_output.GetNotebookRunOutput":
+        r"""<p>Gets the details of a <a href=\"https://docs.aws.amazon.com/sagemaker-unified-studio/latest/userguide/notebooks.html\">notebook run</a> in Amazon SageMaker Unified Studio.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which the notebook run exists.</p>
+            identifier: <p>The identifier of the notebook run.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_notebook_run_input.GetNotebookRunInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_notebook_run_output.GetNotebookRunOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_notebook_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_notebook_run.async_get_notebook_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_notebook_run_input.GetNotebookRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_notebook_runs(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        notebook_identifier: Optional[
+            "capo_datazone.types.notebook_id.NotebookId"
+        ] = None,
+        status: Optional[
+            "capo_datazone.types.notebook_run_status.NotebookRunStatus"
+        ] = None,
+        schedule_identifier: Optional[
+            "capo_datazone.types.schedule_id.ScheduleId"
+        ] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+        sort_order: Optional["capo_datazone.types.sort_order.SortOrder"] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_datazone.types.list_notebook_runs_output.ListNotebookRunsOutput":
+        r"""<p>Lists <a href=\"https://docs.aws.amazon.com/sagemaker-unified-studio/latest/userguide/notebooks.html\">notebook runs</a> in Amazon SageMaker Unified Studio.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which to list notebook runs.</p>
+            owning_project_identifier: <p>The identifier of the project that owns the notebook runs.</p>
+            notebook_identifier: <p>The identifier of the notebook to filter runs by.</p>
+            status: <p>The status to filter notebook runs by.</p>
+            schedule_identifier: <p>The identifier of the schedule to filter notebook runs by.</p>
+            max_results: <p>The maximum number of notebook runs to return in a single call. When the number of notebook runs exceeds the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value.</p>
+            sort_order: <p>The sort order for the results.</p>
+            next_token: <p>When the number of notebook runs is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of notebook runs, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListNotebookRuns</code> to list the next set of notebook runs.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.list_notebook_runs_input.ListNotebookRunsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.list_notebook_runs_output.ListNotebookRunsOutput"
+        ]:
+            import capo_datazone._operations.data_zone.list_notebook_runs
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.list_notebook_runs.async_list_notebook_runs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.list_notebook_runs_input.ListNotebookRunsInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+        }
+        if notebook_identifier is not None:
+            input_["notebook_identifier"] = notebook_identifier
+        if status is not None:
+            input_["status"] = status
+        if schedule_identifier is not None:
+            input_["schedule_identifier"] = schedule_identifier
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if sort_order is not None:
+            input_["sort_order"] = sort_order
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_notebook_runs(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        owning_project_identifier: "capo_datazone.types.project_id.ProjectId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        notebook_identifier: Optional[
+            "capo_datazone.types.notebook_id.NotebookId"
+        ] = None,
+        status: Optional[
+            "capo_datazone.types.notebook_run_status.NotebookRunStatus"
+        ] = None,
+        schedule_identifier: Optional[
+            "capo_datazone.types.schedule_id.ScheduleId"
+        ] = None,
+        max_results: Optional["capo_datazone.types.max_results.MaxResults"] = None,
+        sort_order: Optional["capo_datazone.types.sort_order.SortOrder"] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_datazone.types.notebook_run_summary.NotebookRunSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_notebook_runs(
+                domain_identifier,
+                owning_project_identifier,
+                config_overrides=config_overrides,
+                notebook_identifier=notebook_identifier,
+                status=status,
+                schedule_identifier=schedule_identifier,
+                max_results=max_results,
+                sort_order=sort_order,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def stop_notebook_run(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.notebook_run_id.NotebookRunId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.stop_notebook_run_output.StopNotebookRunOutput":
+        r"""<p>Stops a running <a href=\"https://docs.aws.amazon.com/sagemaker-unified-studio/latest/userguide/notebooks.html\">notebook run</a> in Amazon SageMaker Unified Studio.</p>
+
+        Args:
+            domain_identifier: <p>The identifier of the Amazon SageMaker Unified Studio domain in which the notebook run is stopped.</p>
+            identifier: <p>The identifier of the notebook run to stop.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.stop_notebook_run_input.StopNotebookRunInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.stop_notebook_run_output.StopNotebookRunOutput"
+        ]:
+            import capo_datazone._operations.data_zone.stop_notebook_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.stop_notebook_run.async_stop_notebook_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.stop_notebook_run_input.StopNotebookRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_rule(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        name: "capo_datazone.types.rule_name.RuleName",
+        target: "capo_datazone.types.rule_target.RuleTarget",
+        action: "capo_datazone.types.rule_action.RuleAction",
+        scope: "capo_datazone.types.rule_scope.RuleScope",
+        detail: "capo_datazone.types.rule_detail.RuleDetail",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+        client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
+    ) -> "capo_datazone.types.create_rule_output.CreateRuleOutput":
+        """<p>Creates a rule in Amazon DataZone. A rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain where the rule is created.</p>
+            name: <p>The name of the rule.</p>
+            target: <p>The target of the rule.</p>
+            action: <p>The action of the rule.</p>
+            scope: <p>The scope of the rule.</p>
+            detail: <p>The detail of the rule.</p>
+            description: <p>The description of the rule.</p>
+            client_token: <p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.create_rule_input.CreateRuleInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.create_rule_output.CreateRuleOutput"
+        ]:
+            import capo_datazone._operations.data_zone.create_rule
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.create_rule.async_create_rule(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.create_rule_input.CreateRuleInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "target": target,
+            "action": action,
+            "scope": scope,
+            "detail": detail,
+        }
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_rule(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.rule_id.RuleId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        revision: Optional["capo_datazone.types.revision.Revision"] = None,
+    ) -> "capo_datazone.types.get_rule_output.GetRuleOutput":
+        """<p>Gets the details of a rule in Amazon DataZone. A rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain where the <code>GetRule</code> action is to be invoked.</p>
+            identifier: <p>The ID of the rule.</p>
+            revision: <p>The revision of the rule.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.get_rule_input.GetRuleInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.get_rule_output.GetRuleOutput"
+        ]:
+            import capo_datazone._operations.data_zone.get_rule
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.get_rule.async_get_rule(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.get_rule_input.GetRuleInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if revision is not None:
+            input_["revision"] = revision
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_rule(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.rule_id.RuleId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        name: Optional["capo_datazone.types.rule_name.RuleName"] = None,
+        description: Optional["capo_datazone.types.description.Description"] = None,
+        scope: Optional["capo_datazone.types.rule_scope.RuleScope"] = None,
+        detail: Optional["capo_datazone.types.rule_detail.RuleDetail"] = None,
+        include_child_domain_units: Optional[bool] = None,
+    ) -> "capo_datazone.types.update_rule_output.UpdateRuleOutput":
+        """<p>Updates a rule. In Amazon DataZone, a rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain in which a rule is to be updated.</p>
+            identifier: <p>The ID of the rule that is to be updated</p>
+            name: <p>The name of the rule.</p>
+            description: <p>The description of the rule.</p>
+            scope: <p>The scrope of the rule.</p>
+            detail: <p>The detail of the rule.</p>
+            include_child_domain_units: <p>Specifies whether to update this rule in the child domain units.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request has exceeded the specified service quota.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.update_rule_input.UpdateRuleInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.update_rule_output.UpdateRuleOutput"
+        ]:
+            import capo_datazone._operations.data_zone.update_rule
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.update_rule.async_update_rule(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.update_rule_input.UpdateRuleInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if scope is not None:
+            input_["scope"] = scope
+        if detail is not None:
+            input_["detail"] = detail
+        if include_child_domain_units is not None:
+            input_["include_child_domain_units"] = include_child_domain_units
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_rule(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        identifier: "capo_datazone.types.rule_id.RuleId",
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+    ) -> "capo_datazone.types.delete_rule_output.DeleteRuleOutput":
+        """<p>Deletes a rule in Amazon DataZone. A rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain that where the rule is to be deleted.</p>
+            identifier: <p>The ID of the rule that is to be deleted.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.conflict_exception.ConflictException: <p>There is a conflict while performing this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.delete_rule_input.DeleteRuleInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.delete_rule_output.DeleteRuleOutput"
+        ]:
+            import capo_datazone._operations.data_zone.delete_rule
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.delete_rule.async_delete_rule(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.delete_rule_input.DeleteRuleInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_rules(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        target_type: "capo_datazone.types.rule_target_type.RuleTargetType",
+        target_identifier: str,
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        rule_type: Optional["capo_datazone.types.rule_type.RuleType"] = None,
+        action: Optional["capo_datazone.types.rule_action.RuleAction"] = None,
+        project_ids: Optional["capo_datazone.types.project_ids.ProjectIds"] = None,
+        asset_types: Optional[
+            "capo_datazone.types.asset_type_identifiers.AssetTypeIdentifiers"
+        ] = None,
+        data_product: Optional[bool] = None,
+        include_cascaded: Optional[bool] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_datazone.types.list_rules_output.ListRulesOutput":
+        """<p>Lists existing rules. In Amazon DataZone, a rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.</p>
+
+        Args:
+            domain_identifier: <p>The ID of the domain in which the rules are to be listed.</p>
+            target_type: <p>The target type of the rule.</p>
+            target_identifier: <p>The target ID of the rule.</p>
+            rule_type: <p>The type of the rule.</p>
+            action: <p>The action of the rule.</p>
+            project_ids: <p>The IDs of projects in which rules are to be listed.</p>
+            asset_types: <p>The asset types of the rule.</p>
+            data_product: <p>The data product of the rule.</p>
+            include_cascaded: <p>Specifies whether to include cascading rules in the results.</p>
+            max_results: <p>The maximum number of rules to return in a single call to <code>ListRules</code>. When the number of rules to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListRules</code> to list the next set of rules.</p>
+            next_token: <p>When the number of rules is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of rules, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListRules</code> to list the next set of rules.</p>
+
+        Raises:
+            capo_datazone.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_datazone.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_datazone.errors.unauthorized_exception.UnauthorizedException: <p>You do not have permission to perform this action.</p>
+            capo_datazone.errors.internal_server_exception.InternalServerException: <p>The request has failed because of an unknown error, exception or failure.</p>
+            capo_datazone.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource cannot be found.</p>
+            capo_datazone.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the Amazon Web Services service.</p>
+            capo_datazone.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_datazone.types.list_rules_input.ListRulesInput]",
+        ) -> AsyncOperationResponse[
+            "capo_datazone.types.list_rules_output.ListRulesOutput"
+        ]:
+            import capo_datazone._operations.data_zone.list_rules
+
+            (
+                output,
+                http_response,
+            ) = await capo_datazone._operations.data_zone.list_rules.async_list_rules(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_datazone.types.list_rules_input.ListRulesInput = {
+            "domain_identifier": domain_identifier,
+            "target_type": target_type,
+            "target_identifier": target_identifier,
+        }
+        if rule_type is not None:
+            input_["rule_type"] = rule_type
+        if action is not None:
+            input_["action"] = action
+        if project_ids is not None:
+            input_["project_ids"] = project_ids
+        if asset_types is not None:
+            input_["asset_types"] = asset_types
+        if data_product is not None:
+            input_["data_product"] = data_product
+        if include_cascaded is not None:
+            input_["include_cascaded"] = include_cascaded
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_rules(
+        self,
+        domain_identifier: "capo_datazone.types.domain_id.DomainId",
+        target_type: "capo_datazone.types.rule_target_type.RuleTargetType",
+        target_identifier: str,
+        *,
+        config_overrides: Optional[AsyncDataZoneClientConfig] = None,
+        rule_type: Optional["capo_datazone.types.rule_type.RuleType"] = None,
+        action: Optional["capo_datazone.types.rule_action.RuleAction"] = None,
+        project_ids: Optional["capo_datazone.types.project_ids.ProjectIds"] = None,
+        asset_types: Optional[
+            "capo_datazone.types.asset_type_identifiers.AssetTypeIdentifiers"
+        ] = None,
+        data_product: Optional[bool] = None,
+        include_cascaded: Optional[bool] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[
+            "capo_datazone.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_datazone.types.rule_summary.RuleSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_rules(
+                domain_identifier,
+                target_type,
+                target_identifier,
+                config_overrides=config_overrides,
+                rule_type=rule_type,
+                action=action,
+                project_ids=project_ids,
+                asset_types=asset_types,
+                data_product=data_product,
+                include_cascaded=include_cascaded,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def __aenter__(self) -> Self:
         return self

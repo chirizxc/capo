@@ -109,6 +109,8 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.create_prompt_response
     import capo_bedrock_agent.types.create_prompt_version_request
     import capo_bedrock_agent.types.create_prompt_version_response
+    import capo_bedrock_agent.types.create_vpc_configuration_request
+    import capo_bedrock_agent.types.create_vpc_configuration_response
     import capo_bedrock_agent.types.custom_orchestration
     import capo_bedrock_agent.types.data_deletion_policy
     import capo_bedrock_agent.types.data_source_configuration
@@ -135,6 +137,10 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.delete_knowledge_base_response
     import capo_bedrock_agent.types.delete_prompt_request
     import capo_bedrock_agent.types.delete_prompt_response
+    import capo_bedrock_agent.types.delete_resource_policy_request
+    import capo_bedrock_agent.types.delete_resource_policy_response
+    import capo_bedrock_agent.types.delete_vpc_configuration_request
+    import capo_bedrock_agent.types.delete_vpc_configuration_response
     import capo_bedrock_agent.types.description
     import capo_bedrock_agent.types.disassociate_agent_collaborator_request
     import capo_bedrock_agent.types.disassociate_agent_collaborator_response
@@ -182,8 +188,14 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.get_knowledge_base_response
     import capo_bedrock_agent.types.get_prompt_request
     import capo_bedrock_agent.types.get_prompt_response
+    import capo_bedrock_agent.types.get_resource_policy_request
+    import capo_bedrock_agent.types.get_resource_policy_response
+    import capo_bedrock_agent.types.get_vpc_configuration_request
+    import capo_bedrock_agent.types.get_vpc_configuration_response
     import capo_bedrock_agent.types.guardrail_configuration
+    import capo_bedrock_agent.types.host_header
     import capo_bedrock_agent.types.id
+    import capo_bedrock_agent.types.included_data
     import capo_bedrock_agent.types.ingest_knowledge_base_documents_request
     import capo_bedrock_agent.types.ingest_knowledge_base_documents_response
     import capo_bedrock_agent.types.ingestion_job_filters
@@ -227,6 +239,8 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.list_prompts_response
     import capo_bedrock_agent.types.list_tags_for_resource_request
     import capo_bedrock_agent.types.list_tags_for_resource_response
+    import capo_bedrock_agent.types.list_vpc_configurations_request
+    import capo_bedrock_agent.types.list_vpc_configurations_response
     import capo_bedrock_agent.types.max_results
     import capo_bedrock_agent.types.memory_configuration
     import capo_bedrock_agent.types.model_identifier
@@ -234,6 +248,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.next_token
     import capo_bedrock_agent.types.numerical_version
     import capo_bedrock_agent.types.orchestration_type
+    import capo_bedrock_agent.types.port
     import capo_bedrock_agent.types.prepare_agent_request
     import capo_bedrock_agent.types.prepare_agent_response
     import capo_bedrock_agent.types.prepare_flow_request
@@ -245,7 +260,13 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.prompt_summary
     import capo_bedrock_agent.types.prompt_variant_list
     import capo_bedrock_agent.types.prompt_variant_name
+    import capo_bedrock_agent.types.put_resource_policy_request
+    import capo_bedrock_agent.types.put_resource_policy_response
     import capo_bedrock_agent.types.relay_conversation_history
+    import capo_bedrock_agent.types.resource_arn
+    import capo_bedrock_agent.types.resource_policy
+    import capo_bedrock_agent.types.resource_target
+    import capo_bedrock_agent.types.revision_id
     import capo_bedrock_agent.types.server_side_encryption_configuration
     import capo_bedrock_agent.types.session_ttl
     import capo_bedrock_agent.types.start_ingestion_job_request
@@ -253,11 +274,13 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.stop_ingestion_job_request
     import capo_bedrock_agent.types.stop_ingestion_job_response
     import capo_bedrock_agent.types.storage_configuration
+    import capo_bedrock_agent.types.subnet_id_list
     import capo_bedrock_agent.types.tag_key_list
     import capo_bedrock_agent.types.tag_resource_request
     import capo_bedrock_agent.types.tag_resource_response
     import capo_bedrock_agent.types.taggable_resources_arn
     import capo_bedrock_agent.types.tags_map
+    import capo_bedrock_agent.types.tls_server_name
     import capo_bedrock_agent.types.untag_resource_request
     import capo_bedrock_agent.types.untag_resource_response
     import capo_bedrock_agent.types.update_agent_action_group_request
@@ -284,6 +307,14 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.validate_flow_definition_response
     import capo_bedrock_agent.types.vector_ingestion_configuration
     import capo_bedrock_agent.types.version
+    import capo_bedrock_agent.types.vpc_configuration_description
+    import capo_bedrock_agent.types.vpc_configuration_id
+    import capo_bedrock_agent.types.vpc_configuration_name
+    import capo_bedrock_agent.types.vpc_configuration_status
+    import capo_bedrock_agent.types.vpc_configuration_summary
+    import capo_bedrock_agent.types.vpc_id
+    import capo_bedrock_agent.types.vpc_protocol
+    import capo_bedrock_agent.types.vpc_resolution_mode
 
 
 class AsyncBedrockAgentClientConfig(TypedDict, total=False, closed=True):
@@ -392,6 +423,456 @@ class AsyncBedrockAgentClient:
             ),
         )
         return interceptors_, options_
+
+    async def create_vpc_configuration(
+        self,
+        knowledge_base_id: "capo_bedrock_agent.types.id.Id",
+        vpc_id: "capo_bedrock_agent.types.vpc_id.VpcId",
+        subnet_ids: "capo_bedrock_agent.types.subnet_id_list.SubnetIdList",
+        resource_target: "capo_bedrock_agent.types.resource_target.ResourceTarget",
+        port: "capo_bedrock_agent.types.port.Port",
+        protocol: "capo_bedrock_agent.types.vpc_protocol.VpcProtocol",
+        resolution_mode: "capo_bedrock_agent.types.vpc_resolution_mode.VpcResolutionMode",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+        client_token: Optional[
+            "capo_bedrock_agent.types.client_token.ClientToken"
+        ] = None,
+        host_header: Optional["capo_bedrock_agent.types.host_header.HostHeader"] = None,
+        tls_server_name: Optional[
+            "capo_bedrock_agent.types.tls_server_name.TlsServerName"
+        ] = None,
+        name: Optional[
+            "capo_bedrock_agent.types.vpc_configuration_name.VpcConfigurationName"
+        ] = None,
+        description: Optional[
+            "capo_bedrock_agent.types.vpc_configuration_description.VpcConfigurationDescription"
+        ] = None,
+    ) -> "capo_bedrock_agent.types.create_vpc_configuration_response.CreateVpcConfigurationResponse":
+        """<p>Creates a VPC configuration that lets a knowledge base connect to a resource in your private VPC. This operation is asynchronous: it returns a <code>vpcConfigurationId</code> with status <code>CREATING</code>. Poll <code>GetVpcConfiguration</code> until the status becomes <code>CREATED</code> or <code>CREATE_FAILED</code>.</p>
+
+        Args:
+            knowledge_base_id: <p>The unique identifier of the knowledge base to associate this VPC configuration with.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.</p>
+            vpc_id: <p>The identifier of the VPC that the knowledge base connects through to reach the resource.</p>
+            subnet_ids: <p>The subnets, in the VPC identified by <code>vpcId</code>, that the knowledge base uses to connect to the resource.</p>
+            resource_target: <p>The private IPv4 address or DNS name of the resource you want the knowledge base to reach. The target must be privately reachable from inside your VPC, such as an internal load balancer or a private IP. The following are not supported:</p> <ul> <li> <p>Internet-facing endpoints</p> </li> <li> <p>Loopback addresses</p> </li> <li> <p>Link-local addresses</p> </li> <li> <p>Wildcard addresses</p> </li> <li> <p>Multicast addresses</p> </li> <li> <p>IPv6 literals</p> </li> </ul>
+            port: <p>The port on which to reach the resource.</p>
+            protocol: <p>The protocol used to connect to the resource. Specify <code>HTTP</code> for plaintext or <code>HTTPS</code> for TLS. When you specify <code>HTTPS</code>, you must also provide <code>tlsServerName</code>.</p>
+            resolution_mode: <p>Controls how a domain-name <code>resourceTarget</code> is resolved. This applies only when the target is a domain name; it has no effect for IP-address targets, which have no name to resolve. In all cases the resolved address must be reachable from inside your VPC. Valid values:</p> <ul> <li> <p> <code>IN_VPC</code> (default, recommended) – The target domain name is resolved privately, using the DNS resolvers of the VPC, such as private Route 53 hosted zones or on-premises DNS reachable from the VPC. Use this for targets that are private to your VPC, such as internal load balancers, private hosted-zone names, or on-premises hosts.</p> </li> <li> <p> <code>PUBLIC</code> – The target domain name is resolved against public DNS resolvers. Select this only when the target's domain name must be resolved through public DNS and the resulting address is still reachable from the VPC, an uncommon split-horizon configuration. If you are unsure, use <code>IN_VPC</code>.</p> </li> </ul>
+            host_header: <p>An optional HTTP <code>Host</code> header value to send when invoking the resource. Set this only if your resource (or an upstream router or ingress) routes by the <code>Host</code> header and that host differs from the target. This setting is independent of <code>tlsServerName</code>.</p>
+            tls_server_name: <p>The expected TLS server name. The service matches this value against the Subject Alternative Names on your resource's TLS certificate during invocation. This field is required when <code>protocol</code> is <code>HTTPS</code>. Set it to a hostname on your certificate, such as <code>app.internal.example.com</code>. You can use a single leftmost wildcard, such as <code>*.example.com</code>. The value must be a hostname without a port.</p>
+            name: <p>An optional human-readable name for the VPC configuration. If you don't specify a name, the VPC configuration has no name.</p>
+            description: <p>An optional description of the VPC configuration. If you don't specify a description, the VPC configuration has no description.</p>
+
+        Raises:
+            capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
+            capo_bedrock_agent.errors.conflict_exception.ConflictException: <p>There was a conflict performing an operation.</p>
+            capo_bedrock_agent.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of requests exceeds the service quota. Resubmit your request later.</p>
+            capo_bedrock_agent.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent.types.create_vpc_configuration_request.CreateVpcConfigurationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent.types.create_vpc_configuration_response.CreateVpcConfigurationResponse"
+        ]:
+            import capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.create_vpc_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.create_vpc_configuration.async_create_vpc_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent.types.create_vpc_configuration_request.CreateVpcConfigurationRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+            "resource_target": resource_target,
+            "port": port,
+            "protocol": protocol,
+            "resolution_mode": resolution_mode,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if host_header is not None:
+            input_["host_header"] = host_header
+        if tls_server_name is not None:
+            input_["tls_server_name"] = tls_server_name
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_resource_policy(
+        self,
+        resource_arn: "capo_bedrock_agent.types.resource_arn.ResourceArn",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+        expected_revision_id: Optional[
+            "capo_bedrock_agent.types.revision_id.RevisionId"
+        ] = None,
+    ) -> "capo_bedrock_agent.types.delete_resource_policy_response.DeleteResourcePolicyResponse":
+        """<p>Removes the resource policy associated with a knowledge base. After deletion, other AWS accounts can no longer access the knowledge base using cross-account permissions.</p>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the knowledge base to remove the resource policy from.</p>
+            expected_revision_id: <p>The expected revision identifier of the resource policy. Use this to prevent conflicts when multiple users update the same policy concurrently.</p>
+
+        Raises:
+            capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
+            capo_bedrock_agent.errors.conflict_exception.ConflictException: <p>There was a conflict performing an operation.</p>
+            capo_bedrock_agent.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent.types.delete_resource_policy_request.DeleteResourcePolicyRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent.types.delete_resource_policy_response.DeleteResourcePolicyResponse"
+        ]:
+            import capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.delete_resource_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.delete_resource_policy.async_delete_resource_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
+        if expected_revision_id is not None:
+            input_["expected_revision_id"] = expected_revision_id
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_vpc_configuration(
+        self,
+        knowledge_base_id: "capo_bedrock_agent.types.id.Id",
+        vpc_configuration_id: "capo_bedrock_agent.types.vpc_configuration_id.VpcConfigurationId",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+    ) -> "capo_bedrock_agent.types.delete_vpc_configuration_response.DeleteVpcConfigurationResponse":
+        """<p>Deletes a VPC configuration. This operation is asynchronous: it returns status <code>DELETING</code>. Poll <code>GetVpcConfiguration</code> until it returns a <code>ResourceNotFoundException</code>, indicating the configuration is deleted. Delete requests are idempotent and safe to retry.</p>
+
+        Args:
+            knowledge_base_id: <p>The unique identifier of the knowledge base that owns the VPC configuration.</p>
+            vpc_configuration_id: <p>The unique identifier of the VPC configuration to delete.</p>
+
+        Raises:
+            capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
+            capo_bedrock_agent.errors.conflict_exception.ConflictException: <p>There was a conflict performing an operation.</p>
+            capo_bedrock_agent.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent.types.delete_vpc_configuration_request.DeleteVpcConfigurationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent.types.delete_vpc_configuration_response.DeleteVpcConfigurationResponse"
+        ]:
+            import capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.delete_vpc_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.delete_vpc_configuration.async_delete_vpc_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent.types.delete_vpc_configuration_request.DeleteVpcConfigurationRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "vpc_configuration_id": vpc_configuration_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_resource_policy(
+        self,
+        resource_arn: "capo_bedrock_agent.types.resource_arn.ResourceArn",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+    ) -> "capo_bedrock_agent.types.get_resource_policy_response.GetResourcePolicyResponse":
+        """<p>Retrieves the resource policy associated with a knowledge base.</p>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the knowledge base to retrieve the resource policy for.</p>
+
+        Raises:
+            capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
+            capo_bedrock_agent.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent.types.get_resource_policy_request.GetResourcePolicyRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent.types.get_resource_policy_response.GetResourcePolicyResponse"
+        ]:
+            import capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.get_resource_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.get_resource_policy.async_get_resource_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_vpc_configuration(
+        self,
+        knowledge_base_id: "capo_bedrock_agent.types.id.Id",
+        vpc_configuration_id: "capo_bedrock_agent.types.vpc_configuration_id.VpcConfigurationId",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+    ) -> "capo_bedrock_agent.types.get_vpc_configuration_response.GetVpcConfigurationResponse":
+        """<p>Returns the details and current status of a single VPC configuration. Use this operation to poll for the outcome of an asynchronous create or delete.</p>
+
+        Args:
+            knowledge_base_id: <p>The unique identifier of the knowledge base that owns the VPC configuration.</p>
+            vpc_configuration_id: <p>The unique identifier of the VPC configuration to retrieve.</p>
+
+        Raises:
+            capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
+            capo_bedrock_agent.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent.types.get_vpc_configuration_request.GetVpcConfigurationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent.types.get_vpc_configuration_response.GetVpcConfigurationResponse"
+        ]:
+            import capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.get_vpc_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.get_vpc_configuration.async_get_vpc_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent.types.get_vpc_configuration_request.GetVpcConfigurationRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "vpc_configuration_id": vpc_configuration_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_vpc_configurations(
+        self,
+        knowledge_base_id: "capo_bedrock_agent.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+        status_filter: Optional[
+            "capo_bedrock_agent.types.vpc_configuration_status.VpcConfigurationStatus"
+        ] = None,
+        max_results: Optional["capo_bedrock_agent.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_bedrock_agent.types.next_token.NextToken"] = None,
+    ) -> "capo_bedrock_agent.types.list_vpc_configurations_response.ListVpcConfigurationsResponse":
+        """<p>Returns a paginated list of the VPC configurations for a knowledge base. You can optionally filter by status. Use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            knowledge_base_id: <p>The unique identifier of the knowledge base whose VPC configurations you want to list.</p>
+            status_filter: <p>The status to filter the results by. Only VPC configurations with the specified status are returned.</p>
+            max_results: <p>The maximum number of results to return in the response. If more results are available, the response returns a <code>nextToken</code>.</p>
+            next_token: <p>A pagination token to retrieve the next page of results, returned in a previous response when more results are available.</p>
+
+        Raises:
+            capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
+            capo_bedrock_agent.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent.types.list_vpc_configurations_request.ListVpcConfigurationsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent.types.list_vpc_configurations_response.ListVpcConfigurationsResponse"
+        ]:
+            import capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.list_vpc_configurations
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.list_vpc_configurations.async_list_vpc_configurations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent.types.list_vpc_configurations_request.ListVpcConfigurationsRequest = {
+            "knowledge_base_id": knowledge_base_id
+        }
+        if status_filter is not None:
+            input_["status_filter"] = status_filter
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_vpc_configurations(
+        self,
+        knowledge_base_id: "capo_bedrock_agent.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+        status_filter: Optional[
+            "capo_bedrock_agent.types.vpc_configuration_status.VpcConfigurationStatus"
+        ] = None,
+        max_results: Optional["capo_bedrock_agent.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_bedrock_agent.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_bedrock_agent.types.vpc_configuration_summary.VpcConfigurationSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_vpc_configurations(
+                knowledge_base_id,
+                config_overrides=config_overrides,
+                status_filter=status_filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def put_resource_policy(
+        self,
+        resource_arn: "capo_bedrock_agent.types.resource_arn.ResourceArn",
+        policy: "capo_bedrock_agent.types.resource_policy.ResourcePolicy",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+        expected_revision_id: Optional[
+            "capo_bedrock_agent.types.revision_id.RevisionId"
+        ] = None,
+    ) -> "capo_bedrock_agent.types.put_resource_policy_response.PutResourcePolicyResponse":
+        r"""<p>Associates a resource policy with a knowledge base. A resource policy allows other AWS accounts to access the knowledge base. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-managed-cross-account.html\">Cross-account access for knowledge bases</a>.</p>
+
+        Args:
+            resource_arn: <p>The Amazon Resource Name (ARN) of the knowledge base to attach the resource policy to.</p>
+            policy: <p>The JSON-formatted resource policy to associate with the knowledge base.</p>
+            expected_revision_id: <p>The expected revision identifier of the resource policy. Use this to prevent conflicts when multiple users update the same policy concurrently. Specify the <code>revisionId</code> from the most recent <code>GetResourcePolicy</code> or <code>PutResourcePolicy</code> response.</p>
+
+        Raises:
+            capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
+            capo_bedrock_agent.errors.conflict_exception.ConflictException: <p>There was a conflict performing an operation.</p>
+            capo_bedrock_agent.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent.types.put_resource_policy_request.PutResourcePolicyRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent.types.put_resource_policy_response.PutResourcePolicyResponse"
+        ]:
+            import capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.put_resource_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent._operations.amazon_bedrock_agent_build_time_lambda.put_resource_policy.async_put_resource_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
+        if expected_revision_id is not None:
+            input_["expected_revision_id"] = expected_revision_id
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     async def validate_flow_definition(
         self,
@@ -1228,7 +1709,7 @@ class AsyncBedrockAgentClient:
             "capo_bedrock_agent.types.agent_collaboration.AgentCollaboration"
         ] = None,
     ) -> "capo_bedrock_agent.types.create_agent_response.CreateAgentResponse":
-        r"""<p>Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.</p> <ul> <li> <p>Specify the following fields for security purposes.</p> <ul> <li> <p> <code>agentResourceRoleArn</code> – The Amazon Resource Name (ARN) of the role with permissions to invoke API operations on an agent.</p> </li> <li> <p>(Optional) <code>customerEncryptionKeyArn</code> – The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent.</p> </li> <li> <p>(Optional) <code>idleSessionTTLinSeconds</code> – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent <code>InvokeAgent</code> request begins a new session.</p> </li> </ul> </li> <li> <p>To enable your agent to retain conversational context across multiple sessions, include a <code>memoryConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-configure-memory.html\">Configure memory</a>.</p> </li> <li> <p>To override the default prompt behavior for agent orchestration and to use advanced prompts, include a <code>promptOverrideConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p> </li> <li> <p>If your agent fails to be created, the response returns a list of <code>failureReasons</code> alongside a list of <code>recommendedActions</code> for you to troubleshoot.</p> </li> <li> <p>The agent instructions will not be honored if your agent has only one knowledge base, uses default prompts, has no action group, and user input is disabled.</p> </li> </ul>
+        r"""<note> <p>Amazon Bedrock Agents (now Amazon Bedrock Agents Classic) is no longer open to new customers. For capabilities similar to Bedrock Agents Classic, explore Amazon Bedrock AgentCore. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-classic-maintenance-mode.html\">Amazon Bedrock Agents Classic availability change</a>.</p> </note> <p>Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.</p> <ul> <li> <p>Specify the following fields for security purposes.</p> <ul> <li> <p> <code>agentResourceRoleArn</code> – The Amazon Resource Name (ARN) of the role with permissions to invoke API operations on an agent.</p> </li> <li> <p>(Optional) <code>customerEncryptionKeyArn</code> – The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent.</p> </li> <li> <p>(Optional) <code>idleSessionTTLinSeconds</code> – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent <code>InvokeAgent</code> request begins a new session.</p> </li> </ul> </li> <li> <p>To enable your agent to retain conversational context across multiple sessions, include a <code>memoryConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-configure-memory.html\">Configure memory</a>.</p> </li> <li> <p>To override the default prompt behavior for agent orchestration and to use advanced prompts, include a <code>promptOverrideConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p> </li> <li> <p>If your agent fails to be created, the response returns a list of <code>failureReasons</code> alongside a list of <code>recommendedActions</code> for you to troubleshoot.</p> </li> <li> <p>The agent instructions will not be honored if your agent has only one knowledge base, uses default prompts, has no action group, and user input is disabled.</p> </li> </ul>
 
         Args:
             agent_name: <p>A name for the agent that you create.</p>
@@ -2033,7 +2514,7 @@ class AsyncBedrockAgentClient:
             name: <p>The name of the data source.</p>
             description: <p>A description of the data source.</p>
             data_source_configuration: <p>The connection configuration for the data source.</p>
-            data_deletion_policy: <p>The data deletion policy for the data source.</p> <p>You can set the data deletion policy to:</p> <ul> <li> <p>DELETE: Deletes all data from your data source that’s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the <b>vector store itself is not deleted</b>, only the data. This flag is ignored if an Amazon Web Services account is deleted.</p> </li> <li> <p>RETAIN: Retains all data from your data source that’s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the <b>vector store itself is not deleted</b> if you delete a knowledge base or data source resource.</p> </li> </ul>
+            data_deletion_policy: <p>The data deletion policy for the data source.</p> <p>You can set the data deletion policy to:</p> <ul> <li> <p>DELETE: Deletes all data from your data source that’s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the <b>vector store itself is not deleted</b>, only the data. This flag is ignored if an Amazon Web Services account is deleted.</p> </li> <li> <p>RETAIN: Retains all data from your data source that’s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the <b>vector store itself is not deleted</b> if you delete a knowledge base or data source resource.</p> </li> </ul> <note> <p>For managed knowledge bases, the only supported option is <code>DELETE</code>, which is also the default.</p> </note>
             server_side_encryption_configuration: <p>Contains details about the server-side encryption for the data source.</p>
             vector_ingestion_configuration: <p>Contains details about how to ingest the documents in the data source.</p>
 
@@ -2449,11 +2930,15 @@ class AsyncBedrockAgentClient:
         flow_identifier: "capo_bedrock_agent.types.flow_identifier.FlowIdentifier",
         *,
         config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+        included_data: Optional[
+            "capo_bedrock_agent.types.included_data.IncludedData"
+        ] = None,
     ) -> "capo_bedrock_agent.types.get_flow_response.GetFlowResponse":
         r"""<p>Retrieves information about a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-manage.html\">Manage a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>
 
         Args:
             flow_identifier: <p>The unique identifier of the flow.</p>
+            included_data: <p>Controls the scope of data returned. Set to <code>METADATA_ONLY</code> to return only resource metadata. Set to <code>ALL_DATA</code> or omit this field to return the full response.</p>
 
         Raises:
             capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
@@ -2483,6 +2968,8 @@ class AsyncBedrockAgentClient:
         input_: capo_bedrock_agent.types.get_flow_request.GetFlowRequest = {
             "flow_identifier": flow_identifier
         }
+        if included_data is not None:
+            input_["included_data"] = included_data
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3142,12 +3629,16 @@ class AsyncBedrockAgentClient:
         flow_version: "capo_bedrock_agent.types.numerical_version.NumericalVersion",
         *,
         config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+        included_data: Optional[
+            "capo_bedrock_agent.types.included_data.IncludedData"
+        ] = None,
     ) -> "capo_bedrock_agent.types.get_flow_version_response.GetFlowVersionResponse":
         r"""<p>Retrieves information about a version of a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html\">Deploy a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>
 
         Args:
             flow_identifier: <p>The unique identifier of the flow for which to get information.</p>
             flow_version: <p>The version of the flow for which to get information.</p>
+            included_data: <p>Controls the scope of data returned. Set to <code>METADATA_ONLY</code> to return only resource metadata. Set to <code>ALL_DATA</code> or omit this field to return the full response.</p>
 
         Raises:
             capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
@@ -3178,6 +3669,8 @@ class AsyncBedrockAgentClient:
             "flow_identifier": flow_identifier,
             "flow_version": flow_version,
         }
+        if included_data is not None:
+            input_["included_data"] = included_data
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3952,7 +4445,7 @@ class AsyncBedrockAgentClient:
         ] = None,
         tags: Optional["capo_bedrock_agent.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agent.types.create_knowledge_base_response.CreateKnowledgeBaseResponse":
-        r"""<p>Creates a knowledge base. A knowledge base contains your data sources so that Large Language Models (LLMs) can use your data. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowlege-base-prereq.html\">Set up a knowledge base</a>.</p> <note> <p>If you prefer to let Amazon Bedrock create and manage a vector store for you in Amazon OpenSearch Service, use the console. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create\">Create a knowledge base</a>.</p> </note> <ul> <li> <p>Provide the <code>name</code> and an optional <code>description</code>.</p> </li> <li> <p>Provide the Amazon Resource Name (ARN) with permissions to create a knowledge base in the <code>roleArn</code> field.</p> </li> <li> <p>Provide the embedding model to use in the <code>embeddingModelArn</code> field in the <code>knowledgeBaseConfiguration</code> object.</p> </li> <li> <p>Provide the configuration for your vector store in the <code>storageConfiguration</code> object.</p> <ul> <li> <p>For an Amazon OpenSearch Service database, use the <code>opensearchServerlessConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector store in Amazon OpenSearch Service</a>.</p> </li> <li> <p>For an Amazon Aurora database, use the <code>RdsConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector store in Amazon Aurora</a>.</p> </li> <li> <p>For a Pinecone database, use the <code>pineconeConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html\">Create a vector store in Pinecone</a>.</p> </li> <li> <p>For a Redis Enterprise Cloud database, use the <code>redisEnterpriseCloudConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-redis.html\">Create a vector store in Redis Enterprise Cloud</a>.</p> </li> </ul> </li> </ul>
+        r"""<p>Creates a knowledge base. A knowledge base contains your data sources so that Large Language Models (LLMs) can use your data. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowlege-base-prereq.html\">Set up a knowledge base</a>.</p> <note> <p>To create a managed knowledge base, provide a <code>managedKnowledgeBaseConfiguration</code> during creation. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-build-managed.html\">Build a managed knowledge base</a>.</p> </note> <ul> <li> <p>Provide the <code>name</code> and an optional <code>description</code>.</p> </li> <li> <p>Provide the Amazon Resource Name (ARN) with permissions to create a knowledge base in the <code>roleArn</code> field.</p> </li> <li> <p>For managed knowledge bases, set <code>embeddingModelType</code> to <code>MANAGED</code> to use the service-managed embedding model, or <code>CUSTOM</code> with an <code>embeddingModelArn</code> to use your own. To use your own KMS key for encryption, provide the ARN in <code>serverSideEncryptionConfiguration</code>. No vector store configuration is required for managed knowledge bases.</p> </li> <li> <p>For self-managed knowledge bases, provide the embedding model to use in the <code>embeddingModelArn</code> field in the <code>knowledgeBaseConfiguration</code> object.</p> </li> <li> <p>For self-managed knowledge bases, provide the configuration for your vector store in the <code>storageConfiguration</code> object.</p> <ul> <li> <p>For an Amazon OpenSearch Service database, use the <code>opensearchServerlessConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector store in Amazon OpenSearch Service</a>.</p> </li> <li> <p>For an Amazon Aurora database, use the <code>RdsConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector store in Amazon Aurora</a>.</p> </li> <li> <p>For a Pinecone database, use the <code>pineconeConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html\">Create a vector store in Pinecone</a>.</p> </li> <li> <p>For a Redis Enterprise Cloud database, use the <code>redisEnterpriseCloudConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-redis.html\">Create a vector store in Redis Enterprise Cloud</a>.</p> </li> </ul> </li> </ul>
 
         Args:
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
@@ -4603,12 +5096,16 @@ class AsyncBedrockAgentClient:
         *,
         config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
         prompt_version: Optional["capo_bedrock_agent.types.version.Version"] = None,
+        included_data: Optional[
+            "capo_bedrock_agent.types.included_data.IncludedData"
+        ] = None,
     ) -> "capo_bedrock_agent.types.get_prompt_response.GetPromptResponse":
         r"""<p>Retrieves information about the working draft (<code>DRAFT</code> version) of a prompt or a version of it, depending on whether you include the <code>promptVersion</code> field or not. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-view.html\">View information about prompts using Prompt management</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html#prompt-management-versions-view.html\">View information about a version of your prompt</a> in the Amazon Bedrock User Guide.</p>
 
         Args:
             prompt_identifier: <p>The unique identifier of the prompt.</p>
             prompt_version: <p>The version of the prompt about which you want to retrieve information. Omit this field to return information about the working draft of the prompt.</p>
+            included_data: <p>Controls the scope of data returned. Set to <code>METADATA_ONLY</code> to return only resource metadata. Set to <code>ALL_DATA</code> or omit this field to return the full response.</p>
 
         Raises:
             capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
@@ -4640,6 +5137,8 @@ class AsyncBedrockAgentClient:
         }
         if prompt_version is not None:
             input_["prompt_version"] = prompt_version
+        if included_data is not None:
+            input_["included_data"] = included_data
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

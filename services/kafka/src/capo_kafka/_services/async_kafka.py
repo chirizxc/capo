@@ -37,6 +37,7 @@ if TYPE_CHECKING:
     import capo_kafka.types.__list_of_broker_ebs_volume_info
     import capo_kafka.types.__list_of_kafka_cluster
     import capo_kafka.types.__list_of_replication_info
+    import capo_kafka.types.__list_of_topic_configuration
     import capo_kafka.types.__long
     import capo_kafka.types.__map_of__string
     import capo_kafka.types.__string
@@ -49,6 +50,7 @@ if TYPE_CHECKING:
     import capo_kafka.types.batch_disassociate_scram_secret_request
     import capo_kafka.types.batch_disassociate_scram_secret_response
     import capo_kafka.types.broker_node_group_info
+    import capo_kafka.types.channel_logging_info
     import capo_kafka.types.client_authentication
     import capo_kafka.types.client_vpc_connection
     import capo_kafka.types.cluster
@@ -60,6 +62,8 @@ if TYPE_CHECKING:
     import capo_kafka.types.configuration_revision
     import capo_kafka.types.connectivity_info
     import capo_kafka.types.consumer_group_replication_update
+    import capo_kafka.types.create_channel_request
+    import capo_kafka.types.create_channel_response
     import capo_kafka.types.create_cluster_request
     import capo_kafka.types.create_cluster_response
     import capo_kafka.types.create_cluster_v2_request
@@ -72,6 +76,8 @@ if TYPE_CHECKING:
     import capo_kafka.types.create_topic_response
     import capo_kafka.types.create_vpc_connection_request
     import capo_kafka.types.create_vpc_connection_response
+    import capo_kafka.types.delete_channel_request
+    import capo_kafka.types.delete_channel_response
     import capo_kafka.types.delete_cluster_policy_request
     import capo_kafka.types.delete_cluster_policy_response
     import capo_kafka.types.delete_cluster_request
@@ -84,6 +90,8 @@ if TYPE_CHECKING:
     import capo_kafka.types.delete_topic_response
     import capo_kafka.types.delete_vpc_connection_request
     import capo_kafka.types.delete_vpc_connection_response
+    import capo_kafka.types.describe_channel_request
+    import capo_kafka.types.describe_channel_response
     import capo_kafka.types.describe_cluster_operation_request
     import capo_kafka.types.describe_cluster_operation_response
     import capo_kafka.types.describe_cluster_operation_v2_request
@@ -104,6 +112,7 @@ if TYPE_CHECKING:
     import capo_kafka.types.describe_topic_response
     import capo_kafka.types.describe_vpc_connection_request
     import capo_kafka.types.describe_vpc_connection_response
+    import capo_kafka.types.encryption_configuration
     import capo_kafka.types.encryption_info
     import capo_kafka.types.enhanced_monitoring
     import capo_kafka.types.get_bootstrap_brokers_request
@@ -112,7 +121,11 @@ if TYPE_CHECKING:
     import capo_kafka.types.get_cluster_policy_response
     import capo_kafka.types.get_compatible_kafka_versions_request
     import capo_kafka.types.get_compatible_kafka_versions_response
+    import capo_kafka.types.iceberg_destination_configuration
+    import capo_kafka.types.iceberg_destination_update
     import capo_kafka.types.kafka_version
+    import capo_kafka.types.list_channels_request
+    import capo_kafka.types.list_channels_response
     import capo_kafka.types.list_client_vpc_connections_request
     import capo_kafka.types.list_client_vpc_connections_response
     import capo_kafka.types.list_cluster_operations_request
@@ -156,6 +169,8 @@ if TYPE_CHECKING:
     import capo_kafka.types.reject_client_vpc_connection_request
     import capo_kafka.types.reject_client_vpc_connection_response
     import capo_kafka.types.replicator_summary
+    import capo_kafka.types.s3_destination_configuration
+    import capo_kafka.types.s3_destination_update
     import capo_kafka.types.serverless_request
     import capo_kafka.types.storage_mode
     import capo_kafka.types.tag_resource_request
@@ -169,6 +184,8 @@ if TYPE_CHECKING:
     import capo_kafka.types.update_broker_storage_response
     import capo_kafka.types.update_broker_type_request
     import capo_kafka.types.update_broker_type_response
+    import capo_kafka.types.update_channel_request
+    import capo_kafka.types.update_channel_response
     import capo_kafka.types.update_cluster_configuration_request
     import capo_kafka.types.update_cluster_configuration_response
     import capo_kafka.types.update_cluster_kafka_version_request
@@ -389,6 +406,97 @@ class AsyncKafkaClient:
         }
         if secret_arn_list is not None:
             input_["secret_arn_list"] = secret_arn_list
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_channel(
+        self,
+        cluster_arn: "capo_kafka.types.__string.__string",
+        *,
+        config_overrides: Optional[AsyncKafkaClientConfig] = None,
+        channel_name: Optional["capo_kafka.types.__string.__string"] = None,
+        encryption_configuration: Optional[
+            "capo_kafka.types.encryption_configuration.EncryptionConfiguration"
+        ] = None,
+        iceberg_destination_configuration: Optional[
+            "capo_kafka.types.iceberg_destination_configuration.IcebergDestinationConfiguration"
+        ] = None,
+        s3_destination_configuration: Optional[
+            "capo_kafka.types.s3_destination_configuration.S3DestinationConfiguration"
+        ] = None,
+        tags: Optional["capo_kafka.types.__map_of__string.__mapOf__string"] = None,
+        topic_configuration_list: Optional[
+            "capo_kafka.types.__list_of_topic_configuration.__listOfTopicConfiguration"
+        ] = None,
+        logging_info: Optional[
+            "capo_kafka.types.channel_logging_info.ChannelLoggingInfo"
+        ] = None,
+    ) -> "capo_kafka.types.create_channel_response.CreateChannelResponse":
+        """<p>Creates a Channel that streams records from an Amazon MSK Express cluster topic to Amazon S3 or Apache Iceberg.</p>
+
+        Args:
+            channel_name: <p>The name of the channel. Must be unique within the cluster.</p>
+            cluster_arn: <p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>
+            encryption_configuration: <p>The encryption configuration applied to the channel.</p>
+            iceberg_destination_configuration: <p>The Apache Iceberg destination for the channel. Mutually exclusive with s3DestinationConfiguration.</p>
+            s3_destination_configuration: <p>The Amazon S3 destination for the channel. Mutually exclusive with icebergDestinationConfiguration.</p>
+            tags: <p>The tags attached to the channel.</p>
+            topic_configuration_list: <p>The list of topic configurations for the channel. Currently exactly one topic must be specified.</p>
+            logging_info: <p>The destinations to which the channel publishes operational logs.</p>
+
+        Raises:
+            capo_kafka.errors.bad_request_exception.BadRequestException: <p>Returns information about an error.</p>
+            capo_kafka.errors.conflict_exception.ConflictException: <p>Returns information about an error.</p>
+            capo_kafka.errors.forbidden_exception.ForbiddenException: <p>Returns information about an error.</p>
+            capo_kafka.errors.internal_server_error_exception.InternalServerErrorException: <p>Returns information about an error.</p>
+            capo_kafka.errors.not_found_exception.NotFoundException: <p>Returns information about an error.</p>
+            capo_kafka.errors.service_unavailable_exception.ServiceUnavailableException: <p>Returns information about an error.</p>
+            capo_kafka.errors.too_many_requests_exception.TooManyRequestsException: <p>Returns information about an error.</p>
+            capo_kafka.errors.unauthorized_exception.UnauthorizedException: <p>Returns information about an error.</p>
+            capo_kafka.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_kafka.types.create_channel_request.CreateChannelRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_kafka.types.create_channel_response.CreateChannelResponse"
+        ]:
+            import capo_kafka._operations.kafka.create_channel
+
+            (
+                output,
+                http_response,
+            ) = await capo_kafka._operations.kafka.create_channel.async_create_channel(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kafka.types.create_channel_request.CreateChannelRequest = {
+            "cluster_arn": cluster_arn
+        }
+        if channel_name is not None:
+            input_["channel_name"] = channel_name
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
+        if iceberg_destination_configuration is not None:
+            input_["iceberg_destination_configuration"] = (
+                iceberg_destination_configuration
+            )
+        if s3_destination_configuration is not None:
+            input_["s3_destination_configuration"] = s3_destination_configuration
+        if tags is not None:
+            input_["tags"] = tags
+        if topic_configuration_list is not None:
+            input_["topic_configuration_list"] = topic_configuration_list
+        if logging_info is not None:
+            input_["logging_info"] = logging_info
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -882,6 +990,59 @@ class AsyncKafkaClient:
         await response.response.aclose()
         return response.output
 
+    async def delete_channel(
+        self,
+        channel_arn: "capo_kafka.types.__string.__string",
+        cluster_arn: "capo_kafka.types.__string.__string",
+        *,
+        config_overrides: Optional[AsyncKafkaClientConfig] = None,
+    ) -> "capo_kafka.types.delete_channel_response.DeleteChannelResponse":
+        """<p>Deletes the channel specified by channelArn from the cluster specified by clusterArn. The channel transitions through DELETING and is removed when the asynchronous delete completes.</p>
+
+        Args:
+            channel_arn: <p>The Amazon Resource Name (ARN) that uniquely identifies the channel.</p>
+            cluster_arn: <p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>
+
+        Raises:
+            capo_kafka.errors.bad_request_exception.BadRequestException: <p>Returns information about an error.</p>
+            capo_kafka.errors.forbidden_exception.ForbiddenException: <p>Returns information about an error.</p>
+            capo_kafka.errors.internal_server_error_exception.InternalServerErrorException: <p>Returns information about an error.</p>
+            capo_kafka.errors.not_found_exception.NotFoundException: <p>Returns information about an error.</p>
+            capo_kafka.errors.service_unavailable_exception.ServiceUnavailableException: <p>Returns information about an error.</p>
+            capo_kafka.errors.too_many_requests_exception.TooManyRequestsException: <p>Returns information about an error.</p>
+            capo_kafka.errors.unauthorized_exception.UnauthorizedException: <p>Returns information about an error.</p>
+            capo_kafka.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_kafka.types.delete_channel_request.DeleteChannelRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_kafka.types.delete_channel_response.DeleteChannelResponse"
+        ]:
+            import capo_kafka._operations.kafka.delete_channel
+
+            (
+                output,
+                http_response,
+            ) = await capo_kafka._operations.kafka.delete_channel.async_delete_channel(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kafka.types.delete_channel_request.DeleteChannelRequest = {
+            "channel_arn": channel_arn,
+            "cluster_arn": cluster_arn,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_cluster(
         self,
         cluster_arn: "capo_kafka.types.__string.__string",
@@ -1176,6 +1337,59 @@ class AsyncKafkaClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_kafka.types.delete_vpc_connection_request.DeleteVpcConnectionRequest = {
             "arn": arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_channel(
+        self,
+        channel_arn: "capo_kafka.types.__string.__string",
+        cluster_arn: "capo_kafka.types.__string.__string",
+        *,
+        config_overrides: Optional[AsyncKafkaClientConfig] = None,
+    ) -> "capo_kafka.types.describe_channel_response.DescribeChannelResponse":
+        """<p>Returns the current configuration and state of a channel.</p>
+
+        Args:
+            channel_arn: <p>The Amazon Resource Name (ARN) that uniquely identifies the channel.</p>
+            cluster_arn: <p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>
+
+        Raises:
+            capo_kafka.errors.bad_request_exception.BadRequestException: <p>Returns information about an error.</p>
+            capo_kafka.errors.forbidden_exception.ForbiddenException: <p>Returns information about an error.</p>
+            capo_kafka.errors.internal_server_error_exception.InternalServerErrorException: <p>Returns information about an error.</p>
+            capo_kafka.errors.not_found_exception.NotFoundException: <p>Returns information about an error.</p>
+            capo_kafka.errors.service_unavailable_exception.ServiceUnavailableException: <p>Returns information about an error.</p>
+            capo_kafka.errors.too_many_requests_exception.TooManyRequestsException: <p>Returns information about an error.</p>
+            capo_kafka.errors.unauthorized_exception.UnauthorizedException: <p>Returns information about an error.</p>
+            capo_kafka.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_kafka.types.describe_channel_request.DescribeChannelRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_kafka.types.describe_channel_response.DescribeChannelResponse"
+        ]:
+            import capo_kafka._operations.kafka.describe_channel
+
+            (
+                output,
+                http_response,
+            ) = await capo_kafka._operations.kafka.describe_channel.async_describe_channel(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kafka.types.describe_channel_request.DescribeChannelRequest = {
+            "channel_arn": channel_arn,
+            "cluster_arn": cluster_arn,
         }
 
         response = await aexecute_pipeline(
@@ -1853,6 +2067,68 @@ class AsyncKafkaClient:
         input_: capo_kafka.types.get_compatible_kafka_versions_request.GetCompatibleKafkaVersionsRequest = {}
         if cluster_arn is not None:
             input_["cluster_arn"] = cluster_arn
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_channels(
+        self,
+        cluster_arn: "capo_kafka.types.__string.__string",
+        *,
+        config_overrides: Optional[AsyncKafkaClientConfig] = None,
+        max_results: Optional["capo_kafka.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_kafka.types.__string.__string"] = None,
+        topic_name_filter: Optional["capo_kafka.types.__string.__string"] = None,
+    ) -> "capo_kafka.types.list_channels_response.ListChannelsResponse":
+        """<p>Returns the list of channels in a cluster.</p>
+
+        Args:
+            cluster_arn: <p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>
+            max_results: <p>Maximum number of channels to return in a single response.</p>
+            next_token: <p>If the response of ListChannels is truncated, it returns a nextToken in the response. This nextToken should be sent in the subsequent request to ListChannels.</p>
+            topic_name_filter: <p>Filters results to channels whose topic name matches the specified value.</p>
+
+        Raises:
+            capo_kafka.errors.bad_request_exception.BadRequestException: <p>Returns information about an error.</p>
+            capo_kafka.errors.forbidden_exception.ForbiddenException: <p>Returns information about an error.</p>
+            capo_kafka.errors.internal_server_error_exception.InternalServerErrorException: <p>Returns information about an error.</p>
+            capo_kafka.errors.not_found_exception.NotFoundException: <p>Returns information about an error.</p>
+            capo_kafka.errors.service_unavailable_exception.ServiceUnavailableException: <p>Returns information about an error.</p>
+            capo_kafka.errors.too_many_requests_exception.TooManyRequestsException: <p>Returns information about an error.</p>
+            capo_kafka.errors.unauthorized_exception.UnauthorizedException: <p>Returns information about an error.</p>
+            capo_kafka.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_kafka.types.list_channels_request.ListChannelsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_kafka.types.list_channels_response.ListChannelsResponse"
+        ]:
+            import capo_kafka._operations.kafka.list_channels
+
+            (
+                output,
+                http_response,
+            ) = await capo_kafka._operations.kafka.list_channels.async_list_channels(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kafka.types.list_channels_request.ListChannelsRequest = {
+            "cluster_arn": cluster_arn
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if topic_name_filter is not None:
+            input_["topic_name_filter"] = topic_name_filter
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3356,6 +3632,71 @@ class AsyncKafkaClient:
             input_["current_version"] = current_version
         if target_instance_type is not None:
             input_["target_instance_type"] = target_instance_type
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_channel(
+        self,
+        channel_arn: "capo_kafka.types.__string.__string",
+        cluster_arn: "capo_kafka.types.__string.__string",
+        *,
+        config_overrides: Optional[AsyncKafkaClientConfig] = None,
+        iceberg_destination_update: Optional[
+            "capo_kafka.types.iceberg_destination_update.IcebergDestinationUpdate"
+        ] = None,
+        s3_destination_update: Optional[
+            "capo_kafka.types.s3_destination_update.S3DestinationUpdate"
+        ] = None,
+    ) -> "capo_kafka.types.update_channel_response.UpdateChannelResponse":
+        """<p>Updates the destination configuration of an existing channel. Exactly one of icebergDestinationUpdate or s3DestinationUpdate must be supplied.</p>
+
+        Args:
+            channel_arn: <p>The Amazon Resource Name (ARN) that uniquely identifies the channel.</p>
+            cluster_arn: <p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>
+            iceberg_destination_update: <p>Updates fields on an Apache Iceberg destination. Use only when the channel was created with an Iceberg destination.</p>
+            s3_destination_update: <p>Updates fields on an Amazon S3 destination. Use only when the channel was created with an Amazon S3 destination.</p>
+
+        Raises:
+            capo_kafka.errors.bad_request_exception.BadRequestException: <p>Returns information about an error.</p>
+            capo_kafka.errors.forbidden_exception.ForbiddenException: <p>Returns information about an error.</p>
+            capo_kafka.errors.internal_server_error_exception.InternalServerErrorException: <p>Returns information about an error.</p>
+            capo_kafka.errors.not_found_exception.NotFoundException: <p>Returns information about an error.</p>
+            capo_kafka.errors.service_unavailable_exception.ServiceUnavailableException: <p>Returns information about an error.</p>
+            capo_kafka.errors.too_many_requests_exception.TooManyRequestsException: <p>Returns information about an error.</p>
+            capo_kafka.errors.unauthorized_exception.UnauthorizedException: <p>Returns information about an error.</p>
+            capo_kafka.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_kafka.types.update_channel_request.UpdateChannelRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_kafka.types.update_channel_response.UpdateChannelResponse"
+        ]:
+            import capo_kafka._operations.kafka.update_channel
+
+            (
+                output,
+                http_response,
+            ) = await capo_kafka._operations.kafka.update_channel.async_update_channel(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kafka.types.update_channel_request.UpdateChannelRequest = {
+            "channel_arn": channel_arn,
+            "cluster_arn": cluster_arn,
+        }
+        if iceberg_destination_update is not None:
+            input_["iceberg_destination_update"] = iceberg_destination_update
+        if s3_destination_update is not None:
+            input_["s3_destination_update"] = s3_destination_update
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

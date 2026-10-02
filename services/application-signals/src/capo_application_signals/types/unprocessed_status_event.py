@@ -1,0 +1,133 @@
+"""Generated from Smithy shape ``com.amazonaws.applicationsignals#UnprocessedStatusEvent``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import TypedDict
+
+from capo_application_signals.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import datetime
+
+    import capo_application_signals.types.dynamic_instrumentation_signal_type
+    import capo_application_signals.types.instrumentation_configuration_status
+    import capo_application_signals.types.instrumentation_type
+    import capo_application_signals.types.unprocessed_status_event_failure_reason
+
+
+class UnprocessedStatusEvent(TypedDict, closed=True):
+    instrumentation_type: (
+        "capo_application_signals.types.instrumentation_type.InstrumentationType"
+    )
+    """<p>The type of instrumentation configuration for the unprocessed status event.</p>"""
+    signal_type: "capo_application_signals.types.dynamic_instrumentation_signal_type.DynamicInstrumentationSignalType"
+    """<p>The telemetry signal type for the unprocessed status event.</p>"""
+    location_hash: "str"
+    """<p>The stable hash of the instrumentation location for the unprocessed event.</p>"""
+    status: "capo_application_signals.types.instrumentation_configuration_status.InstrumentationConfigurationStatus"
+    """<p>The status that failed to be processed.</p>"""
+    time: "datetime.datetime"
+    """<p>The timestamp of the status event that failed to be processed.</p>"""
+    failed_reason: "capo_application_signals.types.unprocessed_status_event_failure_reason.UnprocessedStatusEventFailureReason"
+    """<p>The reason why this status event could not be processed, such as throttling or validation errors.</p>"""
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: UnprocessedStatusEvent) -> dict:
+    out: dict = {}
+    import capo_application_signals.types.instrumentation_type
+
+    out["InstrumentationType"] = (
+        capo_application_signals.types.instrumentation_type.serialize_json(
+            value["instrumentation_type"]
+        )
+    )
+    import capo_application_signals.types.dynamic_instrumentation_signal_type
+
+    out["SignalType"] = (
+        capo_application_signals.types.dynamic_instrumentation_signal_type.serialize_json(
+            value["signal_type"]
+        )
+    )
+    out["LocationHash"] = value["location_hash"]
+    import capo_application_signals.types.instrumentation_configuration_status
+
+    out["Status"] = (
+        capo_application_signals.types.instrumentation_configuration_status.serialize_json(
+            value["status"]
+        )
+    )
+    import capo_application_signals.types._prelude.timestamp
+
+    out["Time"] = capo_application_signals.types._prelude.timestamp.serialize_json(
+        value["time"]
+    )
+    import capo_application_signals.types.unprocessed_status_event_failure_reason
+
+    out["FailedReason"] = (
+        capo_application_signals.types.unprocessed_status_event_failure_reason.serialize_json(
+            value["failed_reason"]
+        )
+    )
+    return out
+
+
+def deserialize_json(data: dict) -> UnprocessedStatusEvent:
+    out: UnprocessedStatusEvent = {}  # type: ignore[typeddict-item]
+    if data.get("InstrumentationType") is not None:
+        import capo_application_signals.types.instrumentation_type
+
+        out["instrumentation_type"] = (
+            capo_application_signals.types.instrumentation_type.deserialize_json(
+                data["InstrumentationType"]
+            )
+        )
+    else:
+        raise DeserializationError(
+            "UnprocessedStatusEvent.instrumentation_type required"
+        )
+    if data.get("SignalType") is not None:
+        import capo_application_signals.types.dynamic_instrumentation_signal_type
+
+        out["signal_type"] = (
+            capo_application_signals.types.dynamic_instrumentation_signal_type.deserialize_json(
+                data["SignalType"]
+            )
+        )
+    else:
+        raise DeserializationError("UnprocessedStatusEvent.signal_type required")
+    if data.get("LocationHash") is not None:
+        out["location_hash"] = data["LocationHash"]
+    else:
+        raise DeserializationError("UnprocessedStatusEvent.location_hash required")
+    if data.get("Status") is not None:
+        import capo_application_signals.types.instrumentation_configuration_status
+
+        out["status"] = (
+            capo_application_signals.types.instrumentation_configuration_status.deserialize_json(
+                data["Status"]
+            )
+        )
+    else:
+        raise DeserializationError("UnprocessedStatusEvent.status required")
+    if data.get("Time") is not None:
+        import capo_application_signals.types._prelude.timestamp
+
+        out["time"] = (
+            capo_application_signals.types._prelude.timestamp.deserialize_json(
+                data["Time"]
+            )
+        )
+    else:
+        raise DeserializationError("UnprocessedStatusEvent.time required")
+    if data.get("FailedReason") is not None:
+        import capo_application_signals.types.unprocessed_status_event_failure_reason
+
+        out["failed_reason"] = (
+            capo_application_signals.types.unprocessed_status_event_failure_reason.deserialize_json(
+                data["FailedReason"]
+            )
+        )
+    else:
+        raise DeserializationError("UnprocessedStatusEvent.failed_reason required")
+    return out

@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.aws_account_id
     import capo_quicksight.types.capabilities
     import capo_quicksight.types.custom_permissions_name
+    import capo_quicksight.types.governance
 
 
 class UpdateCustomPermissionsRequest(TypedDict, closed=True):
@@ -19,6 +20,8 @@ class UpdateCustomPermissionsRequest(TypedDict, closed=True):
     """<p>The name of the custom permissions profile that you want to update.</p>"""
     capabilities: NotRequired["capo_quicksight.types.capabilities.Capabilities"]
     """<p>A set of actions to include in the custom permissions profile.</p>"""
+    governance: NotRequired["capo_quicksight.types.governance.Governance"]
+    """<p>The governance configuration for the custom permissions profile. The <code>UpdateCustomPermissions</code> operation replaces all existing <code>Capabilities</code> and <code>Governance</code> values. If you omit this parameter, Amazon Quick removes governance from the profile and the existing custom permission behavior applies.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -30,6 +33,12 @@ def serialize_json(value: UpdateCustomPermissionsRequest) -> dict:
         out["Capabilities"] = capo_quicksight.types.capabilities.serialize_json(
             value["capabilities"]
         )
+    if "governance" in value:
+        import capo_quicksight.types.governance
+
+        out["Governance"] = capo_quicksight.types.governance.serialize_json(
+            value["governance"]
+        )
     return out
 
 
@@ -40,5 +49,11 @@ def deserialize_json(data: dict) -> UpdateCustomPermissionsRequest:
 
         out["capabilities"] = capo_quicksight.types.capabilities.deserialize_json(
             data["Capabilities"]
+        )
+    if data.get("Governance") is not None:
+        import capo_quicksight.types.governance
+
+        out["governance"] = capo_quicksight.types.governance.deserialize_json(
+            data["Governance"]
         )
     return out

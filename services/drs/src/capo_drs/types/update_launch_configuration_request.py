@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_drs.types.launch_disposition
     import capo_drs.types.launch_into_instance_properties
     import capo_drs.types.licensing
+    import capo_drs.types.recovery_mode
     import capo_drs.types.small_bounded_string
     import capo_drs.types.source_server_id
     import capo_drs.types.target_instance_type_right_sizing_method
@@ -40,6 +41,8 @@ class UpdateLaunchConfigurationRequest(TypedDict, closed=True):
         "capo_drs.types.launch_into_instance_properties.LaunchIntoInstanceProperties"
     ]
     """<p>Launch into existing instance properties.</p>"""
+    recovery_mode: NotRequired["capo_drs.types.recovery_mode.RecoveryMode"]
+    """<p>Recovery mode.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -72,6 +75,8 @@ def serialize_json(value: UpdateLaunchConfigurationRequest) -> dict:
                 value["launch_into_instance_properties"]
             )
         )
+    if "recovery_mode" in value:
+        out["recoveryMode"] = value["recovery_mode"]
     return out
 
 
@@ -109,4 +114,6 @@ def deserialize_json(data: dict) -> UpdateLaunchConfigurationRequest:
                 data["launchIntoInstanceProperties"]
             )
         )
+    if data.get("recoveryMode") is not None:
+        out["recovery_mode"] = data["recoveryMode"]
     return out

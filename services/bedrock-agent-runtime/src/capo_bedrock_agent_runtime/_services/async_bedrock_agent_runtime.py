@@ -19,6 +19,12 @@ from capo_bedrock_agent_runtime._auth._providers import (
 )
 from capo_bedrock_agent_runtime._auth._zapros_handler import AuthMiddleware
 from capo_bedrock_agent_runtime._pagination import resolve_path as _resolve_path
+from capo_bedrock_agent_runtime._resources.amazon_bedrock_agent_run_time_service.agentic_retrieve_stream_resource import (
+    AsyncAgenticRetrieveStreamResource,
+)
+from capo_bedrock_agent_runtime._resources.amazon_bedrock_agent_run_time_service.check_ingested_document_acl_resource import (
+    AsyncCheckIngestedDocumentAclResource,
+)
 from capo_bedrock_agent_runtime._resources.amazon_bedrock_agent_run_time_service.flow_execution_resource import (
     AsyncFlowExecutionResource,
 )
@@ -27,6 +33,12 @@ from capo_bedrock_agent_runtime._resources.amazon_bedrock_agent_run_time_service
 )
 from capo_bedrock_agent_runtime._resources.amazon_bedrock_agent_run_time_service.generate_query_resource import (
     AsyncGenerateQueryResource,
+)
+from capo_bedrock_agent_runtime._resources.amazon_bedrock_agent_run_time_service.get_document_content_resource import (
+    AsyncGetDocumentContentResource,
+)
+from capo_bedrock_agent_runtime._resources.amazon_bedrock_agent_run_time_service.get_ingested_document_acl_resource import (
+    AsyncGetIngestedDocumentAclResource,
 )
 from capo_bedrock_agent_runtime._resources.amazon_bedrock_agent_run_time_service.inference_resource import (
     AsyncInferenceResource,
@@ -73,8 +85,17 @@ if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.agent_alias_id
     import capo_bedrock_agent_runtime.types.agent_collaboration
     import capo_bedrock_agent_runtime.types.agent_id
+    import capo_bedrock_agent_runtime.types.agentic_retrieve_configuration
+    import capo_bedrock_agent_runtime.types.agentic_retrieve_memory_configuration
+    import capo_bedrock_agent_runtime.types.agentic_retrieve_messages
+    import capo_bedrock_agent_runtime.types.agentic_retrieve_policy_configuration
+    import capo_bedrock_agent_runtime.types.agentic_retrieve_stream_request
+    import capo_bedrock_agent_runtime.types.agentic_retrieve_stream_response
+    import capo_bedrock_agent_runtime.types.agentic_retrievers
     import capo_bedrock_agent_runtime.types.aws_resource_arn
     import capo_bedrock_agent_runtime.types.bedrock_model_configurations
+    import capo_bedrock_agent_runtime.types.check_ingested_document_acl_request
+    import capo_bedrock_agent_runtime.types.check_ingested_document_acl_response
     import capo_bedrock_agent_runtime.types.collaborator_configurations
     import capo_bedrock_agent_runtime.types.collaborators
     import capo_bedrock_agent_runtime.types.create_invocation_request
@@ -82,11 +103,14 @@ if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.create_session_request
     import capo_bedrock_agent_runtime.types.create_session_response
     import capo_bedrock_agent_runtime.types.custom_orchestration
+    import capo_bedrock_agent_runtime.types.data_source_id
     import capo_bedrock_agent_runtime.types.date_timestamp
     import capo_bedrock_agent_runtime.types.delete_agent_memory_request
     import capo_bedrock_agent_runtime.types.delete_agent_memory_response
     import capo_bedrock_agent_runtime.types.delete_session_request
     import capo_bedrock_agent_runtime.types.delete_session_response
+    import capo_bedrock_agent_runtime.types.document_id
+    import capo_bedrock_agent_runtime.types.document_output_format
     import capo_bedrock_agent_runtime.types.end_session_request
     import capo_bedrock_agent_runtime.types.end_session_response
     import capo_bedrock_agent_runtime.types.flow_alias_identifier
@@ -102,10 +126,14 @@ if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.generate_query_response
     import capo_bedrock_agent_runtime.types.get_agent_memory_request
     import capo_bedrock_agent_runtime.types.get_agent_memory_response
+    import capo_bedrock_agent_runtime.types.get_document_content_request
+    import capo_bedrock_agent_runtime.types.get_document_content_response
     import capo_bedrock_agent_runtime.types.get_execution_flow_snapshot_request
     import capo_bedrock_agent_runtime.types.get_execution_flow_snapshot_response
     import capo_bedrock_agent_runtime.types.get_flow_execution_request
     import capo_bedrock_agent_runtime.types.get_flow_execution_response
+    import capo_bedrock_agent_runtime.types.get_ingested_document_acl_request
+    import capo_bedrock_agent_runtime.types.get_ingested_document_acl_response
     import capo_bedrock_agent_runtime.types.get_invocation_step_request
     import capo_bedrock_agent_runtime.types.get_invocation_step_response
     import capo_bedrock_agent_runtime.types.get_session_request
@@ -129,7 +157,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.invoke_inline_agent_request
     import capo_bedrock_agent_runtime.types.invoke_inline_agent_response
     import capo_bedrock_agent_runtime.types.kms_key_arn
-    import capo_bedrock_agent_runtime.types.knowledge_base_id
+    import capo_bedrock_agent_runtime.types.knowledge_base_identifier
     import capo_bedrock_agent_runtime.types.knowledge_base_query
     import capo_bedrock_agent_runtime.types.knowledge_base_retrieval_configuration
     import capo_bedrock_agent_runtime.types.knowledge_base_retrieval_result
@@ -198,6 +226,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.untag_resource_response
     import capo_bedrock_agent_runtime.types.update_session_request
     import capo_bedrock_agent_runtime.types.update_session_response
+    import capo_bedrock_agent_runtime.types.user_context
     import capo_bedrock_agent_runtime.types.uuid
 
 
@@ -267,9 +296,17 @@ class AsyncBedrockAgentRuntimeClient:
         )
 
         # resources
+        self.agentic_retrieve_stream_resource = AsyncAgenticRetrieveStreamResource(self)
+        self.check_ingested_document_acl_resource = (
+            AsyncCheckIngestedDocumentAclResource(self)
+        )
         self.flow_execution_resource = AsyncFlowExecutionResource(self)
         self.flow_resource = AsyncFlowResource(self)
         self.generate_query_resource = AsyncGenerateQueryResource(self)
+        self.get_document_content_resource = AsyncGetDocumentContentResource(self)
+        self.get_ingested_document_acl_resource = AsyncGetIngestedDocumentAclResource(
+            self
+        )
         self.inference_resource = AsyncInferenceResource(self)
         self.inline_agent_resource = AsyncInlineAgentResource(self)
         self.memory_resource = AsyncMemoryResource(self)
@@ -310,6 +347,152 @@ class AsyncBedrockAgentRuntimeClient:
             ),
         )
         return interceptors_, options_
+
+    @asynccontextmanager
+    async def agentic_retrieve_stream(
+        self,
+        messages: "capo_bedrock_agent_runtime.types.agentic_retrieve_messages.AgenticRetrieveMessages",
+        retrievers: "capo_bedrock_agent_runtime.types.agentic_retrievers.AgenticRetrievers",
+        agentic_retrieve_configuration: "capo_bedrock_agent_runtime.types.agentic_retrieve_configuration.AgenticRetrieveConfiguration",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentRuntimeClientConfig] = None,
+        policy_configuration: Optional[
+            "capo_bedrock_agent_runtime.types.agentic_retrieve_policy_configuration.AgenticRetrievePolicyConfiguration"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agent_runtime.types.next_token.NextToken"
+        ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
+        memory_configuration: Optional[
+            "capo_bedrock_agent_runtime.types.agentic_retrieve_memory_configuration.AgenticRetrieveMemoryConfiguration"
+        ] = None,
+        generate_response: Optional[bool] = None,
+    ) -> "AsyncGenerator[capo_bedrock_agent_runtime.types.agentic_retrieve_stream_response.AgenticRetrieveStreamResponse]":
+        """<p>Retrieves information from one or more knowledge bases using an agentic approach. Agentic retrieval uses a foundation model to intelligently decompose complex queries into sub-queries and iteratively retrieve relevant information from your knowledge bases. This approach improves retrieval accuracy for complex, multi-step questions that a single retrieval pass might not fully address.</p> <p>The operation returns results through a stream that includes retrieval results, trace events for visibility into the process, and a generated response synthesized from the results by default, which can be turned off.</p>
+
+        Args:
+            messages: <p>The list of messages for the agentic retrieval conversation.</p>
+            retrievers: <p>The list of retrievers to use for agentic retrieval.</p>
+            agentic_retrieve_configuration: <p>Configuration settings for the agentic retrieval operation.</p>
+            policy_configuration: <p>Policy configuration for guardrails and content filtering.</p>
+            next_token: <p>Opaque continuation token for paginated results.</p>
+            user_context: <p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>
+            memory_configuration: <p>The configuration for using an Amazon Bedrock AgentCore Memory resource with this retrieval.</p>
+            generate_response: <p>Whether to generate a response based on the retrieved results.</p>
+
+        Raises:
+            capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
+            capo_bedrock_agent_runtime.errors.bad_gateway_exception.BadGatewayException: <p>There was an issue with a dependency due to a server issue. Retry your request.</p>
+            capo_bedrock_agent_runtime.errors.conflict_exception.ConflictException: <p>There was a conflict performing an operation. Resolve the conflict and retry your request.</p>
+            capo_bedrock_agent_runtime.errors.dependency_failed_exception.DependencyFailedException: <p>There was an issue with a dependency. Check the resource configurations and retry the request.</p>
+            capo_bedrock_agent_runtime.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent_runtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent_runtime.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of requests exceeds the service quota. Resubmit your request later.</p>
+            capo_bedrock_agent_runtime.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent_runtime.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent_runtime.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent_runtime.types.agentic_retrieve_stream_request.AgenticRetrieveStreamRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent_runtime.types.agentic_retrieve_stream_response.AgenticRetrieveStreamResponse"
+        ]:
+            import capo_bedrock_agent_runtime._operations.amazon_bedrock_agent_run_time_service.agentic_retrieve_stream
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent_runtime._operations.amazon_bedrock_agent_run_time_service.agentic_retrieve_stream.async_agentic_retrieve_stream(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent_runtime.types.agentic_retrieve_stream_request.AgenticRetrieveStreamRequest = {
+            "messages": messages,
+            "retrievers": retrievers,
+            "agentic_retrieve_configuration": agentic_retrieve_configuration,
+        }
+        if policy_configuration is not None:
+            input_["policy_configuration"] = policy_configuration
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if user_context is not None:
+            input_["user_context"] = user_context
+        if memory_configuration is not None:
+            input_["memory_configuration"] = memory_configuration
+        if generate_response is not None:
+            input_["generate_response"] = generate_response
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
+
+    async def check_ingested_document_acl(
+        self,
+        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_identifier.KnowledgeBaseIdentifier",
+        data_source_id: "capo_bedrock_agent_runtime.types.data_source_id.DataSourceId",
+        document_id: "capo_bedrock_agent_runtime.types.document_id.DocumentId",
+        user_context: "capo_bedrock_agent_runtime.types.user_context.UserContext",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentRuntimeClientConfig] = None,
+    ) -> "capo_bedrock_agent_runtime.types.check_ingested_document_acl_response.CheckIngestedDocumentAclResponse":
+        """<p>Checks whether a user has access to a specific document by verifying against the ingested access control list (ACL) in a knowledge base. Use this operation to validate that document-level access control is working as expected after ingestion. To use this operation, you must have the <code>bedrock:CheckIngestedDocumentAcl</code> permission.</p>
+
+        Args:
+            knowledge_base_id: <p>The unique identifier of the knowledge base that contains the document.</p>
+            data_source_id: <p>The unique identifier of the data source that contains the document.</p>
+            document_id: <p>The unique identifier of the document to check access for.</p>
+            user_context: <p>The context object containing identity information for access control filtering, including user ID and optional group memberships used to evaluate the document access control list (ACL).</p>
+
+        Raises:
+            capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
+            capo_bedrock_agent_runtime.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent_runtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent_runtime.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent_runtime.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent_runtime.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent_runtime.types.check_ingested_document_acl_request.CheckIngestedDocumentAclRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent_runtime.types.check_ingested_document_acl_response.CheckIngestedDocumentAclResponse"
+        ]:
+            import capo_bedrock_agent_runtime._operations.amazon_bedrock_agent_run_time_service.check_ingested_document_acl
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent_runtime._operations.amazon_bedrock_agent_run_time_service.check_ingested_document_acl.async_check_ingested_document_acl(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent_runtime.types.check_ingested_document_acl_request.CheckIngestedDocumentAclRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "data_source_id": data_source_id,
+            "document_id": document_id,
+            "user_context": user_context,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     async def get_execution_flow_snapshot(
         self,
@@ -879,6 +1062,126 @@ class AsyncBedrockAgentRuntimeClient:
         await response.response.aclose()
         return response.output
 
+    async def get_document_content(
+        self,
+        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_identifier.KnowledgeBaseIdentifier",
+        data_source_id: "capo_bedrock_agent_runtime.types.data_source_id.DataSourceId",
+        document_id: "capo_bedrock_agent_runtime.types.document_id.DocumentId",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentRuntimeClientConfig] = None,
+        output_format: Optional[
+            "capo_bedrock_agent_runtime.types.document_output_format.DocumentOutputFormat"
+        ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
+    ) -> "capo_bedrock_agent_runtime.types.get_document_content_response.GetDocumentContentResponse":
+        """<p>Retrieves the content of an ingested document from a knowledge base. Returns a pre-signed URL for secure document access.</p>
+
+        Args:
+            knowledge_base_id: <p>The unique identifier of the knowledge base that contains the document.</p>
+            data_source_id: <p>The unique identifier of the data source that contains the document.</p>
+            document_id: <p>The unique identifier of the document to retrieve content for.</p>
+            output_format: <p>The output format for the document content. <code>RAW</code> returns the original file. <code>EXTRACTED</code> returns parsed text as JSON. Defaults to <code>RAW</code>.</p>
+            user_context: <p>Contains information about the user making the request. This is used for access control filtering to ensure that results only include documents the user is authorized to access.</p>
+
+        Raises:
+            capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
+            capo_bedrock_agent_runtime.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent_runtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent_runtime.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent_runtime.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent_runtime.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent_runtime.types.get_document_content_request.GetDocumentContentRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent_runtime.types.get_document_content_response.GetDocumentContentResponse"
+        ]:
+            import capo_bedrock_agent_runtime._operations.amazon_bedrock_agent_run_time_service.get_document_content
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent_runtime._operations.amazon_bedrock_agent_run_time_service.get_document_content.async_get_document_content(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent_runtime.types.get_document_content_request.GetDocumentContentRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "data_source_id": data_source_id,
+            "document_id": document_id,
+        }
+        if output_format is not None:
+            input_["output_format"] = output_format
+        if user_context is not None:
+            input_["user_context"] = user_context
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_ingested_document_acl(
+        self,
+        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_identifier.KnowledgeBaseIdentifier",
+        data_source_id: "capo_bedrock_agent_runtime.types.data_source_id.DataSourceId",
+        document_id: "capo_bedrock_agent_runtime.types.document_id.DocumentId",
+        *,
+        config_overrides: Optional[AsyncBedrockAgentRuntimeClientConfig] = None,
+    ) -> "capo_bedrock_agent_runtime.types.get_ingested_document_acl_response.GetIngestedDocumentAclResponse":
+        """<p>Retrieves the ingested access control list (ACL) for a specific document in a knowledge base. Use this operation to inspect the allow and deny lists that were ingested for a document to troubleshoot access control issues. To use this operation, you must have the <code>bedrock:GetIngestedDocumentAcl</code> permission.</p>
+
+        Args:
+            knowledge_base_id: <p>The unique identifier of the knowledge base that contains the document.</p>
+            data_source_id: <p>The unique identifier of the data source that contains the document.</p>
+            document_id: <p>The unique identifier of the document to retrieve the ingested access control list (ACL) for.</p>
+
+        Raises:
+            capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
+            capo_bedrock_agent_runtime.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_bedrock_agent_runtime.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>
+            capo_bedrock_agent_runtime.errors.throttling_exception.ThrottlingException: <p>The number of requests exceeds the limit. Resubmit your request later.</p>
+            capo_bedrock_agent_runtime.errors.validation_exception.ValidationException: <p>Input validation failed. Check your request parameters and retry the request.</p>
+            capo_bedrock_agent_runtime.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_bedrock_agent_runtime.types.get_ingested_document_acl_request.GetIngestedDocumentAclRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_bedrock_agent_runtime.types.get_ingested_document_acl_response.GetIngestedDocumentAclResponse"
+        ]:
+            import capo_bedrock_agent_runtime._operations.amazon_bedrock_agent_run_time_service.get_ingested_document_acl
+
+            (
+                output,
+                http_response,
+            ) = await capo_bedrock_agent_runtime._operations.amazon_bedrock_agent_run_time_service.get_ingested_document_acl.async_get_ingested_document_acl(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agent_runtime.types.get_ingested_document_acl_request.GetIngestedDocumentAclRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "data_source_id": data_source_id,
+            "document_id": document_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     @asynccontextmanager
     async def invoke_agent(
         self,
@@ -911,7 +1214,7 @@ class AsyncBedrockAgentRuntimeClient:
             "capo_bedrock_agent_runtime.types.aws_resource_arn.AWSResourceARN"
         ] = None,
     ) -> "AsyncGenerator[capo_bedrock_agent_runtime.types.invoke_agent_response.InvokeAgentResponse]":
-        r"""<note> </note> <p>Sends a prompt for the agent to process and respond to. Note the following fields for the request:</p> <ul> <li> <p>To continue the same conversation with an agent, use the same <code>sessionId</code> value in the request.</p> </li> <li> <p>To activate trace enablement, turn <code>enableTrace</code> to <code>true</code>. Trace enablement helps you follow the agent's reasoning process that led it to the information it processed, the actions it took, and the final result it yielded. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p> </li> <li> <p>End a conversation by setting <code>endSession</code> to <code>true</code>.</p> </li> <li> <p>In the <code>sessionState</code> object, you can include attributes for the session or prompt or, if you configured an action group to return control, results from invocation of the action group.</p> </li> </ul> <p>The response contains both <b>chunk</b> and <b>trace</b> attributes.</p> <p>The final response is returned in the <code>bytes</code> field of the <code>chunk</code> object. The <code>InvokeAgent</code> returns one chunk for the entire interaction.</p> <ul> <li> <p>The <code>attribution</code> object contains citations for parts of the response.</p> </li> <li> <p>If you set <code>enableTrace</code> to <code>true</code> in the request, you can trace the agent's steps and reasoning process that led it to the response.</p> </li> <li> <p>If the action predicted was configured to return control, the response returns parameters for the action, elicited from the user, in the <code>returnControl</code> field.</p> </li> <li> <p>Errors are also surfaced in the response.</p> </li> </ul>
+        r"""<note> <p>Amazon Bedrock Agents (now Amazon Bedrock Agents Classic) is no longer open to new customers. For capabilities similar to Bedrock Agents Classic, explore Amazon Bedrock AgentCore. Existing customers can continue to use the service as normal. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-classic-maintenance-mode.html\">Amazon Bedrock Agents Classic availability change</a>.</p> </note> <note> </note> <p>Sends a prompt for the agent to process and respond to. Note the following fields for the request:</p> <ul> <li> <p>To continue the same conversation with an agent, use the same <code>sessionId</code> value in the request.</p> </li> <li> <p>To activate trace enablement, turn <code>enableTrace</code> to <code>true</code>. Trace enablement helps you follow the agent's reasoning process that led it to the information it processed, the actions it took, and the final result it yielded. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p> </li> <li> <p>End a conversation by setting <code>endSession</code> to <code>true</code>.</p> </li> <li> <p>In the <code>sessionState</code> object, you can include attributes for the session or prompt or, if you configured an action group to return control, results from invocation of the action group.</p> </li> </ul> <p>The response contains both <b>chunk</b> and <b>trace</b> attributes.</p> <p>The final response is returned in the <code>bytes</code> field of the <code>chunk</code> object. The <code>InvokeAgent</code> returns one chunk for the entire interaction.</p> <ul> <li> <p>The <code>attribution</code> object contains citations for parts of the response.</p> </li> <li> <p>If you set <code>enableTrace</code> to <code>true</code> in the request, you can trace the agent's steps and reasoning process that led it to the response.</p> </li> <li> <p>If the action predicted was configured to return control, the response returns parameters for the action, elicited from the user, in the <code>returnControl</code> field.</p> </li> <li> <p>Errors are also surfaced in the response.</p> </li> </ul>
 
         Args:
             session_state: <p>Contains parameters that specify various attributes of the session. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html\">Control session context</a>.</p> <note> <p>If you include <code>returnControlInvocationResults</code> in the <code>sessionState</code> field, the <code>inputText</code> field will be ignored.</p> </note>
@@ -1493,14 +1796,18 @@ class AsyncBedrockAgentRuntimeClient:
         session_configuration: Optional[
             "capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configuration.RetrieveAndGenerateSessionConfiguration"
         ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
     ) -> "capo_bedrock_agent_runtime.types.retrieve_and_generate_response.RetrieveAndGenerateResponse":
-        r"""<p>Queries a knowledge base and generates responses based on the retrieved results and using the specified foundation model or <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html\">inference profile</a>. The response only cites sources that are relevant to the query.</p>
+        r"""<p>Queries a knowledge base and generates responses based on the retrieved results and using the specified foundation model or <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html\">inference profile</a>. The response only cites sources that are relevant to the query.</p> <note> <p>This API cannot be used with managed knowledge bases. Use <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_AgenticRetrieveStream.html\">AgenticRetrieveStream</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html\">Retrieve</a> with managed knowledge bases.</p> </note>
 
         Args:
             session_id: <p>The unique identifier of the session. When you first make a <code>RetrieveAndGenerate</code> request, Amazon Bedrock automatically generates this value. You must reuse this value for all subsequent requests in the same conversational session. This value allows Amazon Bedrock to maintain context and knowledge from previous interactions. You can't explicitly set the <code>sessionId</code> yourself.</p>
             input: <p>Contains the query to be made to the knowledge base.</p>
             retrieve_and_generate_configuration: <p>Contains configurations for the knowledge base query and retrieval process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p>
             session_configuration: <p>Contains details about the session with the knowledge base.</p>
+            user_context: <p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>
 
         Raises:
             capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
@@ -1542,6 +1849,8 @@ class AsyncBedrockAgentRuntimeClient:
             )
         if session_configuration is not None:
             input_["session_configuration"] = session_configuration
+        if user_context is not None:
+            input_["user_context"] = user_context
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1566,14 +1875,18 @@ class AsyncBedrockAgentRuntimeClient:
         session_configuration: Optional[
             "capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configuration.RetrieveAndGenerateSessionConfiguration"
         ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
     ) -> "AsyncGenerator[capo_bedrock_agent_runtime.types.retrieve_and_generate_stream_response.RetrieveAndGenerateStreamResponse]":
-        r"""<p>Queries a knowledge base and generates responses based on the retrieved results, with output in streaming format.</p> <note> <p>The CLI doesn't support streaming operations in Amazon Bedrock, including <code>InvokeModelWithResponseStream</code>.</p> </note> <p>This operation requires permission for the <code> bedrock:RetrieveAndGenerate</code> action.</p>
+        r"""<p>Queries a knowledge base and generates responses based on the retrieved results, with output in streaming format.</p> <note> <p>This API cannot be used with managed knowledge bases. Use <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_AgenticRetrieveStream.html\">AgenticRetrieveStream</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html\">Retrieve</a> with managed knowledge bases.</p> </note> <note> <p>The CLI doesn't support streaming operations in Amazon Bedrock, including <code>InvokeModelWithResponseStream</code>.</p> </note> <p>This operation requires permission for the <code> bedrock:RetrieveAndGenerate</code> action.</p>
 
         Args:
             session_id: <p>The unique identifier of the session. When you first make a <code>RetrieveAndGenerate</code> request, Amazon Bedrock automatically generates this value. You must reuse this value for all subsequent requests in the same conversational session. This value allows Amazon Bedrock to maintain context and knowledge from previous interactions. You can't explicitly set the <code>sessionId</code> yourself.</p>
             input: <p>Contains the query to be made to the knowledge base.</p>
             retrieve_and_generate_configuration: <p>Contains configurations for the knowledge base query and retrieval process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p>
             session_configuration: <p>Contains details about the session with the knowledge base.</p>
+            user_context: <p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>
 
         Raises:
             capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
@@ -1615,6 +1928,8 @@ class AsyncBedrockAgentRuntimeClient:
             )
         if session_configuration is not None:
             input_["session_configuration"] = session_configuration
+        if user_context is not None:
+            input_["user_context"] = user_context
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1628,7 +1943,7 @@ class AsyncBedrockAgentRuntimeClient:
 
     async def retrieve(
         self,
-        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_id.KnowledgeBaseId",
+        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_identifier.KnowledgeBaseIdentifier",
         retrieval_query: "capo_bedrock_agent_runtime.types.knowledge_base_query.KnowledgeBaseQuery",
         *,
         config_overrides: Optional[AsyncBedrockAgentRuntimeClientConfig] = None,
@@ -1641,6 +1956,9 @@ class AsyncBedrockAgentRuntimeClient:
         next_token: Optional[
             "capo_bedrock_agent_runtime.types.next_token.NextToken"
         ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
     ) -> "capo_bedrock_agent_runtime.types.retrieve_response.RetrieveResponse":
         r"""<p>Queries a knowledge base and retrieves information from it.</p>
 
@@ -1650,6 +1968,7 @@ class AsyncBedrockAgentRuntimeClient:
             retrieval_configuration: <p>Contains configurations for the knowledge base query and retrieval process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p>
             guardrail_configuration: <p>Guardrail settings.</p>
             next_token: <p>If there are more results than can fit in the response, the response returns a <code>nextToken</code>. Use this token in the <code>nextToken</code> field of another request to retrieve the next batch of results.</p>
+            user_context: <p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>
 
         Raises:
             capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
@@ -1690,6 +2009,8 @@ class AsyncBedrockAgentRuntimeClient:
             input_["guardrail_configuration"] = guardrail_configuration
         if next_token is not None:
             input_["next_token"] = next_token
+        if user_context is not None:
+            input_["user_context"] = user_context
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1701,7 +2022,7 @@ class AsyncBedrockAgentRuntimeClient:
 
     async def iter_retrieve(
         self,
-        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_id.KnowledgeBaseId",
+        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_identifier.KnowledgeBaseIdentifier",
         retrieval_query: "capo_bedrock_agent_runtime.types.knowledge_base_query.KnowledgeBaseQuery",
         *,
         config_overrides: Optional[AsyncBedrockAgentRuntimeClientConfig] = None,
@@ -1714,6 +2035,9 @@ class AsyncBedrockAgentRuntimeClient:
         next_token: Optional[
             "capo_bedrock_agent_runtime.types.next_token.NextToken"
         ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
     ) -> "AsyncIterator[capo_bedrock_agent_runtime.types.knowledge_base_retrieval_result.KnowledgeBaseRetrievalResult]":
         _token = next_token
         while True:
@@ -1724,6 +2048,7 @@ class AsyncBedrockAgentRuntimeClient:
                 retrieval_configuration=retrieval_configuration,
                 guardrail_configuration=guardrail_configuration,
                 next_token=_token,
+                user_context=user_context,
             )
             _page = _resolve_path(_response, ("retrieval_results",))
             for _item in _page or []:

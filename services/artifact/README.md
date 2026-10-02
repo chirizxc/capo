@@ -14,9 +14,9 @@ from capo_artifact import AsyncArtifactClient
 
 async def main():
     async with AsyncArtifactClient() as artifact:
-        # Example: call the get_account_settings operation
-        response = await artifact.get_account_settings()
-        print(response["account_settings"])
+        # Example: call the list_tags_for_resource operation
+        response = await artifact.list_tags_for_resource()
+        print(response["tags"])
 ```
 
 ## Pagination
@@ -29,8 +29,8 @@ from capo_artifact import AsyncArtifactClient
 
 async def main():
     async with AsyncArtifactClient() as artifact:
-        # Example: paginate over list_customer_agreements
-        async for item in artifact.iter_list_customer_agreements():
+        # Example: paginate over list_compliance_inquiries
+        async for item in artifact.iter_list_compliance_inquiries():
             print(item)
 ```
 
@@ -46,7 +46,7 @@ from capo_artifact.error import AccessDeniedException
 async def main():
     async with AsyncArtifactClient() as artifact:
         try:
-            await artifact.get_account_settings()
+            await artifact.list_tags_for_resource()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -65,11 +65,11 @@ from capo_artifact import AsyncArtifactClient
 async def main():
     async with AsyncArtifactClient() as artifact:
         # Default: 3 attempts for every operation
-        response = await artifact.get_account_settings()
+        response = await artifact.list_tags_for_resource()
 
         # Override per operation
-        response = await artifact.get_account_settings(config_overrides={"retry_max_attempts": 5})
+        response = await artifact.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await artifact.get_account_settings(config_overrides={"retry_max_attempts": 1})
+        response = await artifact.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

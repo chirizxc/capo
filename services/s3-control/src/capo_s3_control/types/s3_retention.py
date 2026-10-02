@@ -7,6 +7,8 @@ from typing_extensions import NotRequired, TypedDict
 from capo_s3_control._protocol.xml import Element, SubElement
 
 if TYPE_CHECKING:
+    import capo_s3_control.types.s3_object_lock_retention_event_hold
+    import capo_s3_control.types.s3_object_lock_retention_event_hold_duration
     import capo_s3_control.types.s3_object_lock_retention_mode
     import capo_s3_control.types.time_stamp
 
@@ -18,6 +20,14 @@ class S3Retention(TypedDict, closed=True):
         "capo_s3_control.types.s3_object_lock_retention_mode.S3ObjectLockRetentionMode"
     ]
     """<p>The Object Lock retention mode to be applied to all objects in the Batch Operations job.</p>"""
+    event_hold: NotRequired[
+        "capo_s3_control.types.s3_object_lock_retention_event_hold.S3ObjectLockRetentionEventHold"
+    ]
+    """<p>The event hold status to be applied to all objects in the Batch Operations job. Set to <code>ON</code> to enable an event hold or <code>OFF</code> to disable it.</p>"""
+    event_hold_duration: NotRequired[
+        "capo_s3_control.types.s3_object_lock_retention_event_hold_duration.S3ObjectLockRetentionEventHoldDuration"
+    ]
+    """<p>The event hold duration to be applied to all objects in the Batch Operations job. The duration specifies how long the object remains protected after the event hold is released.</p>"""
 
 
 # --- restXml ser/de ---
@@ -34,6 +44,18 @@ def serialize_xml(value: S3Retention, parent: Element, tag: str) -> None:
 
         capo_s3_control.types.s3_object_lock_retention_mode.serialize_xml(
             value["mode"], el, "Mode"
+        )
+    if "event_hold" in value:
+        import capo_s3_control.types.s3_object_lock_retention_event_hold
+
+        capo_s3_control.types.s3_object_lock_retention_event_hold.serialize_xml(
+            value["event_hold"], el, "EventHold"
+        )
+    if "event_hold_duration" in value:
+        import capo_s3_control.types.s3_object_lock_retention_event_hold_duration
+
+        capo_s3_control.types.s3_object_lock_retention_event_hold_duration.serialize_xml(
+            value["event_hold_duration"], el, "EventHoldDuration"
         )
 
 
@@ -53,6 +75,24 @@ def deserialize_xml(el: Element) -> S3Retention:
         out["mode"] = (
             capo_s3_control.types.s3_object_lock_retention_mode.deserialize_xml(
                 child_mode
+            )
+        )
+    child_event_hold = el.find("EventHold")
+    if child_event_hold is not None:
+        import capo_s3_control.types.s3_object_lock_retention_event_hold
+
+        out["event_hold"] = (
+            capo_s3_control.types.s3_object_lock_retention_event_hold.deserialize_xml(
+                child_event_hold
+            )
+        )
+    child_event_hold_duration = el.find("EventHoldDuration")
+    if child_event_hold_duration is not None:
+        import capo_s3_control.types.s3_object_lock_retention_event_hold_duration
+
+        out["event_hold_duration"] = (
+            capo_s3_control.types.s3_object_lock_retention_event_hold_duration.deserialize_xml(
+                child_event_hold_duration
             )
         )
     return out

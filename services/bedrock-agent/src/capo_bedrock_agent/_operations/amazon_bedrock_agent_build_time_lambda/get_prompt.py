@@ -20,12 +20,14 @@ import capo_bedrock_agent.errors.validation_exception
 import capo_bedrock_agent.types.date_timestamp
 import capo_bedrock_agent.types.get_prompt_request
 import capo_bedrock_agent.types.get_prompt_response
+import capo_bedrock_agent.types.included_data
 import capo_bedrock_agent.types.prompt_variant_list
 from capo_bedrock_agent._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agent._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_bedrock_agent._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agent.errors import UnknownServiceError
 
@@ -120,11 +122,22 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_bedrock_agent.types.included_data
+
     url = endpoint.url.rstrip("/") + "/prompts/{promptIdentifier}/"
     url = url.replace("{promptIdentifier}", quote(input_["prompt_identifier"], safe=""))
     params: list[tuple[str, str]] = []
     if "prompt_version" in input_:
         params.append(("promptVersion", input_["prompt_version"]))
+    if "included_data" in input_:
+        params.append(
+            (
+                "includedData",
+                capo_bedrock_agent.types.included_data.serialize_json(
+                    input_["included_data"]
+                ),
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
@@ -146,7 +159,7 @@ def get_prompt(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -163,7 +176,7 @@ async def async_get_prompt(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

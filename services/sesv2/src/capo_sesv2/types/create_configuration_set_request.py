@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_sesv2.types.archiving_options
     import capo_sesv2.types.configuration_set_name
     import capo_sesv2.types.delivery_options
+    import capo_sesv2.types.message_security_options
     import capo_sesv2.types.reputation_options
     import capo_sesv2.types.sending_options
     import capo_sesv2.types.suppression_options
@@ -45,6 +46,10 @@ class CreateConfigurationSetRequest(TypedDict, closed=True):
         "capo_sesv2.types.archiving_options.ArchivingOptions"
     ]
     """<p>An object that defines the MailManager archiving options for emails that you send using the configuration set.</p>"""
+    message_security_options: NotRequired[
+        "capo_sesv2.types.message_security_options.MessageSecurityOptions"
+    ]
+    """<p>The message security options to apply to the configuration set, such as the signing scheme used for messages that you send with the configuration set.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -96,6 +101,14 @@ def serialize_json(value: CreateConfigurationSetRequest) -> dict:
 
         out["ArchivingOptions"] = capo_sesv2.types.archiving_options.serialize_json(
             value["archiving_options"]
+        )
+    if "message_security_options" in value:
+        import capo_sesv2.types.message_security_options
+
+        out["MessageSecurityOptions"] = (
+            capo_sesv2.types.message_security_options.serialize_json(
+                value["message_security_options"]
+            )
         )
     return out
 
@@ -157,5 +170,13 @@ def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
 
         out["archiving_options"] = capo_sesv2.types.archiving_options.deserialize_json(
             data["ArchivingOptions"]
+        )
+    if data.get("MessageSecurityOptions") is not None:
+        import capo_sesv2.types.message_security_options
+
+        out["message_security_options"] = (
+            capo_sesv2.types.message_security_options.deserialize_json(
+                data["MessageSecurityOptions"]
+            )
         )
     return out

@@ -11,9 +11,9 @@ if TYPE_CHECKING:
 
 class Sort(TypedDict, closed=True):
     sort_by: NotRequired["capo_marketplace_agreement.types.sort_by.SortBy"]
-    """<p>The attribute on which the data is grouped, which can be by <code>StartTime</code> and <code>EndTime</code>. The default value is <code>EndTime</code>.</p>"""
+    """<p>The attribute on which the data is grouped, which can be <code>EndTime</code>, <code>StartTime</code>, or <code>LastUpdateTime</code>. <code>StartTime</code> and <code>LastUpdateTime</code> are supported only when <code>PartyType</code> is <code>Proposer</code>. The default value is <code>EndTime</code>.</p>"""
     sort_order: NotRequired["capo_marketplace_agreement.types.sort_order.SortOrder"]
-    """<p>The sorting order, which can be <code>ASCENDING</code> or <code>DESCENDING</code>. The default value is <code>DESCENDING</code>.</p>"""
+    """<p>The sorting order, which can be <code>ASCENDING</code> or <code>DESCENDING</code>. The default value is <code>ASCENDING</code>.</p>"""
 
 
 # --- awsJson1_0 ser/de ---

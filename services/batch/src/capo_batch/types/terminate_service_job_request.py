@@ -12,7 +12,7 @@ class TerminateServiceJobRequest(TypedDict, closed=True):
     job_id: NotRequired["capo_batch.types.string.String"]
     """<p>The service job ID of the service job to terminate.</p>"""
     reason: NotRequired["capo_batch.types.string.String"]
-    """<p>A message to attach to the service job that explains the reason for canceling it. This message is returned by <code>DescribeServiceJob</code> operations on the service job.</p>"""
+    """<p>A message to attach to the service job that explains the reason for terminating it. This message is returned by <code>DescribeServiceJob</code> operations on the service job.</p>"""
 
 
 # --- restJson1 ser/de ---

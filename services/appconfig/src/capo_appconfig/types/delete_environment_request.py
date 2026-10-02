@@ -6,13 +6,13 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_appconfig.types.deletion_protection_check
-    import capo_appconfig.types.id
+    import capo_appconfig.types.name
 
 
 class DeleteEnvironmentRequest(TypedDict, closed=True):
-    environment_id: "capo_appconfig.types.id.Id"
+    environment_id: "capo_appconfig.types.name.Name"
     """<p>The ID of the environment that you want to delete.</p>"""
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID that includes the environment that you want to delete.</p>"""
     deletion_protection_check: NotRequired[
         "capo_appconfig.types.deletion_protection_check.DeletionProtectionCheck"

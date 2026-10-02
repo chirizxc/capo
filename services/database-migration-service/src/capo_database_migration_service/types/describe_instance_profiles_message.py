@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class DescribeInstanceProfilesMessage(TypedDict, closed=True):
     filters: NotRequired["capo_database_migration_service.types.filter_list.FilterList"]
-    """<p>Filters applied to the instance profiles described in the form of key-value pairs.</p> <p>Valid filter names and values: instance-profile-identifier, instance profile arn or name</p>"""
+    """<p>The filters to apply to the instance profiles.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>instance-profile-identifier</code> – The instance profile name or ARN.</p> </li> </ul>"""
     max_records: NotRequired[
         "capo_database_migration_service.types.integer_optional.IntegerOptional"
     ]

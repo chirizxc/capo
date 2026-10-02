@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_mgn.types.iops
     import capo_mgn.types.throughput
+    import capo_mgn.types.volume_initialization_rate
     import capo_mgn.types.volume_type
 
 
@@ -17,6 +18,12 @@ class LaunchTemplateDiskConf(TypedDict, closed=True):
     """<p>Launch template disk iops configuration.</p>"""
     throughput: NotRequired["capo_mgn.types.throughput.Throughput"]
     """<p>Launch template disk throughput configuration.</p>"""
+    volume_initialization_rate: NotRequired[
+        "capo_mgn.types.volume_initialization_rate.VolumeInitializationRate"
+    ]
+    """<p>Launch template disk volume initialization rate configuration.</p>"""
+    delete_on_termination: NotRequired["bool"]
+    """<p>Launch template disk delete on termination configuration.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -28,6 +35,10 @@ def serialize_json(value: LaunchTemplateDiskConf) -> dict:
         out["iops"] = value["iops"]
     if "throughput" in value:
         out["throughput"] = value["throughput"]
+    if "volume_initialization_rate" in value:
+        out["volumeInitializationRate"] = value["volume_initialization_rate"]
+    if "delete_on_termination" in value:
+        out["deleteOnTermination"] = value["delete_on_termination"]
     return out
 
 
@@ -39,4 +50,8 @@ def deserialize_json(data: dict) -> LaunchTemplateDiskConf:
         out["iops"] = data["iops"]
     if data.get("throughput") is not None:
         out["throughput"] = data["throughput"]
+    if data.get("volumeInitializationRate") is not None:
+        out["volume_initialization_rate"] = data["volumeInitializationRate"]
+    if data.get("deleteOnTermination") is not None:
+        out["delete_on_termination"] = data["deleteOnTermination"]
     return out

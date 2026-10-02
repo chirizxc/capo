@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class LogDeliveryParameters(TypedDict, closed=True):
     log_types: NotRequired["capo_observabilityadmin.types.log_types.LogTypes"]
-    """<p>The type of log that the source is sending.</p>"""
+    """<p>The types of logs to collect from the resource.</p>"""
 
 
 # --- restJson1 ser/de ---

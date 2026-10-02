@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     import capo_vpc_lattice.types.next_token
     import capo_vpc_lattice.types.security_group_list
     import capo_vpc_lattice.types.service_network_identifier
+    import capo_vpc_lattice.types.service_network_identifier_without_regex
     import capo_vpc_lattice.types.service_network_vpc_association_identifier
     import capo_vpc_lattice.types.service_network_vpc_association_summary
     import capo_vpc_lattice.types.tag_map
@@ -52,7 +53,7 @@ class ServiceNetworkVpcAssociation:
 
     def create(
         self,
-        service_network_identifier: "capo_vpc_lattice.types.service_network_identifier.ServiceNetworkIdentifier",
+        service_network_identifier: "capo_vpc_lattice.types.service_network_identifier_without_regex.ServiceNetworkIdentifierWithoutRegex",
         vpc_identifier: "capo_vpc_lattice.types.vpc_id.VpcId",
         *,
         config_overrides: Optional[VPCLatticeClientConfig] = None,
@@ -177,15 +178,21 @@ class ServiceNetworkVpcAssociation:
     def update(
         self,
         service_network_vpc_association_identifier: "capo_vpc_lattice.types.service_network_vpc_association_identifier.ServiceNetworkVpcAssociationIdentifier",
-        security_group_ids: "capo_vpc_lattice.types.security_group_list.SecurityGroupList",
         *,
         config_overrides: Optional[VPCLatticeClientConfig] = None,
+        security_group_ids: Optional[
+            "capo_vpc_lattice.types.security_group_list.SecurityGroupList"
+        ] = None,
+        private_dns_enabled: Optional["capo_vpc_lattice.types.boolean.Boolean"] = None,
+        dns_options: Optional["capo_vpc_lattice.types.dns_options.DnsOptions"] = None,
     ) -> "capo_vpc_lattice.types.update_service_network_vpc_association_response.UpdateServiceNetworkVpcAssociationResponse":
         """<p>Updates the service network and VPC association. If you add a security group to the service network and VPC association, the association must continue to have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and then recreate it without security groups.</p>
 
         Args:
             service_network_vpc_association_identifier: <p>The ID or ARN of the association.</p>
             security_group_ids: <p>The IDs of the security groups.</p>
+            private_dns_enabled: <p> Indicates if private DNS is enabled for the VPC association. </p>
+            dns_options: <p> DNS options for the service network VPC association. </p>
 
         Raises:
             capo_vpc_lattice.errors.access_denied_exception.AccessDeniedException: <p>The user does not have sufficient access to perform this action.</p>
@@ -213,9 +220,14 @@ class ServiceNetworkVpcAssociation:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_vpc_lattice.types.update_service_network_vpc_association_request.UpdateServiceNetworkVpcAssociationRequest = {
-            "service_network_vpc_association_identifier": service_network_vpc_association_identifier,
-            "security_group_ids": security_group_ids,
+            "service_network_vpc_association_identifier": service_network_vpc_association_identifier
         }
+        if security_group_ids is not None:
+            input_["security_group_ids"] = security_group_ids
+        if private_dns_enabled is not None:
+            input_["private_dns_enabled"] = private_dns_enabled
+        if dns_options is not None:
+            input_["dns_options"] = dns_options
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -340,7 +352,7 @@ class AsyncServiceNetworkVpcAssociation:
 
     async def create(
         self,
-        service_network_identifier: "capo_vpc_lattice.types.service_network_identifier.ServiceNetworkIdentifier",
+        service_network_identifier: "capo_vpc_lattice.types.service_network_identifier_without_regex.ServiceNetworkIdentifierWithoutRegex",
         vpc_identifier: "capo_vpc_lattice.types.vpc_id.VpcId",
         *,
         config_overrides: Optional[AsyncVPCLatticeClientConfig] = None,
@@ -467,15 +479,21 @@ class AsyncServiceNetworkVpcAssociation:
     async def update(
         self,
         service_network_vpc_association_identifier: "capo_vpc_lattice.types.service_network_vpc_association_identifier.ServiceNetworkVpcAssociationIdentifier",
-        security_group_ids: "capo_vpc_lattice.types.security_group_list.SecurityGroupList",
         *,
         config_overrides: Optional[AsyncVPCLatticeClientConfig] = None,
+        security_group_ids: Optional[
+            "capo_vpc_lattice.types.security_group_list.SecurityGroupList"
+        ] = None,
+        private_dns_enabled: Optional["capo_vpc_lattice.types.boolean.Boolean"] = None,
+        dns_options: Optional["capo_vpc_lattice.types.dns_options.DnsOptions"] = None,
     ) -> "capo_vpc_lattice.types.update_service_network_vpc_association_response.UpdateServiceNetworkVpcAssociationResponse":
         """<p>Updates the service network and VPC association. If you add a security group to the service network and VPC association, the association must continue to have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and then recreate it without security groups.</p>
 
         Args:
             service_network_vpc_association_identifier: <p>The ID or ARN of the association.</p>
             security_group_ids: <p>The IDs of the security groups.</p>
+            private_dns_enabled: <p> Indicates if private DNS is enabled for the VPC association. </p>
+            dns_options: <p> DNS options for the service network VPC association. </p>
 
         Raises:
             capo_vpc_lattice.errors.access_denied_exception.AccessDeniedException: <p>The user does not have sufficient access to perform this action.</p>
@@ -504,9 +522,14 @@ class AsyncServiceNetworkVpcAssociation:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_vpc_lattice.types.update_service_network_vpc_association_request.UpdateServiceNetworkVpcAssociationRequest = {
-            "service_network_vpc_association_identifier": service_network_vpc_association_identifier,
-            "security_group_ids": security_group_ids,
+            "service_network_vpc_association_identifier": service_network_vpc_association_identifier
         }
+        if security_group_ids is not None:
+            input_["security_group_ids"] = security_group_ids
+        if private_dns_enabled is not None:
+            input_["private_dns_enabled"] = private_dns_enabled
+        if dns_options is not None:
+            input_["dns_options"] = dns_options
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

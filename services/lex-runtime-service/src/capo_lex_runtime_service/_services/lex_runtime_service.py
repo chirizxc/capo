@@ -18,6 +18,7 @@ from capo_lex_runtime_service._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_lex_runtime_service._auth._zapros_handler import AuthMiddleware
+from capo_lex_runtime_service._body import Body
 from capo_lex_runtime_service._iter import ensure_sync_iterator
 from capo_lex_runtime_service._services._aws_config import aws_config
 from capo_lex_runtime_service._services._pipeline import (
@@ -267,7 +268,7 @@ class LexRuntimeServiceClient:
         bot_alias: "capo_lex_runtime_service.types.bot_alias.BotAlias",
         user_id: "capo_lex_runtime_service.types.user_id.UserId",
         content_type: "capo_lex_runtime_service.types.http_content_type.HttpContentType",
-        input_stream: Iterator[bytes] | bytes,
+        input_stream: Body[Iterator[bytes]] | Iterator[bytes] | bytes,
         *,
         config_overrides: Optional[LexRuntimeServiceClientConfig] = None,
         session_attributes: Optional[

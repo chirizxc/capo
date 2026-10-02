@@ -10,6 +10,7 @@ ResourceType: TypeAlias = Literal[
     "APP_RUNNER_SERVICE",
     "VERIFIED_ACCESS_INSTANCE",
     "AMPLIFY",
+    "AGENTCORE_GATEWAY",
 ]
 
 

@@ -118,7 +118,7 @@ class FunctionConfiguration(TypedDict, closed=True):
     file_system_configs: NotRequired[
         "capo_lambda.types.file_system_config_list.FileSystemConfigList"
     ]
-    r"""<p>Connection settings for an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html\">Amazon EFS file system</a> or an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html\">Amazon S3 Files file system</a>.</p>"""
+    r"""<p>Connection settings for an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html\">Amazon EFS file system</a> or an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html\">Amazon S3 file system</a>.</p>"""
     signing_profile_version_arn: NotRequired["capo_lambda.types.arn.Arn"]
     """<p>The ARN of the signing profile version.</p>"""
     signing_job_arn: NotRequired["capo_lambda.types.arn.Arn"]

@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_device_farm.types.customer_artifact_paths
     import capo_device_farm.types.device_proxy
     import capo_device_farm.types.environment_variables
+    import capo_device_farm.types.insights_types
     import capo_device_farm.types.location
     import capo_device_farm.types.radios
     import capo_device_farm.types.string
@@ -56,6 +57,8 @@ class ScheduleRunConfiguration(TypedDict, closed=True):
         "capo_device_farm.types.amazon_role_resource_name.AmazonRoleResourceName"
     ]
     """<p>An IAM role to be assumed by the test host for the run.</p>"""
+    insights_types: NotRequired["capo_device_farm.types.insights_types.InsightsTypes"]
+    """<p>The types of insights to generate for a run. Specify one or more values to opt in to insights generation when scheduling a run.</p> <p>Insights are currently supported for custom mode runs with Instrumentation, Appium Java TestNG, and XCTest UI test types.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -127,6 +130,14 @@ def serialize_aws_json_1_1(value: ScheduleRunConfiguration) -> dict:
         )
     if "execution_role_arn" in value:
         out["executionRoleArn"] = value["execution_role_arn"]
+    if "insights_types" in value:
+        import capo_device_farm.types.insights_types
+
+        out["insightsTypes"] = (
+            capo_device_farm.types.insights_types.serialize_aws_json_1_1(
+                value["insights_types"]
+            )
+        )
     return out
 
 
@@ -200,4 +211,12 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunConfiguration:
         )
     if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
+    if data.get("insightsTypes") is not None:
+        import capo_device_farm.types.insights_types
+
+        out["insights_types"] = (
+            capo_device_farm.types.insights_types.deserialize_aws_json_1_1(
+                data["insightsTypes"]
+            )
+        )
     return out

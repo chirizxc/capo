@@ -16,11 +16,15 @@ import capo_securityagent.types.cloud_watch_log
 import capo_securityagent.types.code_remediation_strategy
 import capo_securityagent.types.create_code_review_input
 import capo_securityagent.types.create_code_review_output
+import capo_securityagent.types.report_destination
+import capo_securityagent.types.report_filters
+import capo_securityagent.types.validation_mode
 from capo_securityagent._protocol.errors import parse_error_metadata_json
 from capo_securityagent._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_securityagent._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_securityagent.errors import UnknownServiceError
 
@@ -120,7 +124,7 @@ def create_code_review(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -138,7 +142,7 @@ async def async_create_code_review(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

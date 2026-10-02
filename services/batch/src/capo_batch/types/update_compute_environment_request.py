@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_batch.types.ce_state
     import capo_batch.types.compute_resource_update
+    import capo_batch.types.ecs_settings
     import capo_batch.types.integer
     import capo_batch.types.string
     import capo_batch.types.update_policy
@@ -29,6 +30,8 @@ class UpdateComputeEnvironmentRequest(TypedDict, closed=True):
     r"""<p>Specifies the updated infrastructure update policy for the compute environment. For more information about infrastructure updates, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html\">Updating compute environments</a> in the <i>Batch User Guide</i>.</p>"""
     context: NotRequired["capo_batch.types.string.String"]
     """<p>Reserved.</p>"""
+    ecs_settings: NotRequired["capo_batch.types.ecs_settings.EcsSettings"]
+    """<p>The Amazon ECS settings for the compute environment. These settings control CloudWatch Container Insights collection for the compute environment.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -60,6 +63,12 @@ def serialize_json(value: UpdateComputeEnvironmentRequest) -> dict:
         )
     if "context" in value:
         out["context"] = value["context"]
+    if "ecs_settings" in value:
+        import capo_batch.types.ecs_settings
+
+        out["ecsSettings"] = capo_batch.types.ecs_settings.serialize_json(
+            value["ecs_settings"]
+        )
     return out
 
 
@@ -91,4 +100,10 @@ def deserialize_json(data: dict) -> UpdateComputeEnvironmentRequest:
         )
     if data.get("context") is not None:
         out["context"] = data["context"]
+    if data.get("ecsSettings") is not None:
+        import capo_batch.types.ecs_settings
+
+        out["ecs_settings"] = capo_batch.types.ecs_settings.deserialize_json(
+            data["ecsSettings"]
+        )
     return out

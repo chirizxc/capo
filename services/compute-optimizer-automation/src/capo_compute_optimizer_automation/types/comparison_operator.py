@@ -15,6 +15,18 @@ ComparisonOperator: TypeAlias = Literal[
     "NumericLessThanEquals",
     "NumericGreaterThan",
     "NumericGreaterThanEquals",
+    "StringEqualsIfExists",
+    "StringNotEqualsIfExists",
+    "StringEqualsIgnoreCaseIfExists",
+    "StringNotEqualsIgnoreCaseIfExists",
+    "StringLikeIfExists",
+    "StringNotLikeIfExists",
+    "NumericEqualsIfExists",
+    "NumericNotEqualsIfExists",
+    "NumericLessThanIfExists",
+    "NumericLessThanEqualsIfExists",
+    "NumericGreaterThanIfExists",
+    "NumericGreaterThanEqualsIfExists",
 ]
 
 

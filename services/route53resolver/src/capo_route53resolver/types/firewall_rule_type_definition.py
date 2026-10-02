@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_route53resolver.types.rule_type_description
     import capo_route53resolver.types.rule_type_name
     import capo_route53resolver.types.rule_type_value
+    import capo_route53resolver.types.subscription_info
 
 
 class FirewallRuleTypeDefinition(TypedDict, closed=True):
@@ -22,6 +23,10 @@ class FirewallRuleTypeDefinition(TypedDict, closed=True):
         "capo_route53resolver.types.rule_type_description.RuleTypeDescription"
     ]
     """<p>A description of the rule type.</p>"""
+    subscription_info: NotRequired[
+        "capo_route53resolver.types.subscription_info.SubscriptionInfo"
+    ]
+    """<p>For rule types that require an external subscription (today, only the <code>PartnerThreatProtection</code> variant), describes the Amazon Web Services Marketplace product that backs the rule type. Absent for rule types that are managed by Amazon Web Services and do not require a separate subscription. See <a>SubscriptionInfo</a>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -35,6 +40,14 @@ def serialize_aws_json_1_1(value: FirewallRuleTypeDefinition) -> dict:
         out["DisplayName"] = value["display_name"]
     if "description" in value:
         out["Description"] = value["description"]
+    if "subscription_info" in value:
+        import capo_route53resolver.types.subscription_info
+
+        out["SubscriptionInfo"] = (
+            capo_route53resolver.types.subscription_info.serialize_aws_json_1_1(
+                value["subscription_info"]
+            )
+        )
     return out
 
 
@@ -48,4 +61,12 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRuleTypeDefinition:
         out["display_name"] = data["DisplayName"]
     if data.get("Description") is not None:
         out["description"] = data["Description"]
+    if data.get("SubscriptionInfo") is not None:
+        import capo_route53resolver.types.subscription_info
+
+        out["subscription_info"] = (
+            capo_route53resolver.types.subscription_info.deserialize_aws_json_1_1(
+                data["SubscriptionInfo"]
+            )
+        )
     return out

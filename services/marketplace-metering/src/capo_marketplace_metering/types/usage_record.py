@@ -18,11 +18,11 @@ if TYPE_CHECKING:
 
 class UsageRecord(TypedDict, closed=True):
     timestamp: "capo_marketplace_metering.types.timestamp.Timestamp"
-    """<p>Timestamp, in UTC, for which the usage is being reported.</p> <p>Your application can meter usage for up to six hours in the past. Make sure the <code>timestamp</code> value is not before the start of the software usage.</p>"""
+    """<p>Timestamp, in UTC, for which the usage is being reported.</p> <p>Your application can meter usage for up to 24 hours in the past. Make sure the <code>timestamp</code> value is not before the start of the software usage.</p> <p>At the end of each billing cycle, you have a 6-hour grace period to submit usage records for the previous billing month before 06:00 UTC on the first day of the next month.</p>"""
     customer_identifier: (
         "capo_marketplace_metering.types.customer_identifier.CustomerIdentifier"
     )
-    """<p>The <code>CustomerIdentifier</code> is obtained through the <code>ResolveCustomer</code> operation and represents an individual buyer in your application.</p>"""
+    """<p>The <code>CustomerIdentifier</code> is obtained through the <code>ResolveCustomer</code> operation and represents an individual buyer in your application.</p> <important> <p> <code>CustomerIdentifier</code> is not supported for new SaaS product integrations. Use <code>CustomerAWSAccountId</code> to identify the buyer.</p> </important>"""
     dimension: "capo_marketplace_metering.types.usage_dimension.UsageDimension"
     """<p>During the process of registering a product on Amazon Web Services Marketplace, dimensions are specified. These represent different units of value in your application.</p>"""
     quantity: NotRequired[
@@ -36,7 +36,7 @@ class UsageRecord(TypedDict, closed=True):
     customer_aws_account_id: NotRequired[
         "capo_marketplace_metering.types.customer_aws_account_id.CustomerAWSAccountId"
     ]
-    r"""<p>The <code>CustomerAWSAccountId</code> parameter specifies the AWS account ID of the buyer.</p> <note> <p>For existing integrations, to access your <code>CustomerIdentifier</code> to <code>CustomerAWSAccountId</code> mapping, see <a href=\"https://docs.aws.amazon.com/marketplace/latest/userguide/data-feed-account.html\">Account Feeds</a>.</p> </note>"""
+    r"""<p>The <code>CustomerAWSAccountId</code> parameter specifies the AWS account ID of the buyer.</p> <important> <p>If you have an existing integration and need the <code>CustomerAWSAccountId</code> that corresponds to a <code>CustomerIdentifier</code>, contact <a href=\"https://aws.amazon.com/marketplace/management/contact-us/\">AWS Marketplace Seller Operations</a> to obtain the mapping. Do not request the <code>CustomerAWSAccountId</code> directly from buyers. We cannot verify that a buyer-provided account ID is authentic, which can result in incorrect metering or billing.</p> </important>"""
     license_arn: NotRequired["capo_marketplace_metering.types.license_arn.LicenseArn"]
     r"""<p>The <code>LicenseArn</code> is a unique identifier for a specific granted license. These are used for software purchased through Amazon Web Services Marketplace.</p> <note> <p>To access your <code>CustomerAWSAccountId</code> and <code>LicenseArn</code> mapping, visit <a href=\"https://docs.aws.amazon.com/marketplace/latest/userguide/data-feed-agreements.html\">Agreements Feeds</a>.</p> </note>"""
 

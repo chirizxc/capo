@@ -21,19 +21,19 @@ class DescribeEnvironmentsMessage(TypedDict, closed=True):
     application_name: NotRequired[
         "capo_elastic_beanstalk.types.application_name.ApplicationName"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.</p>"""
     version_label: NotRequired[
         "capo_elastic_beanstalk.types.version_label.VersionLabel"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version.</p>"""
     environment_ids: NotRequired[
         "capo_elastic_beanstalk.types.environment_id_list.EnvironmentIdList"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.</p>"""
     environment_names: NotRequired[
         "capo_elastic_beanstalk.types.environment_names_list.EnvironmentNamesList"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.</p>"""
     include_deleted: NotRequired[
         "capo_elastic_beanstalk.types.include_deleted.IncludeDeleted"
     ]

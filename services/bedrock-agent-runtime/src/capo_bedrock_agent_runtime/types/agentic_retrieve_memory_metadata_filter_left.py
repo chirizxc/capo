@@ -1,0 +1,38 @@
+"""Generated from Smithy shape ``com.amazonaws.bedrockagentruntime#AgenticRetrieveMemoryMetadataFilterLeft``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+from typing_extensions import TypedDict
+
+from capo_bedrock_agent_runtime.errors import DeserializationError, SerializationError
+
+if TYPE_CHECKING:
+    import capo_bedrock_agent_runtime.types.agentic_retrieve_memory_metadata_key
+
+
+class _AgenticRetrieveMemoryMetadataFilterLeft_metadataKey(TypedDict, closed=True):
+    metadataKey: "capo_bedrock_agent_runtime.types.agentic_retrieve_memory_metadata_key.AgenticRetrieveMemoryMetadataKey"
+
+
+AgenticRetrieveMemoryMetadataFilterLeft: TypeAlias = (
+    _AgenticRetrieveMemoryMetadataFilterLeft_metadataKey
+)
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: AgenticRetrieveMemoryMetadataFilterLeft) -> dict:
+    if "metadataKey" in value:
+        return {"metadataKey": value["metadataKey"]}
+    else:
+        raise SerializationError(
+            "AgenticRetrieveMemoryMetadataFilterLeft: no variant present"
+        )
+
+
+def deserialize_json(data: dict) -> AgenticRetrieveMemoryMetadataFilterLeft:
+    if data.get("metadataKey") is not None:
+        return {"metadataKey": data["metadataKey"]}
+    else:
+        raise DeserializationError(
+            "AgenticRetrieveMemoryMetadataFilterLeft: no recognized variant key"
+        )

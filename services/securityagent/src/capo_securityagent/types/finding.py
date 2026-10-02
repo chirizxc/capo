@@ -14,6 +14,8 @@ if TYPE_CHECKING:
     import capo_securityagent.types.confidence_level
     import capo_securityagent.types.finding_status
     import capo_securityagent.types.risk_level
+    import capo_securityagent.types.string_list
+    import capo_securityagent.types.validation_status
     import capo_securityagent.types.verification_script
 
 
@@ -48,6 +50,10 @@ class Finding(TypedDict, closed=True):
     """<p>The reasoning behind the finding, explaining why it was identified as a vulnerability.</p>"""
     confidence: NotRequired["capo_securityagent.types.confidence_level.ConfidenceLevel"]
     """<p>The confidence level of the finding. Valid values include FALSE_POSITIVE, UNCONFIRMED, LOW, MEDIUM, and HIGH.</p>"""
+    validation_status: NotRequired[
+        "capo_securityagent.types.validation_status.ValidationStatus"
+    ]
+    """<p>The simulated validation status of the finding. Valid values are NOT_VALIDATED, VALIDATING, CONFIRMED, NOT_REPRODUCED, and VALIDATION_FAILED.</p>"""
     attack_script: NotRequired["str"]
     """<p>The attack script used to reproduce the finding.</p>"""
     code_remediation_task: NotRequired[
@@ -56,6 +62,8 @@ class Finding(TypedDict, closed=True):
     """<p>The code remediation task associated with the finding, if code remediation was initiated.</p>"""
     last_updated_by: NotRequired["str"]
     """<p>The identifier of the entity that last updated the finding.</p>"""
+    customer_note: NotRequired["str"]
+    """<p>A customer-provided note on the finding.</p>"""
     code_locations: NotRequired[
         "capo_securityagent.types.code_location_list.CodeLocationList"
     ]
@@ -64,6 +72,12 @@ class Finding(TypedDict, closed=True):
         "capo_securityagent.types.verification_script.VerificationScript"
     ]
     """<p>The verification script metadata for reproducing the finding, including download URL, instructions, and required environment variables.</p>"""
+    alignment_rationale: NotRequired["str"]
+    """<p>The rationale provided by the alignment agent explaining how the finding was adjusted based on customer preferences.</p>"""
+    revalidation_job_ids: NotRequired["capo_securityagent.types.string_list.StringList"]
+    """<p>The list of pentest job identifiers for revalidation jobs that retested this finding.</p>"""
+    original_finding_id: NotRequired["str"]
+    """<p>The identifier of the original finding that this revalidation finding was produced from.</p>"""
     created_at: NotRequired["datetime.datetime"]
     """<p>The date and time the finding was created, in UTC format.</p>"""
     updated_at: NotRequired["datetime.datetime"]
@@ -113,6 +127,14 @@ def serialize_json(value: Finding) -> dict:
         out["confidence"] = capo_securityagent.types.confidence_level.serialize_json(
             value["confidence"]
         )
+    if "validation_status" in value:
+        import capo_securityagent.types.validation_status
+
+        out["validationStatus"] = (
+            capo_securityagent.types.validation_status.serialize_json(
+                value["validation_status"]
+            )
+        )
     if "attack_script" in value:
         out["attackScript"] = value["attack_script"]
     if "code_remediation_task" in value:
@@ -125,6 +147,8 @@ def serialize_json(value: Finding) -> dict:
         )
     if "last_updated_by" in value:
         out["lastUpdatedBy"] = value["last_updated_by"]
+    if "customer_note" in value:
+        out["customerNote"] = value["customer_note"]
     if "code_locations" in value:
         import capo_securityagent.types.code_location_list
 
@@ -141,6 +165,16 @@ def serialize_json(value: Finding) -> dict:
                 value["verification_script"]
             )
         )
+    if "alignment_rationale" in value:
+        out["alignmentRationale"] = value["alignment_rationale"]
+    if "revalidation_job_ids" in value:
+        import capo_securityagent.types.string_list
+
+        out["revalidationJobIds"] = capo_securityagent.types.string_list.serialize_json(
+            value["revalidation_job_ids"]
+        )
+    if "original_finding_id" in value:
+        out["originalFindingId"] = value["original_finding_id"]
     if "created_at" in value:
         import capo_securityagent._protocol.serialize
 
@@ -204,6 +238,14 @@ def deserialize_json(data: dict) -> Finding:
         out["confidence"] = capo_securityagent.types.confidence_level.deserialize_json(
             data["confidence"]
         )
+    if data.get("validationStatus") is not None:
+        import capo_securityagent.types.validation_status
+
+        out["validation_status"] = (
+            capo_securityagent.types.validation_status.deserialize_json(
+                data["validationStatus"]
+            )
+        )
     if data.get("attackScript") is not None:
         out["attack_script"] = data["attackScript"]
     if data.get("codeRemediationTask") is not None:
@@ -216,6 +258,8 @@ def deserialize_json(data: dict) -> Finding:
         )
     if data.get("lastUpdatedBy") is not None:
         out["last_updated_by"] = data["lastUpdatedBy"]
+    if data.get("customerNote") is not None:
+        out["customer_note"] = data["customerNote"]
     if data.get("codeLocations") is not None:
         import capo_securityagent.types.code_location_list
 
@@ -232,6 +276,18 @@ def deserialize_json(data: dict) -> Finding:
                 data["verificationScript"]
             )
         )
+    if data.get("alignmentRationale") is not None:
+        out["alignment_rationale"] = data["alignmentRationale"]
+    if data.get("revalidationJobIds") is not None:
+        import capo_securityagent.types.string_list
+
+        out["revalidation_job_ids"] = (
+            capo_securityagent.types.string_list.deserialize_json(
+                data["revalidationJobIds"]
+            )
+        )
+    if data.get("originalFindingId") is not None:
+        out["original_finding_id"] = data["originalFindingId"]
     if data.get("createdAt") is not None:
         import datetime
 

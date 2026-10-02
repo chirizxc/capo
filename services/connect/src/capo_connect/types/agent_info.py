@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_connect.types.active_region
     import capo_connect.types.agent_pause_duration_in_seconds
     import capo_connect.types.agent_resource_id
     import capo_connect.types.device_info
@@ -56,6 +57,8 @@ class AgentInfo(TypedDict, closed=True):
         "capo_connect.types.voice_enhancement_mode.VoiceEnhancementMode"
     ]
     """<p>The voice enhancement mode used by the agent as the call is ending. Valid values: VOICE_ISOLATION | NOISE_SUPPRESSION | NONE. A value of null indicates this mode has not yet been set for this user.</p>"""
+    active_region: NotRequired["capo_connect.types.active_region.ActiveRegion"]
+    """<p>The Region where the agent was active when they handled the contact. For Amazon Connect Global Resiliency instances enabled for global routing, this indicates the Region in which the agent's session was established at the time of the contact.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -137,6 +140,8 @@ def serialize_json(value: AgentInfo) -> dict:
                 value["voice_enhancement_mode"]
             )
         )
+    if "active_region" in value:
+        out["ActiveRegion"] = value["active_region"]
     return out
 
 
@@ -224,4 +229,6 @@ def deserialize_json(data: dict) -> AgentInfo:
                 data["VoiceEnhancementMode"]
             )
         )
+    if data.get("ActiveRegion") is not None:
+        out["active_region"] = data["ActiveRegion"]
     return out

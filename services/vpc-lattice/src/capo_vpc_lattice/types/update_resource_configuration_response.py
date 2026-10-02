@@ -41,7 +41,7 @@ class UpdateResourceConfigurationResponse(TypedDict, closed=True):
     type: NotRequired[
         "capo_vpc_lattice.types.resource_configuration_type.ResourceConfigurationType"
     ]
-    """<p>The type of resource configuration.</p> <ul> <li> <p> <code>SINGLE</code> - A single resource.</p> </li> <li> <p> <code>GROUP</code> - A group of resources.</p> </li> <li> <p> <code>CHILD</code> - A single resource that is part of a group resource configuration.</p> </li> <li> <p> <code>ARN</code> - An Amazon Web Services resource.</p> </li> </ul>"""
+    """<p>The type of resource configuration.</p> <ul> <li> <p> <code>SINGLE</code> - A single resource.</p> </li> <li> <p> <code>GROUP</code> - A group of resources.</p> </li> <li> <p> <code>CHILD</code> - A single resource that is part of a group resource configuration.</p> </li> <li> <p> <code>ARN</code> - An Amazon Web Services resource.</p> </li> <li> <p> <code>CIDR</code> - A network segment (a range of IP addresses) accessed through a <code>Tunnel</code> VPC endpoint.</p> </li> </ul>"""
     port_ranges: NotRequired["capo_vpc_lattice.types.port_range_list.PortRangeList"]
     """<p>The TCP port ranges that a consumer can use to access a resource configuration. You can separate port ranges with a comma. Example: 1-65535 or 1,2,22-30</p>"""
     allow_association_to_shareable_service_network: NotRequired[
@@ -90,7 +90,11 @@ def serialize_json(value: UpdateResourceConfigurationResponse) -> dict:
             "allow_association_to_shareable_service_network"
         ]
     if "protocol" in value:
-        out["protocol"] = value["protocol"]
+        import capo_vpc_lattice.types.protocol_type
+
+        out["protocol"] = capo_vpc_lattice.types.protocol_type.serialize_json(
+            value["protocol"]
+        )
     if "status" in value:
         out["status"] = value["status"]
     if "resource_configuration_definition" in value:
@@ -135,7 +139,11 @@ def deserialize_json(data: dict) -> UpdateResourceConfigurationResponse:
             "allowAssociationToShareableServiceNetwork"
         ]
     if data.get("protocol") is not None:
-        out["protocol"] = data["protocol"]
+        import capo_vpc_lattice.types.protocol_type
+
+        out["protocol"] = capo_vpc_lattice.types.protocol_type.deserialize_json(
+            data["protocol"]
+        )
     if data.get("status") is not None:
         out["status"] = data["status"]
     if data.get("resourceConfigurationDefinition") is not None:

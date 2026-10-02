@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_cloudformation.types.change_set_status_reason
     import capo_cloudformation.types.changes
     import capo_cloudformation.types.creation_time
+    import capo_cloudformation.types.deployment_config
     import capo_cloudformation.types.deployment_mode
     import capo_cloudformation.types.description
     import capo_cloudformation.types.execution_status
@@ -101,6 +102,10 @@ class DescribeChangeSetOutput(TypedDict, closed=True):
         "capo_cloudformation.types.deployment_mode.DeploymentMode"
     ]
     """<p>The deployment mode specified when the change set was created. Valid value is <code>REVERT_DRIFT</code>. Only present for drift-aware change sets.</p>"""
+    deployment_config: NotRequired[
+        "capo_cloudformation.types.deployment_config.DeploymentConfig"
+    ]
+    """<p>The deployment configuration specified when the change set was created.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -213,6 +218,12 @@ def serialize_query(
 
         capo_cloudformation.types.deployment_mode.serialize_query(
             value["deployment_mode"], pairs, f"{key_prefix}DeploymentMode"
+        )
+    if "deployment_config" in value:
+        import capo_cloudformation.types.deployment_config
+
+        capo_cloudformation.types.deployment_config.serialize_query(
+            value["deployment_config"], pairs, f"{key_prefix}DeploymentConfig"
         )
 
 
@@ -349,6 +360,15 @@ def deserialize_query(el: Element) -> DescribeChangeSetOutput:
         out["deployment_mode"] = (
             capo_cloudformation.types.deployment_mode.deserialize_query(
                 child_deployment_mode
+            )
+        )
+    child_deployment_config = el.find("DeploymentConfig")
+    if child_deployment_config is not None:
+        import capo_cloudformation.types.deployment_config
+
+        out["deployment_config"] = (
+            capo_cloudformation.types.deployment_config.deserialize_query(
+                child_deployment_config
             )
         )
     return out

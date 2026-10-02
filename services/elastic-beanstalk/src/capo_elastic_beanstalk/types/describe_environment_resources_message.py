@@ -15,11 +15,11 @@ class DescribeEnvironmentResourcesMessage(TypedDict, closed=True):
     environment_id: NotRequired[
         "capo_elastic_beanstalk.types.environment_id.EnvironmentId"
     ]
-    """<p>The ID of the environment to retrieve AWS resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
+    """<p>The ID of the environment to retrieve Amazon Web Services resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
     environment_name: NotRequired[
         "capo_elastic_beanstalk.types.environment_name.EnvironmentName"
     ]
-    """<p>The name of the environment to retrieve AWS resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
+    """<p>The name of the environment to retrieve Amazon Web Services resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
 
 
 # --- awsQuery ser/de ---

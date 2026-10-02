@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.get_configuration_bundle_response
     import capo_bedrock_agentcore_control.types.get_configuration_bundle_version_request
     import capo_bedrock_agentcore_control.types.get_configuration_bundle_version_response
+    import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.list_configuration_bundle_versions_request
     import capo_bedrock_agentcore_control.types.list_configuration_bundle_versions_response
     import capo_bedrock_agentcore_control.types.list_configuration_bundles_request
@@ -75,6 +76,9 @@ class ConfigurationBundle:
         created_by: Optional[
             "capo_bedrock_agentcore_control.types.version_created_by_source.VersionCreatedBySource"
         ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+        ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_configuration_bundle_response.CreateConfigurationBundleResponse":
         r"""<p>Creates a new configuration bundle resource. A configuration bundle stores versioned component configurations for agent evaluation workflows.</p>
@@ -87,6 +91,7 @@ class ConfigurationBundle:
             branch_name: <p>The branch name for version tracking. Defaults to <code>mainline</code> if not specified.</p>
             commit_message: <p>A commit message describing the initial version of the configuration bundle.</p>
             created_by: <p>The source that created this version, including the source name and optional ARN.</p>
+            kms_key_arn: <p>Optional KMS key ARN for encrypting component configurations.</p>
             tags: <p>A map of tag keys and values to assign to the configuration bundle. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
         Raises:
@@ -129,6 +134,8 @@ class ConfigurationBundle:
             input_["commit_message"] = commit_message
         if created_by is not None:
             input_["created_by"] = created_by
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -196,6 +203,7 @@ class ConfigurationBundle:
     def update(
         self,
         bundle_id: "capo_bedrock_agentcore_control.types.configuration_bundle_id.ConfigurationBundleId",
+        parent_version_ids: "capo_bedrock_agentcore_control.types.configuration_bundle_version_list.ConfigurationBundleVersionList",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
         client_token: Optional[
@@ -210,15 +218,15 @@ class ConfigurationBundle:
         components: Optional[
             "capo_bedrock_agentcore_control.types.component_configuration_map.ComponentConfigurationMap"
         ] = None,
-        parent_version_ids: Optional[
-            "capo_bedrock_agentcore_control.types.configuration_bundle_version_list.ConfigurationBundleVersionList"
-        ] = None,
         branch_name: Optional[
             "capo_bedrock_agentcore_control.types.branch_name.BranchName"
         ] = None,
         commit_message: Optional[str] = None,
         created_by: Optional[
             "capo_bedrock_agentcore_control.types.version_created_by_source.VersionCreatedBySource"
+        ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_configuration_bundle_response.UpdateConfigurationBundleResponse":
         r"""<p>Updates a configuration bundle by creating a new version with the specified changes. Each update creates a new version in the version history.</p>
@@ -233,6 +241,7 @@ class ConfigurationBundle:
             branch_name: <p>The branch name for this version. If not specified, inherits the parent's branch or defaults to <code>mainline</code>.</p>
             commit_message: <p>A commit message describing the changes in this version.</p>
             created_by: <p>The source that created this version, including the source name and optional ARN.</p>
+            kms_key_arn: <p>Optional KMS key ARN for encrypting component configurations. If provided, components will be encrypted with this key. If the bundle already has a KMS key, this rotates to the new key.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -260,7 +269,8 @@ class ConfigurationBundle:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_bedrock_agentcore_control.types.update_configuration_bundle_request.UpdateConfigurationBundleRequest = {
-            "bundle_id": bundle_id
+            "bundle_id": bundle_id,
+            "parent_version_ids": parent_version_ids,
         }
         if client_token is None:
             client_token = str(uuid.uuid4())
@@ -271,14 +281,14 @@ class ConfigurationBundle:
             input_["description"] = description
         if components is not None:
             input_["components"] = components
-        if parent_version_ids is not None:
-            input_["parent_version_ids"] = parent_version_ids
         if branch_name is not None:
             input_["branch_name"] = branch_name
         if commit_message is not None:
             input_["commit_message"] = commit_message
         if created_by is not None:
             input_["created_by"] = created_by
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -521,6 +531,9 @@ class AsyncConfigurationBundle:
         created_by: Optional[
             "capo_bedrock_agentcore_control.types.version_created_by_source.VersionCreatedBySource"
         ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+        ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_configuration_bundle_response.CreateConfigurationBundleResponse":
         r"""<p>Creates a new configuration bundle resource. A configuration bundle stores versioned component configurations for agent evaluation workflows.</p>
@@ -533,6 +546,7 @@ class AsyncConfigurationBundle:
             branch_name: <p>The branch name for version tracking. Defaults to <code>mainline</code> if not specified.</p>
             commit_message: <p>A commit message describing the initial version of the configuration bundle.</p>
             created_by: <p>The source that created this version, including the source name and optional ARN.</p>
+            kms_key_arn: <p>Optional KMS key ARN for encrypting component configurations.</p>
             tags: <p>A map of tag keys and values to assign to the configuration bundle. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
         Raises:
@@ -576,6 +590,8 @@ class AsyncConfigurationBundle:
             input_["commit_message"] = commit_message
         if created_by is not None:
             input_["created_by"] = created_by
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -644,6 +660,7 @@ class AsyncConfigurationBundle:
     async def update(
         self,
         bundle_id: "capo_bedrock_agentcore_control.types.configuration_bundle_id.ConfigurationBundleId",
+        parent_version_ids: "capo_bedrock_agentcore_control.types.configuration_bundle_version_list.ConfigurationBundleVersionList",
         *,
         config_overrides: Optional[AsyncBedrockAgentCoreControlClientConfig] = None,
         client_token: Optional[
@@ -658,15 +675,15 @@ class AsyncConfigurationBundle:
         components: Optional[
             "capo_bedrock_agentcore_control.types.component_configuration_map.ComponentConfigurationMap"
         ] = None,
-        parent_version_ids: Optional[
-            "capo_bedrock_agentcore_control.types.configuration_bundle_version_list.ConfigurationBundleVersionList"
-        ] = None,
         branch_name: Optional[
             "capo_bedrock_agentcore_control.types.branch_name.BranchName"
         ] = None,
         commit_message: Optional[str] = None,
         created_by: Optional[
             "capo_bedrock_agentcore_control.types.version_created_by_source.VersionCreatedBySource"
+        ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_configuration_bundle_response.UpdateConfigurationBundleResponse":
         r"""<p>Updates a configuration bundle by creating a new version with the specified changes. Each update creates a new version in the version history.</p>
@@ -681,6 +698,7 @@ class AsyncConfigurationBundle:
             branch_name: <p>The branch name for this version. If not specified, inherits the parent's branch or defaults to <code>mainline</code>.</p>
             commit_message: <p>A commit message describing the changes in this version.</p>
             created_by: <p>The source that created this version, including the source name and optional ARN.</p>
+            kms_key_arn: <p>Optional KMS key ARN for encrypting component configurations. If provided, components will be encrypted with this key. If the bundle already has a KMS key, this rotates to the new key.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -709,7 +727,8 @@ class AsyncConfigurationBundle:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_bedrock_agentcore_control.types.update_configuration_bundle_request.UpdateConfigurationBundleRequest = {
-            "bundle_id": bundle_id
+            "bundle_id": bundle_id,
+            "parent_version_ids": parent_version_ids,
         }
         if client_token is None:
             client_token = str(uuid.uuid4())
@@ -720,14 +739,14 @@ class AsyncConfigurationBundle:
             input_["description"] = description
         if components is not None:
             input_["components"] = components
-        if parent_version_ids is not None:
-            input_["parent_version_ids"] = parent_version_ids
         if branch_name is not None:
             input_["branch_name"] = branch_name
         if commit_message is not None:
             input_["commit_message"] = commit_message
         if created_by is not None:
             input_["created_by"] = created_by
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

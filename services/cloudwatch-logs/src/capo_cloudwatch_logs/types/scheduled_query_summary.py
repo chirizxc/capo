@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.execution_status
     import capo_cloudwatch_logs.types.schedule_expression
     import capo_cloudwatch_logs.types.schedule_timezone
+    import capo_cloudwatch_logs.types.schedule_type
     import capo_cloudwatch_logs.types.scheduled_query_name
     import capo_cloudwatch_logs.types.scheduled_query_state
     import capo_cloudwatch_logs.types.timestamp
@@ -26,6 +27,8 @@ class ScheduledQuerySummary(TypedDict, closed=True):
         "capo_cloudwatch_logs.types.scheduled_query_state.ScheduledQueryState"
     ]
     """<p>The current state of the scheduled query.</p>"""
+    schedule_type: NotRequired["capo_cloudwatch_logs.types.schedule_type.ScheduleType"]
+    """<p>The schedule type of the scheduled query. Valid values are <code>CUSTOMER_MANAGED</code> and <code>AWS_MANAGED</code>.</p>"""
     last_triggered_time: NotRequired["capo_cloudwatch_logs.types.timestamp.Timestamp"]
     """<p>The timestamp when the scheduled query was last executed.</p>"""
     last_execution_status: NotRequired[
@@ -63,6 +66,14 @@ def serialize_aws_json_1_1(value: ScheduledQuerySummary) -> dict:
         out["state"] = (
             capo_cloudwatch_logs.types.scheduled_query_state.serialize_aws_json_1_1(
                 value["state"]
+            )
+        )
+    if "schedule_type" in value:
+        import capo_cloudwatch_logs.types.schedule_type
+
+        out["scheduleType"] = (
+            capo_cloudwatch_logs.types.schedule_type.serialize_aws_json_1_1(
+                value["schedule_type"]
             )
         )
     if "last_triggered_time" in value:
@@ -106,6 +117,14 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledQuerySummary:
         out["state"] = (
             capo_cloudwatch_logs.types.scheduled_query_state.deserialize_aws_json_1_1(
                 data["state"]
+            )
+        )
+    if data.get("scheduleType") is not None:
+        import capo_cloudwatch_logs.types.schedule_type
+
+        out["schedule_type"] = (
+            capo_cloudwatch_logs.types.schedule_type.deserialize_aws_json_1_1(
+                data["scheduleType"]
             )
         )
     if data.get("lastTriggeredTime") is not None:

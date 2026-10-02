@@ -70,20 +70,29 @@ if TYPE_CHECKING:
     import capo_invoicing.types.list_invoice_units_response
     import capo_invoicing.types.list_procurement_portal_preferences_request
     import capo_invoicing.types.list_procurement_portal_preferences_response
+    import capo_invoicing.types.list_procurement_portal_suppliers_request
+    import capo_invoicing.types.list_procurement_portal_suppliers_response
+    import capo_invoicing.types.list_procurement_portals_request
+    import capo_invoicing.types.list_procurement_portals_response
     import capo_invoicing.types.list_tags_for_resource_request
     import capo_invoicing.types.list_tags_for_resource_response
     import capo_invoicing.types.max_results
     import capo_invoicing.types.max_results_integer
     import capo_invoicing.types.next_token_string
+    import capo_invoicing.types.procurement_portal
+    import capo_invoicing.types.procurement_portal_id_string
     import capo_invoicing.types.procurement_portal_name
     import capo_invoicing.types.procurement_portal_preference_arn_string
     import capo_invoicing.types.procurement_portal_preference_selector
     import capo_invoicing.types.procurement_portal_preference_status
     import capo_invoicing.types.procurement_portal_preference_summary
+    import capo_invoicing.types.procurement_portal_supplier
     import capo_invoicing.types.put_procurement_portal_preference_request
     import capo_invoicing.types.put_procurement_portal_preference_response
     import capo_invoicing.types.resource_tag_key_list
     import capo_invoicing.types.resource_tag_list
+    import capo_invoicing.types.send_procurement_portal_validation_request
+    import capo_invoicing.types.send_procurement_portal_validation_response
     import capo_invoicing.types.sensitive_basic_string_without_space
     import capo_invoicing.types.string_without_new_line
     import capo_invoicing.types.supplier_domain
@@ -98,6 +107,8 @@ if TYPE_CHECKING:
     import capo_invoicing.types.update_invoice_unit_response
     import capo_invoicing.types.update_procurement_portal_preference_status_request
     import capo_invoicing.types.update_procurement_portal_preference_status_response
+    import capo_invoicing.types.verify_procurement_portal_validation_request
+    import capo_invoicing.types.verify_procurement_portal_validation_response
 
 
 class AsyncInvoicingClientConfig(TypedDict, total=False, closed=True):
@@ -1044,6 +1055,175 @@ class AsyncInvoicingClient:
             if not _token:
                 break
 
+    async def list_procurement_portals(
+        self,
+        *,
+        config_overrides: Optional[AsyncInvoicingClientConfig] = None,
+        next_token: Optional[
+            "capo_invoicing.types.basic_string_without_space.BasicStringWithoutSpace"
+        ] = None,
+        max_results: Optional["capo_invoicing.types.max_results.MaxResults"] = None,
+    ) -> "capo_invoicing.types.list_procurement_portals_response.ListProcurementPortalsResponse":
+        """<p>Returns the Amazon Web Services-supported procurement portals for e-invoice delivery and purchase order retrieval. Each entry includes the portal identifier, name, and default feature configurations, which define the supported document and attachment types. For faster, more reliable responses, use pagination.</p>
+
+        Args:
+            next_token: <p>The token for the next set of results. You received this token from a previous call.</p>
+            max_results: <p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value. Default is 100.</p>
+
+        Raises:
+            capo_invoicing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_invoicing.errors.internal_server_exception.InternalServerException: <p>The processing request failed because of an unknown error, exception, or failure. </p>
+            capo_invoicing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_invoicing.errors.validation_exception.ValidationException: <p> The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_invoicing.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            ListProcurementPortals
+
+            >>> await client.list_procurement_portals()
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_invoicing.types.list_procurement_portals_request.ListProcurementPortalsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_invoicing.types.list_procurement_portals_response.ListProcurementPortalsResponse"
+        ]:
+            import capo_invoicing._operations.invoicing.list_procurement_portals
+
+            (
+                output,
+                http_response,
+            ) = await capo_invoicing._operations.invoicing.list_procurement_portals.async_list_procurement_portals(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_invoicing.types.list_procurement_portals_request.ListProcurementPortalsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_procurement_portals(
+        self,
+        *,
+        config_overrides: Optional[AsyncInvoicingClientConfig] = None,
+        next_token: Optional[
+            "capo_invoicing.types.basic_string_without_space.BasicStringWithoutSpace"
+        ] = None,
+        max_results: Optional["capo_invoicing.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_invoicing.types.procurement_portal.ProcurementPortal]":
+        _token = next_token
+        while True:
+            _response = await self.list_procurement_portals(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("procurement_portals",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_procurement_portal_suppliers(
+        self,
+        portal_identifier: "capo_invoicing.types.procurement_portal_id_string.ProcurementPortalIdString",
+        *,
+        config_overrides: Optional[AsyncInvoicingClientConfig] = None,
+        next_token: Optional[
+            "capo_invoicing.types.basic_string_without_space.BasicStringWithoutSpace"
+        ] = None,
+        max_results: Optional["capo_invoicing.types.max_results.MaxResults"] = None,
+    ) -> "capo_invoicing.types.list_procurement_portal_suppliers_response.ListProcurementPortalSuppliersResponse":
+        """<p>Returns the suppliers configured for a specified procurement portal, including supplier identifiers and associated metadata. For faster, more reliable responses, use pagination.</p>
+
+        Args:
+            portal_identifier: <p>The unique identifier of the procurement portal for which to list suppliers. Use the <code>PortalIdentifier</code> value returned by <code>ListProcurementPortals</code>.</p>
+            next_token: <p>The token for the next set of results. You received this token from a previous call.</p>
+            max_results: <p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value. Default is 100.</p>
+
+        Raises:
+            capo_invoicing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_invoicing.errors.internal_server_exception.InternalServerException: <p>The processing request failed because of an unknown error, exception, or failure. </p>
+            capo_invoicing.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource could not be found. </p>
+            capo_invoicing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_invoicing.errors.validation_exception.ValidationException: <p> The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_invoicing.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            ListProcurementPortalSuppliers
+
+            >>> await client.list_procurement_portal_suppliers(portal_identifier='KXMJQWBRNP')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_invoicing.types.list_procurement_portal_suppliers_request.ListProcurementPortalSuppliersRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_invoicing.types.list_procurement_portal_suppliers_response.ListProcurementPortalSuppliersResponse"
+        ]:
+            import capo_invoicing._operations.invoicing.list_procurement_portal_suppliers
+
+            (
+                output,
+                http_response,
+            ) = await capo_invoicing._operations.invoicing.list_procurement_portal_suppliers.async_list_procurement_portal_suppliers(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_invoicing.types.list_procurement_portal_suppliers_request.ListProcurementPortalSuppliersRequest = {
+            "portal_identifier": portal_identifier
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_procurement_portal_suppliers(
+        self,
+        portal_identifier: "capo_invoicing.types.procurement_portal_id_string.ProcurementPortalIdString",
+        *,
+        config_overrides: Optional[AsyncInvoicingClientConfig] = None,
+        next_token: Optional[
+            "capo_invoicing.types.basic_string_without_space.BasicStringWithoutSpace"
+        ] = None,
+        max_results: Optional["capo_invoicing.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_invoicing.types.procurement_portal_supplier.ProcurementPortalSupplier]":
+        _token = next_token
+        while True:
+            _response = await self.list_procurement_portal_suppliers(
+                portal_identifier,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("procurement_portal_suppliers",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_tags_for_resource(
         self,
         resource_arn: "capo_invoicing.types.tagris_arn.TagrisArn",
@@ -1189,6 +1369,66 @@ class AsyncInvoicingClient:
             input_["test_env_preference"] = test_env_preference
         if einvoice_delivery_preference is not None:
             input_["einvoice_delivery_preference"] = einvoice_delivery_preference
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def send_procurement_portal_validation(
+        self,
+        procurement_portal_preference_arn: "capo_invoicing.types.procurement_portal_preference_arn_string.ProcurementPortalPreferenceArnString",
+        *,
+        config_overrides: Optional[AsyncInvoicingClientConfig] = None,
+        client_token: Optional[
+            "capo_invoicing.types.basic_string_without_space.BasicStringWithoutSpace"
+        ] = None,
+    ) -> "capo_invoicing.types.send_procurement_portal_validation_response.SendProcurementPortalValidationResponse":
+        r"""<p> <i> <b>This feature API is subject to changing at any time. For more information, see the <a href=\"https://aws.amazon.com/service-terms/\">Amazon Web Services Service Terms</a> (Betas and Previews).</b> </i> </p> <p>Sends a validation request for a procurement portal preference. This operation initiates the validation process by issuing a validation code that confirms ownership and connectivity of the configured procurement portal endpoint. Use <code>VerifyProcurementPortalValidation</code> to submit the received code and complete validation.</p>
+
+        Args:
+            procurement_portal_preference_arn: <p>The Amazon Resource Name (ARN) of the procurement portal preference to validate.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_invoicing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_invoicing.errors.internal_server_exception.InternalServerException: <p>The processing request failed because of an unknown error, exception, or failure. </p>
+            capo_invoicing.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource could not be found. </p>
+            capo_invoicing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_invoicing.errors.validation_exception.ValidationException: <p> The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_invoicing.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            SendProcurementPortalValidation call
+
+            >>> await client.send_procurement_portal_validation(procurement_portal_preference_arn='arn:aws:invoicing::111111111111:procurement-portal-preference/f71dd02e-f855-4b13-b793-0fd25c0b3ecd')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_invoicing.types.send_procurement_portal_validation_request.SendProcurementPortalValidationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_invoicing.types.send_procurement_portal_validation_response.SendProcurementPortalValidationResponse"
+        ]:
+            import capo_invoicing._operations.invoicing.send_procurement_portal_validation
+
+            (
+                output,
+                http_response,
+            ) = await capo_invoicing._operations.invoicing.send_procurement_portal_validation.async_send_procurement_portal_validation(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_invoicing.types.send_procurement_portal_validation_request.SendProcurementPortalValidationRequest = {
+            "procurement_portal_preference_arn": procurement_portal_preference_arn
+        }
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -1475,6 +1715,69 @@ class AsyncInvoicingClient:
             input_["purchase_order_retrieval_preference_status_reason"] = (
                 purchase_order_retrieval_preference_status_reason
             )
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def verify_procurement_portal_validation(
+        self,
+        procurement_portal_preference_arn: "capo_invoicing.types.procurement_portal_preference_arn_string.ProcurementPortalPreferenceArnString",
+        code: "capo_invoicing.types.basic_string_without_space.BasicStringWithoutSpace",
+        *,
+        config_overrides: Optional[AsyncInvoicingClientConfig] = None,
+        client_token: Optional[
+            "capo_invoicing.types.basic_string_without_space.BasicStringWithoutSpace"
+        ] = None,
+    ) -> "capo_invoicing.types.verify_procurement_portal_validation_response.VerifyProcurementPortalValidationResponse":
+        r"""<p> <i> <b>This feature API is subject to changing at any time. For more information, see the <a href=\"https://aws.amazon.com/service-terms/\">Amazon Web Services Service Terms</a> (Betas and Previews).</b> </i> </p> <p>Submits a validation code to complete the validation of a procurement portal preference. Use this operation after calling <code>SendProcurementPortalValidation</code> to confirm ownership and connectivity of the configured procurement portal endpoint.</p>
+
+        Args:
+            procurement_portal_preference_arn: <p>The Amazon Resource Name (ARN) of the procurement portal preference to validate.</p>
+            code: <p>The validation code received from the procurement portal in response to a previous <code>SendProcurementPortalValidation</code> request.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_invoicing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_invoicing.errors.internal_server_exception.InternalServerException: <p>The processing request failed because of an unknown error, exception, or failure. </p>
+            capo_invoicing.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource could not be found. </p>
+            capo_invoicing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_invoicing.errors.validation_exception.ValidationException: <p> The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_invoicing.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            VerifyProcurementPortalValidation call
+
+            >>> await client.verify_procurement_portal_validation(procurement_portal_preference_arn='arn:aws:invoicing::111111111111:procurement-portal-preference/f71dd02e-f855-4b13-b793-0fd25c0b3ecd', code='validation-code-123')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_invoicing.types.verify_procurement_portal_validation_request.VerifyProcurementPortalValidationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_invoicing.types.verify_procurement_portal_validation_response.VerifyProcurementPortalValidationResponse"
+        ]:
+            import capo_invoicing._operations.invoicing.verify_procurement_portal_validation
+
+            (
+                output,
+                http_response,
+            ) = await capo_invoicing._operations.invoicing.verify_procurement_portal_validation.async_verify_procurement_portal_validation(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_invoicing.types.verify_procurement_portal_validation_request.VerifyProcurementPortalValidationRequest = {
+            "procurement_portal_preference_arn": procurement_portal_preference_arn,
+            "code": code,
+        }
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token

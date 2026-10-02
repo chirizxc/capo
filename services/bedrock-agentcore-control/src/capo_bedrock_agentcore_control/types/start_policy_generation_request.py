@@ -20,7 +20,7 @@ class StartPolicyGenerationRequest(TypedDict, closed=True):
     resource: "capo_bedrock_agentcore_control.types.resource.Resource"
     """<p>The resource information that provides context for policy generation. This helps the AI understand the target resources and generate appropriate access control rules.</p>"""
     content: "capo_bedrock_agentcore_control.types.content.Content"
-    """<p>The natural language description of the desired policy behavior. This content is processed by AI to generate corresponding Cedar policy statements that match the described intent.</p>"""
+    """<p>The natural language description of the desired policy behavior. This content is processed by AI to generate corresponding Dogwood policy statements that match the described intent.</p>"""
     name: "capo_bedrock_agentcore_control.types.policy_generation_name.PolicyGenerationName"
     """<p>A customer-assigned name for the policy generation request. This helps track and identify generation operations, especially when running multiple generations simultaneously.</p>"""
     client_token: NotRequired[

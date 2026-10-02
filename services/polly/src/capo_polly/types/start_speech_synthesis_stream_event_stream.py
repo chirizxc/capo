@@ -6,6 +6,9 @@ from typing_extensions import TypedDict
 
 from capo_polly._iter import AnyIterator
 from capo_polly._protocol.eventstream import Message
+from capo_polly.errors import (
+    UnknownServiceError,
+)
 
 if TYPE_CHECKING:
     import capo_polly.errors.service_failure_exception
@@ -103,44 +106,58 @@ def serialize_event_json(value: _StartSpeechSynthesisStreamEventStream) -> bytes
 
 def deserialize_event_json(message: Message) -> _StartSpeechSynthesisStreamEventStream:
     headers = message.headers
-    message_type = headers.get(":message-type", "event")  # noqa: F841
-    if message_type == "error":
-        error_type = headers.get(":error-type")
-        match error_type:
+    message_type = headers.get(":message-type", "event")
+    if message_type == "exception":
+        exception_type = headers.get(":exception-type")
+        match exception_type:
             case "ValidationException":
                 import capo_polly.errors.validation_exception
 
+                data = capo_polly.errors.validation_exception.deserialize_event_json(
+                    message
+                )
                 raise capo_polly.errors.validation_exception.ValidationException(
-                    capo_polly.errors.validation_exception.deserialize_event_json(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "ServiceQuotaExceededException":
                 import capo_polly.errors.service_quota_exceeded_exception
 
+                data = capo_polly.errors.service_quota_exceeded_exception.deserialize_event_json(
+                    message
+                )
                 raise capo_polly.errors.service_quota_exceeded_exception.ServiceQuotaExceededException(
-                    capo_polly.errors.service_quota_exceeded_exception.deserialize_event_json(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "ServiceFailureException":
                 import capo_polly.errors.service_failure_exception
 
-                raise capo_polly.errors.service_failure_exception.ServiceFailureException(
+                data = (
                     capo_polly.errors.service_failure_exception.deserialize_event_json(
                         message
                     )
                 )
+                raise capo_polly.errors.service_failure_exception.ServiceFailureException(
+                    data, message=data.get("message")
+                )
             case "ThrottlingException":
                 import capo_polly.errors.throttling_exception
 
-                raise capo_polly.errors.throttling_exception.ThrottlingException(
-                    capo_polly.errors.throttling_exception.deserialize_event_json(
-                        message
-                    )
+                data = capo_polly.errors.throttling_exception.deserialize_event_json(
+                    message
                 )
-        raise ValueError(
-            f"StartSpeechSynthesisStreamEventStream: unrecognized error-type {error_type!r}"
+                raise capo_polly.errors.throttling_exception.ThrottlingException(
+                    data, message=data.get("message")
+                )
+        raise UnknownServiceError(
+            code=str(exception_type), message=None, response=message
+        )
+    if message_type == "error":
+        error_code = headers.get(":error-code")
+        error_message = headers.get(":error-message")
+        raise UnknownServiceError(
+            code=None if error_code is None else str(error_code),
+            message=None if error_message is None else str(error_message),
+            response=message,
         )
     event_type = headers.get(":event-type")
     match event_type:

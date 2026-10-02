@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_marketplace_agreement.types.acceptor
     import capo_marketplace_agreement.types.agreement_status
     import capo_marketplace_agreement.types.agreement_type
+    import capo_marketplace_agreement.types.end_time_behavior
     import capo_marketplace_agreement.types.estimated_charges
     import capo_marketplace_agreement.types.proposal_summary
     import capo_marketplace_agreement.types.proposer
@@ -43,7 +44,15 @@ class DescribeAgreementOutput(TypedDict, closed=True):
     status: NotRequired[
         "capo_marketplace_agreement.types.agreement_status.AgreementStatus"
     ]
-    """<p>The current status of the agreement.</p> <p>Statuses include:</p> <ul> <li> <p> <code>ACTIVE</code> – The terms of the agreement are active.</p> </li> <li> <p> <code>ARCHIVED</code> – The agreement ended without a specified reason.</p> </li> <li> <p> <code>CANCELLED</code> – The acceptor ended the agreement before the defined end date.</p> </li> <li> <p> <code>EXPIRED</code> – The agreement ended on the defined end date.</p> </li> <li> <p> <code>RENEWED</code> – The agreement was renewed into a new agreement (for example, an auto-renewal).</p> </li> <li> <p> <code>REPLACED</code> – The agreement was replaced using an agreement replacement offer.</p> </li> <li> <p> <code>TERMINATED</code> – The agreement ended before the defined end date because of an AWS termination (for example, a payment failure).</p> </li> </ul>"""
+    """<p>The current status of the agreement.</p> <p>Statuses include:</p> <ul> <li> <p> <code>ACTIVE</code> – The terms of the agreement are active.</p> </li> <li> <p> <code>CANCELLED</code> – The acceptor ended the agreement before the defined end date.</p> </li> <li> <p> <code>EXPIRED</code> – The agreement ended on the defined end date.</p> </li> <li> <p> <code>RENEWED</code> – The agreement was renewed into a new agreement (for example, an auto-renewal).</p> </li> <li> <p> <code>REPLACED</code> – The agreement was replaced using an agreement replacement offer.</p> </li> <li> <p> <code>TERMINATED</code> – The agreement ended before the defined end date because of an AWS termination (for example, a payment failure).</p> </li> </ul>"""
+    initial_agreement_id: NotRequired[
+        "capo_marketplace_agreement.types.resource_id.ResourceId"
+    ]
+    """<p>The unique identifier of the very first agreement in a chain of related agreements, such as renewals or replacements. It stays the same across all agreements in that chain, which lets you trace an agreement back to the original. When an agreement isn't derived from another agreement, its <code>InitialAgreementId</code> is its own <code>AgreementId</code>.</p>"""
+    end_time_behavior: NotRequired[
+        "capo_marketplace_agreement.types.end_time_behavior.EndTimeBehavior"
+    ]
+    """<p>The behavior of the agreement when it reaches its end date. For example, whether the agreement renews, and if it doesn't, the reason why.</p> <p>This field is present for every active agreement that has an end date. It is not present for an agreement that has no end date, because such an agreement never reaches an end time. Pay-as-you-go agreements are the most common example. It is also not present for an agreement that is no longer active.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -117,6 +126,16 @@ def serialize_aws_json_1_0(value: DescribeAgreementOutput) -> dict:
                 value["status"]
             )
         )
+    if "initial_agreement_id" in value:
+        out["initialAgreementId"] = value["initial_agreement_id"]
+    if "end_time_behavior" in value:
+        import capo_marketplace_agreement.types.end_time_behavior
+
+        out["endTimeBehavior"] = (
+            capo_marketplace_agreement.types.end_time_behavior.serialize_aws_json_1_0(
+                value["end_time_behavior"]
+            )
+        )
     return out
 
 
@@ -188,6 +207,16 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAgreementOutput:
         out["status"] = (
             capo_marketplace_agreement.types.agreement_status.deserialize_aws_json_1_0(
                 data["status"]
+            )
+        )
+    if data.get("initialAgreementId") is not None:
+        out["initial_agreement_id"] = data["initialAgreementId"]
+    if data.get("endTimeBehavior") is not None:
+        import capo_marketplace_agreement.types.end_time_behavior
+
+        out["end_time_behavior"] = (
+            capo_marketplace_agreement.types.end_time_behavior.deserialize_aws_json_1_0(
+                data["endTimeBehavior"]
             )
         )
     return out

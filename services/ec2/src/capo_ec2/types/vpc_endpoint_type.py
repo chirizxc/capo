@@ -10,6 +10,7 @@ VpcEndpointType: TypeAlias = Literal[
     "GatewayLoadBalancer",
     "Resource",
     "ServiceNetwork",
+    "Tunnel",
 ]
 
 

@@ -1,0 +1,13 @@
+# Third-party S3-compatible servers for the free integration tests.
+#
+#   docker compose -f tests/docker-compose.yml up -d
+#
+# rustfs -> http://localhost:9010  (rustfsadmin / rustfsadmin)
+services:
+  rustfs:
+    image: rustfs/rustfs:latest
+    environment:
+      RUSTFS_ACCESS_KEY: rustfsadmin
+      RUSTFS_SECRET_KEY: rustfsadmin
+    ports:
+      - "9010:9000"

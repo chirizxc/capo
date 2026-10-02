@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_batch.types.array_properties_summary
+    import capo_batch.types.boolean
     import capo_batch.types.container_summary
     import capo_batch.types.job_capacity_usage_summary_list
     import capo_batch.types.job_status
@@ -51,6 +52,10 @@ class JobSummary(TypedDict, closed=True):
     """<p>The node properties for a single node in a job summary list.</p> <note> <p>This isn't applicable to jobs that are running on Fargate resources.</p> </note>"""
     job_definition: NotRequired["capo_batch.types.string.String"]
     """<p>The Amazon Resource Name (ARN) of the job definition.</p>"""
+    is_cancelled: NotRequired["capo_batch.types.boolean.Boolean"]
+    """<p>Indicates whether a cancellation request has been accepted for the job. This field is only present when the value is <code>true</code>.</p>"""
+    is_terminated: NotRequired["capo_batch.types.boolean.Boolean"]
+    """<p>Indicates whether a termination request has been accepted for the job. This field is only present when the value is <code>true</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -108,6 +113,10 @@ def serialize_json(value: JobSummary) -> dict:
         )
     if "job_definition" in value:
         out["jobDefinition"] = value["job_definition"]
+    if "is_cancelled" in value:
+        out["isCancelled"] = value["is_cancelled"]
+    if "is_terminated" in value:
+        out["isTerminated"] = value["is_terminated"]
     return out
 
 
@@ -167,4 +176,8 @@ def deserialize_json(data: dict) -> JobSummary:
         )
     if data.get("jobDefinition") is not None:
         out["job_definition"] = data["jobDefinition"]
+    if data.get("isCancelled") is not None:
+        out["is_cancelled"] = data["isCancelled"]
+    if data.get("isTerminated") is not None:
+        out["is_terminated"] = data["isTerminated"]
     return out

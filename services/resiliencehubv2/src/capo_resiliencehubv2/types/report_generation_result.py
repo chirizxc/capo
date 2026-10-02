@@ -13,6 +13,8 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.report_generation_status
     import capo_resiliencehubv2.types.report_output
     import capo_resiliencehubv2.types.report_type
+    import capo_resiliencehubv2.types.service_owned_arn
+    import capo_resiliencehubv2.types.test_run_id
     import capo_resiliencehubv2.types.uuid
 
 
@@ -25,6 +27,10 @@ class ReportGenerationResult(TypedDict, closed=True):
     """<p>The service this report was generated for.</p>"""
     assessment_id: NotRequired["capo_resiliencehubv2.types.uuid.Uuid"]
     """<p>Present for FAILURE_MODE reports.</p>"""
+    test_run_id: NotRequired["capo_resiliencehubv2.types.test_run_id.TestRunId"]
+    test_template_arn: NotRequired[
+        "capo_resiliencehubv2.types.service_owned_arn.ServiceOwnedArn"
+    ]
     created_at: NotRequired["datetime.datetime"]
     """<p>The timestamp when the report was created.</p>"""
     report_output: NotRequired["capo_resiliencehubv2.types.report_output.ReportOutput"]
@@ -48,6 +54,10 @@ def serialize_json(value: ReportGenerationResult) -> dict:
         out["serviceArn"] = value["service_arn"]
     if "assessment_id" in value:
         out["assessmentId"] = value["assessment_id"]
+    if "test_run_id" in value:
+        out["testRunId"] = value["test_run_id"]
+    if "test_template_arn" in value:
+        out["testTemplateArn"] = value["test_template_arn"]
     if "created_at" in value:
         import capo_resiliencehubv2.types._prelude.timestamp
 
@@ -87,6 +97,10 @@ def deserialize_json(data: dict) -> ReportGenerationResult:
         out["service_arn"] = data["serviceArn"]
     if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
+    if data.get("testRunId") is not None:
+        out["test_run_id"] = data["testRunId"]
+    if data.get("testTemplateArn") is not None:
+        out["test_template_arn"] = data["testTemplateArn"]
     if data.get("createdAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 

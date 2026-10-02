@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_eks.types.boxed_boolean
+    import capo_eks.types.control_plane_egress_mode_type
     import capo_eks.types.string_list
 
 
@@ -20,6 +21,10 @@ class VpcConfigRequest(TypedDict, closed=True):
     r"""<p>Set this value to <code>true</code> to enable private access for your cluster's Kubernetes API server endpoint. If you enable private access, Kubernetes API requests from within your cluster's VPC use the private VPC endpoint. The default value for this parameter is <code>false</code>, which disables private access for your Kubernetes API server. If you disable private access and you have nodes or Fargate pods in the cluster, then ensure that <code>publicAccessCidrs</code> includes the necessary CIDR blocks for communication with the nodes or Fargate pods. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html\">Cluster API server endpoint</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p>"""
     public_access_cidrs: NotRequired["capo_eks.types.string_list.StringList"]
     r"""<p>The CIDR blocks that are allowed access to your cluster's public Kubernetes API server endpoint. Communication to the endpoint from addresses outside of the CIDR blocks that you specify is denied. The default value is <code>0.0.0.0/0</code> and additionally <code>::/0</code> for dual-stack `IPv6` clusters. If you've disabled private endpoint access, make sure that you specify the necessary CIDR blocks for every node and Fargate <code>Pod</code> in the cluster. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html\">Cluster API server endpoint</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p> <p>Note that the public endpoints are dual-stack for only <code>IPv6</code> clusters that are made after October 2024. You can't add <code>IPv6</code> CIDR blocks to <code>IPv4</code> clusters or <code>IPv6</code> clusters that were made before October 2024.</p>"""
+    control_plane_egress_mode: NotRequired[
+        "capo_eks.types.control_plane_egress_mode_type.ControlPlaneEgressModeType"
+    ]
+    r"""<p>Specifies the control plane egress routing mode for the cluster. If the cluster is set to <code>AWS_MANAGED</code>, Amazon EKS manages the egress path from the control plane and you don't need to configure NAT gateways or other routing infrastructure for control plane traffic. If the cluster is set to <code>CUSTOMER_ROUTED</code>, you manage the egress path from the control plane in your VPC subnets. You are responsible for ensuring that the control plane can reach required endpoints such as webhook servers and OIDC providers. The default value is <code>AWS_MANAGED</code>. Once set to <code>CUSTOMER_ROUTED</code>, this setting cannot be changed back to <code>AWS_MANAGED</code> on the same cluster.</p> <p> <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/control-plane-egress.html\">Learn more about control plane egress routing in the <i>Amazon EKS User Guide</i>.</a> </p>"""
 
 
 # --- restJson1 ser/de ---
@@ -47,6 +52,14 @@ def serialize_json(value: VpcConfigRequest) -> dict:
         out["publicAccessCidrs"] = capo_eks.types.string_list.serialize_json(
             value["public_access_cidrs"]
         )
+    if "control_plane_egress_mode" in value:
+        import capo_eks.types.control_plane_egress_mode_type
+
+        out["controlPlaneEgressMode"] = (
+            capo_eks.types.control_plane_egress_mode_type.serialize_json(
+                value["control_plane_egress_mode"]
+            )
+        )
     return out
 
 
@@ -73,5 +86,13 @@ def deserialize_json(data: dict) -> VpcConfigRequest:
 
         out["public_access_cidrs"] = capo_eks.types.string_list.deserialize_json(
             data["publicAccessCidrs"]
+        )
+    if data.get("controlPlaneEgressMode") is not None:
+        import capo_eks.types.control_plane_egress_mode_type
+
+        out["control_plane_egress_mode"] = (
+            capo_eks.types.control_plane_egress_mode_type.deserialize_json(
+                data["controlPlaneEgressMode"]
+            )
         )
     return out

@@ -25,6 +25,7 @@ import capo_transcribe_streaming.types.media_encoding
 import capo_transcribe_streaming.types.partial_results_stability
 import capo_transcribe_streaming.types.start_stream_transcription_request
 import capo_transcribe_streaming.types.start_stream_transcription_response
+import capo_transcribe_streaming.types.transcript_format
 import capo_transcribe_streaming.types.transcript_result_stream
 import capo_transcribe_streaming.types.vocabulary_filter_method
 from capo_transcribe_streaming._protocol.errors import parse_error_metadata_json
@@ -40,6 +41,7 @@ from capo_transcribe_streaming._rule_engine._endpoint_rule_set import (
 from capo_transcribe_streaming._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_transcribe_streaming.errors import UnknownServiceError
 
@@ -183,6 +185,12 @@ def handle_response(
         out["session_resume_window"] = int(
             response.headers["x-amzn-transcribe-session-resume-window"]
         )
+    if "x-amzn-transcribe-transcript-format" in response.headers:
+        out["transcript_format"] = (
+            capo_transcribe_streaming.types.transcript_format.deserialize_json(
+                response.headers["x-amzn-transcribe-transcript-format"]
+            )
+        )
     return out
 
 
@@ -297,6 +305,12 @@ async def async_handle_response(
         out["session_resume_window"] = int(
             response.headers["x-amzn-transcribe-session-resume-window"]
         )
+    if "x-amzn-transcribe-transcript-format" in response.headers:
+        out["transcript_format"] = (
+            capo_transcribe_streaming.types.transcript_format.deserialize_json(
+                response.headers["x-amzn-transcribe-transcript-format"]
+            )
+        )
     return out
 
 
@@ -325,7 +339,9 @@ def get_signer(
             )
             if sigv4_config is not None:
                 return capo_transcribe_streaming._auth._signers.SigV4Signer(
-                    options.credentials_provider, auth_scheme=sigv4_config
+                    options.credentials_provider,
+                    auth_scheme=sigv4_config,
+                    event_stream=True,
                 )
     raise RuntimeError("Auth was not resolved")
 
@@ -347,6 +363,7 @@ def build_request(
     import capo_transcribe_streaming.types.language_code
     import capo_transcribe_streaming.types.media_encoding
     import capo_transcribe_streaming.types.partial_results_stability
+    import capo_transcribe_streaming.types.transcript_format
     import capo_transcribe_streaming.types.vocabulary_filter_method
 
     url = endpoint.url.rstrip("/") + "/stream-transcription"
@@ -440,6 +457,12 @@ def build_request(
     if "session_resume_window" in input_:
         headers["x-amzn-transcribe-session-resume-window"] = str(
             input_["session_resume_window"]
+        )
+    if "transcript_format" in input_:
+        headers["x-amzn-transcribe-transcript-format"] = (
+            capo_transcribe_streaming.types.transcript_format.serialize_json(
+                input_["transcript_format"]
+            )
         )
 
     body = capo_transcribe_streaming._iter.map_sync_iterator(
@@ -474,6 +497,7 @@ def async_build_request(
     import capo_transcribe_streaming.types.language_code
     import capo_transcribe_streaming.types.media_encoding
     import capo_transcribe_streaming.types.partial_results_stability
+    import capo_transcribe_streaming.types.transcript_format
     import capo_transcribe_streaming.types.vocabulary_filter_method
 
     url = endpoint.url.rstrip("/") + "/stream-transcription"
@@ -568,6 +592,12 @@ def async_build_request(
         headers["x-amzn-transcribe-session-resume-window"] = str(
             input_["session_resume_window"]
         )
+    if "transcript_format" in input_:
+        headers["x-amzn-transcribe-transcript-format"] = (
+            capo_transcribe_streaming.types.transcript_format.serialize_json(
+                input_["transcript_format"]
+            )
+        )
 
     body = capo_transcribe_streaming._iter.map_async_iterator(
         input_["audio_stream"],
@@ -595,7 +625,7 @@ def start_stream_transcription(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -615,7 +645,7 @@ async def async_start_stream_transcription(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

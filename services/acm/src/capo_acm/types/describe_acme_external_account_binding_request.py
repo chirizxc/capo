@@ -1,0 +1,35 @@
+"""Generated from Smithy shape ``com.amazonaws.acm#DescribeAcmeExternalAccountBindingRequest``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import TypedDict
+
+from capo_acm.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_acm.types.acme_external_account_binding_arn
+
+
+class DescribeAcmeExternalAccountBindingRequest(TypedDict, closed=True):
+    acme_external_account_binding_arn: (
+        "capo_acm.types.acme_external_account_binding_arn.AcmeExternalAccountBindingArn"
+    )
+    """<p>The Amazon Resource Name (ARN) of the ACME external account binding.</p>"""
+
+
+# --- awsJson1_1 ser/de ---
+def serialize_aws_json_1_1(value: DescribeAcmeExternalAccountBindingRequest) -> dict:
+    out: dict = {}
+    out["AcmeExternalAccountBindingArn"] = value["acme_external_account_binding_arn"]
+    return out
+
+
+def deserialize_aws_json_1_1(data: dict) -> DescribeAcmeExternalAccountBindingRequest:
+    out: DescribeAcmeExternalAccountBindingRequest = {}  # type: ignore[typeddict-item]
+    if data.get("AcmeExternalAccountBindingArn") is not None:
+        out["acme_external_account_binding_arn"] = data["AcmeExternalAccountBindingArn"]
+    else:
+        raise DeserializationError(
+            "DescribeAcmeExternalAccountBindingRequest.acme_external_account_binding_arn required"
+        )
+    return out

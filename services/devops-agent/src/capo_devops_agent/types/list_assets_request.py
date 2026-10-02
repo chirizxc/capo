@@ -7,13 +7,15 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import datetime
 
-    import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.asset_type
     import capo_devops_agent.types.next_token
 
 
 class ListAssetsRequest(TypedDict, closed=True):
-    agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
+    agent_space_id: (
+        "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier"
+    )
     """<p>The unique identifier for the agent space to list assets from</p>"""
     asset_type: NotRequired["capo_devops_agent.types.asset_type.AssetType"]
     """<p>Filter results to only assets of this type</p>"""

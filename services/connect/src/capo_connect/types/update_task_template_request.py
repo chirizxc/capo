@@ -28,21 +28,21 @@ class UpdateTaskTemplateRequest(TypedDict, closed=True):
     ]
     """<p>The description of the task template.</p>"""
     contact_flow_id: NotRequired["capo_connect.types.contact_flow_id.ContactFlowId"]
-    """<p>The identifier of the flow that runs by default when a task is created by referencing this template.</p>"""
+    """<p>The identifier of the flow that runs by default when a task is created by referencing this template.</p> <p>Although this parameter is marked as optional, the request must contain either a <code>ContactFlowId</code> or a field of type <code>QUICK_CONNECT</code>.</p>"""
     self_assign_flow_id: NotRequired["capo_connect.types.contact_flow_id.ContactFlowId"]
     """<p>The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.</p>"""
     constraints: NotRequired[
         "capo_connect.types.task_template_constraints.TaskTemplateConstraints"
     ]
-    """<p>Constraints that are applicable to the fields listed.</p>"""
+    """<p>Constraints that are applicable to the fields listed. Although this parameter is marked as optional in the API model, the service requires it when calling <code>CreateTaskTemplate</code> or <code>UpdateTaskTemplate</code>. The <code>RequiredFields</code> array must contain at least one element, and the field of type <code>NAME</code> must be included in <code>RequiredFields</code>.</p>"""
     defaults: NotRequired[
         "capo_connect.types.task_template_defaults.TaskTemplateDefaults"
     ]
     """<p>The default values for fields when a task is created by referencing this template.</p>"""
     status: NotRequired["capo_connect.types.task_template_status.TaskTemplateStatus"]
-    """<p>Marks a template as <code>ACTIVE</code> or <code>INACTIVE</code> for a task to refer to it. Tasks can only be created from <code>ACTIVE</code> templates. If a template is marked as <code>INACTIVE</code>, then a task that refers to this template cannot be created.</p>"""
+    """<p>Marks a template as <code>ACTIVE</code> or <code>INACTIVE</code> for a task to refer to it. Tasks can only be created from <code>ACTIVE</code> templates. If a template is marked as <code>INACTIVE</code>, then a task that refers to this template cannot be created.</p> <p>Although this parameter is marked as optional, the service requires it when calling <code>UpdateTaskTemplate</code>.</p>"""
     fields: NotRequired["capo_connect.types.task_template_fields.TaskTemplateFields"]
-    """<p>Fields that are part of the template.</p>"""
+    """<p>Fields that are part of the template.</p> <p>The request must contain exactly one field of type <code>NAME</code>. This field must also be listed in the <code>RequiredFields</code> array within the <code>Constraints</code> parameter.</p>"""
 
 
 # --- restJson1 ser/de ---

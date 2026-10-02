@@ -12,7 +12,7 @@ class GetWorkflowStepExecutionRequest(TypedDict, closed=True):
     step_execution_id: (
         "capo_imagebuilder.types.workflow_step_execution_id.WorkflowStepExecutionId"
     )
-    """<p>Use the unique identifier for a specific runtime instance of the workflow step to get runtime details for that step.</p>"""
+    """<p>The unique identifier for the runtime instance of the workflow step that you want to get runtime details for. To get the identifiers for the steps that ran in a workflow, call <a>ListWorkflowStepExecutions</a>.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -6,12 +6,11 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_appconfig.types.description
-    import capo_appconfig.types.id
     import capo_appconfig.types.name
 
 
 class UpdateApplicationRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
     name: NotRequired["capo_appconfig.types.name.Name"]
     """<p>The name of the application.</p>"""

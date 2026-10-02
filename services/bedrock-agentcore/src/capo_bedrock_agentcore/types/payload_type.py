@@ -9,6 +9,7 @@ from capo_bedrock_agentcore.errors import DeserializationError, SerializationErr
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.conversational
     import capo_bedrock_agentcore.types.memory_document
+    import capo_bedrock_agentcore.types.memory_json_data
 
 
 class _PayloadType_conversational(TypedDict, closed=True):
@@ -19,7 +20,13 @@ class _PayloadType_blob(TypedDict, closed=True):
     blob: "capo_bedrock_agentcore.types.memory_document.MemoryDocument"
 
 
-PayloadType: TypeAlias = _PayloadType_conversational | _PayloadType_blob
+class _PayloadType_json(TypedDict, closed=True):
+    json: "capo_bedrock_agentcore.types.memory_json_data.MemoryJsonData"
+
+
+PayloadType: TypeAlias = (
+    _PayloadType_conversational | _PayloadType_blob | _PayloadType_json
+)
 
 
 # --- restJson1 ser/de ---
@@ -34,6 +41,14 @@ def serialize_json(value: PayloadType) -> dict:
         }
     elif "blob" in value:
         return {"blob": value["blob"]}
+    elif "json" in value:
+        import capo_bedrock_agentcore.types.memory_json_data
+
+        return {
+            "json": capo_bedrock_agentcore.types.memory_json_data.serialize_json(
+                value["json"]
+            )
+        }
     else:
         raise SerializationError("PayloadType: no variant present")
 
@@ -49,5 +64,13 @@ def deserialize_json(data: dict) -> PayloadType:
         }
     elif data.get("blob") is not None:
         return {"blob": data["blob"]}
+    elif data.get("json") is not None:
+        import capo_bedrock_agentcore.types.memory_json_data
+
+        return {
+            "json": capo_bedrock_agentcore.types.memory_json_data.deserialize_json(
+                data["json"]
+            )
+        }
     else:
         raise DeserializationError("PayloadType: no recognized variant key")

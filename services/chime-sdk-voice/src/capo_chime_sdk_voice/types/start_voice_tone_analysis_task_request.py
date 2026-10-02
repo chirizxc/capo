@@ -9,14 +9,12 @@ from capo_chime_sdk_voice.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.client_request_id
     import capo_chime_sdk_voice.types.language_code
-    import capo_chime_sdk_voice.types.non_empty_string128
     import capo_chime_sdk_voice.types.non_empty_string256
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class StartVoiceToneAnalysisTaskRequest(TypedDict, closed=True):
-    voice_connector_id: (
-        "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128"
-    )
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
     transaction_id: "capo_chime_sdk_voice.types.non_empty_string256.NonEmptyString256"
     """<p>The transaction ID.</p>"""

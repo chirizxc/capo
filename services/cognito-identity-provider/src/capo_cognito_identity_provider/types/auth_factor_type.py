@@ -7,6 +7,7 @@ AuthFactorType: TypeAlias = Literal[
     "EMAIL_OTP",
     "SMS_OTP",
     "WEB_AUTHN",
+    "SOFTWARE_TOKEN",
 ]
 
 

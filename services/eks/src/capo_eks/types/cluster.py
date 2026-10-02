@@ -15,6 +15,9 @@ if TYPE_CHECKING:
     import capo_eks.types.control_plane_scaling_config
     import capo_eks.types.encryption_config_list
     import capo_eks.types.identity
+    import capo_eks.types.kube_api_server_config_response
+    import capo_eks.types.kube_controller_manager_config_response
+    import capo_eks.types.kube_scheduler_config_response
     import capo_eks.types.kubernetes_network_config_response
     import capo_eks.types.logging
     import capo_eks.types.outpost_config_response
@@ -109,6 +112,18 @@ class Cluster(TypedDict, closed=True):
         "capo_eks.types.control_plane_scaling_config.ControlPlaneScalingConfig"
     ]
     """<p>The control plane scaling tier configuration. For more information, see EKS Provisioned Control Plane in the Amazon EKS User Guide.</p>"""
+    kube_api_server_config: NotRequired[
+        "capo_eks.types.kube_api_server_config_response.KubeApiServerConfigResponse"
+    ]
+    """<p>The Kubernetes API server configuration for the cluster.</p>"""
+    kube_scheduler_config: NotRequired[
+        "capo_eks.types.kube_scheduler_config_response.KubeSchedulerConfigResponse"
+    ]
+    """<p>The Kubernetes scheduler configuration for the cluster.</p>"""
+    kube_controller_manager_config: NotRequired[
+        "capo_eks.types.kube_controller_manager_config_response.KubeControllerManagerConfigResponse"
+    ]
+    """<p>The Kubernetes controller manager configuration for the cluster.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -242,6 +257,30 @@ def serialize_json(value: Cluster) -> dict:
         out["controlPlaneScalingConfig"] = (
             capo_eks.types.control_plane_scaling_config.serialize_json(
                 value["control_plane_scaling_config"]
+            )
+        )
+    if "kube_api_server_config" in value:
+        import capo_eks.types.kube_api_server_config_response
+
+        out["kubeApiServerConfig"] = (
+            capo_eks.types.kube_api_server_config_response.serialize_json(
+                value["kube_api_server_config"]
+            )
+        )
+    if "kube_scheduler_config" in value:
+        import capo_eks.types.kube_scheduler_config_response
+
+        out["kubeSchedulerConfig"] = (
+            capo_eks.types.kube_scheduler_config_response.serialize_json(
+                value["kube_scheduler_config"]
+            )
+        )
+    if "kube_controller_manager_config" in value:
+        import capo_eks.types.kube_controller_manager_config_response
+
+        out["kubeControllerManagerConfig"] = (
+            capo_eks.types.kube_controller_manager_config_response.serialize_json(
+                value["kube_controller_manager_config"]
             )
         )
     return out
@@ -381,6 +420,30 @@ def deserialize_json(data: dict) -> Cluster:
         out["control_plane_scaling_config"] = (
             capo_eks.types.control_plane_scaling_config.deserialize_json(
                 data["controlPlaneScalingConfig"]
+            )
+        )
+    if data.get("kubeApiServerConfig") is not None:
+        import capo_eks.types.kube_api_server_config_response
+
+        out["kube_api_server_config"] = (
+            capo_eks.types.kube_api_server_config_response.deserialize_json(
+                data["kubeApiServerConfig"]
+            )
+        )
+    if data.get("kubeSchedulerConfig") is not None:
+        import capo_eks.types.kube_scheduler_config_response
+
+        out["kube_scheduler_config"] = (
+            capo_eks.types.kube_scheduler_config_response.deserialize_json(
+                data["kubeSchedulerConfig"]
+            )
+        )
+    if data.get("kubeControllerManagerConfig") is not None:
+        import capo_eks.types.kube_controller_manager_config_response
+
+        out["kube_controller_manager_config"] = (
+            capo_eks.types.kube_controller_manager_config_response.deserialize_json(
+                data["kubeControllerManagerConfig"]
             )
         )
     return out

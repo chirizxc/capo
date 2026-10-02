@@ -6,6 +6,9 @@ from typing_extensions import TypedDict
 
 from capo_bedrock_agentcore._iter import AnyIterator
 from capo_bedrock_agentcore._protocol.eventstream import Message
+from capo_bedrock_agentcore.errors import (
+    UnknownServiceError,
+)
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.errors.internal_server_exception
@@ -14,6 +17,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.harness_content_block_delta_event
     import capo_bedrock_agentcore.types.harness_content_block_start_event
     import capo_bedrock_agentcore.types.harness_content_block_stop_event
+    import capo_bedrock_agentcore.types.harness_hook_event
     import capo_bedrock_agentcore.types.harness_message_start_event
     import capo_bedrock_agentcore.types.harness_message_stop_event
     import capo_bedrock_agentcore.types.harness_metadata_event
@@ -59,6 +63,10 @@ class _InvokeHarnessStreamOutput_runtimeClientError(TypedDict, closed=True):
     )
 
 
+class _InvokeHarnessStreamOutput_hookEvent(TypedDict, closed=True):
+    hookEvent: "capo_bedrock_agentcore.types.harness_hook_event.HarnessHookEvent"
+
+
 _InvokeHarnessStreamOutput: TypeAlias = (
     _InvokeHarnessStreamOutput_messageStart
     | _InvokeHarnessStreamOutput_contentBlockStart
@@ -69,6 +77,7 @@ _InvokeHarnessStreamOutput: TypeAlias = (
     | _InvokeHarnessStreamOutput_internalServerException
     | _InvokeHarnessStreamOutput_validationException
     | _InvokeHarnessStreamOutput_runtimeClientError
+    | _InvokeHarnessStreamOutput_hookEvent
 )
 InvokeHarnessStreamOutput: TypeAlias = AnyIterator[_InvokeHarnessStreamOutput]
 
@@ -133,6 +142,12 @@ def serialize_event_json(value: _InvokeHarnessStreamOutput) -> bytes:
                     payload
                 )
             )
+        case {"hookEvent": payload}:
+            import capo_bedrock_agentcore.types.harness_hook_event
+
+            return capo_bedrock_agentcore.types.harness_hook_event.serialize_event_json(
+                payload
+            )
         case _:
             raise ValueError(
                 f"InvokeHarnessStreamOutput: unrecognized variant {value!r}"
@@ -141,36 +156,47 @@ def serialize_event_json(value: _InvokeHarnessStreamOutput) -> bytes:
 
 def deserialize_event_json(message: Message) -> _InvokeHarnessStreamOutput:
     headers = message.headers
-    message_type = headers.get(":message-type", "event")  # noqa: F841
-    if message_type == "error":
-        error_type = headers.get(":error-type")
-        match error_type:
+    message_type = headers.get(":message-type", "event")
+    if message_type == "exception":
+        exception_type = headers.get(":exception-type")
+        match exception_type:
             case "internalServerException":
                 import capo_bedrock_agentcore.errors.internal_server_exception
 
+                data = capo_bedrock_agentcore.errors.internal_server_exception.deserialize_event_json(
+                    message
+                )
                 raise capo_bedrock_agentcore.errors.internal_server_exception.InternalServerException(
-                    capo_bedrock_agentcore.errors.internal_server_exception.deserialize_event_json(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "validationException":
                 import capo_bedrock_agentcore.errors.validation_exception
 
+                data = capo_bedrock_agentcore.errors.validation_exception.deserialize_event_json(
+                    message
+                )
                 raise capo_bedrock_agentcore.errors.validation_exception.ValidationException(
-                    capo_bedrock_agentcore.errors.validation_exception.deserialize_event_json(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "runtimeClientError":
                 import capo_bedrock_agentcore.errors.runtime_client_error
 
-                raise capo_bedrock_agentcore.errors.runtime_client_error.RuntimeClientError(
-                    capo_bedrock_agentcore.errors.runtime_client_error.deserialize_event_json(
-                        message
-                    )
+                data = capo_bedrock_agentcore.errors.runtime_client_error.deserialize_event_json(
+                    message
                 )
-        raise ValueError(
-            f"InvokeHarnessStreamOutput: unrecognized error-type {error_type!r}"
+                raise capo_bedrock_agentcore.errors.runtime_client_error.RuntimeClientError(
+                    data, message=data.get("message")
+                )
+        raise UnknownServiceError(
+            code=str(exception_type), message=None, response=message
+        )
+    if message_type == "error":
+        error_code = headers.get(":error-code")
+        error_message = headers.get(":error-message")
+        raise UnknownServiceError(
+            code=None if error_code is None else str(error_code),
+            message=None if error_message is None else str(error_message),
+            response=message,
         )
     event_type = headers.get(":event-type")
     match event_type:
@@ -219,6 +245,14 @@ def deserialize_event_json(message: Message) -> _InvokeHarnessStreamOutput:
 
             return {
                 "metadata": capo_bedrock_agentcore.types.harness_metadata_event.deserialize_event_json(
+                    message
+                )
+            }
+        case "hookEvent":
+            import capo_bedrock_agentcore.types.harness_hook_event
+
+            return {
+                "hookEvent": capo_bedrock_agentcore.types.harness_hook_event.deserialize_event_json(
                     message
                 )
             }

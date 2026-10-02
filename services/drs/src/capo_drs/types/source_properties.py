@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_drs.types.network_interfaces
     import capo_drs.types.os
     import capo_drs.types.positive_integer
+    import capo_drs.types.source_server_architecture
 
 
 class SourceProperties(TypedDict, closed=True):
@@ -42,6 +43,10 @@ class SourceProperties(TypedDict, closed=True):
     """<p>Operating system.</p>"""
     supports_nitro_instances: NotRequired["bool"]
     """<p>Are EC2 nitro instance types supported when recovering the Source Server.</p>"""
+    architecture: NotRequired[
+        "capo_drs.types.source_server_architecture.SourceServerArchitecture"
+    ]
+    """<p>The architecture of the Source Server.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -78,6 +83,8 @@ def serialize_json(value: SourceProperties) -> dict:
         out["os"] = capo_drs.types.os.serialize_json(value["os"])
     if "supports_nitro_instances" in value:
         out["supportsNitroInstances"] = value["supports_nitro_instances"]
+    if "architecture" in value:
+        out["architecture"] = value["architecture"]
     return out
 
 
@@ -119,4 +126,6 @@ def deserialize_json(data: dict) -> SourceProperties:
         out["os"] = capo_drs.types.os.deserialize_json(data["os"])
     if data.get("supportsNitroInstances") is not None:
         out["supports_nitro_instances"] = data["supportsNitroInstances"]
+    if data.get("architecture") is not None:
+        out["architecture"] = data["architecture"]
     return out

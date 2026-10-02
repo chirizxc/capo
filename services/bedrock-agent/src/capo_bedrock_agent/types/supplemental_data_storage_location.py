@@ -15,7 +15,7 @@ class SupplementalDataStorageLocation(TypedDict, closed=True):
     type: "capo_bedrock_agent.types.supplemental_data_storage_location_type.SupplementalDataStorageLocationType"
     """<p>Specifies the storage service used for this location.</p>"""
     s3_location: NotRequired["capo_bedrock_agent.types.s3_location.S3Location"]
-    """<p>Contains information about the Amazon S3 location for the extracted images.</p>"""
+    """<p>Contains information about the Amazon S3 location for the extracted multimedia content.</p>"""
 
 
 # --- restJson1 ser/de ---

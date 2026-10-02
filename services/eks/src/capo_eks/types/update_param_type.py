@@ -41,6 +41,10 @@ UpdateParamType: TypeAlias = Literal[
     "RemoteNetworkConfig",
     "DeletionProtection",
     "NodeRepairConfig",
+    "RoleArn",
+    "RoleMappingsToAddOrUpdate",
+    "RoleMappingsToRemove",
+    "NetworkAccess",
     "VendedLogs",
     "UpdatedTier",
     "PreviousTier",
@@ -49,6 +53,14 @@ UpdateParamType: TypeAlias = Literal[
     "WarmPoolMinSize",
     "WarmPoolState",
     "WarmPoolReuseOnScaleIn",
+    "ControlPlaneEgressMode",
+    "KubeApiServerConfig",
+    "KubeSchedulerConfig",
+    "KubeControllerManagerConfig",
+    "ActiveCertificateAuthority",
+    "TrustedCertificateAuthorities",
+    "CertificateAuthorityId",
+    "SigningStatus",
 ]
 
 

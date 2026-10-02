@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class AnalyticsConfiguration(TypedDict, closed=True):
     status: NotRequired["capo_healthlake.types.analytics_status.AnalyticsStatus"]
-    """<para>The status of the analytics configuration.</para>"""
+    """<p>The status of the analytics configuration.</p>"""
 
 
 # --- awsJson1_0 ser/de ---

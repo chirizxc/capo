@@ -28,6 +28,7 @@ from capo_medical_imaging._rule_engine._endpoint_rule_set import EndpointParams,
 from capo_medical_imaging._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_medical_imaging.errors import UnknownServiceError
 
@@ -160,7 +161,7 @@ def search_image_sets(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -178,7 +179,7 @@ async def async_search_image_sets(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

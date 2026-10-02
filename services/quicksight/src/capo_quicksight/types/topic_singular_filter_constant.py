@@ -6,13 +6,15 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_quicksight.types.constant_type
-    import capo_quicksight.types.limited_string
+    import capo_quicksight.types.limited_sensitive_string
 
 
 class TopicSingularFilterConstant(TypedDict, closed=True):
     constant_type: NotRequired["capo_quicksight.types.constant_type.ConstantType"]
     """<p>The type of the singular filter constant. Valid values for this structure are <code>SINGULAR</code>.</p>"""
-    singular_constant: NotRequired["capo_quicksight.types.limited_string.LimitedString"]
+    singular_constant: NotRequired[
+        "capo_quicksight.types.limited_sensitive_string.LimitedSensitiveString"
+    ]
     """<p>The value of the singular filter constant.</p>"""
 
 

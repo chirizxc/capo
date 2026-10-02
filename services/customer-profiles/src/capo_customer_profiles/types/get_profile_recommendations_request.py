@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.max_size500
     import capo_customer_profiles.types.metadata_config
     import capo_customer_profiles.types.name
+    import capo_customer_profiles.types.recommendation_diversity_config
     import capo_customer_profiles.types.recommender_context
     import capo_customer_profiles.types.recommender_filters
     import capo_customer_profiles.types.recommender_promotional_filters
@@ -46,6 +47,10 @@ class GetProfileRecommendationsRequest(TypedDict, closed=True):
         "capo_customer_profiles.types.metadata_config.MetadataConfig"
     ]
     """<p>Configuration for including item metadata in the recommendation response. Use this to specify which metadata columns to return alongside recommended items.</p>"""
+    diversity_config: NotRequired[
+        "capo_customer_profiles.types.recommendation_diversity_config.RecommendationDiversityConfig"
+    ]
+    """<p>Runtime diversity configuration for this request. Enables diversity-aware recommendations and optionally supplies values for placeholder-based diversity caps configured on the recommender.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -92,6 +97,14 @@ def serialize_json(value: GetProfileRecommendationsRequest) -> dict:
         out["MetadataConfig"] = (
             capo_customer_profiles.types.metadata_config.serialize_json(
                 value["metadata_config"]
+            )
+        )
+    if "diversity_config" in value:
+        import capo_customer_profiles.types.recommendation_diversity_config
+
+        out["DiversityConfig"] = (
+            capo_customer_profiles.types.recommendation_diversity_config.serialize_json(
+                value["diversity_config"]
             )
         )
     return out
@@ -145,6 +158,14 @@ def deserialize_json(data: dict) -> GetProfileRecommendationsRequest:
         out["metadata_config"] = (
             capo_customer_profiles.types.metadata_config.deserialize_json(
                 data["MetadataConfig"]
+            )
+        )
+    if data.get("DiversityConfig") is not None:
+        import capo_customer_profiles.types.recommendation_diversity_config
+
+        out["diversity_config"] = (
+            capo_customer_profiles.types.recommendation_diversity_config.deserialize_json(
+                data["DiversityConfig"]
             )
         )
     return out

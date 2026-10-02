@@ -91,7 +91,7 @@ class JobResource:
         next_token: Optional["capo_mgn.types.pagination_token.PaginationToken"] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.describe_jobs_response.DescribeJobsResponse":
-        """<p>Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normally created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>
+        """<p>Returns a list of Jobs. Use the jobIDs and fromDate and toDate filters to limit which jobs are returned. The response is sorted by creationDateTime - latest date first. Jobs are normally created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>
 
         Args:
             filters: <p>Request to describe Job log filters.</p>
@@ -258,7 +258,7 @@ class AsyncJobResource:
         next_token: Optional["capo_mgn.types.pagination_token.PaginationToken"] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.describe_jobs_response.DescribeJobsResponse":
-        """<p>Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normally created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>
+        """<p>Returns a list of Jobs. Use the jobIDs and fromDate and toDate filters to limit which jobs are returned. The response is sorted by creationDateTime - latest date first. Jobs are normally created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>
 
         Args:
             filters: <p>Request to describe Job log filters.</p>

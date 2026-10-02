@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_pinpoint_sms_voice_v2.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_pinpoint_sms_voice_v2.types.conditional_behavior
     import capo_pinpoint_sms_voice_v2.types.field_path
     import capo_pinpoint_sms_voice_v2.types.field_requirement
     import capo_pinpoint_sms_voice_v2.types.field_type
@@ -37,6 +38,10 @@ class RegistrationFieldDefinition(TypedDict, closed=True):
     """<p>The validation rules for a text field.</p>"""
     display_hints: "capo_pinpoint_sms_voice_v2.types.registration_field_display_hints.RegistrationFieldDisplayHints"
     """<p>An array of RegistrationFieldDisplayHints objects for the field.</p>"""
+    conditional_behavior: NotRequired[
+        "capo_pinpoint_sms_voice_v2.types.conditional_behavior.ConditionalBehavior"
+    ]
+    """<p>The conditional behavior rules for this field. Only present when <b>FieldRequirement</b> is <b>CONDITIONAL</b>. Rules are evaluated in order and the first matching rule determines the field's resolved requirement. If no rule matches, the <b>DefaultBehavior</b> applies.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -69,6 +74,14 @@ def serialize_aws_json_1_0(value: RegistrationFieldDefinition) -> dict:
             value["display_hints"]
         )
     )
+    if "conditional_behavior" in value:
+        import capo_pinpoint_sms_voice_v2.types.conditional_behavior
+
+        out["ConditionalBehavior"] = (
+            capo_pinpoint_sms_voice_v2.types.conditional_behavior.serialize_aws_json_1_0(
+                value["conditional_behavior"]
+            )
+        )
     return out
 
 
@@ -118,4 +131,12 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationFieldDefinition:
         )
     else:
         raise DeserializationError("RegistrationFieldDefinition.display_hints required")
+    if data.get("ConditionalBehavior") is not None:
+        import capo_pinpoint_sms_voice_v2.types.conditional_behavior
+
+        out["conditional_behavior"] = (
+            capo_pinpoint_sms_voice_v2.types.conditional_behavior.deserialize_aws_json_1_0(
+                data["ConditionalBehavior"]
+            )
+        )
     return out

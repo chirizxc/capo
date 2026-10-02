@@ -33,7 +33,7 @@ class DbNode(TypedDict, closed=True):
     cpu_core_count: NotRequired["int"]
     """<p>Number of CPU cores enabled on the DB node.</p>"""
     db_node_storage_size_in_g_bs: NotRequired["int"]
-    """<p>The amount of local node storage, in gigabytes (GBs), that's allocated on the DB node.</p>"""
+    """<p>The amount of local node storage, in gigabytes (GB), that's allocated on the DB node.</p>"""
     db_server_id: NotRequired["capo_odb.types.resource_id.ResourceId"]
     """<p>The unique identifier of the Db server that is associated with the DB node.</p>"""
     db_system_id: NotRequired["str"]

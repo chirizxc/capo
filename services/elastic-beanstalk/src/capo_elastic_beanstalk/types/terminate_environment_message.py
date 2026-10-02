@@ -17,15 +17,15 @@ class TerminateEnvironmentMessage(TypedDict, closed=True):
     environment_id: NotRequired[
         "capo_elastic_beanstalk.types.environment_id.EnvironmentId"
     ]
-    """<p>The ID of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
+    """<p>The ID of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
     environment_name: NotRequired[
         "capo_elastic_beanstalk.types.environment_name.EnvironmentName"
     ]
-    """<p>The name of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
+    """<p>The name of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
     terminate_resources: NotRequired[
         "capo_elastic_beanstalk.types.terminate_environment_resources.TerminateEnvironmentResources"
     ]
-    r"""<p>Indicates whether the associated AWS resources should shut down when the environment is terminated:</p> <ul> <li> <p> <code>true</code>: The specified environment as well as the associated AWS resources, such as Auto Scaling group and LoadBalancer, are terminated.</p> </li> <li> <p> <code>false</code>: AWS Elastic Beanstalk resource management is removed from the environment, but the AWS resources continue to operate.</p> </li> </ul> <p> For more information, see the <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/ug/\"> AWS Elastic Beanstalk User Guide. </a> </p> <p> Default: <code>true</code> </p> <p> Valid Values: <code>true</code> | <code>false</code> </p>"""
+    r"""<p>Indicates whether the associated Amazon Web Services resources should shut down when the environment is terminated:</p> <ul> <li> <p> <code>true</code>: The specified environment as well as the associated Amazon Web Services resources, such as Auto Scaling group and LoadBalancer, are terminated.</p> </li> <li> <p> <code>false</code>: Elastic Beanstalk resource management is removed from the environment, but the Amazon Web Services resources continue to operate.</p> </li> </ul> <p> For more information, see the <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/ug/\"> Elastic Beanstalk User Guide. </a> </p> <p> Default: <code>true</code> </p> <p> Valid Values: <code>true</code> | <code>false</code> </p>"""
     force_terminate: NotRequired[
         "capo_elastic_beanstalk.types.force_terminate.ForceTerminate"
     ]

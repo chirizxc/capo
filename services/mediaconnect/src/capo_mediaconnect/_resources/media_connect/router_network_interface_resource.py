@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     import capo_mediaconnect.types.__map_of_string
     import capo_mediaconnect.types.batch_get_router_network_interface_request
     import capo_mediaconnect.types.batch_get_router_network_interface_response
+    import capo_mediaconnect.types.client_token
     import capo_mediaconnect.types.create_router_network_interface_request
     import capo_mediaconnect.types.create_router_network_interface_response
     import capo_mediaconnect.types.delete_router_network_interface_request
@@ -55,7 +56,9 @@ class RouterNetworkInterfaceResource:
         config_overrides: Optional[MediaConnectClientConfig] = None,
         region_name: Optional[str] = None,
         tags: Optional["capo_mediaconnect.types.__map_of_string.__mapOfString"] = None,
-        client_token: Optional[str] = None,
+        client_token: Optional[
+            "capo_mediaconnect.types.client_token.ClientToken"
+        ] = None,
     ) -> "capo_mediaconnect.types.create_router_network_interface_response.CreateRouterNetworkInterfaceResponse":
         """<p>Creates a new router network interface in AWS Elemental MediaConnect.</p>
 
@@ -385,7 +388,9 @@ class AsyncRouterNetworkInterfaceResource:
         config_overrides: Optional[AsyncMediaConnectClientConfig] = None,
         region_name: Optional[str] = None,
         tags: Optional["capo_mediaconnect.types.__map_of_string.__mapOfString"] = None,
-        client_token: Optional[str] = None,
+        client_token: Optional[
+            "capo_mediaconnect.types.client_token.ClientToken"
+        ] = None,
     ) -> "capo_mediaconnect.types.create_router_network_interface_response.CreateRouterNetworkInterfaceResponse":
         """<p>Creates a new router network interface in AWS Elemental MediaConnect.</p>
 

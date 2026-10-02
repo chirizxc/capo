@@ -9,6 +9,7 @@ FileUseCaseType: TypeAlias = Literal[
     "EMAIL_MESSAGE_REDACTED",
     "EMAIL_MESSAGE_PLAIN_TEXT_REDACTED",
     "ATTACHMENT",
+    "VOICE_RECORDING",
 ]
 
 

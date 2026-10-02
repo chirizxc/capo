@@ -9,6 +9,8 @@ NodeAttributeName: TypeAlias = Literal[
     "PlatformVersion",
     "Region",
     "ResourceType",
+    "SourceType",
+    "AvailabilityZone",
 ]
 
 

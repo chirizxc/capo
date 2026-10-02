@@ -8,7 +8,9 @@ from capo_mediaconnect.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_mediaconnect.types.__map_of_string
+    import capo_mediaconnect.types.client_token
     import capo_mediaconnect.types.maintenance_configuration
+    import capo_mediaconnect.types.router_content_quality_analysis_configuration
     import capo_mediaconnect.types.router_input_configuration
     import capo_mediaconnect.types.router_input_tier
     import capo_mediaconnect.types.router_input_transit_encryption
@@ -42,8 +44,12 @@ class CreateRouterInputRequest(TypedDict, closed=True):
     """<p>The maintenance configuration settings for the router input, including preferred maintenance windows and schedules.</p>"""
     tags: NotRequired["capo_mediaconnect.types.__map_of_string.__mapOfString"]
     """<p>Key-value pairs that can be used to tag and organize this router input.</p>"""
-    client_token: NotRequired["str"]
+    client_token: NotRequired["capo_mediaconnect.types.client_token.ClientToken"]
     """<p>A unique identifier for the request to ensure idempotency.</p>"""
+    content_quality_analysis_configuration: NotRequired[
+        "capo_mediaconnect.types.router_content_quality_analysis_configuration.RouterContentQualityAnalysisConfiguration"
+    ]
+    """<p>The content quality analysis configuration for the router input.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -96,6 +102,14 @@ def serialize_json(value: CreateRouterInputRequest) -> dict:
         )
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
+    if "content_quality_analysis_configuration" in value:
+        import capo_mediaconnect.types.router_content_quality_analysis_configuration
+
+        out["contentQualityAnalysisConfiguration"] = (
+            capo_mediaconnect.types.router_content_quality_analysis_configuration.serialize_json(
+                value["content_quality_analysis_configuration"]
+            )
+        )
     return out
 
 
@@ -163,4 +177,12 @@ def deserialize_json(data: dict) -> CreateRouterInputRequest:
         )
     if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
+    if data.get("contentQualityAnalysisConfiguration") is not None:
+        import capo_mediaconnect.types.router_content_quality_analysis_configuration
+
+        out["content_quality_analysis_configuration"] = (
+            capo_mediaconnect.types.router_content_quality_analysis_configuration.deserialize_json(
+                data["contentQualityAnalysisConfiguration"]
+            )
+        )
     return out

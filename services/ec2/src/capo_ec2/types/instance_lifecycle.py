@@ -8,6 +8,7 @@ InstanceLifecycle: TypeAlias = Literal[
     "spot",
     "on-demand",
     "interruptible-capacity-reservation",
+    "capacity-block",
 ]
 
 

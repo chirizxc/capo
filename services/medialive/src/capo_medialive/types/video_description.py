@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_medialive.types.video_codec_settings
     import capo_medialive.types.video_description_respond_to_afd
     import capo_medialive.types.video_description_scaling_behavior
+    import capo_medialive.types.video_position_rectangle
 
 
 class VideoDescription(TypedDict, closed=True):
@@ -36,6 +37,18 @@ class VideoDescription(TypedDict, closed=True):
     """Changes the strength of the anti-alias filter used for scaling. 0 is the softest setting, 100 is the sharpest. A setting of 50 is recommended for most content."""
     width: NotRequired["capo_medialive.types.__integer.__integer"]
     """Output video width, in pixels. Must be an even number. For most codecs, you can leave this field and height blank in order to use the height and width (resolution) from the source. Note, however, that leaving blank is not recommended. For the Frame Capture codec, height and width are required."""
+    crop_rectangle: NotRequired[
+        "capo_medialive.types.video_position_rectangle.VideoPositionRectangle"
+    ]
+    """Region of the input video to crop before scaling. If not specified, the entire input frame is used. Note: Unlike {@link outputPositionRectangle}, the bounds of cropRectangle are validated at ingest time by the encoder/scaler rather than at the API level, because the input resolution is not known until the source is probed. Field-level constraints on (x, y, width, height) defined on {@link VideoPositionRectangle} still apply."""
+    output_position_rectangle: NotRequired[
+        "capo_medialive.types.video_position_rectangle.VideoPositionRectangle"
+    ]
+    """Position of the encoded video within the output frame. The area outside the rectangle is filled with black. If not specified, the video fills the entire output frame. When used, both {@link width} and {@link height} of the VideoDescription must be explicitly specified so that the rectangle can be validated against the output frame."""
+    border: NotRequired[
+        "capo_medialive.types.__integer_min0_max100.__integerMin0Max100"
+    ]
+    """Specifies the number of pixels of black border that will be inserted around the edge of the encoded picture. Must be an even integer from 0 (no border, the default) up to 100. The width and height of the VideoDescription must each be greater than twice this value. Cannot be used together with {@link outputPositionRectangle} -- both govern the position of the encoded content within the output frame."""
 
 
 # --- restJson1 ser/de ---
@@ -71,6 +84,24 @@ def serialize_json(value: VideoDescription) -> dict:
         out["sharpness"] = value["sharpness"]
     if "width" in value:
         out["width"] = value["width"]
+    if "crop_rectangle" in value:
+        import capo_medialive.types.video_position_rectangle
+
+        out["cropRectangle"] = (
+            capo_medialive.types.video_position_rectangle.serialize_json(
+                value["crop_rectangle"]
+            )
+        )
+    if "output_position_rectangle" in value:
+        import capo_medialive.types.video_position_rectangle
+
+        out["outputPositionRectangle"] = (
+            capo_medialive.types.video_position_rectangle.serialize_json(
+                value["output_position_rectangle"]
+            )
+        )
+    if "border" in value:
+        out["border"] = value["border"]
     return out
 
 
@@ -108,4 +139,22 @@ def deserialize_json(data: dict) -> VideoDescription:
         out["sharpness"] = data["sharpness"]
     if data.get("width") is not None:
         out["width"] = data["width"]
+    if data.get("cropRectangle") is not None:
+        import capo_medialive.types.video_position_rectangle
+
+        out["crop_rectangle"] = (
+            capo_medialive.types.video_position_rectangle.deserialize_json(
+                data["cropRectangle"]
+            )
+        )
+    if data.get("outputPositionRectangle") is not None:
+        import capo_medialive.types.video_position_rectangle
+
+        out["output_position_rectangle"] = (
+            capo_medialive.types.video_position_rectangle.deserialize_json(
+                data["outputPositionRectangle"]
+            )
+        )
+    if data.get("border") is not None:
+        out["border"] = data["border"]
     return out

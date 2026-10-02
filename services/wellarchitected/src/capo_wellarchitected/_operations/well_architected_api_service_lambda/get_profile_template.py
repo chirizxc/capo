@@ -24,6 +24,7 @@ from capo_wellarchitected._rule_engine._endpoint_rule_set import EndpointParams,
 from capo_wellarchitected._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_wellarchitected.errors import UnknownServiceError
 
@@ -108,10 +109,11 @@ def build_request(
 ) -> zapros.Request:
     endpoint = resolve(
         EndpointParams(
-            Region=options.region,
             UseDualStack=options.use_dual_stack,
             UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            Region=options.region,
+            SubServiceType=options.sub_service_type,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/profileTemplate"
@@ -138,7 +140,7 @@ def get_profile_template(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -156,7 +158,7 @@ async def async_get_profile_template(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

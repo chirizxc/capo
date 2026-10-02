@@ -673,7 +673,7 @@ def test_resourcearn_as_streamarn_test__invalid_a():
 def test_resourcearn_as_streamarn_test__invalid_a():
     """ResourceARN as StreamARN test: Invalid ARN: Kinesis ARNs only support stream arn types"""
     params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, ResourceARN='arn:aws:kinesis:us-east-1:123:accesspoint/testStream')
-    with pytest.raises(EndpointError, match=re.escape("Invalid ARN: Kinesis ARNs don't support `accesspoint` arn types.")):
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Unsupported resource type `accesspoint`. Expected: stream or channel')):
         resolve(params)
 
 def test_resourcearn_as_streamarn_test__operation():
@@ -823,7 +823,7 @@ def test_resourcearn_as_consumerarn_test__invalid():
 def test_resourcearn_as_consumerarn_test__invalid():
     """ResourceARN as ConsumerARN test: Invalid ARN: Kinesis ARNs only support stream arn/consumer arn types"""
     params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, ResourceARN='arn:aws:kinesis:us-east-1:123:accesspoint/testStream/consumer/test-consumer:1525898737')
-    with pytest.raises(EndpointError, match=re.escape("Invalid ARN: Kinesis ARNs don't support `accesspoint` arn types.")):
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Unsupported resource type `accesspoint`. Expected: stream or channel')):
         resolve(params)
 
 def test_resourcearn_as_consumerarn_test__operati():
@@ -927,6 +927,102 @@ def test_resourcearn_as_consumerarn_test__account():
     params = EndpointParams(Region='us-isob-east-1', UseFIPS=True, UseDualStack=False, OperationType='data', ResourceARN='arn:aws-iso-b:kinesis:us-isob-east-1:123:stream/test-stream/consumer/test-consumer:1525898737')
     result = resolve(params)
     assert result.url == 'https://kinesis-fips.us-isob-east-1.sc2s.sgov.gov'
+
+def test_resourcearn_as_channelarn_test__invalid_():
+    """ResourceARN as ChannelARN test: Invalid ARN: unsupported resource type"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-east-1:298091445058:accesspoint/apu0zt8ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Unsupported resource type `accesspoint`. Expected: stream or channel')):
+        resolve(params)
+
+def test_resourcearn_as_channelarn_test__invalid_():
+    """ResourceARN as ChannelARN test: Invalid ARN: Not Kinesis"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:s3:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: The ARN was not for the Kinesis service, found: s3.')):
+        resolve(params)
+
+def test_resourcearn_as_channelarn_test__invalid_():
+    """ResourceARN as ChannelARN test: Invalid ARN: partitions mismatch"""
+    params = EndpointParams(Region='us-gov-west-1', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-west-2:298091445058:channel/apu0zt8ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape("Partition: aws from ARN doesn't match with partition name: aws-us-gov.")):
+        resolve(params)
+
+def test_resourcearn_as_channelarn_test__operatio():
+    """ResourceARN as ChannelARN test: OperationType not set"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, ResourceARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('Operation Type is not set. Please contact service team for resolution.')):
+        resolve(params)
+
+def test_resourcearn_as_channelarn_test__missing_():
+    """ResourceARN as ChannelARN test: Missing channel id"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-east-1:298091445058:channel')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Missing channel id.')):
+        resolve(params)
+
+def test_resourcearn_as_channelarn_test__invalid_():
+    """ResourceARN as ChannelARN test: Invalid channel id (subdomains not allowed)"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8.ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Invalid channel id.')):
+        resolve(params)
+
+def test_resourcearn_as_channelarn_test__custom_e():
+    """ResourceARN as ChannelARN test: Custom Endpoint is specified"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe', Endpoint='https://example.com')
+    result = resolve(params)
+    assert result.url == 'https://example.com'
+
+def test_resourcearn_as_channelarn_test__endpoint():
+    """ResourceARN as ChannelARN test: endpoint targeting control operation type"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.amazonaws.com'
+
+def test_resourcearn_as_channelarn_test__endpoint():
+    """ResourceARN as ChannelARN test: endpoint with fips targeting control operation type"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis-fips.us-east-1.amazonaws.com'
+
+def test_resourcearn_as_channelarn_test__endpoint():
+    """ResourceARN as ChannelARN test: endpoint with Dual Stack enabled"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=True, OperationType='control', ResourceARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.api.aws'
+
+def test_resourcearn_as_channelarn_test__endpoint():
+    """ResourceARN as ChannelARN test: endpoint with Dual Stack and FIPS enabled"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=True, OperationType='control', ResourceARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis-fips.us-east-1.api.aws'
+
+def test_resourcearn_as_channelarn_test__regionmi():
+    """ResourceARN as ChannelARN test: RegionMismatch: client region should be used for endpoint region"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-west-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.amazonaws.com'
+
+def test_resourcearn_as_channelarn_test__account_():
+    """ResourceARN as ChannelARN test: Account endpoint with FIPS enabled for cn regions"""
+    params = EndpointParams(Region='cn-northwest-1', UseFIPS=True, UseDualStack=False, OperationType='control', ResourceARN='arn:aws-cn:kinesis:cn-northwest-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis-fips.cn-northwest-1.amazonaws.com.cn'
+
+def test_resourcearn_as_channelarn_test__account_():
+    """ResourceARN as ChannelARN test: Account endpoint with FIPS and DualStack enabled for cn regions"""
+    params = EndpointParams(Region='cn-northwest-1', UseFIPS=True, UseDualStack=True, OperationType='control', ResourceARN='arn:aws-cn:kinesis:cn-northwest-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis-fips.cn-northwest-1.api.amazonwebservices.com.cn'
+
+def test_resourcearn_as_channelarn_test__account_():
+    """ResourceARN as ChannelARN test: Account endpoint targeting control operation type in ADC regions"""
+    params = EndpointParams(Region='us-iso-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws-iso:kinesis:us-iso-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-iso-east-1.c2s.ic.gov'
+
+def test_resourcearn_as_channelarn_test__account_():
+    """ResourceARN as ChannelARN test: Account endpoint with fips targeting control operation type in ADC regions"""
+    params = EndpointParams(Region='us-iso-east-1', UseFIPS=True, UseDualStack=False, OperationType='control', ResourceARN='arn:aws-iso:kinesis:us-iso-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://kinesis-fips.us-iso-east-1.c2s.ic.gov'
 
 def test_streamid_test__operationtype_not_set_wit():
     """StreamId test: OperationType not set with StreamId"""
@@ -1137,3 +1233,399 @@ def test_streamid_test__invalid_streamid_with_sho():
     params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', StreamId='af4lwng4k01746835071-yz', ResourceARN='arn:aws:kinesis:us-east-1:123:stream/test-stream')
     result = resolve(params)
     assert result.url == 'https://123.control-kinesis.us-west-2.amazonaws.com'
+
+def test_channelarn__endpoint_targeting_control_o():
+    """ChannelARN: endpoint targeting control operation type"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.amazonaws.com'
+
+def test_channelarn__endpoint_with_fips_targeting():
+    """ChannelARN: endpoint with FIPS targeting control operation type"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=False, OperationType='control', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis-fips.us-east-1.amazonaws.com'
+
+def test_channelarn__endpoint_with_dualstack_targ():
+    """ChannelARN: endpoint with DualStack targeting control operation type"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=True, OperationType='control', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.api.aws'
+
+def test_channelarn__endpoint_with_fips_and_duals():
+    """ChannelARN: endpoint with FIPS and DualStack targeting control operation type"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=True, OperationType='control', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    result = resolve(params)
+    assert result.url == 'https://apu0zt8ge6utbndxe.control-kinesis-fips.us-east-1.api.aws'
+
+def test_invalid_channelarn__channelarn_only_supp():
+    """Invalid ChannelARN: ChannelARN only supports channel arn types"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='data', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:stream/test-stream')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: ChannelARN only supports `channel` arn types, found: `stream`.')):
+        resolve(params)
+
+def test_invalid_channelarn__arn_was_not_for_the_():
+    """Invalid ChannelARN: ARN was not for the Kinesis service"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='data', ChannelARN='arn:aws:s3:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: The ARN was not for the Kinesis service, found: s3.')):
+        resolve(params)
+
+def test_invalid_channelarn__operationtype_not_se():
+    """Invalid ChannelARN: OperationType not set"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('Operation Type is not set. Please contact service team for resolution.')):
+        resolve(params)
+
+def test_invalid_channelarn__partitions_mismatch():
+    """Invalid ChannelARN: partitions mismatch"""
+    params = EndpointParams(Region='us-gov-west-1', UseFIPS=False, UseDualStack=False, OperationType='data', ChannelARN='arn:aws:kinesis:us-west-2:298091445058:channel/apu0zt8ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape("Partition: aws from ARN doesn't match with partition name: aws-us-gov.")):
+        resolve(params)
+
+def test_invalid_channelarn__missing_channel_id():
+    """Invalid ChannelARN: missing channel id"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='data', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Missing channel id.')):
+        resolve(params)
+
+def test_invalid_channelarn__channel_id_contains_():
+    """Invalid ChannelARN: channel id contains a period (subdomains not allowed)"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8.ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Invalid channel id.')):
+        resolve(params)
+
+def test_invalid_channelarn__channel_id_exceeds_6():
+    """Invalid ChannelARN: channel id exceeds 63 character host label limit"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Invalid channel id.')):
+        resolve(params)
+
+def test_invalid_channelarn__channel_id_starts_wi():
+    """Invalid ChannelARN: channel id starts with a hyphen"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/-pu0zt8ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Invalid channel id.')):
+        resolve(params)
+
+def test_invalid_channelarn__channel_id_contains_():
+    """Invalid ChannelARN: channel id contains an invalid character"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8_ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('Invalid ARN: Invalid channel id.')):
+        resolve(params)
+
+def test_invalid_channelarn__data_operation_type_():
+    """Invalid ChannelARN: data operation type is not supported for channel"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='data', ChannelARN='arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe')
+    with pytest.raises(EndpointError, match=re.escape('ChannelARN does not support the `data` operation type.')):
+        resolve(params)
+
+def test_accountid_test__account_id_present():
+    """AccountId test: Account Id present"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='data', AccountId='012345678901', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://012345678901.data-kinesis.us-west-2.amazonaws.com'
+
+def test_accountid_test__account_id_present_with_():
+    """AccountId test: Account Id present with fips"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=True, UseDualStack=False, OperationType='control', AccountId='123', AccountIdEndpointMode='required')
+    result = resolve(params)
+    assert result.url == 'https://123.control-kinesis-fips.us-west-2.amazonaws.com'
+
+def test_accountid_test__account_id_present_with_():
+    """AccountId test: Account Id present with dual stack"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=True, OperationType='control', AccountId='123', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123.control-kinesis.us-west-2.api.aws'
+
+def test_accountid_test__account_id_present_with_():
+    """AccountId test: Account Id present with fips and dual stack"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=True, UseDualStack=True, OperationType='control', AccountId='123', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123.control-kinesis-fips.us-west-2.api.aws'
+
+def test_account_id_present_with_streamid():
+    """Account Id present with streamId"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', StreamId='af4lwng4k01746835071-xyz', AccountId='123', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://af4lwng4k01746835071.xyz.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_present_with_stream_arn():
+    """Account Id present with stream ARN"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', StreamARN='arn:aws:kinesis:us-east-1:123:stream/test-stream', AccountId='123', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_present_with_consumer_arn():
+    """Account Id present with consumer ARN"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', ConsumerARN='arn:aws:kinesis:us-west-2:123:stream/testStream/consumer/test-consumer:1525898737', AccountId='123', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_present_with_resource_arn():
+    """Account Id present with resource ARN"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-west-2:123:stream/testStream/consumer/test-consumer:1525898737', AccountId='123', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_present_and_stream_arn_with_d():
+    """Account Id present and stream ARN with different accountId"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-west-2:456:stream/testStream', AccountId='123', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://456.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_present_and_consumer_arn_with():
+    """Account Id present and consumer ARN with different accountId"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', ResourceARN='arn:aws:kinesis:us-west-2:456:stream/testStream/consumer/test-consumer:1525898737', AccountId='123', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://456.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id__streamid_and_resource_arn_wi():
+    """Account Id, streamId and resource ARN with different accountId"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', StreamId='af4lwng4k01746835071-xyz', ResourceARN='arn:aws:kinesis:us-west-2:456:stream/testStream/consumer/test-consumer:1525898737', AccountId='123', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://af4lwng4k01746835071.xyz.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_with_account_id_endpoint_mode():
+    """Account Id with account id endpoint mode disabled"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_and_streamarn_with_account_id():
+    """Account Id and StreamArn with account id endpoint mode disabled"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', StreamARN='arn:aws:kinesis:us-west-2:456:stream/testStream', AccountId='123', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://456.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_missing_with_account_id_endpo():
+    """Account Id missing with account id endpoint mode required"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountIdEndpointMode='required')
+    with pytest.raises(EndpointError, match=re.escape('AccountIdEndpointMode is required but no AccountID was provided or able to be loaded')):
+        resolve(params)
+
+def test_account_id_missing_with_account_id_endpo():
+    """Account Id missing with account id endpoint mode required, fips and dual stack enabled"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=True, UseDualStack=True, OperationType='control', AccountIdEndpointMode='required')
+    with pytest.raises(EndpointError, match=re.escape('AccountIdEndpointMode is required but no AccountID was provided or able to be loaded')):
+        resolve(params)
+
+def test_account_id_missing_with_account_id_endpo():
+    """Account Id missing with account id endpoint mode required in ADC region"""
+    params = EndpointParams(Region='us-iso-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountIdEndpointMode='required')
+    with pytest.raises(EndpointError, match=re.escape('Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition')):
+        resolve(params)
+
+def test_account_id_present_with_account_id_endpo():
+    """Account Id present with account id endpoint mode required in ADC region"""
+    params = EndpointParams(Region='us-iso-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='required')
+    with pytest.raises(EndpointError, match=re.escape('Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition')):
+        resolve(params)
+
+def test_account_id_present_with_account_id_endpo():
+    """Account Id present with account id endpoint mode preferred in ADC region"""
+    params = EndpointParams(Region='us-iso-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-iso-east-1.c2s.ic.gov'
+
+def test_account_id_missing_with_account_id_endpo():
+    """Account Id missing with account id endpoint mode required and endpoint override"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', Endpoint='https://kinesis-pod1.us-west-2.amazonaws.com', AccountIdEndpointMode='required')
+    result = resolve(params)
+    assert result.url == 'https://kinesis-pod1.us-west-2.amazonaws.com'
+
+def test_account_id_missing_with_streamarn_and_ac():
+    """Account Id missing with StreamArn and account id endpoint mode required"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', StreamARN='arn:aws:kinesis:us-west-2:456:stream/testStream', AccountIdEndpointMode='required')
+    result = resolve(params)
+    assert result.url == 'https://456.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_missing_with_streamid_and_acc():
+    """Account Id missing with StreamId and account id endpoint mode required"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', StreamId='af4lwng4k01746835071-xyz', AccountIdEndpointMode='required')
+    result = resolve(params)
+    assert result.url == 'https://af4lwng4k01746835071.xyz.control-kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_missing_with_account_id_endpo():
+    """Account Id missing with account id endpoint mode preferred"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-west-2.amazonaws.com'
+
+def test_account_id_missing_with_account_id_endpo():
+    """Account Id missing with account id endpoint mode disabled"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-west-2.amazonaws.com'
+
+def test_createstream__control_operation_type_wit():
+    """CreateStream: control operation type with AccountId"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis.us-east-1.amazonaws.com'
+
+def test_createstream__control_operation_type_wit():
+    """CreateStream: control operation type with FIPS and AccountId"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis-fips.us-east-1.amazonaws.com'
+
+def test_liststreams__control_operation_type_with():
+    """ListStreams: control operation type with AccountId"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis.us-west-2.amazonaws.com'
+
+def test_liststreams__control_operation_type_with():
+    """ListStreams: control operation type with FIPS and DualStack"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=True, UseDualStack=True, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis-fips.us-west-2.api.aws'
+
+def test_describelimits__control_operation_type_w():
+    """DescribeLimits: control operation type with AccountId"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis.us-east-1.amazonaws.com'
+
+def test_describelimits__control_operation_type_w():
+    """DescribeLimits: control operation type with FIPS"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis-fips.us-east-1.amazonaws.com'
+
+def test_describeaccountsettings__control_operati():
+    """DescribeAccountSettings: control operation type with AccountId"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis.us-west-2.amazonaws.com'
+
+def test_describeaccountsettings__control_operati():
+    """DescribeAccountSettings: control operation type with FIPS and DualStack"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=True, UseDualStack=True, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis-fips.us-west-2.api.aws'
+
+def test_updateaccountsettings__control_operation():
+    """UpdateAccountSettings: control operation type with AccountId"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis.us-east-1.amazonaws.com'
+
+def test_updateaccountsettings__control_operation():
+    """UpdateAccountSettings: control operation type with FIPS"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis-fips.us-east-1.amazonaws.com'
+
+def test_createstream__account_id_endpoint_mode_d():
+    """CreateStream: account id endpoint mode disabled falls back to regional endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-east-1.amazonaws.com'
+
+def test_liststreams__account_id_endpoint_mode_di():
+    """ListStreams: account id endpoint mode disabled falls back to regional endpoint"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-west-2.amazonaws.com'
+
+def test_describelimits__account_id_endpoint_mode():
+    """DescribeLimits: account id endpoint mode disabled falls back to regional endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-east-1.amazonaws.com'
+
+def test_describeaccountsettings__account_id_endp():
+    """DescribeAccountSettings: account id endpoint mode disabled falls back to regional endpoint"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-west-2.amazonaws.com'
+
+def test_updateaccountsettings__account_id_endpoi():
+    """UpdateAccountSettings: account id endpoint mode disabled falls back to regional endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-east-1.amazonaws.com'
+
+def test_createstream__account_id_endpoint_mode_d():
+    """CreateStream: account id endpoint mode disabled with FIPS falls back to regional FIPS endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis-fips.us-east-1.amazonaws.com'
+
+def test_createstream__account_id_endpoint_mode_d():
+    """CreateStream: account id endpoint mode disabled with DualStack falls back to regional DualStack endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=True, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-east-1.api.aws'
+
+def test_createstream__account_id_endpoint_mode_d():
+    """CreateStream: account id endpoint mode disabled with FIPS and DualStack falls back to regional FIPS DualStack endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=True, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis-fips.us-east-1.api.aws'
+
+def test_createchannel__control_operation_type_wi():
+    """CreateChannel: control operation type with AccountId"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis.us-east-1.amazonaws.com'
+
+def test_createchannel__control_operation_type_wi():
+    """CreateChannel: control operation type with FIPS and AccountId"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis-fips.us-east-1.amazonaws.com'
+
+def test_createchannel__control_operation_type_wi():
+    """CreateChannel: control operation type with DualStack and AccountId"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=True, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis.us-east-1.api.aws'
+
+def test_createchannel__control_operation_type_wi():
+    """CreateChannel: control operation type with FIPS and DualStack and AccountId"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=True, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis-fips.us-east-1.api.aws'
+
+def test_createchannel__account_id_endpoint_mode_():
+    """CreateChannel: account id endpoint mode disabled falls back to regional endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-east-1.amazonaws.com'
+
+def test_createchannel__account_id_endpoint_mode_():
+    """CreateChannel: account id endpoint mode disabled with FIPS falls back to regional FIPS endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis-fips.us-east-1.amazonaws.com'
+
+def test_createchannel__account_id_endpoint_mode_():
+    """CreateChannel: account id endpoint mode disabled with DualStack falls back to regional DualStack endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=True, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-east-1.api.aws'
+
+def test_createchannel__account_id_endpoint_mode_():
+    """CreateChannel: account id endpoint mode disabled with FIPS and DualStack falls back to regional FIPS DualStack endpoint"""
+    params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=True, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis-fips.us-east-1.api.aws'
+
+def test_listchannels__control_operation_type_wit():
+    """ListChannels: control operation type with AccountId"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis.us-west-2.amazonaws.com'
+
+def test_listchannels__control_operation_type_wit():
+    """ListChannels: control operation type with FIPS and DualStack"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=True, UseDualStack=True, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='preferred')
+    result = resolve(params)
+    assert result.url == 'https://123456789012.control-kinesis-fips.us-west-2.api.aws'
+
+def test_listchannels__account_id_endpoint_mode_d():
+    """ListChannels: account id endpoint mode disabled falls back to regional endpoint"""
+    params = EndpointParams(Region='us-west-2', UseFIPS=False, UseDualStack=False, OperationType='control', AccountId='123456789012', AccountIdEndpointMode='disabled')
+    result = resolve(params)
+    assert result.url == 'https://kinesis.us-west-2.amazonaws.com'

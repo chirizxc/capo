@@ -66,6 +66,8 @@ if TYPE_CHECKING:
     import capo_bedrock_runtime.types.foundation_model_version_identifier
     import capo_bedrock_runtime.types.get_async_invoke_request
     import capo_bedrock_runtime.types.get_async_invoke_response
+    import capo_bedrock_runtime.types.guardrail_checks_config
+    import capo_bedrock_runtime.types.guardrail_checks_message_list
     import capo_bedrock_runtime.types.guardrail_configuration
     import capo_bedrock_runtime.types.guardrail_content_block_list
     import capo_bedrock_runtime.types.guardrail_content_source
@@ -75,6 +77,8 @@ if TYPE_CHECKING:
     import capo_bedrock_runtime.types.guardrail_version
     import capo_bedrock_runtime.types.inference_configuration
     import capo_bedrock_runtime.types.invocation_arn
+    import capo_bedrock_runtime.types.invoke_guardrail_checks_request
+    import capo_bedrock_runtime.types.invoke_guardrail_checks_response
     import capo_bedrock_runtime.types.invoke_model_identifier
     import capo_bedrock_runtime.types.invoke_model_request
     import capo_bedrock_runtime.types.invoke_model_response
@@ -163,7 +167,12 @@ class BedrockRuntimeClient:
         )
         if resolved_credentials_provider is None and credentials is not None:
             resolved_credentials_provider = StaticAwsCredentialsProvider(credentials)
-        if resolved_credentials_provider is None and credentials is None:
+        if (
+            resolved_credentials_provider is None
+            and credentials is None
+            and bearer is None
+            and bearer_provider is None
+        ):
             resolved_credentials_provider = default_aws_credentials_chain(
                 Client(http_handler)
             )
@@ -516,6 +525,56 @@ class BedrockRuntimeClient:
         }
         if output_scope is not None:
             input_["output_scope"] = output_scope
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def invoke_guardrail_checks(
+        self,
+        messages: "capo_bedrock_runtime.types.guardrail_checks_message_list.GuardrailChecksMessageList",
+        checks: "capo_bedrock_runtime.types.guardrail_checks_config.GuardrailChecksConfig",
+        *,
+        config_overrides: Optional[BedrockRuntimeClientConfig] = None,
+    ) -> "capo_bedrock_runtime.types.invoke_guardrail_checks_response.InvokeGuardrailChecksResponse":
+        """<p>Evaluates messages against inline guardrail checks. You specify the check configurations directly in the request, and Amazon Bedrock returns per-check results with severity or confidence scores.</p>
+
+        Args:
+            messages: <p>The messages to evaluate against the specified guardrail checks. Each message includes a role and one or more content blocks.</p>
+            checks: <p>The inline check configurations that specify which guardrail checks to run against the messages.</p>
+
+        Raises:
+            capo_bedrock_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because you do not have sufficient permissions to perform the requested action. For troubleshooting this error, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/troubleshooting-api-error-codes.html#ts-access-denied\">AccessDeniedException</a> in the Amazon Bedrock User Guide</p>
+            capo_bedrock_runtime.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. For troubleshooting this error, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/troubleshooting-api-error-codes.html#ts-internal-failure\">InternalFailure</a> in the Amazon Bedrock User Guide</p>
+            capo_bedrock_runtime.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service isn't currently available. For troubleshooting this error, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/troubleshooting-api-error-codes.html#ts-service-unavailable\">ServiceUnavailable</a> in the Amazon Bedrock User Guide</p>
+            capo_bedrock_runtime.errors.throttling_exception.ThrottlingException: <p>Your request was denied due to exceeding the account quotas for <i>Amazon Bedrock</i>. For troubleshooting this error, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/troubleshooting-api-error-codes.html#ts-throttling-exception\">ThrottlingException</a> in the Amazon Bedrock User Guide</p>
+            capo_bedrock_runtime.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by <i>Amazon Bedrock</i>. For troubleshooting this error, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/troubleshooting-api-error-codes.html#ts-validation-error\">ValidationError</a> in the Amazon Bedrock User Guide</p>
+            capo_bedrock_runtime.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_runtime.types.invoke_guardrail_checks_request.InvokeGuardrailChecksRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_runtime.types.invoke_guardrail_checks_response.InvokeGuardrailChecksResponse"
+        ]:
+            import capo_bedrock_runtime._operations.amazon_bedrock_frontend_service.invoke_guardrail_checks
+
+            output, http_response = (
+                capo_bedrock_runtime._operations.amazon_bedrock_frontend_service.invoke_guardrail_checks.invoke_guardrail_checks(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_runtime.types.invoke_guardrail_checks_request.InvokeGuardrailChecksRequest = {
+            "messages": messages,
+            "checks": checks,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

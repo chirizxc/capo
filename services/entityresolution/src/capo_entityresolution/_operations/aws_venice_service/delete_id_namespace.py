@@ -14,6 +14,7 @@ import capo_entityresolution._auth._sigv4
 import capo_entityresolution._protocol.eventstream
 import capo_entityresolution.errors.access_denied_exception
 import capo_entityresolution.errors.internal_server_exception
+import capo_entityresolution.errors.resource_not_found_exception
 import capo_entityresolution.errors.throttling_exception
 import capo_entityresolution.errors.validation_exception
 import capo_entityresolution.types.delete_id_namespace_input
@@ -26,6 +27,7 @@ from capo_entityresolution._rule_engine._endpoint_rule_set import (
 from capo_entityresolution._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_entityresolution.errors import UnknownServiceError
 
@@ -40,6 +42,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "InternalServerException":
             raise capo_entityresolution.errors.internal_server_exception.InternalServerException.from_json(
+                data, message
+            )
+        case "ResourceNotFoundException":
+            raise capo_entityresolution.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
                 data, message
             )
         case "ThrottlingException":
@@ -137,7 +143,7 @@ def delete_id_namespace(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -155,7 +161,7 @@ async def async_delete_id_namespace(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

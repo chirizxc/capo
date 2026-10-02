@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.snowdevicemanagement#SnowDeviceManagement``."""
 
+import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_snow_device_management._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_snow_device_management._auth._zapros_handler import AuthMiddleware
+from capo_snow_device_management._pagination import resolve_path as _resolve_path
 from capo_snow_device_management._resources.snow_device_management.managed_device import (
     ManagedDevice,
 )
@@ -31,11 +34,47 @@ from capo_snow_device_management._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_snow_device_management.types.cancel_task_input
+    import capo_snow_device_management.types.cancel_task_output
+    import capo_snow_device_management.types.command
+    import capo_snow_device_management.types.create_task_input
+    import capo_snow_device_management.types.create_task_output
+    import capo_snow_device_management.types.describe_device_ec2_input
+    import capo_snow_device_management.types.describe_device_ec2_output
+    import capo_snow_device_management.types.describe_device_input
+    import capo_snow_device_management.types.describe_device_output
+    import capo_snow_device_management.types.describe_execution_input
+    import capo_snow_device_management.types.describe_execution_output
+    import capo_snow_device_management.types.describe_task_input
+    import capo_snow_device_management.types.describe_task_output
+    import capo_snow_device_management.types.device_summary
+    import capo_snow_device_management.types.execution_state
+    import capo_snow_device_management.types.execution_summary
+    import capo_snow_device_management.types.idempotency_token
+    import capo_snow_device_management.types.instance_ids_list
+    import capo_snow_device_management.types.job_id
+    import capo_snow_device_management.types.list_device_resources_input
+    import capo_snow_device_management.types.list_device_resources_output
+    import capo_snow_device_management.types.list_devices_input
+    import capo_snow_device_management.types.list_devices_output
+    import capo_snow_device_management.types.list_executions_input
+    import capo_snow_device_management.types.list_executions_output
     import capo_snow_device_management.types.list_tags_for_resource_input
     import capo_snow_device_management.types.list_tags_for_resource_output
+    import capo_snow_device_management.types.list_tasks_input
+    import capo_snow_device_management.types.list_tasks_output
+    import capo_snow_device_management.types.managed_device_id
+    import capo_snow_device_management.types.max_results
+    import capo_snow_device_management.types.next_token
+    import capo_snow_device_management.types.resource_summary
     import capo_snow_device_management.types.tag_keys
     import capo_snow_device_management.types.tag_map
     import capo_snow_device_management.types.tag_resource_input
+    import capo_snow_device_management.types.target_list
+    import capo_snow_device_management.types.task_description_string
+    import capo_snow_device_management.types.task_id
+    import capo_snow_device_management.types.task_state
+    import capo_snow_device_management.types.task_summary
     import capo_snow_device_management.types.untag_resource_input
 
 
@@ -272,6 +311,683 @@ class SnowDeviceManagementClient:
         )
         response.response.close()
         return response.output
+
+    def describe_device(
+        self,
+        managed_device_id: "capo_snow_device_management.types.managed_device_id.ManagedDeviceId",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+    ) -> (
+        "capo_snow_device_management.types.describe_device_output.DescribeDeviceOutput"
+    ):
+        """<p>Checks device-specific information, such as the device type, software version, IP addresses, and lock status.</p>
+
+        Args:
+            managed_device_id: <p>The ID of the device that you are checking the information of.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.describe_device_input.DescribeDeviceInput]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.describe_device_output.DescribeDeviceOutput"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.describe_device
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.describe_device.describe_device(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.describe_device_input.DescribeDeviceInput = {
+            "managed_device_id": managed_device_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_devices(
+        self,
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+        job_id: Optional["capo_snow_device_management.types.job_id.JobId"] = None,
+        max_results: Optional[
+            "capo_snow_device_management.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_snow_device_management.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_snow_device_management.types.list_devices_output.ListDevicesOutput":
+        """<p>Returns a list of all devices on your Amazon Web Services account that have Amazon Web Services Snow Device Management enabled in the Amazon Web Services Region where the command is run.</p>
+
+        Args:
+            job_id: <p>The ID of the job used to order the device.</p>
+            max_results: <p>The maximum number of devices to list per page.</p>
+            next_token: <p>A pagination token to continue to the next page of results.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.list_devices_input.ListDevicesInput]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.list_devices_output.ListDevicesOutput"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.list_devices
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.list_devices.list_devices(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.list_devices_input.ListDevicesInput = {}
+        if job_id is not None:
+            input_["job_id"] = job_id
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_devices(
+        self,
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+        job_id: Optional["capo_snow_device_management.types.job_id.JobId"] = None,
+        max_results: Optional[
+            "capo_snow_device_management.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_snow_device_management.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_snow_device_management.types.device_summary.DeviceSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_devices(
+                config_overrides=config_overrides,
+                job_id=job_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("devices",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def describe_device_ec2_instances(
+        self,
+        managed_device_id: "capo_snow_device_management.types.managed_device_id.ManagedDeviceId",
+        instance_ids: "capo_snow_device_management.types.instance_ids_list.InstanceIdsList",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+    ) -> "capo_snow_device_management.types.describe_device_ec2_output.DescribeDeviceEc2Output":
+        """<p>Checks the current state of the Amazon EC2 instances. The output is similar to <code>describeDevice</code>, but the results are sourced from the device cache in the Amazon Web Services Cloud and include a subset of the available fields. </p>
+
+        Args:
+            managed_device_id: <p>The ID of the managed device.</p>
+            instance_ids: <p>A list of instance IDs associated with the managed device.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.describe_device_ec2_input.DescribeDeviceEc2Input]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.describe_device_ec2_output.DescribeDeviceEc2Output"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.describe_device_ec2_instances
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.describe_device_ec2_instances.describe_device_ec2_instances(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.describe_device_ec2_input.DescribeDeviceEc2Input = {
+            "managed_device_id": managed_device_id,
+            "instance_ids": instance_ids,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_device_resources(
+        self,
+        managed_device_id: "capo_snow_device_management.types.managed_device_id.ManagedDeviceId",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+        type: Optional[str] = None,
+        max_results: Optional[
+            "capo_snow_device_management.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_snow_device_management.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_snow_device_management.types.list_device_resources_output.ListDeviceResourcesOutput":
+        """<p>Returns a list of the Amazon Web Services resources available for a device. Currently, Amazon EC2 instances are the only supported resource type.</p>
+
+        Args:
+            managed_device_id: <p>The ID of the managed device that you are listing the resources of.</p>
+            type: <p>A structure used to filter the results by type of resource.</p>
+            max_results: <p>The maximum number of resources per page.</p>
+            next_token: <p>A pagination token to continue to the next page of results.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.list_device_resources_input.ListDeviceResourcesInput]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.list_device_resources_output.ListDeviceResourcesOutput"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.list_device_resources
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.list_device_resources.list_device_resources(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.list_device_resources_input.ListDeviceResourcesInput = {
+            "managed_device_id": managed_device_id
+        }
+        if type is not None:
+            input_["type"] = type
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_device_resources(
+        self,
+        managed_device_id: "capo_snow_device_management.types.managed_device_id.ManagedDeviceId",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+        type: Optional[str] = None,
+        max_results: Optional[
+            "capo_snow_device_management.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_snow_device_management.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_snow_device_management.types.resource_summary.ResourceSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_device_resources(
+                managed_device_id,
+                config_overrides=config_overrides,
+                type=type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("resources",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_task(
+        self,
+        targets: "capo_snow_device_management.types.target_list.TargetList",
+        command: "capo_snow_device_management.types.command.Command",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+        description: Optional[
+            "capo_snow_device_management.types.task_description_string.TaskDescriptionString"
+        ] = None,
+        tags: Optional["capo_snow_device_management.types.tag_map.TagMap"] = None,
+        client_token: Optional[
+            "capo_snow_device_management.types.idempotency_token.IdempotencyToken"
+        ] = None,
+    ) -> "capo_snow_device_management.types.create_task_output.CreateTaskOutput":
+        """<p>Instructs one or more devices to start a task, such as unlocking or rebooting.</p>
+
+        Args:
+            targets: <p>A list of managed device IDs.</p>
+            command: <p>The task to be performed. Only one task is executed on a device at a time.</p>
+            description: <p>A description of the task and its targets.</p>
+            tags: <p>Optional metadata that you assign to a resource. You can use tags to categorize a resource in different ways, such as by purpose, owner, or environment. </p>
+            client_token: <p>A token ensuring that the action is called only once with the specified details.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist.</p>
+            capo_snow_device_management.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would cause a service quota to be exceeded.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.create_task_input.CreateTaskInput]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.create_task_output.CreateTaskOutput"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.create_task
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.create_task.create_task(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.create_task_input.CreateTaskInput = {
+            "targets": targets,
+            "command": command,
+        }
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_task(
+        self,
+        task_id: "capo_snow_device_management.types.task_id.TaskId",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+    ) -> "capo_snow_device_management.types.describe_task_output.DescribeTaskOutput":
+        """<p>Checks the metadata for a given task on a device. </p>
+
+        Args:
+            task_id: <p>The ID of the task to be described.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.describe_task_input.DescribeTaskInput]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.describe_task_output.DescribeTaskOutput"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.describe_task
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.describe_task.describe_task(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.describe_task_input.DescribeTaskInput = {
+            "task_id": task_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_tasks(
+        self,
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+        state: Optional[
+            "capo_snow_device_management.types.task_state.TaskState"
+        ] = None,
+        max_results: Optional[
+            "capo_snow_device_management.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_snow_device_management.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_snow_device_management.types.list_tasks_output.ListTasksOutput":
+        """<p>Returns a list of tasks that can be filtered by state.</p>
+
+        Args:
+            state: <p>A structure used to filter the list of tasks.</p>
+            max_results: <p>The maximum number of tasks per page.</p>
+            next_token: <p>A pagination token to continue to the next page of tasks.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.list_tasks_input.ListTasksInput]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.list_tasks_output.ListTasksOutput"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.list_tasks
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.list_tasks.list_tasks(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.list_tasks_input.ListTasksInput = {}
+        if state is not None:
+            input_["state"] = state
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_tasks(
+        self,
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+        state: Optional[
+            "capo_snow_device_management.types.task_state.TaskState"
+        ] = None,
+        max_results: Optional[
+            "capo_snow_device_management.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_snow_device_management.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_snow_device_management.types.task_summary.TaskSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_tasks(
+                config_overrides=config_overrides,
+                state=state,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("tasks",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def cancel_task(
+        self,
+        task_id: "capo_snow_device_management.types.task_id.TaskId",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+    ) -> "capo_snow_device_management.types.cancel_task_output.CancelTaskOutput":
+        """<p>Sends a cancel request for a specified task. You can cancel a task only if it's still in a <code>QUEUED</code> state. Tasks that are already running can't be cancelled.</p> <note> <p>A task might still run if it's processed from the queue before the <code>CancelTask</code> operation changes the task's state.</p> </note>
+
+        Args:
+            task_id: <p>The ID of the task that you are attempting to cancel. You can retrieve a task ID by using the <code>ListTasks</code> operation.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.cancel_task_input.CancelTaskInput]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.cancel_task_output.CancelTaskOutput"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.cancel_task
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.cancel_task.cancel_task(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.cancel_task_input.CancelTaskInput = {
+            "task_id": task_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_execution(
+        self,
+        task_id: "capo_snow_device_management.types.task_id.TaskId",
+        managed_device_id: "capo_snow_device_management.types.managed_device_id.ManagedDeviceId",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+    ) -> "capo_snow_device_management.types.describe_execution_output.DescribeExecutionOutput":
+        """<p>Checks the status of a remote task running on one or more target devices.</p>
+
+        Args:
+            task_id: <p>The ID of the task that the action is describing.</p>
+            managed_device_id: <p>The ID of the managed device.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.describe_execution_input.DescribeExecutionInput]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.describe_execution_output.DescribeExecutionOutput"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.describe_execution
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.describe_execution.describe_execution(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.describe_execution_input.DescribeExecutionInput = {
+            "task_id": task_id,
+            "managed_device_id": managed_device_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_executions(
+        self,
+        task_id: "capo_snow_device_management.types.task_id.TaskId",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+        state: Optional[
+            "capo_snow_device_management.types.execution_state.ExecutionState"
+        ] = None,
+        max_results: Optional[
+            "capo_snow_device_management.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_snow_device_management.types.next_token.NextToken"
+        ] = None,
+    ) -> (
+        "capo_snow_device_management.types.list_executions_output.ListExecutionsOutput"
+    ):
+        """<p>Returns the status of tasks for one or more target devices.</p>
+
+        Args:
+            task_id: <p>The ID of the task.</p>
+            state: <p>A structure used to filter the tasks by their current state.</p>
+            max_results: <p>The maximum number of tasks to list per page.</p>
+            next_token: <p>A pagination token to continue to the next page of tasks.</p>
+
+        Raises:
+            capo_snow_device_management.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_snow_device_management.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing the request.</p>
+            capo_snow_device_management.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist.</p>
+            capo_snow_device_management.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_snow_device_management.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_snow_device_management.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_snow_device_management.types.list_executions_input.ListExecutionsInput]",
+        ) -> OperationResponse[
+            "capo_snow_device_management.types.list_executions_output.ListExecutionsOutput"
+        ]:
+            import capo_snow_device_management._operations.snow_device_management.list_executions
+
+            output, http_response = (
+                capo_snow_device_management._operations.snow_device_management.list_executions.list_executions(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_snow_device_management.types.list_executions_input.ListExecutionsInput = {
+            "task_id": task_id
+        }
+        if state is not None:
+            input_["state"] = state
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_executions(
+        self,
+        task_id: "capo_snow_device_management.types.task_id.TaskId",
+        *,
+        config_overrides: Optional[SnowDeviceManagementClientConfig] = None,
+        state: Optional[
+            "capo_snow_device_management.types.execution_state.ExecutionState"
+        ] = None,
+        max_results: Optional[
+            "capo_snow_device_management.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_snow_device_management.types.next_token.NextToken"
+        ] = None,
+    ) -> (
+        "Iterator[capo_snow_device_management.types.execution_summary.ExecutionSummary]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_executions(
+                task_id,
+                config_overrides=config_overrides,
+                state=state,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("executions",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def __enter__(self) -> Self:
         return self

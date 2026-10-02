@@ -15,9 +15,9 @@ class RetryImageRequest(TypedDict, closed=True):
     image_build_version_arn: (
         "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     )
-    """<p>The source image Amazon Resource Name (ARN) to retry.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image build version that you want to retry. The image must be in the <code>FAILED</code> or <code>CANCELLED</code> state.</p>"""
     client_token: "capo_imagebuilder.types.client_token.ClientToken"
-    r"""<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
+    r"""<p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
 
 
 # --- restJson1 ser/de ---

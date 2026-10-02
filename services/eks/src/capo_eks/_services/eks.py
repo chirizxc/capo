@@ -32,6 +32,8 @@ from capo_eks._services._pipeline import (
 if TYPE_CHECKING:
     import capo_eks.types.access_policy
     import capo_eks.types.access_scope
+    import capo_eks.types.activate_certificate_authority_request
+    import capo_eks.types.activate_certificate_authority_response
     import capo_eks.types.addon_info
     import capo_eks.types.addon_namespace_config_request
     import capo_eks.types.addon_pod_identity_associations_list
@@ -46,11 +48,15 @@ if TYPE_CHECKING:
     import capo_eks.types.boolean
     import capo_eks.types.boxed_boolean
     import capo_eks.types.boxed_integer
+    import capo_eks.types.cancel_update_request
+    import capo_eks.types.cancel_update_response
     import capo_eks.types.capability_configuration_request
     import capo_eks.types.capability_delete_propagation_policy
     import capo_eks.types.capability_summary
     import capo_eks.types.capability_type
     import capo_eks.types.capacity_types
+    import capo_eks.types.certificate_authority_max_results
+    import capo_eks.types.certificate_authority_summary
     import capo_eks.types.cluster_name
     import capo_eks.types.cluster_version_information
     import capo_eks.types.cluster_version_status
@@ -64,6 +70,8 @@ if TYPE_CHECKING:
     import capo_eks.types.create_addon_response
     import capo_eks.types.create_capability_request
     import capo_eks.types.create_capability_response
+    import capo_eks.types.create_certificate_authority_request
+    import capo_eks.types.create_certificate_authority_response
     import capo_eks.types.create_cluster_request
     import capo_eks.types.create_cluster_response
     import capo_eks.types.create_eks_anywhere_subscription_request
@@ -80,6 +88,8 @@ if TYPE_CHECKING:
     import capo_eks.types.delete_addon_response
     import capo_eks.types.delete_capability_request
     import capo_eks.types.delete_capability_response
+    import capo_eks.types.delete_certificate_authority_request
+    import capo_eks.types.delete_certificate_authority_response
     import capo_eks.types.delete_cluster_request
     import capo_eks.types.delete_cluster_response
     import capo_eks.types.delete_eks_anywhere_subscription_request
@@ -103,6 +113,8 @@ if TYPE_CHECKING:
     import capo_eks.types.describe_addon_versions_response
     import capo_eks.types.describe_capability_request
     import capo_eks.types.describe_capability_response
+    import capo_eks.types.describe_certificate_authority_request
+    import capo_eks.types.describe_certificate_authority_response
     import capo_eks.types.describe_cluster_request
     import capo_eks.types.describe_cluster_response
     import capo_eks.types.describe_cluster_version_max_results
@@ -141,6 +153,9 @@ if TYPE_CHECKING:
     import capo_eks.types.insight_summary
     import capo_eks.types.insights_filter
     import capo_eks.types.integer
+    import capo_eks.types.kube_api_server_config_request
+    import capo_eks.types.kube_controller_manager_config_request
+    import capo_eks.types.kube_scheduler_config_request
     import capo_eks.types.kubernetes_network_config_request
     import capo_eks.types.labels_map
     import capo_eks.types.launch_template_specification
@@ -159,6 +174,8 @@ if TYPE_CHECKING:
     import capo_eks.types.list_capabilities_request
     import capo_eks.types.list_capabilities_request_max_results
     import capo_eks.types.list_capabilities_response
+    import capo_eks.types.list_certificate_authorities_request
+    import capo_eks.types.list_certificate_authorities_response
     import capo_eks.types.list_clusters_request
     import capo_eks.types.list_clusters_request_max_results
     import capo_eks.types.list_clusters_response
@@ -197,6 +214,7 @@ if TYPE_CHECKING:
     import capo_eks.types.remote_network_config_request
     import capo_eks.types.resolve_conflicts
     import capo_eks.types.role_arn
+    import capo_eks.types.rollback_config
     import capo_eks.types.start_insights_refresh_request
     import capo_eks.types.start_insights_refresh_response
     import capo_eks.types.storage_config_request
@@ -330,6 +348,60 @@ class EKSClient:
             ),
         )
         return interceptors_, options_
+
+    def activate_certificate_authority(
+        self,
+        cluster_name: "capo_eks.types.string.String",
+        certificate_authority_id: "capo_eks.types.string.String",
+        *,
+        config_overrides: Optional[EKSClientConfig] = None,
+        client_request_token: Optional["capo_eks.types.string.String"] = None,
+    ) -> "capo_eks.types.activate_certificate_authority_response.ActivateCertificateAuthorityResponse":
+        r"""<p>Activates a successor certificate authority (CA) as the signing certificate authority for your cluster, completing a CA rotation.</p> <p>When you activate a successor CA, Amazon EKS promotes it to be the cluster's signer (its <code>signingStatus</code> becomes <code>IN_USE</code>) and the outgoing CA is retired (<code>NOT_USED</code>). The outgoing CA remains in the cluster's trust bundle but no longer signs certificates. The successor CA you activate must already be present on the cluster and fully distributed (its <code>distributionStatus</code> must be <code>COMPLETE</code>). This is an asynchronous operation that returns an <code>update</code> object you can track with <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeUpdate.html\"> <code>DescribeUpdate</code> </a>.</p> <p>Before you activate the successor CA, make sure the worker nodes you manage and your external clients have been updated to trust it, so they maintain connectivity to the API server after activation. For a limited period after activation, CA rollback is available to revert to the outgoing CA if needed. If you don't activate the successor CA yourself, Amazon EKS activates it automatically as the expiration deadline approaches. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/certificate-authority-rotation.html\">Rotate the Amazon EKS cluster certificate authority</a> in the <i>Amazon EKS User Guide</i>.</p>
+
+        Args:
+            cluster_name: <p>The name of your cluster.</p>
+            certificate_authority_id: <p>The ID of the certificate authority to activate as the cluster's signing certificate authority. This certificate authority must already exist on the cluster and have a <code>distributionStatus</code> of <code>COMPLETE</code>.</p>
+            client_request_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_eks.errors.invalid_parameter_exception.InvalidParameterException: <p>The specified parameter is invalid. Review the available parameters for the API request.</p>
+            capo_eks.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. You can view your available clusters with <code>ListClusters</code>. You can view your available managed node groups with <code>ListNodegroups</code>. Amazon EKS clusters and node groups are Amazon Web Services Region specific.</p>
+            capo_eks.errors.server_exception.ServerException: <p>These errors are usually caused by a server-side issue.</p>
+            capo_eks.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unavailable. Back off and retry the operation.</p>
+            capo_eks.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_eks.types.activate_certificate_authority_request.ActivateCertificateAuthorityRequest]",
+        ) -> OperationResponse[
+            "capo_eks.types.activate_certificate_authority_response.ActivateCertificateAuthorityResponse"
+        ]:
+            import capo_eks._operations.aws_wesley_frontend.activate_certificate_authority
+
+            output, http_response = (
+                capo_eks._operations.aws_wesley_frontend.activate_certificate_authority.activate_certificate_authority(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_eks.types.activate_certificate_authority_request.ActivateCertificateAuthorityRequest = {
+            "cluster_name": cluster_name,
+            "certificate_authority_id": certificate_authority_id,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
 
     def associate_access_policy(
         self,
@@ -494,6 +566,64 @@ class EKSClient:
         }
         if tags is not None:
             input_["tags"] = tags
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def cancel_update(
+        self,
+        name: "capo_eks.types.string.String",
+        update_id: "capo_eks.types.string.String",
+        *,
+        config_overrides: Optional[EKSClientConfig] = None,
+        client_request_token: Optional["capo_eks.types.string.String"] = None,
+    ) -> "capo_eks.types.cancel_update_response.CancelUpdateResponse":
+        """<p>Cancels an in-progress update to an Amazon EKS cluster on a best-effort basis. Cancellation is only performed if the update can be cancelled. Currently, this is supported for <code>VersionRollback</code> update types on EKS Auto Mode clusters when nodes are rolling back.</p> <p>A successful cancellation stops the node rollback. After cancellation, nodes converge to the current cluster version honoring configured disruption controls. If the control plane rollback has already begun, the cancellation request fails.</p>
+
+        Args:
+            name: <p>The name of the Amazon EKS cluster associated with the update.</p>
+            update_id: <p>The ID of the update to cancel.</p>
+            client_request_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_eks.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. Actions can include using an action or resource on behalf of an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html\">IAM principal</a> that doesn't have permissions to use the action or resource or specifying an identifier that is not valid.</p>
+            capo_eks.errors.invalid_parameter_exception.InvalidParameterException: <p>The specified parameter is invalid. Review the available parameters for the API request.</p>
+            capo_eks.errors.invalid_request_exception.InvalidRequestException: <p>The request is invalid given the state of the cluster. Check the state of the cluster and the associated operations.</p>
+            capo_eks.errors.invalid_state_exception.InvalidStateException: <p>Amazon EKS detected upgrade readiness issues. Call the <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_ListInsights.html\"> <code>ListInsights</code> </a> API to view detected upgrade blocking issues. Pass the <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_UpdateClusterVersion.html#API_UpdateClusterVersion_RequestBody\"> <code>force</code> </a> flag when updating to override upgrade readiness errors.</p>
+            capo_eks.errors.resource_in_use_exception.ResourceInUseException: <p>The specified resource is in use.</p>
+            capo_eks.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. You can view your available clusters with <code>ListClusters</code>. You can view your available managed node groups with <code>ListNodegroups</code>. Amazon EKS clusters and node groups are Amazon Web Services Region specific.</p>
+            capo_eks.errors.server_exception.ServerException: <p>These errors are usually caused by a server-side issue.</p>
+            capo_eks.errors.throttling_exception.ThrottlingException: <p>The request or operation couldn't be performed because a service is throttling requests.</p>
+            capo_eks.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_eks.types.cancel_update_request.CancelUpdateRequest]",
+        ) -> OperationResponse[
+            "capo_eks.types.cancel_update_response.CancelUpdateResponse"
+        ]:
+            import capo_eks._operations.aws_wesley_frontend.cancel_update
+
+            output, http_response = (
+                capo_eks._operations.aws_wesley_frontend.cancel_update.cancel_update(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_eks.types.cancel_update_request.CancelUpdateRequest = {
+            "name": name,
+            "update_id": update_id,
+        }
         if client_request_token is None:
             client_request_token = str(uuid.uuid4())
         input_["client_request_token"] = client_request_token
@@ -743,6 +873,59 @@ class EKSClient:
         response.response.close()
         return response.output
 
+    def create_certificate_authority(
+        self,
+        cluster_name: "capo_eks.types.string.String",
+        *,
+        config_overrides: Optional[EKSClientConfig] = None,
+        client_request_token: Optional["capo_eks.types.string.String"] = None,
+    ) -> "capo_eks.types.create_certificate_authority_response.CreateCertificateAuthorityResponse":
+        r"""<p>Appends a successor certificate authority (CA) to your cluster, beginning the CA rotation process.</p> <p>A cluster certificate authority is the root of trust for your cluster's control plane. It signs the certificates that secure communication between the Kubernetes API server and its clients, and its public certificate is distributed to your cluster's trust bundle so that worker nodes and clients can verify the API server's identity. Each cluster can have at most two certificate authorities at a time: the outgoing CA that's currently signing (its <code>signingStatus</code> is <code>IN_USE</code>) and one successor CA (<code>signingStatus</code> of <code>NOT_USED</code>) that you can later activate to complete the rotation.</p> <p>Appending a successor CA adds its public certificate to the cluster's trust bundle so that the cluster trusts both CAs simultaneously (the dual trust period), but it doesn't begin signing certificates. Amazon EKS then distributes the successor CA to the Amazon Web Services managed components in your cluster; you can track this through the CA's <code>distributionStatus</code>. The successor CA can't be activated until its <code>distributionStatus</code> is <code>COMPLETE</code>. To activate it as the cluster's signer, use <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_ActivateCertificateAuthority.html\"> <code>ActivateCertificateAuthority</code> </a>. This is an asynchronous operation that returns an <code>update</code> object. If you don't append a successor CA yourself, Amazon EKS appends one automatically before the outgoing CA approaches expiration.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/certificate-authority-rotation.html\">Rotate the Amazon EKS cluster certificate authority</a> in the <i>Amazon EKS User Guide</i>.</p>
+
+        Args:
+            cluster_name: <p>The name of your cluster.</p>
+            client_request_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_eks.errors.invalid_parameter_exception.InvalidParameterException: <p>The specified parameter is invalid. Review the available parameters for the API request.</p>
+            capo_eks.errors.resource_in_use_exception.ResourceInUseException: <p>The specified resource is in use.</p>
+            capo_eks.errors.resource_limit_exceeded_exception.ResourceLimitExceededException: <p>You have encountered a service limit on the specified resource.</p>
+            capo_eks.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. You can view your available clusters with <code>ListClusters</code>. You can view your available managed node groups with <code>ListNodegroups</code>. Amazon EKS clusters and node groups are Amazon Web Services Region specific.</p>
+            capo_eks.errors.server_exception.ServerException: <p>These errors are usually caused by a server-side issue.</p>
+            capo_eks.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unavailable. Back off and retry the operation.</p>
+            capo_eks.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_eks.types.create_certificate_authority_request.CreateCertificateAuthorityRequest]",
+        ) -> OperationResponse[
+            "capo_eks.types.create_certificate_authority_response.CreateCertificateAuthorityResponse"
+        ]:
+            import capo_eks._operations.aws_wesley_frontend.create_certificate_authority
+
+            output, http_response = (
+                capo_eks._operations.aws_wesley_frontend.create_certificate_authority.create_certificate_authority(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_eks.types.create_certificate_authority_request.CreateCertificateAuthorityRequest = {
+            "cluster_name": cluster_name
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_cluster(
         self,
         name: "capo_eks.types.cluster_name.ClusterName",
@@ -790,6 +973,15 @@ class EKSClient:
         control_plane_scaling_config: Optional[
             "capo_eks.types.control_plane_scaling_config.ControlPlaneScalingConfig"
         ] = None,
+        kube_api_server_config: Optional[
+            "capo_eks.types.kube_api_server_config_request.KubeApiServerConfigRequest"
+        ] = None,
+        kube_scheduler_config: Optional[
+            "capo_eks.types.kube_scheduler_config_request.KubeSchedulerConfigRequest"
+        ] = None,
+        kube_controller_manager_config: Optional[
+            "capo_eks.types.kube_controller_manager_config_request.KubeControllerManagerConfigRequest"
+        ] = None,
     ) -> "capo_eks.types.create_cluster_response.CreateClusterResponse":
         r"""<p>Creates an Amazon EKS control plane.</p> <p>The Amazon EKS control plane consists of control plane instances that run the Kubernetes software, such as <code>etcd</code> and the API server. The control plane runs in an account managed by Amazon Web Services, and the Kubernetes API is exposed by the Amazon EKS API server endpoint. Each Amazon EKS cluster control plane is single tenant and unique. It runs on its own set of Amazon EC2 instances.</p> <p>The cluster control plane is provisioned across multiple Availability Zones and fronted by an Elastic Load Balancing Network Load Balancer. Amazon EKS also provisions elastic network interfaces in your VPC subnets to provide connectivity from the control plane instances to the nodes (for example, to support <code>kubectl exec</code>, <code>logs</code>, and <code>proxy</code> data flows).</p> <p>Amazon EKS nodes run in your Amazon Web Services account and connect to your cluster's control plane over the Kubernetes API server endpoint and a certificate file that is created for your cluster.</p> <p>You can use the <code>endpointPublicAccess</code> and <code>endpointPrivateAccess</code> parameters to enable or disable public and private access to your cluster's Kubernetes API server endpoint. By default, public access is enabled, and private access is disabled. The endpoint domain name and IP address family depends on the value of the <code>ipFamily</code> for the cluster. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html\">Amazon EKS Cluster Endpoint Access Control</a> in the <i> <i>Amazon EKS User Guide</i> </i>. </p> <p>You can use the <code>logging</code> parameter to enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs. By default, cluster control plane logs aren't exported to CloudWatch Logs. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html\">Amazon EKS Cluster Control Plane Logs</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p> <note> <p>CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see <a href=\"http://aws.amazon.com/cloudwatch/pricing/\">CloudWatch Pricing</a>.</p> </note> <p>In most cases, it takes several minutes to create a cluster. After you create an Amazon EKS cluster, you must configure your Kubernetes tooling to communicate with the API server and launch nodes into your cluster. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/cluster-auth.html\">Allowing users to access your cluster</a> and <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html\">Launching Amazon EKS nodes</a> in the <i>Amazon EKS User Guide</i>.</p>
 
@@ -813,6 +1005,9 @@ class EKSClient:
             storage_config: <p>Enable or disable the block storage capability of EKS Auto Mode when creating your EKS Auto Mode cluster. If the block storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in your Amazon Web Services account.</p>
             deletion_protection: <p>Indicates whether to enable deletion protection for the cluster. When enabled, the cluster cannot be deleted unless deletion protection is first disabled. This helps prevent accidental cluster deletion. Default value is <code>false</code>.</p>
             control_plane_scaling_config: <p>The control plane scaling tier configuration. For more information, see EKS Provisioned Control Plane in the Amazon EKS User Guide.</p>
+            kube_api_server_config: <p>The Kubernetes API server configuration for the new cluster.</p>
+            kube_scheduler_config: <p>The Kubernetes scheduler configuration for the new cluster.</p>
+            kube_controller_manager_config: <p>The Kubernetes controller manager configuration for the new cluster.</p>
 
         Raises:
             capo_eks.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. Actions can include using an action or resource on behalf of an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html\">IAM principal</a> that doesn't have permissions to use the action or resource or specifying an identifier that is not valid.</p>
@@ -884,6 +1079,12 @@ class EKSClient:
             input_["deletion_protection"] = deletion_protection
         if control_plane_scaling_config is not None:
             input_["control_plane_scaling_config"] = control_plane_scaling_config
+        if kube_api_server_config is not None:
+            input_["kube_api_server_config"] = kube_api_server_config
+        if kube_scheduler_config is not None:
+            input_["kube_scheduler_config"] = kube_scheduler_config
+        if kube_controller_manager_config is not None:
+            input_["kube_controller_manager_config"] = kube_controller_manager_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1397,6 +1598,61 @@ class EKSClient:
             "cluster_name": cluster_name,
             "capability_name": capability_name,
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_certificate_authority(
+        self,
+        cluster_name: "capo_eks.types.string.String",
+        certificate_authority_id: "capo_eks.types.string.String",
+        *,
+        config_overrides: Optional[EKSClientConfig] = None,
+        client_request_token: Optional["capo_eks.types.string.String"] = None,
+    ) -> "capo_eks.types.delete_certificate_authority_response.DeleteCertificateAuthorityResponse":
+        r"""<p>Deletes a certificate authority (CA) from your cluster.</p> <p>Deleting a certificate authority removes its public certificate from the cluster's trust bundle. You can't delete the certificate authority that's currently signing certificates for the cluster (its <code>signingStatus</code> is <code>IN_USE</code>) — to remove the outgoing CA, first activate the successor CA with <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_ActivateCertificateAuthority.html\"> <code>ActivateCertificateAuthority</code> </a>. Amazon EKS also protects a successor CA from deletion in certain cases to keep a valid rotation path — for example, a successor that Amazon EKS appended can't be deleted while it's the only successor on the cluster. This is an asynchronous operation that returns an <code>update</code> object.</p>
+
+        Args:
+            cluster_name: <p>The name of your cluster.</p>
+            certificate_authority_id: <p>The ID of the certificate authority to delete. You can't delete the certificate authority that's currently signing certificates for the cluster.</p>
+            client_request_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_eks.errors.invalid_parameter_exception.InvalidParameterException: <p>The specified parameter is invalid. Review the available parameters for the API request.</p>
+            capo_eks.errors.resource_in_use_exception.ResourceInUseException: <p>The specified resource is in use.</p>
+            capo_eks.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. You can view your available clusters with <code>ListClusters</code>. You can view your available managed node groups with <code>ListNodegroups</code>. Amazon EKS clusters and node groups are Amazon Web Services Region specific.</p>
+            capo_eks.errors.server_exception.ServerException: <p>These errors are usually caused by a server-side issue.</p>
+            capo_eks.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unavailable. Back off and retry the operation.</p>
+            capo_eks.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_eks.types.delete_certificate_authority_request.DeleteCertificateAuthorityRequest]",
+        ) -> OperationResponse[
+            "capo_eks.types.delete_certificate_authority_response.DeleteCertificateAuthorityResponse"
+        ]:
+            import capo_eks._operations.aws_wesley_frontend.delete_certificate_authority
+
+            output, http_response = (
+                capo_eks._operations.aws_wesley_frontend.delete_certificate_authority.delete_certificate_authority(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_eks.types.delete_certificate_authority_request.DeleteCertificateAuthorityRequest = {
+            "cluster_name": cluster_name,
+            "certificate_authority_id": certificate_authority_id,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1994,6 +2250,54 @@ class EKSClient:
         input_: capo_eks.types.describe_capability_request.DescribeCapabilityRequest = {
             "cluster_name": cluster_name,
             "capability_name": capability_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_certificate_authority(
+        self,
+        cluster_name: "capo_eks.types.string.String",
+        certificate_authority_id: "capo_eks.types.string.String",
+        *,
+        config_overrides: Optional[EKSClientConfig] = None,
+    ) -> "capo_eks.types.describe_certificate_authority_response.DescribeCertificateAuthorityResponse":
+        """<p>Returns detailed information about a certificate authority (CA) in your cluster, including its validity period, signing and distribution status, provenance, scheduled auto-activation events, and public certificate data.</p>
+
+        Args:
+            cluster_name: <p>The name of your cluster.</p>
+            certificate_authority_id: <p>The ID of the certificate authority to describe.</p>
+
+        Raises:
+            capo_eks.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. You can view your available clusters with <code>ListClusters</code>. You can view your available managed node groups with <code>ListNodegroups</code>. Amazon EKS clusters and node groups are Amazon Web Services Region specific.</p>
+            capo_eks.errors.server_exception.ServerException: <p>These errors are usually caused by a server-side issue.</p>
+            capo_eks.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unavailable. Back off and retry the operation.</p>
+            capo_eks.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_eks.types.describe_certificate_authority_request.DescribeCertificateAuthorityRequest]",
+        ) -> OperationResponse[
+            "capo_eks.types.describe_certificate_authority_response.DescribeCertificateAuthorityResponse"
+        ]:
+            import capo_eks._operations.aws_wesley_frontend.describe_certificate_authority
+
+            output, http_response = (
+                capo_eks._operations.aws_wesley_frontend.describe_certificate_authority.describe_certificate_authority(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_eks.types.describe_certificate_authority_request.DescribeCertificateAuthorityRequest = {
+            "cluster_name": cluster_name,
+            "certificate_authority_id": certificate_authority_id,
         }
 
         response = execute_pipeline(
@@ -3079,6 +3383,87 @@ class EKSClient:
                 max_results=max_results,
             )
             _page = _resolve_path(_response, ("capabilities",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_certificate_authorities(
+        self,
+        cluster_name: "capo_eks.types.string.String",
+        *,
+        config_overrides: Optional[EKSClientConfig] = None,
+        max_results: Optional[
+            "capo_eks.types.certificate_authority_max_results.CertificateAuthorityMaxResults"
+        ] = None,
+        next_token: Optional["capo_eks.types.string.String"] = None,
+    ) -> "capo_eks.types.list_certificate_authorities_response.ListCertificateAuthoritiesResponse":
+        """<p>Lists the certificate authorities (CAs) for your cluster. A cluster has at most two certificate authorities: the outgoing CA that's currently signing and, during a rotation, one successor CA.</p>
+
+        Args:
+            cluster_name: <p>The name of your cluster.</p>
+            max_results: <p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value. If you don't specify a value, the default is 100 results.</p>
+            next_token: <p>The <code>nextToken</code> value returned from a previous paginated request, where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is null when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is used only to retrieve the next items in a list and not for other programmatic purposes.</p> </note>
+
+        Raises:
+            capo_eks.errors.invalid_parameter_exception.InvalidParameterException: <p>The specified parameter is invalid. Review the available parameters for the API request.</p>
+            capo_eks.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. You can view your available clusters with <code>ListClusters</code>. You can view your available managed node groups with <code>ListNodegroups</code>. Amazon EKS clusters and node groups are Amazon Web Services Region specific.</p>
+            capo_eks.errors.server_exception.ServerException: <p>These errors are usually caused by a server-side issue.</p>
+            capo_eks.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unavailable. Back off and retry the operation.</p>
+            capo_eks.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_eks.types.list_certificate_authorities_request.ListCertificateAuthoritiesRequest]",
+        ) -> OperationResponse[
+            "capo_eks.types.list_certificate_authorities_response.ListCertificateAuthoritiesResponse"
+        ]:
+            import capo_eks._operations.aws_wesley_frontend.list_certificate_authorities
+
+            output, http_response = (
+                capo_eks._operations.aws_wesley_frontend.list_certificate_authorities.list_certificate_authorities(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_eks.types.list_certificate_authorities_request.ListCertificateAuthoritiesRequest = {
+            "cluster_name": cluster_name
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_certificate_authorities(
+        self,
+        cluster_name: "capo_eks.types.string.String",
+        *,
+        config_overrides: Optional[EKSClientConfig] = None,
+        max_results: Optional[
+            "capo_eks.types.certificate_authority_max_results.CertificateAuthorityMaxResults"
+        ] = None,
+        next_token: Optional["capo_eks.types.string.String"] = None,
+    ) -> "Iterator[capo_eks.types.certificate_authority_summary.CertificateAuthoritySummary]":
+        _token = next_token
+        while True:
+            _response = self.list_certificate_authorities(
+                cluster_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("certificate_authorities",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -4285,11 +4670,21 @@ class EKSClient:
         control_plane_scaling_config: Optional[
             "capo_eks.types.control_plane_scaling_config.ControlPlaneScalingConfig"
         ] = None,
+        kube_api_server_config: Optional[
+            "capo_eks.types.kube_api_server_config_request.KubeApiServerConfigRequest"
+        ] = None,
+        kube_scheduler_config: Optional[
+            "capo_eks.types.kube_scheduler_config_request.KubeSchedulerConfigRequest"
+        ] = None,
+        kube_controller_manager_config: Optional[
+            "capo_eks.types.kube_controller_manager_config_request.KubeControllerManagerConfigRequest"
+        ] = None,
     ) -> "capo_eks.types.update_cluster_config_response.UpdateClusterConfigResponse":
         r"""<p>Updates an Amazon EKS cluster configuration. Your cluster continues to function during the update. The response output includes an update ID that you can use to track the status of your cluster update with <code>DescribeUpdate</code>.</p> <p>You can use this operation to do the following actions:</p> <ul> <li> <p>You can use this API operation to enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs. By default, cluster control plane logs aren't exported to CloudWatch Logs. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html\">Amazon EKS Cluster control plane logs</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p> <note> <p>CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see <a href=\"http://aws.amazon.com/cloudwatch/pricing/\">CloudWatch Pricing</a>.</p> </note> </li> <li> <p>You can also use this API operation to enable or disable public and private access to your cluster's Kubernetes API server endpoint. By default, public access is enabled, and private access is disabled. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html\"> Cluster API server endpoint</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p> </li> <li> <p>You can also use this API operation to choose different subnets and security groups for the cluster. You must specify at least two subnets that are in different Availability Zones. You can't change which VPC the subnets are from, the subnets must be in the same VPC as the subnets that the cluster was created with. For more information about the VPC requirements, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html\">https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p> </li> <li> <p>You can also use this API operation to enable or disable ARC zonal shift. If zonal shift is enabled, Amazon Web Services configures zonal autoshift for the cluster.</p> </li> <li> <p>You can also use this API operation to add, change, or remove the configuration in the cluster for EKS Hybrid Nodes. To remove the configuration, use the <code>remoteNetworkConfig</code> key with an object containing both subkeys with empty arrays for each. Here is an inline example: <code>\"remoteNetworkConfig\": { \"remoteNodeNetworks\": [], \"remotePodNetworks\": [] }</code>.</p> </li> </ul> <p>Cluster updates are asynchronous, and they should finish within a few minutes. During an update, the cluster status moves to <code>UPDATING</code> (this status transition is eventually consistent). When the update is complete (either <code>Failed</code> or <code>Successful</code>), the cluster status moves to <code>Active</code>.</p>
 
         Args:
             name: <p>The name of the Amazon EKS cluster to update.</p>
+            resources_vpc_config: <p>An object representing the VPC configuration to use for the cluster update. You can use this parameter to update the control plane egress mode, the subnets used by the cluster, the security groups, and the endpoint access settings.</p>
             logging: <p>Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs . By default, cluster control plane logs aren't exported to CloudWatch Logs . For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html\">Amazon EKS cluster control plane logs</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p> <note> <p>CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see <a href=\"http://aws.amazon.com/cloudwatch/pricing/\">CloudWatch Pricing</a>.</p> </note>
             client_request_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
             access_config: <p>The access configuration for the cluster.</p>
@@ -4299,6 +4694,9 @@ class EKSClient:
             storage_config: <p>Update the configuration of the block storage capability of your EKS Auto Mode cluster. For example, enable the capability.</p>
             deletion_protection: <p>Specifies whether to enable or disable deletion protection for the cluster. When enabled (<code>true</code>), the cluster cannot be deleted until deletion protection is explicitly disabled. When disabled (<code>false</code>), the cluster can be deleted normally.</p>
             control_plane_scaling_config: <p>The control plane scaling tier configuration. For more information, see EKS Provisioned Control Plane in the Amazon EKS User Guide.</p>
+            kube_api_server_config: <p>The Kubernetes API server configuration for the updated cluster.</p>
+            kube_scheduler_config: <p>The Kubernetes scheduler configuration for the updated cluster.</p>
+            kube_controller_manager_config: <p>The Kubernetes controller manager configuration for the updated cluster.</p>
 
         Raises:
             capo_eks.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. Actions can include using an action or resource on behalf of an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html\">IAM principal</a> that doesn't have permissions to use the action or resource or specifying an identifier that is not valid.</p>
@@ -4354,6 +4752,12 @@ class EKSClient:
             input_["deletion_protection"] = deletion_protection
         if control_plane_scaling_config is not None:
             input_["control_plane_scaling_config"] = control_plane_scaling_config
+        if kube_api_server_config is not None:
+            input_["kube_api_server_config"] = kube_api_server_config
+        if kube_scheduler_config is not None:
+            input_["kube_scheduler_config"] = kube_scheduler_config
+        if kube_controller_manager_config is not None:
+            input_["kube_controller_manager_config"] = kube_controller_manager_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -4371,6 +4775,9 @@ class EKSClient:
         config_overrides: Optional[EKSClientConfig] = None,
         client_request_token: Optional["capo_eks.types.string.String"] = None,
         force: Optional["capo_eks.types.boolean.Boolean"] = None,
+        rollback_config: Optional[
+            "capo_eks.types.rollback_config.RollbackConfig"
+        ] = None,
     ) -> "capo_eks.types.update_cluster_version_response.UpdateClusterVersionResponse":
         r"""<p>Updates an Amazon EKS cluster to the specified Kubernetes version. Your cluster continues to function during the update. The response output includes an update ID that you can use to track the status of your cluster update with the <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeUpdate.html\"> <code>DescribeUpdate</code> </a> API operation.</p> <p>Cluster updates are asynchronous, and they should finish within a few minutes. During an update, the cluster status moves to <code>UPDATING</code> (this status transition is eventually consistent). When the update is complete (either <code>Failed</code> or <code>Successful</code>), the cluster status moves to <code>Active</code>.</p> <p>If your cluster has managed node groups attached to it, all of your node groups' Kubernetes versions must match the cluster's Kubernetes version in order to update the cluster to a new Kubernetes version.</p>
 
@@ -4378,7 +4785,8 @@ class EKSClient:
             name: <p>The name of the Amazon EKS cluster to update.</p>
             version: <p>The desired Kubernetes version following a successful update.</p>
             client_request_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
-            force: <p>Set this value to <code>true</code> to override upgrade-blocking readiness checks when updating a cluster.</p>
+            force: <p>Set this value to <code>true</code> to override upgrade-blocking or rollback-blocking readiness checks when updating a cluster.</p>
+            rollback_config: <p>The rollback configuration for the cluster version rollback.</p>
 
         Raises:
             capo_eks.errors.client_exception.ClientException: <p>These errors are usually caused by a client action. Actions can include using an action or resource on behalf of an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html\">IAM principal</a> that doesn't have permissions to use the action or resource or specifying an identifier that is not valid.</p>
@@ -4416,6 +4824,8 @@ class EKSClient:
         input_["client_request_token"] = client_request_token
         if force is not None:
             input_["force"] = force
+        if rollback_config is not None:
+            input_["rollback_config"] = rollback_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

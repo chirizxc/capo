@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.duration
     import capo_timestream_influxdb.types.log_formats
     import capo_timestream_influxdb.types.percent_or_absolute_long
+    import capo_timestream_influxdb.types.plugin_repository_secret_arn
 
 
 class InfluxDBv3CoreParameters(TypedDict, closed=True):
@@ -116,6 +117,12 @@ class InfluxDBv3CoreParameters(TypedDict, closed=True):
         "capo_timestream_influxdb.types.duration.Duration"
     ]
     """<p>Sets the default duration for hard deletion of data.</p> <p>Default: 90d</p>"""
+    plugin_repository_url: NotRequired["str"]
+    """<p>Specifies the URL of the repository that InfluxDB downloads plugins from.</p>"""
+    plugin_repository_secret_arn: NotRequired[
+        "capo_timestream_influxdb.types.plugin_repository_secret_arn.PluginRepositorySecretArn"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that holds your repository access token.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -320,6 +327,10 @@ def serialize_aws_json_1_0(value: InfluxDBv3CoreParameters) -> dict:
                 value["hard_delete_default_duration"]
             )
         )
+    if "plugin_repository_url" in value:
+        out["pluginRepositoryUrl"] = value["plugin_repository_url"]
+    if "plugin_repository_secret_arn" in value:
+        out["pluginRepositorySecretArn"] = value["plugin_repository_secret_arn"]
     return out
 
 
@@ -517,4 +528,8 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3CoreParameters:
                 data["hardDeleteDefaultDuration"]
             )
         )
+    if data.get("pluginRepositoryUrl") is not None:
+        out["plugin_repository_url"] = data["pluginRepositoryUrl"]
+    if data.get("pluginRepositorySecretArn") is not None:
+        out["plugin_repository_secret_arn"] = data["pluginRepositorySecretArn"]
     return out

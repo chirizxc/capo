@@ -14,7 +14,7 @@ class AvailabilityZoneDistribution(TypedDict, closed=True):
     capacity_distribution_strategy: NotRequired[
         "capo_auto_scaling.types.capacity_distribution_strategy.CapacityDistributionStrategy"
     ]
-    """<p> If launches fail in an Availability Zone, the following strategies are available. The default is <code>balanced-best-effort</code>. </p> <ul> <li> <p> <code>balanced-only</code> - If launches fail in an Availability Zone, Auto Scaling will continue to attempt to launch in the unhealthy zone to preserve a balanced distribution.</p> </li> <li> <p> <code>balanced-best-effort</code> - If launches fail in an Availability Zone, Auto Scaling will attempt to launch in another healthy Availability Zone instead.</p> </li> </ul>"""
+    """<p> If launches fail in an Availability Zone, the following strategies are available. The default is <code>balanced-best-effort</code>. </p> <ul> <li> <p> <code>balanced-only</code> - If launches fail in an Availability Zone, Auto Scaling will continue to attempt to launch in the unhealthy zone to preserve a balanced distribution.</p> </li> <li> <p> <code>balanced-best-effort</code> - If launches fail in an Availability Zone, Auto Scaling will attempt to launch in another healthy Availability Zone instead.</p> </li> <li> <p> <code>reservations-then-balanced</code> - Auto Scaling will first attempt to launch into your Capacity Reservations, and then balance any remaining capacity across healthy Availability Zones.</p> </li> </ul>"""
 
 
 # --- awsQuery ser/de ---

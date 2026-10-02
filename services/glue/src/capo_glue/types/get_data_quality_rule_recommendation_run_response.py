@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_glue.types.data_quality_rule_recommendation_run_additional_run_options
     import capo_glue.types.data_quality_ruleset_string
     import capo_glue.types.data_source
     import capo_glue.types.execution_time
@@ -12,6 +13,7 @@ if TYPE_CHECKING:
     import capo_glue.types.hash_string
     import capo_glue.types.name_string
     import capo_glue.types.nullable_integer
+    import capo_glue.types.recommendation_mode
     import capo_glue.types.role_string
     import capo_glue.types.task_status_type
     import capo_glue.types.timeout
@@ -24,7 +26,7 @@ class GetDataQualityRuleRecommendationRunResponse(TypedDict, closed=True):
     data_source: NotRequired["capo_glue.types.data_source.DataSource"]
     """<p>The data source (an Glue table) associated with this run.</p>"""
     role: NotRequired["capo_glue.types.role_string.RoleString"]
-    """<p>An IAM role supplied to encrypt the results of the run.</p>"""
+    """<p>The IAM role that Glue assumes to access resources for the run.</p>"""
     number_of_workers: NotRequired["capo_glue.types.nullable_integer.NullableInteger"]
     """<p>The number of <code>G.1X</code> workers to be used in the run. The default is 5.</p>"""
     timeout: NotRequired["capo_glue.types.timeout.Timeout"]
@@ -51,6 +53,14 @@ class GetDataQualityRuleRecommendationRunResponse(TypedDict, closed=True):
         "capo_glue.types.name_string.NameString"
     ]
     """<p>The name of the security configuration created with the data quality encryption option.</p>"""
+    additional_run_options: NotRequired[
+        "capo_glue.types.data_quality_rule_recommendation_run_additional_run_options.DataQualityRuleRecommendationRunAdditionalRunOptions"
+    ]
+    """<p>Additional run options you can specify for a recommendation run.</p>"""
+    recommendation_mode: NotRequired[
+        "capo_glue.types.recommendation_mode.RecommendationMode"
+    ]
+    """<p>The mode that Glue Data Quality uses to recommend rules.</p> <p>The default is <code>BASIC</code>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -105,6 +115,22 @@ def serialize_aws_json_1_1(value: GetDataQualityRuleRecommendationRunResponse) -
         out["DataQualitySecurityConfiguration"] = value[
             "data_quality_security_configuration"
         ]
+    if "additional_run_options" in value:
+        import capo_glue.types.data_quality_rule_recommendation_run_additional_run_options
+
+        out["AdditionalRunOptions"] = (
+            capo_glue.types.data_quality_rule_recommendation_run_additional_run_options.serialize_aws_json_1_1(
+                value["additional_run_options"]
+            )
+        )
+    if "recommendation_mode" in value:
+        import capo_glue.types.recommendation_mode
+
+        out["RecommendationMode"] = (
+            capo_glue.types.recommendation_mode.serialize_aws_json_1_1(
+                value["recommendation_mode"]
+            )
+        )
     return out
 
 
@@ -162,4 +188,20 @@ def deserialize_aws_json_1_1(data: dict) -> GetDataQualityRuleRecommendationRunR
         out["data_quality_security_configuration"] = data[
             "DataQualitySecurityConfiguration"
         ]
+    if data.get("AdditionalRunOptions") is not None:
+        import capo_glue.types.data_quality_rule_recommendation_run_additional_run_options
+
+        out["additional_run_options"] = (
+            capo_glue.types.data_quality_rule_recommendation_run_additional_run_options.deserialize_aws_json_1_1(
+                data["AdditionalRunOptions"]
+            )
+        )
+    if data.get("RecommendationMode") is not None:
+        import capo_glue.types.recommendation_mode
+
+        out["recommendation_mode"] = (
+            capo_glue.types.recommendation_mode.deserialize_aws_json_1_1(
+                data["RecommendationMode"]
+            )
+        )
     return out

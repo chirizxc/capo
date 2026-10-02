@@ -29,6 +29,7 @@ from capo_bedrock_agentcore_control._rule_engine._endpoint_rule_set import (
 from capo_bedrock_agentcore_control._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agentcore_control.errors import UnknownServiceError
 
@@ -130,6 +131,13 @@ def build_request(
     params: list[tuple[str, str]] = []
     if "client_token" in input_:
         params.append(("clientToken", input_["client_token"]))
+    if "delete_managed_memory" in input_:
+        params.append(
+            (
+                "deleteManagedMemory",
+                "true" if input_["delete_managed_memory"] else "false",
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
@@ -152,7 +160,7 @@ def delete_harness(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -170,7 +178,7 @@ async def async_delete_harness(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

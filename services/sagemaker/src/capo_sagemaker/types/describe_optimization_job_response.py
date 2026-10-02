@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.optimization_job_model_source
     import capo_sagemaker.types.optimization_job_output_config
     import capo_sagemaker.types.optimization_job_status
+    import capo_sagemaker.types.optimization_job_training_plan_arns
     import capo_sagemaker.types.optimization_output
     import capo_sagemaker.types.optimization_vpc_config
     import capo_sagemaker.types.role_arn
@@ -84,6 +85,10 @@ class DescribeOptimizationJobResponse(TypedDict, closed=True):
         "capo_sagemaker.types.optimization_vpc_config.OptimizationVpcConfig"
     ]
     """<p>A VPC in Amazon VPC that your optimized model has access to.</p>"""
+    training_plan_arns: NotRequired[
+        "capo_sagemaker.types.optimization_job_training_plan_arns.OptimizationJobTrainingPlanArns"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the training plan associated with this optimization job. This field appears only when you specified a training plan when you created the job. Optimization jobs that use on-demand capacity don't return this field.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -199,6 +204,14 @@ def serialize_aws_json_1_1(value: DescribeOptimizationJobResponse) -> dict:
         out["VpcConfig"] = (
             capo_sagemaker.types.optimization_vpc_config.serialize_aws_json_1_1(
                 value["vpc_config"]
+            )
+        )
+    if "training_plan_arns" in value:
+        import capo_sagemaker.types.optimization_job_training_plan_arns
+
+        out["TrainingPlanArns"] = (
+            capo_sagemaker.types.optimization_job_training_plan_arns.serialize_aws_json_1_1(
+                value["training_plan_arns"]
             )
         )
     return out
@@ -318,6 +331,14 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
         out["vpc_config"] = (
             capo_sagemaker.types.optimization_vpc_config.deserialize_aws_json_1_1(
                 data["VpcConfig"]
+            )
+        )
+    if data.get("TrainingPlanArns") is not None:
+        import capo_sagemaker.types.optimization_job_training_plan_arns
+
+        out["training_plan_arns"] = (
+            capo_sagemaker.types.optimization_job_training_plan_arns.deserialize_aws_json_1_1(
+                data["TrainingPlanArns"]
             )
         )
     return out

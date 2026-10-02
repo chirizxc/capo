@@ -18,11 +18,16 @@ if TYPE_CHECKING:
     import capo_quicksight.types.sheet_definition_list
     import capo_quicksight.types.static_file_list
     import capo_quicksight.types.tooltip_sheet_definition_list
+    import capo_quicksight.types.topic_identifier_declaration_list
 
 
 class AnalysisDefinition(TypedDict, closed=True):
     data_set_identifier_declarations: "capo_quicksight.types.data_set_identifier_declaration_list.DataSetIdentifierDeclarationList"
     """<p>An array of dataset identifier declarations. This mapping allows the usage of dataset identifiers instead of dataset ARNs throughout analysis sub-structures.</p>"""
+    topic_identifier_declarations: NotRequired[
+        "capo_quicksight.types.topic_identifier_declaration_list.TopicIdentifierDeclarationList"
+    ]
+    """<p>An array of topic identifier declarations. This mapping allows the usage of topic identifiers instead of topic ARNs throughout analysis sub-structures.</p>"""
     sheets: NotRequired[
         "capo_quicksight.types.sheet_definition_list.SheetDefinitionList"
     ]
@@ -69,6 +74,14 @@ def serialize_json(value: AnalysisDefinition) -> dict:
             value["data_set_identifier_declarations"]
         )
     )
+    if "topic_identifier_declarations" in value:
+        import capo_quicksight.types.topic_identifier_declaration_list
+
+        out["TopicIdentifierDeclarations"] = (
+            capo_quicksight.types.topic_identifier_declaration_list.serialize_json(
+                value["topic_identifier_declarations"]
+            )
+        )
     if "sheets" in value:
         import capo_quicksight.types.sheet_definition_list
 
@@ -157,6 +170,14 @@ def deserialize_json(data: dict) -> AnalysisDefinition:
     else:
         raise DeserializationError(
             "AnalysisDefinition.data_set_identifier_declarations required"
+        )
+    if data.get("TopicIdentifierDeclarations") is not None:
+        import capo_quicksight.types.topic_identifier_declaration_list
+
+        out["topic_identifier_declarations"] = (
+            capo_quicksight.types.topic_identifier_declaration_list.deserialize_json(
+                data["TopicIdentifierDeclarations"]
+            )
         )
     if data.get("Sheets") is not None:
         import capo_quicksight.types.sheet_definition_list

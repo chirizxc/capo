@@ -45,7 +45,7 @@ class CreateResourceConfigurationResponse(TypedDict, closed=True):
     type: NotRequired[
         "capo_vpc_lattice.types.resource_configuration_type.ResourceConfigurationType"
     ]
-    """<p>The type of resource configuration. A resource configuration can be one of the following types:</p> <ul> <li> <p> <b>SINGLE</b> - A single resource.</p> </li> <li> <p> <b>GROUP</b> - A group of resources. You must create a group resource configuration before you create a child resource configuration.</p> </li> <li> <p> <b>CHILD</b> - A single resource that is part of a group resource configuration.</p> </li> <li> <p> <b>ARN</b> - An Amazon Web Services resource.</p> </li> </ul>"""
+    """<p>The type of resource configuration. A resource configuration can be one of the following types:</p> <ul> <li> <p> <b>SINGLE</b> - A single resource.</p> </li> <li> <p> <b>GROUP</b> - A group of resources. You must create a group resource configuration before you create a child resource configuration.</p> </li> <li> <p> <b>CHILD</b> - A single resource that is part of a group resource configuration.</p> </li> <li> <p> <b>ARN</b> - An Amazon Web Services resource.</p> </li> <li> <p> <b>CIDR</b> - A network segment, expressed as a range of IP addresses (a CIDR block). A consumer accesses the resources within the CIDR range through a <code>Tunnel</code> VPC endpoint. A CIDR resource configuration must be associated with a resource gateway whose DNS resolution is set to <code>IN_VPC</code>.</p> </li> </ul>"""
     port_ranges: NotRequired["capo_vpc_lattice.types.port_range_list.PortRangeList"]
     """<p>The port range.</p>"""
     protocol: NotRequired["capo_vpc_lattice.types.protocol_type.ProtocolType"]
@@ -106,7 +106,11 @@ def serialize_json(value: CreateResourceConfigurationResponse) -> dict:
             value["port_ranges"]
         )
     if "protocol" in value:
-        out["protocol"] = value["protocol"]
+        import capo_vpc_lattice.types.protocol_type
+
+        out["protocol"] = capo_vpc_lattice.types.protocol_type.serialize_json(
+            value["protocol"]
+        )
     if "status" in value:
         out["status"] = value["status"]
     if "resource_configuration_definition" in value:
@@ -167,7 +171,11 @@ def deserialize_json(data: dict) -> CreateResourceConfigurationResponse:
             data["portRanges"]
         )
     if data.get("protocol") is not None:
-        out["protocol"] = data["protocol"]
+        import capo_vpc_lattice.types.protocol_type
+
+        out["protocol"] = capo_vpc_lattice.types.protocol_type.deserialize_json(
+            data["protocol"]
+        )
     if data.get("status") is not None:
         out["status"] = data["status"]
     if data.get("resourceConfigurationDefinition") is not None:

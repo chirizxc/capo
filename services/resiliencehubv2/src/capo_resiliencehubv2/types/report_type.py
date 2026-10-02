@@ -2,7 +2,10 @@
 
 from typing import Literal, TypeAlias, cast
 
-ReportType: TypeAlias = Literal["FAILURE_MODE",]
+ReportType: TypeAlias = Literal[
+    "FAILURE_MODE",
+    "TESTING",
+]
 
 
 # --- restJson1 ser/de ---

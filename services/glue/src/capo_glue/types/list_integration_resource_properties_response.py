@@ -6,7 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_glue.types.integration_resource_property_list
-    import capo_glue.types.string1024
+    import capo_glue.types.string4096
 
 
 class ListIntegrationResourcePropertiesResponse(TypedDict, closed=True):
@@ -14,7 +14,7 @@ class ListIntegrationResourcePropertiesResponse(TypedDict, closed=True):
         "capo_glue.types.integration_resource_property_list.IntegrationResourcePropertyList"
     ]
     """<p>A list of integration resource property meeting the filter criteria.</p>"""
-    marker: NotRequired["capo_glue.types.string1024.String1024"]
+    marker: NotRequired["capo_glue.types.string4096.String4096"]
     """<p>This is the pagination token for the next page.</p>"""
 
 

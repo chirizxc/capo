@@ -8,6 +8,7 @@ SessionKeyDerivationMode: TypeAlias = Literal[
     "AMEX",
     "MASTERCARD_SESSION_KEY",
     "VISA",
+    "UNION_PAY",
 ]
 
 

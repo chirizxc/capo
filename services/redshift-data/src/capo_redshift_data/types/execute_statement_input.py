@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_redshift_data.types.statement_string
     import capo_redshift_data.types.string
     import capo_redshift_data.types.uuid
+    import capo_redshift_data.types.wait_time_seconds
     import capo_redshift_data.types.workgroup_name_string
 
 
@@ -59,6 +60,10 @@ class ExecuteStatementInput(TypedDict, closed=True):
     """<p>The number of seconds to keep the session alive after the query finishes. The maximum time a session can keep alive is 24 hours. After 24 hours, the session is forced closed and the query is terminated.</p>"""
     session_id: NotRequired["capo_redshift_data.types.uuid.UUID"]
     """<p>The session identifier of the query.</p>"""
+    wait_time_seconds: NotRequired[
+        "capo_redshift_data.types.wait_time_seconds.WaitTimeSeconds"
+    ]
+    """<p>The number of seconds to wait for the SQL statement to complete execution before returning the response. If the SQL statement does not complete within the specified time, the response returns the current status. The maximum value is 30 seconds.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -95,6 +100,8 @@ def serialize_aws_json_1_1(value: ExecuteStatementInput) -> dict:
         out["SessionKeepAliveSeconds"] = value["session_keep_alive_seconds"]
     if "session_id" in value:
         out["SessionId"] = value["session_id"]
+    if "wait_time_seconds" in value:
+        out["WaitTimeSeconds"] = value["wait_time_seconds"]
     return out
 
 
@@ -134,4 +141,6 @@ def deserialize_aws_json_1_1(data: dict) -> ExecuteStatementInput:
         out["session_keep_alive_seconds"] = data["SessionKeepAliveSeconds"]
     if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
+    if data.get("WaitTimeSeconds") is not None:
+        out["wait_time_seconds"] = data["WaitTimeSeconds"]
     return out

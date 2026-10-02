@@ -7,6 +7,8 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_partnercentral_selling.types.aws_marketplace_offer_identifiers
     import capo_partnercentral_selling.types.aws_marketplace_offer_set_identifiers
+    import capo_partnercentral_selling.types.aws_marketplace_product_identifiers
+    import capo_partnercentral_selling.types.aws_marketplace_solution_identifiers
     import capo_partnercentral_selling.types.aws_product_identifiers
     import capo_partnercentral_selling.types.solution_identifiers
 
@@ -28,6 +30,14 @@ class RelatedEntityIdentifiers(TypedDict, closed=True):
         "capo_partnercentral_selling.types.aws_product_identifiers.AwsProductIdentifiers"
     ]
     r"""<p>Enables the association of specific Amazon Web Services products with the <code>Opportunity</code>. Partners can indicate the relevant Amazon Web Services products for the <code>Opportunity</code>'s solution and align with the customer's needs. Returns multiple values separated by commas. For example, <code>\"AWSProducts\" : [\"AmazonRedshift\", \"AWSAppFabric\", \"AWSCleanRooms\"]</code>.</p> <p>Use the file with the list of Amazon Web Services products hosted on GitHub: <a href=\"https://github.com/aws-samples/partner-crm-integration-samples/blob/main/resources/aws_products.json\"> Amazon Web Services products</a>.</p>"""
+    aws_marketplace_solutions: NotRequired[
+        "capo_partnercentral_selling.types.aws_marketplace_solution_identifiers.AwsMarketplaceSolutionIdentifiers"
+    ]
+    """<p>Specifies the AWS Marketplace solutions to associate with the <code>Opportunity</code>. Each value is an Amazon Resource Name (ARN) that identifies a solution listing in AWS Marketplace.</p>"""
+    aws_marketplace_products: NotRequired[
+        "capo_partnercentral_selling.types.aws_marketplace_product_identifiers.AwsMarketplaceProductIdentifiers"
+    ]
+    """<p>Specifies the AWS Marketplace products to associate with the <code>Opportunity</code>. Each value is an Amazon Resource Name (ARN) that identifies a product listing in AWS Marketplace.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -65,6 +75,22 @@ def serialize_aws_json_1_0(value: RelatedEntityIdentifiers) -> dict:
                 value["aws_products"]
             )
         )
+    if "aws_marketplace_solutions" in value:
+        import capo_partnercentral_selling.types.aws_marketplace_solution_identifiers
+
+        out["AwsMarketplaceSolutions"] = (
+            capo_partnercentral_selling.types.aws_marketplace_solution_identifiers.serialize_aws_json_1_0(
+                value["aws_marketplace_solutions"]
+            )
+        )
+    if "aws_marketplace_products" in value:
+        import capo_partnercentral_selling.types.aws_marketplace_product_identifiers
+
+        out["AwsMarketplaceProducts"] = (
+            capo_partnercentral_selling.types.aws_marketplace_product_identifiers.serialize_aws_json_1_0(
+                value["aws_marketplace_products"]
+            )
+        )
     return out
 
 
@@ -100,6 +126,22 @@ def deserialize_aws_json_1_0(data: dict) -> RelatedEntityIdentifiers:
         out["aws_products"] = (
             capo_partnercentral_selling.types.aws_product_identifiers.deserialize_aws_json_1_0(
                 data["AwsProducts"]
+            )
+        )
+    if data.get("AwsMarketplaceSolutions") is not None:
+        import capo_partnercentral_selling.types.aws_marketplace_solution_identifiers
+
+        out["aws_marketplace_solutions"] = (
+            capo_partnercentral_selling.types.aws_marketplace_solution_identifiers.deserialize_aws_json_1_0(
+                data["AwsMarketplaceSolutions"]
+            )
+        )
+    if data.get("AwsMarketplaceProducts") is not None:
+        import capo_partnercentral_selling.types.aws_marketplace_product_identifiers
+
+        out["aws_marketplace_products"] = (
+            capo_partnercentral_selling.types.aws_marketplace_product_identifiers.deserialize_aws_json_1_0(
+                data["AwsMarketplaceProducts"]
             )
         )
     return out

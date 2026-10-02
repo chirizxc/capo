@@ -13,18 +13,21 @@ import capo_direct_connect._auth._sigv4
 import capo_direct_connect._protocol.eventstream
 import capo_direct_connect.errors.direct_connect_client_exception
 import capo_direct_connect.errors.direct_connect_server_exception
+import capo_direct_connect.types.billing_mode
 import capo_direct_connect.types.connection
 import capo_direct_connect.types.connection_state
 import capo_direct_connect.types.disassociate_connection_from_lag_request
 import capo_direct_connect.types.has_logical_redundancy
 import capo_direct_connect.types.loa_issue_time
 import capo_direct_connect.types.mac_sec_key_list
+import capo_direct_connect.types.rate_limiter_status
 import capo_direct_connect.types.tag_list
 from capo_direct_connect._protocol.errors import parse_error_metadata_json
 from capo_direct_connect._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_direct_connect._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_direct_connect.errors import UnknownServiceError
 
@@ -135,7 +138,7 @@ def disassociate_connection_from_lag(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -150,7 +153,7 @@ async def async_disassociate_connection_from_lag(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

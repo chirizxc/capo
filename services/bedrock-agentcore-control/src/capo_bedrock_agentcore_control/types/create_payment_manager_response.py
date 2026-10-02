@@ -9,6 +9,7 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.authorizer_configuration
     import capo_bedrock_agentcore_control.types.date_timestamp
+    import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.payment_manager_arn
     import capo_bedrock_agentcore_control.types.payment_manager_id
     import capo_bedrock_agentcore_control.types.payment_manager_name
@@ -46,6 +47,10 @@ class CreatePaymentManagerResponse(TypedDict, closed=True):
     """<p>The current status of the payment manager. Possible values include <code>CREATING</code>, <code>READY</code>, <code>UPDATING</code>, <code>DELETING</code>, <code>CREATE_FAILED</code>, <code>UPDATE_FAILED</code>, and <code>DELETE_FAILED</code>.</p>"""
     tags: NotRequired["capo_bedrock_agentcore_control.types.tags_map.TagsMap"]
     """<p>The tags associated with the created payment manager.</p>"""
+    kms_key_arn: NotRequired[
+        "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the KMS key used to encrypt sensitive payment manager data at rest, if configured.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -98,6 +103,8 @@ def serialize_json(value: CreatePaymentManagerResponse) -> dict:
         out["tags"] = capo_bedrock_agentcore_control.types.tags_map.serialize_json(
             value["tags"]
         )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -177,4 +184,6 @@ def deserialize_json(data: dict) -> CreatePaymentManagerResponse:
         out["tags"] = capo_bedrock_agentcore_control.types.tags_map.deserialize_json(
             data["tags"]
         )
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     return out

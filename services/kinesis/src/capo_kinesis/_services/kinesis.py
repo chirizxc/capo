@@ -33,16 +33,28 @@ from capo_kinesis.errors import ServiceError, WaiterTimeoutError
 if TYPE_CHECKING:
     import capo_kinesis.types.add_tags_to_stream_input
     import capo_kinesis.types.boolean_object
+    import capo_kinesis.types.channel_arn
+    import capo_kinesis.types.channel_encryption_configuration
+    import capo_kinesis.types.channel_logging_configuration
+    import capo_kinesis.types.channel_logging_update_input
+    import capo_kinesis.types.channel_name
+    import capo_kinesis.types.channel_stream_configuration_list
+    import capo_kinesis.types.channel_summary
     import capo_kinesis.types.consumer_arn
     import capo_kinesis.types.consumer_name
+    import capo_kinesis.types.create_channel_input
+    import capo_kinesis.types.create_channel_output
     import capo_kinesis.types.create_stream_input
     import capo_kinesis.types.data
     import capo_kinesis.types.decrease_stream_retention_period_input
+    import capo_kinesis.types.delete_channel_input
     import capo_kinesis.types.delete_resource_policy_input
     import capo_kinesis.types.delete_stream_input
     import capo_kinesis.types.deregister_stream_consumer_input
     import capo_kinesis.types.describe_account_settings_input
     import capo_kinesis.types.describe_account_settings_output
+    import capo_kinesis.types.describe_channel_input
+    import capo_kinesis.types.describe_channel_output
     import capo_kinesis.types.describe_limits_input
     import capo_kinesis.types.describe_limits_output
     import capo_kinesis.types.describe_stream_consumer_input
@@ -66,6 +78,9 @@ if TYPE_CHECKING:
     import capo_kinesis.types.hash_key
     import capo_kinesis.types.increase_stream_retention_period_input
     import capo_kinesis.types.key_id
+    import capo_kinesis.types.list_channels_input
+    import capo_kinesis.types.list_channels_input_limit
+    import capo_kinesis.types.list_channels_output
     import capo_kinesis.types.list_shards_input
     import capo_kinesis.types.list_shards_input_limit
     import capo_kinesis.types.list_shards_output
@@ -95,11 +110,17 @@ if TYPE_CHECKING:
     import capo_kinesis.types.put_records_output
     import capo_kinesis.types.put_records_request_entry_list
     import capo_kinesis.types.put_resource_policy_input
+    import capo_kinesis.types.record_distribution_strategy
     import capo_kinesis.types.register_stream_consumer_input
     import capo_kinesis.types.register_stream_consumer_output
     import capo_kinesis.types.remove_tags_from_stream_input
     import capo_kinesis.types.resource_arn
     import capo_kinesis.types.retention_period_hours
+    import capo_kinesis.types.role_arn
+    import capo_kinesis.types.s3_destination_configuration
+    import capo_kinesis.types.s3_destination_update_input
+    import capo_kinesis.types.s3_tables_destination_configuration
+    import capo_kinesis.types.s3_tables_destination_update_input
     import capo_kinesis.types.scaling_type
     import capo_kinesis.types.sequence_number
     import capo_kinesis.types.shard_filter
@@ -111,6 +132,7 @@ if TYPE_CHECKING:
     import capo_kinesis.types.starting_position
     import capo_kinesis.types.stop_stream_encryption_input
     import capo_kinesis.types.stream_arn
+    import capo_kinesis.types.stream_filter_list
     import capo_kinesis.types.stream_id
     import capo_kinesis.types.stream_mode_details
     import capo_kinesis.types.stream_name
@@ -124,10 +146,13 @@ if TYPE_CHECKING:
     import capo_kinesis.types.untag_resource_input
     import capo_kinesis.types.update_account_settings_input
     import capo_kinesis.types.update_account_settings_output
+    import capo_kinesis.types.update_channel_input
+    import capo_kinesis.types.update_channel_output
     import capo_kinesis.types.update_max_record_size_input
     import capo_kinesis.types.update_shard_count_input
     import capo_kinesis.types.update_shard_count_output
     import capo_kinesis.types.update_stream_mode_input
+    import capo_kinesis.types.update_stream_record_distribution_strategy_input
     import capo_kinesis.types.update_stream_warm_throughput_input
     import capo_kinesis.types.update_stream_warm_throughput_output
 
@@ -139,6 +164,8 @@ class KinesisClientConfig(TypedDict, total=False, closed=True):
     use_dual_stack: bool | None
     use_fips: bool | None
     endpoint: str | None
+    account_id: str | None
+    account_id_endpoint_mode: str | None
     credentials_provider: IdentityProvider[Credentials] | None
 
 
@@ -153,6 +180,8 @@ class KinesisClient:
         use_dual_stack: The value of the ``AWS::UseDualStack`` endpoint parameter.
         use_fips: The value of the ``AWS::UseFIPS`` endpoint parameter.
         endpoint: The value of the ``SDK::Endpoint`` endpoint parameter.
+        account_id: The value of the ``AWS::Auth::AccountId`` endpoint parameter.
+        account_id_endpoint_mode: The value of the ``AWS::Auth::AccountIdEndpointMode`` endpoint parameter.
         credentials: AWS credentials for request signing.
         credentials_provider: Provider that resolves AWS credentials. Takes precedence over ``credentials``.
     """
@@ -166,6 +195,8 @@ class KinesisClient:
         use_dual_stack: bool | None = None,
         use_fips: bool | None = None,
         endpoint: str | None = None,
+        account_id: str | None = None,
+        account_id_endpoint_mode: str | None = None,
         credentials: Credentials | None = None,
         credentials_provider: CredentialsProvider | None = None,
     ):
@@ -193,6 +224,8 @@ class KinesisClient:
                 "use_dual_stack": use_dual_stack,
                 "use_fips": use_fips,
                 "endpoint": endpoint,
+                "account_id": account_id,
+                "account_id_endpoint_mode": account_id_endpoint_mode,
                 "credentials_provider": resolved_credentials_provider,
             }
         )
@@ -219,6 +252,10 @@ class KinesisClient:
             ),
             use_fips=overrides.get("use_fips", self._config.get("use_fips")),
             endpoint=overrides.get("endpoint", self._config.get("endpoint")),
+            account_id=overrides.get("account_id", self._config.get("account_id")),
+            account_id_endpoint_mode=overrides.get(
+                "account_id_endpoint_mode", self._config.get("account_id_endpoint_mode")
+            ),
             credentials_provider=overrides.get(
                 "credentials_provider", self._config.get("credentials_provider")
             ),
@@ -282,6 +319,104 @@ class KinesisClient:
         response.response.close()
         return response.output
 
+    def create_channel(
+        self,
+        channel_name: "capo_kinesis.types.channel_name.ChannelName",
+        service_execution_role_arn: "capo_kinesis.types.role_arn.RoleARN",
+        stream_configuration_list: "capo_kinesis.types.channel_stream_configuration_list.ChannelStreamConfigurationList",
+        *,
+        config_overrides: Optional[KinesisClientConfig] = None,
+        s3_destination_configuration: Optional[
+            "capo_kinesis.types.s3_destination_configuration.S3DestinationConfiguration"
+        ] = None,
+        s3_tables_destination_configuration: Optional[
+            "capo_kinesis.types.s3_tables_destination_configuration.S3TablesDestinationConfiguration"
+        ] = None,
+        encryption_configuration: Optional[
+            "capo_kinesis.types.channel_encryption_configuration.ChannelEncryptionConfiguration"
+        ] = None,
+        tags: Optional["capo_kinesis.types.tag_map.TagMap"] = None,
+        logging_configuration: Optional[
+            "capo_kinesis.types.channel_logging_configuration.ChannelLoggingConfiguration"
+        ] = None,
+    ) -> "capo_kinesis.types.create_channel_output.CreateChannelOutput":
+        """<p>Creates a channel that delivers records from a Kinesis data stream to a destination. A channel reads records from the specified stream and writes them to streaming tables on Apache Iceberg (Amazon S3 Tables) or to a general purpose Amazon S3 bucket.</p> <p>You must specify either <code>S3DestinationConfiguration</code> or <code>S3TablesDestinationConfiguration</code>, but not both.</p> <p>To use this operation, you must have permission to pass the specified service execution IAM role to Amazon Kinesis Data Streams (the <code>iam:PassRole</code> permission on that role).</p> <p>Creating a channel is an asynchronous operation. Upon receiving the request, Amazon Kinesis Data Streams returns immediately with the channel in the <code>CREATING</code> state. After provisioning is complete, Amazon Kinesis Data Streams sets the state to <code>ACTIVE</code>. You can use <a>DescribeChannel</a> to check the current state.</p> <p>This operation is only supported for data streams with the on-demand capacity mode.</p> <p>This operation has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. Exceeding 5 TPS results in a <code>LimitExceededException</code>.</p>
+
+        Args:
+            channel_name: <p>The name of the channel. The name is unique within your Amazon Web Services account and Amazon Web Services Region.</p>
+            service_execution_role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that Amazon Kinesis Data Streams assumes to write records to the destination.</p>
+            stream_configuration_list: <p>The source stream configuration for the channel. Currently, one stream is supported per channel.</p>
+            s3_destination_configuration: <p>The configuration for delivery to a general purpose Amazon S3 bucket. Specify this parameter when <code>S3TablesDestinationConfiguration</code> is not specified.</p>
+            s3_tables_destination_configuration: <p>The configuration for delivery to streaming tables on Apache Iceberg in Amazon S3 Tables. Specify this parameter when <code>S3DestinationConfiguration</code> is not specified.</p>
+            encryption_configuration: <p>The server-side encryption configuration that uses an Amazon Web Services KMS key to encrypt data delivered to the destination.</p>
+            tags: <p>A set of key-value pairs to assign to the channel. A tag consists of a required key and an optional value.</p>
+            logging_configuration: <p>The Amazon CloudWatch Logs configuration for the channel.</p>
+
+        Raises:
+            capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
+            capo_kinesis.errors.kms_access_denied_exception.KMSAccessDeniedException: <p>The ciphertext references a key that doesn't exist or that you don't have access to.</p>
+            capo_kinesis.errors.kms_disabled_exception.KMSDisabledException: <p>The request was rejected because the specified customer master key (CMK) isn't enabled.</p>
+            capo_kinesis.errors.kms_invalid_state_exception.KMSInvalidStateException: <p>The request was rejected because the state of the specified resource isn't valid for this request. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html\">How Key State Affects Use of a Customer Master Key</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>
+            capo_kinesis.errors.kms_not_found_exception.KMSNotFoundException: <p>The request was rejected because the specified entity or resource can't be found.</p>
+            capo_kinesis.errors.kms_opt_in_required.KMSOptInRequired: <p>The Amazon Web Services access key ID needs a subscription for the service.</p>
+            capo_kinesis.errors.kms_throttling_exception.KMSThrottlingException: <p>The request was denied due to request throttling. For more information about throttling, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#requests-per-second\">Limits</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>
+            capo_kinesis.errors.limit_exceeded_exception.LimitExceededException: <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p>
+            capo_kinesis.errors.resource_in_use_exception.ResourceInUseException: <p>The resource is not available for this operation. For successful operation, the resource must be in the <code>ACTIVE</code> state.</p>
+            capo_kinesis.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found. The stream might not be specified correctly.</p>
+            capo_kinesis.errors.validation_exception.ValidationException: <p>Specifies that you tried to invoke this API for a data stream with the on-demand capacity mode. This API is only supported for data streams with the provisioned capacity mode. </p>
+            capo_kinesis.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To create an S3 channel
+
+            >>> client.create_channel(channel_name='my-channel-name', service_execution_role_arn='arn:aws:iam::123456789012:role/my-channel-role', stream_configuration_list=[{'StreamARN': 'arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name', 'RecordConfiguration': {'RecordFormatType': 'JSON'}}], s3_destination_configuration={'StorageConfiguration': {'BucketARN': 'arn:aws:s3:::my-channel-bucket', 'ExpectedBucketOwner': '123456789012', 'CompressionType': 'ZSTD'}, 'DeadLetterQueueS3Configuration': {'BucketARN': 'arn:aws:s3:::my-channel-dlq-bucket', 'ExpectedBucketOwner': '123456789012'}}, encryption_configuration={'EncryptionType': 'KMS', 'KeyId': 'arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab'}, logging_configuration={'CloudWatchLogs': {'Enabled': True, 'LogGroupName': '/aws/kinesis/my-channel', 'LogStreamName': 'my-channel-log-stream'}})
+            To create an S3 Tables channel
+
+            >>> client.create_channel(channel_name='my-channel-name', service_execution_role_arn='arn:aws:iam::123456789012:role/my-channel-role', stream_configuration_list=[{'StreamARN': 'arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name', 'RecordConfiguration': {'RecordFormatType': 'JSON', 'GSRSchemaARN': 'arn:aws:glue:us-east-1:123456789012:schema/my-registry/my-schema'}}], s3_tables_destination_configuration={'DeadLetterQueueS3Configuration': {'BucketARN': 'arn:aws:s3:::my-channel-dlq-bucket', 'ExpectedBucketOwner': '123456789012'}, 'S3TablesConfigurationList': [{'TableBucketARN': 'arn:aws:s3tables:us-east-1:123456789012:bucket/my-table-bucket', 'Namespace': 'my_namespace', 'TableName': 'my_table', 'CompressionType': 'ZSTD', 'PartitionSpec': {'PartitionFields': [{'Transform': 'TIME_HOUR', 'SourceName': 'creation_ts'}]}}]}, encryption_configuration={'EncryptionType': 'KMS', 'KeyId': 'arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab'}, logging_configuration={'CloudWatchLogs': {'Enabled': True, 'LogGroupName': '/aws/kinesis/my-channel', 'LogStreamName': 'my-channel-log-stream'}})
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_kinesis.types.create_channel_input.CreateChannelInput]",
+        ) -> OperationResponse[
+            "capo_kinesis.types.create_channel_output.CreateChannelOutput"
+        ]:
+            import capo_kinesis._operations.kinesis_20131202.create_channel
+
+            output, http_response = (
+                capo_kinesis._operations.kinesis_20131202.create_channel.create_channel(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kinesis.types.create_channel_input.CreateChannelInput = {
+            "channel_name": channel_name,
+            "service_execution_role_arn": service_execution_role_arn,
+            "stream_configuration_list": stream_configuration_list,
+        }
+        if s3_destination_configuration is not None:
+            input_["s3_destination_configuration"] = s3_destination_configuration
+        if s3_tables_destination_configuration is not None:
+            input_["s3_tables_destination_configuration"] = (
+                s3_tables_destination_configuration
+            )
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
+        if tags is not None:
+            input_["tags"] = tags
+        if logging_configuration is not None:
+            input_["logging_configuration"] = logging_configuration
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_stream(
         self,
         stream_name: "capo_kinesis.types.stream_name.StreamName",
@@ -300,6 +435,9 @@ class KinesisClient:
         max_record_size_in_ki_b: Optional[
             "capo_kinesis.types.max_record_size_in_ki_b.MaxRecordSizeInKiB"
         ] = None,
+        record_distribution_strategy: Optional[
+            "capo_kinesis.types.record_distribution_strategy.RecordDistributionStrategy"
+        ] = None,
     ) -> None:
         r"""<p>Creates a Kinesis data stream. A stream captures and transports data records that are continuously emitted from different data sources or <i>producers</i>. Scale-out within a stream is explicitly supported by means of shards, which are uniquely identified groups of data records in a stream.</p> <p>You can create your data stream using either on-demand or provisioned capacity mode. Data streams with an on-demand mode require no capacity planning and automatically scale to handle gigabytes of write and read throughput per minute. With the on-demand mode, Kinesis Data Streams automatically manages the shards in order to provide the necessary throughput.</p> <p>If you'd still like to proactively scale your on-demand data stream’s capacity, you can unlock the warm throughput feature for on-demand data streams by enabling <code>MinimumThroughputBillingCommitment</code> for your account. Once your account has <code>MinimumThroughputBillingCommitment</code> enabled, you can specify the warm throughput in MiB per second that your stream can support in writes.</p> <p>For the data streams with a provisioned mode, you must specify the number of shards for the data stream. Each shard can support reads up to five transactions per second, up to a maximum data read total of 2 MiB per second. Each shard can support writes up to 1,000 records per second, up to a maximum data write total of 1 MiB per second. If the amount of data input increases or decreases, you can add or remove shards.</p> <p>The stream name identifies the stream. The name is scoped to the Amazon Web Services account used by the application. It is also scoped by Amazon Web Services Region. That is, two streams in two different accounts can have the same name, and two streams in the same account, but in two different Regions, can have the same name.</p> <p> <code>CreateStream</code> is an asynchronous operation. Upon receiving a <code>CreateStream</code> request, Kinesis Data Streams immediately returns and sets the stream status to <code>CREATING</code>. After the stream is created, Kinesis Data Streams sets the stream status to <code>ACTIVE</code>. You should perform read and write operations only on an <code>ACTIVE</code> stream. </p> <p>You receive a <code>LimitExceededException</code> when making a <code>CreateStream</code> request when you try to do one of the following:</p> <ul> <li> <p>Have more than five streams in the <code>CREATING</code> state at any point in time.</p> </li> <li> <p>Create more shards than are authorized for your account.</p> </li> </ul> <p>For the default shard or on-demand throughput limits for an Amazon Web Services account, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html\">Amazon Kinesis Data Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>. To increase this limit, <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html\">contact Amazon Web Services Support</a>.</p> <p>You can use <a>DescribeStreamSummary</a> to check the stream status, which is returned in <code>StreamStatus</code>.</p> <p> <a>CreateStream</a> has a limit of five transactions per second per account.</p> <p>You can add tags to the stream when making a <code>CreateStream</code> request by setting the <code>Tags</code> parameter. If you pass the <code>Tags</code> parameter, in addition to having the <code>kinesis:CreateStream</code> permission, you must also have the <code>kinesis:AddTagsToStream</code> permission for the stream that will be created. The <code>kinesis:TagResource</code> permission won’t work to tag streams on creation. Tags will take effect from the <code>CREATING</code> status of the stream, but you can't make any updates to the tags until the stream is in <code>ACTIVE</code> state.</p>
 
@@ -310,6 +448,7 @@ class KinesisClient:
             tags: <p>A set of up to 50 key-value pairs to use to create the tags. A tag consists of a required key and an optional value.</p>
             warm_throughput_mi_bps: <p>The target warm throughput in MB/s that the stream should be scaled to handle. This represents the throughput capacity that will be immediately available for write operations.</p>
             max_record_size_in_ki_b: <p>The maximum record size of a single record in kibibyte (KiB) that you can write to, and read from a stream.</p>
+            record_distribution_strategy: <p>The record distribution strategy for the stream, which determines how Amazon Kinesis Data Streams distributes records across shards. Specify one of the following values:</p> <ul> <li> <p> <code>AUTO</code> – Amazon Kinesis Data Streams distributes records evenly across shards and ignores any partition key and <code>ExplicitHashKey</code> that producers supply. Use this value for stateless workloads that do not require partition-key ordering.</p> </li> <li> <p> <code>USER_PARTITION_KEY</code> – Producers must supply a partition key, which Amazon Kinesis Data Streams uses to determine shard placement. This is the default.</p> </li> </ul> <p>The record distribution strategy is only supported for streams that use the on-demand capacity mode. If you do not specify this parameter, the stream uses <code>USER_PARTITION_KEY</code>.</p>
 
         Raises:
             capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
@@ -345,6 +484,8 @@ class KinesisClient:
             input_["warm_throughput_mi_bps"] = warm_throughput_mi_bps
         if max_record_size_in_ki_b is not None:
             input_["max_record_size_in_ki_b"] = max_record_size_in_ki_b
+        if record_distribution_strategy is not None:
+            input_["record_distribution_strategy"] = record_distribution_strategy
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -402,6 +543,56 @@ class KinesisClient:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
             input_["stream_id"] = stream_id
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_channel(
+        self,
+        channel_arn: "capo_kinesis.types.channel_arn.ChannelARN",
+        *,
+        config_overrides: Optional[KinesisClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the specified channel. Deleting a channel stops delivery from the source stream to the destination. Data already delivered to the destination is not deleted.</p> <p>A stream cannot be deleted while it has active channels. Use <a>ListChannels</a> with a stream filter to find the channels attached to a stream before deleting it.</p> <p>This operation has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. Exceeding 5 TPS results in a <code>LimitExceededException</code>.</p>
+
+        Args:
+            channel_arn: <p>The Amazon Resource Name (ARN) of the channel to delete.</p>
+
+        Raises:
+            capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
+            capo_kinesis.errors.limit_exceeded_exception.LimitExceededException: <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p>
+            capo_kinesis.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found. The stream might not be specified correctly.</p>
+            capo_kinesis.errors.validation_exception.ValidationException: <p>Specifies that you tried to invoke this API for a data stream with the on-demand capacity mode. This API is only supported for data streams with the provisioned capacity mode. </p>
+            capo_kinesis.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To delete a channel
+
+            >>> client.delete_channel(channel_arn='arn:aws:kinesis:us-east-1:123456789012:channel/my-channel-id')
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_kinesis.types.delete_channel_input.DeleteChannelInput]",
+        ) -> OperationResponse[None]:
+            import capo_kinesis._operations.kinesis_20131202.delete_channel
+
+            output, http_response = (
+                capo_kinesis._operations.kinesis_20131202.delete_channel.delete_channel(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kinesis.types.delete_channel_input.DeleteChannelInput = {
+            "channel_arn": channel_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -600,6 +791,58 @@ class KinesisClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_kinesis.types.describe_account_settings_input.DescribeAccountSettingsInput = {}
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def describe_channel(
+        self,
+        channel_arn: "capo_kinesis.types.channel_arn.ChannelARN",
+        *,
+        config_overrides: Optional[KinesisClientConfig] = None,
+    ) -> "capo_kinesis.types.describe_channel_output.DescribeChannelOutput":
+        """<p>Describes the specified channel, including its configuration and current status.</p> <p>Use this operation to verify that a channel reached the <code>ACTIVE</code> state after creation, or to diagnose a channel in the <code>FAILED</code> state by reading the <code>ChannelStatusReason</code>.</p> <p>This operation has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. Exceeding 5 TPS results in a <code>LimitExceededException</code>.</p>
+
+        Args:
+            channel_arn: <p>The Amazon Resource Name (ARN) of the channel to describe.</p>
+
+        Raises:
+            capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
+            capo_kinesis.errors.limit_exceeded_exception.LimitExceededException: <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p>
+            capo_kinesis.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found. The stream might not be specified correctly.</p>
+            capo_kinesis.errors.validation_exception.ValidationException: <p>Specifies that you tried to invoke this API for a data stream with the on-demand capacity mode. This API is only supported for data streams with the provisioned capacity mode. </p>
+            capo_kinesis.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To describe a channel
+
+            >>> client.describe_channel(channel_arn='arn:aws:kinesis:us-east-1:123456789012:channel/my-channel-id')
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_kinesis.types.describe_channel_input.DescribeChannelInput]",
+        ) -> OperationResponse[
+            "capo_kinesis.types.describe_channel_output.DescribeChannelOutput"
+        ]:
+            import capo_kinesis._operations.kinesis_20131202.describe_channel
+
+            output, http_response = (
+                capo_kinesis._operations.kinesis_20131202.describe_channel.describe_channel(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kinesis.types.describe_channel_input.DescribeChannelInput = {
+            "channel_arn": channel_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1008,17 +1251,20 @@ class KinesisClient:
         ] = None,
         stream_arn: Optional["capo_kinesis.types.stream_arn.StreamARN"] = None,
         stream_id: Optional["capo_kinesis.types.stream_id.StreamId"] = None,
+        dry_run: Optional["capo_kinesis.types.boolean_object.BooleanObject"] = None,
     ) -> "capo_kinesis.types.get_records_output.GetRecordsOutput":
-        r"""<p>Gets data records from a Kinesis data stream's shard.</p> <note> <p>When invoking this API, you must use either the <code>StreamARN</code> or the <code>StreamName</code> parameter, or both. It is recommended that you use the <code>StreamARN</code> input parameter when you invoke this API.</p> </note> <p>Specify a shard iterator using the <code>ShardIterator</code> parameter. The shard iterator specifies the position in the shard from which you want to start reading data records sequentially. If there are no records available in the portion of the shard that the iterator points to, <a>GetRecords</a> returns an empty list. It might take multiple calls to get to a portion of the shard that contains records.</p> <p>You can scale by provisioning multiple shards per stream while considering service limits (for more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html\">Amazon Kinesis Data Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>). Your application should have one thread per shard, each reading continuously from its stream. To read from a stream continually, call <a>GetRecords</a> in a loop. Use <a>GetShardIterator</a> to get the shard iterator to specify in the first <a>GetRecords</a> call. <a>GetRecords</a> returns a new shard iterator in <code>NextShardIterator</code>. Specify the shard iterator returned in <code>NextShardIterator</code> in subsequent calls to <a>GetRecords</a>. If the shard has been closed, the shard iterator can't return more data and <a>GetRecords</a> returns <code>null</code> in <code>NextShardIterator</code>. You can terminate the loop when the shard is closed, or when the shard iterator reaches the record with the sequence number or other attribute that marks it as the last record to process.</p> <p>Each data record can be up to 1 MiB in size, and each shard can read up to 2 MiB per second. You can ensure that your calls don't exceed the maximum supported size or throughput by using the <code>Limit</code> parameter to specify the maximum number of records that <a>GetRecords</a> can return. Consider your average record size when determining this limit. The maximum number of records that can be returned per call is 10,000.</p> <p>The size of the data returned by <a>GetRecords</a> varies depending on the utilization of the shard. It is recommended that consumer applications retrieve records via the <code>GetRecords</code> command using the 5 TPS limit to remain caught up. Retrieving records less frequently can lead to consumer applications falling behind. The maximum size of data that <a>GetRecords</a> can return is 10 MiB. If a call returns this amount of data, subsequent calls made within the next 5 seconds throw <code>ProvisionedThroughputExceededException</code>. If there is insufficient provisioned throughput on the stream, subsequent calls made within the next 1 second throw <code>ProvisionedThroughputExceededException</code>. <a>GetRecords</a> doesn't return any data when it throws an exception. For this reason, we recommend that you wait 1 second between calls to <a>GetRecords</a>. However, it's possible that the application will get exceptions for longer than 1 second.</p> <p>To detect whether the application is falling behind in processing, you can use the <code>MillisBehindLatest</code> response attribute. You can also monitor the stream using CloudWatch metrics and other mechanisms (see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/monitoring.html\">Monitoring</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>).</p> <p>Each Amazon Kinesis record includes a value, <code>ApproximateArrivalTimestamp</code>, that is set when a stream successfully receives and stores a record. This is commonly referred to as a server-side time stamp, whereas a client-side time stamp is set when a data producer creates or sends the record to a stream (a data producer is any data source putting data records into a stream, for example with <a>PutRecords</a>). The time stamp has millisecond precision. There are no guarantees about the time stamp accuracy, or that the time stamp is always increasing. For example, records in a shard or across a stream might have time stamps that are out of order.</p> <p>This operation has a limit of five transactions per second per shard.</p>
+        r"""<p>Gets data records from a Kinesis data stream's shard.</p> <note> <p>When invoking this API, you must use either the <code>StreamARN</code> or the <code>StreamName</code> parameter, or both. It is recommended that you use the <code>StreamARN</code> input parameter when you invoke this API.</p> </note> <p>Specify a shard iterator using the <code>ShardIterator</code> parameter. The shard iterator specifies the position in the shard from which you want to start reading data records sequentially. If there are no records available in the portion of the shard that the iterator points to, <a>GetRecords</a> returns an empty list. It might take multiple calls to get to a portion of the shard that contains records.</p> <p>You can scale by provisioning multiple shards per stream while considering service limits (for more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html\">Amazon Kinesis Data Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>). Your application should have one thread per shard, each reading continuously from its stream. To read from a stream continually, call <a>GetRecords</a> in a loop. Use <a>GetShardIterator</a> to get the shard iterator to specify in the first <a>GetRecords</a> call. <a>GetRecords</a> returns a new shard iterator in <code>NextShardIterator</code>. Specify the shard iterator returned in <code>NextShardIterator</code> in subsequent calls to <a>GetRecords</a>. If the shard has been closed, the shard iterator can't return more data and <a>GetRecords</a> returns <code>null</code> in <code>NextShardIterator</code>. You can terminate the loop when the shard is closed, or when the shard iterator reaches the record with the sequence number or other attribute that marks it as the last record to process.</p> <p>Each data record can be up to 1 MiB in size by default. Amazon Kinesis Data Streams supports large records up to 10 MiB in size, but the average throughput for your stream cannot exceed 1 MiB per second. For more information about how large records are handled, see <a href=\"https://docs.aws.amazon.com/streams/latest/dev/large-records.html\">Large records</a>. Each shard can read up to 2 MiB per second. You can ensure that your calls don't exceed the maximum supported size or throughput by using the <code>Limit</code> parameter to specify the maximum number of records that <a>GetRecords</a> can return. Consider your average record size when determining this limit. The maximum number of records that can be returned per call is 10,000.</p> <p>The size of the data returned by <a>GetRecords</a> varies depending on the utilization of the shard. It is recommended that consumer applications retrieve records via the <code>GetRecords</code> command using the 5 TPS limit to remain caught up. Retrieving records less frequently can lead to consumer applications falling behind. The maximum size of data that <a>GetRecords</a> can return is 10 MiB. If a call returns this amount of data, subsequent calls made within the next 5 seconds throw <code>ProvisionedThroughputExceededException</code>. If there is insufficient provisioned throughput on the stream, subsequent calls made within the next 1 second throw <code>ProvisionedThroughputExceededException</code>. <a>GetRecords</a> doesn't return any data when it throws an exception. For this reason, we recommend that you wait 1 second between calls to <a>GetRecords</a>. However, it's possible that the application will get exceptions for longer than 1 second.</p> <p>To detect whether the application is falling behind in processing, you can use the <code>MillisBehindLatest</code> response attribute. You can also monitor the stream using CloudWatch metrics and other mechanisms (see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/monitoring.html\">Monitoring</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>).</p> <p>Each Amazon Kinesis record includes a value, <code>ApproximateArrivalTimestamp</code>, that is set when a stream successfully receives and stores a record. This is commonly referred to as a server-side time stamp, whereas a client-side time stamp is set when a data producer creates or sends the record to a stream (a data producer is any data source putting data records into a stream, for example with <a>PutRecords</a>). The time stamp has millisecond precision. There are no guarantees about the time stamp accuracy, or that the time stamp is always increasing. For example, records in a shard or across a stream might have time stamps that are out of order.</p> <p>This operation has a limit of five transactions per second per shard.</p>
 
         Args:
             shard_iterator: <p>The position in the shard from which you want to start sequentially reading data records. A shard iterator specifies this position using the sequence number of a data record in the shard.</p>
             limit: <p>The maximum number of records to return. Specify a value of up to 10,000. If you specify a value that is greater than 10,000, <a>GetRecords</a> throws <code>InvalidArgumentException</code>. The default value is 10,000.</p>
             stream_arn: <p>The ARN of the stream.</p>
             stream_id: <p>Not Implemented. Reserved for future use.</p>
+            dry_run: <p>Checks if your request will succeed. <code>DryRun</code> is an optional parameter.</p>
 
         Raises:
             capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.dry_run_operation_exception.DryRunOperationException: <p>The request was rejected because the DryRun parameter was specified.</p>
             capo_kinesis.errors.expired_iterator_exception.ExpiredIteratorException: <p>The provided iterator exceeds the maximum age allowed.</p>
             capo_kinesis.errors.internal_failure_exception.InternalFailureException: <p>The processing of the request failed because of an unknown error, exception, or failure.</p>
             capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
@@ -1057,6 +1303,8 @@ class KinesisClient:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
             input_["stream_id"] = stream_id
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1130,6 +1378,7 @@ class KinesisClient:
         timestamp: Optional["capo_kinesis.types.timestamp.Timestamp"] = None,
         stream_arn: Optional["capo_kinesis.types.stream_arn.StreamARN"] = None,
         stream_id: Optional["capo_kinesis.types.stream_id.StreamId"] = None,
+        dry_run: Optional["capo_kinesis.types.boolean_object.BooleanObject"] = None,
     ) -> "capo_kinesis.types.get_shard_iterator_output.GetShardIteratorOutput":
         r"""<p>Gets an Amazon Kinesis shard iterator. A shard iterator expires 5 minutes after it is returned to the requester.</p> <note> <p>When invoking this API, you must use either the <code>StreamARN</code> or the <code>StreamName</code> parameter, or both. It is recommended that you use the <code>StreamARN</code> input parameter when you invoke this API.</p> </note> <p>A shard iterator specifies the shard position from which to start reading data records sequentially. The position is specified using the sequence number of a data record in a shard. A sequence number is the identifier associated with every record ingested in the stream, and is assigned when a record is put into the stream. Each stream has one or more shards.</p> <p>You must specify the shard iterator type. For example, you can set the <code>ShardIteratorType</code> parameter to read exactly from the position denoted by a specific sequence number by using the <code>AT_SEQUENCE_NUMBER</code> shard iterator type. Alternatively, the parameter can read right after the sequence number by using the <code>AFTER_SEQUENCE_NUMBER</code> shard iterator type, using sequence numbers returned by earlier calls to <a>PutRecord</a>, <a>PutRecords</a>, <a>GetRecords</a>, or <a>DescribeStream</a>. In the request, you can specify the shard iterator type <code>AT_TIMESTAMP</code> to read records from an arbitrary point in time, <code>TRIM_HORIZON</code> to cause <code>ShardIterator</code> to point to the last untrimmed record in the shard in the system (the oldest data record in the shard), or <code>LATEST</code> so that you always read the most recent data in the shard. </p> <p>When you read repeatedly from a stream, use a <a>GetShardIterator</a> request to get the first shard iterator for use in your first <a>GetRecords</a> request and for subsequent reads use the shard iterator returned by the <a>GetRecords</a> request in <code>NextShardIterator</code>. A new shard iterator is returned by every <a>GetRecords</a> request in <code>NextShardIterator</code>, which you use in the <code>ShardIterator</code> parameter of the next <a>GetRecords</a> request. </p> <p>If a <a>GetShardIterator</a> request is made too often, you receive a <code>ProvisionedThroughputExceededException</code>. For more information about throughput limits, see <a>GetRecords</a>, and <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html\">Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p> <p>If the shard is closed, <a>GetShardIterator</a> returns a valid iterator for the last sequence number of the shard. A shard can be closed as a result of using <a>SplitShard</a> or <a>MergeShards</a>.</p> <p> <a>GetShardIterator</a> has a limit of five transactions per second per account per open shard.</p>
 
@@ -1141,9 +1390,11 @@ class KinesisClient:
             timestamp: <p>The time stamp of the data record from which to start reading. Used with shard iterator type AT_TIMESTAMP. A time stamp is the Unix epoch date with precision in milliseconds. For example, <code>2016-04-04T19:58:46.480-00:00</code> or <code>1459799926.480</code>. If a record with this exact time stamp does not exist, the iterator returned is for the next (later) record. If the time stamp is older than the current trim horizon, the iterator returned is for the oldest untrimmed data record (TRIM_HORIZON).</p>
             stream_arn: <p>The ARN of the stream.</p>
             stream_id: <p>Not Implemented. Reserved for future use.</p>
+            dry_run: <p>Checks if your request will succeed. <code>DryRun</code> is an optional parameter.</p>
 
         Raises:
             capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.dry_run_operation_exception.DryRunOperationException: <p>The request was rejected because the DryRun parameter was specified.</p>
             capo_kinesis.errors.internal_failure_exception.InternalFailureException: <p>The processing of the request failed because of an unknown error, exception, or failure.</p>
             capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
             capo_kinesis.errors.provisioned_throughput_exceeded_exception.ProvisionedThroughputExceededException: <p>The request rate for the stream is too high, or the requested data is too large for the available throughput. Reduce the frequency or size of your requests. For more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html\">Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>, and <a href=\"https://docs.aws.amazon.com/general/latest/gr/api-retries.html\">Error Retries and Exponential Backoff in Amazon Web Services</a> in the <i>Amazon Web Services General Reference</i>.</p>
@@ -1180,6 +1431,8 @@ class KinesisClient:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
             input_["stream_id"] = stream_id
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1245,6 +1498,100 @@ class KinesisClient:
         )
         response.response.close()
         return response.output
+
+    def list_channels(
+        self,
+        *,
+        config_overrides: Optional[KinesisClientConfig] = None,
+        stream_filter: Optional[
+            "capo_kinesis.types.stream_filter_list.StreamFilterList"
+        ] = None,
+        max_results: Optional[
+            "capo_kinesis.types.list_channels_input_limit.ListChannelsInputLimit"
+        ] = None,
+        next_token: Optional["capo_kinesis.types.next_token.NextToken"] = None,
+    ) -> "capo_kinesis.types.list_channels_output.ListChannelsOutput":
+        """<p>Lists the channels in your account. You can filter the results by source stream. The results are paginated. Use the <code>NextToken</code> value returned in the response to retrieve additional results.</p> <p>Use this operation to find channels before deleting a stream, or to audit the channels configured in an Amazon Web Services Region.</p> <p>This operation has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. Exceeding 5 TPS results in a <code>LimitExceededException</code>.</p>
+
+        Args:
+            stream_filter: <p>Filters the results to channels associated with the specified streams.</p>
+            max_results: <p>The maximum number of channels to return in a single call. The default value is 100. If you specify a value greater than 100, at most 100 results are returned.</p>
+            next_token: <p>The pagination token returned by a previous call. Specify this token to retrieve the next page of results.</p>
+
+        Raises:
+            capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.expired_next_token_exception.ExpiredNextTokenException: <p>The pagination token passed to the operation is expired.</p>
+            capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
+            capo_kinesis.errors.limit_exceeded_exception.LimitExceededException: <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p>
+            capo_kinesis.errors.validation_exception.ValidationException: <p>Specifies that you tried to invoke this API for a data stream with the on-demand capacity mode. This API is only supported for data streams with the provisioned capacity mode. </p>
+            capo_kinesis.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To list channels
+
+            >>> client.list_channels()
+            To list channels filtered by stream
+
+            >>> client.list_channels(stream_filter=[{'StreamARN': 'arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name'}], max_results=10)
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_kinesis.types.list_channels_input.ListChannelsInput]",
+        ) -> OperationResponse[
+            "capo_kinesis.types.list_channels_output.ListChannelsOutput"
+        ]:
+            import capo_kinesis._operations.kinesis_20131202.list_channels
+
+            output, http_response = (
+                capo_kinesis._operations.kinesis_20131202.list_channels.list_channels(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kinesis.types.list_channels_input.ListChannelsInput = {}
+        if stream_filter is not None:
+            input_["stream_filter"] = stream_filter
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_channels(
+        self,
+        *,
+        config_overrides: Optional[KinesisClientConfig] = None,
+        stream_filter: Optional[
+            "capo_kinesis.types.stream_filter_list.StreamFilterList"
+        ] = None,
+        max_results: Optional[
+            "capo_kinesis.types.list_channels_input_limit.ListChannelsInputLimit"
+        ] = None,
+        next_token: Optional["capo_kinesis.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_kinesis.types.channel_summary.ChannelSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_channels(
+                config_overrides=config_overrides,
+                stream_filter=stream_filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("channel_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_shards(
         self,
@@ -1685,30 +2032,33 @@ class KinesisClient:
     def put_record(
         self,
         data: "capo_kinesis.types.data.Data",
-        partition_key: "capo_kinesis.types.partition_key.PartitionKey",
         *,
         config_overrides: Optional[KinesisClientConfig] = None,
         stream_name: Optional["capo_kinesis.types.stream_name.StreamName"] = None,
+        partition_key: Optional["capo_kinesis.types.partition_key.PartitionKey"] = None,
         explicit_hash_key: Optional["capo_kinesis.types.hash_key.HashKey"] = None,
         sequence_number_for_ordering: Optional[
             "capo_kinesis.types.sequence_number.SequenceNumber"
         ] = None,
         stream_arn: Optional["capo_kinesis.types.stream_arn.StreamARN"] = None,
         stream_id: Optional["capo_kinesis.types.stream_id.StreamId"] = None,
+        dry_run: Optional["capo_kinesis.types.boolean_object.BooleanObject"] = None,
     ) -> "capo_kinesis.types.put_record_output.PutRecordOutput":
         r"""<p>Writes a single data record into an Amazon Kinesis data stream. Call <code>PutRecord</code> to send data into the stream for real-time ingestion and subsequent processing, one record at a time. Each shard can support writes up to 1,000 records per second, up to a maximum data write total of 10 MiB per second.</p> <note> <p>When invoking this API, you must use either the <code>StreamARN</code> or the <code>StreamName</code> parameter, or both. It is recommended that you use the <code>StreamARN</code> input parameter when you invoke this API.</p> </note> <p>You must specify the name of the stream that captures, stores, and transports the data; a partition key; and the data blob itself.</p> <p>The data blob can be any type of data; for example, a segment from a log file, geographic/location data, website clickstream data, and so on.</p> <p>The partition key is used by Kinesis Data Streams to distribute data across shards. Kinesis Data Streams segregates the data records that belong to a stream into multiple shards, using the partition key associated with each data record to determine the shard to which a given data record belongs.</p> <p>Partition keys are Unicode strings, with a maximum length limit of 256 characters for each key. An MD5 hash function is used to map partition keys to 128-bit integer values and to map associated data records to shards using the hash key ranges of the shards. You can override hashing the partition key to determine the shard by explicitly specifying a hash value using the <code>ExplicitHashKey</code> parameter. For more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream\">Adding Data to a Stream</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p> <p> <code>PutRecord</code> returns the shard ID of where the data record was placed and the sequence number that was assigned to the data record.</p> <p>Sequence numbers increase over time and are specific to a shard within a stream, not across all shards within a stream. To guarantee strictly increasing ordering, write serially to a shard and use the <code>SequenceNumberForOrdering</code> parameter. For more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream\">Adding Data to a Stream</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p> <important> <p>After you write a record to a stream, you cannot modify that record or its order within the stream.</p> </important> <p>If a <code>PutRecord</code> request cannot be processed because of insufficient provisioned throughput on the shard involved in the request, <code>PutRecord</code> throws <code>ProvisionedThroughputExceededException</code>. </p> <p>By default, data records are accessible for 24 hours from the time that they are added to a stream. You can use <a>IncreaseStreamRetentionPeriod</a> or <a>DecreaseStreamRetentionPeriod</a> to modify this retention period.</p>
 
         Args:
             stream_name: <p>The name of the stream to put the data record into.</p>
             data: <p>The data blob to put into the record, which is base64-encoded when the blob is serialized. When the data blob (the payload before base64-encoding) is added to the partition key size, the total size must not exceed the maximum record size (10 MiB).</p>
-            partition_key: <p>Determines which shard in the stream the data record is assigned to. Partition keys are Unicode strings with a maximum length limit of 256 characters for each key. Amazon Kinesis Data Streams uses the partition key as input to a hash function that maps the partition key and associated data to a specific shard. Specifically, an MD5 hash function is used to map partition keys to 128-bit integer values and to map associated data records to shards. As a result of this hashing mechanism, all data records with the same partition key map to the same shard within the stream.</p>
+            partition_key: <p>Determines which shard in the stream the data record is assigned to. Partition keys are Unicode strings with a maximum length limit of 256 characters for each key. Amazon Kinesis Data Streams uses the partition key as input to a hash function that maps the partition key and associated data to a specific shard. Specifically, an MD5 hash function is used to map partition keys to 128-bit integer values and to map associated data records to shards. As a result of this hashing mechanism, all data records with the same partition key map to the same shard within the stream.</p> <p>If the stream uses the <code>USER_PARTITION_KEY</code> record distribution strategy (the default), a partition key is required. If the stream uses the <code>AUTO</code> record distribution strategy, the partition key is optional and any value you provide is ignored, along with any <code>ExplicitHashKey</code> you provide. In that case, Amazon Kinesis Data Streams distributes the record across shards using service-managed algorithms. For more information, see <code>UpdateStreamRecordDistributionStrategy</code>.</p>
             explicit_hash_key: <p>The hash value used to explicitly determine the shard the data record is assigned to by overriding the partition key hash.</p>
             sequence_number_for_ordering: <p>Guarantees strictly increasing sequence numbers, for puts from the same client and to the same partition key. Usage: set the <code>SequenceNumberForOrdering</code> of record <i>n</i> to the sequence number of record <i>n-1</i> (as returned in the result when putting record <i>n-1</i>). If this parameter is not set, records are coarsely ordered based on arrival time.</p>
             stream_arn: <p>The ARN of the stream.</p>
             stream_id: <p>Not Implemented. Reserved for future use.</p>
+            dry_run: <p>Checks if your request will succeed. <code>DryRun</code> is an optional parameter.</p>
 
         Raises:
             capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.dry_run_operation_exception.DryRunOperationException: <p>The request was rejected because the DryRun parameter was specified.</p>
             capo_kinesis.errors.internal_failure_exception.InternalFailureException: <p>The processing of the request failed because of an unknown error, exception, or failure.</p>
             capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
             capo_kinesis.errors.kms_access_denied_exception.KMSAccessDeniedException: <p>The ciphertext references a key that doesn't exist or that you don't have access to.</p>
@@ -1735,12 +2085,11 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.put_record_input.PutRecordInput = {
-            "data": data,
-            "partition_key": partition_key,
-        }
+        input_: capo_kinesis.types.put_record_input.PutRecordInput = {"data": data}
         if stream_name is not None:
             input_["stream_name"] = stream_name
+        if partition_key is not None:
+            input_["partition_key"] = partition_key
         if explicit_hash_key is not None:
             input_["explicit_hash_key"] = explicit_hash_key
         if sequence_number_for_ordering is not None:
@@ -1749,6 +2098,8 @@ class KinesisClient:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
             input_["stream_id"] = stream_id
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1766,6 +2117,7 @@ class KinesisClient:
         stream_name: Optional["capo_kinesis.types.stream_name.StreamName"] = None,
         stream_arn: Optional["capo_kinesis.types.stream_arn.StreamARN"] = None,
         stream_id: Optional["capo_kinesis.types.stream_id.StreamId"] = None,
+        dry_run: Optional["capo_kinesis.types.boolean_object.BooleanObject"] = None,
     ) -> "capo_kinesis.types.put_records_output.PutRecordsOutput":
         r"""<p>Writes multiple data records into a Kinesis data stream in a single call (also referred to as a <code>PutRecords</code> request). Use this operation to send data into the stream for data ingestion and processing. </p> <note> <p>When invoking this API, you must use either the <code>StreamARN</code> or the <code>StreamName</code> parameter, or both. It is recommended that you use the <code>StreamARN</code> input parameter when you invoke this API.</p> </note> <p>Each <code>PutRecords</code> request can support up to 500 records. Each record in the request can be as large as 10 MiB, up to a limit of 10 MiB for the entire request, including partition keys. Each shard can support writes up to 1,000 records per second, up to a maximum data write total of 1 MB per second.</p> <p>You must specify the name of the stream that captures, stores, and transports the data; and an array of request <code>Records</code>, with each record in the array requiring a partition key and data blob. The record size limit applies to the total size of the partition key and data blob.</p> <p>The data blob can be any type of data; for example, a segment from a log file, geographic/location data, website clickstream data, and so on.</p> <p>The partition key is used by Kinesis Data Streams as input to a hash function that maps the partition key and associated data to a specific shard. An MD5 hash function is used to map partition keys to 128-bit integer values and to map associated data records to shards. As a result of this hashing mechanism, all data records with the same partition key map to the same shard within the stream. For more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream\">Adding Data to a Stream</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p> <p>Each record in the <code>Records</code> array may include an optional parameter, <code>ExplicitHashKey</code>, which overrides the partition key to shard mapping. This parameter allows a data producer to determine explicitly the shard where the record is stored. For more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-putrecords\">Adding Multiple Records with PutRecords</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p> <p>The <code>PutRecords</code> response includes an array of response <code>Records</code>. Each record in the response array directly correlates with a record in the request array using natural ordering, from the top to the bottom of the request and response. The response <code>Records</code> array always includes the same number of records as the request array.</p> <p>The response <code>Records</code> array includes both successfully and unsuccessfully processed records. Kinesis Data Streams attempts to process all records in each <code>PutRecords</code> request. A single record failure does not stop the processing of subsequent records. As a result, PutRecords doesn't guarantee the ordering of records. If you need to read records in the same order they are written to the stream, use <a>PutRecord</a> instead of <code>PutRecords</code>, and write to the same shard.</p> <p>A successfully processed record includes <code>ShardId</code> and <code>SequenceNumber</code> values. The <code>ShardId</code> parameter identifies the shard in the stream where the record is stored. The <code>SequenceNumber</code> parameter is an identifier assigned to the put record, unique to all records in the stream.</p> <p>An unsuccessfully processed record includes <code>ErrorCode</code> and <code>ErrorMessage</code> values. <code>ErrorCode</code> reflects the type of error and can be one of the following values: <code>ProvisionedThroughputExceededException</code> or <code>InternalFailure</code>. <code>ErrorMessage</code> provides more detailed information about the <code>ProvisionedThroughputExceededException</code> exception including the account ID, stream name, and shard ID of the record that was throttled. For more information about partially successful responses, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html#kinesis-using-sdk-java-putrecords\">Adding Multiple Records with PutRecords</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p> <important> <p>After you write a record to a stream, you cannot modify that record or its order within the stream.</p> </important> <p>By default, data records are accessible for 24 hours from the time that they are added to a stream. You can use <a>IncreaseStreamRetentionPeriod</a> or <a>DecreaseStreamRetentionPeriod</a> to modify this retention period.</p>
 
@@ -1774,9 +2126,11 @@ class KinesisClient:
             stream_name: <p>The stream name associated with the request.</p>
             stream_arn: <p>The ARN of the stream.</p>
             stream_id: <p>Not Implemented. Reserved for future use.</p>
+            dry_run: <p>Checks if your request will succeed. <code>DryRun</code> is an optional parameter.</p>
 
         Raises:
             capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.dry_run_operation_exception.DryRunOperationException: <p>The request was rejected because the DryRun parameter was specified.</p>
             capo_kinesis.errors.internal_failure_exception.InternalFailureException: <p>The processing of the request failed because of an unknown error, exception, or failure.</p>
             capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
             capo_kinesis.errors.kms_access_denied_exception.KMSAccessDeniedException: <p>The ciphertext references a key that doesn't exist or that you don't have access to.</p>
@@ -1814,6 +2168,8 @@ class KinesisClient:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
             input_["stream_id"] = stream_id
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2184,6 +2540,7 @@ class KinesisClient:
         *,
         config_overrides: Optional[KinesisClientConfig] = None,
         stream_id: Optional["capo_kinesis.types.stream_id.StreamId"] = None,
+        dry_run: Optional["capo_kinesis.types.boolean_object.BooleanObject"] = None,
     ) -> "capo_kinesis.types.subscribe_to_shard_output.SubscribeToShardOutput":
         r"""<p>This operation establishes an HTTP/2 connection between the consumer you specify in the <code>ConsumerARN</code> parameter and the shard you specify in the <code>ShardId</code> parameter. After the connection is successfully established, Kinesis Data Streams pushes records from the shard to the consumer over this connection. Before you call this operation, call <a>RegisterStreamConsumer</a> to register the consumer with Kinesis Data Streams.</p> <p>When the <code>SubscribeToShard</code> call succeeds, your consumer starts receiving events of type <a>SubscribeToShardEvent</a> over the HTTP/2 connection for up to 5 minutes, after which time you need to call <code>SubscribeToShard</code> again to renew the subscription if you want to continue to receive records.</p> <p>You can make one call to <code>SubscribeToShard</code> per second per registered consumer per shard. For example, if you have a 4000 shard stream and two registered stream consumers, you can make one <code>SubscribeToShard</code> request per second for each combination of shard and registered consumer, allowing you to subscribe both consumers to all 4000 shards in one second. </p> <p>If you call <code>SubscribeToShard</code> again with the same <code>ConsumerARN</code> and <code>ShardId</code> within 5 seconds of a successful call, you'll get a <code>ResourceInUseException</code>. If you call <code>SubscribeToShard</code> 5 seconds or more after a successful call, the second call takes over the subscription and the previous connection expires or fails with a <code>ResourceInUseException</code>.</p> <p>For an example of how to use this operation, see <a href=\"https://docs.aws.amazon.com/streams/latest/dev/building-enhanced-consumers-api.html\">Enhanced Fan-Out Using the Kinesis Data Streams API</a>.</p>
 
@@ -2192,9 +2549,11 @@ class KinesisClient:
             stream_id: <p>Not Implemented. Reserved for future use.</p>
             shard_id: <p>The ID of the shard you want to subscribe to. To see a list of all the shards for a given stream, use <a>ListShards</a>.</p>
             starting_position: <p>The starting position in the data stream from which to start streaming.</p>
+            dry_run: <p>Checks if your request will succeed. <code>DryRun</code> is an optional parameter.</p>
 
         Raises:
             capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.dry_run_operation_exception.DryRunOperationException: <p>The request was rejected because the DryRun parameter was specified.</p>
             capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
             capo_kinesis.errors.limit_exceeded_exception.LimitExceededException: <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p>
             capo_kinesis.errors.resource_in_use_exception.ResourceInUseException: <p>The resource is not available for this operation. For successful operation, the resource must be in the <code>ACTIVE</code> state.</p>
@@ -2224,6 +2583,8 @@ class KinesisClient:
         }
         if stream_id is not None:
             input_["stream_id"] = stream_id
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2374,6 +2735,79 @@ class KinesisClient:
         input_: capo_kinesis.types.update_account_settings_input.UpdateAccountSettingsInput = {
             "minimum_throughput_billing_commitment": minimum_throughput_billing_commitment
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_channel(
+        self,
+        channel_arn: "capo_kinesis.types.channel_arn.ChannelARN",
+        *,
+        config_overrides: Optional[KinesisClientConfig] = None,
+        s3_destination_configuration: Optional[
+            "capo_kinesis.types.s3_destination_update_input.S3DestinationUpdateInput"
+        ] = None,
+        s3_tables_destination_configuration: Optional[
+            "capo_kinesis.types.s3_tables_destination_update_input.S3TablesDestinationUpdateInput"
+        ] = None,
+        logging_configuration: Optional[
+            "capo_kinesis.types.channel_logging_update_input.ChannelLoggingUpdateInput"
+        ] = None,
+    ) -> "capo_kinesis.types.update_channel_output.UpdateChannelOutput":
+        """<p>Updates the data freshness interval or the Amazon CloudWatch Logs configuration of an existing channel. You cannot change the destination, source stream, record format, schema, encryption configuration, or service execution role of an existing channel. To change any other setting, delete the channel and create a new one.</p> <p>Updating a channel is an asynchronous operation. Upon receiving the request, Amazon Kinesis Data Streams sets the channel to the <code>UPDATING</code> state and returns immediately. After the change is applied, Amazon Kinesis Data Streams sets the channel back to the <code>ACTIVE</code> state.</p> <p>This operation has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. Exceeding 5 TPS results in a <code>LimitExceededException</code>.</p>
+
+        Args:
+            channel_arn: <p>The Amazon Resource Name (ARN) of the channel to update.</p>
+            s3_destination_configuration: <p>The updated configuration for a general purpose Amazon S3 destination. Specify this parameter when the channel delivers to a general purpose Amazon S3 bucket. Only <code>DataFreshnessInSeconds</code> can be updated.</p>
+            s3_tables_destination_configuration: <p>The updated configuration for a streaming table destination. Specify this parameter when the channel delivers to streaming tables on Apache Iceberg in Amazon S3 Tables. Only <code>DataFreshnessInSeconds</code> can be updated.</p>
+            logging_configuration: <p>The updated Amazon CloudWatch Logs configuration for the channel.</p>
+
+        Raises:
+            capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
+            capo_kinesis.errors.limit_exceeded_exception.LimitExceededException: <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p>
+            capo_kinesis.errors.resource_in_use_exception.ResourceInUseException: <p>The resource is not available for this operation. For successful operation, the resource must be in the <code>ACTIVE</code> state.</p>
+            capo_kinesis.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found. The stream might not be specified correctly.</p>
+            capo_kinesis.errors.validation_exception.ValidationException: <p>Specifies that you tried to invoke this API for a data stream with the on-demand capacity mode. This API is only supported for data streams with the provisioned capacity mode. </p>
+            capo_kinesis.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To update a channel
+
+            >>> client.update_channel(channel_arn='arn:aws:kinesis:us-east-1:123456789012:channel/my-channel-id', s3_destination_configuration={'DataFreshnessInSeconds': 600}, logging_configuration={'CloudWatchLogs': {'Enabled': True, 'LogGroupName': '/aws/kinesis/my-channel', 'LogStreamName': 'my-channel-log-stream'}})
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_kinesis.types.update_channel_input.UpdateChannelInput]",
+        ) -> OperationResponse[
+            "capo_kinesis.types.update_channel_output.UpdateChannelOutput"
+        ]:
+            import capo_kinesis._operations.kinesis_20131202.update_channel
+
+            output, http_response = (
+                capo_kinesis._operations.kinesis_20131202.update_channel.update_channel(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kinesis.types.update_channel_input.UpdateChannelInput = {
+            "channel_arn": channel_arn
+        }
+        if s3_destination_configuration is not None:
+            input_["s3_destination_configuration"] = s3_destination_configuration
+        if s3_tables_destination_configuration is not None:
+            input_["s3_tables_destination_configuration"] = (
+                s3_tables_destination_configuration
+            )
+        if logging_configuration is not None:
+            input_["logging_configuration"] = logging_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2558,6 +2992,59 @@ class KinesisClient:
         response.response.close()
         return response.output
 
+    def update_stream_record_distribution_strategy(
+        self,
+        stream_arn: "capo_kinesis.types.stream_arn.StreamARN",
+        record_distribution_strategy: "capo_kinesis.types.record_distribution_strategy.RecordDistributionStrategy",
+        *,
+        config_overrides: Optional[KinesisClientConfig] = None,
+        stream_id: Optional["capo_kinesis.types.stream_id.StreamId"] = None,
+    ) -> None:
+        """<p>Updates the record distribution strategy for the specified Amazon Kinesis Data Streams on-demand data stream. The record distribution strategy determines how Amazon Kinesis Data Streams distributes records across the shards in a stream.</p> <note> <p>You must specify the stream using the <code>StreamARN</code> parameter.</p> </note> <p>The record distribution strategy is a stream-level setting. You can switch between the following strategies at any time, and the change takes effect immediately without downtime, data loss, or disruption to producer or consumer applications:</p> <ul> <li> <p> <code>AUTO</code> – Amazon Kinesis Data Streams distributes records evenly across shards using service-managed algorithms, and ignores any partition key and <code>ExplicitHashKey</code> that a producer provides. Use this strategy for stateless workloads that do not require partition-key ordering.</p> </li> <li> <p> <code>USER_PARTITION_KEY</code> – Producers must provide a partition key, and Amazon Kinesis Data Streams uses the partition key to determine shard placement. Records that share a partition key are sent to the same shard. This is the default strategy.</p> </li> </ul> <p>This operation is only supported for data streams that use the on-demand capacity mode. Provisioned capacity mode streams do not support the record distribution strategy setting. Attempting to set <code>AUTO</code> on a provisioned stream results in an <code>InvalidArgumentException</code>.</p> <p>New records that arrive after the change are distributed according to the new strategy. Records already in the stream keep their original shard assignments and are not redistributed.</p>
+
+        Args:
+            stream_arn: <p>The Amazon Resource Name (ARN) of the stream to update.</p>
+            stream_id: <p>Not Implemented. Reserved for future use.</p>
+            record_distribution_strategy: <p>The record distribution strategy to apply to the stream. Specify one of the following values:</p> <ul> <li> <p> <code>AUTO</code> – Amazon Kinesis Data Streams distributes records evenly across shards and ignores any partition key and <code>ExplicitHashKey</code> that producers supply.</p> </li> <li> <p> <code>USER_PARTITION_KEY</code> – Producers must supply a partition key, which Amazon Kinesis Data Streams uses to determine shard placement. This is the default.</p> </li> </ul>
+
+        Raises:
+            capo_kinesis.errors.access_denied_exception.AccessDeniedException: <p>Specifies that you do not have the permissions required to perform this operation.</p>
+            capo_kinesis.errors.invalid_argument_exception.InvalidArgumentException: <p>A specified parameter exceeds its restrictions, is not supported, or can't be used. For more information, see the returned message.</p>
+            capo_kinesis.errors.limit_exceeded_exception.LimitExceededException: <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p>
+            capo_kinesis.errors.resource_in_use_exception.ResourceInUseException: <p>The resource is not available for this operation. For successful operation, the resource must be in the <code>ACTIVE</code> state.</p>
+            capo_kinesis.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found. The stream might not be specified correctly.</p>
+            capo_kinesis.errors.validation_exception.ValidationException: <p>Specifies that you tried to invoke this API for a data stream with the on-demand capacity mode. This API is only supported for data streams with the provisioned capacity mode. </p>
+            capo_kinesis.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_kinesis.types.update_stream_record_distribution_strategy_input.UpdateStreamRecordDistributionStrategyInput]",
+        ) -> OperationResponse[None]:
+            import capo_kinesis._operations.kinesis_20131202.update_stream_record_distribution_strategy
+
+            output, http_response = (
+                capo_kinesis._operations.kinesis_20131202.update_stream_record_distribution_strategy.update_stream_record_distribution_strategy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_kinesis.types.update_stream_record_distribution_strategy_input.UpdateStreamRecordDistributionStrategyInput = {
+            "stream_arn": stream_arn,
+            "record_distribution_strategy": record_distribution_strategy,
+        }
+        if stream_id is not None:
+            input_["stream_id"] = stream_id
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def update_stream_warm_throughput(
         self,
         warm_throughput_mi_bps: "capo_kinesis.types.natural_integer_object.NaturalIntegerObject",
@@ -2567,7 +3054,7 @@ class KinesisClient:
         stream_name: Optional["capo_kinesis.types.stream_name.StreamName"] = None,
         stream_id: Optional["capo_kinesis.types.stream_id.StreamId"] = None,
     ) -> "capo_kinesis.types.update_stream_warm_throughput_output.UpdateStreamWarmThroughputOutput":
-        r"""<p>Updates the warm throughput configuration for the specified Amazon Kinesis Data Streams on-demand data stream. This operation allows you to proactively scale your on-demand data stream to a specified throughput level, enabling better performance for sudden traffic spikes. </p> <note> <p>When invoking this API, you must use either the <code>StreamARN</code> or the <code>StreamName</code> parameter, or both. It is recommended that you use the <code>StreamARN</code> input parameter when you invoke this API.</p> </note> <p>Updating the warm throughput is an asynchronous operation. Upon receiving the request, Kinesis Data Streams returns immediately and sets the status of the stream to <code>UPDATING</code>. After the update is complete, Kinesis Data Streams sets the status of the stream back to <code>ACTIVE</code>. Depending on the size of the stream, the scaling action could take a few minutes to complete. You can continue to read and write data to your stream while its status is <code>UPDATING</code>.</p> <p>This operation is only supported for data streams with the on-demand capacity mode in accounts that have <code>MinimumThroughputBillingCommitment</code> enabled. Provisioned capacity mode streams do not support warm throughput configuration.</p> <p>This operation has the following default limits. By default, you cannot do the following:</p> <ul> <li> <p>Scale to more than 10 GiBps for an on-demand stream.</p> </li> <li> <p>This API has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. TPS over 5 will initiate the <code>LimitExceededException</code>.</p> </li> </ul> <p>For the default limits for an Amazon Web Services account, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html\">Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>. To request an increase in the call rate limit, the shard limit for this API, or your overall shard limit, use the <a href=\"https://console.aws.amazon.com/support/v1#/case/create?issueType=service-limit-increase&limitType=service-code-kinesis\">limits form</a>.</p>
+        r"""<p>Updates the warm throughput configuration for the specified Amazon Kinesis Data Streams on-demand data stream. Updates the warm throughput configuration for the specified on-demand data stream. Use this operation to scale your stream to a specified throughput level before anticipated traffic spikes, or to release excess capacity after traffic has decreased. </p> <note> <p>When invoking this API, you must use either the <code>StreamARN</code> or the <code>StreamName</code> parameter, or both. It is recommended that you use the <code>StreamARN</code> input parameter when you invoke this API.</p> </note> <p>Updating the warm throughput is an asynchronous operation. Upon receiving the request, Kinesis Data Streams returns immediately and sets the status of the stream to <code>UPDATING</code>. After the update is complete, Kinesis Data Streams sets the status of the stream back to <code>ACTIVE</code>. Depending on the size of the stream, the scaling action could take a few minutes to complete. You can continue to read and write data to your stream while its status is <code>UPDATING</code>.</p> <p>This operation is only supported for data streams with the on-demand capacity mode in accounts that have <code>MinimumThroughputBillingCommitment</code> enabled. Provisioned capacity mode streams do not support warm throughput configuration.</p> <p>To release excess capacity, call the API again and set the warm throughput to the same or a lower value.</p> <p>This operation has the following default limits. By default, you cannot do the following:</p> <ul> <li> <p>Scale to more than 10 GiBps for an on-demand stream.</p> </li> <li> <p>This API has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. TPS over 5 will initiate the <code>LimitExceededException</code>.</p> </li> </ul> <p>For the default limits for an Amazon Web Services account, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html\">Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>. To request an increase in the call rate limit, the shard limit for this API, or your overall shard limit, use the <a href=\"https://console.aws.amazon.com/support/v1#/case/create?issueType=service-limit-increase&limitType=service-code-kinesis\">limits form</a>.</p>
 
         Args:
             stream_arn: <p>The ARN of the stream to be updated.</p>

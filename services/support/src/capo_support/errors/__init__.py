@@ -39,5 +39,9 @@ from .case_id_not_found import CaseIdNotFound as CaseIdNotFound
 from .describe_attachment_limit_exceeded import (
     DescribeAttachmentLimitExceeded as DescribeAttachmentLimitExceeded,
 )
+from .dry_run_operation_exception import (
+    DryRunOperationException as DryRunOperationException,
+)
 from .internal_server_error import InternalServerError as InternalServerError
 from .throttling_exception import ThrottlingException as ThrottlingException
+from .upload_id_not_found import UploadIdNotFound as UploadIdNotFound

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.duration
     import capo_timestream_influxdb.types.log_formats
     import capo_timestream_influxdb.types.percent_or_absolute_long
+    import capo_timestream_influxdb.types.plugin_repository_secret_arn
 
 
 class InfluxDBv3EnterpriseParameters(TypedDict, closed=True):
@@ -118,6 +119,12 @@ class InfluxDBv3EnterpriseParameters(TypedDict, closed=True):
         "capo_timestream_influxdb.types.duration.Duration"
     ]
     """<p>Sets the default duration for hard deletion of data.</p> <p>Default: 90d</p>"""
+    plugin_repository_url: NotRequired["str"]
+    """<p>Specifies the URL of the repository that InfluxDB downloads plugins from.</p>"""
+    plugin_repository_secret_arn: NotRequired[
+        "capo_timestream_influxdb.types.plugin_repository_secret_arn.PluginRepositorySecretArn"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that holds your repository access token.</p>"""
     ingest_query_instances: "int"
     """<p>Specifies number of instances in the DbCluster which can both ingest and query.</p>"""
     query_only_instances: "int"
@@ -358,6 +365,10 @@ def serialize_aws_json_1_0(value: InfluxDBv3EnterpriseParameters) -> dict:
                 value["hard_delete_default_duration"]
             )
         )
+    if "plugin_repository_url" in value:
+        out["pluginRepositoryUrl"] = value["plugin_repository_url"]
+    if "plugin_repository_secret_arn" in value:
+        out["pluginRepositorySecretArn"] = value["plugin_repository_secret_arn"]
     out["ingestQueryInstances"] = value["ingest_query_instances"]
     out["queryOnlyInstances"] = value["query_only_instances"]
     out["dedicatedCompactor"] = value["dedicated_compactor"]
@@ -612,6 +623,10 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["hardDeleteDefaultDuration"]
             )
         )
+    if data.get("pluginRepositoryUrl") is not None:
+        out["plugin_repository_url"] = data["pluginRepositoryUrl"]
+    if data.get("pluginRepositorySecretArn") is not None:
+        out["plugin_repository_secret_arn"] = data["pluginRepositorySecretArn"]
     if data.get("ingestQueryInstances") is not None:
         out["ingest_query_instances"] = data["ingestQueryInstances"]
     else:

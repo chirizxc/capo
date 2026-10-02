@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_mediapackagev2.types.encryption
+    import capo_mediapackagev2.types.output_timestamp_mode
     import capo_mediapackagev2.types.scte
 
 
@@ -23,6 +24,10 @@ class Segment(TypedDict, closed=True):
     scte: NotRequired["capo_mediapackagev2.types.scte.Scte"]
     """<p>The SCTE configuration options in the segment settings.</p>"""
     encryption: NotRequired["capo_mediapackagev2.types.encryption.Encryption"]
+    output_timestamp_mode: NotRequired[
+        "capo_mediapackagev2.types.output_timestamp_mode.OutputTimestampMode"
+    ]
+    """<p>The output timestamp mode for the origin endpoint's segments. This setting is only configurable on channels with <code>OutputLockingMode</code> set to <code>NON_EPOCH_LOCKED</code>. This value is immutable after endpoint creation. If you don't specify a value, the default is <code>PASSTHROUGH</code>.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>PASSTHROUGH</code> - Output PTS (Presentation Timestamp) values pass through unchanged from the input.</p> </li> <li> <p> <code>REBASED_TO_CHANNEL_START</code> - Output PTS is rebased relative to the channel start time.</p> </li> </ul>"""
 
 
 # --- restJson1 ser/de ---
@@ -48,6 +53,14 @@ def serialize_json(value: Segment) -> dict:
         out["Encryption"] = capo_mediapackagev2.types.encryption.serialize_json(
             value["encryption"]
         )
+    if "output_timestamp_mode" in value:
+        import capo_mediapackagev2.types.output_timestamp_mode
+
+        out["OutputTimestampMode"] = (
+            capo_mediapackagev2.types.output_timestamp_mode.serialize_json(
+                value["output_timestamp_mode"]
+            )
+        )
     return out
 
 
@@ -72,5 +85,13 @@ def deserialize_json(data: dict) -> Segment:
 
         out["encryption"] = capo_mediapackagev2.types.encryption.deserialize_json(
             data["Encryption"]
+        )
+    if data.get("OutputTimestampMode") is not None:
+        import capo_mediapackagev2.types.output_timestamp_mode
+
+        out["output_timestamp_mode"] = (
+            capo_mediapackagev2.types.output_timestamp_mode.deserialize_json(
+                data["OutputTimestampMode"]
+            )
         )
     return out

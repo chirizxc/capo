@@ -43,7 +43,7 @@ class NotificationHub:
         *,
         config_overrides: Optional[NotificationsClientConfig] = None,
     ) -> "capo_notifications.types.register_notification_hub_response.RegisterNotificationHubResponse":
-        """<p>Registers a <code>NotificationConfiguration</code> in the specified Region.</p> <p>There is a maximum of one <code>NotificationConfiguration</code> per Region. You can have a maximum of 3 <code>NotificationHub</code> resources at a time.</p>
+        """<p>Registers a <code>NotificationHub</code> in the specified Region.</p> <p>There is a maximum of one <code>NotificationHub</code> per Region. You can have a maximum of 3 <code>NotificationHub</code> resources at a time.</p>
 
         Args:
             notification_hub_region: <p>The Region of the <code>NotificationHub</code>.</p>
@@ -91,10 +91,10 @@ class NotificationHub:
         *,
         config_overrides: Optional[NotificationsClientConfig] = None,
     ) -> "capo_notifications.types.deregister_notification_hub_response.DeregisterNotificationHubResponse":
-        """<p>Deregisters a <code>NotificationConfiguration</code> in the specified Region.</p> <note> <p>You can't deregister the last <code>NotificationHub</code> in the account. <code>NotificationEvents</code> stored in the deregistered <code>NotificationConfiguration</code> are no longer be visible. Recreating a new <code>NotificationConfiguration</code> in the same Region restores access to those <code>NotificationEvents</code>.</p> </note>
+        """<p>Deregisters a <code>NotificationHub</code> in the specified Region.</p> <note> <p>You can't deregister the last <code>NotificationHub</code> in the account. <code>NotificationEvents</code> stored in the deregistered <code>NotificationHub</code> are no longer visible. Recreating a new <code>NotificationHub</code> in the same Region restores access to those <code>NotificationEvents</code>.</p> </note>
 
         Args:
-            notification_hub_region: <p>The <code>NotificationConfiguration</code> Region.</p>
+            notification_hub_region: <p>The <code>NotificationHub</code> Region.</p>
 
         Raises:
             capo_notifications.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
@@ -194,7 +194,7 @@ class AsyncNotificationHub:
         *,
         config_overrides: Optional[AsyncNotificationsClientConfig] = None,
     ) -> "capo_notifications.types.register_notification_hub_response.RegisterNotificationHubResponse":
-        """<p>Registers a <code>NotificationConfiguration</code> in the specified Region.</p> <p>There is a maximum of one <code>NotificationConfiguration</code> per Region. You can have a maximum of 3 <code>NotificationHub</code> resources at a time.</p>
+        """<p>Registers a <code>NotificationHub</code> in the specified Region.</p> <p>There is a maximum of one <code>NotificationHub</code> per Region. You can have a maximum of 3 <code>NotificationHub</code> resources at a time.</p>
 
         Args:
             notification_hub_region: <p>The Region of the <code>NotificationHub</code>.</p>
@@ -243,10 +243,10 @@ class AsyncNotificationHub:
         *,
         config_overrides: Optional[AsyncNotificationsClientConfig] = None,
     ) -> "capo_notifications.types.deregister_notification_hub_response.DeregisterNotificationHubResponse":
-        """<p>Deregisters a <code>NotificationConfiguration</code> in the specified Region.</p> <note> <p>You can't deregister the last <code>NotificationHub</code> in the account. <code>NotificationEvents</code> stored in the deregistered <code>NotificationConfiguration</code> are no longer be visible. Recreating a new <code>NotificationConfiguration</code> in the same Region restores access to those <code>NotificationEvents</code>.</p> </note>
+        """<p>Deregisters a <code>NotificationHub</code> in the specified Region.</p> <note> <p>You can't deregister the last <code>NotificationHub</code> in the account. <code>NotificationEvents</code> stored in the deregistered <code>NotificationHub</code> are no longer visible. Recreating a new <code>NotificationHub</code> in the same Region restores access to those <code>NotificationEvents</code>.</p> </note>
 
         Args:
-            notification_hub_region: <p>The <code>NotificationConfiguration</code> Region.</p>
+            notification_hub_region: <p>The <code>NotificationHub</code> Region.</p>
 
         Raises:
             capo_notifications.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>

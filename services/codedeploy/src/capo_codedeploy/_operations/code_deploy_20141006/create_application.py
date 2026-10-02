@@ -17,13 +17,18 @@ import capo_codedeploy.errors.application_name_required_exception
 import capo_codedeploy.errors.invalid_application_name_exception
 import capo_codedeploy.errors.invalid_compute_platform_exception
 import capo_codedeploy.errors.invalid_tags_to_add_exception
+import capo_codedeploy.errors.throttling_exception
 import capo_codedeploy.types.compute_platform
 import capo_codedeploy.types.create_application_input
 import capo_codedeploy.types.create_application_output
 import capo_codedeploy.types.tag_list
 from capo_codedeploy._protocol.errors import parse_error_metadata_json
 from capo_codedeploy._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_codedeploy._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_codedeploy._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_codedeploy.errors import UnknownServiceError
 
 
@@ -53,6 +58,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "InvalidTagsToAddException":
             raise capo_codedeploy.errors.invalid_tags_to_add_exception.InvalidTagsToAddException.from_aws_json_1_1(
+                data, message
+            )
+        case "ThrottlingException":
+            raise capo_codedeploy.errors.throttling_exception.ThrottlingException.from_aws_json_1_1(
                 data, message
             )
         case _:
@@ -150,7 +159,7 @@ def create_application(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -168,7 +177,7 @@ async def async_create_application(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

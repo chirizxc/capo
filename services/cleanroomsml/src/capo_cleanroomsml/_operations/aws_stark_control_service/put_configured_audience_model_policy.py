@@ -14,6 +14,7 @@ import capo_cleanroomsml._auth._sigv4
 import capo_cleanroomsml._protocol.eventstream
 import capo_cleanroomsml.errors.access_denied_exception
 import capo_cleanroomsml.errors.resource_not_found_exception
+import capo_cleanroomsml.errors.throttling_exception
 import capo_cleanroomsml.errors.validation_exception
 import capo_cleanroomsml.types.policy_existence_condition
 import capo_cleanroomsml.types.put_configured_audience_model_policy_request
@@ -23,6 +24,7 @@ from capo_cleanroomsml._rule_engine._endpoint_rule_set import EndpointParams, re
 from capo_cleanroomsml._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_cleanroomsml.errors import UnknownServiceError
 
@@ -37,6 +39,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ResourceNotFoundException":
             raise capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
+                data, message
+            )
+        case "ThrottlingException":
+            raise capo_cleanroomsml.errors.throttling_exception.ThrottlingException.from_json(
                 data, message
             )
         case "ValidationException":
@@ -142,7 +148,7 @@ def put_configured_audience_model_policy(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -160,7 +166,7 @@ async def async_put_configured_audience_model_policy(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

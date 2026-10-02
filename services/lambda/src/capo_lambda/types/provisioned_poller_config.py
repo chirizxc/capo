@@ -18,7 +18,7 @@ class ProvisionedPollerConfig(TypedDict, closed=True):
     maximum_pollers: NotRequired[
         "capo_lambda.types.maximum_number_of_pollers.MaximumNumberOfPollers"
     ]
-    """<p>The maximum number of event pollers this event source can scale up to. For Amazon SQS events source mappings, default is 200, and minimum value allowed is 2. For Amazon MSK and self-managed Apache Kafka event source mappings, default is 200, and minimum value allowed is 1.</p>"""
+    """<p>The maximum number of event pollers this event source can scale up to. For Amazon SQS event source mappings, the accepted range is between 2 and 10,000, with a default of 200. For Amazon MSK and self-managed Apache Kafka event source mappings, the accepted range is between 1 and 2,000, with a default of 200.</p>"""
     poller_group_name: NotRequired[
         "capo_lambda.types.provisioned_poller_group_name.ProvisionedPollerGroupName"
     ]

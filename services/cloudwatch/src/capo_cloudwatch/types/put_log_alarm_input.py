@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch.types.tag_list
     import capo_cloudwatch.types.threshold
     import capo_cloudwatch.types.treat_missing_data
+    import capo_cloudwatch.types.warm_up_configuration
 
 
 class PutLogAlarmInput(TypedDict, closed=True):
@@ -71,6 +72,10 @@ class PutLogAlarmInput(TypedDict, closed=True):
     """<p>Sets how this alarm is to handle missing data points. Valid values are <code>breaching</code>, <code>notBreaching</code>, <code>ignore</code>, and <code>missing</code>. If this parameter is omitted, the default behavior of <code>missing</code> is used.</p>"""
     tags: NotRequired["capo_cloudwatch.types.tag_list.TagList"]
     """<p>A list of key-value pairs to associate with the alarm. You can use tags to categorize and manage your alarms.</p>"""
+    warm_up_configuration: NotRequired[
+        "capo_cloudwatch.types.warm_up_configuration.WarmUpConfiguration"
+    ]
+    r"""<p>The warm-up configuration for the alarm. A warm-up period delays alarm evaluation after you create or update the alarm. The warm-up period reduces alarm noise from missing data while a new resource or service starts publishing data.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-warm-up.html\">Alarm warm-up periods</a> in the <i>Amazon CloudWatch User Guide</i>.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -146,6 +151,14 @@ def serialize_aws_json_1_0(value: PutLogAlarmInput) -> dict:
         out["Tags"] = capo_cloudwatch.types.tag_list.serialize_aws_json_1_0(
             value["tags"]
         )
+    if "warm_up_configuration" in value:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        out["WarmUpConfiguration"] = (
+            capo_cloudwatch.types.warm_up_configuration.serialize_aws_json_1_0(
+                value["warm_up_configuration"]
+            )
+        )
     return out
 
 
@@ -214,6 +227,14 @@ def deserialize_aws_json_1_0(data: dict) -> PutLogAlarmInput:
 
         out["tags"] = capo_cloudwatch.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
+        )
+    if data.get("WarmUpConfiguration") is not None:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        out["warm_up_configuration"] = (
+            capo_cloudwatch.types.warm_up_configuration.deserialize_aws_json_1_0(
+                data["WarmUpConfiguration"]
+            )
         )
     return out
 
@@ -315,6 +336,12 @@ def serialize_query(
         capo_cloudwatch.types.tag_list.serialize_query(
             value["tags"], pairs, f"{key_prefix}Tags"
         )
+    if "warm_up_configuration" in value:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        capo_cloudwatch.types.warm_up_configuration.serialize_query(
+            value["warm_up_configuration"], pairs, f"{key_prefix}WarmUpConfiguration"
+        )
 
 
 def deserialize_query(el: Element) -> PutLogAlarmInput:
@@ -394,4 +421,13 @@ def deserialize_query(el: Element) -> PutLogAlarmInput:
         import capo_cloudwatch.types.tag_list
 
         out["tags"] = capo_cloudwatch.types.tag_list.deserialize_query(child_tags)
+    child_warm_up_configuration = el.find("WarmUpConfiguration")
+    if child_warm_up_configuration is not None:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        out["warm_up_configuration"] = (
+            capo_cloudwatch.types.warm_up_configuration.deserialize_query(
+                child_warm_up_configuration
+            )
+        )
     return out

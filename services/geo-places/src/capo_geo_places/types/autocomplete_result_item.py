@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_geo_places.types.distance_meters
     import capo_geo_places.types.language_tag
     import capo_geo_places.types.place_type
+    import capo_geo_places.types.sensitive_boolean
     import capo_geo_places.types.sensitive_string
 
 
@@ -28,20 +29,28 @@ class AutocompleteResultItem(TypedDict, closed=True):
     distance: "capo_geo_places.types.distance_meters.DistanceMeters"
     """<p>The distance in meters between the center of the search area and this result. Useful to evaluate how far away from the original bias position the result is.</p>"""
     language: NotRequired["capo_geo_places.types.language_tag.LanguageTag"]
-    r"""<p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>"""
+    r"""<p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>"""
     political_view: NotRequired["capo_geo_places.types.country_code3.CountryCode3"]
     """<p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p>"""
     highlights: NotRequired[
         "capo_geo_places.types.autocomplete_highlights.AutocompleteHighlights"
     ]
     """<p>Indicates the starting and ending index of the place in the text query that match the found title. </p>"""
+    estimated_point_address: NotRequired[
+        "capo_geo_places.types.sensitive_boolean.SensitiveBoolean"
+    ]
+    """<p>If <code>true</code>, indicates that the coordinates of the position and access points of the point address are estimated.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: AutocompleteResultItem) -> dict:
     out: dict = {}
     out["PlaceId"] = value["place_id"]
-    out["PlaceType"] = value["place_type"]
+    import capo_geo_places.types.place_type
+
+    out["PlaceType"] = capo_geo_places.types.place_type.serialize_json(
+        value["place_type"]
+    )
     out["Title"] = value["title"]
     if "address" in value:
         import capo_geo_places.types.address
@@ -60,6 +69,8 @@ def serialize_json(value: AutocompleteResultItem) -> dict:
                 value["highlights"]
             )
         )
+    if "estimated_point_address" in value:
+        out["EstimatedPointAddress"] = value["estimated_point_address"]
     return out
 
 
@@ -70,7 +81,11 @@ def deserialize_json(data: dict) -> AutocompleteResultItem:
     else:
         raise DeserializationError("AutocompleteResultItem.place_id required")
     if data.get("PlaceType") is not None:
-        out["place_type"] = data["PlaceType"]
+        import capo_geo_places.types.place_type
+
+        out["place_type"] = capo_geo_places.types.place_type.deserialize_json(
+            data["PlaceType"]
+        )
     else:
         raise DeserializationError("AutocompleteResultItem.place_type required")
     if data.get("Title") is not None:
@@ -97,4 +112,6 @@ def deserialize_json(data: dict) -> AutocompleteResultItem:
                 data["Highlights"]
             )
         )
+    if data.get("EstimatedPointAddress") is not None:
+        out["estimated_point_address"] = data["EstimatedPointAddress"]
     return out

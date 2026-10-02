@@ -1,0 +1,75 @@
+"""Generated from Smithy shape ``com.amazonaws.bedrockagentcorecontrol#ToolsFileSystemConfiguration``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+from typing_extensions import TypedDict
+
+from capo_bedrock_agentcore_control.errors import (
+    DeserializationError,
+    SerializationError,
+)
+
+if TYPE_CHECKING:
+    import capo_bedrock_agentcore_control.types.efs_configuration
+    import capo_bedrock_agentcore_control.types.s3_files_configuration
+
+
+class _ToolsFileSystemConfiguration_s3FilesConfiguration(TypedDict, closed=True):
+    s3FilesConfiguration: "capo_bedrock_agentcore_control.types.s3_files_configuration.S3FilesConfiguration"
+
+
+class _ToolsFileSystemConfiguration_efsConfiguration(TypedDict, closed=True):
+    efsConfiguration: (
+        "capo_bedrock_agentcore_control.types.efs_configuration.EfsConfiguration"
+    )
+
+
+ToolsFileSystemConfiguration: TypeAlias = (
+    _ToolsFileSystemConfiguration_s3FilesConfiguration
+    | _ToolsFileSystemConfiguration_efsConfiguration
+)
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: ToolsFileSystemConfiguration) -> dict:
+    if "s3FilesConfiguration" in value:
+        import capo_bedrock_agentcore_control.types.s3_files_configuration
+
+        return {
+            "s3FilesConfiguration": capo_bedrock_agentcore_control.types.s3_files_configuration.serialize_json(
+                value["s3FilesConfiguration"]
+            )
+        }
+    elif "efsConfiguration" in value:
+        import capo_bedrock_agentcore_control.types.efs_configuration
+
+        return {
+            "efsConfiguration": capo_bedrock_agentcore_control.types.efs_configuration.serialize_json(
+                value["efsConfiguration"]
+            )
+        }
+    else:
+        raise SerializationError("ToolsFileSystemConfiguration: no variant present")
+
+
+def deserialize_json(data: dict) -> ToolsFileSystemConfiguration:
+    if data.get("s3FilesConfiguration") is not None:
+        import capo_bedrock_agentcore_control.types.s3_files_configuration
+
+        return {
+            "s3FilesConfiguration": capo_bedrock_agentcore_control.types.s3_files_configuration.deserialize_json(
+                data["s3FilesConfiguration"]
+            )
+        }
+    elif data.get("efsConfiguration") is not None:
+        import capo_bedrock_agentcore_control.types.efs_configuration
+
+        return {
+            "efsConfiguration": capo_bedrock_agentcore_control.types.efs_configuration.deserialize_json(
+                data["efsConfiguration"]
+            )
+        }
+    else:
+        raise DeserializationError(
+            "ToolsFileSystemConfiguration: no recognized variant key"
+        )

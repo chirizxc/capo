@@ -10,7 +10,9 @@ if TYPE_CHECKING:
     import capo_connect.types.boolean
     import capo_connect.types.evaluation_form_item_enablement_configuration
     import capo_connect.types.evaluation_form_item_weight
+    import capo_connect.types.evaluation_form_metric_configuration
     import capo_connect.types.evaluation_form_question_instructions
+    import capo_connect.types.evaluation_form_question_scoring_configuration
     import capo_connect.types.evaluation_form_question_title
     import capo_connect.types.evaluation_form_question_type
     import capo_connect.types.evaluation_form_question_type_properties
@@ -44,6 +46,14 @@ class EvaluationFormQuestion(TypedDict, closed=True):
     """<p>A question conditional enablement.</p>"""
     weight: "capo_connect.types.evaluation_form_item_weight.EvaluationFormItemWeight"
     """<p>The scoring weight of the section.</p>"""
+    scoring_configuration: NotRequired[
+        "capo_connect.types.evaluation_form_question_scoring_configuration.EvaluationFormQuestionScoringConfiguration"
+    ]
+    """<p>The scoring configuration of the question.</p>"""
+    metric_configuration: NotRequired[
+        "capo_connect.types.evaluation_form_metric_configuration.EvaluationFormMetricConfiguration"
+    ]
+    """<p>The metric configuration for the question. Use this to associate a business outcome metric with the question.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -86,6 +96,22 @@ def serialize_json(value: EvaluationFormQuestion) -> dict:
         if value.get("weight", 0) == float("-inf")
         else value.get("weight", 0)
     )
+    if "scoring_configuration" in value:
+        import capo_connect.types.evaluation_form_question_scoring_configuration
+
+        out["ScoringConfiguration"] = (
+            capo_connect.types.evaluation_form_question_scoring_configuration.serialize_json(
+                value["scoring_configuration"]
+            )
+        )
+    if "metric_configuration" in value:
+        import capo_connect.types.evaluation_form_metric_configuration
+
+        out["MetricConfiguration"] = (
+            capo_connect.types.evaluation_form_metric_configuration.serialize_json(
+                value["metric_configuration"]
+            )
+        )
     return out
 
 
@@ -135,4 +161,20 @@ def deserialize_json(data: dict) -> EvaluationFormQuestion:
         out["weight"] = float(data["Weight"])
     else:
         out["weight"] = 0
+    if data.get("ScoringConfiguration") is not None:
+        import capo_connect.types.evaluation_form_question_scoring_configuration
+
+        out["scoring_configuration"] = (
+            capo_connect.types.evaluation_form_question_scoring_configuration.deserialize_json(
+                data["ScoringConfiguration"]
+            )
+        )
+    if data.get("MetricConfiguration") is not None:
+        import capo_connect.types.evaluation_form_metric_configuration
+
+        out["metric_configuration"] = (
+            capo_connect.types.evaluation_form_metric_configuration.deserialize_json(
+                data["MetricConfiguration"]
+            )
+        )
     return out

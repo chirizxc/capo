@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.cluster_instance_status_details
     import capo_sagemaker.types.cluster_instance_type
     import capo_sagemaker.types.cluster_private_dns_hostname
+    import capo_sagemaker.types.image_release_version
     import capo_sagemaker.types.timestamp
     import capo_sagemaker.types.ultra_server_info
 
@@ -43,6 +44,10 @@ class ClusterNodeSummary(TypedDict, closed=True):
         "capo_sagemaker.types.cluster_private_dns_hostname.ClusterPrivateDnsHostname"
     ]
     """<p>The private DNS hostname of the SageMaker HyperPod cluster node.</p>"""
+    current_image_release_version: NotRequired[
+        "capo_sagemaker.types.image_release_version.ImageReleaseVersion"
+    ]
+    """<p>The version of the HyperPod-managed AMI currently running on the node.</p>"""
     image_version_status: NotRequired[
         "capo_sagemaker.types.cluster_image_version_status.ClusterImageVersionStatus"
     ]
@@ -98,6 +103,8 @@ def serialize_aws_json_1_1(value: ClusterNodeSummary) -> dict:
         )
     if "private_dns_hostname" in value:
         out["PrivateDnsHostname"] = value["private_dns_hostname"]
+    if "current_image_release_version" in value:
+        out["CurrentImageReleaseVersion"] = value["current_image_release_version"]
     if "image_version_status" in value:
         import capo_sagemaker.types.cluster_image_version_status
 
@@ -157,6 +164,8 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeSummary:
         )
     if data.get("PrivateDnsHostname") is not None:
         out["private_dns_hostname"] = data["PrivateDnsHostname"]
+    if data.get("CurrentImageReleaseVersion") is not None:
+        out["current_image_release_version"] = data["CurrentImageReleaseVersion"]
     if data.get("ImageVersionStatus") is not None:
         import capo_sagemaker.types.cluster_image_version_status
 

@@ -9,6 +9,9 @@ if TYPE_CHECKING:
     import capo_inspector2.types.aws_ecr_container_image_details
     import capo_inspector2.types.aws_lambda_function_details
     import capo_inspector2.types.code_repository_details
+    import capo_inspector2.types.image
+    import capo_inspector2.types.serverless_function
+    import capo_inspector2.types.vm
 
 
 class ResourceDetails(TypedDict, closed=True):
@@ -28,6 +31,14 @@ class ResourceDetails(TypedDict, closed=True):
         "capo_inspector2.types.code_repository_details.CodeRepositoryDetails"
     ]
     """<p>Contains details about a code repository resource associated with a finding.</p>"""
+    vm: NotRequired["capo_inspector2.types.vm.Vm"]
+    """<p>An object that contains details about a VM instance involved in the finding.</p>"""
+    image: NotRequired["capo_inspector2.types.image.Image"]
+    """<p>An object that contains details about a container image involved in the finding.</p>"""
+    serverless_function: NotRequired[
+        "capo_inspector2.types.serverless_function.ServerlessFunction"
+    ]
+    """<p>An object that contains details about a serverless function involved in the finding.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -65,6 +76,22 @@ def serialize_json(value: ResourceDetails) -> dict:
                 value["code_repository"]
             )
         )
+    if "vm" in value:
+        import capo_inspector2.types.vm
+
+        out["vm"] = capo_inspector2.types.vm.serialize_json(value["vm"])
+    if "image" in value:
+        import capo_inspector2.types.image
+
+        out["image"] = capo_inspector2.types.image.serialize_json(value["image"])
+    if "serverless_function" in value:
+        import capo_inspector2.types.serverless_function
+
+        out["serverlessFunction"] = (
+            capo_inspector2.types.serverless_function.serialize_json(
+                value["serverless_function"]
+            )
+        )
     return out
 
 
@@ -100,6 +127,22 @@ def deserialize_json(data: dict) -> ResourceDetails:
         out["code_repository"] = (
             capo_inspector2.types.code_repository_details.deserialize_json(
                 data["codeRepository"]
+            )
+        )
+    if data.get("vm") is not None:
+        import capo_inspector2.types.vm
+
+        out["vm"] = capo_inspector2.types.vm.deserialize_json(data["vm"])
+    if data.get("image") is not None:
+        import capo_inspector2.types.image
+
+        out["image"] = capo_inspector2.types.image.deserialize_json(data["image"])
+    if data.get("serverlessFunction") is not None:
+        import capo_inspector2.types.serverless_function
+
+        out["serverless_function"] = (
+            capo_inspector2.types.serverless_function.deserialize_json(
+                data["serverlessFunction"]
             )
         )
     return out

@@ -10,12 +10,14 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.agent_runtime_artifact
     import capo_bedrock_agentcore_control.types.agent_runtime_id
     import capo_bedrock_agentcore_control.types.authorizer_configuration
+    import capo_bedrock_agentcore_control.types.capacity_provider_configuration
     import capo_bedrock_agentcore_control.types.client_token
     import capo_bedrock_agentcore_control.types.description
     import capo_bedrock_agentcore_control.types.environment_variables_map
     import capo_bedrock_agentcore_control.types.filesystem_configurations
     import capo_bedrock_agentcore_control.types.lifecycle_configuration
     import capo_bedrock_agentcore_control.types.network_configuration
+    import capo_bedrock_agentcore_control.types.platform_version
     import capo_bedrock_agentcore_control.types.protocol_configuration
     import capo_bedrock_agentcore_control.types.request_header_configuration
     import capo_bedrock_agentcore_control.types.role_arn
@@ -31,7 +33,9 @@ class UpdateAgentRuntimeRequest(TypedDict, closed=True):
     """<p>The updated artifact of the AgentCore Runtime.</p>"""
     role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn"
     """<p>The updated IAM role ARN that provides permissions for the AgentCore Runtime.</p>"""
-    network_configuration: "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+    network_configuration: NotRequired[
+        "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+    ]
     """<p>The updated network configuration for the AgentCore Runtime.</p>"""
     description: NotRequired[
         "capo_bedrock_agentcore_control.types.description.Description"
@@ -64,6 +68,14 @@ class UpdateAgentRuntimeRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.filesystem_configurations.FilesystemConfigurations"
     ]
     """<p>The updated filesystem configurations to mount into the AgentCore Runtime.</p>"""
+    capacity_provider_configuration: NotRequired[
+        "capo_bedrock_agentcore_control.types.capacity_provider_configuration.CapacityProviderConfiguration"
+    ]
+    """<p>The updated capacity provider configuration for the AgentCore Runtime.</p>"""
+    platform_version: NotRequired[
+        "capo_bedrock_agentcore_control.types.platform_version.PlatformVersion"
+    ]
+    """<p>The updated version of the runtime platform to use for the AgentCore Runtime.</p>"""
     client_token: NotRequired[
         "capo_bedrock_agentcore_control.types.client_token.ClientToken"
     ]
@@ -81,13 +93,14 @@ def serialize_json(value: UpdateAgentRuntimeRequest) -> dict:
         )
     )
     out["roleArn"] = value["role_arn"]
-    import capo_bedrock_agentcore_control.types.network_configuration
+    if "network_configuration" in value:
+        import capo_bedrock_agentcore_control.types.network_configuration
 
-    out["networkConfiguration"] = (
-        capo_bedrock_agentcore_control.types.network_configuration.serialize_json(
-            value["network_configuration"]
+        out["networkConfiguration"] = (
+            capo_bedrock_agentcore_control.types.network_configuration.serialize_json(
+                value["network_configuration"]
+            )
         )
-    )
     if "description" in value:
         out["description"] = value["description"]
     if "authorizer_configuration" in value:
@@ -146,6 +159,16 @@ def serialize_json(value: UpdateAgentRuntimeRequest) -> dict:
                 value["filesystem_configurations"]
             )
         )
+    if "capacity_provider_configuration" in value:
+        import capo_bedrock_agentcore_control.types.capacity_provider_configuration
+
+        out["capacityProviderConfiguration"] = (
+            capo_bedrock_agentcore_control.types.capacity_provider_configuration.serialize_json(
+                value["capacity_provider_configuration"]
+            )
+        )
+    if "platform_version" in value:
+        out["platformVersion"] = value["platform_version"]
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
     return out
@@ -176,10 +199,6 @@ def deserialize_json(data: dict) -> UpdateAgentRuntimeRequest:
             capo_bedrock_agentcore_control.types.network_configuration.deserialize_json(
                 data["networkConfiguration"]
             )
-        )
-    else:
-        raise DeserializationError(
-            "UpdateAgentRuntimeRequest.network_configuration required"
         )
     if data.get("description") is not None:
         out["description"] = data["description"]
@@ -239,6 +258,16 @@ def deserialize_json(data: dict) -> UpdateAgentRuntimeRequest:
                 data["filesystemConfigurations"]
             )
         )
+    if data.get("capacityProviderConfiguration") is not None:
+        import capo_bedrock_agentcore_control.types.capacity_provider_configuration
+
+        out["capacity_provider_configuration"] = (
+            capo_bedrock_agentcore_control.types.capacity_provider_configuration.deserialize_json(
+                data["capacityProviderConfiguration"]
+            )
+        )
+    if data.get("platformVersion") is not None:
+        out["platform_version"] = data["platformVersion"]
     if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

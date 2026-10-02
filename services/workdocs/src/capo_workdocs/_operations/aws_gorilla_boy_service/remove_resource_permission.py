@@ -20,7 +20,11 @@ import capo_workdocs.types.principal_type
 import capo_workdocs.types.remove_resource_permission_request
 from capo_workdocs._protocol.errors import parse_error_metadata_json
 from capo_workdocs._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_workdocs._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_workdocs._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_workdocs.errors import UnknownServiceError
 
 
@@ -127,7 +131,7 @@ def remove_resource_permission(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -142,7 +146,7 @@ async def async_remove_resource_permission(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

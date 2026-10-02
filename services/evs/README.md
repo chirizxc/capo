@@ -14,9 +14,24 @@ from capo_evs import AsyncevsClient
 
 async def main():
     async with AsyncevsClient() as evs:
-        # Example: call the get_versions operation
-        response = await evs.get_versions()
-        print(response["vcf_versions"])
+        # Example: call the get_account_settings operation
+        response = await evs.get_account_settings()
+        print(response["settings"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_evs import AsyncevsClient
+
+
+async def main():
+    async with AsyncevsClient() as evs:
+        # Example: paginate over list_environments
+        async for item in evs.iter_list_environments():
+            print(item)
 ```
 
 ## Error Handling
@@ -31,7 +46,7 @@ from capo_evs.error import InternalServerException
 async def main():
     async with AsyncevsClient() as evs:
         try:
-            await evs.get_versions()
+            await evs.get_account_settings()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -50,11 +65,11 @@ from capo_evs import AsyncevsClient
 async def main():
     async with AsyncevsClient() as evs:
         # Default: 3 attempts for every operation
-        response = await evs.get_versions()
+        response = await evs.get_account_settings()
 
         # Override per operation
-        response = await evs.get_versions(config_overrides={"retry_max_attempts": 5})
+        response = await evs.get_account_settings(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await evs.get_versions(config_overrides={"retry_max_attempts": 1})
+        response = await evs.get_account_settings(config_overrides={"retry_max_attempts": 1})
 ```

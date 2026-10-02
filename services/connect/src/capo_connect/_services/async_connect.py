@@ -31,6 +31,7 @@ from capo_connect._services._pipeline import (
 
 if TYPE_CHECKING:
     import capo_connect.types.access_token_duration
+    import capo_connect.types.acgr_instance_id_or_arn
     import capo_connect.types.activate_evaluation_form_request
     import capo_connect.types.activate_evaluation_form_response
     import capo_connect.types.after_contact_work_configs
@@ -48,11 +49,16 @@ if TYPE_CHECKING:
     import capo_connect.types.agent_status_summary
     import capo_connect.types.agent_status_types
     import capo_connect.types.agent_username
+    import capo_connect.types.ai_agent
+    import capo_connect.types.ai_agent_input
     import capo_connect.types.alias_configuration
     import capo_connect.types.allowed_access_control_tags
+    import capo_connect.types.allowed_ai_agents
     import capo_connect.types.allowed_capabilities
     import capo_connect.types.allowed_flow_modules
     import capo_connect.types.allowed_monitor_capabilities
+    import capo_connect.types.analytics_configuration
+    import capo_connect.types.analytics_modes
     import capo_connect.types.answer_machine_detection_config
     import capo_connect.types.application
     import capo_connect.types.applications
@@ -92,6 +98,7 @@ if TYPE_CHECKING:
     import capo_connect.types.attribute
     import capo_connect.types.attribute_ids
     import capo_connect.types.attributes
+    import capo_connect.types.auth_scope
     import capo_connect.types.authentication_error
     import capo_connect.types.authentication_error_description
     import capo_connect.types.authentication_profile_description
@@ -142,6 +149,7 @@ if TYPE_CHECKING:
     import capo_connect.types.configurable_notification_priority
     import capo_connect.types.contact_configuration
     import capo_connect.types.contact_data_request_list
+    import capo_connect.types.contact_fields
     import capo_connect.types.contact_flow
     import capo_connect.types.contact_flow_content
     import capo_connect.types.contact_flow_description
@@ -169,6 +177,7 @@ if TYPE_CHECKING:
     import capo_connect.types.contact_flow_version_summary
     import capo_connect.types.contact_id
     import capo_connect.types.contact_initiation_method
+    import capo_connect.types.contact_interaction_type
     import capo_connect.types.contact_media_processing_failure_mode
     import capo_connect.types.contact_metrics
     import capo_connect.types.contact_recording_type
@@ -178,6 +187,10 @@ if TYPE_CHECKING:
     import capo_connect.types.contact_tag_map
     import capo_connect.types.create_agent_status_request
     import capo_connect.types.create_agent_status_response
+    import capo_connect.types.create_attached_file_request
+    import capo_connect.types.create_attached_file_response
+    import capo_connect.types.create_auth_code_request
+    import capo_connect.types.create_auth_code_response
     import capo_connect.types.create_contact_flow_module_alias_request
     import capo_connect.types.create_contact_flow_module_alias_response
     import capo_connect.types.create_contact_flow_module_request
@@ -198,6 +211,8 @@ if TYPE_CHECKING:
     import capo_connect.types.create_email_address_response
     import capo_connect.types.create_evaluation_form_request
     import capo_connect.types.create_evaluation_form_response
+    import capo_connect.types.create_extraction_definition_request
+    import capo_connect.types.create_extraction_definition_response
     import capo_connect.types.create_hours_of_operation_override_request
     import capo_connect.types.create_hours_of_operation_override_response
     import capo_connect.types.create_hours_of_operation_request
@@ -206,6 +221,8 @@ if TYPE_CHECKING:
     import capo_connect.types.create_instance_response
     import capo_connect.types.create_integration_association_request
     import capo_connect.types.create_integration_association_response
+    import capo_connect.types.create_metric_request
+    import capo_connect.types.create_metric_response
     import capo_connect.types.create_notification_request
     import capo_connect.types.create_notification_response
     import capo_connect.types.create_participant_request
@@ -278,6 +295,8 @@ if TYPE_CHECKING:
     import capo_connect.types.default_vocabulary
     import capo_connect.types.delete_attached_file_request
     import capo_connect.types.delete_attached_file_response
+    import capo_connect.types.delete_contact_data_request
+    import capo_connect.types.delete_contact_data_response
     import capo_connect.types.delete_contact_evaluation_request
     import capo_connect.types.delete_contact_flow_module_alias_request
     import capo_connect.types.delete_contact_flow_module_alias_response
@@ -296,10 +315,14 @@ if TYPE_CHECKING:
     import capo_connect.types.delete_email_address_request
     import capo_connect.types.delete_email_address_response
     import capo_connect.types.delete_evaluation_form_request
+    import capo_connect.types.delete_extraction_definition_request
+    import capo_connect.types.delete_extraction_definition_response
     import capo_connect.types.delete_hours_of_operation_override_request
     import capo_connect.types.delete_hours_of_operation_request
     import capo_connect.types.delete_instance_request
     import capo_connect.types.delete_integration_association_request
+    import capo_connect.types.delete_metric_request
+    import capo_connect.types.delete_metric_response
     import capo_connect.types.delete_notification_request
     import capo_connect.types.delete_notification_response
     import capo_connect.types.delete_predefined_attribute_request
@@ -311,6 +334,8 @@ if TYPE_CHECKING:
     import capo_connect.types.delete_routing_profile_request
     import capo_connect.types.delete_rule_request
     import capo_connect.types.delete_security_profile_request
+    import capo_connect.types.delete_session_request
+    import capo_connect.types.delete_session_response
     import capo_connect.types.delete_task_template_request
     import capo_connect.types.delete_task_template_response
     import capo_connect.types.delete_test_case_request
@@ -356,6 +381,8 @@ if TYPE_CHECKING:
     import capo_connect.types.describe_email_address_response
     import capo_connect.types.describe_evaluation_form_request
     import capo_connect.types.describe_evaluation_form_response
+    import capo_connect.types.describe_extraction_definition_request
+    import capo_connect.types.describe_extraction_definition_response
     import capo_connect.types.describe_hours_of_operation_override_request
     import capo_connect.types.describe_hours_of_operation_override_response
     import capo_connect.types.describe_hours_of_operation_request
@@ -366,6 +393,8 @@ if TYPE_CHECKING:
     import capo_connect.types.describe_instance_response
     import capo_connect.types.describe_instance_storage_config_request
     import capo_connect.types.describe_instance_storage_config_response
+    import capo_connect.types.describe_metric_request
+    import capo_connect.types.describe_metric_response
     import capo_connect.types.describe_notification_request
     import capo_connect.types.describe_notification_response
     import capo_connect.types.describe_phone_number_request
@@ -451,6 +480,7 @@ if TYPE_CHECKING:
     import capo_connect.types.evaluate_data_table_values_request
     import capo_connect.types.evaluate_data_table_values_response
     import capo_connect.types.evaluation_answers_input_map
+    import capo_connect.types.evaluation_form_ai_version
     import capo_connect.types.evaluation_form_auto_evaluation_configuration
     import capo_connect.types.evaluation_form_description
     import capo_connect.types.evaluation_form_items_list
@@ -472,10 +502,16 @@ if TYPE_CHECKING:
     import capo_connect.types.expiry_duration_in_minutes
     import capo_connect.types.extension_configuration
     import capo_connect.types.external_invocation_configuration
+    import capo_connect.types.extraction_configuration
+    import capo_connect.types.extraction_definition_display
+    import capo_connect.types.extraction_definition_id
+    import capo_connect.types.extraction_definition_name
+    import capo_connect.types.extraction_definition_summary
     import capo_connect.types.file_id
     import capo_connect.types.file_id_list
     import capo_connect.types.file_name
     import capo_connect.types.file_size_in_bytes
+    import capo_connect.types.file_source_uri
     import capo_connect.types.file_use_case_type
     import capo_connect.types.filters
     import capo_connect.types.filters_v2_list
@@ -492,12 +528,16 @@ if TYPE_CHECKING:
     import capo_connect.types.get_contact_attributes_response
     import capo_connect.types.get_contact_metrics_request
     import capo_connect.types.get_contact_metrics_response
+    import capo_connect.types.get_cross_region_routing_request
+    import capo_connect.types.get_cross_region_routing_response
     import capo_connect.types.get_current_metric_data_request
     import capo_connect.types.get_current_metric_data_response
     import capo_connect.types.get_current_user_data_request
     import capo_connect.types.get_current_user_data_response
     import capo_connect.types.get_effective_hours_of_operations_request
     import capo_connect.types.get_effective_hours_of_operations_response
+    import capo_connect.types.get_evaluation_form_validation_request
+    import capo_connect.types.get_evaluation_form_validation_response
     import capo_connect.types.get_federation_token_request
     import capo_connect.types.get_federation_token_response
     import capo_connect.types.get_flow_association_request
@@ -611,10 +651,14 @@ if TYPE_CHECKING:
     import capo_connect.types.list_default_vocabularies_response
     import capo_connect.types.list_entity_security_profiles_request
     import capo_connect.types.list_entity_security_profiles_response
+    import capo_connect.types.list_evaluation_form_ai_versions_request
+    import capo_connect.types.list_evaluation_form_ai_versions_response
     import capo_connect.types.list_evaluation_form_versions_request
     import capo_connect.types.list_evaluation_form_versions_response
     import capo_connect.types.list_evaluation_forms_request
     import capo_connect.types.list_evaluation_forms_response
+    import capo_connect.types.list_extraction_definitions_request
+    import capo_connect.types.list_extraction_definitions_response
     import capo_connect.types.list_flow_association_resource_type
     import capo_connect.types.list_flow_associations_request
     import capo_connect.types.list_flow_associations_response
@@ -634,6 +678,8 @@ if TYPE_CHECKING:
     import capo_connect.types.list_lambda_functions_response
     import capo_connect.types.list_lex_bots_request
     import capo_connect.types.list_lex_bots_response
+    import capo_connect.types.list_metrics_request
+    import capo_connect.types.list_metrics_response
     import capo_connect.types.list_notifications_request
     import capo_connect.types.list_notifications_response
     import capo_connect.types.list_phone_numbers_request
@@ -665,6 +711,8 @@ if TYPE_CHECKING:
     import capo_connect.types.list_rules_response
     import capo_connect.types.list_security_keys_request
     import capo_connect.types.list_security_keys_response
+    import capo_connect.types.list_security_profile_ai_agents_request
+    import capo_connect.types.list_security_profile_ai_agents_response
     import capo_connect.types.list_security_profile_applications_request
     import capo_connect.types.list_security_profile_applications_response
     import capo_connect.types.list_security_profile_flow_modules_request
@@ -716,10 +764,22 @@ if TYPE_CHECKING:
     import capo_connect.types.max_result500
     import capo_connect.types.max_result1000
     import capo_connect.types.max_results
+    import capo_connect.types.max_session_duration_minutes
     import capo_connect.types.maximum_size_limit_in_bytes
     import capo_connect.types.media_concurrencies
     import capo_connect.types.media_source
     import capo_connect.types.media_type
+    import capo_connect.types.metric_calculation
+    import capo_connect.types.metric_definition
+    import capo_connect.types.metric_description
+    import capo_connect.types.metric_id
+    import capo_connect.types.metric_name
+    import capo_connect.types.metric_search_criteria
+    import capo_connect.types.metric_search_filter
+    import capo_connect.types.metric_status
+    import capo_connect.types.metric_summary
+    import capo_connect.types.metric_type
+    import capo_connect.types.metric_unit
     import capo_connect.types.metrics_v2
     import capo_connect.types.monitor_contact_request
     import capo_connect.types.monitor_contact_response
@@ -765,6 +825,7 @@ if TYPE_CHECKING:
     import capo_connect.types.phone_number_summary
     import capo_connect.types.phone_number_type
     import capo_connect.types.phone_number_types
+    import capo_connect.types.pre_evaluation_filters
     import capo_connect.types.predefined_attribute
     import capo_connect.types.predefined_attribute_name
     import capo_connect.types.predefined_attribute_purpose_name_list
@@ -845,8 +906,11 @@ if TYPE_CHECKING:
     import capo_connect.types.rule_id
     import capo_connect.types.rule_name
     import capo_connect.types.rule_publish_status
+    import capo_connect.types.rule_search_summary
     import capo_connect.types.rule_summary
     import capo_connect.types.rule_trigger_event_source
+    import capo_connect.types.rules_search_criteria
+    import capo_connect.types.rules_search_filter
     import capo_connect.types.s3_uri
     import capo_connect.types.search_agent_statuses_request
     import capo_connect.types.search_agent_statuses_response
@@ -872,6 +936,8 @@ if TYPE_CHECKING:
     import capo_connect.types.search_hours_of_operation_overrides_response
     import capo_connect.types.search_hours_of_operations_request
     import capo_connect.types.search_hours_of_operations_response
+    import capo_connect.types.search_metrics_request
+    import capo_connect.types.search_metrics_response
     import capo_connect.types.search_notifications_request
     import capo_connect.types.search_notifications_response
     import capo_connect.types.search_predefined_attributes_request
@@ -886,6 +952,8 @@ if TYPE_CHECKING:
     import capo_connect.types.search_resource_tags_response
     import capo_connect.types.search_routing_profiles_request
     import capo_connect.types.search_routing_profiles_response
+    import capo_connect.types.search_rules_request
+    import capo_connect.types.search_rules_response
     import capo_connect.types.search_security_profiles_request
     import capo_connect.types.search_security_profiles_response
     import capo_connect.types.search_test_cases_request
@@ -918,6 +986,10 @@ if TYPE_CHECKING:
     import capo_connect.types.send_chat_integration_event_response
     import capo_connect.types.send_outbound_email_request
     import capo_connect.types.send_outbound_email_response
+    import capo_connect.types.send_outbound_web_notification_request
+    import capo_connect.types.send_outbound_web_notification_response
+    import capo_connect.types.session_id
+    import capo_connect.types.session_inactivity_duration_minutes
     import capo_connect.types.sign_in_config
     import capo_connect.types.slug
     import capo_connect.types.snapshot_version
@@ -926,10 +998,14 @@ if TYPE_CHECKING:
     import capo_connect.types.source_campaign
     import capo_connect.types.source_id
     import capo_connect.types.source_type
+    import capo_connect.types.start_assistant_contact_request
+    import capo_connect.types.start_assistant_contact_response
     import capo_connect.types.start_attached_file_upload_request
     import capo_connect.types.start_attached_file_upload_response
     import capo_connect.types.start_chat_contact_request
     import capo_connect.types.start_chat_contact_response
+    import capo_connect.types.start_contact_conversational_analytics_job_request
+    import capo_connect.types.start_contact_conversational_analytics_job_response
     import capo_connect.types.start_contact_evaluation_request
     import capo_connect.types.start_contact_evaluation_response
     import capo_connect.types.start_contact_media_processing_request
@@ -940,6 +1016,8 @@ if TYPE_CHECKING:
     import capo_connect.types.start_contact_streaming_response
     import capo_connect.types.start_email_contact_request
     import capo_connect.types.start_email_contact_response
+    import capo_connect.types.start_evaluation_form_validation_request
+    import capo_connect.types.start_evaluation_form_validation_response
     import capo_connect.types.start_outbound_chat_contact_request
     import capo_connect.types.start_outbound_chat_contact_response
     import capo_connect.types.start_outbound_email_contact_request
@@ -1010,6 +1088,7 @@ if TYPE_CHECKING:
     import capo_connect.types.traffic_type
     import capo_connect.types.transfer_contact_request
     import capo_connect.types.transfer_contact_response
+    import capo_connect.types.trend_indicator
     import capo_connect.types.untag_contact_request
     import capo_connect.types.untag_contact_response
     import capo_connect.types.untag_resource_request
@@ -1040,6 +1119,10 @@ if TYPE_CHECKING:
     import capo_connect.types.update_contact_routing_data_response
     import capo_connect.types.update_contact_schedule_request
     import capo_connect.types.update_contact_schedule_response
+    import capo_connect.types.update_contact_task_template_request
+    import capo_connect.types.update_contact_task_template_response
+    import capo_connect.types.update_cross_region_routing_request
+    import capo_connect.types.update_cross_region_routing_response
     import capo_connect.types.update_data_table_attribute_request
     import capo_connect.types.update_data_table_attribute_response
     import capo_connect.types.update_data_table_metadata_request
@@ -1050,11 +1133,17 @@ if TYPE_CHECKING:
     import capo_connect.types.update_email_address_metadata_response
     import capo_connect.types.update_evaluation_form_request
     import capo_connect.types.update_evaluation_form_response
+    import capo_connect.types.update_extraction_definition_request
+    import capo_connect.types.update_extraction_definition_response
     import capo_connect.types.update_hours_of_operation_description
     import capo_connect.types.update_hours_of_operation_override_request
     import capo_connect.types.update_hours_of_operation_request
     import capo_connect.types.update_instance_attribute_request
     import capo_connect.types.update_instance_storage_config_request
+    import capo_connect.types.update_metric_content_request
+    import capo_connect.types.update_metric_content_response
+    import capo_connect.types.update_metric_metadata_request
+    import capo_connect.types.update_metric_metadata_response
     import capo_connect.types.update_notification_content_request
     import capo_connect.types.update_notification_content_response
     import capo_connect.types.update_participant_authentication_request
@@ -1160,6 +1249,11 @@ if TYPE_CHECKING:
     import capo_connect.types.vocabulary_summary
     import capo_connect.types.voice_enhancement_configs
     import capo_connect.types.voice_recording_configuration
+    import capo_connect.types.web_browser_id
+    import capo_connect.types.web_notification_content
+    import capo_connect.types.web_notification_source
+    import capo_connect.types.web_session_id
+    import capo_connect.types.widget_destination
     import capo_connect.types.workspace_association_search_criteria
     import capo_connect.types.workspace_association_search_filter
     import capo_connect.types.workspace_association_search_summary
@@ -1504,7 +1598,7 @@ class AsyncConnectClient:
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
     ) -> "capo_connect.types.associate_contact_with_user_response.AssociateContactWithUserResponse":
-        r"""<p>Associates a queued contact with an agent.</p> <p> <b>Use cases</b> </p> <p>Following are common uses cases for this API:</p> <ul> <li> <p>Programmatically assign queued contacts to available users.</p> </li> <li> <p>Leverage the IAM context key <code>connect:PreferredUserArn</code> to restrict contact association to specific preferred user.</p> </li> </ul> <p> <b>Important things to know</b> </p> <ul> <li> <p>Use this API with chat, email, and task contacts. It does not support voice contacts.</p> </li> <li> <p>Use it to associate contacts with users regardless of their current state, including custom states. Ensure your application logic accounts for user availability before making associations.</p> </li> <li> <p>It honors the IAM context key <code>connect:PreferredUserArn</code> to prevent unauthorized contact associations.</p> </li> <li> <p>It respects the IAM context key <code>connect:PreferredUserArn</code> to enforce authorization controls and prevent unauthorized contact associations. Verify that your IAM policies are properly configured to support your intended use cases.</p> </li> <li> <p>The service quota <i>Queues per routing profile per instance</i> applies to manually assigned queues, too. For more information about this quota, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#connect-quotas\">Connect Customer quotas</a> in the <i>Connect Customer Administrator Guide</i>.</p> </li> </ul> <p> <b>Endpoints</b>: See <a href=\"https://docs.aws.amazon.com/general/latest/gr/connect_region.html\">Connect Customer endpoints and quotas</a>.</p>
+        r"""<p>Associates a queued contact with an agent.</p> <p> <b>Use cases</b> </p> <p>Following are common uses cases for this API:</p> <ul> <li> <p>Programmatically assign queued contacts to available users.</p> </li> <li> <p>Leverage the IAM context key <code>connect:PreferredUserArn</code> to restrict contact association to specific preferred user.</p> </li> </ul> <p> <b>Important things to know</b> </p> <ul> <li> <p>Use this API with chat, email, task, and voice contacts. For voice callbacks, this API does not support customer-first mode.</p> </li> <li> <p>This API can be used to offer a contact to an agent even if the agent is currently at maximum concurrency for the channel.</p> </li> <li> <p>Use it to associate contacts with users regardless of their current state, including custom states. Ensure your application logic accounts for user availability before making associations.</p> </li> <li> <p>It honors the IAM context key <code>connect:PreferredUserArn</code> to prevent unauthorized contact associations.</p> </li> <li> <p>It respects the IAM context key <code>connect:PreferredUserArn</code> to enforce authorization controls and prevent unauthorized contact associations. Verify that your IAM policies are properly configured to support your intended use cases.</p> </li> <li> <p>The service quota <i>Queues per routing profile per instance</i> applies to manually assigned queues, too. For more information about this quota, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#connect-quotas\">Connect Customer quotas</a> in the <i>Connect Customer Administrator Guide</i>.</p> </li> </ul> <p> <b>Endpoints</b>: See <a href=\"https://docs.aws.amazon.com/general/latest/gr/connect_region.html\">Connect Customer endpoints and quotas</a>.</p>
 
         Args:
             instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
@@ -1734,7 +1828,7 @@ class AsyncConnectClient:
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
     ) -> None:
-        r"""<p>Associates a set of hours of operations with another hours of operation. Refer to Administrator Guide <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\"> here </a> for more information on inheriting overrides from parent hours of operation(s).</p>
+        r"""<p>Associates a set of hours of operations with another hours of operation. For more information about inheriting overrides from parent hours of operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Hours of operation overrides</a> in the Administrator Guide.</p>
 
         Args:
             instance_id: <p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
@@ -2135,7 +2229,7 @@ class AsyncConnectClient:
             instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
             routing_profile_id: <p>The identifier of the routing profile.</p>
             queue_configs: <p>The queues to associate with this routing profile.</p>
-            manual_assignment_queue_configs: <p>The manual assignment queues to associate with this routing profile.</p> <p>Note: Use this config for chat, email, and task contacts. It does not support voice contacts.</p>
+            manual_assignment_queue_configs: <p>The manual assignment queues to associate with this routing profile.</p> <note> <p>For voice contacts, manual assignment supports only agent-first callback contacts. Chat, email, and task contacts are fully supported.</p> </note>
 
         Raises:
             capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
@@ -2751,7 +2845,7 @@ class AsyncConnectClient:
         Args:
             file_ids: <p>The unique identifiers of the attached file resource.</p>
             instance_id: <p>The unique identifier of the Connect instance.</p>
-            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>.</p> <note> <p>This value must be a valid ARN.</p> </note>
+            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a>, <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>, and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-getting-started-tasks.html\">Task</a>.</p> <note> <p>This value must be a valid ARN.</p> </note>
 
         Raises:
             capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
@@ -3048,7 +3142,7 @@ class AsyncConnectClient:
         Args:
             instance_id: <p>The unique identifier of the Connect Customer instance.</p>
             file_id: <p>The unique identifier of the attached file resource.</p>
-            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>.</p> <note> <p>This value must be a valid ARN.</p> </note>
+            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a>, <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>, and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-getting-started-tasks.html\">Task</a>.</p> <note> <p>This value must be a valid ARN.</p> </note>
 
         Raises:
             capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
@@ -3152,6 +3246,134 @@ class AsyncConnectClient:
             input_["display_order"] = display_order
         if tags is not None:
             input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_attached_file(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        file_use_case_type: "capo_connect.types.file_use_case_type.FileUseCaseType",
+        file_source_uri: "capo_connect.types.file_source_uri.FileSourceUri",
+        associated_resource_arn: "capo_connect.types.arn.ARN",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
+        tags: Optional["capo_connect.types.tag_map.TagMap"] = None,
+    ) -> "capo_connect.types.create_attached_file_response.CreateAttachedFileResponse":
+        r"""<p>Creates an attached file for a completed voice contact by copying a recording from a source S3 URI into Connect Customer managed storage. Use this API to attach voice recordings to contacts for downstream processing such as conversational analytics.</p> <important> <p>The <code>AssociatedResourceArn</code> must be the ARN of a completed voice contact, <code>FileUseCaseType</code> must be set to <code>VOICE_RECORDING</code>, and <code>FileSourceUri</code> must be a valid S3 URI.</p> </important> <note> <p>For example, you can call <code>CreateContact</code>, then <code>CreateAttachedFile</code>, then <code>StartContactConversationalAnalyticsJob</code> to create a contact, attach a recording, and run post-call analytics.</p> </note>
+
+        Args:
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            file_use_case_type: <p>The use case for the file.</p> <important> <p>Only <code>VOICE_RECORDING</code> is supported.</p> </important>
+            file_source_uri: <p>The S3 URI of the file to be attached. Only S3 source URIs are supported.</p>
+            associated_resource_arn: <p>The ARN of the completed voice contact to attach the file to. Only voice contacts with Telephony subtype are supported.</p> <note> <p>This value must be a valid ARN.</p> </note>
+            tags: <p>The tags used to organize, track, or control access for this resource. For example, <code>{ \"Tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }</code>.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_conflict_exception.ResourceConflictException: <p>A resource already has that name.</p>
+            capo_connect.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The service quota has been exceeded.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.create_attached_file_request.CreateAttachedFileRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.create_attached_file_response.CreateAttachedFileResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.create_attached_file
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.create_attached_file.async_create_attached_file(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.create_attached_file_request.CreateAttachedFileRequest = {
+            "instance_id": instance_id,
+            "file_use_case_type": file_use_case_type,
+            "file_source_uri": file_source_uri,
+            "associated_resource_arn": associated_resource_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_auth_code(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        scope: "capo_connect.types.auth_scope.AuthScope",
+        session_inactivity_duration_minutes: "capo_connect.types.session_inactivity_duration_minutes.SessionInactivityDurationMinutes",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        max_session_duration_minutes: Optional[
+            "capo_connect.types.max_session_duration_minutes.MaxSessionDurationMinutes"
+        ] = None,
+    ) -> "capo_connect.types.create_auth_code_response.CreateAuthCodeResponse":
+        r"""<p>Creates an authorization code for the specified Connect Customer instance. The authorization code can be used to establish a session with scoped permissions defined by the specified scope parameters.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            scope: <p>The scope for the authorization code. Defines the permissions and access boundaries for the session.</p>
+            max_session_duration_minutes: <p>The maximum duration of the session, in minutes. Minimum value of 1440 (24 hours). Maximum value of 43200 (30 days). If no value is provided, the session will expire after 400 days.</p>
+            session_inactivity_duration_minutes: <p>The duration of inactivity, in minutes, after which the session expires. Minimum value of 1440 (24 hours). Maximum value of 20160 (14 days).</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.create_auth_code_request.CreateAuthCodeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.create_auth_code_response.CreateAuthCodeResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.create_auth_code
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.create_auth_code.async_create_auth_code(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.create_auth_code_request.CreateAuthCodeRequest = {
+            "instance_id": instance_id,
+            "scope": scope,
+            "session_inactivity_duration_minutes": session_inactivity_duration_minutes,
+        }
+        if max_session_duration_minutes is not None:
+            input_["max_session_duration_minutes"] = max_session_duration_minutes
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3897,6 +4119,9 @@ class AsyncConnectClient:
         language_configuration: Optional[
             "capo_connect.types.evaluation_form_language_configuration.EvaluationFormLanguageConfiguration"
         ] = None,
+        ai_version: Optional[
+            "capo_connect.types.evaluation_form_ai_version.EvaluationFormAIVersion"
+        ] = None,
     ) -> "capo_connect.types.create_evaluation_form_response.CreateEvaluationFormResponse":
         r"""<p>Creates an evaluation form in the specified Connect Customer instance. The form can be used to define questions related to agent performance, and create sections to organize such questions. Question and section identifiers cannot be duplicated within the same evaluation form.</p>
 
@@ -3913,6 +4138,7 @@ class AsyncConnectClient:
             review_configuration: <p>Configuration information about evaluation reviews.</p>
             target_configuration: <p>Configuration that specifies the target for the evaluation form.</p>
             language_configuration: <p>Configuration for language settings of the evaluation form.</p>
+            ai_version: <p>The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.</p>
 
         Raises:
             capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
@@ -3964,6 +4190,79 @@ class AsyncConnectClient:
             input_["target_configuration"] = target_configuration
         if language_configuration is not None:
             input_["language_configuration"] = language_configuration
+        if ai_version is not None:
+            input_["ai_version"] = ai_version
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_extraction_definition(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        name: "capo_connect.types.extraction_definition_name.ExtractionDefinitionName",
+        extraction_configuration: "capo_connect.types.extraction_configuration.ExtractionConfiguration",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
+        display: Optional[
+            "capo_connect.types.extraction_definition_display.ExtractionDefinitionDisplay"
+        ] = None,
+        tags: Optional["capo_connect.types.tag_map.TagMap"] = None,
+    ) -> "capo_connect.types.create_extraction_definition_response.CreateExtractionDefinitionResponse":
+        r"""<p>Creates an extraction definition in the specified Connect Customer instance. An extraction definition specifies how structured data is extracted from customer interactions using generative AI, including the prompt hint that guides extraction and the behavior when a value cannot be found.</p>
+
+        Args:
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field.</p>
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            name: <p>A unique name of the extraction definition.</p>
+            extraction_configuration: <p>The configuration that defines how data is extracted, including the prompt hint and not-found behavior.</p>
+            display: <p>The display settings for the extraction definition, including the label shown in the agent workspace.</p>
+            tags: <p>The tags used to organize, track, or control access for this resource.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_conflict_exception.ResourceConflictException: <p>A resource already has that name.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The service quota has been exceeded.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.create_extraction_definition_request.CreateExtractionDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.create_extraction_definition_response.CreateExtractionDefinitionResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.create_extraction_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.create_extraction_definition.async_create_extraction_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.create_extraction_definition_request.CreateExtractionDefinitionRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "extraction_configuration": extraction_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if display is not None:
+            input_["display"] = display
+        if tags is not None:
+            input_["tags"] = tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3997,7 +4296,7 @@ class AsyncConnectClient:
             description: <p>The description of the hours of operation.</p>
             time_zone: <p>The time zone of the hours of operation.</p>
             config: <p>Configuration information for the hours of operation: day, start time, and end time.</p>
-            parent_hours_of_operation_configs: <p>Configuration for parent hours of operations. Eg: ResourceArn. </p> <p>For more information about parent hours of operations, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Link overrides from different hours of operation</a> in the <i> Administrator Guide</i>.</p>
+            parent_hours_of_operation_configs: <p>Configuration for parent hours of operations. Eg: ResourceArn. </p> <p>For more information about parent hours of operations, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Link overrides from different hours of operation</a> in the <i> Administrator Guide</i>.</p>
             tags: <p>The tags used to organize, track, or control access for this resource. For example, { \"Tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>
 
         Raises:
@@ -4080,7 +4379,7 @@ class AsyncConnectClient:
             effective_from: <p>The date from when the hours of operation override is effective.</p>
             effective_till: <p>The date until when the hours of operation override is effective.</p>
             recurrence_config: <p>Configuration for a recurring event.</p>
-            override_type: <p>Whether the override will be defined as a <i>standard</i> or as a <i>recurring event</i>.</p> <p>For more information about how override types are applied, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Build your list of overrides</a> in the <i> Administrator Guide</i>.</p>
+            override_type: <p>Whether the override will be defined as a <i>standard</i> or as a <i>recurring event</i>.</p> <p>For more information about how override types are applied, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Build your list of overrides</a> in the <i> Administrator Guide</i>.</p>
 
         Raises:
             capo_connect.errors.duplicate_resource_exception.DuplicateResourceException: <p>A resource with the specified name already exists.</p>
@@ -4266,6 +4565,91 @@ class AsyncConnectClient:
             input_["source_application_name"] = source_application_name
         if source_type is not None:
             input_["source_type"] = source_type
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_metric(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        name: "capo_connect.types.metric_name.MetricName",
+        metric_calculation: "capo_connect.types.metric_calculation.MetricCalculation",
+        unit: "capo_connect.types.metric_unit.MetricUnit",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        status: Optional["capo_connect.types.metric_status.MetricStatus"] = None,
+        client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
+        description: Optional[
+            "capo_connect.types.metric_description.MetricDescription"
+        ] = None,
+        positive_trend_indicator: Optional[
+            "capo_connect.types.trend_indicator.TrendIndicator"
+        ] = None,
+        tags: Optional["capo_connect.types.tag_map.TagMap"] = None,
+    ) -> "capo_connect.types.create_metric_response.CreateMetricResponse":
+        r"""<p>Creates a new metric definition for the specified Connect Customer instance. You can create custom metrics that use formulas referencing existing Amazon Web Services-managed metrics, optionally with filters applied.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            name: <p>The name of the metric.</p>
+            metric_calculation: <p>The calculation definition for the metric, including the formula expression and the component metrics it references.</p>
+            unit: <p>The display unit for the metric's data.</p>
+            status: <p>The publish status of the metric. Set to <code>PUBLISHED</code> to make the metric available for use in dashboards and reports, or <code>SAVED</code> to keep it in draft state.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
+            description: <p>The description of the metric.</p>
+            positive_trend_indicator: <p>How an increase in the metric value should be interpreted. Valid values: <code>POSITIVE</code>, <code>NEUTRAL</code>, <code>NEGATIVE</code>.</p>
+            tags: <p>The tags used to organize, track, or control access for this resource. For example, { \"Tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.duplicate_resource_exception.DuplicateResourceException: <p>A resource with the specified name already exists.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The allowed limit for the resource has been exceeded.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.create_metric_request.CreateMetricRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.create_metric_response.CreateMetricResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.create_metric
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.create_metric.async_create_metric(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.create_metric_request.CreateMetricRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "metric_calculation": metric_calculation,
+            "unit": unit,
+        }
+        if status is not None:
+            input_["status"] = status
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if description is not None:
+            input_["description"] = description
+        if positive_trend_indicator is not None:
+            input_["positive_trend_indicator"] = positive_trend_indicator
         if tags is not None:
             input_["tags"] = tags
 
@@ -4869,7 +5253,7 @@ class AsyncConnectClient:
             description: <p>Description of the routing profile. Must not be more than 250 characters.</p>
             default_outbound_queue_id: <p>The default outbound queue for the routing profile.</p>
             queue_configs: <p>The inbound queues associated with the routing profile. If no queue is added, the agent can make only outbound calls.</p> <p>The limit of 10 array members applies to the maximum number of <code>RoutingProfileQueueConfig</code> objects that can be passed during a CreateRoutingProfile API request. It is different from the quota of 50 queues per routing profile per instance that is listed in <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Connect Customer service quotas</a>. </p>
-            manual_assignment_queue_configs: <p>The manual assignment queues associated with the routing profile. If no queue is added, agents and supervisors can't pick or assign any contacts from this routing profile. The limit of 10 array members applies to the maximum number of RoutingProfileManualAssignmentQueueConfig objects that can be passed during a CreateRoutingProfile API request. It is different from the quota of 50 queues per routing profile per instance that is listed in Connect Customer service quotas.</p> <p>Note: Use this config for chat, email, and task contacts. It does not support voice contacts.</p>
+            manual_assignment_queue_configs: <p>The manual assignment queues associated with the routing profile. If no queue is added, agents and supervisors can't pick or assign any contacts from this routing profile. The limit of 10 array members applies to the maximum number of RoutingProfileManualAssignmentQueueConfig objects that can be passed during a CreateRoutingProfile API request. It is different from the quota of 50 queues per routing profile per instance that is listed in Connect Customer service quotas.</p> <note> <p>For voice contacts, manual assignment supports only agent-first callback contacts. Chat, email, and task contacts are fully supported.</p> </note>
             media_concurrencies: <p>The channels that agents can handle in the Contact Control Panel (CCP) for this routing profile.</p>
             tags: <p>The tags used to organize, track, or control access for this resource. For example, { \"Tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>
             agent_availability_timer: <p>Whether agents with this routing profile will have their routing order calculated based on <i>longest idle time</i> or <i>time since their last inbound contact</i>. </p>
@@ -4935,7 +5319,11 @@ class AsyncConnectClient:
         publish_status: "capo_connect.types.rule_publish_status.RulePublishStatus",
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
+        pre_evaluation_filters: Optional[
+            "capo_connect.types.pre_evaluation_filters.PreEvaluationFilters"
+        ] = None,
         client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
+        tags: Optional["capo_connect.types.tag_map.TagMap"] = None,
     ) -> "capo_connect.types.create_rule_response.CreateRuleResponse":
         r"""<p>Creates a rule for the specified Connect Customer instance.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html\">Rules Function language</a> to code conditions for the rule. </p>
 
@@ -4946,7 +5334,9 @@ class AsyncConnectClient:
             function: <p>The conditions of the rule.</p>
             actions: <p>A list of actions to be run when the rule is triggered.</p>
             publish_status: <p>The publish status of the rule.</p>
+            pre_evaluation_filters: <p>The pre-evaluation filters for the rule, that restrict the rule to be applied to only certain resources based on the resource's attributes, such as tags assigned to a contact. The pre-evaluation filters are applied even before rule conditions are evaluated and are used to enforce tag-based-access-control while applying rules.</p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
+            tags: <p>The tags used to organize, track, or control access for this resource. For example, { \"Tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>
 
         Raises:
             capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
@@ -4983,9 +5373,13 @@ class AsyncConnectClient:
             "actions": actions,
             "publish_status": publish_status,
         }
+        if pre_evaluation_filters is not None:
+            input_["pre_evaluation_filters"] = pre_evaluation_filters
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -5024,6 +5418,9 @@ class AsyncConnectClient:
         allowed_flow_modules: Optional[
             "capo_connect.types.allowed_flow_modules.AllowedFlowModules"
         ] = None,
+        allowed_ai_agents: Optional[
+            "capo_connect.types.allowed_ai_agents.AllowedAIAgents"
+        ] = None,
         granular_access_control_configuration: Optional[
             "capo_connect.types.granular_access_control_configuration.GranularAccessControlConfiguration"
         ] = None,
@@ -5042,6 +5439,7 @@ class AsyncConnectClient:
             hierarchy_restricted_resources: <p>The list of resources that a security profile applies hierarchy restrictions to in Connect Customer. Following are acceptable ResourceNames: <code>User</code>.</p>
             allowed_access_control_hierarchy_group_id: <p>The identifier of the hierarchy group that a security profile uses to restrict access to resources in Connect Customer.</p>
             allowed_flow_modules: <p> A list of Flow Modules an AI Agent can invoke as a tool. </p>
+            allowed_ai_agents: <p>A list of AI agents that the security profile will give access to.</p>
             granular_access_control_configuration: <p>The granular access control configuration for the security profile, including data table permissions.</p>
 
         Raises:
@@ -5095,6 +5493,8 @@ class AsyncConnectClient:
             )
         if allowed_flow_modules is not None:
             input_["allowed_flow_modules"] = allowed_flow_modules
+        if allowed_ai_agents is not None:
+            input_["allowed_ai_agents"] = allowed_ai_agents
         if granular_access_control_configuration is not None:
             input_["granular_access_control_configuration"] = (
                 granular_access_control_configuration
@@ -5141,12 +5541,12 @@ class AsyncConnectClient:
             instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
             name: <p>The name of the task template.</p>
             description: <p>The description of the task template.</p>
-            contact_flow_id: <p>The identifier of the flow that runs by default when a task is created by referencing this template.</p>
+            contact_flow_id: <p>The identifier of the flow that runs by default when a task is created by referencing this template.</p> <p>Although this parameter is marked as optional, the request must contain either a <code>ContactFlowId</code> or a field of type <code>QUICK_CONNECT</code>.</p>
             self_assign_flow_id: <p>The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.</p>
-            constraints: <p>Constraints that are applicable to the fields listed.</p>
+            constraints: <p>Constraints that are applicable to the fields listed. Although this parameter is marked as optional in the API model, the service requires it when calling <code>CreateTaskTemplate</code> or <code>UpdateTaskTemplate</code>. The <code>RequiredFields</code> array must contain at least one element, and the field of type <code>NAME</code> must be included in <code>RequiredFields</code>.</p>
             defaults: <p>The default values for fields when a task is created by referencing this template.</p>
             status: <p>Marks a template as <code>ACTIVE</code> or <code>INACTIVE</code> for a task to refer to it. Tasks can only be created from <code>ACTIVE</code> templates. If a template is marked as <code>INACTIVE</code>, then a task that refers to this template cannot be created. </p>
-            fields: <p>Fields that are part of the template.</p>
+            fields: <p>Fields that are part of the template.</p> <p>The request must contain exactly one field of type <code>NAME</code>. This field must also be listed in the <code>RequiredFields</code> array within the <code>Constraints</code> parameter.</p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
 
         Raises:
@@ -5307,7 +5707,7 @@ class AsyncConnectClient:
     async def create_traffic_distribution_group(
         self,
         name: "capo_connect.types.name128.Name128",
-        instance_id: "capo_connect.types.instance_id_or_arn.InstanceIdOrArn",
+        instance_id: "capo_connect.types.acgr_instance_id_or_arn.ACGRInstanceIdOrArn",
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
         description: Optional[
@@ -6038,7 +6438,7 @@ class AsyncConnectClient:
         Args:
             instance_id: <p>The unique identifier of the Connect instance.</p>
             file_id: <p>The unique identifier of the attached file resource.</p>
-            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html\">Cases</a> are the only current supported resource.</p> <note> <p>This value must be a valid ARN.</p> </note>
+            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a>, <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>, and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-getting-started-tasks.html\">Task</a>.</p> <note> <p>This value must be a valid ARN.</p> </note>
 
         Raises:
             capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
@@ -6069,6 +6469,61 @@ class AsyncConnectClient:
             "instance_id": instance_id,
             "file_id": file_id,
             "associated_resource_arn": associated_resource_arn,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_contact_data(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        contact_id: "capo_connect.types.contact_id.ContactId",
+        contact_fields: "capo_connect.types.contact_fields.ContactFields",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.delete_contact_data_response.DeleteContactDataResponse":
+        r"""<p>Deletes the specified fields containing personally identifiable information (PII) from a contact in the specified Connect Customer instance. We redact PII (such as customer endpoints, additional email recipients, and the email subject) from the contact and its associated contact trace record (CTR). The contact must be in a terminated state.</p> <important> <p> <b>This deletion is permanent and cannot be undone.</b> Performing this operation permanently deletes the specified PII. There is no retention period; you cannot recover the data after deletion. We remove only the fields that Connect Customer identifies and stores as PII. Any PII that you place in fields outside the scope of this operation remains your responsibility to remove.</p> </important>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            contact_id: <p>The identifier of the contact. You can delete PII only from a contact that has been disconnected (is in a terminated state).</p>
+            contact_fields: <p>The categories of PII to redact from the contact. Specify one or more of the following values:</p> <ul> <li> <p> <code>CUSTOMER_ENDPOINT</code> – The customer's contact endpoint.</p> </li> <li> <p> <code>ADDITIONAL_EMAIL_RECIPIENTS</code> – Additional recipients on an email contact (email channel only).</p> </li> <li> <p> <code>EMAIL_SUBJECT</code> – The subject line of an email contact (email channel only).</p> </li> </ul>
+
+        Raises:
+            capo_connect.errors.contact_not_terminated_exception.ContactNotTerminatedException: <p>The contact has not been disconnected and is not in a terminated state. To delete PII, disconnect the contact first. Wait for it to reach the terminated state, then retry the request.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.delete_contact_data_request.DeleteContactDataRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.delete_contact_data_response.DeleteContactDataResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.delete_contact_data
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.delete_contact_data.async_delete_contact_data(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.delete_contact_data_request.DeleteContactDataRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "contact_fields": contact_fields,
         }
 
         response = await aexecute_pipeline(
@@ -6614,6 +7069,57 @@ class AsyncConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def delete_extraction_definition(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        extraction_definition_id: "capo_connect.types.extraction_definition_id.ExtractionDefinitionId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.delete_extraction_definition_response.DeleteExtractionDefinitionResponse":
+        r"""<p>Deletes an extraction definition from the specified Connect Customer instance.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            extraction_definition_id: <p>The identifier of the extraction definition to delete.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.delete_extraction_definition_request.DeleteExtractionDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.delete_extraction_definition_response.DeleteExtractionDefinitionResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.delete_extraction_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.delete_extraction_definition.async_delete_extraction_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.delete_extraction_definition_request.DeleteExtractionDefinitionRequest = {
+            "instance_id": instance_id,
+            "extraction_definition_id": extraction_definition_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_hours_of_operation(
         self,
         instance_id: "capo_connect.types.instance_id.InstanceId",
@@ -6802,6 +7308,59 @@ class AsyncConnectClient:
         input_: capo_connect.types.delete_integration_association_request.DeleteIntegrationAssociationRequest = {
             "instance_id": instance_id,
             "integration_association_id": integration_association_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_metric(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        metric_id: "capo_connect.types.metric_id.MetricId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.delete_metric_response.DeleteMetricResponse":
+        r"""<p>Deletes an existing metric from the specified Connect Customer instance. This operation fails with <code>ResourceConflictException</code> if the metric is currently in use in a dashboard.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            metric_id: <p>The identifier of the metric to delete.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_in_use_exception.ResourceInUseException: <p>That resource is already in use (for example, you're trying to add a record with the same name as an existing record). If you are trying to delete a resource (for example, DeleteHoursOfOperation or DeletePredefinedAttribute), remove its reference from related resources and then try again.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.delete_metric_request.DeleteMetricRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.delete_metric_response.DeleteMetricResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.delete_metric
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.delete_metric.async_delete_metric(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.delete_metric_request.DeleteMetricRequest = {
+            "instance_id": instance_id,
+            "metric_id": metric_id,
         }
 
         response = await aexecute_pipeline(
@@ -7256,6 +7815,58 @@ class AsyncConnectClient:
         input_: capo_connect.types.delete_security_profile_request.DeleteSecurityProfileRequest = {
             "instance_id": instance_id,
             "security_profile_id": security_profile_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_session(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        session_id: "capo_connect.types.session_id.SessionId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.delete_session_response.DeleteSessionResponse":
+        r"""<p>Deletes a session for the specified Connect Customer instance.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            session_id: <p>The identifier of the session to delete.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.delete_session_request.DeleteSessionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.delete_session_response.DeleteSessionResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.delete_session
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.delete_session.async_delete_session(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.delete_session_request.DeleteSessionRequest = {
+            "instance_id": instance_id,
+            "session_id": session_id,
         }
 
         response = await aexecute_pipeline(
@@ -8524,6 +9135,57 @@ class AsyncConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def describe_extraction_definition(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        extraction_definition_id: "capo_connect.types.extraction_definition_id.ExtractionDefinitionId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.describe_extraction_definition_response.DescribeExtractionDefinitionResponse":
+        r"""<p>Describes an extraction definition in the specified Connect Customer instance.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            extraction_definition_id: <p>The identifier of the extraction definition to describe.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.describe_extraction_definition_request.DescribeExtractionDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.describe_extraction_definition_response.DescribeExtractionDefinitionResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.describe_extraction_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.describe_extraction_definition.async_describe_extraction_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.describe_extraction_definition_request.DescribeExtractionDefinitionRequest = {
+            "instance_id": instance_id,
+            "extraction_definition_id": extraction_definition_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def describe_hours_of_operation(
         self,
         instance_id: "capo_connect.types.instance_id.InstanceId",
@@ -8770,6 +9432,58 @@ class AsyncConnectClient:
             "instance_id": instance_id,
             "association_id": association_id,
             "resource_type": resource_type,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_metric(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        metric_id: "capo_connect.types.metric_id.MetricId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.describe_metric_response.DescribeMetricResponse":
+        r"""<p>Retrieves the full definition of an existing metric from the specified Connect Customer instance.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            metric_id: <p>The identifier of the metric to describe. Adding the <code>$SAVED</code> qualifier will describe the saved version of the metric. Adding <code>$LATEST</code> or omitting a qualifier will describe the published version.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.describe_metric_request.DescribeMetricRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.describe_metric_response.DescribeMetricResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.describe_metric
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.describe_metric.async_describe_metric(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.describe_metric_request.DescribeMetricRequest = {
+            "instance_id": instance_id,
+            "metric_id": metric_id,
         }
 
         response = await aexecute_pipeline(
@@ -9940,7 +10654,7 @@ class AsyncConnectClient:
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
     ) -> None:
-        r"""<p>Disassociates a set of hours of operations with another hours of operation. Refer to Administrator Guide <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\"> here </a> for more information on inheriting overrides from parent hours of operation(s).</p>
+        r"""<p>Disassociates a set of hours of operations with another hours of operation. For more information about inheriting overrides from parent hours of operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Hours of operation overrides</a> in the Administrator Guide.</p>
 
         Args:
             instance_id: <p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
@@ -10814,7 +11528,7 @@ class AsyncConnectClient:
             instance_id: <p>The unique identifier of the Connect Customer instance.</p>
             file_id: <p>The unique identifier of the attached file resource.</p>
             url_expiry_in_seconds: <p>Optional override for the expiry of the pre-signed S3 URL in seconds. The default value is 300.</p>
-            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>.</p> <note> <p>This value must be a valid ARN.</p> </note>
+            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a>, <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>, and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-getting-started-tasks.html\">Task</a>.</p> <note> <p>This value must be a valid ARN.</p> </note>
 
         Raises:
             capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
@@ -10951,6 +11665,54 @@ class AsyncConnectClient:
             "instance_id": instance_id,
             "contact_id": contact_id,
             "metrics": metrics,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_cross_region_routing(
+        self,
+        instance_id: "capo_connect.types.acgr_instance_id_or_arn.ACGRInstanceIdOrArn",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.get_cross_region_routing_response.GetCrossRegionRoutingResponse":
+        r"""<p>Retrieves the current cross-region routing configuration for an Amazon Connect Global Resiliency instance enabled for global routing. This operation returns whether cross-region routing is currently enabled or disabled (isolated) for the instance.</p> <note> <p>This operation is available only for Amazon Connect Global Resiliency instances enabled for global routing.</p> </note>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.get_cross_region_routing_request.GetCrossRegionRoutingRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.get_cross_region_routing_response.GetCrossRegionRoutingResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.get_cross_region_routing
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.get_cross_region_routing.async_get_cross_region_routing(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.get_cross_region_routing_request.GetCrossRegionRoutingRequest = {
+            "instance_id": instance_id
         }
 
         response = await aexecute_pipeline(
@@ -11203,6 +11965,62 @@ class AsyncConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def get_evaluation_form_validation(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        evaluation_form_id: "capo_connect.types.resource_id.ResourceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        evaluation_form_version: Optional[
+            "capo_connect.types.version_number.VersionNumber"
+        ] = None,
+    ) -> "capo_connect.types.get_evaluation_form_validation_response.GetEvaluationFormValidationResponse":
+        r"""<p>Retrieves the status and results of a validation process started by <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_StartEvaluationFormValidation.html\">StartEvaluationFormValidation</a>. Returns the current execution status (<code>IN_PROGRESS</code>, <code>COMPLETED</code>, or <code>FAILED</code>), the validated form version, and when completed, a list of findings that identify structural issues and quality improvements for the evaluation form, and may include suggested fixes. If the validation failed, a reason is provided indicating the cause of the failure.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            evaluation_form_id: <p>The unique identifier for the evaluation form.</p>
+            evaluation_form_version: <p>The version of the evaluation form to retrieve validation results for.</p>
+
+        Raises:
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.get_evaluation_form_validation_request.GetEvaluationFormValidationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.get_evaluation_form_validation_response.GetEvaluationFormValidationResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.get_evaluation_form_validation
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.get_evaluation_form_validation.async_get_evaluation_form_validation(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.get_evaluation_form_validation_request.GetEvaluationFormValidationRequest = {
+            "instance_id": instance_id,
+            "evaluation_form_id": evaluation_form_id,
+        }
+        if evaluation_form_version is not None:
+            input_["evaluation_form_version"] = evaluation_form_version
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_federation_token(
         self,
         instance_id: "capo_connect.types.instance_id.InstanceId",
@@ -11220,6 +12038,7 @@ class AsyncConnectClient:
             capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
             capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
             capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
             capo_connect.errors.user_not_found_exception.UserNotFoundException: <p>No user with the specified credentials was found in the Connect Customer instance.</p>
             capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -11433,9 +12252,9 @@ class AsyncConnectClient:
             start_time: <p>The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of historical metrics data. The time must be before the end time timestamp. The start and end time depends on the <code>IntervalPeriod</code> selected. By default the time range between start and end time is 35 days. Historical metrics are available for 3 months.</p>
             end_time: <p>The timestamp, in UNIX Epoch time format, at which to end the reporting interval for the retrieval of historical metrics data. The time must be later than the start time timestamp. It cannot be later than the current timestamp.</p>
             interval: <p>The interval period and timezone to apply to returned metrics.</p> <ul> <li> <p> <code>IntervalPeriod</code>: An aggregated grouping applied to request metrics. Valid <code>IntervalPeriod</code> values are: <code>FIFTEEN_MIN</code> | <code>THIRTY_MIN</code> | <code>HOUR</code> | <code>DAY</code> | <code>WEEK</code> | <code>TOTAL</code>. </p> <p>For example, if <code>IntervalPeriod</code> is selected <code>THIRTY_MIN</code>, <code>StartTime</code> and <code>EndTime</code> differs by 1 day, then Connect Customer returns 48 results in the response. Each result is aggregated by the THIRTY_MIN period. By default Connect Customer aggregates results based on the <code>TOTAL</code> interval period. </p> <p>The following list describes restrictions on <code>StartTime</code> and <code>EndTime</code> based on which <code>IntervalPeriod</code> is requested. </p> <ul> <li> <p> <code>FIFTEEN_MIN</code>: The difference between <code>StartTime</code> and <code>EndTime</code> must be less than 3 days.</p> </li> <li> <p> <code>THIRTY_MIN</code>: The difference between <code>StartTime</code> and <code>EndTime</code> must be less than 3 days.</p> </li> <li> <p> <code>HOUR</code>: The difference between <code>StartTime</code> and <code>EndTime</code> must be less than 3 days.</p> </li> <li> <p> <code>DAY</code>: The difference between <code>StartTime</code> and <code>EndTime</code> must be less than 35 days.</p> </li> <li> <p> <code>WEEK</code>: The difference between <code>StartTime</code> and <code>EndTime</code> must be less than 35 days.</p> </li> <li> <p> <code>TOTAL</code>: The difference between <code>StartTime</code> and <code>EndTime</code> must be less than 35 days.</p> </li> </ul> </li> <li> <p> <code>TimeZone</code>: The timezone applied to requested metrics.</p> </li> </ul>
-            filters: <p>Filtering is an operation that selects records that match a set of specified criteria. By narrowing the dataset before aggregation, filters ensure that only relevant records are included in the computation.</p> <p> <b>Filter keys</b> </p> <p>The following are valid filter keys for a <code>GetMetricDataV2</code> request:</p> <p> <code>AGENT</code> | <code>AI_AGENT</code> | <code>AI_AGENT_ID</code> | <code>AI_AGENT_NAME</code> | <code>AI_AGENT_TYPE</code> | <code>AI_PROMPT</code> | <code>AI_PROMPT_ID</code> | <code>AI_PROMPT_NAME</code> | <code>AI_PROMPT_TYPE</code> | <code>AI_TOOL_ID</code> | <code>AI_TOOL_NAME</code> | <code>AI_TOOL_TYPE</code> | <code>AI_USE_CASE</code> | <code>AGENT_HIERARCHY_LEVEL_ONE</code> | <code>AGENT_HIERARCHY_LEVEL_TWO</code> | <code>AGENT_HIERARCHY_LEVEL_THREE</code> | <code>AGENT_HIERARCHY_LEVEL_FOUR</code> | <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>ANSWERING_MACHINE_DETECTION_STATUS</code> | <code>BOT_ALIAS</code> | <code>BOT_ID</code> | <code>BOT_INTENT_NAME</code> | <code>BOT_LOCALE</code> | <code>BOT_VERSION</code> | <code>CAMPAIGN</code> | <code>CAMPAIGN_DELIVERY_EVENT_TYPE</code> | <code>CAMPAIGN_EXCLUDED_EVENT_TYPE</code> | <code>CASE_STATUS</code> | <code>CASE_TEMPLATE_ARN</code> | <code>CHANNEL</code> | <code>contact/segmentAttributes/connect:Subtype</code> | <code>contact/segmentAttributes/connect:ValidationTestType</code> | <code>DISCONNECT_REASON</code> | <code>EVALUATION_FORM</code> | <code>EVALUATION_QUESTION</code> | <code>EVALUATION_SECTION</code> | <code>EVALUATION_SOURCE</code> | <code>EVALUATOR_ID</code> | <code>FEATURE</code> | <code>FLOW_ACTION_ID</code> | <code>FLOW_TYPE</code> | <code>FLOWS_MODULE_RESOURCE_ID</code> | <code>FLOWS_NEXT_RESOURCE_ID</code> | <code>FLOWS_NEXT_RESOURCE_QUEUE_ID</code> | <code>FLOWS_OUTCOME_TYPE</code> | <code>FLOWS_RESOURCE_ID</code> | <code>FORM_VERSION</code> | <code>INITIATING_FLOW</code> | <code>INITIATION_METHOD</code> | <code>INVOKING_RESOURCE_PUBLISHED_TIMESTAMP</code> | <code>INVOKING_RESOURCE_TYPE</code> | <code>KNOWLEDGE_BASE_NAME</code> | <code>PARENT_FLOWS_RESOURCE_ID</code> | <code>Q_CONNECT_ENABLED</code> | <code>QUEUE</code> | <code>RESOURCE_PUBLISHED_TIMESTAMP</code> | <code>ROUTING_PROFILE</code> | <code>ROUTING_STEP_EXPRESSION</code> | <code>SESSION_ID</code> | <code>TEST_CASE</code> | <code>TEST_CASE_EXECUTION_FAILURE_REASON</code> | <code>TEST_CASE_EXECUTION_RESULT</code> | <code>TEST_CASE_EXECUTION_STATE</code> </p> <note> <p>The following filter keys correspond to Connect Customer resources and are used for authorizing requests. A <code>GetMetricDataV2</code> request requires at least one of these filters:</p> <p> <code>QUEUE</code>, <code>ROUTING_PROFILE</code>, <code>AGENT</code>, <code>AGENT_HIERARCHY_LEVEL_ONE</code>, <code>AGENT_HIERARCHY_LEVEL_TWO</code>, <code>AGENT_HIERARCHY_LEVEL_THREE</code>, <code>AGENT_HIERARCHY_LEVEL_FOUR</code>, <code>AGENT_HIERARCHY_LEVEL_FIVE</code>, <code>CAMPAIGN</code>, <code>EVALUATION_FORM</code>, <code>EVALUATOR_ID</code> </p> <p>You can use up to 5 filter keys in a single request, and up to 100 filter values across all filter keys.</p> </note> <p> <b>Filter values</b> </p> <ul> <li> <p>VOICE, CHAT, TASK, and EMAIL are valid filter values for the <code>CHANNEL</code> filter key. They do not count towards the limit of 100 filter values. For example, a <code>GetMetricDataV2</code> request can filter by 50 queues, 35 agents, and 15 routing profiles for a total of 100 filter values, along with 4 channel filters.</p> </li> <li> <p> <code>contact_lens_conversational_analytics</code> is a valid filter value for the <code>FEATURE</code> filter key. It is available only for contacts analyzed by Contact Lens conversational analytics.</p> </li> <li> <p> <code>connect:Chat</code>, <code>connect:SMS</code>, <code>connect:Telephony</code>, and <code>connect:WebRTC</code> are valid filter value examples (not exhaustive) for the <code>contact/segmentAttributes/connect:Subtype</code> filter key.</p> </li> <li> <p> <code>ROUTING_STEP_EXPRESSION</code> accepts a filter value up to 3,000 characters in length. This filter is case-sensitive and order-sensitive. JSON string fields must be sorted in ascending order, and JSON array order must be preserved.</p> </li> <li> <p>TRUE and FALSE are the only valid filter values for the <code>Q_CONNECT_ENABLED</code> filter key.</p> <ul> <li> <p>TRUE includes all contacts that had Connect AI Agents enabled as part of the flow.</p> </li> <li> <p>FALSE includes all contacts that did not have Connect AI Agents enabled as part of the flow.</p> </li> </ul> </li> <li> <p> <code>EXPERIENCE_VALIDATION</code> and <code>FLOW_VALIDATION</code> are the only valid filter values for the <code>contact/segmentAttributes/connect:ValidationTestType</code> filter key. This filter is available only for contact record-driven metrics.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-outbound-campaigns_Campaign.html\">Campaign</a> ARNs are valid filter values for the <code>CAMPAIGN</code> filter key.</p> </li> <li> <p>To filter by phone number, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-historical-metrics-report.html\">Create a historical metrics report</a> in the <i>Connect Customer Administrator Guide</i>.</p> </li> </ul>
-            groupings: <p>The grouping applied to the metrics that are returned. For example, when results are grouped by queue, the metrics returned are grouped by queue. The values that are returned apply to the metrics for each queue. They are not aggregated for all queues.</p> <p>If no grouping is specified, a summary of all metrics is returned.</p> <p>Valid grouping keys: <code>AGENT</code> | <code>AI_AGENT</code> | <code>AI_AGENT_ID</code> | <code>AI_AGENT_NAME</code> | <code>AI_AGENT_NAME_VERSION</code> | <code>AI_AGENT_TYPE</code> | <code>AI_PROMPT</code> | <code>AI_PROMPT_ID</code> | <code>AI_PROMPT_NAME</code> | <code>AI_PROMPT_NAME_VERSION</code> | <code>AI_PROMPT_TYPE</code> | <code>AI_TOOL_ID</code> | <code>AI_TOOL_NAME</code> | <code>AI_TOOL_TYPE</code> | <code>AI_USE_CASE</code> | <code>AGENT_HIERARCHY_LEVEL_ONE</code> | <code>AGENT_HIERARCHY_LEVEL_TWO</code> | <code>AGENT_HIERARCHY_LEVEL_THREE</code> | <code>AGENT_HIERARCHY_LEVEL_FOUR</code> | <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>ANSWERING_MACHINE_DETECTION_STATUS</code> | <code>BOT_ID</code> | <code>BOT_ALIAS</code> | <code>BOT_VERSION</code> | <code>BOT_LOCALE</code> | <code>BOT_INTENT_NAME</code> | <code>CAMPAIGN</code> | <code>CAMPAIGN_DELIVERY_EVENT_TYPE</code> | <code>CAMPAIGN_EXCLUDED_EVENT_TYPE</code> | <code>CAMPAIGN_EXECUTION_TIMESTAMP</code> | <code>CASE_TEMPLATE_ARN</code> | <code>CASE_STATUS</code> | <code>CHANNEL</code> | <code>contact/segmentAttributes/connect:Subtype</code> | <code>DISCONNECT_REASON</code> | <code>EVALUATION_FORM</code> | <code>EVALUATION_SECTION</code> | <code>EVALUATION_QUESTION</code> | <code>EVALUATION_SOURCE</code> | <code>EVALUATOR_ID</code> | <code>FLOWS_RESOURCE_ID</code> | <code>FLOWS_MODULE_RESOURCE_ID</code> | <code>FLOW_ACTION_ID</code> | <code>FLOW_TYPE</code> | <code>FLOWS_OUTCOME_TYPE</code> | <code>FORM_VERSION</code> | <code>INITIATION_METHOD</code> | <code>INVOKING_RESOURCE_PUBLISHED_TIMESTAMP</code> | <code>INVOKING_RESOURCE_TYPE</code> | <code>KNOWLEDGE_ARTICLE_NAME</code> | <code>KNOWLEDGE_BASE_NAME</code> | <code>PARENT_FLOWS_RESOURCE_ID</code> | <code>Q_CONNECT_ENABLED</code> | <code>QUEUE</code> | <code>RESOURCE_PUBLISHED_TIMESTAMP</code> | <code>ROUTING_PROFILE</code> | <code>ROUTING_STEP_EXPRESSION</code> | <code>SESSION_ID</code> | <code>TEST_CASE</code> | <code>TEST_CASE_EXECUTION_FAILURE_REASON</code> | <code>TEST_CASE_INVOCATION_METHOD</code> </p> <note> <p> <code>AI_AGENT_NAME_VERSION</code>, <code>AI_PROMPT_NAME_VERSION</code>, and <code>KNOWLEDGE_ARTICLE_NAME</code> are valid groupings but not valid filters.</p> </note> <p>API, SCHEDULE, and EVENT are the only valid filterValues for TEST_CASE_INVOCATION_METHOD.</p> <p>OBSERVE_EVENT, SEND_INSTRUCTION, ASSERT_DATA, and OVERRIDE_SYSTEM_BEHAVIOR are the only valid filterValues for TEST_CASE_EXECUTION_FAILURE_REASON</p> <p>Type: Array of strings</p> <p>Array Members: Maximum number of 4 items</p> <p>Required: No</p>
-            metrics: <p>The metrics to retrieve. Specify the name or metricId, groupings, and filters for each metric. The following historical metrics are available. For a description of each metric, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html\">Metrics definition</a> in the <i>Connect Customer Administrator Guide</i>.</p> <note> <p>MetricId should be used to reference custom metrics or out of the box metrics as Arn. If using MetricId, the limit is 20 MetricId per request.</p> </note> <dl> <dt>ABANDONMENT_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#abandonment-rate\">Abandonment rate</a> </p> </dd> <dt>AGENT_ADHERENT_TIME</dt> <dd> <p>This metric is available only in Amazon Web Services Regions where <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/regions.html#optimization_region\">Forecasting, capacity planning, and scheduling</a> is available.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#adherent-time\">Adherent time</a> </p> </dd> <dt>AGENT_ANSWER_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-answer-rate\">Agent answer rate</a> </p> </dd> <dt>AGENT_NON_ADHERENT_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#non-adherent-time\">Non-adherent time</a> </p> </dd> <dt>AGENT_NON_RESPONSE</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-non-response\">Agent non-response</a> </p> </dd> <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>Data for this metric is available starting from October 1, 2023 0:00:00 GMT.</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-non-response-without-customer-abandons\">Agent non-response without customer abandons</a> </p> </dd> <dt>AGENT_OCCUPANCY</dt> <dd> <p>Unit: Percentage</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#occupancy\">Occupancy</a> </p> </dd> <dt>AGENT_SCHEDULE_ADHERENCE</dt> <dd> <p>This metric is available only in Amazon Web Services Regions where <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/regions.html#optimization_region\">Forecasting, capacity planning, and scheduling</a> is available.</p> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#adherence\">Adherence</a> </p> </dd> <dt>AGENT_SCHEDULED_TIME</dt> <dd> <p>This metric is available only in Amazon Web Services Regions where <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/regions.html#optimization_region\">Forecasting, capacity planning, and scheduling</a> is available.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#scheduled-time\">Scheduled time</a> </p> </dd> <dt>AVG_ABANDON_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-queue-abandon-time\">Average queue abandon time</a> </p> </dd> <dt>AVG_ACTIVE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-active-time\">Average active time</a> </p> </dd> <dt>AVG_AFTER_CONTACT_WORK_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#after-contact-work-time\">Average after contact work time</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_AGENT_CONCURRENCY</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-concurrency\">Average agent concurrency</a> </p> </dd> <dt>AVG_AGENT_CONNECTING_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this metric only supports the following as <code>INITIATION_METHOD</code>: <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> | <code>API</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-api-connecting-time\">Average agent API connecting time</a> </p> <note> <p>The <code>Negate</code> key in metric-level filters is not applicable for this metric.</p> </note> </dd> <dt>AVG_AGENT_PAUSE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-pause-time\">Average agent pause time</a> </p> </dd> <dt>AVG_BOT_CONVERSATION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#average-bot-conversation-time\">Average bot conversation time</a> </p> </dd> <dt>AVG_BOT_CONVERSATION_TURNS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#average-bot-conversation-turns\">Average bot conversation turns</a> </p> </dd> <dt>AVG_CASE_RELATED_CONTACTS</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-contacts-per-case\">Average contacts per case</a> </p> </dd> <dt>AVG_CASE_RESOLUTION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-case-resolution-time\">Average case resolution time</a> </p> </dd> <dt>AVG_CONTACT_DURATION</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-contact-duration\">Average contact duration</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_CONTACT_FIRST_RESPONSE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-average-contact-first-response-wait-time\">Agent average contact first response wait time</a> </p> </dd> <dt>AVG_CONVERSATION_CLOSE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-conversation-close-time\">Average conversation close time</a> </p> </dd> <dt>AVG_CONVERSATION_DURATION</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-conversation-duration\">Average conversation duration</a> </p> </dd> <dt>AVG_DIALS_PER_MINUTE</dt> <dd> <p>This metric is available only for outbound campaigns that use the agent assisted voice and automated voice delivery modes.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Campaign, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-dials-per-minute\">Average dials per minute</a> </p> </dd> <dt>AVG_EVALUATION_SCORE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Section ID, Evaluation Question ID, Evaluation Source, Form Version, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-evaluation-score\">Average evaluation score</a> </p> </dd> <dt>AVG_FIRST_RESPONSE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-first-response-time\">Average agent first response time</a> </p> </dd> <dt>AVG_FLOW_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-flow-time\">Average flow time</a> </p> </dd> <dt>AVG_GREETING_TIME_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-greeting-time\">Average agent greeting time</a> </p> </dd> <dt>AVG_HANDLE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, AI Use Case, Feature, contact/segmentAttributes/connect:Subtype, RoutingStepExpression</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-handle-time\">Average handle time</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>ACTIVE_AI_AGENTS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#active-ai-agents\">Active AI Agents</a> </p> </dd> <dt>AI_HANDOFF_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-handoff-rate\">AI Handoff Rate</a> </p> </dd> <dt>AI_HANDOFFS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-handoffs\">AI Handoff Count</a> </p> </dd> <dt>AI_AGENT_INVOCATION_SUCCESS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-invocation-success\">AI Agent Invocation Success</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_AGENT_INVOCATION_SUCCESS_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-invocation-success-rate\">AI Agent Invocation Success Rate</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_AGENT_INVOCATIONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Agent Name Version, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-invocations\">AI Agent Invocation Count</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_AGENT_RESPONSE_HELPFUL</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-response-helpful\">AI Agent Response Helpful</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_AGENT_RESPONSE_NOT_HELPFUL</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-response-not-helpful\">AI Agent Response Not Helpful</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_RESPONSE_COMPLETION_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-response-completion-rate\">AI Response Completion Rate</a> </p> </dd> <dt>AI_INVOLVED_CONTACTS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-involved-contacts\">AI Involved Contacts</a> </p> </dd> <dt>AI_PROMPT_INVOCATION_SUCCESS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-prompt-invocation-success\">AI Prompt Invocation Success</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_PROMPT_INVOCATION_SUCCESS_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-prompt-invocation-success-rate\">AI Prompt Invocation Success Rate</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_PROMPT_INVOCATIONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-prompt-invocations\">AI Prompt Invocations</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_INVOCATION_SUCCESS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-invocation-success\">AI Tool Invocation Success</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_INVOCATION_SUCCESS_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-invocation-success-rate\">AI Tool Invocation Success Rate</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_INVOCATIONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-invocations\">AI Tool Invocations</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AVG_AI_AGENT_CONVERSATION_TURNS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-ai-agent-conversation-turns\">Average AI Agent Conversation Turns</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AVG_AI_CONVERSATION_TURNS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-ai-conversation-turns\">Average AI Conversation Turns</a> </p> </dd> <dt>AVG_AI_PROMPT_INVOCATION_LATENCY</dt> <dd> <p>Unit: Milliseconds</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-ai-prompt-invocation-latency\">Average AI Prompt Invocation Latency</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AVG_AI_TOOL_INVOCATION_LATENCY</dt> <dd> <p>Unit: Milliseconds</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-ai-tool-invocation-latency\">Average AI Tool Invocation Latency</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_PARAMETER_ACCURACY</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-parameter-accuracy\">AI Tool Parameter Accuracy</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_SELECTION_ACCURACY</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-selection-accuracy\">AI Tool Selection Accuracy</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_UTILIZATION_ACCURACY</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-utilization-accuracy\">AI Tool Utilization Accuracy</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>COMPLETENESS_SCORE</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile, Session ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#completeness-score\">Completeness Score</a> </p> </dd> <dt>FAITHFULNESS_SCORE</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile, Session ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#faithfulness-score\">Faithfulness Score</a> </p> </dd> <dt>GOAL_SUCCESS_RATE</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile, Session ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#goal-success-rate\">Goal Success Rate</a> </p> </dd> <dt>KNOWLEDGE_CONTENT_REFERENCES</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Use Case, Channel, Knowledge Base Name, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#knowledge-content-references\">Knowledge Content References</a> </p> </dd> <dt>PROACTIVE_INTENT_ENGAGEMENT_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-engagement-rate\">Proactive Intent Engagement Rate</a> </p> </dd> <dt>PROACTIVE_INTENT_RESPONSE_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-response-rate\">Proactive Intent Response Rate</a> </p> </dd> <dt>PROACTIVE_INTENTS_ANSWERED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-answered\">Proactive Intents Answered</a> </p> </dd> <dt>PROACTIVE_INTENTS_DETECTED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-detected\">Proactive Intents Detected</a> </p> </dd> <dt>PROACTIVE_INTENTS_ENGAGED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-engaged\">Proactive Intents Engaged</a> </p> </dd> <dt>AVG_HOLD_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-hold-time\">Average customer hold time</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-hold-time-all-contacts\">Average customer hold time all contacts</a> </p> </dd> <dt>AVG_HOLDS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-holds\">Average holds</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_INTERACTION_AND_HOLD_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-interaction-and-customer-hold-time\">Average agent interaction and customer hold time</a> </p> </dd> <dt>AVG_INTERACTION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-interaction-time\">Average agent interaction time</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_INTERRUPTIONS_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-interruptions\">Average agent interruptions</a> </p> </dd> <dt>AVG_INTERRUPTION_TIME_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-interruption-time\">Average agent interruption time</a> </p> </dd> <dt>AVG_MESSAGE_LENGTH_AGENT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-message-length\">Average agent message length</a> </p> </dd> <dt>AVG_MESSAGE_LENGTH_CUSTOMER</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-message-length\">Average customer message length</a> </p> </dd> <dt>AVG_MESSAGES</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-messages\">Average messages</a> </p> </dd> <dt>AVG_MESSAGES_AGENT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-messages\">Average agent messages</a> </p> </dd> <dt>AVG_MESSAGES_BOT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-bot-messages\">Average bot messages</a> </p> </dd> <dt>AVG_MESSAGES_CUSTOMER</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-messages\">Average customer messages</a> </p> </dd> <dt>AVG_NON_TALK_TIME</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-non-talk-time\">Average non-talk time</a> </p> </dd> <dt>AVG_QUEUE_ANSWER_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-queue-answer-time\">Average queue answer time</a> </p> <p>Valid metric level filters: <code>INITIATION_METHOD</code>, <code>FEATURE</code>, <code>DISCONNECT_REASON</code> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_QUEUE_ANSWER_TIME_CUSTOMER_FIRST_CALLBACK</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-queue-answer-time-customer-first-callback\">Avg. queue answer time - customer first callback</a> </p> </dd> <dt>AVG_RESPONSE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-response-time-agent\">Average agent response time</a> </p> </dd> <dt>AVG_RESPONSE_TIME_CUSTOMER</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-time-agent\">Average customer response time</a> </p> </dd> <dt>AVG_RESOLUTION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-resolution-time\">Average resolution time</a> </p> </dd> <dt>AVG_TALK_TIME</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-talk-time\">Average talk time</a> </p> </dd> <dt>AVG_TALK_TIME_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-talk-time\">Average agent talk time</a> </p> </dd> <dt>AVG_TALK_TIME_CUSTOMER</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-talk-time\">Average customer talk time</a> </p> </dd> <dt>AVG_WAIT_TIME_AFTER_CUSTOMER_CONNECTION</dt> <dd> <p>This metric is available only for outbound campaigns that use the agent assisted voice and automated voice delivery modes.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Campaign</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-wait-time-after-customer-connection\">Average wait time after customer connection</a> </p> </dd> <dt>AVG_WAIT_TIME_AFTER_CUSTOMER_FIRST_CALLBACK_CONNECTION</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-wait-time-after-customer-connection-customer-first-callback\">Avg. wait time after customer connection - customer first callback</a> </p> </dd> <dt>AVG_WEIGHTED_EVALUATION_SCORE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form Id, Evaluation Section ID, Evaluation Question ID, Evaluation Source, Form Version, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-weighted-evaluation-score\">Average weighted evaluation score</a> </p> </dd> <dt>BOT_CONVERSATIONS_COMPLETED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#bot-conversations-completed\">Bot conversations completed</a> </p> </dd> <dt>BOT_INTENTS_COMPLETED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Bot intent name, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#bot-intents-completed\">Bot intents completed</a> </p> </dd> <dt>CAMPAIGN_CONTACTS_ABANDONED_AFTER_X</dt> <dd> <p>This metric is available only for outbound campaigns using the agent assisted voice and automated voice delivery modes.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Campaign</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must enter <code>GT</code> (for <i>Greater than</i>).</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-contacts-abandoned-after-x\">Campaign contacts abandoned after X</a> </p> </dd> <dt>CAMPAIGN_CONTACTS_ABANDONED_AFTER_X_RATE</dt> <dd> <p>This metric is available only for outbound campaigns using the agent assisted voice and automated voice delivery modes.</p> <p>Unit: Percent</p> <p>Valid groupings and filters: Agent, Campaign</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must enter <code>GT</code> (for <i>Greater than</i>).</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-contacts-abandoned-after-x-rate\">Campaign contacts abandoned after X rate</a> </p> </dd> <dt>CAMPAIGN_INTERACTIONS</dt> <dd> <p>This metric is available only for outbound campaigns using the email delivery mode. </p> <p>Unit: Count</p> <p>Valid metric filter key: CAMPAIGN_INTERACTION_EVENT_TYPE</p> <p>Valid groupings and filters: Campaign</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-interactions\">Campaign interactions</a> </p> </dd> <dt>CAMPAIGN_PROGRESS_RATE</dt> <dd> <p>This metric is only available for outbound campaigns initiated using a customer segment. It is not available for event triggered campaigns.</p> <p>Unit: Percent</p> <p>Valid groupings and filters: Campaign, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-progress-rate\">Campaign progress rate</a> </p> </dd> <dt>CAMPAIGN_SEND_ATTEMPTS</dt> <dd> <p>This metric is available only for outbound campaigns.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Channel, contact/segmentAttributes/connect:Subtype </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-send-attempts\">Campaign send attempts</a> </p> </dd> <dt>CAMPAIGN_SEND_EXCLUSIONS</dt> <dd> <p>This metric is available only for outbound campaigns.</p> <p>Valid metric filter key: CAMPAIGN_EXCLUDED_EVENT_TYPE</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Campaign Excluded Event Type, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-send-exclusions\">Campaign send exclusions</a> </p> </dd> <dt>CASES_CREATED</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#cases-created\">Cases created</a> </p> </dd> <dt>CONTACTS_CREATED</dt> <dd> <p>Unit: Count</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-created\">Contacts created</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>CONTACTS_HANDLED</dt> <dd> <p>Unit: Count</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code>, <code>DISCONNECT_REASON</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, RoutingStepExpression, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-handled\">Contacts handled</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>CONTACTS_HANDLED_BY_CONNECTED_TO_AGENT</dt> <dd> <p>Unit: Count</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-handled-by-connected-to-agent-timestamp\">Contacts handled (connected to agent timestamp)</a> </p> </dd> <dt>CONTACTS_HOLD_ABANDONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-hold-disconnect\">Contacts hold disconnect</a> </p> </dd> <dt>CONTACTS_ON_HOLD_AGENT_DISCONNECT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-hold-agent-disconnect\">Contacts hold agent disconnect</a> </p> </dd> <dt>CONTACTS_ON_HOLD_CUSTOMER_DISCONNECT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-hold-customer-disconnect\">Contacts hold customer disconnect</a> </p> </dd> <dt>CONTACTS_PUT_ON_HOLD</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-put-on-hold\">Contacts put on hold</a> </p> </dd> <dt>CONTACTS_TRANSFERRED_OUT_EXTERNAL</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out-external\">Contacts transferred out external</a> </p> </dd> <dt>CONTACTS_TRANSFERRED_OUT_INTERNAL</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out-internal\">Contacts transferred out internal</a> </p> </dd> <dt>CONTACTS_QUEUED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-queued\">Contacts queued</a> </p> </dd> <dt>CONTACTS_QUEUED_BY_ENQUEUE</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-queued-by-enqueue\">Contacts queued (enqueue timestamp)</a> </p> </dd> <dt>CONTACTS_REMOVED_FROM_QUEUE_IN_X</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-removed-from-queue\">Contacts removed from queue in X seconds</a> </p> </dd> <dt>CONTACTS_RESOLVED_IN_X</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-resolved\">Contacts resolved in X</a> </p> </dd> <dt>CONTACTS_TRANSFERRED_OUT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out\">Contacts transferred out</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out-by-agent\">Contacts transferred out by agent</a> </p> </dd> <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out-queue\">Contacts transferred out queue</a> </p> </dd> <dt>CURRENT_CASES</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#current-cases\">Current cases</a> </p> </dd> <dt>CONVERSATIONS_ABANDONED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#conversations-abandoned\">Conversations abandoned</a> </p> </dd> <dt>DELIVERY_ATTEMPTS</dt> <dd> <p>This metric is available only for outbound campaigns.</p> <p>Unit: Count</p> <p>Valid metric filter key: <code>ANSWERING_MACHINE_DETECTION_STATUS</code>, <code>CAMPAIGN_DELIVERY_EVENT_TYPE</code>, <code>DISCONNECT_REASON</code> </p> <p>Valid groupings and filters: Agent, Answering Machine Detection Status, Campaign, Campaign Delivery EventType, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#delivery-attempts\">Delivery attempts</a> </p> <note> <p>Campaign Delivery EventType filter and grouping are only available for SMS and Email campaign delivery modes. Agent, Queue, Routing Profile, Answering Machine Detection Status and Disconnect Reason are only available for agent assisted voice and automated voice delivery modes. </p> </note> </dd> <dt>DELIVERY_ATTEMPT_DISPOSITION_RATE</dt> <dd> <p>This metric is available only for outbound campaigns. Dispositions for the agent assisted voice and automated voice delivery modes are only available with answering machine detection enabled.</p> <p>Unit: Percent</p> <p>Valid metric filter key: <code>ANSWERING_MACHINE_DETECTION_STATUS</code>, <code>CAMPAIGN_DELIVERY_EVENT_TYPE</code>, <code>DISCONNECT_REASON</code> </p> <p>Valid groupings and filters: Agent, Answering Machine Detection Status, Campaign, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#delivery-attempt-disposition-rate\">Delivery attempt disposition rate</a> </p> <note> <p>Campaign Delivery Event Type filter and grouping are only available for SMS and Email campaign delivery modes. Agent, Queue, Routing Profile, Answering Machine Detection Status and Disconnect Reason are only available for agent assisted voice and automated voice delivery modes. </p> </note> </dd> <dt>EVALUATIONS_PERFORMED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Source, Form Version, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#evaluations-performed\">Evaluations performed</a> </p> </dd> <dt>FLOWS_OUTCOME</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#flows-outcome\">Flows outcome</a> </p> </dd> <dt>FLOWS_STARTED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#flows-started\">Flows started</a> </p> </dd> <dt>HUMAN_ANSWERED_CALLS</dt> <dd> <p>This metric is available only for outbound campaigns. Dispositions for the agent assisted voice and automated voice delivery modes are only available with answering machine detection enabled. </p> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Campaign</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#human-answered\">Human answered</a> </p> </dd> <dt>MAX_FLOW_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#maximum-flow-time\">Maximum flow time</a> </p> </dd> <dt>MAX_QUEUED_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#maximum-queued-time\">Maximum queued time</a> </p> </dd> <dt>MIN_FLOW_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#minimum-flow-time\">Minimum flow time</a> </p> </dd> <dt>PERCENT_AUTOMATIC_FAILS</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Source, Form Version, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#automatic-fails-percent\">Automatic fails percent</a> </p> </dd> <dt>PERCENT_BOT_CONVERSATIONS_OUTCOME</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#percent-bot-conversations-outcome\">Percent bot conversations outcome</a> </p> </dd> <dt>PERCENT_BOT_INTENTS_OUTCOME</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Bot intent name, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#percent-bot-intents-outcome\">Percent bot intents outcome</a> </p> </dd> <dt>PERCENT_CASES_FIRST_CONTACT_RESOLVED</dt> <dd> <p>Unit: Percent</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#cases-resolved-on-first-contact\">Cases resolved on first contact</a> </p> </dd> <dt>PERCENT_CONTACTS_STEP_EXPIRED</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, RoutingStepExpression</p> <p>UI name: This metric is available in Real-time Metrics UI but not on the Historical Metrics UI.</p> </dd> <dt>PERCENT_CONTACTS_STEP_JOINED</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, RoutingStepExpression</p> <p>UI name: This metric is available in Real-time Metrics UI but not on the Historical Metrics UI.</p> </dd> <dt>PERCENT_FLOWS_OUTCOME</dt> <dd> <p>Unit: Percent</p> <p>Valid metric filter key: <code>FLOWS_OUTCOME_TYPE</code> </p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#flows-outcome-percentage\">Flows outcome percentage</a>.</p> <note> <p>The <code>FLOWS_OUTCOME_TYPE</code> is not a valid grouping.</p> </note> </dd> <dt>PERCENT_NON_TALK_TIME</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Percentage</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#non-talk-time-percent\">Non-talk time percent</a> </p> </dd> <dt>PERCENT_TALK_TIME</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Percentage</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#talk-time-percent\">Talk time percent</a> </p> </dd> <dt>PERCENT_TALK_TIME_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Percentage</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-talk-time-percent\">Agent talk time percent</a> </p> </dd> <dt>PERCENT_TALK_TIME_CUSTOMER</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Percentage</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#customer-talk-time-percent\">Customer talk time percent</a> </p> </dd> <dt>RECIPIENTS_ATTEMPTED</dt> <dd> <p>This metric is only available for outbound campaigns initiated using a customer segment. It is not available for event triggered campaigns.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#recipients-attempted\">Recipients attempted</a> </p> </dd> <dt>RECIPIENTS_INTERACTED</dt> <dd> <p>This metric is only available for outbound campaigns initiated using a customer segment. It is not available for event triggered campaigns.</p> <p>Valid metric filter key: CAMPAIGN_INTERACTION_EVENT_TYPE</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Channel, contact/segmentAttributes/connect:Subtype, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#recipients-interacted\">Recipients interacted</a> </p> </dd> <dt>RECIPIENTS_TARGETED</dt> <dd> <p>This metric is only available for outbound campaigns initiated using a customer segment. It is not available for event triggered campaigns.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#recipients-targeted\">Recipients targeted</a> </p> </dd> <dt>REOPENED_CASE_ACTIONS</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#cases-reopened\">Cases reopened</a> </p> </dd> <dt>RESOLVED_CASE_ACTIONS</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#cases-resolved\">Cases resolved</a> </p> </dd> <dt>SERVICE_LEVEL</dt> <dd> <p>You can include up to 20 SERVICE_LEVEL metrics in a request.</p> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#service-level\">Service level X</a> </p> </dd> <dt>STEP_CONTACTS_QUEUED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, RoutingStepExpression</p> <p>UI name: This metric is available in Real-time Metrics UI but not on the Historical Metrics UI.</p> </dd> <dt>SUM_AFTER_CONTACT_WORK_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#after-contact-work-time\">After contact work time</a> </p> </dd> <dt>SUM_CONNECTING_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code>. This metric only supports the following filter keys as <code>INITIATION_METHOD</code>: <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> | <code>API</code> | <code>CALLBACK_CUSTOMER_FIRST_DIALED</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-api-connecting-time\">Agent API connecting time</a> </p> <note> <p>The <code>Negate</code> key in metric-level filters is not applicable for this metric.</p> </note> </dd> <dt>CONTACTS_ABANDONED</dt> <dd> <p>Unit: Count</p> <p>Metric filter: </p> <ul> <li> <p>Valid values: <code>API</code>| <code>INCOMING</code> | <code>OUTBOUND</code> | <code>TRANSFER</code> | <code>CALLBACK</code> | <code>QUEUE_TRANSFER</code>| <code>Disconnect</code> | <code>CALLBACK_CUSTOMER_FIRST_DIALED</code> </p> </li> </ul> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, RoutingStepExpression, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-abandoned\">Contact abandoned</a> </p> </dd> <dt>SUM_CONTACTS_ABANDONED_IN_X</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-abandoned-in-x-seconds\">Contacts abandoned in X seconds</a> </p> </dd> <dt>SUM_CONTACTS_ANSWERED_IN_X</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-answered-in-x-seconds\">Contacts answered in X seconds</a> </p> </dd> <dt>SUM_CONTACT_FLOW_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contact-flow-time\">Contact flow time</a> </p> </dd> <dt>SUM_CONTACT_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-on-contact-time\">Agent on contact time</a> </p> </dd> <dt>SUM_CONTACTS_DISCONNECTED </dt> <dd> <p>Valid metric filter key: <code>DISCONNECT_REASON</code> </p> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contact-disconnected\">Contact disconnected</a> </p> </dd> <dt>SUM_ERROR_STATUS_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#error-status-time\">Error status time</a> </p> </dd> <dt>SUM_HANDLE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contact-handle-time\">Contact handle time</a> </p> </dd> <dt>SUM_HOLD_TIME</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#customer-hold-time\">Customer hold time</a> </p> </dd> <dt>SUM_IDLE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-idle-time\">Agent idle time</a> </p> </dd> <dt>SUM_INTERACTION_AND_HOLD_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-interaction-and-hold-time\">Agent interaction and hold time</a> </p> </dd> <dt>SUM_INTERACTION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-interaction-time\">Agent interaction time</a> </p> </dd> <dt>SUM_NON_PRODUCTIVE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-non-productive-time\">Agent non-productive time</a> </p> </dd> <dt>SUM_ONLINE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#online-time\">Online time</a> </p> </dd> <dt>SUM_RETRY_CALLBACK_ATTEMPTS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#callback-attempts\">Callback attempts</a> </p> </dd> </dl>
+            filters: <p>Filtering is an operation that selects records that match a set of specified criteria. By narrowing the dataset before aggregation, filters ensure that only relevant records are included in the computation.</p> <p> <b>Filter keys</b> </p> <p>The following are valid filter keys for a <code>GetMetricDataV2</code> request:</p> <p> <code>AGENT</code> | <code>AI_AGENT</code> | <code>AI_AGENT_ID</code> | <code>AI_AGENT_NAME</code> | <code>AI_AGENT_TYPE</code> | <code>AI_PROMPT</code> | <code>AI_PROMPT_ID</code> | <code>AI_PROMPT_NAME</code> | <code>AI_PROMPT_TYPE</code> | <code>AI_TOOL_ID</code> | <code>AI_TOOL_NAME</code> | <code>AI_TOOL_TYPE</code> | <code>AI_USE_CASE</code> | <code>AGENT_HIERARCHY_LEVEL_ONE</code> | <code>AGENT_HIERARCHY_LEVEL_TWO</code> | <code>AGENT_HIERARCHY_LEVEL_THREE</code> | <code>AGENT_HIERARCHY_LEVEL_FOUR</code> | <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>ANSWERING_MACHINE_DETECTION_STATUS</code> | <code>BOT_ALIAS</code> | <code>BOT_ID</code> | <code>BOT_INTENT_NAME</code> | <code>BOT_LOCALE</code> | <code>BOT_VERSION</code> | <code>BROWSER_NAME</code> | <code>CAMPAIGN</code> | <code>CAMPAIGN_DELIVERY_EVENT_TYPE</code> | <code>CAMPAIGN_EXCLUDED_EVENT_TYPE</code> | <code>CASE_STATUS</code> | <code>CASE_TEMPLATE_ARN</code> | <code>CHANNEL</code> | <code>contact/segmentAttributes/connect:Subtype</code> | <code>contact/segmentAttributes/connect:ValidationTestType</code> | <code>DEVICE_MODEL</code> | <code>DEVICE_TYPE</code> | <code>DISCONNECT_REASON</code> | <code>EVALUATION_FORM</code> | <code>EVALUATION_QUESTION</code> | <code>EVALUATION_SECTION</code> | <code>EVALUATION_SOURCE</code> | <code>EVALUATOR_ID</code> | <code>FEATURE</code> | <code>FLOW_ACTION_ID</code> | <code>FLOW_TYPE</code> | <code>FLOWS_MODULE_RESOURCE_ID</code> | <code>FLOWS_NEXT_RESOURCE_ID</code> | <code>FLOWS_NEXT_RESOURCE_QUEUE_ID</code> | <code>FLOWS_OUTCOME_TYPE</code> | <code>FLOWS_RESOURCE_ID</code> | <code>FORM_VERSION</code> | <code>INITIATING_FLOW</code> | <code>INITIATION_METHOD</code> | <code>INVOKING_RESOURCE_PUBLISHED_TIMESTAMP</code> | <code>INVOKING_RESOURCE_TYPE</code> | <code>KNOWLEDGE_BASE_NAME</code> | <code>PARENT_FLOWS_RESOURCE_ID</code> | <code>Q_CONNECT_ENABLED</code> | <code>QUEUE</code> | <code>RESOURCE_PUBLISHED_TIMESTAMP</code> | <code>ROUTING_PROFILE</code> | <code>ROUTING_STEP_EXPRESSION</code> | <code>SESSION_ID</code> | <code>TEST_CASE</code> | <code>TEST_CASE_EXECUTION_FAILURE_REASON</code> | <code>TEST_CASE_EXECUTION_RESULT</code> | <code>TEST_CASE_EXECUTION_STATE</code> | <code>WEB_NOTIFICATION_TYPE</code> </p> <note> <p>The following filter keys correspond to Connect Customer resources and are used for authorizing requests. A <code>GetMetricDataV2</code> request requires at least one of these filters:</p> <p> <code>QUEUE</code>, <code>ROUTING_PROFILE</code>, <code>AGENT</code>, <code>AGENT_HIERARCHY_LEVEL_ONE</code>, <code>AGENT_HIERARCHY_LEVEL_TWO</code>, <code>AGENT_HIERARCHY_LEVEL_THREE</code>, <code>AGENT_HIERARCHY_LEVEL_FOUR</code>, <code>AGENT_HIERARCHY_LEVEL_FIVE</code>, <code>CAMPAIGN</code>, <code>EVALUATION_FORM</code>, <code>EVALUATOR_ID</code> </p> <p>You can use up to 5 filter keys in a single request, and up to 100 filter values across all filter keys.</p> </note> <p> <b>Filter values</b> </p> <ul> <li> <p>VOICE, CHAT, TASK, and EMAIL are valid filter values for the <code>CHANNEL</code> filter key. They do not count towards the limit of 100 filter values. For example, a <code>GetMetricDataV2</code> request can filter by 50 queues, 35 agents, and 15 routing profiles for a total of 100 filter values, along with 4 channel filters.</p> </li> <li> <p> <code>contact_lens_conversational_analytics</code> is a valid filter value for the <code>FEATURE</code> filter key. It is available only for contacts analyzed by Contact Lens conversational analytics.</p> </li> <li> <p> <code>connect:Chat</code>, <code>connect:SMS</code>, <code>connect:Telephony</code>, and <code>connect:WebRTC</code> are valid filter value examples (not exhaustive) for the <code>contact/segmentAttributes/connect:Subtype</code> filter key.</p> </li> <li> <p> <code>ROUTING_STEP_EXPRESSION</code> accepts a filter value up to 3,000 characters in length. Filter values are case-sensitive. JSON object key order and whitespace may be arbitrary; array order and tree structure must be preserved.</p> </li> <li> <p>TRUE and FALSE are the only valid filter values for the <code>Q_CONNECT_ENABLED</code> filter key.</p> <ul> <li> <p>TRUE includes all contacts that had Connect AI Agents enabled as part of the flow.</p> </li> <li> <p>FALSE includes all contacts that did not have Connect AI Agents enabled as part of the flow.</p> </li> </ul> </li> <li> <p> <code>EXPERIENCE_VALIDATION</code> and <code>FLOW_VALIDATION</code> are the only valid filter values for the <code>contact/segmentAttributes/connect:ValidationTestType</code> filter key. This filter is available only for contact record-driven metrics.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-outbound-campaigns_Campaign.html\">Campaign</a> ARNs are valid filter values for the <code>CAMPAIGN</code> filter key.</p> </li> <li> <p>To filter by phone number, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-historical-metrics-report.html\">Create a historical metrics report</a> in the <i>Connect Customer Administrator Guide</i>.</p> </li> </ul>
+            groupings: <p>The grouping applied to the metrics that are returned. For example, when results are grouped by queue, the metrics returned are grouped by queue. The values that are returned apply to the metrics for each queue. They are not aggregated for all queues.</p> <p>If no grouping is specified, a summary of all metrics is returned.</p> <p>Valid grouping keys: <code>AGENT</code> | <code>AI_AGENT</code> | <code>AI_AGENT_ID</code> | <code>AI_AGENT_NAME</code> | <code>AI_AGENT_NAME_VERSION</code> | <code>AI_AGENT_TYPE</code> | <code>AI_PROMPT</code> | <code>AI_PROMPT_ID</code> | <code>AI_PROMPT_NAME</code> | <code>AI_PROMPT_NAME_VERSION</code> | <code>AI_PROMPT_TYPE</code> | <code>AI_TOOL_ID</code> | <code>AI_TOOL_NAME</code> | <code>AI_TOOL_TYPE</code> | <code>AI_USE_CASE</code> | <code>AGENT_HIERARCHY_LEVEL_ONE</code> | <code>AGENT_HIERARCHY_LEVEL_TWO</code> | <code>AGENT_HIERARCHY_LEVEL_THREE</code> | <code>AGENT_HIERARCHY_LEVEL_FOUR</code> | <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>ANSWERING_MACHINE_DETECTION_STATUS</code> | <code>BOT_ID</code> | <code>BOT_ALIAS</code> | <code>BOT_VERSION</code> | <code>BOT_LOCALE</code> | <code>BOT_INTENT_NAME</code> | <code>BROWSER_NAME</code> | <code>CAMPAIGN</code> | <code>CAMPAIGN_DELIVERY_EVENT_TYPE</code> | <code>CAMPAIGN_EXCLUDED_EVENT_TYPE</code> | <code>CAMPAIGN_EXECUTION_TIMESTAMP</code> | <code>CASE_TEMPLATE_ARN</code> | <code>CASE_STATUS</code> | <code>CHANNEL</code> | <code>contact/segmentAttributes/connect:Subtype</code> | <code>DEVICE_MODEL</code> | <code>DEVICE_TYPE</code> | <code>DISCONNECT_REASON</code> | <code>EVALUATION_FORM</code> | <code>EVALUATION_SECTION</code> | <code>EVALUATION_QUESTION</code> | <code>EVALUATION_SOURCE</code> | <code>EVALUATOR_ID</code> | <code>FLOWS_RESOURCE_ID</code> | <code>FLOWS_MODULE_RESOURCE_ID</code> | <code>FLOW_ACTION_ID</code> | <code>FLOW_TYPE</code> | <code>FLOWS_OUTCOME_TYPE</code> | <code>FORM_VERSION</code> | <code>INITIATION_METHOD</code> | <code>INVOKING_RESOURCE_PUBLISHED_TIMESTAMP</code> | <code>INVOKING_RESOURCE_TYPE</code> | <code>KNOWLEDGE_ARTICLE_NAME</code> | <code>KNOWLEDGE_BASE_NAME</code> | <code>PARENT_FLOWS_RESOURCE_ID</code> | <code>Q_CONNECT_ENABLED</code> | <code>QUEUE</code> | <code>RESOURCE_PUBLISHED_TIMESTAMP</code> | <code>ROUTING_PROFILE</code> | <code>ROUTING_STEP_EXPRESSION</code> | <code>SESSION_ID</code> | <code>TEST_CASE</code> | <code>TEST_CASE_EXECUTION_FAILURE_REASON</code> | <code>TEST_CASE_INVOCATION_METHOD</code> | <code>WEB_NOTIFICATION_TYPE</code> </p> <note> <p> <code>AI_AGENT_NAME_VERSION</code>, <code>AI_PROMPT_NAME_VERSION</code>, and <code>KNOWLEDGE_ARTICLE_NAME</code> are valid groupings but not valid filters.</p> </note> <p>API, SCHEDULE, and EVENT are the only valid filterValues for TEST_CASE_INVOCATION_METHOD.</p> <p>OBSERVE_EVENT, SEND_INSTRUCTION, ASSERT_DATA, and OVERRIDE_SYSTEM_BEHAVIOR are the only valid filterValues for TEST_CASE_EXECUTION_FAILURE_REASON</p> <p>Type: Array of strings</p> <p>Array Members: Maximum number of 4 items</p> <p>Required: No</p>
+            metrics: <p>The metrics to retrieve. Specify the name or metricId, groupings, and filters for each metric. The following historical metrics are available. For a description of each metric, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html\">Metrics definition</a> in the <i>Connect Customer Administrator Guide</i>.</p> <note> <p>MetricId should be used to reference custom metrics or out of the box metrics as Arn. If using MetricId, the limit is 20 MetricId per request.</p> </note> <dl> <dt>ABANDONMENT_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#abandonment-rate\">Abandonment rate</a> </p> </dd> <dt>AGENT_ADHERENT_TIME</dt> <dd> <p>This metric is available only in Amazon Web Services Regions where <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/regions.html#optimization_region\">Forecasting, capacity planning, and scheduling</a> is available.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#adherent-time\">Adherent time</a> </p> </dd> <dt>AGENT_ANSWER_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-answer-rate\">Agent answer rate</a> </p> </dd> <dt>AGENT_NON_ADHERENT_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#non-adherent-time\">Non-adherent time</a> </p> </dd> <dt>AGENT_NON_RESPONSE</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-non-response\">Agent non-response</a> </p> </dd> <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>Data for this metric is available starting from October 1, 2023 0:00:00 GMT.</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-non-response-without-customer-abandons\">Agent non-response without customer abandons</a> </p> </dd> <dt>AGENT_OCCUPANCY</dt> <dd> <p>Unit: Percentage</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#occupancy\">Occupancy</a> </p> </dd> <dt>AGENT_SCHEDULE_ADHERENCE</dt> <dd> <p>This metric is available only in Amazon Web Services Regions where <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/regions.html#optimization_region\">Forecasting, capacity planning, and scheduling</a> is available.</p> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#adherence\">Adherence</a> </p> </dd> <dt>AGENT_SCHEDULED_TIME</dt> <dd> <p>This metric is available only in Amazon Web Services Regions where <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/regions.html#optimization_region\">Forecasting, capacity planning, and scheduling</a> is available.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#scheduled-time\">Scheduled time</a> </p> </dd> <dt>AVG_ABANDON_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-queue-abandon-time\">Average queue abandon time</a> </p> </dd> <dt>AVG_ACTIVE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-active-time\">Average active time</a> </p> </dd> <dt>AVG_AFTER_CONTACT_WORK_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#after-contact-work-time\">Average after contact work time</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_AGENT_CONCURRENCY</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-concurrency\">Average agent concurrency</a> </p> </dd> <dt>AVG_AGENT_CONNECTING_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this metric only supports the following as <code>INITIATION_METHOD</code>: <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> | <code>API</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-api-connecting-time\">Average agent API connecting time</a> </p> <note> <p>The <code>Negate</code> key in metric-level filters is not applicable for this metric.</p> </note> </dd> <dt>AVG_AGENT_PAUSE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-pause-time\">Average agent pause time</a> </p> </dd> <dt>AVG_BOT_CONVERSATION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#average-bot-conversation-time\">Average bot conversation time</a> </p> </dd> <dt>AVG_BOT_CONVERSATION_TURNS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#average-bot-conversation-turns\">Average bot conversation turns</a> </p> </dd> <dt>AVG_CASE_RELATED_CONTACTS</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-contacts-per-case\">Average contacts per case</a> </p> </dd> <dt>AVG_CASE_RESOLUTION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-case-resolution-time\">Average case resolution time</a> </p> </dd> <dt>AVG_CONTACT_DURATION</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-contact-duration\">Average contact duration</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_CONTACT_FIRST_RESPONSE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-average-contact-first-response-wait-time\">Agent average contact first response wait time</a> </p> </dd> <dt>AVG_CONVERSATION_CLOSE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-conversation-close-time\">Average conversation close time</a> </p> </dd> <dt>AVG_CONVERSATION_DURATION</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-conversation-duration\">Average conversation duration</a> </p> </dd> <dt>AVG_DIALS_PER_MINUTE</dt> <dd> <p>This metric is available only for outbound campaigns that use the agent assisted voice and automated voice delivery modes.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Campaign, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-dials-per-minute\">Average dials per minute</a> </p> </dd> <dt>AVG_EVALUATION_SCORE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Section ID, Evaluation Question ID, Evaluation Source, Form Version, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-evaluation-score\">Average evaluation score</a> </p> </dd> <dt>AVG_FIRST_RESPONSE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-first-response-time\">Average agent first response time</a> </p> </dd> <dt>AVG_FLOW_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-flow-time\">Average flow time</a> </p> </dd> <dt>AVG_GREETING_TIME_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-greeting-time\">Average agent greeting time</a> </p> </dd> <dt>AVG_HANDLE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, AI Use Case, Feature, contact/segmentAttributes/connect:Subtype, RoutingStepExpression</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-handle-time\">Average handle time</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>ACTIVE_AI_AGENTS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#active-ai-agents\">Active AI Agents</a> </p> </dd> <dt>AI_HANDOFF_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-handoff-rate\">AI Handoff Rate</a> </p> </dd> <dt>AI_HANDOFFS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-handoffs\">AI Handoff Count</a> </p> </dd> <dt>AI_AGENT_INVOCATION_SUCCESS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-invocation-success\">AI Agent Invocation Success</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_AGENT_INVOCATION_SUCCESS_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-invocation-success-rate\">AI Agent Invocation Success Rate</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_AGENT_INVOCATIONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Agent Name Version, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-invocations\">AI Agent Invocation Count</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_AGENT_RESPONSE_HELPFUL</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-response-helpful\">AI Agent Response Helpful</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_AGENT_RESPONSE_NOT_HELPFUL</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-agent-response-not-helpful\">AI Agent Response Not Helpful</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_RESPONSE_COMPLETION_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-response-completion-rate\">AI Response Completion Rate</a> </p> </dd> <dt>AI_INVOLVED_CONTACTS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-involved-contacts\">AI Involved Contacts</a> </p> </dd> <dt>AI_PROMPT_INVOCATION_SUCCESS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-prompt-invocation-success\">AI Prompt Invocation Success</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_PROMPT_INVOCATION_SUCCESS_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-prompt-invocation-success-rate\">AI Prompt Invocation Success Rate</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_PROMPT_INVOCATIONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-prompt-invocations\">AI Prompt Invocations</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_INVOCATION_SUCCESS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-invocation-success\">AI Tool Invocation Success</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_INVOCATION_SUCCESS_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-invocation-success-rate\">AI Tool Invocation Success Rate</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_INVOCATIONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-invocations\">AI Tool Invocations</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AVG_AI_AGENT_CONVERSATION_TURNS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-ai-agent-conversation-turns\">Average AI Agent Conversation Turns</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AVG_AI_CONVERSATION_TURNS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-ai-conversation-turns\">Average AI Conversation Turns</a> </p> </dd> <dt>AVG_AI_PROMPT_INVOCATION_LATENCY</dt> <dd> <p>Unit: Milliseconds</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-ai-prompt-invocation-latency\">Average AI Prompt Invocation Latency</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AVG_AI_TOOL_INVOCATION_LATENCY</dt> <dd> <p>Unit: Milliseconds</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-ai-tool-invocation-latency\">Average AI Tool Invocation Latency</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_PARAMETER_ACCURACY</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-parameter-accuracy\">AI Tool Parameter Accuracy</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_SELECTION_ACCURACY</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-selection-accuracy\">AI Tool Selection Accuracy</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>AI_TOOL_UTILIZATION_ACCURACY</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#ai-tool-utilization-accuracy\">AI Tool Utilization Accuracy</a> </p> <note> <p>AI Agent Name Version is not a valid filter but a valid grouping.</p> </note> </dd> <dt>COMPLETENESS_SCORE</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile, Session ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#completeness-score\">Completeness Score</a> </p> </dd> <dt>FAITHFULNESS_SCORE</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile, Session ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#faithfulness-score\">Faithfulness Score</a> </p> </dd> <dt>GOAL_SUCCESS_RATE</dt> <dd> <p>Unit: Double</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile, Session ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#goal-success-rate\">Goal Success Rate</a> </p> </dd> <dt>KNOWLEDGE_CONTENT_REFERENCES</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Use Case, Channel, Knowledge Base Name, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#knowledge-content-references\">Knowledge Content References</a> </p> </dd> <dt>PROACTIVE_INTENT_ENGAGEMENT_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-engagement-rate\">Proactive Intent Engagement Rate</a> </p> </dd> <dt>PROACTIVE_INTENT_RESPONSE_RATE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-response-rate\">Proactive Intent Response Rate</a> </p> </dd> <dt>PROACTIVE_INTENTS_ANSWERED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-answered\">Proactive Intents Answered</a> </p> </dd> <dt>PROACTIVE_INTENTS_DETECTED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-detected\">Proactive Intents Detected</a> </p> </dd> <dt>PROACTIVE_INTENTS_ENGAGED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#proactive-intents-engaged\">Proactive Intents Engaged</a> </p> </dd> <dt>AVG_HOLD_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-hold-time\">Average customer hold time</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-hold-time-all-contacts\">Average customer hold time all contacts</a> </p> </dd> <dt>AVG_HOLDS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-holds\">Average holds</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_INTERACTION_AND_HOLD_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-interaction-and-customer-hold-time\">Average agent interaction and customer hold time</a> </p> </dd> <dt>AVG_INTERACTION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-interaction-time\">Average agent interaction time</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_INTERRUPTIONS_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-interruptions\">Average agent interruptions</a> </p> </dd> <dt>AVG_INTERRUPTION_TIME_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-interruption-time\">Average agent interruption time</a> </p> </dd> <dt>AVG_MESSAGE_LENGTH_AGENT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-message-length\">Average agent message length</a> </p> </dd> <dt>AVG_MESSAGE_LENGTH_CUSTOMER</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-message-length\">Average customer message length</a> </p> </dd> <dt>AVG_MESSAGES</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-messages\">Average messages</a> </p> </dd> <dt>AVG_MESSAGES_AGENT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-messages\">Average agent messages</a> </p> </dd> <dt>AVG_MESSAGES_BOT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-bot-messages\">Average bot messages</a> </p> </dd> <dt>AVG_MESSAGES_CUSTOMER</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-messages\">Average customer messages</a> </p> </dd> <dt>AVG_NON_TALK_TIME</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-non-talk-time\">Average non-talk time</a> </p> </dd> <dt>AVG_QUEUE_ANSWER_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-queue-answer-time\">Average queue answer time</a> </p> <p>Valid metric level filters: <code>INITIATION_METHOD</code>, <code>FEATURE</code>, <code>DISCONNECT_REASON</code> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>AVG_QUEUE_ANSWER_TIME_CUSTOMER_FIRST_CALLBACK</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-queue-answer-time-customer-first-callback\">Avg. queue answer time - customer first callback</a> </p> </dd> <dt>AVG_RESPONSE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-response-time-agent\">Average agent response time</a> </p> </dd> <dt>AVG_RESPONSE_TIME_CUSTOMER</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-time-agent\">Average customer response time</a> </p> </dd> <dt>AVG_RESOLUTION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-resolution-time\">Average resolution time</a> </p> </dd> <dt>AVG_TALK_TIME</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-talk-time\">Average talk time</a> </p> </dd> <dt>AVG_TALK_TIME_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-agent-talk-time\">Average agent talk time</a> </p> </dd> <dt>AVG_TALK_TIME_CUSTOMER</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-customer-talk-time\">Average customer talk time</a> </p> </dd> <dt>AVG_WAIT_TIME_AFTER_CUSTOMER_CONNECTION</dt> <dd> <p>This metric is available only for outbound campaigns that use the agent assisted voice and automated voice delivery modes.</p> <p>Unit: Seconds</p> <p>Valid groupings and filters: Campaign</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-wait-time-after-customer-connection\">Average wait time after customer connection</a> </p> </dd> <dt>AVG_WAIT_TIME_AFTER_CUSTOMER_FIRST_CALLBACK_CONNECTION</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-wait-time-after-customer-connection-customer-first-callback\">Avg. wait time after customer connection - customer first callback</a> </p> </dd> <dt>AVG_WEIGHTED_EVALUATION_SCORE</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form Id, Evaluation Section ID, Evaluation Question ID, Evaluation Source, Form Version, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#average-weighted-evaluation-score\">Average weighted evaluation score</a> </p> </dd> <dt>BOT_CONVERSATIONS_COMPLETED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#bot-conversations-completed\">Bot conversations completed</a> </p> </dd> <dt>BOT_INTENTS_COMPLETED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Bot intent name, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#bot-intents-completed\">Bot intents completed</a> </p> </dd> <dt>CAMPAIGN_CONTACTS_ABANDONED_AFTER_X</dt> <dd> <p>This metric is available only for outbound campaigns using the agent assisted voice and automated voice delivery modes.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Campaign</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must enter <code>GT</code> (for <i>Greater than</i>).</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-contacts-abandoned-after-x\">Campaign contacts abandoned after X</a> </p> </dd> <dt>CAMPAIGN_CONTACTS_ABANDONED_AFTER_X_RATE</dt> <dd> <p>This metric is available only for outbound campaigns using the agent assisted voice and automated voice delivery modes.</p> <p>Unit: Percent</p> <p>Valid groupings and filters: Agent, Campaign</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must enter <code>GT</code> (for <i>Greater than</i>).</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-contacts-abandoned-after-x-rate\">Campaign contacts abandoned after X rate</a> </p> </dd> <dt>CAMPAIGN_INTERACTIONS</dt> <dd> <p>This metric is available only for outbound campaigns using the email, WhatsApp, and web notification delivery modes. </p> <p>Unit: Count</p> <p>Valid metric filter key: CAMPAIGN_INTERACTION_EVENT_TYPE</p> <p>Valid groupings and filters: Browser Name, Campaign, Channel, contact/segmentAttributes/connect:Subtype, Device Model, Device Type, Web Notification Type</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-interactions\">Campaign interactions</a> </p> </dd> <dt>CAMPAIGN_PROGRESS_RATE</dt> <dd> <p>This metric is only available for outbound campaigns initiated using a customer segment. It is not available for event triggered campaigns.</p> <p>Unit: Percent</p> <p>Valid groupings and filters: Campaign, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-progress-rate\">Campaign progress rate</a> </p> </dd> <dt>CAMPAIGN_SEND_ATTEMPTS</dt> <dd> <p>This metric is available only for outbound campaigns.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Channel, contact/segmentAttributes/connect:Subtype </p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-send-attempts\">Campaign send attempts</a> </p> </dd> <dt>CAMPAIGN_SEND_EXCLUSIONS</dt> <dd> <p>This metric is available only for outbound campaigns.</p> <p>Valid metric filter key: CAMPAIGN_EXCLUDED_EVENT_TYPE</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Campaign Excluded Event Type, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#campaign-send-exclusions\">Campaign send exclusions</a> </p> </dd> <dt>CASES_CREATED</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#cases-created\">Cases created</a> </p> </dd> <dt>CONTACTS_CREATED</dt> <dd> <p>Unit: Count</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-created\">Contacts created</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>CONTACTS_HANDLED</dt> <dd> <p>Unit: Count</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code>, <code>DISCONNECT_REASON</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, RoutingStepExpression, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-handled\">Contacts handled</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>CONTACTS_HANDLED_BY_CONNECTED_TO_AGENT</dt> <dd> <p>Unit: Count</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code> </p> <p>Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-handled-by-connected-to-agent-timestamp\">Contacts handled (connected to agent timestamp)</a> </p> </dd> <dt>CONTACTS_HOLD_ABANDONS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-hold-disconnect\">Contacts hold disconnect</a> </p> </dd> <dt>CONTACTS_ON_HOLD_AGENT_DISCONNECT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-hold-agent-disconnect\">Contacts hold agent disconnect</a> </p> </dd> <dt>CONTACTS_ON_HOLD_CUSTOMER_DISCONNECT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-hold-customer-disconnect\">Contacts hold customer disconnect</a> </p> </dd> <dt>CONTACTS_PUT_ON_HOLD</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-put-on-hold\">Contacts put on hold</a> </p> </dd> <dt>CONTACTS_TRANSFERRED_OUT_EXTERNAL</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out-external\">Contacts transferred out external</a> </p> </dd> <dt>CONTACTS_TRANSFERRED_OUT_INTERNAL</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out-internal\">Contacts transferred out internal</a> </p> </dd> <dt>CONTACTS_QUEUED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-queued\">Contacts queued</a> </p> </dd> <dt>CONTACTS_QUEUED_BY_ENQUEUE</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-queued-by-enqueue\">Contacts queued (enqueue timestamp)</a> </p> </dd> <dt>CONTACTS_REMOVED_FROM_QUEUE_IN_X</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-removed-from-queue\">Contacts removed from queue in X seconds</a> </p> </dd> <dt>CONTACTS_RESOLVED_IN_X</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-resolved\">Contacts resolved in X</a> </p> </dd> <dt>CONTACTS_TRANSFERRED_OUT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out\">Contacts transferred out</a> </p> <note> <p>Feature is a valid filter but not a valid grouping.</p> </note> </dd> <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out-by-agent\">Contacts transferred out by agent</a> </p> </dd> <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-transferred-out-queue\">Contacts transferred out queue</a> </p> </dd> <dt>CURRENT_CASES</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#current-cases\">Current cases</a> </p> </dd> <dt>CONVERSATIONS_ABANDONED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason, Feature, RoutingStepExpression, Initiation method, Routing Profile, Queue, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#conversations-abandoned\">Conversations abandoned</a> </p> </dd> <dt>DELIVERY_ATTEMPTS</dt> <dd> <p>This metric is available only for outbound campaigns.</p> <p>Unit: Count</p> <p>Valid metric filter key: <code>ANSWERING_MACHINE_DETECTION_STATUS</code>, <code>CAMPAIGN_DELIVERY_EVENT_TYPE</code>, <code>DISCONNECT_REASON</code> </p> <p>Valid groupings and filters: Agent, Answering Machine Detection Status, Browser Name, Campaign, Campaign Delivery EventType, Channel, contact/segmentAttributes/connect:Subtype, Device Model, Device Type, Disconnect Reason, Queue, Routing Profile, Web Notification Type</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#delivery-attempts\">Delivery attempts</a> </p> <note> <p>Campaign Delivery EventType filter and grouping are only available for SMS, Email, WhatsApp, and web notification campaign delivery modes. Agent, Queue, Routing Profile, Answering Machine Detection Status and Disconnect Reason are only available for agent assisted voice and automated voice delivery modes. </p> </note> </dd> <dt>DELIVERY_ATTEMPT_DISPOSITION_RATE</dt> <dd> <p>This metric is available only for outbound campaigns. Dispositions for the agent assisted voice and automated voice delivery modes are only available with answering machine detection enabled.</p> <p>Unit: Percent</p> <p>Valid metric filter key: <code>ANSWERING_MACHINE_DETECTION_STATUS</code>, <code>CAMPAIGN_DELIVERY_EVENT_TYPE</code>, <code>DISCONNECT_REASON</code> </p> <p>Valid groupings and filters: Agent, Answering Machine Detection Status, Browser Name, Campaign, Channel, contact/segmentAttributes/connect:Subtype, Device Model, Device Type, Disconnect Reason, Queue, Routing Profile, Web Notification Type</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#delivery-attempt-disposition-rate\">Delivery attempt disposition rate</a> </p> <note> <p>Campaign Delivery Event Type filter and grouping are only available for SMS, Email, WhatsApp, and web notification campaign delivery modes. Agent, Queue, Routing Profile, Answering Machine Detection Status and Disconnect Reason are only available for agent assisted voice and automated voice delivery modes. </p> </note> </dd> <dt>EVALUATIONS_PERFORMED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Source, Form Version, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#evaluations-performed\">Evaluations performed</a> </p> </dd> <dt>FLOWS_OUTCOME</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#flows-outcome\">Flows outcome</a> </p> </dd> <dt>FLOWS_STARTED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#flows-started\">Flows started</a> </p> </dd> <dt>HUMAN_ANSWERED_CALLS</dt> <dd> <p>This metric is available only for outbound campaigns. Dispositions for the agent assisted voice and automated voice delivery modes are only available with answering machine detection enabled. </p> <p>Unit: Count</p> <p>Valid groupings and filters: Agent, Campaign</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#human-answered\">Human answered</a> </p> </dd> <dt>MAX_FLOW_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#maximum-flow-time\">Maximum flow time</a> </p> </dd> <dt>MAX_QUEUED_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#maximum-queued-time\">Maximum queued time</a> </p> </dd> <dt>MIN_FLOW_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#minimum-flow-time\">Minimum flow time</a> </p> </dd> <dt>PERCENT_AUTOMATIC_FAILS</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Source, Form Version, Queue, Routing Profile</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#automatic-fails-percent\">Automatic fails percent</a> </p> </dd> <dt>PERCENT_BOT_CONVERSATIONS_OUTCOME</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#percent-bot-conversations-outcome\">Percent bot conversations outcome</a> </p> </dd> <dt>PERCENT_BOT_INTENTS_OUTCOME</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Bot ID, Bot alias, Bot version, Bot locale, Bot intent name, Flows resource ID, Flows module resource ID, Flow type, Flow action ID, Invoking resource published timestamp, Initiation method, Invoking resource type, Parent flows resource ID</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#percent-bot-intents-outcome\">Percent bot intents outcome</a> </p> </dd> <dt>PERCENT_CASES_FIRST_CONTACT_RESOLVED</dt> <dd> <p>Unit: Percent</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#cases-resolved-on-first-contact\">Cases resolved on first contact</a> </p> </dd> <dt>PERCENT_CONTACTS_STEP_EXPIRED</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, RoutingStepExpression</p> <p>UI name: This metric is available in Real-time Metrics UI but not on the Historical Metrics UI.</p> </dd> <dt>PERCENT_CONTACTS_STEP_JOINED</dt> <dd> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, RoutingStepExpression</p> <p>UI name: This metric is available in Real-time Metrics UI but not on the Historical Metrics UI.</p> </dd> <dt>PERCENT_FLOWS_OUTCOME</dt> <dd> <p>Unit: Percent</p> <p>Valid metric filter key: <code>FLOWS_OUTCOME_TYPE</code> </p> <p>Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows next resource ID, Flows next resource queue ID, Flows outcome type, Flows resource ID, Initiation method, Resource published timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#flows-outcome-percentage\">Flows outcome percentage</a>.</p> <note> <p>The <code>FLOWS_OUTCOME_TYPE</code> is not a valid grouping.</p> </note> </dd> <dt>PERCENT_NON_TALK_TIME</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Percentage</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#non-talk-time-percent\">Non-talk time percent</a> </p> </dd> <dt>PERCENT_TALK_TIME</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Percentage</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#talk-time-percent\">Talk time percent</a> </p> </dd> <dt>PERCENT_TALK_TIME_AGENT</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Percentage</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-talk-time-percent\">Agent talk time percent</a> </p> </dd> <dt>PERCENT_TALK_TIME_CUSTOMER</dt> <dd> <p>This metric is available only for contacts analyzed by Contact Lens conversational analytics.</p> <p>Unit: Percentage</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#customer-talk-time-percent\">Customer talk time percent</a> </p> </dd> <dt>RECIPIENTS_ATTEMPTED</dt> <dd> <p>This metric is only available for outbound campaigns initiated using a customer segment. It is not available for event triggered campaigns.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#recipients-attempted\">Recipients attempted</a> </p> </dd> <dt>RECIPIENTS_INTERACTED</dt> <dd> <p>This metric is only available for outbound campaigns initiated using a customer segment. It is not available for event triggered campaigns.</p> <p>Valid metric filter key: CAMPAIGN_INTERACTION_EVENT_TYPE</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Channel, contact/segmentAttributes/connect:Subtype, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#recipients-interacted\">Recipients interacted</a> </p> </dd> <dt>RECIPIENTS_TARGETED</dt> <dd> <p>This metric is only available for outbound campaigns initiated using a customer segment. It is not available for event triggered campaigns.</p> <p>Unit: Count</p> <p>Valid groupings and filters: Campaign, Campaign Execution Timestamp</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#recipients-targeted\">Recipients targeted</a> </p> </dd> <dt>REOPENED_CASE_ACTIONS</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#cases-reopened\">Cases reopened</a> </p> </dd> <dt>RESOLVED_CASE_ACTIONS</dt> <dd> <p>Unit: Count</p> <p>Required filter key: CASE_TEMPLATE_ARN</p> <p>Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#cases-resolved\">Cases resolved</a> </p> </dd> <dt>SERVICE_LEVEL</dt> <dd> <p>You can include up to 20 SERVICE_LEVEL metrics in a request.</p> <p>Unit: Percent</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#service-level\">Service level X</a> </p> </dd> <dt>STEP_CONTACTS_QUEUED</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, RoutingStepExpression</p> <p>UI name: This metric is available in Real-time Metrics UI but not on the Historical Metrics UI.</p> </dd> <dt>SUM_AFTER_CONTACT_WORK_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#after-contact-work-time\">After contact work time</a> </p> </dd> <dt>SUM_CONNECTING_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid metric filter key: <code>INITIATION_METHOD</code>. This metric only supports the following filter keys as <code>INITIATION_METHOD</code>: <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> | <code>API</code> | <code>CALLBACK_CUSTOMER_FIRST_DIALED</code> </p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-api-connecting-time\">Agent API connecting time</a> </p> <note> <p>The <code>Negate</code> key in metric-level filters is not applicable for this metric.</p> </note> </dd> <dt>CONTACTS_ABANDONED</dt> <dd> <p>Unit: Count</p> <p>Metric filter: </p> <ul> <li> <p>Valid values: <code>API</code>| <code>INCOMING</code> | <code>OUTBOUND</code> | <code>TRANSFER</code> | <code>CALLBACK</code> | <code>QUEUE_TRANSFER</code>| <code>Disconnect</code> | <code>CALLBACK_CUSTOMER_FIRST_DIALED</code> </p> </li> </ul> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, RoutingStepExpression, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-abandoned\">Contact abandoned</a> </p> </dd> <dt>SUM_CONTACTS_ABANDONED_IN_X</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-abandoned-in-x-seconds\">Contacts abandoned in X seconds</a> </p> </dd> <dt>SUM_CONTACTS_ANSWERED_IN_X</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800 (inclusive), in seconds. For <code>Comparison</code>, you can use <code>LT</code> (for \"Less than\") or <code>LTE</code> (for \"Less than equal\").</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contacts-answered-in-x-seconds\">Contacts answered in X seconds</a> </p> </dd> <dt>SUM_CONTACT_FLOW_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contact-flow-time\">Contact flow time</a> </p> </dd> <dt>SUM_CONTACT_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-on-contact-time\">Agent on contact time</a> </p> </dd> <dt>SUM_CONTACTS_DISCONNECTED </dt> <dd> <p>Valid metric filter key: <code>DISCONNECT_REASON</code> </p> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contact-disconnected\">Contact disconnected</a> </p> </dd> <dt>SUM_ERROR_STATUS_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#error-status-time\">Error status time</a> </p> </dd> <dt>SUM_HANDLE_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#contact-handle-time\">Contact handle time</a> </p> </dd> <dt>SUM_HOLD_TIME</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#customer-hold-time\">Customer hold time</a> </p> </dd> <dt>SUM_IDLE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-idle-time\">Agent idle time</a> </p> </dd> <dt>SUM_INTERACTION_AND_HOLD_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-interaction-and-hold-time\">Agent interaction and hold time</a> </p> </dd> <dt>SUM_INTERACTION_TIME</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-interaction-time\">Agent interaction time</a> </p> </dd> <dt>SUM_NON_PRODUCTIVE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#agent-non-productive-time\">Agent non-productive time</a> </p> </dd> <dt>SUM_ONLINE_TIME_AGENT</dt> <dd> <p>Unit: Seconds</p> <p>Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#online-time\">Online time</a> </p> </dd> <dt>SUM_RETRY_CALLBACK_ATTEMPTS</dt> <dd> <p>Unit: Count</p> <p>Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype, Q in Connect</p> <p>UI name: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html#callback-attempts\">Callback attempts</a> </p> </dd> </dl>
             next_token: <p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>
             max_results: <p>The maximum number of results to return per page.</p>
 
@@ -12455,7 +13274,7 @@ class AsyncConnectClient:
         next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
         max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
     ) -> "capo_connect.types.list_child_hours_of_operations_response.ListChildHoursOfOperationsResponse":
-        r"""<p>Provides information about the child hours of operations for the specified parent hours of operation.</p> <p>For more information about child hours of operations, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/\">Link overrides from different hours of operation</a> in the <i> Administrator Guide</i>.</p>
+        r"""<p>Provides information about the child hours of operations for the specified parent hours of operation.</p> <p>For more information about child hours of operations, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Link overrides from different hours of operation</a> in the <i> Administrator Guide</i>.</p>
 
         Args:
             instance_id: <p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
@@ -13686,6 +14505,64 @@ class AsyncConnectClient:
             if not _token:
                 break
 
+    async def list_evaluation_form_ai_versions(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        contact_interaction_type: "capo_connect.types.contact_interaction_type.ContactInteractionType",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+    ) -> "capo_connect.types.list_evaluation_form_ai_versions_response.ListEvaluationFormAIVersionsResponse":
+        r"""<p>Lists the available AI versions for evaluation forms in the specified Connect Customer instance.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            contact_interaction_type: <p>The contact interaction type for the evaluation form.</p>
+            max_results: <p>The maximum number of results to return per page.</p>
+            next_token: <p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>
+
+        Raises:
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.list_evaluation_form_ai_versions_request.ListEvaluationFormAIVersionsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.list_evaluation_form_ai_versions_response.ListEvaluationFormAIVersionsResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.list_evaluation_form_ai_versions
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.list_evaluation_form_ai_versions.async_list_evaluation_form_ai_versions(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.list_evaluation_form_ai_versions_request.ListEvaluationFormAIVersionsRequest = {
+            "instance_id": instance_id,
+            "contact_interaction_type": contact_interaction_type,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def list_evaluation_forms(
         self,
         instance_id: "capo_connect.types.instance_id.InstanceId",
@@ -13843,6 +14720,85 @@ class AsyncConnectClient:
                 next_token=_token,
             )
             _page = _resolve_path(_response, ("evaluation_form_version_summary_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_extraction_definitions(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+    ) -> "capo_connect.types.list_extraction_definitions_response.ListExtractionDefinitionsResponse":
+        r"""<p>Lists extraction definitions in the specified Connect Customer instance.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            max_results: <p>The maximum number of results to return per page. The default MaxResult size is 100.</p>
+            next_token: <p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.list_extraction_definitions_request.ListExtractionDefinitionsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.list_extraction_definitions_response.ListExtractionDefinitionsResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.list_extraction_definitions
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.list_extraction_definitions.async_list_extraction_definitions(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.list_extraction_definitions_request.ListExtractionDefinitionsRequest = {
+            "instance_id": instance_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_extraction_definitions(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_connect.types.extraction_definition_summary.ExtractionDefinitionSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_extraction_definitions(
+                instance_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("extraction_definition_summary_list",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -14583,6 +15539,92 @@ class AsyncConnectClient:
                 max_results=max_results,
             )
             _page = _resolve_path(_response, ("lex_bots",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_metrics(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        type: Optional["capo_connect.types.metric_type.MetricType"] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+    ) -> "capo_connect.types.list_metrics_response.ListMetricsResponse":
+        r"""<p>Retrieves a paginated list of metric summaries for the specified Connect Customer instance. Use pagination to ensure that the operation returns quickly and successfully.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            type: <p>The type of metrics to list. Valid values: <code>AWS_MANAGED</code> | <code>CUSTOMER_MANAGED</code>.</p>
+            max_results: <p>The maximum number of results to return per page.</p>
+            next_token: <p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.list_metrics_request.ListMetricsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.list_metrics_response.ListMetricsResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.list_metrics
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.list_metrics.async_list_metrics(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.list_metrics_request.ListMetricsRequest = {
+            "instance_id": instance_id
+        }
+        if type is not None:
+            input_["type"] = type
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_metrics(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        type: Optional["capo_connect.types.metric_type.MetricType"] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_connect.types.metric_summary.MetricSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_metrics(
+                instance_id,
+                config_overrides=config_overrides,
+                type=type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("metric_summary_list",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -15869,6 +16911,90 @@ class AsyncConnectClient:
             if not _token:
                 break
 
+    async def list_security_profile_ai_agents(
+        self,
+        security_profile_id: "capo_connect.types.security_profile_id.SecurityProfileId",
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_connect.types.max_result1000.MaxResult1000"] = None,
+    ) -> "capo_connect.types.list_security_profile_ai_agents_response.ListSecurityProfileAIAgentsResponse":
+        r"""<p>Returns a list of the allowed AI agents in a specific security profile.</p>
+
+        Args:
+            security_profile_id: <p>The identifier for the security profle.</p>
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            next_token: <p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>
+            max_results: <p>The maximum number of results to return per page.</p>
+
+        Raises:
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.list_security_profile_ai_agents_request.ListSecurityProfileAIAgentsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.list_security_profile_ai_agents_response.ListSecurityProfileAIAgentsResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.list_security_profile_ai_agents
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.list_security_profile_ai_agents.async_list_security_profile_ai_agents(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.list_security_profile_ai_agents_request.ListSecurityProfileAIAgentsRequest = {
+            "security_profile_id": security_profile_id,
+            "instance_id": instance_id,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_security_profile_ai_agents(
+        self,
+        security_profile_id: "capo_connect.types.security_profile_id.SecurityProfileId",
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_connect.types.max_result1000.MaxResult1000"] = None,
+    ) -> "AsyncIterator[capo_connect.types.ai_agent.AIAgent]":
+        _token = next_token
+        while True:
+            _response = await self.list_security_profile_ai_agents(
+                security_profile_id,
+                instance_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("allowed_ai_agents",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_security_profile_applications(
         self,
         security_profile_id: "capo_connect.types.security_profile_id.SecurityProfileId",
@@ -16588,7 +17714,7 @@ class AsyncConnectClient:
         max_results: Optional["capo_connect.types.max_result10.MaxResult10"] = None,
         next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
         instance_id: Optional[
-            "capo_connect.types.instance_id_or_arn.InstanceIdOrArn"
+            "capo_connect.types.acgr_instance_id_or_arn.ACGRInstanceIdOrArn"
         ] = None,
     ) -> "capo_connect.types.list_traffic_distribution_groups_response.ListTrafficDistributionGroupsResponse":
         r"""<p>Lists traffic distribution groups.</p>
@@ -16645,7 +17771,7 @@ class AsyncConnectClient:
         max_results: Optional["capo_connect.types.max_result10.MaxResult10"] = None,
         next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
         instance_id: Optional[
-            "capo_connect.types.instance_id_or_arn.InstanceIdOrArn"
+            "capo_connect.types.acgr_instance_id_or_arn.ACGRInstanceIdOrArn"
         ] = None,
     ) -> "AsyncIterator[capo_connect.types.traffic_distribution_group_summary.TrafficDistributionGroupSummary]":
         _token = next_token
@@ -16670,7 +17796,7 @@ class AsyncConnectClient:
         traffic_distribution_group_id: "capo_connect.types.traffic_distribution_group_id_or_arn.TrafficDistributionGroupIdOrArn",
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
-        max_results: Optional["capo_connect.types.max_result10.MaxResult10"] = None,
+        max_results: Optional["capo_connect.types.max_result1000.MaxResult1000"] = None,
         next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
     ) -> "capo_connect.types.list_traffic_distribution_group_users_response.ListTrafficDistributionGroupUsersResponse":
         """<p>Lists traffic distribution group users.</p>
@@ -16726,7 +17852,7 @@ class AsyncConnectClient:
         traffic_distribution_group_id: "capo_connect.types.traffic_distribution_group_id_or_arn.TrafficDistributionGroupIdOrArn",
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
-        max_results: Optional["capo_connect.types.max_result10.MaxResult10"] = None,
+        max_results: Optional["capo_connect.types.max_result1000.MaxResult1000"] = None,
         next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
     ) -> "AsyncIterator[capo_connect.types.traffic_distribution_group_user_summary.TrafficDistributionGroupUserSummary]":
         _token = next_token
@@ -17764,12 +18890,14 @@ class AsyncConnectClient:
 
     async def replicate_instance(
         self,
-        instance_id: "capo_connect.types.instance_id_or_arn.InstanceIdOrArn",
+        instance_id: "capo_connect.types.acgr_instance_id_or_arn.ACGRInstanceIdOrArn",
         replica_region: "capo_connect.types.aws_region.AwsRegion",
-        replica_alias: "capo_connect.types.directory_alias.DirectoryAlias",
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
         client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
+        replica_alias: Optional[
+            "capo_connect.types.directory_alias.DirectoryAlias"
+        ] = None,
     ) -> "capo_connect.types.replicate_instance_response.ReplicateInstanceResponse":
         r"""<p>Replicates an Connect Customer instance in the specified Amazon Web Services Region and copies configuration information for Connect Customer resources across Amazon Web Services Regions. </p> <p>For more information about replicating an Connect Customer instance, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html\">Create a replica of your existing Connect Customer instance</a> in the <i>Connect Customer Administrator Guide</i>.</p>
 
@@ -17810,11 +18938,12 @@ class AsyncConnectClient:
         input_: capo_connect.types.replicate_instance_request.ReplicateInstanceRequest = {
             "instance_id": instance_id,
             "replica_region": replica_region,
-            "replica_alias": replica_alias,
         }
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if replica_alias is not None:
+            input_["replica_alias"] = replica_alias
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -18957,6 +20086,106 @@ class AsyncConnectClient:
             if not _token:
                 break
 
+    async def search_metrics(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+        search_filter: Optional[
+            "capo_connect.types.metric_search_filter.MetricSearchFilter"
+        ] = None,
+        search_criteria: Optional[
+            "capo_connect.types.metric_search_criteria.MetricSearchCriteria"
+        ] = None,
+    ) -> "capo_connect.types.search_metrics_response.SearchMetricsResponse":
+        r"""<p>Searches for metrics in the specified Connect Customer instance using search criteria and optional tag-based filters. Use pagination to ensure that the operation returns quickly and successfully.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            next_token: <p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>
+            max_results: <p>The maximum number of results to return per page.</p>
+            search_filter: <p>Filters to be applied to search results.</p>
+            search_criteria: <p>The search criteria to filter the metrics.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.search_metrics_request.SearchMetricsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.search_metrics_response.SearchMetricsResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.search_metrics
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.search_metrics.async_search_metrics(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.search_metrics_request.SearchMetricsRequest = {
+            "instance_id": instance_id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if search_filter is not None:
+            input_["search_filter"] = search_filter
+        if search_criteria is not None:
+            input_["search_criteria"] = search_criteria
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_search_metrics(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+        search_filter: Optional[
+            "capo_connect.types.metric_search_filter.MetricSearchFilter"
+        ] = None,
+        search_criteria: Optional[
+            "capo_connect.types.metric_search_criteria.MetricSearchCriteria"
+        ] = None,
+    ) -> "AsyncIterator[capo_connect.types.metric_definition.MetricDefinition]":
+        _token = next_token
+        while True:
+            _response = await self.search_metrics(
+                instance_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                search_filter=search_filter,
+                search_criteria=search_criteria,
+            )
+            _page = _resolve_path(_response, ("metrics",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def search_notifications(
         self,
         instance_id: "capo_connect.types.instance_id.InstanceId",
@@ -19432,7 +20661,7 @@ class AsyncConnectClient:
 
         Args:
             instance_id: <p>The identifier of the Connect Customer instance. You can find the instanceId in the Amazon Resource Name (ARN) of the instance.</p>
-            resource_types: <p>The list of resource types to be used to search tags from. If not provided or if any empty list is provided, this API will search from all supported resource types. Note that lowercase and - are required.</p> <p class=\"title\"> <b>Supported resource types</b> </p> <ul> <li> <p>agent</p> </li> <li> <p>agent-state</p> </li> <li> <p>routing-profile</p> </li> <li> <p>standard-queue</p> </li> <li> <p>security-profile</p> </li> <li> <p>operating-hours</p> </li> <li> <p>prompt</p> </li> <li> <p>contact-flow</p> </li> <li> <p>flow- module</p> </li> <li> <p>transfer-destination (also known as quick connect)</p> </li> </ul>
+            resource_types: <p>The list of resource types to be used to search tags from. If not provided or if any empty list is provided, this API will search from all supported resource types. Note that lowercase and - are required.</p> <p class=\"title\"> <b>Supported resource types</b> </p> <ul> <li> <p>agent</p> </li> <li> <p>agent-state</p> </li> <li> <p>routing-profile</p> </li> <li> <p>standard-queue</p> </li> <li> <p>security-profile</p> </li> <li> <p>operating-hours</p> </li> <li> <p>prompt</p> </li> <li> <p>contact-flow</p> </li> <li> <p>flow- module</p> </li> <li> <p>transfer-destination (also known as quick connect)</p> </li> <li> <p>metric</p> </li> </ul>
             next_token: <p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>
             max_results: <p>The maximum number of results to return per page.</p>
             search_criteria: <p>The search criteria to be used to return tags.</p>
@@ -19607,6 +20836,112 @@ class AsyncConnectClient:
                 search_criteria=search_criteria,
             )
             _page = _resolve_path(_response, ("routing_profiles",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def search_rules(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        max_results: Optional["capo_connect.types.max_result200.MaxResult200"] = None,
+        next_token: Optional["capo_connect.types.next_token2500.NextToken2500"] = None,
+        search_criteria: Optional[
+            "capo_connect.types.rules_search_criteria.RulesSearchCriteria"
+        ] = None,
+        search_filter: Optional[
+            "capo_connect.types.rules_search_filter.RulesSearchFilter"
+        ] = None,
+    ) -> "capo_connect.types.search_rules_response.SearchRulesResponse":
+        r"""<p>Searches rules in an Connect Customer instance, with optional filtering.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            max_results: <p>The maximum number of results to return per page.</p>
+            next_token: <p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>
+            search_criteria: <p>The search criteria to be used to return rules.</p>
+            search_filter: <p>Filters to be applied to search results, such as tag-based filters.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            SearchRules
+            Searches for published rules in an Amazon Connect instance.
+
+            >>> await client.search_rules(instance_id='12345678-1234-1234-1234-123456789012', max_results=10, search_criteria={'StringCondition': {'FieldName': 'PublishStatus', 'Value': 'PUBLISHED', 'ComparisonType': 'EXACT'}})
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.search_rules_request.SearchRulesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.search_rules_response.SearchRulesResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.search_rules
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.search_rules.async_search_rules(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.search_rules_request.SearchRulesRequest = {
+            "instance_id": instance_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if search_criteria is not None:
+            input_["search_criteria"] = search_criteria
+        if search_filter is not None:
+            input_["search_filter"] = search_filter
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_search_rules(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        max_results: Optional["capo_connect.types.max_result200.MaxResult200"] = None,
+        next_token: Optional["capo_connect.types.next_token2500.NextToken2500"] = None,
+        search_criteria: Optional[
+            "capo_connect.types.rules_search_criteria.RulesSearchCriteria"
+        ] = None,
+        search_filter: Optional[
+            "capo_connect.types.rules_search_filter.RulesSearchFilter"
+        ] = None,
+    ) -> "AsyncIterator[capo_connect.types.rule_search_summary.RuleSearchSummary]":
+        _token = next_token
+        while True:
+            _response = await self.search_rules(
+                instance_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                search_criteria=search_criteria,
+                search_filter=search_filter,
+            )
+            _page = _resolve_path(_response, ("rules",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -20560,6 +21895,156 @@ class AsyncConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def send_outbound_web_notification(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        browser_id: "capo_connect.types.web_browser_id.WebBrowserId",
+        session_id: "capo_connect.types.web_session_id.WebSessionId",
+        expires_at: "capo_connect.types.timestamp.Timestamp",
+        source: "capo_connect.types.web_notification_source.WebNotificationSource",
+        destination: "capo_connect.types.widget_destination.WidgetDestination",
+        content: "capo_connect.types.web_notification_content.WebNotificationContent",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
+    ) -> "capo_connect.types.send_outbound_web_notification_response.SendOutboundWebNotificationResponse":
+        r"""<p>Sends an outbound web notification to a customer's web browser for outbound campaigns. For more information about outbound campaigns, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/enable-outbound-campaigns.html\">Set up Connect Customer outbound campaigns</a>.</p> <note> <p>Only the Connect Customer outbound campaigns service principal is allowed to assume a role in your account and call this API.</p> </note>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
+            browser_id: <p>A unique identifier for the customer's web browser instance to which the notification is being sent.</p>
+            session_id: <p>A unique identifier for the customer's web session to which the notification is being sent.</p>
+            expires_at: <p>The timestamp, in Unix epoch time format, at which the web notification expires. After this time, the notification is no longer delivered to the customer's browser.</p>
+            source: <p>The source of the web notification. A <code>SourceCampaign</code> object identifies the campaign and outbound request that triggered this notification.</p>
+            destination: <p>The destination for the web notification, specifying the communication widget that delivers the notification and the customer profile of the recipient.</p>
+            content: <p>The content of the web notification, including the notification type, the view to render, and any optional attributes used to populate it.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.send_outbound_web_notification_request.SendOutboundWebNotificationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.send_outbound_web_notification_response.SendOutboundWebNotificationResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.send_outbound_web_notification
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.send_outbound_web_notification.async_send_outbound_web_notification(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.send_outbound_web_notification_request.SendOutboundWebNotificationRequest = {
+            "instance_id": instance_id,
+            "browser_id": browser_id,
+            "session_id": session_id,
+            "expires_at": expires_at,
+            "source": source,
+            "destination": destination,
+            "content": content,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_assistant_contact(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        ai_agent: "capo_connect.types.ai_agent_input.AiAgentInput",
+        participant_details: "capo_connect.types.participant_details.ParticipantDetails",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        initial_message: Optional["capo_connect.types.chat_message.ChatMessage"] = None,
+        attributes: Optional["capo_connect.types.attributes.Attributes"] = None,
+        client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
+        persistent_chat: Optional[
+            "capo_connect.types.persistent_chat.PersistentChat"
+        ] = None,
+        related_contact_id: Optional["capo_connect.types.contact_id.ContactId"] = None,
+    ) -> "capo_connect.types.start_assistant_contact_response.StartAssistantContactResponse":
+        r"""<p>Starts a chat contact with an AI agent.</p> <p>Use the returned <code>ParticipantToken</code> with the <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> operation.</p> <p>For more information about chat, see the following topics in the <i>Connect Customer Administrator Guide</i>: </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/web-and-mobile-chat.html\">Concepts: Web and mobile messaging capabilities in Connect Customer</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security-best-practices.html#bp-security-chat\">Connect Customer Chat security best practices</a> </p> </li> </ul>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            ai_agent: <p>The AI agent configuration for this contact.</p>
+            participant_details: <p>The display name and other details that identify the chat participant.</p>
+            initial_message: <p>The initial message to send to the newly created chat.</p>
+            attributes: <p>A map of key-value pairs to associate with the contact. We make these attributes available to flows as standard contact attributes.</p> <p>You can provide up to 32,768 UTF-8 bytes across all key-value pairs for each contact.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
+            persistent_chat: <p>The configuration that enables persistent chat. For more information about persistent chat and its use cases, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html\">Enable persistent chat</a>.</p>
+            related_contact_id: <p>The identifier of an Connect Customer contact related to the new assistant contact.</p> <note> <p>You cannot provide both <code>RelatedContactId</code> and <code>PersistentChat</code>.</p> </note>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The allowed limit for the resource has been exceeded.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.start_assistant_contact_request.StartAssistantContactRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.start_assistant_contact_response.StartAssistantContactResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.start_assistant_contact
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.start_assistant_contact.async_start_assistant_contact(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.start_assistant_contact_request.StartAssistantContactRequest = {
+            "instance_id": instance_id,
+            "ai_agent": ai_agent,
+            "participant_details": participant_details,
+        }
+        if initial_message is not None:
+            input_["initial_message"] = initial_message
+        if attributes is not None:
+            input_["attributes"] = attributes
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if persistent_chat is not None:
+            input_["persistent_chat"] = persistent_chat
+        if related_contact_id is not None:
+            input_["related_contact_id"] = related_contact_id
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def start_attached_file_upload(
         self,
         instance_id: "capo_connect.types.instance_id.InstanceId",
@@ -20576,7 +22061,7 @@ class AsyncConnectClient:
         created_by: Optional["capo_connect.types.created_by_info.CreatedByInfo"] = None,
         tags: Optional["capo_connect.types.tag_map.TagMap"] = None,
     ) -> "capo_connect.types.start_attached_file_upload_response.StartAttachedFileUploadResponse":
-        r"""<p>Provides a pre-signed Amazon S3 URL in response for uploading your content.</p> <important> <p>You may only use this API to upload attachments to an <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html\">Connect Customer Case</a> or <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Connect Customer Email</a>. </p> </important>
+        r"""<p>Provides a pre-signed Amazon S3 URL in response for uploading your content.</p> <important> <p>You may only use this API to upload attachments to a <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html\">Connect Customer Case</a>, <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Connect Customer Email</a>, or <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-getting-started-tasks.html\">Connect Customer Task</a>. </p> </important>
 
         Args:
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
@@ -20585,7 +22070,7 @@ class AsyncConnectClient:
             file_size_in_bytes: <p>The size of the attached file in bytes.</p>
             url_expiry_in_seconds: <p>Optional override for the expiry of the pre-signed S3 URL in seconds. The default value is 300.</p>
             file_use_case_type: <p>The use case for the file.</p> <important> <p> Only <code>ATTACHMENTS</code> are supported.</p> </important>
-            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>.</p> <note> <p>This value must be a valid ARN.</p> </note>
+            associated_resource_arn: <p>The resource to which the attached file is (being) uploaded to. The supported resources are <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cases.html\">Cases</a>, <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-email-channel.html\">Email</a>, and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-getting-started-tasks.html\">Task</a>.</p> <note> <p>This value must be a valid ARN.</p> </note>
             created_by: <p>Represents the identity that created the file.</p>
             tags: <p>The tags used to organize, track, or control access for this resource. For example, <code>{ \"Tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }</code>.</p>
 
@@ -20755,6 +22240,68 @@ class AsyncConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def start_contact_conversational_analytics_job(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        contact_id: "capo_connect.types.contact_id.ContactId",
+        analytics_modes: "capo_connect.types.analytics_modes.AnalyticsModes",
+        analytics_configuration: "capo_connect.types.analytics_configuration.AnalyticsConfiguration",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
+    ) -> "capo_connect.types.start_contact_conversational_analytics_job_response.StartContactConversationalAnalyticsJobResponse":
+        r"""<p>Starts a Contact Lens post-call analytics job for the specified contact. This API runs Conversational Analytics post-contact analysis on a voice recording that is already attached to the contact, generating transcription, sentiment analysis, redaction, and summarization results based on the provided configuration.</p> <important> <p>A voice recording must already be attached to the contact before calling this API. Use <code>CreateAttachedFile</code> to attach a recording from an S3 source URI.</p> </important> <note> <p>For example, you can call <code>CreateContact</code>, then <code>CreateAttachedFile</code>, then <code>StartContactConversationalAnalyticsJob</code> to create a contact, attach a recording, and run post-call analytics.</p> </note>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            contact_id: <p>The identifier of the contact in this instance of Connect Customer. </p>
+            analytics_modes: <p>The analytics modes to run for the contact. Valid values: <code>PostContact</code>.</p>
+            analytics_configuration: <p>The configuration for the conversational analytics job.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.idempotency_exception.IdempotencyException: <p>An entity with the same name already exists.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.start_contact_conversational_analytics_job_request.StartContactConversationalAnalyticsJobRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.start_contact_conversational_analytics_job_response.StartContactConversationalAnalyticsJobResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.start_contact_conversational_analytics_job
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.start_contact_conversational_analytics_job.async_start_contact_conversational_analytics_job(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.start_contact_conversational_analytics_job_request.StartContactConversationalAnalyticsJobRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "analytics_modes": analytics_modes,
+            "analytics_configuration": analytics_configuration,
+        }
+        if client_token is not None:
+            input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def start_contact_evaluation(
         self,
         instance_id: "capo_connect.types.instance_id.InstanceId",
@@ -20768,7 +22315,7 @@ class AsyncConnectClient:
         client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
         tags: Optional["capo_connect.types.tag_map.TagMap"] = None,
     ) -> "capo_connect.types.start_contact_evaluation_response.StartContactEvaluationResponse":
-        r"""<p>Starts an empty evaluation in the specified Connect Customer instance, using the given evaluation form for the particular contact. The evaluation form version used for the contact evaluation corresponds to the currently activated version. If no version is activated for the evaluation form, the contact evaluation cannot be started. </p> <note> <p>Evaluations created through the public API do not contain answer values suggested from automation.</p> </note>
+        r"""<p>Starts an empty evaluation in the specified Connect Customer instance, using the given evaluation form for the particular contact. The evaluation form version used for the contact evaluation corresponds to the currently activated version. If no version is activated for the evaluation form, the contact evaluation cannot be started. </p>
 
         Args:
             instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
@@ -21104,6 +22651,61 @@ class AsyncConnectClient:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_evaluation_form_validation(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        evaluation_form_id: "capo_connect.types.resource_id.ResourceId",
+        evaluation_form_version: "capo_connect.types.version_number.VersionNumber",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.start_evaluation_form_validation_response.StartEvaluationFormValidationResponse":
+        r"""<p>Starts an asynchronous validation process for an evaluation form version in the specified Connect Customer instance. The validation first performs structural checks on the form content (such as verifying required fields, valid scoring configuration, and correct conditional logic), then asynchronously analyzes questions configured for generative AI evaluation against a set of best practices. Use <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_GetEvaluationFormValidation.html\">GetEvaluationFormValidation</a> to retrieve the status and results once the validation completes.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            evaluation_form_id: <p>The unique identifier for the evaluation form.</p>
+            evaluation_form_version: <p>The version of the evaluation form to validate.</p>
+
+        Raises:
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.resource_conflict_exception.ResourceConflictException: <p>A resource already has that name.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The service quota has been exceeded.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.start_evaluation_form_validation_request.StartEvaluationFormValidationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.start_evaluation_form_validation_response.StartEvaluationFormValidationResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.start_evaluation_form_validation
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.start_evaluation_form_validation.async_start_evaluation_form_validation(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.start_evaluation_form_validation_request.StartEvaluationFormValidationRequest = {
+            "instance_id": instance_id,
+            "evaluation_form_id": evaluation_form_id,
+            "evaluation_form_version": evaluation_form_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -21657,6 +23259,9 @@ class AsyncConnectClient:
             "capo_connect.types.contact_references.ContactReferences"
         ] = None,
         description: Optional["capo_connect.types.description.Description"] = None,
+        segment_attributes: Optional[
+            "capo_connect.types.segment_attributes.SegmentAttributes"
+        ] = None,
     ) -> "capo_connect.types.start_web_rtc_contact_response.StartWebRTCContactResponse":
         r"""<p>Places an inbound in-app, web, or video call to a contact, and then initiates the flow. It performs the actions in the flow that are specified (in ContactFlowId) and present in the Connect Customer instance (specified as InstanceId).</p>
 
@@ -21669,8 +23274,10 @@ class AsyncConnectClient:
             related_contact_id: <p>The unique identifier for an Connect Customer contact. This identifier is related to the contact starting.</p>
             references: <p>A formatted URL that is shown to an agent in the Contact Control Panel (CCP). Tasks can have the following reference types at the time of creation: <code>URL</code> | <code>NUMBER</code> | <code>STRING</code> | <code>DATE</code> | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a supported reference type during task creation.</p>
             description: <p>A description of the task that is shown to an agent in the Contact Control Panel (CCP).</p>
+            segment_attributes: <p>A map of system-defined attributes for the WebRTC contact segment. Use the <code>connect:Subtype</code> attribute to specify the channel subtype, such as <code>connect:WebRTC</code>.</p>
 
         Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
             capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
             capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
             capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
@@ -21713,6 +23320,8 @@ class AsyncConnectClient:
             input_["references"] = references
         if description is not None:
             input_["description"] = description
+        if segment_attributes is not None:
+            input_["segment_attributes"] = segment_attributes
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -22195,7 +23804,7 @@ class AsyncConnectClient:
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
     ) -> None:
-        r"""<p>Adds the specified tags to the specified resource.</p> <p>Some of the supported resource types are agents, routing profiles, queues, quick connects, flows, agent statuses, hours of operation, phone numbers, security profiles, and task templates. For a complete list, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/tagging.html\">Tagging resources in Connect Customer</a>.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Connect Customer Identity-Based Policy Examples</a> in the <i>Connect Customer Administrator Guide</i>.</p>
+        r"""<p>Adds the specified tags to the specified resource.</p> <p>Some of the supported resource types are agents, routing profiles, queues, quick connects, flows, agent statuses, hours of operation, phone numbers, security profiles, task templates, and custom metrics. For a complete list, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/tagging.html\">Tagging resources in Connect Customer</a>.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Connect Customer Identity-Based Policy Examples</a> in the <i>Connect Customer Administrator Guide</i>.</p>
 
         Args:
             resource_arn: <p>The Amazon Resource Name (ARN) of the resource.</p>
@@ -23377,6 +24986,114 @@ class AsyncConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def update_contact_task_template(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        task_template_id: "capo_connect.types.task_template_id.TaskTemplateId",
+        contact_id: "capo_connect.types.contact_id.ContactId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.update_contact_task_template_response.UpdateContactTaskTemplateResponse":
+        r"""<p>Updates the task template association on an existing task contact. You can update the task template on a contact before assignment to support tasks that are created without a template (for example <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/connect-rules.html\">Rules</a> or <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-disconnect-flow.html\">disconnect flows</a>) or change the agent interaction form to represent the latest task data (for example an initial request that was submitted as a refund gets updated to an account cancellation and requires a new template).</p> <p>This operation can only be used with task contacts that are in progress and not connected to an agent. A task template can be updated a maximum of 5 times per contact.</p> <p>The task's references must be compatible with the fields of the target task template. If the target template has a required field, the task must have a corresponding reference with a matching name and compatible type. The following task template field types map to reference types:</p> <ul> <li> <p> <code>TEXT</code>, <code>TEXT_AREA</code>, <code>BOOLEAN</code>, and <code>SINGLE_SELECT</code> map to references of type <code>STRING</code>.</p> </li> <li> <p> <code>NUMBER</code> maps to references of type <code>NUMBER</code>.</p> </li> <li> <p> <code>DATE_TIME</code> maps to references of type <code>DATE</code>.</p> </li> <li> <p> <code>URL</code> maps to references of type <code>URL</code>.</p> </li> <li> <p> <code>EMAIL</code> maps to references of type <code>EMAIL</code>.</p> </li> </ul> <p>References corresponding to <code>TEXT</code> fields must be fewer than 512 characters. <code>TEXT_AREA</code> fields must be fewer than 4,096 characters. <code>BOOLEAN</code> fields must have a value of <code>true</code> or <code>false</code>.</p> <p>An <code>InvalidRequestException</code> occurs when <code>UpdateContactTaskTemplate</code> is called on a connected or terminated task, when it is called on non-task contacts, and when the task contact already uses the provided task template. A <code>PropertyValidationException</code> occurs when the task's references conflict with the task template's fields, for example if the task is missing a reference that matches a required field, or if the task has a reference that matches a required field's name but not its datatype.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            task_template_id: <p>A unique identifier for the task template. For more information about task templates, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/task-templates.html\">Task templates</a> in the <i>Connect Customer Administrator Guide</i>.</p>
+            contact_id: <p>The identifier of the contact in this instance of Connect Customer. </p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The allowed limit for the resource has been exceeded.</p>
+            capo_connect.errors.property_validation_exception.PropertyValidationException: <p>The property is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The service quota has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.update_contact_task_template_request.UpdateContactTaskTemplateRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.update_contact_task_template_response.UpdateContactTaskTemplateResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.update_contact_task_template
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.update_contact_task_template.async_update_contact_task_template(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.update_contact_task_template_request.UpdateContactTaskTemplateRequest = {
+            "instance_id": instance_id,
+            "task_template_id": task_template_id,
+            "contact_id": contact_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_cross_region_routing(
+        self,
+        instance_id: "capo_connect.types.acgr_instance_id_or_arn.ACGRInstanceIdOrArn",
+        isolated_all: "capo_connect.types.boolean.Boolean",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+    ) -> "capo_connect.types.update_cross_region_routing_response.UpdateCrossRegionRoutingResponse":
+        r"""<p>Updates the cross-region routing configuration for an Amazon Connect Global Resiliency instance enabled for global routing. When invoked with <code>IsolatedAll</code> set to <code>true</code>, this operation disables cross-region routing, meaning contacts originating in one Region will no longer be routed to agents in another Region.</p> <note> <p>This operation is available only for Amazon Connect Global Resiliency instances enabled for global routing. Reporting and contact search continue to operate globally after you use this operation.</p> </note>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            isolated_all: <p>Set to <code>true</code> to disable cross-region routing for all Regions associated with this instance. Set to <code>false</code> to re-enable cross-region routing.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_conflict_exception.ResourceConflictException: <p>A resource already has that name.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.update_cross_region_routing_request.UpdateCrossRegionRoutingRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.update_cross_region_routing_response.UpdateCrossRegionRoutingResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.update_cross_region_routing
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.update_cross_region_routing.async_update_cross_region_routing(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.update_cross_region_routing_request.UpdateCrossRegionRoutingRequest = {
+            "instance_id": instance_id,
+            "isolated_all": isolated_all,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def update_data_table_attribute(
         self,
         instance_id: "capo_connect.types.instance_id.InstanceId",
@@ -23685,6 +25402,9 @@ class AsyncConnectClient:
         language_configuration: Optional[
             "capo_connect.types.evaluation_form_language_configuration.EvaluationFormLanguageConfiguration"
         ] = None,
+        ai_version: Optional[
+            "capo_connect.types.evaluation_form_ai_version.EvaluationFormAIVersion"
+        ] = None,
     ) -> "capo_connect.types.update_evaluation_form_response.UpdateEvaluationFormResponse":
         r"""<p>Updates details about a specific evaluation form version in the specified Connect Customer instance. Question and section identifiers cannot be duplicated within the same evaluation form.</p> <p>This operation does not support partial updates. Instead it does a full update of evaluation form content.</p>
 
@@ -23703,6 +25423,7 @@ class AsyncConnectClient:
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
             target_configuration: <p>Configuration that specifies the target for the evaluation form.</p>
             language_configuration: <p>Configuration for language settings of the evaluation form.</p>
+            ai_version: <p>The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.</p>
 
         Raises:
             capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
@@ -23756,6 +25477,77 @@ class AsyncConnectClient:
             input_["target_configuration"] = target_configuration
         if language_configuration is not None:
             input_["language_configuration"] = language_configuration
+        if ai_version is not None:
+            input_["ai_version"] = ai_version
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_extraction_definition(
+        self,
+        extraction_definition_id: "capo_connect.types.extraction_definition_id.ExtractionDefinitionId",
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        name: "capo_connect.types.extraction_definition_name.ExtractionDefinitionName",
+        extraction_configuration: "capo_connect.types.extraction_configuration.ExtractionConfiguration",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        client_token: Optional["capo_connect.types.client_token.ClientToken"] = None,
+        display: Optional[
+            "capo_connect.types.extraction_definition_display.ExtractionDefinitionDisplay"
+        ] = None,
+    ) -> "capo_connect.types.update_extraction_definition_response.UpdateExtractionDefinitionResponse":
+        r"""<p>Updates an extraction definition in the specified Connect Customer instance.</p>
+
+        Args:
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field.</p>
+            extraction_definition_id: <p>The identifier of the extraction definition to update.</p>
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            name: <p>The name of the extraction definition.</p>
+            extraction_configuration: <p>The configuration that defines how data is extracted, including the prompt hint and not-found behavior.</p>
+            display: <p>The display settings for the extraction definition.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_conflict_exception.ResourceConflictException: <p>A resource already has that name.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.update_extraction_definition_request.UpdateExtractionDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.update_extraction_definition_response.UpdateExtractionDefinitionResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.update_extraction_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.update_extraction_definition.async_update_extraction_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.update_extraction_definition_request.UpdateExtractionDefinitionRequest = {
+            "extraction_definition_id": extraction_definition_id,
+            "instance_id": instance_id,
+            "name": name,
+            "extraction_configuration": extraction_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if display is not None:
+            input_["display"] = display
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -23876,7 +25668,7 @@ class AsyncConnectClient:
             effective_from: <p>The date from when the hours of operation override would be effective.</p>
             effective_till: <p>The date until the hours of operation override is effective.</p>
             recurrence_config: <p>Configuration for a recurring event.</p>
-            override_type: <p>Whether the override will be defined as a <i>standard</i> or as a <i>recurring event</i>.</p> <p>For more information about how override types are applied, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Build your list of overrides</a> in the <i> Administrator Guide</i>.</p>
+            override_type: <p>Whether the override will be defined as a <i>standard</i> or as a <i>recurring event</i>.</p> <p>For more information about how override types are applied, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/hours-of-operation-overrides.html\">Build your list of overrides</a> in the <i> Administrator Guide</i>.</p>
 
         Raises:
             capo_connect.errors.conditional_operation_failed_exception.ConditionalOperationFailedException: <p>Request processing failed because dependent condition failed.</p>
@@ -23944,7 +25736,7 @@ class AsyncConnectClient:
 
         Args:
             instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
-            attribute_type: <p>The type of attribute.</p> <note> <p>Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access this feature, contact Amazon Web Services Support for allowlisting.</p> </note> <note> <p>If you set the attribute type as <code>MESSAGE_STREAMING</code>, you need to update the Lex bot alias resource based policy to include the <code>lex:RecognizeMessageAsync</code> action for the connect instance ARN resource.</p> </note>
+            attribute_type: <p>The type of attribute.</p> <note> <p>Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access this feature, contact Amazon Web Services Support for allowlisting.</p> </note> <note> <p>If you set the attribute type as <code>MESSAGE_STREAMING</code>, you need to update the Lex bot alias resource based policy to include the <code>lex:RecognizeMessageAsync</code> action for the connect instance ARN resource.</p> </note> <note> <p>If you set the attribute type <code>AUTO_MUTE_AGENT_ON_HOLD</code> to <code>true</code>, the system automatically mutes agents while they're on hold and unmutes them when they resume the contact. Agents can't change their mute state while on hold.</p> </note>
             value: <p>The value for the attribute. Maximum character limit is 100. </p>
             client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
 
@@ -24038,6 +25830,139 @@ class AsyncConnectClient:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_metric_content(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        metric_id: "capo_connect.types.metric_id.MetricId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        metric_calculation: Optional[
+            "capo_connect.types.metric_calculation.MetricCalculation"
+        ] = None,
+        unit: Optional["capo_connect.types.metric_unit.MetricUnit"] = None,
+        positive_trend_indicator: Optional[
+            "capo_connect.types.trend_indicator.TrendIndicator"
+        ] = None,
+    ) -> (
+        "capo_connect.types.update_metric_content_response.UpdateMetricContentResponse"
+    ):
+        r"""<p>Updates the calculation, unit, and/or trend indicator of an existing metric in the specified Connect Customer instance.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            metric_id: <p>The identifier of the metric to update. Adding the <code>$SAVED</code> qualifier will update the saved version of the metric. Adding <code>$LATEST</code> or omitting a qualifier will update the published version.</p>
+            metric_calculation: <p>The updated calculation definition for the metric.</p>
+            unit: <p>The updated display unit for the metric.</p>
+            positive_trend_indicator: <p>How an increase in the metric value should be interpreted. Valid values: <code>POSITIVE</code>, <code>NEUTRAL</code>, <code>NEGATIVE</code>.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.update_metric_content_request.UpdateMetricContentRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.update_metric_content_response.UpdateMetricContentResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.update_metric_content
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.update_metric_content.async_update_metric_content(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.update_metric_content_request.UpdateMetricContentRequest = {
+            "instance_id": instance_id,
+            "metric_id": metric_id,
+        }
+        if metric_calculation is not None:
+            input_["metric_calculation"] = metric_calculation
+        if unit is not None:
+            input_["unit"] = unit
+        if positive_trend_indicator is not None:
+            input_["positive_trend_indicator"] = positive_trend_indicator
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_metric_metadata(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        metric_id: "capo_connect.types.metric_id.MetricId",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        name: Optional["capo_connect.types.metric_name.MetricName"] = None,
+        description: Optional[
+            "capo_connect.types.metric_description.MetricDescription"
+        ] = None,
+    ) -> "capo_connect.types.update_metric_metadata_response.UpdateMetricMetadataResponse":
+        r"""<p>Updates the name and/or description of an existing metric in the specified Connect Customer instance.</p>
+
+        Args:
+            instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
+            metric_id: <p>The identifier of the metric to update. Adding the <code>$SAVED</code> qualifier will update the saved version of the metric. Adding <code>$LATEST</code> or omitting a qualifier will update the published version.</p>
+            name: <p>The updated name of the metric.</p>
+            description: <p>The updated description of the metric.</p>
+
+        Raises:
+            capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
+            capo_connect.errors.duplicate_resource_exception.DuplicateResourceException: <p>A resource with the specified name already exists.</p>
+            capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>
+            capo_connect.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more of the specified parameters are not valid.</p>
+            capo_connect.errors.invalid_request_exception.InvalidRequestException: <p>The request is not valid.</p>
+            capo_connect.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p>
+            capo_connect.errors.throttling_exception.ThrottlingException: <p>The throttling limit has been exceeded.</p>
+            capo_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_connect.types.update_metric_metadata_request.UpdateMetricMetadataRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_connect.types.update_metric_metadata_response.UpdateMetricMetadataResponse"
+        ]:
+            import capo_connect._operations.amazon_connect_service.update_metric_metadata
+
+            (
+                output,
+                http_response,
+            ) = await capo_connect._operations.amazon_connect_service.update_metric_metadata.async_update_metric_metadata(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_connect.types.update_metric_metadata_request.UpdateMetricMetadataRequest = {
+            "instance_id": instance_id,
+            "metric_id": metric_id,
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -25202,6 +27127,9 @@ class AsyncConnectClient:
         publish_status: "capo_connect.types.rule_publish_status.RulePublishStatus",
         *,
         config_overrides: Optional[AsyncConnectClientConfig] = None,
+        pre_evaluation_filters: Optional[
+            "capo_connect.types.pre_evaluation_filters.PreEvaluationFilters"
+        ] = None,
     ) -> None:
         r"""<p>Updates a rule for the specified Connect Customer instance.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html\">Rules Function language</a> to code conditions for the rule. </p>
 
@@ -25212,6 +27140,7 @@ class AsyncConnectClient:
             function: <p>The conditions of the rule.</p>
             actions: <p>A list of actions to be run when the rule is triggered.</p>
             publish_status: <p>The publish status of the rule.</p>
+            pre_evaluation_filters: <p>The pre-evaluation filters for the rule, that restrict the rule to be applied to only certain resources based on the resource's attributes, such as tags assigned to a contact. The pre-evaluation filters are applied even before rule conditions are evaluated and are used to enforce tag-based-access-control while applying rules.</p>
 
         Raises:
             capo_connect.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permissions to perform this action.</p>
@@ -25245,6 +27174,8 @@ class AsyncConnectClient:
             "actions": actions,
             "publish_status": publish_status,
         }
+        if pre_evaluation_filters is not None:
+            input_["pre_evaluation_filters"] = pre_evaluation_filters
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -25282,6 +27213,9 @@ class AsyncConnectClient:
         allowed_flow_modules: Optional[
             "capo_connect.types.allowed_flow_modules.AllowedFlowModules"
         ] = None,
+        allowed_ai_agents: Optional[
+            "capo_connect.types.allowed_ai_agents.AllowedAIAgents"
+        ] = None,
         granular_access_control_configuration: Optional[
             "capo_connect.types.granular_access_control_configuration.GranularAccessControlConfiguration"
         ] = None,
@@ -25299,6 +27233,7 @@ class AsyncConnectClient:
             hierarchy_restricted_resources: <p>The list of resources that a security profile applies hierarchy restrictions to in Connect Customer. Following are acceptable ResourceNames: <code>User</code>.</p>
             allowed_access_control_hierarchy_group_id: <p>The identifier of the hierarchy group that a security profile uses to restrict access to resources in Connect Customer.</p>
             allowed_flow_modules: <p> A list of Flow Modules an AI Agent can invoke as a tool </p>
+            allowed_ai_agents: <p>A list of AI agents that the security profile will give access to.</p>
             granular_access_control_configuration: <p>The granular access control configuration for the security profile, including data table permissions.</p>
 
         Raises:
@@ -25346,6 +27281,8 @@ class AsyncConnectClient:
             )
         if allowed_flow_modules is not None:
             input_["allowed_flow_modules"] = allowed_flow_modules
+        if allowed_ai_agents is not None:
+            input_["allowed_ai_agents"] = allowed_ai_agents
         if granular_access_control_configuration is not None:
             input_["granular_access_control_configuration"] = (
                 granular_access_control_configuration
@@ -25395,12 +27332,12 @@ class AsyncConnectClient:
             instance_id: <p>The identifier of the Connect Customer instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>
             name: <p>The name of the task template.</p>
             description: <p>The description of the task template.</p>
-            contact_flow_id: <p>The identifier of the flow that runs by default when a task is created by referencing this template.</p>
+            contact_flow_id: <p>The identifier of the flow that runs by default when a task is created by referencing this template.</p> <p>Although this parameter is marked as optional, the request must contain either a <code>ContactFlowId</code> or a field of type <code>QUICK_CONNECT</code>.</p>
             self_assign_flow_id: <p>The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.</p>
-            constraints: <p>Constraints that are applicable to the fields listed.</p>
+            constraints: <p>Constraints that are applicable to the fields listed. Although this parameter is marked as optional in the API model, the service requires it when calling <code>CreateTaskTemplate</code> or <code>UpdateTaskTemplate</code>. The <code>RequiredFields</code> array must contain at least one element, and the field of type <code>NAME</code> must be included in <code>RequiredFields</code>.</p>
             defaults: <p>The default values for fields when a task is created by referencing this template.</p>
-            status: <p>Marks a template as <code>ACTIVE</code> or <code>INACTIVE</code> for a task to refer to it. Tasks can only be created from <code>ACTIVE</code> templates. If a template is marked as <code>INACTIVE</code>, then a task that refers to this template cannot be created.</p>
-            fields: <p>Fields that are part of the template.</p>
+            status: <p>Marks a template as <code>ACTIVE</code> or <code>INACTIVE</code> for a task to refer to it. Tasks can only be created from <code>ACTIVE</code> templates. If a template is marked as <code>INACTIVE</code>, then a task that refers to this template cannot be created.</p> <p>Although this parameter is marked as optional, the service requires it when calling <code>UpdateTaskTemplate</code>.</p>
+            fields: <p>Fields that are part of the template.</p> <p>The request must contain exactly one field of type <code>NAME</code>. This field must also be listed in the <code>RequiredFields</code> array within the <code>Constraints</code> parameter.</p>
 
         Raises:
             capo_connect.errors.internal_service_exception.InternalServiceException: <p>Request processing failed because of an error or failure with the service.</p>

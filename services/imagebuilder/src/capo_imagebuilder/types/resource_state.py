@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class ResourceState(TypedDict, closed=True):
     status: NotRequired["capo_imagebuilder.types.resource_status.ResourceStatus"]
-    """<p>Shows the current lifecycle policy action that was applied to an impacted resource.</p>"""
+    """<p>The status to which you want to move the image resource. Set the status to <code>AVAILABLE</code> to restore an image that's currently deprecated or disabled.</p>"""
 
 
 # --- restJson1 ser/de ---

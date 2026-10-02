@@ -36,7 +36,7 @@ class CreateSessionRequest(TypedDict, closed=True):
     ]
     """<p>The configuration of the AI Agents (mapped by AI Agent Type to AI Agent version) that should be used by Amazon Q in Connect for this Session.</p>"""
     contact_arn: NotRequired["capo_qconnect.types.generic_arn.GenericArn"]
-    """<p>The Amazon Resource Name (ARN) of the email contact in Amazon Connect. Used to retrieve email content and establish session context for AI-powered email assistance.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the email contact in Connect Customer. Used to retrieve email content and establish session context for AI-powered email assistance.</p>"""
     orchestrator_configuration_list: NotRequired[
         "capo_qconnect.types.orchestrator_configuration_list.OrchestratorConfigurationList"
     ]

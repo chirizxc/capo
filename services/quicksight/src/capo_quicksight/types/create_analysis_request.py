@@ -38,7 +38,7 @@ class CreateAnalysisRequest(TypedDict, closed=True):
     source_entity: NotRequired[
         "capo_quicksight.types.analysis_source_entity.AnalysisSourceEntity"
     ]
-    """<p>A source entity to use for the analysis that you're creating. This metadata structure contains details that describe a source template and one or more datasets.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>"""
+    """<p>A source entity to use for the analysis that you're creating. This metadata structure contains details that describe a source template and one or more datasets or topics.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>"""
     theme_arn: NotRequired["capo_quicksight.types.arn.Arn"]
     """<p>The ARN for the theme to apply to the analysis that you're creating. To see the theme in the Amazon Quick Sight console, make sure that you have access to it.</p>"""
     tags: NotRequired["capo_quicksight.types.tag_list.TagList"]

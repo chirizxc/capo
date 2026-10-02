@@ -15,13 +15,13 @@ if TYPE_CHECKING:
 
 class EbsInstanceBlockDeviceSpecification(TypedDict, closed=True):
     encrypted: NotRequired["capo_imagebuilder.types.nullable_boolean.NullableBoolean"]
-    """<p>Use to configure device encryption.</p>"""
+    """<p>Specifies whether to encrypt the device.</p>"""
     delete_on_termination: NotRequired[
         "capo_imagebuilder.types.nullable_boolean.NullableBoolean"
     ]
-    """<p>Use to configure delete on termination of the associated device.</p>"""
+    """<p>Specifies whether to delete the associated device on termination.</p>"""
     iops: NotRequired["capo_imagebuilder.types.ebs_iops_integer.EbsIopsInteger"]
-    """<p>Use to configure device IOPS.</p>"""
+    """<p>The IOPS value for the device. Required only when volumeType is io1 or io2.</p>"""
     kms_key_id: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     r"""<p>The Amazon Resource Name (ARN) that uniquely identifies the KMS key to use when encrypting the device. This can be either the Key ARN or the Alias ARN. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN\">Key identifiers (KeyId)</a> in the <i>Key Management Service Developer Guide</i>.</p>"""
     snapshot_id: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
@@ -29,9 +29,9 @@ class EbsInstanceBlockDeviceSpecification(TypedDict, closed=True):
     volume_size: NotRequired[
         "capo_imagebuilder.types.ebs_volume_size_integer.EbsVolumeSizeInteger"
     ]
-    """<p>Use to override the device's volume size.</p>"""
+    """<p>Overrides the volume size for the device.</p>"""
     volume_type: NotRequired["capo_imagebuilder.types.ebs_volume_type.EbsVolumeType"]
-    """<p>Use to override the device's volume type.</p>"""
+    """<p>Overrides the volume type for the device.</p>"""
     throughput: NotRequired[
         "capo_imagebuilder.types.ebs_volume_throughput.EbsVolumeThroughput"
     ]

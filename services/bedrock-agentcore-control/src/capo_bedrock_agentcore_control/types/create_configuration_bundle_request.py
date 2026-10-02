@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.component_configuration_map
     import capo_bedrock_agentcore_control.types.configuration_bundle_description
     import capo_bedrock_agentcore_control.types.configuration_bundle_name
+    import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.tags_map
     import capo_bedrock_agentcore_control.types.version_created_by_source
 
@@ -39,6 +40,10 @@ class CreateConfigurationBundleRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.version_created_by_source.VersionCreatedBySource"
     ]
     """<p>The source that created this version, including the source name and optional ARN.</p>"""
+    kms_key_arn: NotRequired[
+        "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+    ]
+    """<p>Optional KMS key ARN for encrypting component configurations.</p>"""
     tags: NotRequired["capo_bedrock_agentcore_control.types.tags_map.TagsMap"]
     """<p>A map of tag keys and values to assign to the configuration bundle. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>"""
 
@@ -70,6 +75,8 @@ def serialize_json(value: CreateConfigurationBundleRequest) -> dict:
                 value["created_by"]
             )
         )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     if "tags" in value:
         import capo_bedrock_agentcore_control.types.tags_map
 
@@ -115,6 +122,8 @@ def deserialize_json(data: dict) -> CreateConfigurationBundleRequest:
                 data["createdBy"]
             )
         )
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     if data.get("tags") is not None:
         import capo_bedrock_agentcore_control.types.tags_map
 

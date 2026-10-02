@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.asset_bundle_export_job_refresh_schedule_override_properties_list
     import capo_quicksight.types.asset_bundle_export_job_resource_id_override_configuration
     import capo_quicksight.types.asset_bundle_export_job_theme_override_properties_list
+    import capo_quicksight.types.asset_bundle_export_job_topic_v2_override_properties_list
     import capo_quicksight.types.asset_bundle_export_job_vpc_connection_override_properties_list
 
 
@@ -53,6 +54,10 @@ class AssetBundleCloudFormationOverridePropertyConfiguration(TypedDict, closed=T
         "capo_quicksight.types.asset_bundle_export_job_folder_override_properties_list.AssetBundleExportJobFolderOverridePropertiesList"
     ]
     """<p>An optional list of structures that controls how <code>Folder</code> resources are parameterized in the returned CloudFormation template.</p>"""
+    topics_v2: NotRequired[
+        "capo_quicksight.types.asset_bundle_export_job_topic_v2_override_properties_list.AssetBundleExportJobTopicV2OverridePropertiesList"
+    ]
+    """<p>An optional list of structures that controls how <code>Topic</code> resources are parameterized in the returned CloudFormation template.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -132,6 +137,14 @@ def serialize_json(
                 value["folders"]
             )
         )
+    if "topics_v2" in value:
+        import capo_quicksight.types.asset_bundle_export_job_topic_v2_override_properties_list
+
+        out["TopicsV2"] = (
+            capo_quicksight.types.asset_bundle_export_job_topic_v2_override_properties_list.serialize_json(
+                value["topics_v2"]
+            )
+        )
     return out
 
 
@@ -209,6 +222,14 @@ def deserialize_json(
         out["folders"] = (
             capo_quicksight.types.asset_bundle_export_job_folder_override_properties_list.deserialize_json(
                 data["Folders"]
+            )
+        )
+    if data.get("TopicsV2") is not None:
+        import capo_quicksight.types.asset_bundle_export_job_topic_v2_override_properties_list
+
+        out["topics_v2"] = (
+            capo_quicksight.types.asset_bundle_export_job_topic_v2_override_properties_list.deserialize_json(
+                data["TopicsV2"]
             )
         )
     return out

@@ -13,15 +13,22 @@ import capo_mediatailor._auth._signers
 import capo_mediatailor._auth._sigv4
 import capo_mediatailor._protocol.eventstream
 import capo_mediatailor.types.__map_of__string
+import capo_mediatailor.types.aws_service_request_configuration
+import capo_mediatailor.types.concurrent_executor_configuration
 import capo_mediatailor.types.custom_output_configuration
 import capo_mediatailor.types.function_type
 import capo_mediatailor.types.get_function_request
 import capo_mediatailor.types.get_function_response
 import capo_mediatailor.types.http_request_configuration
 import capo_mediatailor.types.sequential_executor_configuration
+import capo_mediatailor.types.vast_request_configuration
 from capo_mediatailor._protocol.errors import parse_error_metadata_json
 from capo_mediatailor._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_mediatailor._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_mediatailor._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_mediatailor.errors import UnknownServiceError
 
 
@@ -119,7 +126,7 @@ def get_function(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -136,7 +143,7 @@ async def async_get_function(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

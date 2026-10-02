@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     import capo_mgn.types.replication_servers_security_groups_i_ds
     import capo_mgn.types.small_bounded_string
     import capo_mgn.types.source_server_id
+    import capo_mgn.types.storage_configuration
     import capo_mgn.types.subnet_id
     import capo_mgn.types.tags_map
 
@@ -69,6 +70,10 @@ class ReplicationConfiguration(TypedDict, closed=True):
     """<p>Replication Configuration internet protocol.</p>"""
     store_snapshot_on_local_zone: NotRequired["bool"]
     """<p>Replication Configuration store snapshot on local zone.</p>"""
+    storage_configuration: NotRequired[
+        "capo_mgn.types.storage_configuration.StorageConfiguration"
+    ]
+    """<p>Replication Configuration storage configuration.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -125,6 +130,14 @@ def serialize_json(value: ReplicationConfiguration) -> dict:
         out["internetProtocol"] = value["internet_protocol"]
     if "store_snapshot_on_local_zone" in value:
         out["storeSnapshotOnLocalZone"] = value["store_snapshot_on_local_zone"]
+    if "storage_configuration" in value:
+        import capo_mgn.types.storage_configuration
+
+        out["storageConfiguration"] = (
+            capo_mgn.types.storage_configuration.serialize_json(
+                value["storage_configuration"]
+            )
+        )
     return out
 
 
@@ -184,4 +197,12 @@ def deserialize_json(data: dict) -> ReplicationConfiguration:
         out["internet_protocol"] = data["internetProtocol"]
     if data.get("storeSnapshotOnLocalZone") is not None:
         out["store_snapshot_on_local_zone"] = data["storeSnapshotOnLocalZone"]
+    if data.get("storageConfiguration") is not None:
+        import capo_mgn.types.storage_configuration
+
+        out["storage_configuration"] = (
+            capo_mgn.types.storage_configuration.deserialize_json(
+                data["storageConfiguration"]
+            )
+        )
     return out

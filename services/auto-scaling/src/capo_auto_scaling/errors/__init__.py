@@ -25,6 +25,9 @@ from .active_instance_refresh_not_found_fault import (
     ActiveInstanceRefreshNotFoundFault as ActiveInstanceRefreshNotFoundFault,
 )
 from .already_exists_fault import AlreadyExistsFault as AlreadyExistsFault
+from .idempotent_call_in_progress_fault import (
+    IdempotentCallInProgressFault as IdempotentCallInProgressFault,
+)
 from .idempotent_parameter_mismatch_error import (
     IdempotentParameterMismatchError as IdempotentParameterMismatchError,
 )

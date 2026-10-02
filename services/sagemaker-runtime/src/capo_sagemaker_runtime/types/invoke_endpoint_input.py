@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_sagemaker_runtime.types.header
     import capo_sagemaker_runtime.types.inference_component_header
     import capo_sagemaker_runtime.types.inference_id
+    import capo_sagemaker_runtime.types.prefix_aware_id_header
     import capo_sagemaker_runtime.types.session_id_or_new_session_constant_header
     import capo_sagemaker_runtime.types.target_container_hostname_header
     import capo_sagemaker_runtime.types.target_model_header
@@ -57,6 +58,10 @@ class InvokeEndpointInput(TypedDict, closed=True):
         "capo_sagemaker_runtime.types.session_id_or_new_session_constant_header.SessionIdOrNewSessionConstantHeader"
     ]
     """<p>Creates a stateful session or identifies an existing one. You can do one of the following:</p> <ul> <li> <p>Create a stateful session by specifying the value <code>NEW_SESSION</code>.</p> </li> <li> <p>Send your request to an existing stateful session by specifying the ID of that session.</p> </li> </ul> <p>With a stateful session, you can send multiple requests to a stateful model. When you create a session with a stateful model, the model must create the session ID and set the expiration time. The model must also provide that information in the response to your request. You can get the ID and timestamp from the <code>NewSessionId</code> response parameter. For any subsequent request where you specify that session ID, SageMaker AI routes the request to the same instance that supports the session.</p>"""
+    prefix_aware_id: NotRequired[
+        "capo_sagemaker_runtime.types.prefix_aware_id_header.PrefixAwareIdHeader"
+    ]
+    """<p>An optional, stable identifier that serves as a routing hint for prefix-aware routing. The service routes requests with the same prefix and the same identifier to the same instance. If requests from different applications might have the same prompt prefix, set a different identifier for each application to differentiate their routing decisions.</p> <p>Applies only to endpoints configured with a <code>RoutingStrategy</code> of <code>PREFIX_AWARE</code>.</p>"""
 
 
 # --- restJson1 ser/de ---

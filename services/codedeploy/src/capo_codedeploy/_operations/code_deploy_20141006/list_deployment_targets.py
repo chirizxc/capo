@@ -11,7 +11,9 @@ from typing_extensions import Never
 import capo_codedeploy._auth._signers
 import capo_codedeploy._auth._sigv4
 import capo_codedeploy._protocol.eventstream
+import capo_codedeploy.errors.application_does_not_exist_exception
 import capo_codedeploy.errors.deployment_does_not_exist_exception
+import capo_codedeploy.errors.deployment_group_does_not_exist_exception
 import capo_codedeploy.errors.deployment_id_required_exception
 import capo_codedeploy.errors.deployment_not_started_exception
 import capo_codedeploy.errors.invalid_deployment_id_exception
@@ -26,7 +28,11 @@ import capo_codedeploy.types.target_filters
 import capo_codedeploy.types.target_id_list
 from capo_codedeploy._protocol.errors import parse_error_metadata_json
 from capo_codedeploy._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_codedeploy._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_codedeploy._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_codedeploy.errors import UnknownServiceError
 
 
@@ -34,8 +40,16 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "ApplicationDoesNotExistException":
+            raise capo_codedeploy.errors.application_does_not_exist_exception.ApplicationDoesNotExistException.from_aws_json_1_1(
+                data, message
+            )
         case "DeploymentDoesNotExistException":
             raise capo_codedeploy.errors.deployment_does_not_exist_exception.DeploymentDoesNotExistException.from_aws_json_1_1(
+                data, message
+            )
+        case "DeploymentGroupDoesNotExistException":
+            raise capo_codedeploy.errors.deployment_group_does_not_exist_exception.DeploymentGroupDoesNotExistException.from_aws_json_1_1(
                 data, message
             )
         case "DeploymentIdRequiredException":
@@ -163,7 +177,7 @@ def list_deployment_targets(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -181,7 +195,7 @@ async def async_list_deployment_targets(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

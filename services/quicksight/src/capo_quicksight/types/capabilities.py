@@ -143,6 +143,132 @@ class Capabilities(TypedDict, closed=True):
         "capo_quicksight.types.capability_state.CapabilityState"
     ]
     """<p>The ability to use knowledge bases to specify content from external applications.</p>"""
+    create_and_update_knowledge_bases: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_knowledge_bases: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_point_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_share_point_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_share_point_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_share_point_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    google_drive_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_google_drive_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_google_drive_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_google_drive_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    web_crawler_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_web_crawler_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_web_crawler_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_web_crawler_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    s3_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_s3_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_s3_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_s3_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    confluence_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_confluence_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_confluence_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_confluence_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    one_drive_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_one_drive_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_one_drive_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_one_drive_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    q_business_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_q_business_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_q_business_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_q_business_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    bedrock_managed_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_bedrock_managed_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_bedrock_managed_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_bedrock_managed_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    box_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_box_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_box_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_box_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    idc_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    create_and_update_idc_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    share_idc_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    use_idc_knowledge_base: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
     action: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
     """<p>The ability to perform actions in external services through Action connectors. Actions allow users to interact with third-party systems.</p>"""
     generic_http_action: NotRequired[
@@ -817,6 +943,440 @@ class Capabilities(TypedDict, closed=True):
         "capo_quicksight.types.capability_state.CapabilityState"
     ]
     """<p>The ability to use New Relic actions.</p>"""
+    pager_duty_agent_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using PagerDuty Agent connectors.</p>"""
+    create_and_update_pager_duty_agent_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update PagerDuty Agent actions.</p>"""
+    share_pager_duty_agent_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share PagerDuty Agent actions.</p>"""
+    use_pager_duty_agent_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use PagerDuty Agent actions.</p>"""
+    visier_agent_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Visier Agent connectors.</p>"""
+    create_and_update_visier_agent_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Visier Agent actions.</p>"""
+    share_visier_agent_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Visier Agent actions.</p>"""
+    use_visier_agent_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Visier Agent actions.</p>"""
+    zoom_action: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
+    """<p>The ability to perform actions using Zoom connectors.</p>"""
+    create_and_update_zoom_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Zoom actions.</p>"""
+    share_zoom_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Zoom actions.</p>"""
+    use_zoom_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Zoom actions.</p>"""
+    snow_flake_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Snowflake Cortex Agent connectors.</p>"""
+    create_and_update_snow_flake_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Snowflake Cortex Agent actions.</p>"""
+    share_snow_flake_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Snowflake Cortex Agent actions.</p>"""
+    use_snow_flake_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Snowflake Cortex Agent actions.</p>"""
+    zapier_action: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
+    """<p>The ability to perform actions using Zapier Agent connectors.</p>"""
+    create_and_update_zapier_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Zapier Agent actions.</p>"""
+    share_zapier_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Zapier Agent actions.</p>"""
+    use_zapier_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Zapier Agent actions.</p>"""
+    airtable_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Airtable connectors.</p>"""
+    create_and_update_airtable_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Airtable actions.</p>"""
+    share_airtable_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Airtable actions.</p>"""
+    use_airtable_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Airtable actions.</p>"""
+    dropbox_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Dropbox connectors.</p>"""
+    create_and_update_dropbox_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Dropbox actions.</p>"""
+    share_dropbox_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Dropbox actions.</p>"""
+    use_dropbox_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Dropbox actions.</p>"""
+    gmail_action: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
+    """<p>The ability to perform actions using Gmail connectors.</p>"""
+    create_and_update_gmail_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Gmail actions.</p>"""
+    share_gmail_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Gmail actions.</p>"""
+    use_gmail_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Gmail actions.</p>"""
+    google_analytics_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Google Analytics connectors.</p>"""
+    create_and_update_google_analytics_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Google Analytics actions.</p>"""
+    share_google_analytics_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Google Analytics actions.</p>"""
+    use_google_analytics_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Google Analytics actions.</p>"""
+    google_docs_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Google Docs connectors.</p>"""
+    create_and_update_google_docs_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Google Docs actions.</p>"""
+    share_google_docs_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Google Docs actions.</p>"""
+    use_google_docs_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Google Docs actions.</p>"""
+    google_drive_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Google Drive connectors.</p>"""
+    create_and_update_google_drive_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Google Drive actions.</p>"""
+    share_google_drive_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Google Drive actions.</p>"""
+    use_google_drive_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Google Drive actions.</p>"""
+    google_meet_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Google Meet connectors.</p>"""
+    create_and_update_google_meet_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Google Meet actions.</p>"""
+    share_google_meet_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Google Meet actions.</p>"""
+    use_google_meet_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Google Meet actions.</p>"""
+    google_sheets_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Google Sheets connectors.</p>"""
+    create_and_update_google_sheets_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Google Sheets actions.</p>"""
+    share_google_sheets_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Google Sheets actions.</p>"""
+    use_google_sheets_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Google Sheets actions.</p>"""
+    google_slides_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Google Slides connectors.</p>"""
+    create_and_update_google_slides_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Google Slides actions.</p>"""
+    share_google_slides_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Google Slides actions.</p>"""
+    use_google_slides_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Google Slides actions.</p>"""
+    quick_books_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using QuickBooks connectors.</p>"""
+    create_and_update_quick_books_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update QuickBooks actions.</p>"""
+    share_quick_books_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share QuickBooks actions.</p>"""
+    use_quick_books_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use QuickBooks actions.</p>"""
+    figma_action: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
+    """<p>The ability to perform actions using Figma connectors.</p>"""
+    create_and_update_figma_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Figma actions.</p>"""
+    share_figma_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Figma actions.</p>"""
+    use_figma_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Figma actions.</p>"""
+    whats_app_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using WhatsApp connectors.</p>"""
+    create_and_update_whats_app_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update WhatsApp actions.</p>"""
+    share_whats_app_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share WhatsApp actions.</p>"""
+    use_whats_app_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use WhatsApp actions.</p>"""
+    google_chat_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Google Chat connectors.</p>"""
+    create_and_update_google_chat_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Google Chat actions.</p>"""
+    share_google_chat_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Google Chat actions.</p>"""
+    use_google_chat_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Google Chat actions.</p>"""
+    one_note_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Microsoft OneNote connectors.</p>"""
+    create_and_update_one_note_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Microsoft OneNote actions.</p>"""
+    share_one_note_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Microsoft OneNote actions.</p>"""
+    use_one_note_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Microsoft OneNote actions.</p>"""
+    shopify_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Shopify connectors.</p>"""
+    create_and_update_shopify_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Shopify actions.</p>"""
+    share_shopify_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Shopify actions.</p>"""
+    use_shopify_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Shopify actions.</p>"""
+    adobe_action: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
+    """<p>The ability to perform actions using Adobe Marketing Agent connectors.</p>"""
+    create_and_update_adobe_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Adobe Marketing Agent actions.</p>"""
+    share_adobe_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Adobe Marketing Agent actions.</p>"""
+    use_adobe_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Adobe Marketing Agent actions.</p>"""
+    cisco_webex_vidcast_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Cisco Webex Video Messaging Agent connectors.</p>"""
+    create_and_update_cisco_webex_vidcast_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Cisco Webex Video Messaging Agent actions.</p>"""
+    share_cisco_webex_vidcast_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Cisco Webex Video Messaging Agent actions.</p>"""
+    use_cisco_webex_vidcast_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Cisco Webex Video Messaging Agent actions.</p>"""
+    cisco_webex_meetings_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Cisco Webex Meetings connectors.</p>"""
+    create_and_update_cisco_webex_meetings_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Cisco Webex Meetings actions.</p>"""
+    share_cisco_webex_meetings_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Cisco Webex Meetings actions.</p>"""
+    use_cisco_webex_meetings_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Cisco Webex Meetings actions.</p>"""
+    dun_and_bradstreet_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using Dun and Bradstreet connectors.</p>"""
+    create_and_update_dun_and_bradstreet_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Dun and Bradstreet actions.</p>"""
+    share_dun_and_bradstreet_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Dun and Bradstreet actions.</p>"""
+    use_dun_and_bradstreet_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Dun and Bradstreet actions.</p>"""
+    hg_insights_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using HG Insights Agent connectors.</p>"""
+    create_and_update_hg_insights_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update HG Insights Agent actions.</p>"""
+    share_hg_insights_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share HG Insights Agent actions.</p>"""
+    use_hg_insights_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use HG Insights Agent actions.</p>"""
+    zoom_info_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to perform actions using ZoomInfo Agent connectors.</p>"""
+    create_and_update_zoom_info_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update ZoomInfo Agent actions.</p>"""
+    share_zoom_info_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share ZoomInfo Agent actions.</p>"""
+    use_zoom_info_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use ZoomInfo Agent actions.</p>"""
+    moodys_action: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
+    """<p>The ability to perform actions using Moody's GenAI Ready Data connectors.</p>"""
+    create_and_update_moodys_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Moody's GenAI Ready Data actions.</p>"""
+    share_moodys_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Moody's GenAI Ready Data actions.</p>"""
+    use_moodys_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Moody's GenAI Ready Data actions.</p>"""
+    bee_action: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
+    """<p>The ability to perform actions using Bee connectors.</p>"""
+    create_and_update_bee_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create and update Bee actions.</p>"""
+    share_bee_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to share Bee actions.</p>"""
+    use_bee_action: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Bee actions.</p>"""
     topic: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
     """<p>The ability to perform Topic-related actions.</p>"""
     edit_visual_with_q: NotRequired[
@@ -855,6 +1415,26 @@ class Capabilities(TypedDict, closed=True):
     """<p>The ability to enable users to upgrade their user role.</p>"""
     extension: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
     """<p>The ability to perform Extension-related actions.</p>"""
+    use_browser_extension: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Amazon Quick through the browser extension for Chrome, Firefox, and Edge.</p>"""
+    use_word_add_in_extension: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Amazon Quick through the Microsoft Word add-in.</p>"""
+    use_outlook_add_in_extension: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Amazon Quick through the Microsoft Outlook add-in.</p>"""
+    use_excel_add_in_extension: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Amazon Quick through the Microsoft Excel add-in.</p>"""
+    use_powerpoint_add_in_extension: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to use Amazon Quick through the Microsoft PowerPoint add-in.</p>"""
     manage_shared_folders: NotRequired[
         "capo_quicksight.types.capability_state.CapabilityState"
     ]
@@ -867,6 +1447,20 @@ class Capabilities(TypedDict, closed=True):
     """<p>The ability to perform Story-related actions.</p>"""
     scenario: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
     """<p>The ability to perform Scenario-related actions.</p>"""
+    trigger: NotRequired["capo_quicksight.types.capability_state.CapabilityState"]
+    """<p>The ability to manage trigger-related settings for flows and automations.</p>"""
+    schedule_trigger: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create, view, edit, delete, and run schedule triggers for flows and automations.</p>"""
+    inbound_email_trigger: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create, view, edit, delete, and run inbound email triggers for flows and automations.</p>"""
+    quick_event_trigger: NotRequired[
+        "capo_quicksight.types.capability_state.CapabilityState"
+    ]
+    """<p>The ability to create, view, edit, delete, and run Quick event triggers for flows and automations.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -1143,6 +1737,336 @@ def serialize_json(value: Capabilities) -> dict:
 
         out["KnowledgeBase"] = capo_quicksight.types.capability_state.serialize_json(
             value["knowledge_base"]
+        )
+    if "create_and_update_knowledge_bases" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateKnowledgeBases"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_knowledge_bases"]
+            )
+        )
+    if "share_knowledge_bases" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareKnowledgeBases"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_knowledge_bases"]
+            )
+        )
+    if "share_point_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["SharePointKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_point_knowledge_base"]
+            )
+        )
+    if "create_and_update_share_point_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateSharePointKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_share_point_knowledge_base"]
+            )
+        )
+    if "share_share_point_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareSharePointKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_share_point_knowledge_base"]
+            )
+        )
+    if "use_share_point_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseSharePointKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_share_point_knowledge_base"]
+            )
+        )
+    if "google_drive_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["GoogleDriveKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["google_drive_knowledge_base"]
+            )
+        )
+    if "create_and_update_google_drive_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateGoogleDriveKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_google_drive_knowledge_base"]
+            )
+        )
+    if "share_google_drive_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareGoogleDriveKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_google_drive_knowledge_base"]
+            )
+        )
+    if "use_google_drive_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseGoogleDriveKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_google_drive_knowledge_base"]
+            )
+        )
+    if "web_crawler_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["WebCrawlerKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["web_crawler_knowledge_base"]
+            )
+        )
+    if "create_and_update_web_crawler_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateWebCrawlerKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_web_crawler_knowledge_base"]
+            )
+        )
+    if "share_web_crawler_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareWebCrawlerKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_web_crawler_knowledge_base"]
+            )
+        )
+    if "use_web_crawler_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseWebCrawlerKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_web_crawler_knowledge_base"]
+            )
+        )
+    if "s3_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["S3KnowledgeBase"] = capo_quicksight.types.capability_state.serialize_json(
+            value["s3_knowledge_base"]
+        )
+    if "create_and_update_s3_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateS3KnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_s3_knowledge_base"]
+            )
+        )
+    if "share_s3_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareS3KnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_s3_knowledge_base"]
+            )
+        )
+    if "use_s3_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseS3KnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_s3_knowledge_base"]
+            )
+        )
+    if "confluence_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ConfluenceKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["confluence_knowledge_base"]
+            )
+        )
+    if "create_and_update_confluence_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateConfluenceKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_confluence_knowledge_base"]
+            )
+        )
+    if "share_confluence_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareConfluenceKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_confluence_knowledge_base"]
+            )
+        )
+    if "use_confluence_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseConfluenceKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_confluence_knowledge_base"]
+            )
+        )
+    if "one_drive_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["OneDriveKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["one_drive_knowledge_base"]
+            )
+        )
+    if "create_and_update_one_drive_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateOneDriveKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_one_drive_knowledge_base"]
+            )
+        )
+    if "share_one_drive_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareOneDriveKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_one_drive_knowledge_base"]
+            )
+        )
+    if "use_one_drive_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseOneDriveKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_one_drive_knowledge_base"]
+            )
+        )
+    if "q_business_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["QBusinessKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["q_business_knowledge_base"]
+            )
+        )
+    if "create_and_update_q_business_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateQBusinessKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_q_business_knowledge_base"]
+            )
+        )
+    if "share_q_business_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareQBusinessKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_q_business_knowledge_base"]
+            )
+        )
+    if "use_q_business_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseQBusinessKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_q_business_knowledge_base"]
+            )
+        )
+    if "bedrock_managed_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["BedrockManagedKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["bedrock_managed_knowledge_base"]
+            )
+        )
+    if "create_and_update_bedrock_managed_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateBedrockManagedKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_bedrock_managed_knowledge_base"]
+            )
+        )
+    if "share_bedrock_managed_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareBedrockManagedKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_bedrock_managed_knowledge_base"]
+            )
+        )
+    if "use_bedrock_managed_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseBedrockManagedKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_bedrock_managed_knowledge_base"]
+            )
+        )
+    if "box_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["BoxKnowledgeBase"] = capo_quicksight.types.capability_state.serialize_json(
+            value["box_knowledge_base"]
+        )
+    if "create_and_update_box_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateBoxKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_box_knowledge_base"]
+            )
+        )
+    if "share_box_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareBoxKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_box_knowledge_base"]
+            )
+        )
+    if "use_box_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseBoxKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_box_knowledge_base"]
+            )
+        )
+    if "idc_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["IDCKnowledgeBase"] = capo_quicksight.types.capability_state.serialize_json(
+            value["idc_knowledge_base"]
+        )
+    if "create_and_update_idc_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateIDCKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_idc_knowledge_base"]
+            )
+        )
+    if "share_idc_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareIDCKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_idc_knowledge_base"]
+            )
+        )
+    if "use_idc_knowledge_base" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseIDCKnowledgeBase"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_idc_knowledge_base"]
+            )
         )
     if "action" in value:
         import capo_quicksight.types.capability_state
@@ -2434,6 +3358,834 @@ def serialize_json(value: Capabilities) -> dict:
                 value["use_new_relic_action"]
             )
         )
+    if "pager_duty_agent_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["PagerDutyAgentAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["pager_duty_agent_action"]
+            )
+        )
+    if "create_and_update_pager_duty_agent_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdatePagerDutyAgentAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_pager_duty_agent_action"]
+            )
+        )
+    if "share_pager_duty_agent_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["SharePagerDutyAgentAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_pager_duty_agent_action"]
+            )
+        )
+    if "use_pager_duty_agent_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UsePagerDutyAgentAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_pager_duty_agent_action"]
+            )
+        )
+    if "visier_agent_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["VisierAgentAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["visier_agent_action"]
+            )
+        )
+    if "create_and_update_visier_agent_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateVisierAgentAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_visier_agent_action"]
+            )
+        )
+    if "share_visier_agent_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareVisierAgentAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_visier_agent_action"]
+            )
+        )
+    if "use_visier_agent_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseVisierAgentAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_visier_agent_action"]
+            )
+        )
+    if "zoom_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ZoomAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["zoom_action"]
+        )
+    if "create_and_update_zoom_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateZoomAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_zoom_action"]
+            )
+        )
+    if "share_zoom_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareZoomAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["share_zoom_action"]
+        )
+    if "use_zoom_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseZoomAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_zoom_action"]
+        )
+    if "snow_flake_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["SnowFlakeAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["snow_flake_action"]
+        )
+    if "create_and_update_snow_flake_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateSnowFlakeAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_snow_flake_action"]
+            )
+        )
+    if "share_snow_flake_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareSnowFlakeAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_snow_flake_action"]
+            )
+        )
+    if "use_snow_flake_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseSnowFlakeAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_snow_flake_action"]
+            )
+        )
+    if "zapier_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ZapierAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["zapier_action"]
+        )
+    if "create_and_update_zapier_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateZapierAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_zapier_action"]
+            )
+        )
+    if "share_zapier_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareZapierAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_zapier_action"]
+            )
+        )
+    if "use_zapier_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseZapierAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_zapier_action"]
+        )
+    if "airtable_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["AirtableAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["airtable_action"]
+        )
+    if "create_and_update_airtable_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateAirtableAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_airtable_action"]
+            )
+        )
+    if "share_airtable_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareAirtableAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_airtable_action"]
+            )
+        )
+    if "use_airtable_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseAirtableAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_airtable_action"]
+            )
+        )
+    if "dropbox_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["DropboxAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["dropbox_action"]
+        )
+    if "create_and_update_dropbox_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateDropboxAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_dropbox_action"]
+            )
+        )
+    if "share_dropbox_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareDropboxAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_dropbox_action"]
+            )
+        )
+    if "use_dropbox_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseDropboxAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_dropbox_action"]
+        )
+    if "gmail_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["GmailAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["gmail_action"]
+        )
+    if "create_and_update_gmail_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateGmailAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_gmail_action"]
+            )
+        )
+    if "share_gmail_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareGmailAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["share_gmail_action"]
+        )
+    if "use_gmail_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseGmailAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_gmail_action"]
+        )
+    if "google_analytics_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["GoogleAnalyticsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["google_analytics_action"]
+            )
+        )
+    if "create_and_update_google_analytics_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateGoogleAnalyticsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_google_analytics_action"]
+            )
+        )
+    if "share_google_analytics_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareGoogleAnalyticsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_google_analytics_action"]
+            )
+        )
+    if "use_google_analytics_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseGoogleAnalyticsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_google_analytics_action"]
+            )
+        )
+    if "google_docs_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["GoogleDocsAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["google_docs_action"]
+        )
+    if "create_and_update_google_docs_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateGoogleDocsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_google_docs_action"]
+            )
+        )
+    if "share_google_docs_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareGoogleDocsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_google_docs_action"]
+            )
+        )
+    if "use_google_docs_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseGoogleDocsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_google_docs_action"]
+            )
+        )
+    if "google_drive_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["GoogleDriveAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["google_drive_action"]
+            )
+        )
+    if "create_and_update_google_drive_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateGoogleDriveAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_google_drive_action"]
+            )
+        )
+    if "share_google_drive_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareGoogleDriveAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_google_drive_action"]
+            )
+        )
+    if "use_google_drive_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseGoogleDriveAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_google_drive_action"]
+            )
+        )
+    if "google_meet_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["GoogleMeetAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["google_meet_action"]
+        )
+    if "create_and_update_google_meet_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateGoogleMeetAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_google_meet_action"]
+            )
+        )
+    if "share_google_meet_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareGoogleMeetAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_google_meet_action"]
+            )
+        )
+    if "use_google_meet_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseGoogleMeetAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_google_meet_action"]
+            )
+        )
+    if "google_sheets_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["GoogleSheetsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["google_sheets_action"]
+            )
+        )
+    if "create_and_update_google_sheets_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateGoogleSheetsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_google_sheets_action"]
+            )
+        )
+    if "share_google_sheets_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareGoogleSheetsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_google_sheets_action"]
+            )
+        )
+    if "use_google_sheets_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseGoogleSheetsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_google_sheets_action"]
+            )
+        )
+    if "google_slides_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["GoogleSlidesAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["google_slides_action"]
+            )
+        )
+    if "create_and_update_google_slides_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateGoogleSlidesAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_google_slides_action"]
+            )
+        )
+    if "share_google_slides_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareGoogleSlidesAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_google_slides_action"]
+            )
+        )
+    if "use_google_slides_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseGoogleSlidesAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_google_slides_action"]
+            )
+        )
+    if "quick_books_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["QuickBooksAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["quick_books_action"]
+        )
+    if "create_and_update_quick_books_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateQuickBooksAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_quick_books_action"]
+            )
+        )
+    if "share_quick_books_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareQuickBooksAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_quick_books_action"]
+            )
+        )
+    if "use_quick_books_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseQuickBooksAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_quick_books_action"]
+            )
+        )
+    if "figma_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["FigmaAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["figma_action"]
+        )
+    if "create_and_update_figma_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateFigmaAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_figma_action"]
+            )
+        )
+    if "share_figma_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareFigmaAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["share_figma_action"]
+        )
+    if "use_figma_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseFigmaAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_figma_action"]
+        )
+    if "whats_app_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["WhatsAppAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["whats_app_action"]
+        )
+    if "create_and_update_whats_app_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateWhatsAppAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_whats_app_action"]
+            )
+        )
+    if "share_whats_app_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareWhatsAppAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_whats_app_action"]
+            )
+        )
+    if "use_whats_app_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseWhatsAppAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_whats_app_action"]
+            )
+        )
+    if "google_chat_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["GoogleChatAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["google_chat_action"]
+        )
+    if "create_and_update_google_chat_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateGoogleChatAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_google_chat_action"]
+            )
+        )
+    if "share_google_chat_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareGoogleChatAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_google_chat_action"]
+            )
+        )
+    if "use_google_chat_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseGoogleChatAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_google_chat_action"]
+            )
+        )
+    if "one_note_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["OneNoteAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["one_note_action"]
+        )
+    if "create_and_update_one_note_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateOneNoteAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_one_note_action"]
+            )
+        )
+    if "share_one_note_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareOneNoteAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_one_note_action"]
+            )
+        )
+    if "use_one_note_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseOneNoteAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_one_note_action"]
+        )
+    if "shopify_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShopifyAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["shopify_action"]
+        )
+    if "create_and_update_shopify_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateShopifyAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_shopify_action"]
+            )
+        )
+    if "share_shopify_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareShopifyAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_shopify_action"]
+            )
+        )
+    if "use_shopify_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseShopifyAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_shopify_action"]
+        )
+    if "adobe_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["AdobeAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["adobe_action"]
+        )
+    if "create_and_update_adobe_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateAdobeAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_adobe_action"]
+            )
+        )
+    if "share_adobe_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareAdobeAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["share_adobe_action"]
+        )
+    if "use_adobe_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseAdobeAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_adobe_action"]
+        )
+    if "cisco_webex_vidcast_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CiscoWebexVidcastAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["cisco_webex_vidcast_action"]
+            )
+        )
+    if "create_and_update_cisco_webex_vidcast_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateCiscoWebexVidcastAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_cisco_webex_vidcast_action"]
+            )
+        )
+    if "share_cisco_webex_vidcast_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareCiscoWebexVidcastAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_cisco_webex_vidcast_action"]
+            )
+        )
+    if "use_cisco_webex_vidcast_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseCiscoWebexVidcastAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_cisco_webex_vidcast_action"]
+            )
+        )
+    if "cisco_webex_meetings_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CiscoWebexMeetingsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["cisco_webex_meetings_action"]
+            )
+        )
+    if "create_and_update_cisco_webex_meetings_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateCiscoWebexMeetingsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_cisco_webex_meetings_action"]
+            )
+        )
+    if "share_cisco_webex_meetings_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareCiscoWebexMeetingsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_cisco_webex_meetings_action"]
+            )
+        )
+    if "use_cisco_webex_meetings_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseCiscoWebexMeetingsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_cisco_webex_meetings_action"]
+            )
+        )
+    if "dun_and_bradstreet_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["DunAndBradstreetAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["dun_and_bradstreet_action"]
+            )
+        )
+    if "create_and_update_dun_and_bradstreet_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateDunAndBradstreetAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_dun_and_bradstreet_action"]
+            )
+        )
+    if "share_dun_and_bradstreet_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareDunAndBradstreetAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_dun_and_bradstreet_action"]
+            )
+        )
+    if "use_dun_and_bradstreet_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseDunAndBradstreetAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_dun_and_bradstreet_action"]
+            )
+        )
+    if "hg_insights_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["HGInsightsAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["hg_insights_action"]
+        )
+    if "create_and_update_hg_insights_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateHGInsightsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_hg_insights_action"]
+            )
+        )
+    if "share_hg_insights_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareHGInsightsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_hg_insights_action"]
+            )
+        )
+    if "use_hg_insights_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseHGInsightsAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_hg_insights_action"]
+            )
+        )
+    if "zoom_info_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ZoomInfoAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["zoom_info_action"]
+        )
+    if "create_and_update_zoom_info_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateZoomInfoAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_zoom_info_action"]
+            )
+        )
+    if "share_zoom_info_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareZoomInfoAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_zoom_info_action"]
+            )
+        )
+    if "use_zoom_info_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseZoomInfoAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_zoom_info_action"]
+            )
+        )
+    if "moodys_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["MoodysAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["moodys_action"]
+        )
+    if "create_and_update_moodys_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateMoodysAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_moodys_action"]
+            )
+        )
+    if "share_moodys_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareMoodysAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["share_moodys_action"]
+            )
+        )
+    if "use_moodys_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseMoodysAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_moodys_action"]
+        )
+    if "bee_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["BeeAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["bee_action"]
+        )
+    if "create_and_update_bee_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["CreateAndUpdateBeeAction"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["create_and_update_bee_action"]
+            )
+        )
+    if "share_bee_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ShareBeeAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["share_bee_action"]
+        )
+    if "use_bee_action" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseBeeAction"] = capo_quicksight.types.capability_state.serialize_json(
+            value["use_bee_action"]
+        )
     if "topic" in value:
         import capo_quicksight.types.capability_state
 
@@ -2518,6 +4270,46 @@ def serialize_json(value: Capabilities) -> dict:
         out["Extension"] = capo_quicksight.types.capability_state.serialize_json(
             value["extension"]
         )
+    if "use_browser_extension" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseBrowserExtension"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_browser_extension"]
+            )
+        )
+    if "use_word_add_in_extension" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseWordAddInExtension"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_word_add_in_extension"]
+            )
+        )
+    if "use_outlook_add_in_extension" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseOutlookAddInExtension"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_outlook_add_in_extension"]
+            )
+        )
+    if "use_excel_add_in_extension" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UseExcelAddInExtension"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_excel_add_in_extension"]
+            )
+        )
+    if "use_powerpoint_add_in_extension" in value:
+        import capo_quicksight.types.capability_state
+
+        out["UsePowerpointAddInExtension"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["use_powerpoint_add_in_extension"]
+            )
+        )
     if "manage_shared_folders" in value:
         import capo_quicksight.types.capability_state
 
@@ -2543,6 +4335,34 @@ def serialize_json(value: Capabilities) -> dict:
 
         out["Scenario"] = capo_quicksight.types.capability_state.serialize_json(
             value["scenario"]
+        )
+    if "trigger" in value:
+        import capo_quicksight.types.capability_state
+
+        out["Trigger"] = capo_quicksight.types.capability_state.serialize_json(
+            value["trigger"]
+        )
+    if "schedule_trigger" in value:
+        import capo_quicksight.types.capability_state
+
+        out["ScheduleTrigger"] = capo_quicksight.types.capability_state.serialize_json(
+            value["schedule_trigger"]
+        )
+    if "inbound_email_trigger" in value:
+        import capo_quicksight.types.capability_state
+
+        out["InboundEmailTrigger"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["inbound_email_trigger"]
+            )
+        )
+    if "quick_event_trigger" in value:
+        import capo_quicksight.types.capability_state
+
+        out["QuickEventTrigger"] = (
+            capo_quicksight.types.capability_state.serialize_json(
+                value["quick_event_trigger"]
+            )
         )
     return out
 
@@ -2828,6 +4648,342 @@ def deserialize_json(data: dict) -> Capabilities:
 
         out["knowledge_base"] = capo_quicksight.types.capability_state.deserialize_json(
             data["KnowledgeBase"]
+        )
+    if data.get("CreateAndUpdateKnowledgeBases") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_knowledge_bases"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateKnowledgeBases"]
+            )
+        )
+    if data.get("ShareKnowledgeBases") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_knowledge_bases"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareKnowledgeBases"]
+            )
+        )
+    if data.get("SharePointKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_point_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["SharePointKnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateSharePointKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_share_point_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateSharePointKnowledgeBase"]
+            )
+        )
+    if data.get("ShareSharePointKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_share_point_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareSharePointKnowledgeBase"]
+            )
+        )
+    if data.get("UseSharePointKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_share_point_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseSharePointKnowledgeBase"]
+            )
+        )
+    if data.get("GoogleDriveKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["google_drive_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["GoogleDriveKnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateGoogleDriveKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_google_drive_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateGoogleDriveKnowledgeBase"]
+            )
+        )
+    if data.get("ShareGoogleDriveKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_google_drive_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareGoogleDriveKnowledgeBase"]
+            )
+        )
+    if data.get("UseGoogleDriveKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_google_drive_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseGoogleDriveKnowledgeBase"]
+            )
+        )
+    if data.get("WebCrawlerKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["web_crawler_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["WebCrawlerKnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateWebCrawlerKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_web_crawler_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateWebCrawlerKnowledgeBase"]
+            )
+        )
+    if data.get("ShareWebCrawlerKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_web_crawler_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareWebCrawlerKnowledgeBase"]
+            )
+        )
+    if data.get("UseWebCrawlerKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_web_crawler_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseWebCrawlerKnowledgeBase"]
+            )
+        )
+    if data.get("S3KnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["s3_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["S3KnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateS3KnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_s3_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateS3KnowledgeBase"]
+            )
+        )
+    if data.get("ShareS3KnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_s3_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareS3KnowledgeBase"]
+            )
+        )
+    if data.get("UseS3KnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_s3_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseS3KnowledgeBase"]
+            )
+        )
+    if data.get("ConfluenceKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["confluence_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ConfluenceKnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateConfluenceKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_confluence_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateConfluenceKnowledgeBase"]
+            )
+        )
+    if data.get("ShareConfluenceKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_confluence_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareConfluenceKnowledgeBase"]
+            )
+        )
+    if data.get("UseConfluenceKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_confluence_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseConfluenceKnowledgeBase"]
+            )
+        )
+    if data.get("OneDriveKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["one_drive_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["OneDriveKnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateOneDriveKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_one_drive_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateOneDriveKnowledgeBase"]
+            )
+        )
+    if data.get("ShareOneDriveKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_one_drive_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareOneDriveKnowledgeBase"]
+            )
+        )
+    if data.get("UseOneDriveKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_one_drive_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseOneDriveKnowledgeBase"]
+            )
+        )
+    if data.get("QBusinessKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["q_business_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["QBusinessKnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateQBusinessKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_q_business_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateQBusinessKnowledgeBase"]
+            )
+        )
+    if data.get("ShareQBusinessKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_q_business_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareQBusinessKnowledgeBase"]
+            )
+        )
+    if data.get("UseQBusinessKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_q_business_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseQBusinessKnowledgeBase"]
+            )
+        )
+    if data.get("BedrockManagedKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["bedrock_managed_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["BedrockManagedKnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateBedrockManagedKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_bedrock_managed_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateBedrockManagedKnowledgeBase"]
+            )
+        )
+    if data.get("ShareBedrockManagedKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_bedrock_managed_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareBedrockManagedKnowledgeBase"]
+            )
+        )
+    if data.get("UseBedrockManagedKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_bedrock_managed_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseBedrockManagedKnowledgeBase"]
+            )
+        )
+    if data.get("BoxKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["box_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["BoxKnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateBoxKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_box_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateBoxKnowledgeBase"]
+            )
+        )
+    if data.get("ShareBoxKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_box_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareBoxKnowledgeBase"]
+            )
+        )
+    if data.get("UseBoxKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_box_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseBoxKnowledgeBase"]
+            )
+        )
+    if data.get("IDCKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["idc_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["IDCKnowledgeBase"]
+            )
+        )
+    if data.get("CreateAndUpdateIDCKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_idc_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateIDCKnowledgeBase"]
+            )
+        )
+    if data.get("ShareIDCKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_idc_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareIDCKnowledgeBase"]
+            )
+        )
+    if data.get("UseIDCKnowledgeBase") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_idc_knowledge_base"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseIDCKnowledgeBase"]
+            )
         )
     if data.get("Action") is not None:
         import capo_quicksight.types.capability_state
@@ -4189,6 +6345,882 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseNewRelicAction"]
             )
         )
+    if data.get("PagerDutyAgentAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["pager_duty_agent_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["PagerDutyAgentAction"]
+            )
+        )
+    if data.get("CreateAndUpdatePagerDutyAgentAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_pager_duty_agent_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdatePagerDutyAgentAction"]
+            )
+        )
+    if data.get("SharePagerDutyAgentAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_pager_duty_agent_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["SharePagerDutyAgentAction"]
+            )
+        )
+    if data.get("UsePagerDutyAgentAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_pager_duty_agent_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UsePagerDutyAgentAction"]
+            )
+        )
+    if data.get("VisierAgentAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["visier_agent_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["VisierAgentAction"]
+            )
+        )
+    if data.get("CreateAndUpdateVisierAgentAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_visier_agent_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateVisierAgentAction"]
+            )
+        )
+    if data.get("ShareVisierAgentAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_visier_agent_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareVisierAgentAction"]
+            )
+        )
+    if data.get("UseVisierAgentAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_visier_agent_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseVisierAgentAction"]
+            )
+        )
+    if data.get("ZoomAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["zoom_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["ZoomAction"]
+        )
+    if data.get("CreateAndUpdateZoomAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_zoom_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateZoomAction"]
+            )
+        )
+    if data.get("ShareZoomAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_zoom_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareZoomAction"]
+            )
+        )
+    if data.get("UseZoomAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_zoom_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseZoomAction"]
+            )
+        )
+    if data.get("SnowFlakeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["snow_flake_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["SnowFlakeAction"]
+            )
+        )
+    if data.get("CreateAndUpdateSnowFlakeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_snow_flake_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateSnowFlakeAction"]
+            )
+        )
+    if data.get("ShareSnowFlakeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_snow_flake_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareSnowFlakeAction"]
+            )
+        )
+    if data.get("UseSnowFlakeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_snow_flake_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseSnowFlakeAction"]
+            )
+        )
+    if data.get("ZapierAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["zapier_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["ZapierAction"]
+        )
+    if data.get("CreateAndUpdateZapierAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_zapier_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateZapierAction"]
+            )
+        )
+    if data.get("ShareZapierAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_zapier_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareZapierAction"]
+            )
+        )
+    if data.get("UseZapierAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_zapier_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseZapierAction"]
+            )
+        )
+    if data.get("AirtableAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["airtable_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["AirtableAction"]
+            )
+        )
+    if data.get("CreateAndUpdateAirtableAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_airtable_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateAirtableAction"]
+            )
+        )
+    if data.get("ShareAirtableAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_airtable_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareAirtableAction"]
+            )
+        )
+    if data.get("UseAirtableAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_airtable_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseAirtableAction"]
+            )
+        )
+    if data.get("DropboxAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["dropbox_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["DropboxAction"]
+        )
+    if data.get("CreateAndUpdateDropboxAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_dropbox_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateDropboxAction"]
+            )
+        )
+    if data.get("ShareDropboxAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_dropbox_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareDropboxAction"]
+            )
+        )
+    if data.get("UseDropboxAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_dropbox_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseDropboxAction"]
+            )
+        )
+    if data.get("GmailAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["gmail_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["GmailAction"]
+        )
+    if data.get("CreateAndUpdateGmailAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_gmail_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateGmailAction"]
+            )
+        )
+    if data.get("ShareGmailAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_gmail_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareGmailAction"]
+            )
+        )
+    if data.get("UseGmailAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_gmail_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseGmailAction"]
+            )
+        )
+    if data.get("GoogleAnalyticsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["google_analytics_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["GoogleAnalyticsAction"]
+            )
+        )
+    if data.get("CreateAndUpdateGoogleAnalyticsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_google_analytics_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateGoogleAnalyticsAction"]
+            )
+        )
+    if data.get("ShareGoogleAnalyticsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_google_analytics_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareGoogleAnalyticsAction"]
+            )
+        )
+    if data.get("UseGoogleAnalyticsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_google_analytics_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseGoogleAnalyticsAction"]
+            )
+        )
+    if data.get("GoogleDocsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["google_docs_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["GoogleDocsAction"]
+            )
+        )
+    if data.get("CreateAndUpdateGoogleDocsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_google_docs_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateGoogleDocsAction"]
+            )
+        )
+    if data.get("ShareGoogleDocsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_google_docs_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareGoogleDocsAction"]
+            )
+        )
+    if data.get("UseGoogleDocsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_google_docs_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseGoogleDocsAction"]
+            )
+        )
+    if data.get("GoogleDriveAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["google_drive_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["GoogleDriveAction"]
+            )
+        )
+    if data.get("CreateAndUpdateGoogleDriveAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_google_drive_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateGoogleDriveAction"]
+            )
+        )
+    if data.get("ShareGoogleDriveAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_google_drive_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareGoogleDriveAction"]
+            )
+        )
+    if data.get("UseGoogleDriveAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_google_drive_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseGoogleDriveAction"]
+            )
+        )
+    if data.get("GoogleMeetAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["google_meet_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["GoogleMeetAction"]
+            )
+        )
+    if data.get("CreateAndUpdateGoogleMeetAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_google_meet_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateGoogleMeetAction"]
+            )
+        )
+    if data.get("ShareGoogleMeetAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_google_meet_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareGoogleMeetAction"]
+            )
+        )
+    if data.get("UseGoogleMeetAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_google_meet_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseGoogleMeetAction"]
+            )
+        )
+    if data.get("GoogleSheetsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["google_sheets_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["GoogleSheetsAction"]
+            )
+        )
+    if data.get("CreateAndUpdateGoogleSheetsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_google_sheets_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateGoogleSheetsAction"]
+            )
+        )
+    if data.get("ShareGoogleSheetsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_google_sheets_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareGoogleSheetsAction"]
+            )
+        )
+    if data.get("UseGoogleSheetsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_google_sheets_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseGoogleSheetsAction"]
+            )
+        )
+    if data.get("GoogleSlidesAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["google_slides_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["GoogleSlidesAction"]
+            )
+        )
+    if data.get("CreateAndUpdateGoogleSlidesAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_google_slides_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateGoogleSlidesAction"]
+            )
+        )
+    if data.get("ShareGoogleSlidesAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_google_slides_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareGoogleSlidesAction"]
+            )
+        )
+    if data.get("UseGoogleSlidesAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_google_slides_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseGoogleSlidesAction"]
+            )
+        )
+    if data.get("QuickBooksAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["quick_books_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["QuickBooksAction"]
+            )
+        )
+    if data.get("CreateAndUpdateQuickBooksAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_quick_books_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateQuickBooksAction"]
+            )
+        )
+    if data.get("ShareQuickBooksAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_quick_books_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareQuickBooksAction"]
+            )
+        )
+    if data.get("UseQuickBooksAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_quick_books_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseQuickBooksAction"]
+            )
+        )
+    if data.get("FigmaAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["figma_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["FigmaAction"]
+        )
+    if data.get("CreateAndUpdateFigmaAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_figma_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateFigmaAction"]
+            )
+        )
+    if data.get("ShareFigmaAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_figma_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareFigmaAction"]
+            )
+        )
+    if data.get("UseFigmaAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_figma_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseFigmaAction"]
+            )
+        )
+    if data.get("WhatsAppAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["whats_app_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["WhatsAppAction"]
+            )
+        )
+    if data.get("CreateAndUpdateWhatsAppAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_whats_app_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateWhatsAppAction"]
+            )
+        )
+    if data.get("ShareWhatsAppAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_whats_app_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareWhatsAppAction"]
+            )
+        )
+    if data.get("UseWhatsAppAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_whats_app_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseWhatsAppAction"]
+            )
+        )
+    if data.get("GoogleChatAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["google_chat_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["GoogleChatAction"]
+            )
+        )
+    if data.get("CreateAndUpdateGoogleChatAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_google_chat_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateGoogleChatAction"]
+            )
+        )
+    if data.get("ShareGoogleChatAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_google_chat_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareGoogleChatAction"]
+            )
+        )
+    if data.get("UseGoogleChatAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_google_chat_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseGoogleChatAction"]
+            )
+        )
+    if data.get("OneNoteAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["one_note_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["OneNoteAction"]
+            )
+        )
+    if data.get("CreateAndUpdateOneNoteAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_one_note_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateOneNoteAction"]
+            )
+        )
+    if data.get("ShareOneNoteAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_one_note_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareOneNoteAction"]
+            )
+        )
+    if data.get("UseOneNoteAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_one_note_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseOneNoteAction"]
+            )
+        )
+    if data.get("ShopifyAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["shopify_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["ShopifyAction"]
+        )
+    if data.get("CreateAndUpdateShopifyAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_shopify_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateShopifyAction"]
+            )
+        )
+    if data.get("ShareShopifyAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_shopify_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareShopifyAction"]
+            )
+        )
+    if data.get("UseShopifyAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_shopify_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseShopifyAction"]
+            )
+        )
+    if data.get("AdobeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["adobe_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["AdobeAction"]
+        )
+    if data.get("CreateAndUpdateAdobeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_adobe_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateAdobeAction"]
+            )
+        )
+    if data.get("ShareAdobeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_adobe_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareAdobeAction"]
+            )
+        )
+    if data.get("UseAdobeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_adobe_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseAdobeAction"]
+            )
+        )
+    if data.get("CiscoWebexVidcastAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["cisco_webex_vidcast_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CiscoWebexVidcastAction"]
+            )
+        )
+    if data.get("CreateAndUpdateCiscoWebexVidcastAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_cisco_webex_vidcast_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateCiscoWebexVidcastAction"]
+            )
+        )
+    if data.get("ShareCiscoWebexVidcastAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_cisco_webex_vidcast_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareCiscoWebexVidcastAction"]
+            )
+        )
+    if data.get("UseCiscoWebexVidcastAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_cisco_webex_vidcast_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseCiscoWebexVidcastAction"]
+            )
+        )
+    if data.get("CiscoWebexMeetingsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["cisco_webex_meetings_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CiscoWebexMeetingsAction"]
+            )
+        )
+    if data.get("CreateAndUpdateCiscoWebexMeetingsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_cisco_webex_meetings_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateCiscoWebexMeetingsAction"]
+            )
+        )
+    if data.get("ShareCiscoWebexMeetingsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_cisco_webex_meetings_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareCiscoWebexMeetingsAction"]
+            )
+        )
+    if data.get("UseCiscoWebexMeetingsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_cisco_webex_meetings_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseCiscoWebexMeetingsAction"]
+            )
+        )
+    if data.get("DunAndBradstreetAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["dun_and_bradstreet_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["DunAndBradstreetAction"]
+            )
+        )
+    if data.get("CreateAndUpdateDunAndBradstreetAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_dun_and_bradstreet_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateDunAndBradstreetAction"]
+            )
+        )
+    if data.get("ShareDunAndBradstreetAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_dun_and_bradstreet_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareDunAndBradstreetAction"]
+            )
+        )
+    if data.get("UseDunAndBradstreetAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_dun_and_bradstreet_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseDunAndBradstreetAction"]
+            )
+        )
+    if data.get("HGInsightsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["hg_insights_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["HGInsightsAction"]
+            )
+        )
+    if data.get("CreateAndUpdateHGInsightsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_hg_insights_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateHGInsightsAction"]
+            )
+        )
+    if data.get("ShareHGInsightsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_hg_insights_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareHGInsightsAction"]
+            )
+        )
+    if data.get("UseHGInsightsAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_hg_insights_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseHGInsightsAction"]
+            )
+        )
+    if data.get("ZoomInfoAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["zoom_info_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ZoomInfoAction"]
+            )
+        )
+    if data.get("CreateAndUpdateZoomInfoAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_zoom_info_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateZoomInfoAction"]
+            )
+        )
+    if data.get("ShareZoomInfoAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_zoom_info_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareZoomInfoAction"]
+            )
+        )
+    if data.get("UseZoomInfoAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_zoom_info_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseZoomInfoAction"]
+            )
+        )
+    if data.get("MoodysAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["moodys_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["MoodysAction"]
+        )
+    if data.get("CreateAndUpdateMoodysAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_moodys_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateMoodysAction"]
+            )
+        )
+    if data.get("ShareMoodysAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_moodys_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareMoodysAction"]
+            )
+        )
+    if data.get("UseMoodysAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_moodys_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseMoodysAction"]
+            )
+        )
+    if data.get("BeeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["bee_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["BeeAction"]
+        )
+    if data.get("CreateAndUpdateBeeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["create_and_update_bee_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["CreateAndUpdateBeeAction"]
+            )
+        )
+    if data.get("ShareBeeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["share_bee_action"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ShareBeeAction"]
+            )
+        )
+    if data.get("UseBeeAction") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_bee_action"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["UseBeeAction"]
+        )
     if data.get("Topic") is not None:
         import capo_quicksight.types.capability_state
 
@@ -4279,6 +7311,46 @@ def deserialize_json(data: dict) -> Capabilities:
         out["extension"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Extension"]
         )
+    if data.get("UseBrowserExtension") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_browser_extension"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseBrowserExtension"]
+            )
+        )
+    if data.get("UseWordAddInExtension") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_word_add_in_extension"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseWordAddInExtension"]
+            )
+        )
+    if data.get("UseOutlookAddInExtension") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_outlook_add_in_extension"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseOutlookAddInExtension"]
+            )
+        )
+    if data.get("UseExcelAddInExtension") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_excel_add_in_extension"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UseExcelAddInExtension"]
+            )
+        )
+    if data.get("UsePowerpointAddInExtension") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["use_powerpoint_add_in_extension"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["UsePowerpointAddInExtension"]
+            )
+        )
     if data.get("ManageSharedFolders") is not None:
         import capo_quicksight.types.capability_state
 
@@ -4306,5 +7378,35 @@ def deserialize_json(data: dict) -> Capabilities:
 
         out["scenario"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Scenario"]
+        )
+    if data.get("Trigger") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["trigger"] = capo_quicksight.types.capability_state.deserialize_json(
+            data["Trigger"]
+        )
+    if data.get("ScheduleTrigger") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["schedule_trigger"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["ScheduleTrigger"]
+            )
+        )
+    if data.get("InboundEmailTrigger") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["inbound_email_trigger"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["InboundEmailTrigger"]
+            )
+        )
+    if data.get("QuickEventTrigger") is not None:
+        import capo_quicksight.types.capability_state
+
+        out["quick_event_trigger"] = (
+            capo_quicksight.types.capability_state.deserialize_json(
+                data["QuickEventTrigger"]
+            )
         )
     return out

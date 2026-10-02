@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class Secret(TypedDict, closed=True):
     secret_arn: "capo_bedrock_agentcore_control.types.secret_arn.SecretArn"
-    """<p>The Amazon Resource Name (ARN) of the secret in AWS Secrets Manager.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the secret in Amazon Web Services Secrets Manager.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -9,6 +9,7 @@ RealTimeContactAnalysisSegmentType: TypeAlias = Literal[
     "Event",
     "Attachments",
     "PostContactSummary",
+    "ExtractedInformation",
 ]
 
 

@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     import capo_vpc_lattice.types.delete_service_response
     import capo_vpc_lattice.types.get_service_request
     import capo_vpc_lattice.types.get_service_response
+    import capo_vpc_lattice.types.idle_timeout_seconds
     import capo_vpc_lattice.types.list_services_request
     import capo_vpc_lattice.types.list_services_response
     import capo_vpc_lattice.types.max_results
@@ -65,6 +66,9 @@ class Service:
             "capo_vpc_lattice.types.certificate_arn.CertificateArn"
         ] = None,
         auth_type: Optional["capo_vpc_lattice.types.auth_type.AuthType"] = None,
+        idle_timeout_seconds: Optional[
+            "capo_vpc_lattice.types.idle_timeout_seconds.IdleTimeoutSeconds"
+        ] = None,
     ) -> "capo_vpc_lattice.types.create_service_response.CreateServiceResponse":
         r"""<p>Creates a service. A service is any software application that can run on instances containers, or serverless functions within an account or virtual private cloud (VPC).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/services.html\">Services</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>
 
@@ -75,6 +79,7 @@ class Service:
             custom_domain_name: <p>The custom domain name of the service.</p>
             certificate_arn: <p>The Amazon Resource Name (ARN) of the certificate.</p>
             auth_type: <p>The type of IAM policy.</p> <ul> <li> <p> <code>NONE</code>: The resource does not use an IAM policy. This is the default.</p> </li> <li> <p> <code>AWS_IAM</code>: The resource uses an IAM policy. When this type is used, auth is enabled and an auth policy is required.</p> </li> </ul>
+            idle_timeout_seconds: <p>The amount of time, in seconds, that a connection can remain idle (no data sent) before VPC Lattice closes it. The valid range is 60 to 600 seconds. If you don't specify a value, the default is 60 seconds. This setting does not change the maximum connection duration of 10 minutes; connections are still closed when they reach that limit.</p>
 
         Raises:
             capo_vpc_lattice.errors.access_denied_exception.AccessDeniedException: <p>The user does not have sufficient access to perform this action.</p>
@@ -116,6 +121,8 @@ class Service:
             input_["certificate_arn"] = certificate_arn
         if auth_type is not None:
             input_["auth_type"] = auth_type
+        if idle_timeout_seconds is not None:
+            input_["idle_timeout_seconds"] = idle_timeout_seconds
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -181,6 +188,9 @@ class Service:
             "capo_vpc_lattice.types.certificate_arn.CertificateArn"
         ] = None,
         auth_type: Optional["capo_vpc_lattice.types.auth_type.AuthType"] = None,
+        idle_timeout_seconds: Optional[
+            "capo_vpc_lattice.types.idle_timeout_seconds.IdleTimeoutSeconds"
+        ] = None,
     ) -> "capo_vpc_lattice.types.update_service_response.UpdateServiceResponse":
         """<p>Updates the specified service.</p>
 
@@ -188,6 +198,7 @@ class Service:
             service_identifier: <p>The ID or ARN of the service.</p>
             certificate_arn: <p>The Amazon Resource Name (ARN) of the certificate.</p>
             auth_type: <p>The type of IAM policy.</p> <ul> <li> <p> <code>NONE</code>: The resource does not use an IAM policy. This is the default.</p> </li> <li> <p> <code>AWS_IAM</code>: The resource uses an IAM policy. When this type is used, auth is enabled and an auth policy is required.</p> </li> </ul>
+            idle_timeout_seconds: <p>The amount of time, in seconds, that a connection can remain idle (no data sent) before VPC Lattice closes it. The valid range is 60 to 600 seconds. If you don't specify a value, the default is 60 seconds. This setting does not change the maximum connection duration of 10 minutes; connections are still closed when they reach that limit.</p>
 
         Raises:
             capo_vpc_lattice.errors.access_denied_exception.AccessDeniedException: <p>The user does not have sufficient access to perform this action.</p>
@@ -222,6 +233,8 @@ class Service:
             input_["certificate_arn"] = certificate_arn
         if auth_type is not None:
             input_["auth_type"] = auth_type
+        if idle_timeout_seconds is not None:
+            input_["idle_timeout_seconds"] = idle_timeout_seconds
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -350,6 +363,9 @@ class AsyncService:
             "capo_vpc_lattice.types.certificate_arn.CertificateArn"
         ] = None,
         auth_type: Optional["capo_vpc_lattice.types.auth_type.AuthType"] = None,
+        idle_timeout_seconds: Optional[
+            "capo_vpc_lattice.types.idle_timeout_seconds.IdleTimeoutSeconds"
+        ] = None,
     ) -> "capo_vpc_lattice.types.create_service_response.CreateServiceResponse":
         r"""<p>Creates a service. A service is any software application that can run on instances containers, or serverless functions within an account or virtual private cloud (VPC).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/services.html\">Services</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>
 
@@ -360,6 +376,7 @@ class AsyncService:
             custom_domain_name: <p>The custom domain name of the service.</p>
             certificate_arn: <p>The Amazon Resource Name (ARN) of the certificate.</p>
             auth_type: <p>The type of IAM policy.</p> <ul> <li> <p> <code>NONE</code>: The resource does not use an IAM policy. This is the default.</p> </li> <li> <p> <code>AWS_IAM</code>: The resource uses an IAM policy. When this type is used, auth is enabled and an auth policy is required.</p> </li> </ul>
+            idle_timeout_seconds: <p>The amount of time, in seconds, that a connection can remain idle (no data sent) before VPC Lattice closes it. The valid range is 60 to 600 seconds. If you don't specify a value, the default is 60 seconds. This setting does not change the maximum connection duration of 10 minutes; connections are still closed when they reach that limit.</p>
 
         Raises:
             capo_vpc_lattice.errors.access_denied_exception.AccessDeniedException: <p>The user does not have sufficient access to perform this action.</p>
@@ -402,6 +419,8 @@ class AsyncService:
             input_["certificate_arn"] = certificate_arn
         if auth_type is not None:
             input_["auth_type"] = auth_type
+        if idle_timeout_seconds is not None:
+            input_["idle_timeout_seconds"] = idle_timeout_seconds
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -468,6 +487,9 @@ class AsyncService:
             "capo_vpc_lattice.types.certificate_arn.CertificateArn"
         ] = None,
         auth_type: Optional["capo_vpc_lattice.types.auth_type.AuthType"] = None,
+        idle_timeout_seconds: Optional[
+            "capo_vpc_lattice.types.idle_timeout_seconds.IdleTimeoutSeconds"
+        ] = None,
     ) -> "capo_vpc_lattice.types.update_service_response.UpdateServiceResponse":
         """<p>Updates the specified service.</p>
 
@@ -475,6 +497,7 @@ class AsyncService:
             service_identifier: <p>The ID or ARN of the service.</p>
             certificate_arn: <p>The Amazon Resource Name (ARN) of the certificate.</p>
             auth_type: <p>The type of IAM policy.</p> <ul> <li> <p> <code>NONE</code>: The resource does not use an IAM policy. This is the default.</p> </li> <li> <p> <code>AWS_IAM</code>: The resource uses an IAM policy. When this type is used, auth is enabled and an auth policy is required.</p> </li> </ul>
+            idle_timeout_seconds: <p>The amount of time, in seconds, that a connection can remain idle (no data sent) before VPC Lattice closes it. The valid range is 60 to 600 seconds. If you don't specify a value, the default is 60 seconds. This setting does not change the maximum connection duration of 10 minutes; connections are still closed when they reach that limit.</p>
 
         Raises:
             capo_vpc_lattice.errors.access_denied_exception.AccessDeniedException: <p>The user does not have sufficient access to perform this action.</p>
@@ -510,6 +533,8 @@ class AsyncService:
             input_["certificate_arn"] = certificate_arn
         if auth_type is not None:
             input_["auth_type"] = auth_type
+        if idle_timeout_seconds is not None:
+            input_["idle_timeout_seconds"] = idle_timeout_seconds
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

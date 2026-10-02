@@ -51,6 +51,7 @@ if TYPE_CHECKING:
     import capo_billingconductor.types.associate_accounts_output
     import capo_billingconductor.types.associate_pricing_rules_input
     import capo_billingconductor.types.associate_pricing_rules_output
+    import capo_billingconductor.types.auto_transfer_billing_group_creation_preference
     import capo_billingconductor.types.batch_associate_resources_to_custom_line_item_input
     import capo_billingconductor.types.batch_associate_resources_to_custom_line_item_output
     import capo_billingconductor.types.batch_disassociate_resources_from_custom_line_item_input
@@ -100,6 +101,8 @@ if TYPE_CHECKING:
     import capo_billingconductor.types.disassociate_pricing_rules_output
     import capo_billingconductor.types.get_billing_group_cost_report_input
     import capo_billingconductor.types.get_billing_group_cost_report_output
+    import capo_billingconductor.types.get_billing_transfer_preference_input
+    import capo_billingconductor.types.get_billing_transfer_preference_output
     import capo_billingconductor.types.group_by_attributes_list
     import capo_billingconductor.types.list_account_associations_filter
     import capo_billingconductor.types.list_account_associations_input
@@ -152,6 +155,7 @@ if TYPE_CHECKING:
     import capo_billingconductor.types.pricing_rule_name
     import capo_billingconductor.types.pricing_rule_scope
     import capo_billingconductor.types.pricing_rule_type
+    import capo_billingconductor.types.responsibility_transfer_arn
     import capo_billingconductor.types.service
     import capo_billingconductor.types.tag_key_list
     import capo_billingconductor.types.tag_map
@@ -163,6 +167,8 @@ if TYPE_CHECKING:
     import capo_billingconductor.types.update_billing_group_account_grouping
     import capo_billingconductor.types.update_billing_group_input
     import capo_billingconductor.types.update_billing_group_output
+    import capo_billingconductor.types.update_billing_transfer_preference_input
+    import capo_billingconductor.types.update_billing_transfer_preference_output
     import capo_billingconductor.types.update_custom_line_item_charge_details
     import capo_billingconductor.types.update_custom_line_item_input
     import capo_billingconductor.types.update_custom_line_item_output
@@ -374,6 +380,53 @@ class billingconductorClient:
             _token = _resolve_path(_response, ("next_token",))
             if not _token:
                 break
+
+    def get_billing_transfer_preference(
+        self,
+        responsibility_transfer_arn: "capo_billingconductor.types.responsibility_transfer_arn.ResponsibilityTransferArn",
+        *,
+        config_overrides: Optional[billingconductorClientConfig] = None,
+    ) -> "capo_billingconductor.types.get_billing_transfer_preference_output.GetBillingTransferPreferenceOutput":
+        """<p>Retrieves the auto billing group creation preference for a billing transfer.</p>
+
+        Args:
+            responsibility_transfer_arn: <p>The Amazon Resource Name (ARN) of the billing transfer whose preference you want to retrieve.</p>
+
+        Raises:
+            capo_billingconductor.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action. </p>
+            capo_billingconductor.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing a request. </p>
+            capo_billingconductor.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist. </p>
+            capo_billingconductor.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billingconductor.errors.validation_exception.ValidationException: <p>The input doesn't match with the constraints specified by Amazon Web Services services.</p>
+            capo_billingconductor.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_billingconductor.types.get_billing_transfer_preference_input.GetBillingTransferPreferenceInput]",
+        ) -> OperationResponse[
+            "capo_billingconductor.types.get_billing_transfer_preference_output.GetBillingTransferPreferenceOutput"
+        ]:
+            import capo_billingconductor._operations.aws_billing_conductor.get_billing_transfer_preference
+
+            output, http_response = (
+                capo_billingconductor._operations.aws_billing_conductor.get_billing_transfer_preference.get_billing_transfer_preference(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billingconductor.types.get_billing_transfer_preference_input.GetBillingTransferPreferenceInput = {
+            "responsibility_transfer_arn": responsibility_transfer_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
 
     def list_account_associations(
         self,
@@ -695,6 +748,64 @@ class billingconductorClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_billing_transfer_preference(
+        self,
+        responsibility_transfer_arn: "capo_billingconductor.types.responsibility_transfer_arn.ResponsibilityTransferArn",
+        auto_billing_transfer_billing_group_creation: "capo_billingconductor.types.auto_transfer_billing_group_creation_preference.AutoTransferBillingGroupCreationPreference",
+        *,
+        config_overrides: Optional[billingconductorClientConfig] = None,
+        client_token: Optional[
+            "capo_billingconductor.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_billingconductor.types.update_billing_transfer_preference_output.UpdateBillingTransferPreferenceOutput":
+        """<p>Sets the auto billing group creation preference for a billing transfer. When the preference is enabled, Billing Conductor automatically creates an indirect billing transfer billing group in your account, with the pricing plan that you specify, for each account that transfers its bill to the bill source account of this billing transfer. The preference applies only to billing groups that are created after you enable it.</p> <p>Enabling the preference requires the <code>iam:CreateServiceLinkedRole</code> permission. While a pricing plan is specified in an enabled preference, you can't delete that pricing plan.</p>
+
+        Args:
+            client_token: <p>A unique, case-sensitive identifier that you specify to ensure idempotency of the request. Idempotency ensures that an API request completes no more than one time. With an idempotent request, if the original request completes successfully, any subsequent retries complete successfully without performing any further actions.</p>
+            responsibility_transfer_arn: <p>The Amazon Resource Name (ARN) of the billing transfer whose preference you want to set.</p>
+            auto_billing_transfer_billing_group_creation: <p>The auto billing group creation preference to set for the billing transfer.</p>
+
+        Raises:
+            capo_billingconductor.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action. </p>
+            capo_billingconductor.errors.conflict_exception.ConflictException: <p>You can cause an inconsistent state by updating or deleting a resource. </p>
+            capo_billingconductor.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred while processing a request. </p>
+            capo_billingconductor.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource that doesn't exist. </p>
+            capo_billingconductor.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billingconductor.errors.validation_exception.ValidationException: <p>The input doesn't match with the constraints specified by Amazon Web Services services.</p>
+            capo_billingconductor.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_billingconductor.types.update_billing_transfer_preference_input.UpdateBillingTransferPreferenceInput]",
+        ) -> OperationResponse[
+            "capo_billingconductor.types.update_billing_transfer_preference_output.UpdateBillingTransferPreferenceOutput"
+        ]:
+            import capo_billingconductor._operations.aws_billing_conductor.update_billing_transfer_preference
+
+            output, http_response = (
+                capo_billingconductor._operations.aws_billing_conductor.update_billing_transfer_preference.update_billing_transfer_preference(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billingconductor.types.update_billing_transfer_preference_input.UpdateBillingTransferPreferenceInput = {
+            "responsibility_transfer_arn": responsibility_transfer_arn,
+            "auto_billing_transfer_billing_group_creation": auto_billing_transfer_billing_group_creation,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

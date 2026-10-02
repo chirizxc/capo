@@ -7,6 +7,7 @@ from capo_auto_scaling._protocol.xml import Element
 CapacityDistributionStrategy: TypeAlias = Literal[
     "balanced-only",
     "balanced-best-effort",
+    "reservations-then-balanced",
 ]
 
 

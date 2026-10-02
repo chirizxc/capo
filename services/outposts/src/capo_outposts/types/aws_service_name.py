@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 AWSServiceName: TypeAlias = Literal[
     "AWS",
     "EC2",
+    "EKS",
     "ELASTICACHE",
     "ELB",
     "RDS",

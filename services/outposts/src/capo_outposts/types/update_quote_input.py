@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 class UpdateQuoteInput(TypedDict, closed=True):
     quote_identifier: "capo_outposts.types.quote_identifier.QuoteIdentifier"
-    """<p>The ID or ARN of the quote.</p>"""
+    """<p>The ID of the quote.</p>"""
     outpost_identifier: NotRequired[
         "capo_outposts.types.outpost_identifier_or_empty.OutpostIdentifierOrEmpty"
     ]

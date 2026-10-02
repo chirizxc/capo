@@ -8,6 +8,7 @@ from capo_observabilityadmin.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_observabilityadmin.types.regions
+    import capo_observabilityadmin.types.source_context_graph_configuration
     import capo_observabilityadmin.types.source_filter_string
     import capo_observabilityadmin.types.source_logs_configuration
     import capo_observabilityadmin.types.source_metrics_configuration
@@ -28,6 +29,10 @@ class CentralizationRuleSource(TypedDict, closed=True):
         "capo_observabilityadmin.types.source_metrics_configuration.SourceMetricsConfiguration"
     ]
     """<p>Metric specific configuration for centralization source metrics.</p>"""
+    source_context_graph_configuration: NotRequired[
+        "capo_observabilityadmin.types.source_context_graph_configuration.SourceContextGraphConfiguration"
+    ]
+    """<p>Configuration that enables centralization of the context graph for the selected sources. Including this configuration in a rule's source opts the rule into centralizing the context graph for the selected sources.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -54,6 +59,14 @@ def serialize_json(value: CentralizationRuleSource) -> dict:
         out["SourceMetricsConfiguration"] = (
             capo_observabilityadmin.types.source_metrics_configuration.serialize_json(
                 value["source_metrics_configuration"]
+            )
+        )
+    if "source_context_graph_configuration" in value:
+        import capo_observabilityadmin.types.source_context_graph_configuration
+
+        out["SourceContextGraphConfiguration"] = (
+            capo_observabilityadmin.types.source_context_graph_configuration.serialize_json(
+                value["source_context_graph_configuration"]
             )
         )
     return out
@@ -85,6 +98,14 @@ def deserialize_json(data: dict) -> CentralizationRuleSource:
         out["source_metrics_configuration"] = (
             capo_observabilityadmin.types.source_metrics_configuration.deserialize_json(
                 data["SourceMetricsConfiguration"]
+            )
+        )
+    if data.get("SourceContextGraphConfiguration") is not None:
+        import capo_observabilityadmin.types.source_context_graph_configuration
+
+        out["source_context_graph_configuration"] = (
+            capo_observabilityadmin.types.source_context_graph_configuration.deserialize_json(
+                data["SourceContextGraphConfiguration"]
             )
         )
     return out

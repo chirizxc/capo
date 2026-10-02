@@ -7,8 +7,11 @@ from typing_extensions import NotRequired, TypedDict
 from capo_healthlake.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_healthlake.types.bounded_length_string
     import capo_healthlake.types.client_token_string
     import capo_healthlake.types.datastore_id
+    import capo_healthlake.types.default_enabled_boolean
+    import capo_healthlake.types.health_lake_boolean
     import capo_healthlake.types.iam_role_arn
     import capo_healthlake.types.input_data_config
     import capo_healthlake.types.job_name
@@ -25,7 +28,7 @@ class StartFHIRImportJobRequest(TypedDict, closed=True):
     datastore_id: "capo_healthlake.types.datastore_id.DatastoreId"
     """<p>The data store identifier.</p>"""
     data_access_role_arn: "capo_healthlake.types.iam_role_arn.IamRoleArn"
-    """<p>The Amazon Resource Name (ARN) that grants access permission to AWS HealthLake.</p>"""
+    """<p>The Amazon Resource Name (ARN) that grants access permission to HealthLake.</p>"""
     client_token: NotRequired[
         "capo_healthlake.types.client_token_string.ClientTokenString"
     ]
@@ -34,6 +37,22 @@ class StartFHIRImportJobRequest(TypedDict, closed=True):
         "capo_healthlake.types.validation_level.ValidationLevel"
     ]
     """<p>The validation level of the import job.</p>"""
+    profile_id: NotRequired[
+        "capo_healthlake.types.bounded_length_string.BoundedLengthString"
+    ]
+    """<p>The data transformation profile identifier to use for the import job.</p>"""
+    input_format: NotRequired[
+        "capo_healthlake.types.bounded_length_string.BoundedLengthString"
+    ]
+    """<p>The input format of the data to be imported.</p>"""
+    drift_detection_enabled: (
+        "capo_healthlake.types.health_lake_boolean.HealthLakeBoolean"
+    )
+    """<p>Specifies whether to enable drift detection for the import job.</p>"""
+    provenance_enabled: (
+        "capo_healthlake.types.default_enabled_boolean.DefaultEnabledBoolean"
+    )
+    """<p>Specifies whether to enable provenance for the import job.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -67,6 +86,12 @@ def serialize_aws_json_1_0(value: StartFHIRImportJobRequest) -> dict:
                 value["validation_level"]
             )
         )
+    if "profile_id" in value:
+        out["ProfileId"] = value["profile_id"]
+    if "input_format" in value:
+        out["InputFormat"] = value["input_format"]
+    out["DriftDetectionEnabled"] = value.get("drift_detection_enabled", False)
+    out["ProvenanceEnabled"] = value.get("provenance_enabled", True)
     return out
 
 
@@ -118,4 +143,16 @@ def deserialize_aws_json_1_0(data: dict) -> StartFHIRImportJobRequest:
                 data["ValidationLevel"]
             )
         )
+    if data.get("ProfileId") is not None:
+        out["profile_id"] = data["ProfileId"]
+    if data.get("InputFormat") is not None:
+        out["input_format"] = data["InputFormat"]
+    if data.get("DriftDetectionEnabled") is not None:
+        out["drift_detection_enabled"] = data["DriftDetectionEnabled"]
+    else:
+        out["drift_detection_enabled"] = False
+    if data.get("ProvenanceEnabled") is not None:
+        out["provenance_enabled"] = data["ProvenanceEnabled"]
+    else:
+        out["provenance_enabled"] = True
     return out

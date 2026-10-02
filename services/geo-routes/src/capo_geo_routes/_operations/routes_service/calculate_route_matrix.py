@@ -30,7 +30,11 @@ import capo_geo_routes.types.route_matrix_travel_mode_options
 import capo_geo_routes.types.routing_objective
 from capo_geo_routes._protocol.errors import parse_error_metadata_json
 from capo_geo_routes._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_geo_routes._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_geo_routes._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_geo_routes.errors import UnknownServiceError
 
 
@@ -148,7 +152,7 @@ def calculate_route_matrix(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -166,7 +170,7 @@ async def async_calculate_route_matrix(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

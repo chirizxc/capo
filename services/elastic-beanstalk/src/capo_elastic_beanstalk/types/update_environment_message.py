@@ -29,25 +29,25 @@ class UpdateEnvironmentMessage(TypedDict, closed=True):
     environment_id: NotRequired[
         "capo_elastic_beanstalk.types.environment_id.EnvironmentId"
     ]
-    """<p>The ID of the environment to update.</p> <p>If no environment with this ID exists, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
+    """<p>The ID of the environment to update.</p> <p>If no environment with this ID exists, Elastic Beanstalk returns an <code>InvalidParameterValue</code> error.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
     environment_name: NotRequired[
         "capo_elastic_beanstalk.types.environment_name.EnvironmentName"
     ]
-    """<p>The name of the environment to update. If no environment with this name exists, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
+    """<p>The name of the environment to update. If no environment with this name exists, Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"""
     group_name: NotRequired["capo_elastic_beanstalk.types.group_name.GroupName"]
     r"""<p>The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment manifest and not with the environment name or environment ID parameters. See <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-manifest.html\">Environment Manifest (env.yaml)</a> for details.</p>"""
     description: NotRequired["capo_elastic_beanstalk.types.description.Description"]
-    """<p>If this parameter is specified, AWS Elastic Beanstalk updates the description of this environment.</p>"""
+    """<p>If this parameter is specified, Elastic Beanstalk updates the description of this environment.</p>"""
     tier: NotRequired["capo_elastic_beanstalk.types.environment_tier.EnvironmentTier"]
-    """<p>This specifies the tier to use to update the environment.</p> <p>Condition: At this time, if you change the tier version, name, or type, AWS Elastic Beanstalk returns <code>InvalidParameterValue</code> error. </p>"""
+    """<p>This specifies the tier to use to update the environment.</p> <p>Condition: At this time, if you change the tier version, name, or type, Elastic Beanstalk returns <code>InvalidParameterValue</code> error. </p>"""
     version_label: NotRequired[
         "capo_elastic_beanstalk.types.version_label.VersionLabel"
     ]
-    """<p>If this parameter is specified, AWS Elastic Beanstalk deploys the named application version to the environment. If no such application version is found, returns an <code>InvalidParameterValue</code> error. </p>"""
+    """<p>If this parameter is specified, Elastic Beanstalk deploys the named application version to the environment. If no such application version is found, returns an <code>InvalidParameterValue</code> error. </p>"""
     template_name: NotRequired[
         "capo_elastic_beanstalk.types.configuration_template_name.ConfigurationTemplateName"
     ]
-    """<p>If this parameter is specified, AWS Elastic Beanstalk deploys this configuration template to the environment. If no such configuration template is found, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>"""
+    """<p>If this parameter is specified, Elastic Beanstalk deploys this configuration template to the environment. If no such configuration template is found, Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>"""
     solution_stack_name: NotRequired[
         "capo_elastic_beanstalk.types.solution_stack_name.SolutionStackName"
     ]
@@ -57,7 +57,7 @@ class UpdateEnvironmentMessage(TypedDict, closed=True):
     option_settings: NotRequired[
         "capo_elastic_beanstalk.types.configuration_option_settings_list.ConfigurationOptionSettingsList"
     ]
-    """<p>If specified, AWS Elastic Beanstalk updates the configuration set associated with the running environment and sets the specified configuration options to the requested value.</p>"""
+    """<p>If specified, Elastic Beanstalk updates the configuration set associated with the running environment and sets the specified configuration options to the requested value.</p>"""
     options_to_remove: NotRequired[
         "capo_elastic_beanstalk.types.options_specifier_list.OptionsSpecifierList"
     ]

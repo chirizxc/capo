@@ -17,10 +17,15 @@ import capo_acm.errors.invalid_arn_exception
 import capo_acm.errors.resource_in_use_exception
 import capo_acm.errors.resource_not_found_exception
 import capo_acm.errors.throttling_exception
+import capo_acm.errors.validation_exception
 import capo_acm.types.delete_certificate_request
 from capo_acm._protocol.errors import parse_error_metadata_json
 from capo_acm._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_acm._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_acm._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_acm.errors import UnknownServiceError
 
 
@@ -50,6 +55,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ThrottlingException":
             raise capo_acm.errors.throttling_exception.ThrottlingException.from_aws_json_1_1(
+                data, message
+            )
+        case "ValidationException":
+            raise capo_acm.errors.validation_exception.ValidationException.from_aws_json_1_1(
                 data, message
             )
         case _:
@@ -91,9 +100,10 @@ def build_request(
     endpoint = resolve(
         EndpointParams(
             Region=options.region,
-            UseDualStack=options.use_dual_stack,
-            UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            UseFIPS=options.use_fips,
+            UseDualStack=options.use_dual_stack,
+            ServiceType="ACM",
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
@@ -122,7 +132,7 @@ def delete_certificate(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -137,7 +147,7 @@ async def async_delete_certificate(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

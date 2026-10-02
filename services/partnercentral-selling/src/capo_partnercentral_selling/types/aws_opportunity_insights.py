@@ -7,6 +7,8 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_partnercentral_selling.types.aws_products_spend_insights_by_source
     import capo_partnercentral_selling.types.engagement_score
+    import capo_partnercentral_selling.types.opportunity_quality
+    import capo_partnercentral_selling.types.recommendation_list
 
 
 class AwsOpportunityInsights(TypedDict, closed=True):
@@ -20,6 +22,14 @@ class AwsOpportunityInsights(TypedDict, closed=True):
         "capo_partnercentral_selling.types.aws_products_spend_insights_by_source.AwsProductsSpendInsightsBySource"
     ]
     """<p>Source-separated spend insights that provide independent analysis for AWS recommendations and partner estimates.</p>"""
+    opportunity_quality: NotRequired[
+        "capo_partnercentral_selling.types.opportunity_quality.OpportunityQuality"
+    ]
+    """<p>Opportunity quality assessment. Null if not yet scored.</p>"""
+    recommendations: NotRequired[
+        "capo_partnercentral_selling.types.recommendation_list.RecommendationList"
+    ]
+    """<p>List of recommendations from various agent-driven sources.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -43,6 +53,22 @@ def serialize_aws_json_1_0(value: AwsOpportunityInsights) -> dict:
                 value["aws_products_spend_insights_by_source"]
             )
         )
+    if "opportunity_quality" in value:
+        import capo_partnercentral_selling.types.opportunity_quality
+
+        out["OpportunityQuality"] = (
+            capo_partnercentral_selling.types.opportunity_quality.serialize_aws_json_1_0(
+                value["opportunity_quality"]
+            )
+        )
+    if "recommendations" in value:
+        import capo_partnercentral_selling.types.recommendation_list
+
+        out["Recommendations"] = (
+            capo_partnercentral_selling.types.recommendation_list.serialize_aws_json_1_0(
+                value["recommendations"]
+            )
+        )
     return out
 
 
@@ -64,6 +90,22 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityInsights:
         out["aws_products_spend_insights_by_source"] = (
             capo_partnercentral_selling.types.aws_products_spend_insights_by_source.deserialize_aws_json_1_0(
                 data["AwsProductsSpendInsightsBySource"]
+            )
+        )
+    if data.get("OpportunityQuality") is not None:
+        import capo_partnercentral_selling.types.opportunity_quality
+
+        out["opportunity_quality"] = (
+            capo_partnercentral_selling.types.opportunity_quality.deserialize_aws_json_1_0(
+                data["OpportunityQuality"]
+            )
+        )
+    if data.get("Recommendations") is not None:
+        import capo_partnercentral_selling.types.recommendation_list
+
+        out["recommendations"] = (
+            capo_partnercentral_selling.types.recommendation_list.deserialize_aws_json_1_0(
+                data["Recommendations"]
             )
         )
     return out

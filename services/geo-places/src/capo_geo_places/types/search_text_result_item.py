@@ -15,10 +15,12 @@ if TYPE_CHECKING:
     import capo_geo_places.types.category_list
     import capo_geo_places.types.contacts
     import capo_geo_places.types.country_code3
+    import capo_geo_places.types.cross_reference_list
     import capo_geo_places.types.distance_meters
     import capo_geo_places.types.food_type_list
     import capo_geo_places.types.opening_hours_list
     import capo_geo_places.types.phoneme_details
+    import capo_geo_places.types.place_attribute_list
     import capo_geo_places.types.place_type
     import capo_geo_places.types.position
     import capo_geo_places.types.sensitive_boolean
@@ -58,7 +60,7 @@ class SearchTextResultItem(TypedDict, closed=True):
     opening_hours: NotRequired[
         "capo_geo_places.types.opening_hours_list.OpeningHoursList"
     ]
-    """<p>List of opening hours objects.</p>"""
+    r"""<p> List of opening hours objects. Not available in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>"""
     access_points: NotRequired[
         "capo_geo_places.types.access_point_list.AccessPointList"
     ]
@@ -73,13 +75,25 @@ class SearchTextResultItem(TypedDict, closed=True):
     """<p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p>"""
     phonemes: NotRequired["capo_geo_places.types.phoneme_details.PhonemeDetails"]
     """<p>How the various components of the result's address are pronounced in various languages.</p>"""
+    place_attributes: NotRequired[
+        "capo_geo_places.types.place_attribute_list.PlaceAttributeList"
+    ]
+    """<p>A list of place attributes for the result, such as whether the business offers drive-through service.</p>"""
+    cross_references: NotRequired[
+        "capo_geo_places.types.cross_reference_list.CrossReferenceList"
+    ]
+    """<p>The list of supplier references available for this place. Requires the <code>CrossReferences</code> additional feature to be enabled.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: SearchTextResultItem) -> dict:
     out: dict = {}
     out["PlaceId"] = value["place_id"]
-    out["PlaceType"] = value["place_type"]
+    import capo_geo_places.types.place_type
+
+    out["PlaceType"] = capo_geo_places.types.place_type.serialize_json(
+        value["place_type"]
+    )
     out["Title"] = value["title"]
     if "address" in value:
         import capo_geo_places.types.address
@@ -160,6 +174,22 @@ def serialize_json(value: SearchTextResultItem) -> dict:
         out["Phonemes"] = capo_geo_places.types.phoneme_details.serialize_json(
             value["phonemes"]
         )
+    if "place_attributes" in value:
+        import capo_geo_places.types.place_attribute_list
+
+        out["PlaceAttributes"] = (
+            capo_geo_places.types.place_attribute_list.serialize_json(
+                value["place_attributes"]
+            )
+        )
+    if "cross_references" in value:
+        import capo_geo_places.types.cross_reference_list
+
+        out["CrossReferences"] = (
+            capo_geo_places.types.cross_reference_list.serialize_json(
+                value["cross_references"]
+            )
+        )
     return out
 
 
@@ -170,7 +200,11 @@ def deserialize_json(data: dict) -> SearchTextResultItem:
     else:
         raise DeserializationError("SearchTextResultItem.place_id required")
     if data.get("PlaceType") is not None:
-        out["place_type"] = data["PlaceType"]
+        import capo_geo_places.types.place_type
+
+        out["place_type"] = capo_geo_places.types.place_type.deserialize_json(
+            data["PlaceType"]
+        )
     else:
         raise DeserializationError("SearchTextResultItem.place_type required")
     if data.get("Title") is not None:
@@ -260,5 +294,21 @@ def deserialize_json(data: dict) -> SearchTextResultItem:
 
         out["phonemes"] = capo_geo_places.types.phoneme_details.deserialize_json(
             data["Phonemes"]
+        )
+    if data.get("PlaceAttributes") is not None:
+        import capo_geo_places.types.place_attribute_list
+
+        out["place_attributes"] = (
+            capo_geo_places.types.place_attribute_list.deserialize_json(
+                data["PlaceAttributes"]
+            )
+        )
+    if data.get("CrossReferences") is not None:
+        import capo_geo_places.types.cross_reference_list
+
+        out["cross_references"] = (
+            capo_geo_places.types.cross_reference_list.deserialize_json(
+                data["CrossReferences"]
+            )
         )
     return out

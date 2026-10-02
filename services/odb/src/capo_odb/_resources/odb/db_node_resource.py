@@ -34,15 +34,17 @@ class DbNodeResource:
 
     def read(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         db_node_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[odbClientConfig] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.get_db_node_output.GetDbNodeOutput":
         """<p>Returns information about the specified DB node.</p>
 
         Args:
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster that contains the DB node. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
             db_node_id: <p>The unique identifier of the DB node to retrieve information about.</p>
 
         Raises:
@@ -66,9 +68,12 @@ class DbNodeResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.get_db_node_input.GetDbNodeInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id,
-            "db_node_id": db_node_id,
+            "db_node_id": db_node_id
         }
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -80,18 +85,20 @@ class DbNodeResource:
 
     def list(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[odbClientConfig] = None,
         max_results: Optional[int] = None,
         next_token: Optional[str] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.list_db_nodes_output.ListDbNodesOutput":
         """<p>Returns information about the DB nodes for the specified VM cluster.</p>
 
         Args:
             max_results: <p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.</p> <p>Default: <code>10</code> </p>
             next_token: <p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
 
         Raises:
             capo_odb.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action. Make sure you have the required permissions and try again.</p>
@@ -115,13 +122,15 @@ class DbNodeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_db_nodes_input.ListDbNodesInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id
-        }
+        input_: capo_odb.types.list_db_nodes_input.ListDbNodesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -133,15 +142,17 @@ class DbNodeResource:
 
     def reboot_db_node(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         db_node_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[odbClientConfig] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.reboot_db_node_output.RebootDbNodeOutput":
         """<p>Reboots the specified DB node in a VM cluster.</p>
 
         Args:
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to reboot.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to reboot. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster that contains the DB node to reboot. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
             db_node_id: <p>The unique identifier of the DB node to reboot.</p>
 
         Raises:
@@ -169,9 +180,12 @@ class DbNodeResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.reboot_db_node_input.RebootDbNodeInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id,
-            "db_node_id": db_node_id,
+            "db_node_id": db_node_id
         }
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -183,15 +197,17 @@ class DbNodeResource:
 
     def start_db_node(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         db_node_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[odbClientConfig] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.start_db_node_output.StartDbNodeOutput":
         """<p>Starts the specified DB node in a VM cluster.</p>
 
         Args:
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to start.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to start. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster that contains the DB node to start. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
             db_node_id: <p>The unique identifier of the DB node to start.</p>
 
         Raises:
@@ -217,9 +233,12 @@ class DbNodeResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.start_db_node_input.StartDbNodeInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id,
-            "db_node_id": db_node_id,
+            "db_node_id": db_node_id
         }
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -231,15 +250,17 @@ class DbNodeResource:
 
     def stop_db_node(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         db_node_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[odbClientConfig] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.stop_db_node_output.StopDbNodeOutput":
         """<p>Stops the specified DB node in a VM cluster.</p>
 
         Args:
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to stop.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to stop. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster that contains the DB node to stop. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
             db_node_id: <p>The unique identifier of the DB node to stop.</p>
 
         Raises:
@@ -263,9 +284,12 @@ class DbNodeResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.stop_db_node_input.StopDbNodeInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id,
-            "db_node_id": db_node_id,
+            "db_node_id": db_node_id
         }
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -282,15 +306,17 @@ class AsyncDbNodeResource:
 
     async def read(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         db_node_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncodbClientConfig] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.get_db_node_output.GetDbNodeOutput":
         """<p>Returns information about the specified DB node.</p>
 
         Args:
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster that contains the DB node. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
             db_node_id: <p>The unique identifier of the DB node to retrieve information about.</p>
 
         Raises:
@@ -319,9 +345,12 @@ class AsyncDbNodeResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.get_db_node_input.GetDbNodeInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id,
-            "db_node_id": db_node_id,
+            "db_node_id": db_node_id
         }
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -333,18 +362,20 @@ class AsyncDbNodeResource:
 
     async def list(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncodbClientConfig] = None,
         max_results: Optional[int] = None,
         next_token: Optional[str] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.list_db_nodes_output.ListDbNodesOutput":
         """<p>Returns information about the DB nodes for the specified VM cluster.</p>
 
         Args:
             max_results: <p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.</p> <p>Default: <code>10</code> </p>
             next_token: <p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
 
         Raises:
             capo_odb.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action. Make sure you have the required permissions and try again.</p>
@@ -371,13 +402,15 @@ class AsyncDbNodeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_db_nodes_input.ListDbNodesInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id
-        }
+        input_: capo_odb.types.list_db_nodes_input.ListDbNodesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -389,15 +422,17 @@ class AsyncDbNodeResource:
 
     async def reboot_db_node(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         db_node_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncodbClientConfig] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.reboot_db_node_output.RebootDbNodeOutput":
         """<p>Reboots the specified DB node in a VM cluster.</p>
 
         Args:
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to reboot.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to reboot. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster that contains the DB node to reboot. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
             db_node_id: <p>The unique identifier of the DB node to reboot.</p>
 
         Raises:
@@ -426,9 +461,12 @@ class AsyncDbNodeResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.reboot_db_node_input.RebootDbNodeInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id,
-            "db_node_id": db_node_id,
+            "db_node_id": db_node_id
         }
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -440,15 +478,17 @@ class AsyncDbNodeResource:
 
     async def start_db_node(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         db_node_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncodbClientConfig] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.start_db_node_output.StartDbNodeOutput":
         """<p>Starts the specified DB node in a VM cluster.</p>
 
         Args:
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to start.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to start. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster that contains the DB node to start. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
             db_node_id: <p>The unique identifier of the DB node to start.</p>
 
         Raises:
@@ -477,9 +517,12 @@ class AsyncDbNodeResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.start_db_node_input.StartDbNodeInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id,
-            "db_node_id": db_node_id,
+            "db_node_id": db_node_id
         }
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -491,15 +534,17 @@ class AsyncDbNodeResource:
 
     async def stop_db_node(
         self,
-        cloud_vm_cluster_id: "capo_odb.types.resource_id.ResourceId",
         db_node_id: "capo_odb.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[AsyncodbClientConfig] = None,
+        cloud_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
+        exadb_vm_cluster_id: Optional["capo_odb.types.resource_id.ResourceId"] = None,
     ) -> "capo_odb.types.stop_db_node_output.StopDbNodeOutput":
         """<p>Stops the specified DB node in a VM cluster.</p>
 
         Args:
-            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to stop.</p>
+            cloud_vm_cluster_id: <p>The unique identifier of the VM cluster that contains the DB node to stop. You must specify either this parameter or <code>exadbVmClusterId</code>.</p>
+            exadb_vm_cluster_id: <p>The unique identifier of the Exascale VM cluster that contains the DB node to stop. You must specify either this parameter or <code>cloudVmClusterId</code>.</p>
             db_node_id: <p>The unique identifier of the DB node to stop.</p>
 
         Raises:
@@ -528,9 +573,12 @@ class AsyncDbNodeResource:
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
         input_: capo_odb.types.stop_db_node_input.StopDbNodeInput = {
-            "cloud_vm_cluster_id": cloud_vm_cluster_id,
-            "db_node_id": db_node_id,
+            "db_node_id": db_node_id
         }
+        if cloud_vm_cluster_id is not None:
+            input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        if exadb_vm_cluster_id is not None:
+            input_["exadb_vm_cluster_id"] = exadb_vm_cluster_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

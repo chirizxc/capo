@@ -14,12 +14,14 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.agent_runtime_status
     import capo_bedrock_agentcore_control.types.agent_runtime_version
     import capo_bedrock_agentcore_control.types.authorizer_configuration
+    import capo_bedrock_agentcore_control.types.capacity_provider_configuration
     import capo_bedrock_agentcore_control.types.date_timestamp
     import capo_bedrock_agentcore_control.types.description
     import capo_bedrock_agentcore_control.types.environment_variables_map
     import capo_bedrock_agentcore_control.types.filesystem_configurations
     import capo_bedrock_agentcore_control.types.lifecycle_configuration
     import capo_bedrock_agentcore_control.types.network_configuration
+    import capo_bedrock_agentcore_control.types.platform_version
     import capo_bedrock_agentcore_control.types.protocol_configuration
     import capo_bedrock_agentcore_control.types.request_header_configuration
     import capo_bedrock_agentcore_control.types.role_arn
@@ -50,7 +52,9 @@ class GetAgentRuntimeResponse(TypedDict, closed=True):
     """<p>The timestamp when the AgentCore Runtime was last updated.</p>"""
     role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn"
     """<p>The IAM role ARN that provides permissions for the AgentCore Runtime.</p>"""
-    network_configuration: "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+    network_configuration: NotRequired[
+        "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+    ]
     """<p>The network configuration for the AgentCore Runtime.</p>"""
     status: (
         "capo_bedrock_agentcore_control.types.agent_runtime_status.AgentRuntimeStatus"
@@ -95,6 +99,14 @@ class GetAgentRuntimeResponse(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.filesystem_configurations.FilesystemConfigurations"
     ]
     """<p>The filesystem configurations mounted into the AgentCore Runtime.</p>"""
+    capacity_provider_configuration: NotRequired[
+        "capo_bedrock_agentcore_control.types.capacity_provider_configuration.CapacityProviderConfiguration"
+    ]
+    """<p>The capacity provider configuration for the AgentCore Runtime.</p>"""
+    platform_version: NotRequired[
+        "capo_bedrock_agentcore_control.types.platform_version.PlatformVersion"
+    ]
+    """<p>The version of the runtime platform used by the AgentCore Runtime.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -119,13 +131,14 @@ def serialize_json(value: GetAgentRuntimeResponse) -> dict:
         )
     )
     out["roleArn"] = value["role_arn"]
-    import capo_bedrock_agentcore_control.types.network_configuration
+    if "network_configuration" in value:
+        import capo_bedrock_agentcore_control.types.network_configuration
 
-    out["networkConfiguration"] = (
-        capo_bedrock_agentcore_control.types.network_configuration.serialize_json(
-            value["network_configuration"]
+        out["networkConfiguration"] = (
+            capo_bedrock_agentcore_control.types.network_configuration.serialize_json(
+                value["network_configuration"]
+            )
         )
-    )
     import capo_bedrock_agentcore_control.types.agent_runtime_status
 
     out["status"] = (
@@ -208,6 +221,16 @@ def serialize_json(value: GetAgentRuntimeResponse) -> dict:
                 value["filesystem_configurations"]
             )
         )
+    if "capacity_provider_configuration" in value:
+        import capo_bedrock_agentcore_control.types.capacity_provider_configuration
+
+        out["capacityProviderConfiguration"] = (
+            capo_bedrock_agentcore_control.types.capacity_provider_configuration.serialize_json(
+                value["capacity_provider_configuration"]
+            )
+        )
+    if "platform_version" in value:
+        out["platformVersion"] = value["platform_version"]
     return out
 
 
@@ -264,10 +287,6 @@ def deserialize_json(data: dict) -> GetAgentRuntimeResponse:
             capo_bedrock_agentcore_control.types.network_configuration.deserialize_json(
                 data["networkConfiguration"]
             )
-        )
-    else:
-        raise DeserializationError(
-            "GetAgentRuntimeResponse.network_configuration required"
         )
     if data.get("status") is not None:
         import capo_bedrock_agentcore_control.types.agent_runtime_status
@@ -359,4 +378,14 @@ def deserialize_json(data: dict) -> GetAgentRuntimeResponse:
                 data["filesystemConfigurations"]
             )
         )
+    if data.get("capacityProviderConfiguration") is not None:
+        import capo_bedrock_agentcore_control.types.capacity_provider_configuration
+
+        out["capacity_provider_configuration"] = (
+            capo_bedrock_agentcore_control.types.capacity_provider_configuration.deserialize_json(
+                data["capacityProviderConfiguration"]
+            )
+        )
+    if data.get("platformVersion") is not None:
+        out["platform_version"] = data["platformVersion"]
     return out

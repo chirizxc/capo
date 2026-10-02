@@ -18,6 +18,7 @@ import capo_mediaconvert.errors.internal_server_error_exception
 import capo_mediaconvert.errors.not_found_exception
 import capo_mediaconvert.errors.service_quota_exceeded_exception
 import capo_mediaconvert.errors.too_many_requests_exception
+import capo_mediaconvert.errors.unprocessable_entity_exception
 import capo_mediaconvert.types.__list_of_probe_input_file
 import capo_mediaconvert.types.__list_of_probe_result
 import capo_mediaconvert.types.probe_request
@@ -27,6 +28,7 @@ from capo_mediaconvert._rule_engine._endpoint_rule_set import EndpointParams, re
 from capo_mediaconvert._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_mediaconvert.errors import UnknownServiceError
 
@@ -61,6 +63,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "TooManyRequestsException":
             raise capo_mediaconvert.errors.too_many_requests_exception.TooManyRequestsException.from_json(
+                data, message
+            )
+        case "UnprocessableEntityException":
+            raise capo_mediaconvert.errors.unprocessable_entity_exception.UnprocessableEntityException.from_json(
                 data, message
             )
         case _:
@@ -153,7 +159,7 @@ def probe(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -168,7 +174,7 @@ async def async_probe(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

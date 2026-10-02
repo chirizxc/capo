@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 UsageType: TypeAlias = Literal[
     "COMPUTE",
     "LICENSE",
+    "PERSISTENT_VOLUME",
 ]
 
 

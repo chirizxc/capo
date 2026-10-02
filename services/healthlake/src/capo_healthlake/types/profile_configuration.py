@@ -12,7 +12,7 @@ class ProfileConfiguration(TypedDict, closed=True):
     default_profiles: NotRequired[
         "capo_healthlake.types.default_profiles.DefaultProfiles"
     ]
-    """<para>The list of default profiles for the data store.</para>"""
+    """<p>The list of default profiles for the data store.</p>"""
 
 
 # --- awsJson1_0 ser/de ---

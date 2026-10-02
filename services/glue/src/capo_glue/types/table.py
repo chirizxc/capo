@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_glue.types.column_list
     import capo_glue.types.description_string
     import capo_glue.types.federated_table
+    import capo_glue.types.iceberg_table_metadata
     import capo_glue.types.name_string
     import capo_glue.types.non_negative_integer
     import capo_glue.types.nullable_boolean
@@ -81,6 +82,10 @@ class Table(TypedDict, closed=True):
         "capo_glue.types.nullable_boolean.NullableBoolean"
     ]
     """<p>Indicates a table is a <code>MaterializedView</code>.</p>"""
+    iceberg_table_metadata: NotRequired[
+        "capo_glue.types.iceberg_table_metadata.IcebergTableMetadata"
+    ]
+    """<p>The latest Apache Iceberg table metadata for the table, including format version, schemas, partition specifications, and sort orders. This field is populated for Iceberg tables and reflects the current state of the table's Iceberg metadata.</p>"""
     status: NotRequired["capo_glue.types.table_status.TableStatus"]
     """<p>Indicates the the state of an asynchronous change to a table.</p>"""
 
@@ -177,6 +182,14 @@ def serialize_aws_json_1_1(value: Table) -> dict:
         out["IsMultiDialectView"] = value["is_multi_dialect_view"]
     if "is_materialized_view" in value:
         out["IsMaterializedView"] = value["is_materialized_view"]
+    if "iceberg_table_metadata" in value:
+        import capo_glue.types.iceberg_table_metadata
+
+        out["IcebergTableMetadata"] = (
+            capo_glue.types.iceberg_table_metadata.serialize_aws_json_1_1(
+                value["iceberg_table_metadata"]
+            )
+        )
     if "status" in value:
         import capo_glue.types.table_status
 
@@ -288,6 +301,14 @@ def deserialize_aws_json_1_1(data: dict) -> Table:
         out["is_multi_dialect_view"] = data["IsMultiDialectView"]
     if data.get("IsMaterializedView") is not None:
         out["is_materialized_view"] = data["IsMaterializedView"]
+    if data.get("IcebergTableMetadata") is not None:
+        import capo_glue.types.iceberg_table_metadata
+
+        out["iceberg_table_metadata"] = (
+            capo_glue.types.iceberg_table_metadata.deserialize_aws_json_1_1(
+                data["IcebergTableMetadata"]
+            )
+        )
     if data.get("Status") is not None:
         import capo_glue.types.table_status
 

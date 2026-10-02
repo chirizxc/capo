@@ -13,7 +13,7 @@ class ModificationState(TypedDict, closed=True):
     resource: NotRequired[
         "capo_workspaces.types.modification_resource_enum.ModificationResourceEnum"
     ]
-    """<p>The resource.</p>"""
+    """<p>The WorkSpace property being modified.</p>"""
     state: NotRequired[
         "capo_workspaces.types.modification_state_enum.ModificationStateEnum"
     ]

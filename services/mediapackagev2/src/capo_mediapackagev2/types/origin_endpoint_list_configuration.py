@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_mediapackagev2.types.list_mss_manifests
     import capo_mediapackagev2.types.resource_description
     import capo_mediapackagev2.types.resource_name
+    import capo_mediapackagev2.types.stream_name_output_mode
     import capo_mediapackagev2.types.uri_separator
 
 
@@ -61,6 +62,10 @@ class OriginEndpointListConfiguration(TypedDict, closed=True):
     """<p>The failover settings for the endpoint.</p>"""
     uri_separator: NotRequired["capo_mediapackagev2.types.uri_separator.UriSeparator"]
     """<p>The separator character used in generated URIs for this origin endpoint.</p>"""
+    stream_name_output_mode: NotRequired[
+        "capo_mediapackagev2.types.stream_name_output_mode.StreamNameOutputMode"
+    ]
+    """<p>The output mode for stream names in egress manifests for this origin endpoint.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -134,6 +139,14 @@ def serialize_json(value: OriginEndpointListConfiguration) -> dict:
 
         out["UriSeparator"] = capo_mediapackagev2.types.uri_separator.serialize_json(
             value["uri_separator"]
+        )
+    if "stream_name_output_mode" in value:
+        import capo_mediapackagev2.types.stream_name_output_mode
+
+        out["StreamNameOutputMode"] = (
+            capo_mediapackagev2.types.stream_name_output_mode.serialize_json(
+                value["stream_name_output_mode"]
+            )
         )
     return out
 
@@ -237,5 +250,13 @@ def deserialize_json(data: dict) -> OriginEndpointListConfiguration:
 
         out["uri_separator"] = capo_mediapackagev2.types.uri_separator.deserialize_json(
             data["UriSeparator"]
+        )
+    if data.get("StreamNameOutputMode") is not None:
+        import capo_mediapackagev2.types.stream_name_output_mode
+
+        out["stream_name_output_mode"] = (
+            capo_mediapackagev2.types.stream_name_output_mode.deserialize_json(
+                data["StreamNameOutputMode"]
+            )
         )
     return out

@@ -6,6 +6,7 @@ SpeechModelPreference: TypeAlias = Literal[
     "Standard",
     "Neural",
     "Deepgram",
+    "Advanced",
 ]
 
 

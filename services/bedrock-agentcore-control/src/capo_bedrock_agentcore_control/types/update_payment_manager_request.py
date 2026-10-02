@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.authorizer_configuration
     import capo_bedrock_agentcore_control.types.client_token
+    import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.payment_manager_id
     import capo_bedrock_agentcore_control.types.payments_authorizer_type
     import capo_bedrock_agentcore_control.types.payments_description
@@ -36,6 +37,10 @@ class UpdatePaymentManagerRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.client_token.ClientToken"
     ]
     r"""<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>"""
+    kms_key_arn: NotRequired[
+        "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+    ]
+    """<p>The updated Amazon Resource Name (ARN) of the customer managed KMS key used to encrypt sensitive payment manager data at rest.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -63,6 +68,8 @@ def serialize_json(value: UpdatePaymentManagerRequest) -> dict:
         out["roleArn"] = value["role_arn"]
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -90,4 +97,6 @@ def deserialize_json(data: dict) -> UpdatePaymentManagerRequest:
         out["role_arn"] = data["roleArn"]
     if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     return out

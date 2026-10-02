@@ -6,11 +6,11 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.credential_list
-    import capo_chime_sdk_voice.types.non_empty_string
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class PutVoiceConnectorTerminationCredentialsRequest(TypedDict, closed=True):
-    voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString"
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
     credentials: NotRequired[
         "capo_chime_sdk_voice.types.credential_list.CredentialList"

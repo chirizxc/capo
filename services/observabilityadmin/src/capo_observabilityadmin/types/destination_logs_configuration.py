@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_observabilityadmin.types.log_group_name_configuration
     import capo_observabilityadmin.types.logs_backup_configuration
     import capo_observabilityadmin.types.logs_encryption_configuration
+    import capo_observabilityadmin.types.tag_propagation_configuration
 
 
 class DestinationLogsConfiguration(TypedDict, closed=True):
@@ -23,6 +24,10 @@ class DestinationLogsConfiguration(TypedDict, closed=True):
         "capo_observabilityadmin.types.log_group_name_configuration.LogGroupNameConfiguration"
     ]
     """<p>Configuration that specifies a naming pattern for destination log groups created during centralization. The pattern supports static text and dynamic variables that are replaced with source attributes when log groups are created.</p>"""
+    tag_propagation_configuration: NotRequired[
+        "capo_observabilityadmin.types.tag_propagation_configuration.TagPropagationConfiguration"
+    ]
+    """<p>Specifies the tag propagation configuration for this centralization rule. When present, <code>LogGroupNameConfiguration</code> must use a <code>LogGroupNamePattern</code> that contains <code>${source.logGroup}</code>, <code>${source.accountId}</code>, and <code>${source.region}</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -52,6 +57,14 @@ def serialize_json(value: DestinationLogsConfiguration) -> dict:
                 value["log_group_name_configuration"]
             )
         )
+    if "tag_propagation_configuration" in value:
+        import capo_observabilityadmin.types.tag_propagation_configuration
+
+        out["TagPropagationConfiguration"] = (
+            capo_observabilityadmin.types.tag_propagation_configuration.serialize_json(
+                value["tag_propagation_configuration"]
+            )
+        )
     return out
 
 
@@ -79,6 +92,14 @@ def deserialize_json(data: dict) -> DestinationLogsConfiguration:
         out["log_group_name_configuration"] = (
             capo_observabilityadmin.types.log_group_name_configuration.deserialize_json(
                 data["LogGroupNameConfiguration"]
+            )
+        )
+    if data.get("TagPropagationConfiguration") is not None:
+        import capo_observabilityadmin.types.tag_propagation_configuration
+
+        out["tag_propagation_configuration"] = (
+            capo_observabilityadmin.types.tag_propagation_configuration.deserialize_json(
+                data["TagPropagationConfiguration"]
             )
         )
     return out

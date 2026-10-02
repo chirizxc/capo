@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.code_interpreter_session_timeout
     import capo_bedrock_agentcore.types.date_timestamp
     import capo_bedrock_agentcore.types.name
+    import capo_bedrock_agentcore.types.tools_file_system_configurations
 
 
 class GetCodeInterpreterSessionResponse(TypedDict, closed=True):
@@ -34,6 +35,10 @@ class GetCodeInterpreterSessionResponse(TypedDict, closed=True):
     """<p>The current status of the code interpreter session. Possible values include ACTIVE, STOPPING, and STOPPED.</p>"""
     certificates: NotRequired["capo_bedrock_agentcore.types.certificates.Certificates"]
     """<p>The list of certificates installed in the code interpreter session.</p>"""
+    filesystem_configurations: NotRequired[
+        "capo_bedrock_agentcore.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+    ]
+    """<p>The file system configurations for the code interpreter session. Each entry describes an access point and its mount path.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -63,6 +68,14 @@ def serialize_json(value: GetCodeInterpreterSessionResponse) -> dict:
 
         out["certificates"] = capo_bedrock_agentcore.types.certificates.serialize_json(
             value["certificates"]
+        )
+    if "filesystem_configurations" in value:
+        import capo_bedrock_agentcore.types.tools_file_system_configurations
+
+        out["filesystemConfigurations"] = (
+            capo_bedrock_agentcore.types.tools_file_system_configurations.serialize_json(
+                value["filesystem_configurations"]
+            )
         )
     return out
 
@@ -111,6 +124,14 @@ def deserialize_json(data: dict) -> GetCodeInterpreterSessionResponse:
         out["certificates"] = (
             capo_bedrock_agentcore.types.certificates.deserialize_json(
                 data["certificates"]
+            )
+        )
+    if data.get("filesystemConfigurations") is not None:
+        import capo_bedrock_agentcore.types.tools_file_system_configurations
+
+        out["filesystem_configurations"] = (
+            capo_bedrock_agentcore.types.tools_file_system_configurations.deserialize_json(
+                data["filesystemConfigurations"]
             )
         )
     return out

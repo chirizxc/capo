@@ -32,6 +32,7 @@ from capo_bedrock_agentcore._rule_engine._endpoint_rule_set import (
 from capo_bedrock_agentcore._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_bedrock_agentcore.errors import UnknownServiceError
 
@@ -192,6 +193,10 @@ def build_request(
         ]
     if "mcp_protocol_version" in input_:
         headers["Mcp-Protocol-Version"] = input_["mcp_protocol_version"]
+    if "mcp_method" in input_:
+        headers["Mcp-Method"] = input_["mcp_method"]
+    if "mcp_name" in input_:
+        headers["Mcp-Name"] = input_["mcp_name"]
     if "runtime_user_id" in input_:
         headers["X-Amzn-Bedrock-AgentCore-Runtime-User-Id"] = input_["runtime_user_id"]
     if "trace_id" in input_:
@@ -224,7 +229,7 @@ def invoke_agent_runtime(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -242,7 +247,7 @@ async def async_invoke_agent_runtime(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

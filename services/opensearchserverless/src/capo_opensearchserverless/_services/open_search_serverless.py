@@ -2,6 +2,7 @@
 
 import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -17,6 +18,7 @@ from capo_opensearchserverless._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_opensearchserverless._auth._zapros_handler import AuthMiddleware
+from capo_opensearchserverless._pagination import resolve_path as _resolve_path
 from capo_opensearchserverless._resources.open_search_serverless.access_policy import (
     AccessPolicy,
 )
@@ -50,6 +52,7 @@ from capo_opensearchserverless._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_opensearchserverless.types.access_policy_type
     import capo_opensearchserverless.types.arn
     import capo_opensearchserverless.types.batch_get_collection_group_request
     import capo_opensearchserverless.types.batch_get_collection_group_response
@@ -63,28 +66,101 @@ if TYPE_CHECKING:
     import capo_opensearchserverless.types.batch_get_vpc_endpoint_response
     import capo_opensearchserverless.types.capacity_limits
     import capo_opensearchserverless.types.client_token
+    import capo_opensearchserverless.types.collection_filters
+    import capo_opensearchserverless.types.collection_group_capacity_limits
+    import capo_opensearchserverless.types.collection_group_id
     import capo_opensearchserverless.types.collection_group_ids
+    import capo_opensearchserverless.types.collection_group_name
     import capo_opensearchserverless.types.collection_group_names
+    import capo_opensearchserverless.types.collection_id
     import capo_opensearchserverless.types.collection_ids
+    import capo_opensearchserverless.types.collection_name
     import capo_opensearchserverless.types.collection_names
+    import capo_opensearchserverless.types.collection_type
+    import capo_opensearchserverless.types.config_description
+    import capo_opensearchserverless.types.config_name
+    import capo_opensearchserverless.types.create_access_policy_request
+    import capo_opensearchserverless.types.create_access_policy_response
+    import capo_opensearchserverless.types.create_collection_group_request
+    import capo_opensearchserverless.types.create_collection_group_response
+    import capo_opensearchserverless.types.create_collection_request
+    import capo_opensearchserverless.types.create_collection_response
+    import capo_opensearchserverless.types.create_iam_identity_center_config_options
+    import capo_opensearchserverless.types.create_index_request
+    import capo_opensearchserverless.types.create_index_response
     import capo_opensearchserverless.types.create_lifecycle_policy_request
     import capo_opensearchserverless.types.create_lifecycle_policy_response
+    import capo_opensearchserverless.types.create_security_config_request
+    import capo_opensearchserverless.types.create_security_config_response
     import capo_opensearchserverless.types.create_security_policy_request
     import capo_opensearchserverless.types.create_security_policy_response
+    import capo_opensearchserverless.types.create_vpc_endpoint_request
+    import capo_opensearchserverless.types.create_vpc_endpoint_response
+    import capo_opensearchserverless.types.delete_access_policy_request
+    import capo_opensearchserverless.types.delete_access_policy_response
+    import capo_opensearchserverless.types.delete_collection_group_request
+    import capo_opensearchserverless.types.delete_collection_group_response
+    import capo_opensearchserverless.types.delete_collection_request
+    import capo_opensearchserverless.types.delete_collection_response
+    import capo_opensearchserverless.types.delete_index_request
+    import capo_opensearchserverless.types.delete_index_response
+    import capo_opensearchserverless.types.delete_lifecycle_policy_request
+    import capo_opensearchserverless.types.delete_lifecycle_policy_response
+    import capo_opensearchserverless.types.delete_security_config_request
+    import capo_opensearchserverless.types.delete_security_config_response
+    import capo_opensearchserverless.types.delete_security_policy_request
+    import capo_opensearchserverless.types.delete_security_policy_response
+    import capo_opensearchserverless.types.delete_vpc_endpoint_request
+    import capo_opensearchserverless.types.delete_vpc_endpoint_response
+    import capo_opensearchserverless.types.deletion_protection
+    import capo_opensearchserverless.types.encryption_config
+    import capo_opensearchserverless.types.get_access_policy_request
+    import capo_opensearchserverless.types.get_access_policy_response
     import capo_opensearchserverless.types.get_account_settings_request
     import capo_opensearchserverless.types.get_account_settings_response
+    import capo_opensearchserverless.types.get_index_request
+    import capo_opensearchserverless.types.get_index_response
     import capo_opensearchserverless.types.get_policies_stats_request
     import capo_opensearchserverless.types.get_policies_stats_response
+    import capo_opensearchserverless.types.get_security_config_request
+    import capo_opensearchserverless.types.get_security_config_response
+    import capo_opensearchserverless.types.get_security_policy_request
+    import capo_opensearchserverless.types.get_security_policy_response
+    import capo_opensearchserverless.types.iam_federation_config_options
+    import capo_opensearchserverless.types.index_name
+    import capo_opensearchserverless.types.index_schema
     import capo_opensearchserverless.types.lifecycle_policy_identifiers
     import capo_opensearchserverless.types.lifecycle_policy_resource_identifiers
     import capo_opensearchserverless.types.lifecycle_policy_type
+    import capo_opensearchserverless.types.lifecycle_resource_filter
+    import capo_opensearchserverless.types.list_access_policies_request
+    import capo_opensearchserverless.types.list_access_policies_response
+    import capo_opensearchserverless.types.list_collection_groups_request
+    import capo_opensearchserverless.types.list_collection_groups_response
+    import capo_opensearchserverless.types.list_collections_request
+    import capo_opensearchserverless.types.list_collections_response
+    import capo_opensearchserverless.types.list_lifecycle_policies_request
+    import capo_opensearchserverless.types.list_lifecycle_policies_response
+    import capo_opensearchserverless.types.list_security_configs_request
+    import capo_opensearchserverless.types.list_security_configs_response
+    import capo_opensearchserverless.types.list_security_policies_request
+    import capo_opensearchserverless.types.list_security_policies_response
     import capo_opensearchserverless.types.list_tags_for_resource_request
     import capo_opensearchserverless.types.list_tags_for_resource_response
+    import capo_opensearchserverless.types.list_vpc_endpoints_request
+    import capo_opensearchserverless.types.list_vpc_endpoints_response
     import capo_opensearchserverless.types.policy_description
     import capo_opensearchserverless.types.policy_document
     import capo_opensearchserverless.types.policy_name
+    import capo_opensearchserverless.types.policy_version
+    import capo_opensearchserverless.types.resource_filter
+    import capo_opensearchserverless.types.saml_config_options
+    import capo_opensearchserverless.types.security_config_id
+    import capo_opensearchserverless.types.security_config_type
     import capo_opensearchserverless.types.security_group_ids
     import capo_opensearchserverless.types.security_policy_type
+    import capo_opensearchserverless.types.serverless_generation
+    import capo_opensearchserverless.types.standby_replicas
     import capo_opensearchserverless.types.subnet_ids
     import capo_opensearchserverless.types.tag_keys
     import capo_opensearchserverless.types.tag_resource_request
@@ -92,12 +168,31 @@ if TYPE_CHECKING:
     import capo_opensearchserverless.types.tags
     import capo_opensearchserverless.types.untag_resource_request
     import capo_opensearchserverless.types.untag_resource_response
+    import capo_opensearchserverless.types.update_access_policy_request
+    import capo_opensearchserverless.types.update_access_policy_response
     import capo_opensearchserverless.types.update_account_settings_request
     import capo_opensearchserverless.types.update_account_settings_response
+    import capo_opensearchserverless.types.update_collection_group_request
+    import capo_opensearchserverless.types.update_collection_group_response
+    import capo_opensearchserverless.types.update_collection_request
+    import capo_opensearchserverless.types.update_collection_response
+    import capo_opensearchserverless.types.update_iam_identity_center_config_options
+    import capo_opensearchserverless.types.update_index_request
+    import capo_opensearchserverless.types.update_index_response
+    import capo_opensearchserverless.types.update_lifecycle_policy_request
+    import capo_opensearchserverless.types.update_lifecycle_policy_response
+    import capo_opensearchserverless.types.update_security_config_request
+    import capo_opensearchserverless.types.update_security_config_response
+    import capo_opensearchserverless.types.update_security_policy_request
+    import capo_opensearchserverless.types.update_security_policy_response
     import capo_opensearchserverless.types.update_vpc_endpoint_request
     import capo_opensearchserverless.types.update_vpc_endpoint_response
+    import capo_opensearchserverless.types.vector_options
+    import capo_opensearchserverless.types.vpc_endpoint_filters
     import capo_opensearchserverless.types.vpc_endpoint_id
     import capo_opensearchserverless.types.vpc_endpoint_ids
+    import capo_opensearchserverless.types.vpc_endpoint_name
+    import capo_opensearchserverless.types.vpc_id
 
 
 class OpenSearchServerlessClientConfig(TypedDict, total=False, closed=True):
@@ -905,6 +1000,2087 @@ class OpenSearchServerlessClient:
         )
         response.response.close()
         return response.output
+
+    def create_access_policy(
+        self,
+        type: "capo_opensearchserverless.types.access_policy_type.AccessPolicyType",
+        name: "capo_opensearchserverless.types.policy_name.PolicyName",
+        policy: "capo_opensearchserverless.types.policy_document.PolicyDocument",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        description: Optional[
+            "capo_opensearchserverless.types.policy_description.PolicyDescription"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.create_access_policy_response.CreateAccessPolicyResponse":
+        r"""<p>Creates a data access policy for OpenSearch Serverless. Access policies limit access to collections and the resources within them, and allow a user to access that data irrespective of the access mechanism or network source. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html\">Data access control for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            type: <p>The type of policy.</p>
+            name: <p>The name of the policy.</p>
+            description: <p>A description of the policy. Typically used to store information about the permissions defined in the policy.</p>
+            policy: <p>The JSON policy document to use as the content for the policy.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.create_access_policy_request.CreateAccessPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.create_access_policy_response.CreateAccessPolicyResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.create_access_policy
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.create_access_policy.create_access_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.create_access_policy_request.CreateAccessPolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy": policy,
+        }
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_access_policy(
+        self,
+        type: "capo_opensearchserverless.types.access_policy_type.AccessPolicyType",
+        name: "capo_opensearchserverless.types.policy_name.PolicyName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+    ) -> "capo_opensearchserverless.types.get_access_policy_response.GetAccessPolicyResponse":
+        r"""<p>Returns an OpenSearch Serverless access policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html\">Data access control for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            type: <p>Tye type of policy. Currently, the only supported value is <code>data</code>.</p>
+            name: <p>The name of the access policy.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.get_access_policy_request.GetAccessPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.get_access_policy_response.GetAccessPolicyResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.get_access_policy
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.get_access_policy.get_access_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.get_access_policy_request.GetAccessPolicyRequest = {
+            "type": type,
+            "name": name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_access_policy(
+        self,
+        type: "capo_opensearchserverless.types.access_policy_type.AccessPolicyType",
+        name: "capo_opensearchserverless.types.policy_name.PolicyName",
+        policy_version: "capo_opensearchserverless.types.policy_version.PolicyVersion",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        description: Optional[
+            "capo_opensearchserverless.types.policy_description.PolicyDescription"
+        ] = None,
+        policy: Optional[
+            "capo_opensearchserverless.types.policy_document.PolicyDocument"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.update_access_policy_response.UpdateAccessPolicyResponse":
+        r"""<p>Updates an OpenSearch Serverless access policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html\">Data access control for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            type: <p>The type of policy.</p>
+            name: <p>The name of the policy.</p>
+            policy_version: <p>The version of the policy being updated.</p>
+            description: <p>A description of the policy. Typically used to store information about the permissions defined in the policy.</p>
+            policy: <p>The JSON policy document to use as the content for the policy.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.update_access_policy_request.UpdateAccessPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.update_access_policy_response.UpdateAccessPolicyResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.update_access_policy
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.update_access_policy.update_access_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.update_access_policy_request.UpdateAccessPolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy_version": policy_version,
+        }
+        if description is not None:
+            input_["description"] = description
+        if policy is not None:
+            input_["policy"] = policy
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_access_policy(
+        self,
+        type: "capo_opensearchserverless.types.access_policy_type.AccessPolicyType",
+        name: "capo_opensearchserverless.types.policy_name.PolicyName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.delete_access_policy_response.DeleteAccessPolicyResponse":
+        r"""<p>Deletes an OpenSearch Serverless access policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html\">Data access control for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            type: <p>The type of policy.</p>
+            name: <p>The name of the policy to delete.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.delete_access_policy_request.DeleteAccessPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.delete_access_policy_response.DeleteAccessPolicyResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.delete_access_policy
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.delete_access_policy.delete_access_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.delete_access_policy_request.DeleteAccessPolicyRequest = {
+            "type": type,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_access_policies(
+        self,
+        type: "capo_opensearchserverless.types.access_policy_type.AccessPolicyType",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        resource: Optional[
+            "capo_opensearchserverless.types.resource_filter.ResourceFilter"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_opensearchserverless.types.list_access_policies_response.ListAccessPoliciesResponse":
+        """<p>Returns information about a list of OpenSearch Serverless access policies.</p>
+
+        Args:
+            type: <p>The type of access policy.</p>
+            resource: <p>Resource filters (can be collections or indexes) that policies can apply to.</p>
+            next_token: <p>If your initial <code>ListAccessPolicies</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListAccessPolicies</code> operations, which returns results in the next page.</p>
+            max_results: <p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results. The default is 20.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.list_access_policies_request.ListAccessPoliciesRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.list_access_policies_response.ListAccessPoliciesResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.list_access_policies
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.list_access_policies.list_access_policies(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.list_access_policies_request.ListAccessPoliciesRequest = {
+            "type": type
+        }
+        if resource is not None:
+            input_["resource"] = resource
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_access_policies(
+        self,
+        type: "capo_opensearchserverless.types.access_policy_type.AccessPolicyType",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        resource: Optional[
+            "capo_opensearchserverless.types.resource_filter.ResourceFilter"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_opensearchserverless.types.list_access_policies_response.ListAccessPoliciesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_access_policies(
+                type,
+                config_overrides=config_overrides,
+                resource=resource,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_collection(
+        self,
+        name: "capo_opensearchserverless.types.collection_name.CollectionName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        type: Optional[
+            "capo_opensearchserverless.types.collection_type.CollectionType"
+        ] = None,
+        description: Optional[str] = None,
+        tags: Optional["capo_opensearchserverless.types.tags.Tags"] = None,
+        standby_replicas: Optional[
+            "capo_opensearchserverless.types.standby_replicas.StandbyReplicas"
+        ] = None,
+        vector_options: Optional[
+            "capo_opensearchserverless.types.vector_options.VectorOptions"
+        ] = None,
+        collection_group_name: Optional[
+            "capo_opensearchserverless.types.collection_group_name.CollectionGroupName"
+        ] = None,
+        encryption_config: Optional[
+            "capo_opensearchserverless.types.encryption_config.EncryptionConfig"
+        ] = None,
+        deletion_protection: Optional[
+            "capo_opensearchserverless.types.deletion_protection.DeletionProtection"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.create_collection_response.CreateCollectionResponse":
+        r"""<p>Creates a new OpenSearch Serverless collection. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html\">Creating and managing Amazon OpenSearch Serverless collections</a>.</p>
+
+        Args:
+            name: <p>Name of the collection.</p>
+            type: <p>The type of collection.</p>
+            description: <p>Description of the collection.</p>
+            tags: <p>An arbitrary set of tags (key–value pairs) to associate with the OpenSearch Serverless collection.</p>
+            standby_replicas: <p>Indicates whether standby replicas should be used for a collection.</p>
+            vector_options: <p>Configuration options for vector search capabilities in the collection.</p>
+            collection_group_name: <p>The name of the collection group to associate with the collection.</p>
+            encryption_config: <p>Encryption settings for the collection.</p>
+            deletion_protection: <p>Indicates whether to enable deletion protection for the collection. When set to <code>ENABLED</code>, the collection cannot be deleted.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.ocu_limit_exceeded_exception.OcuLimitExceededException: <p>Thrown when the collection you're attempting to create results in a number of search or indexing OCUs that exceeds the account limit. </p>
+            capo_opensearchserverless.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.create_collection_request.CreateCollectionRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.create_collection_response.CreateCollectionResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.create_collection
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.create_collection.create_collection(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.create_collection_request.CreateCollectionRequest = {
+            "name": name
+        }
+        if type is not None:
+            input_["type"] = type
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+        if standby_replicas is not None:
+            input_["standby_replicas"] = standby_replicas
+        if vector_options is not None:
+            input_["vector_options"] = vector_options
+        if collection_group_name is not None:
+            input_["collection_group_name"] = collection_group_name
+        if encryption_config is not None:
+            input_["encryption_config"] = encryption_config
+        if deletion_protection is not None:
+            input_["deletion_protection"] = deletion_protection
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_collection(
+        self,
+        id: "capo_opensearchserverless.types.collection_id.CollectionId",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        description: Optional[str] = None,
+        vector_options: Optional[
+            "capo_opensearchserverless.types.vector_options.VectorOptions"
+        ] = None,
+        deletion_protection: Optional[
+            "capo_opensearchserverless.types.deletion_protection.DeletionProtection"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.update_collection_response.UpdateCollectionResponse":
+        """<p>Updates an OpenSearch Serverless collection.</p>
+
+        Args:
+            id: <p>The unique identifier of the collection.</p>
+            description: <p>A description of the collection.</p>
+            vector_options: <p>Configuration options for vector search capabilities in the collection.</p>
+            deletion_protection: <p>Indicates whether to enable or disable deletion protection for the collection. When set to <code>ENABLED</code>, the collection cannot be deleted.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.update_collection_request.UpdateCollectionRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.update_collection_response.UpdateCollectionResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.update_collection
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.update_collection.update_collection(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.update_collection_request.UpdateCollectionRequest = {
+            "id": id
+        }
+        if description is not None:
+            input_["description"] = description
+        if vector_options is not None:
+            input_["vector_options"] = vector_options
+        if deletion_protection is not None:
+            input_["deletion_protection"] = deletion_protection
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_collection(
+        self,
+        id: "capo_opensearchserverless.types.collection_id.CollectionId",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.delete_collection_response.DeleteCollectionResponse":
+        r"""<p>Deletes an OpenSearch Serverless collection. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html\">Creating and managing Amazon OpenSearch Serverless collections</a>.</p>
+
+        Args:
+            id: <p>The unique identifier of the collection. For example, <code>1iu5usc406kd</code>. The ID is part of the collection endpoint. You can also retrieve it using the <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/ServerlessAPIReference/API_ListCollections.html\">ListCollections</a> API.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.delete_collection_request.DeleteCollectionRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.delete_collection_response.DeleteCollectionResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.delete_collection
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.delete_collection.delete_collection(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.delete_collection_request.DeleteCollectionRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_collections(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        collection_filters: Optional[
+            "capo_opensearchserverless.types.collection_filters.CollectionFilters"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_opensearchserverless.types.list_collections_response.ListCollectionsResponse":
+        r"""<p>Lists all OpenSearch Serverless collections. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html\">Creating and managing Amazon OpenSearch Serverless collections</a>.</p> <note> <p>Make sure to include an empty request body {} if you don't include any collection filters in the request.</p> </note>
+
+        Args:
+            collection_filters: <p> A list of filter names and values that you can use for requests.</p>
+            next_token: <p>If your initial <code>ListCollections</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListCollections</code> operations, which returns results in the next page.</p>
+            max_results: <p>The maximum number of results to return. Default is 20. You can use <code>nextToken</code> to get the next page of results.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.list_collections_request.ListCollectionsRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.list_collections_response.ListCollectionsResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.list_collections
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.list_collections.list_collections(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.list_collections_request.ListCollectionsRequest = {}
+        if collection_filters is not None:
+            input_["collection_filters"] = collection_filters
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_collections(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        collection_filters: Optional[
+            "capo_opensearchserverless.types.collection_filters.CollectionFilters"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_opensearchserverless.types.list_collections_response.ListCollectionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_collections(
+                config_overrides=config_overrides,
+                collection_filters=collection_filters,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_collection_group(
+        self,
+        name: "capo_opensearchserverless.types.collection_group_name.CollectionGroupName",
+        standby_replicas: "capo_opensearchserverless.types.standby_replicas.StandbyReplicas",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        description: Optional[str] = None,
+        tags: Optional["capo_opensearchserverless.types.tags.Tags"] = None,
+        capacity_limits: Optional[
+            "capo_opensearchserverless.types.collection_group_capacity_limits.CollectionGroupCapacityLimits"
+        ] = None,
+        generation: Optional[
+            "capo_opensearchserverless.types.serverless_generation.ServerlessGeneration"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.create_collection_group_response.CreateCollectionGroupResponse":
+        r"""<p>Creates a collection group within OpenSearch Serverless. Collection groups let you manage OpenSearch Compute Units (OCUs) at a group level, with multiple collections sharing the group's capacity limits.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-collection-groups.html\">Managing collection groups</a>.</p>
+
+        Args:
+            name: <p>The name of the collection group.</p>
+            standby_replicas: <p>Indicates whether standby replicas should be used for a collection group.</p>
+            description: <p>A description of the collection group.</p>
+            tags: <p>An arbitrary set of tags (key–value pairs) to associate with the OpenSearch Serverless collection group.</p>
+            capacity_limits: <p>The capacity limits for the collection group, in OpenSearch Compute Units (OCUs). These limits control the maximum and minimum capacity for collections within the group.</p>
+            generation: <p>The generation of Amazon OpenSearch Serverless for the collection group. Valid values are <code>CLASSIC</code> and <code>NEXTGEN</code>.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.create_collection_group_request.CreateCollectionGroupRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.create_collection_group_response.CreateCollectionGroupResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.create_collection_group
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.create_collection_group.create_collection_group(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.create_collection_group_request.CreateCollectionGroupRequest = {
+            "name": name,
+            "standby_replicas": standby_replicas,
+        }
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+        if capacity_limits is not None:
+            input_["capacity_limits"] = capacity_limits
+        if generation is not None:
+            input_["generation"] = generation
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_collection_group(
+        self,
+        id: "capo_opensearchserverless.types.collection_group_id.CollectionGroupId",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        description: Optional[str] = None,
+        capacity_limits: Optional[
+            "capo_opensearchserverless.types.collection_group_capacity_limits.CollectionGroupCapacityLimits"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.update_collection_group_response.UpdateCollectionGroupResponse":
+        """<p>Updates the description and capacity limits of a collection group.</p>
+
+        Args:
+            id: <p>The unique identifier of the collection group to update.</p>
+            description: <p>A new description for the collection group.</p>
+            capacity_limits: <p>Updated capacity limits for the collection group, in OpenSearch Compute Units (OCUs).</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.update_collection_group_request.UpdateCollectionGroupRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.update_collection_group_response.UpdateCollectionGroupResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.update_collection_group
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.update_collection_group.update_collection_group(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.update_collection_group_request.UpdateCollectionGroupRequest = {
+            "id": id
+        }
+        if description is not None:
+            input_["description"] = description
+        if capacity_limits is not None:
+            input_["capacity_limits"] = capacity_limits
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_collection_group(
+        self,
+        id: "capo_opensearchserverless.types.collection_group_id.CollectionGroupId",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.delete_collection_group_response.DeleteCollectionGroupResponse":
+        r"""<p>Deletes a collection group. You can only delete empty collection groups that contain no collections. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html\">Creating and managing Amazon OpenSearch Serverless collections</a>.</p>
+
+        Args:
+            id: <p>The unique identifier of the collection group to delete.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.delete_collection_group_request.DeleteCollectionGroupRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.delete_collection_group_response.DeleteCollectionGroupResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.delete_collection_group
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.delete_collection_group.delete_collection_group(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.delete_collection_group_request.DeleteCollectionGroupRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_collection_groups(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_opensearchserverless.types.list_collection_groups_response.ListCollectionGroupsResponse":
+        r"""<p>Returns a list of collection groups. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html\">Creating and managing Amazon OpenSearch Serverless collections</a>.</p>
+
+        Args:
+            next_token: <p>If your initial <code>ListCollectionGroups</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListCollectionGroups</code> operations, which returns results in the next page.</p>
+            max_results: <p>The maximum number of results to return. Default is 20. You can use <code>nextToken</code> to get the next page of results.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.list_collection_groups_request.ListCollectionGroupsRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.list_collection_groups_response.ListCollectionGroupsResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.list_collection_groups
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.list_collection_groups.list_collection_groups(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.list_collection_groups_request.ListCollectionGroupsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_collection_groups(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_opensearchserverless.types.list_collection_groups_response.ListCollectionGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_collection_groups(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_index(
+        self,
+        id: "capo_opensearchserverless.types.collection_id.CollectionId",
+        index_name: "capo_opensearchserverless.types.index_name.IndexName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        index_schema: Optional[
+            "capo_opensearchserverless.types.index_schema.IndexSchema"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.create_index_response.CreateIndexResponse":
+        r"""<p>Creates an index within an OpenSearch Serverless collection. Unlike other OpenSearch indexes, indexes created by this API are automatically configured to conduct automatic semantic enrichment ingestion and search. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html#serverless-semantic-enrichment\">About automatic semantic enrichment</a> in the <i>OpenSearch User Guide</i>.</p>
+
+        Args:
+            id: <p>The unique identifier of the collection in which to create the index.</p>
+            index_name: <p>The name of the index to create. Index names must be lowercase and can't begin with underscores (_) or hyphens (-).</p>
+            index_schema: <p>The JSON schema definition for the index, including field mappings and settings.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.create_index_request.CreateIndexRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.create_index_response.CreateIndexResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.create_index
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.create_index.create_index(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.create_index_request.CreateIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
+        if index_schema is not None:
+            input_["index_schema"] = index_schema
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_index(
+        self,
+        id: "capo_opensearchserverless.types.collection_id.CollectionId",
+        index_name: "capo_opensearchserverless.types.index_name.IndexName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+    ) -> "capo_opensearchserverless.types.get_index_response.GetIndexResponse":
+        r"""<p>Retrieves information about an index in an OpenSearch Serverless collection, including its schema definition. The index might be configured to conduct automatic semantic enrichment ingestion and search. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html#serverless-semantic-enrichment\">About automatic semantic enrichment</a>.</p>
+
+        Args:
+            id: <p>The unique identifier of the collection containing the index.</p>
+            index_name: <p>The name of the index to retrieve information about.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.get_index_request.GetIndexRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.get_index_response.GetIndexResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.get_index
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.get_index.get_index(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.get_index_request.GetIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_index(
+        self,
+        id: "capo_opensearchserverless.types.collection_id.CollectionId",
+        index_name: "capo_opensearchserverless.types.index_name.IndexName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        index_schema: Optional[
+            "capo_opensearchserverless.types.index_schema.IndexSchema"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.update_index_response.UpdateIndexResponse":
+        r"""<p>Updates an existing index in an OpenSearch Serverless collection. This operation allows you to modify the index schema, including adding new fields or changing field mappings. You can also enable automatic semantic enrichment ingestion and search. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html#serverless-semantic-enrichment\">About automatic semantic enrichment</a>.</p>
+
+        Args:
+            id: <p>The unique identifier of the collection containing the index to update.</p>
+            index_name: <p>The name of the index to update.</p>
+            index_schema: <p>The updated JSON schema definition for the index, including field mappings and settings. </p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.update_index_request.UpdateIndexRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.update_index_response.UpdateIndexResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.update_index
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.update_index.update_index(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.update_index_request.UpdateIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
+        if index_schema is not None:
+            input_["index_schema"] = index_schema
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_index(
+        self,
+        id: "capo_opensearchserverless.types.collection_id.CollectionId",
+        index_name: "capo_opensearchserverless.types.index_name.IndexName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+    ) -> "capo_opensearchserverless.types.delete_index_response.DeleteIndexResponse":
+        r"""<p>Deletes an index from an OpenSearch Serverless collection. Be aware that the index might be configured to conduct automatic semantic enrichment ingestion and search. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html#serverless-semantic-enrichment\">About automatic semantic enrichment</a>.</p>
+
+        Args:
+            id: <p>The unique identifier of the collection containing the index to delete.</p>
+            index_name: <p>The name of the index to delete.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.delete_index_request.DeleteIndexRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.delete_index_response.DeleteIndexResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.delete_index
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.delete_index.delete_index(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.delete_index_request.DeleteIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_lifecycle_policy(
+        self,
+        type: "capo_opensearchserverless.types.lifecycle_policy_type.LifecyclePolicyType",
+        name: "capo_opensearchserverless.types.policy_name.PolicyName",
+        policy_version: "capo_opensearchserverless.types.policy_version.PolicyVersion",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        description: Optional[
+            "capo_opensearchserverless.types.policy_description.PolicyDescription"
+        ] = None,
+        policy: Optional[
+            "capo_opensearchserverless.types.policy_document.PolicyDocument"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.update_lifecycle_policy_response.UpdateLifecyclePolicyResponse":
+        r"""<p>Updates an OpenSearch Serverless access policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-update\">Updating data lifecycle policies</a>.</p>
+
+        Args:
+            type: <p> The type of lifecycle policy.</p>
+            name: <p>The name of the policy.</p>
+            policy_version: <p>The version of the policy being updated.</p>
+            description: <p>A description of the lifecycle policy.</p>
+            policy: <p>The JSON policy document to use as the content for the lifecycle policy.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.update_lifecycle_policy_response.UpdateLifecyclePolicyResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.update_lifecycle_policy
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.update_lifecycle_policy.update_lifecycle_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy_version": policy_version,
+        }
+        if description is not None:
+            input_["description"] = description
+        if policy is not None:
+            input_["policy"] = policy
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_lifecycle_policy(
+        self,
+        type: "capo_opensearchserverless.types.lifecycle_policy_type.LifecyclePolicyType",
+        name: "capo_opensearchserverless.types.policy_name.PolicyName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.delete_lifecycle_policy_response.DeleteLifecyclePolicyResponse":
+        r"""<p>Deletes an OpenSearch Serverless lifecycle policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-delete\">Deleting data lifecycle policies</a>.</p>
+
+        Args:
+            type: <p>The type of lifecycle policy.</p>
+            name: <p>The name of the policy to delete.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.delete_lifecycle_policy_response.DeleteLifecyclePolicyResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.delete_lifecycle_policy
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.delete_lifecycle_policy.delete_lifecycle_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest = {
+            "type": type,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_lifecycle_policies(
+        self,
+        type: "capo_opensearchserverless.types.lifecycle_policy_type.LifecyclePolicyType",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        resources: Optional[
+            "capo_opensearchserverless.types.lifecycle_resource_filter.LifecycleResourceFilter"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_opensearchserverless.types.list_lifecycle_policies_response.ListLifecyclePoliciesResponse":
+        r"""<p>Returns a list of OpenSearch Serverless lifecycle policies. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-list\">Viewing data lifecycle policies</a>.</p>
+
+        Args:
+            type: <p>The type of lifecycle policy.</p>
+            resources: <p>Resource filters that policies can apply to. Currently, the only supported resource type is <code>index</code>.</p>
+            next_token: <p>If your initial <code>ListLifecyclePolicies</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListLifecyclePolicies</code> operations, which returns results in the next page.</p>
+            max_results: <p>An optional parameter that specifies the maximum number of results to return. You can use use <code>nextToken</code> to get the next page of results. The default is 10.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.list_lifecycle_policies_request.ListLifecyclePoliciesRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.list_lifecycle_policies_response.ListLifecyclePoliciesResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.list_lifecycle_policies
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.list_lifecycle_policies.list_lifecycle_policies(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.list_lifecycle_policies_request.ListLifecyclePoliciesRequest = {
+            "type": type
+        }
+        if resources is not None:
+            input_["resources"] = resources
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_lifecycle_policies(
+        self,
+        type: "capo_opensearchserverless.types.lifecycle_policy_type.LifecyclePolicyType",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        resources: Optional[
+            "capo_opensearchserverless.types.lifecycle_resource_filter.LifecycleResourceFilter"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_opensearchserverless.types.list_lifecycle_policies_response.ListLifecyclePoliciesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_lifecycle_policies(
+                type,
+                config_overrides=config_overrides,
+                resources=resources,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_security_config(
+        self,
+        type: "capo_opensearchserverless.types.security_config_type.SecurityConfigType",
+        name: "capo_opensearchserverless.types.config_name.ConfigName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        description: Optional[
+            "capo_opensearchserverless.types.config_description.ConfigDescription"
+        ] = None,
+        saml_options: Optional[
+            "capo_opensearchserverless.types.saml_config_options.SamlConfigOptions"
+        ] = None,
+        iam_identity_center_options: Optional[
+            "capo_opensearchserverless.types.create_iam_identity_center_config_options.CreateIamIdentityCenterConfigOptions"
+        ] = None,
+        iam_federation_options: Optional[
+            "capo_opensearchserverless.types.iam_federation_config_options.IamFederationConfigOptions"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.create_security_config_response.CreateSecurityConfigResponse":
+        r"""<p>Specifies a security configuration for OpenSearch Serverless. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            type: <p>The type of security configuration.</p>
+            name: <p>The name of the security configuration.</p>
+            description: <p>A description of the security configuration.</p>
+            saml_options: <p>Describes SAML options in the form of a key-value map. This field is required if you specify <code>SAML</code> for the <code>type</code> parameter.</p>
+            iam_identity_center_options: <p>Describes IAM Identity Center options in the form of a key-value map. This field is required if you specify <code>iamidentitycenter</code> for the <code>type</code> parameter.</p>
+            iam_federation_options: <p>Describes IAM federation options in the form of a key-value map. This field is required if you specify <code>iamFederation</code> for the <code>type</code> parameter.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.create_security_config_request.CreateSecurityConfigRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.create_security_config_response.CreateSecurityConfigResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.create_security_config
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.create_security_config.create_security_config(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.create_security_config_request.CreateSecurityConfigRequest = {
+            "type": type,
+            "name": name,
+        }
+        if description is not None:
+            input_["description"] = description
+        if saml_options is not None:
+            input_["saml_options"] = saml_options
+        if iam_identity_center_options is not None:
+            input_["iam_identity_center_options"] = iam_identity_center_options
+        if iam_federation_options is not None:
+            input_["iam_federation_options"] = iam_federation_options
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_security_config(
+        self,
+        id: "capo_opensearchserverless.types.security_config_id.SecurityConfigId",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+    ) -> "capo_opensearchserverless.types.get_security_config_response.GetSecurityConfigResponse":
+        r"""<p>Returns information about an OpenSearch Serverless security configuration. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            id: <p>The unique identifier of the security configuration.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.get_security_config_request.GetSecurityConfigRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.get_security_config_response.GetSecurityConfigResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.get_security_config
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.get_security_config.get_security_config(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.get_security_config_request.GetSecurityConfigRequest = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_security_config(
+        self,
+        id: "capo_opensearchserverless.types.security_config_id.SecurityConfigId",
+        config_version: "capo_opensearchserverless.types.policy_version.PolicyVersion",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        description: Optional[
+            "capo_opensearchserverless.types.config_description.ConfigDescription"
+        ] = None,
+        saml_options: Optional[
+            "capo_opensearchserverless.types.saml_config_options.SamlConfigOptions"
+        ] = None,
+        iam_identity_center_options_updates: Optional[
+            "capo_opensearchserverless.types.update_iam_identity_center_config_options.UpdateIamIdentityCenterConfigOptions"
+        ] = None,
+        iam_federation_options: Optional[
+            "capo_opensearchserverless.types.iam_federation_config_options.IamFederationConfigOptions"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.update_security_config_response.UpdateSecurityConfigResponse":
+        r"""<p>Updates a security configuration for OpenSearch Serverless. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            id: <p>The security configuration identifier. For SAML the ID will be <code>saml/&lt;accountId&gt;/&lt;idpProviderName&gt;</code>. For example, <code>saml/123456789123/OKTADev</code>.</p>
+            config_version: <p>The version of the security configuration to be updated. You can find the most recent version of a security configuration using the <code>GetSecurityPolicy</code> command.</p>
+            description: <p>A description of the security configuration.</p>
+            saml_options: <p>SAML options in in the form of a key-value map.</p>
+            iam_identity_center_options_updates: <p>Describes IAM Identity Center options in the form of a key-value map.</p>
+            iam_federation_options: <p>Describes IAM federation options in the form of a key-value map for updating an existing security configuration. Use this field to modify IAM federation settings for the security configuration.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.update_security_config_request.UpdateSecurityConfigRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.update_security_config_response.UpdateSecurityConfigResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.update_security_config
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.update_security_config.update_security_config(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.update_security_config_request.UpdateSecurityConfigRequest = {
+            "id": id,
+            "config_version": config_version,
+        }
+        if description is not None:
+            input_["description"] = description
+        if saml_options is not None:
+            input_["saml_options"] = saml_options
+        if iam_identity_center_options_updates is not None:
+            input_["iam_identity_center_options_updates"] = (
+                iam_identity_center_options_updates
+            )
+        if iam_federation_options is not None:
+            input_["iam_federation_options"] = iam_federation_options
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_security_config(
+        self,
+        id: "capo_opensearchserverless.types.security_config_id.SecurityConfigId",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.delete_security_config_response.DeleteSecurityConfigResponse":
+        r"""<p>Deletes a security configuration for OpenSearch Serverless. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            id: <p>The security configuration identifier. For SAML the ID will be <code>saml/&lt;accountId&gt;/&lt;idpProviderName&gt;</code>. For example, <code>saml/123456789123/OKTADev</code>.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.delete_security_config_request.DeleteSecurityConfigRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.delete_security_config_response.DeleteSecurityConfigResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.delete_security_config
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.delete_security_config.delete_security_config(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.delete_security_config_request.DeleteSecurityConfigRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_security_configs(
+        self,
+        type: "capo_opensearchserverless.types.security_config_type.SecurityConfigType",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_opensearchserverless.types.list_security_configs_response.ListSecurityConfigsResponse":
+        r"""<p>Returns information about configured OpenSearch Serverless security configurations. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            type: <p>The type of security configuration.</p>
+            next_token: <p>If your initial <code>ListSecurityConfigs</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListSecurityConfigs</code> operations, which returns results in the next page.</p>
+            max_results: <p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results. The default is 20.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.list_security_configs_request.ListSecurityConfigsRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.list_security_configs_response.ListSecurityConfigsResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.list_security_configs
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.list_security_configs.list_security_configs(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.list_security_configs_request.ListSecurityConfigsRequest = {
+            "type": type
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_security_configs(
+        self,
+        type: "capo_opensearchserverless.types.security_config_type.SecurityConfigType",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_opensearchserverless.types.list_security_configs_response.ListSecurityConfigsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_security_configs(
+                type,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def get_security_policy(
+        self,
+        type: "capo_opensearchserverless.types.security_policy_type.SecurityPolicyType",
+        name: "capo_opensearchserverless.types.policy_name.PolicyName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+    ) -> "capo_opensearchserverless.types.get_security_policy_response.GetSecurityPolicyResponse":
+        r"""<p>Returns information about a configured OpenSearch Serverless security policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-network.html\">Network access for Amazon OpenSearch Serverless</a> and <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-encryption.html\">Encryption at rest for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            type: <p>The type of security policy.</p>
+            name: <p>The name of the security policy.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.get_security_policy_request.GetSecurityPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.get_security_policy_response.GetSecurityPolicyResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.get_security_policy
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.get_security_policy.get_security_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.get_security_policy_request.GetSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_security_policy(
+        self,
+        type: "capo_opensearchserverless.types.security_policy_type.SecurityPolicyType",
+        name: "capo_opensearchserverless.types.policy_name.PolicyName",
+        policy_version: "capo_opensearchserverless.types.policy_version.PolicyVersion",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        description: Optional[
+            "capo_opensearchserverless.types.policy_description.PolicyDescription"
+        ] = None,
+        policy: Optional[
+            "capo_opensearchserverless.types.policy_document.PolicyDocument"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.update_security_policy_response.UpdateSecurityPolicyResponse":
+        r"""<p>Updates an OpenSearch Serverless security policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-network.html\">Network access for Amazon OpenSearch Serverless</a> and <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-encryption.html\">Encryption at rest for Amazon OpenSearch Serverless</a>.</p>
+
+        Args:
+            type: <p>The type of access policy.</p>
+            name: <p>The name of the policy.</p>
+            policy_version: <p>The version of the policy being updated.</p>
+            description: <p>A description of the policy. Typically used to store information about the permissions defined in the policy.</p>
+            policy: <p>The JSON policy document to use as the content for the new policy.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.update_security_policy_request.UpdateSecurityPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.update_security_policy_response.UpdateSecurityPolicyResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.update_security_policy
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.update_security_policy.update_security_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.update_security_policy_request.UpdateSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy_version": policy_version,
+        }
+        if description is not None:
+            input_["description"] = description
+        if policy is not None:
+            input_["policy"] = policy
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_security_policy(
+        self,
+        type: "capo_opensearchserverless.types.security_policy_type.SecurityPolicyType",
+        name: "capo_opensearchserverless.types.policy_name.PolicyName",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.delete_security_policy_response.DeleteSecurityPolicyResponse":
+        """<p>Deletes an OpenSearch Serverless security policy.</p>
+
+        Args:
+            type: <p>The type of policy.</p>
+            name: <p>The name of the policy to delete.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.delete_security_policy_request.DeleteSecurityPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.delete_security_policy_response.DeleteSecurityPolicyResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.delete_security_policy
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.delete_security_policy.delete_security_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.delete_security_policy_request.DeleteSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_security_policies(
+        self,
+        type: "capo_opensearchserverless.types.security_policy_type.SecurityPolicyType",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        resource: Optional[
+            "capo_opensearchserverless.types.resource_filter.ResourceFilter"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_opensearchserverless.types.list_security_policies_response.ListSecurityPoliciesResponse":
+        """<p>Returns information about configured OpenSearch Serverless security policies.</p>
+
+        Args:
+            type: <p>The type of policy.</p>
+            resource: <p>Resource filters (can be collection or indexes) that policies can apply to. </p>
+            next_token: <p>If your initial <code>ListSecurityPolicies</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListSecurityPolicies</code> operations, which returns results in the next page.</p>
+            max_results: <p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results. The default is 20.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.list_security_policies_request.ListSecurityPoliciesRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.list_security_policies_response.ListSecurityPoliciesResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.list_security_policies
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.list_security_policies.list_security_policies(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.list_security_policies_request.ListSecurityPoliciesRequest = {
+            "type": type
+        }
+        if resource is not None:
+            input_["resource"] = resource
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_security_policies(
+        self,
+        type: "capo_opensearchserverless.types.security_policy_type.SecurityPolicyType",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        resource: Optional[
+            "capo_opensearchserverless.types.resource_filter.ResourceFilter"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_opensearchserverless.types.list_security_policies_response.ListSecurityPoliciesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_security_policies(
+                type,
+                config_overrides=config_overrides,
+                resource=resource,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_vpc_endpoint(
+        self,
+        name: "capo_opensearchserverless.types.vpc_endpoint_name.VpcEndpointName",
+        vpc_id: "capo_opensearchserverless.types.vpc_id.VpcId",
+        subnet_ids: "capo_opensearchserverless.types.subnet_ids.SubnetIds",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        security_group_ids: Optional[
+            "capo_opensearchserverless.types.security_group_ids.SecurityGroupIds"
+        ] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.create_vpc_endpoint_response.CreateVpcEndpointResponse":
+        r"""<p>Creates an OpenSearch Serverless-managed interface VPC endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html\">Access Amazon OpenSearch Serverless using an interface endpoint</a>.</p>
+
+        Args:
+            name: <p>The name of the interface endpoint.</p>
+            vpc_id: <p>The ID of the VPC from which you'll access OpenSearch Serverless.</p>
+            subnet_ids: <p>The ID of one or more subnets from which you'll access OpenSearch Serverless.</p>
+            security_group_ids: <p>The unique identifiers of the security groups that define the ports, protocols, and sources for inbound traffic that you are authorizing into your endpoint.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.create_vpc_endpoint_request.CreateVpcEndpointRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.create_vpc_endpoint_response.CreateVpcEndpointResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.create_vpc_endpoint
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.create_vpc_endpoint.create_vpc_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.create_vpc_endpoint_request.CreateVpcEndpointRequest = {
+            "name": name,
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+        }
+        if security_group_ids is not None:
+            input_["security_group_ids"] = security_group_ids
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_vpc_endpoint(
+        self,
+        id: "capo_opensearchserverless.types.vpc_endpoint_id.VpcEndpointId",
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        client_token: Optional[
+            "capo_opensearchserverless.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_opensearchserverless.types.delete_vpc_endpoint_response.DeleteVpcEndpointResponse":
+        r"""<p>Deletes an OpenSearch Serverless-managed interface endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html\">Access Amazon OpenSearch Serverless using an interface endpoint</a>.</p>
+
+        Args:
+            id: <p>The VPC endpoint identifier.</p>
+            client_token: <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.conflict_exception.ConflictException: <p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE, FAILED, or UPDATE_FAILED state.</p>
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.resource_not_found_exception.ResourceNotFoundException: <p>Thrown when accessing or deleting a resource that does not exist.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.delete_vpc_endpoint_response.DeleteVpcEndpointResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.delete_vpc_endpoint
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.delete_vpc_endpoint.delete_vpc_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_vpc_endpoints(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        vpc_endpoint_filters: Optional[
+            "capo_opensearchserverless.types.vpc_endpoint_filters.VpcEndpointFilters"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_opensearchserverless.types.list_vpc_endpoints_response.ListVpcEndpointsResponse":
+        r"""<p>Returns the OpenSearch Serverless-managed interface VPC endpoints associated with the current account. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html\">Access Amazon OpenSearch Serverless using an interface endpoint</a>.</p>
+
+        Args:
+            vpc_endpoint_filters: <p>Filter the results according to the current status of the VPC endpoint. Possible statuses are <code>CREATING</code>, <code>DELETING</code>, <code>UPDATING</code>, <code>ACTIVE</code>, and <code>FAILED</code>.</p>
+            next_token: <p>If your initial <code>ListVpcEndpoints</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListVpcEndpoints</code> operations, which returns results in the next page. </p>
+            max_results: <p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results. The default is 20.</p>
+
+        Raises:
+            capo_opensearchserverless.errors.internal_server_exception.InternalServerException: <p>Thrown when an error internal to the service occurs while processing a request.</p>
+            capo_opensearchserverless.errors.validation_exception.ValidationException: <p>Thrown when the HTTP request contains invalid input or is missing required input.</p>
+            capo_opensearchserverless.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_opensearchserverless.types.list_vpc_endpoints_request.ListVpcEndpointsRequest]",
+        ) -> OperationResponse[
+            "capo_opensearchserverless.types.list_vpc_endpoints_response.ListVpcEndpointsResponse"
+        ]:
+            import capo_opensearchserverless._operations.open_search_serverless.list_vpc_endpoints
+
+            output, http_response = (
+                capo_opensearchserverless._operations.open_search_serverless.list_vpc_endpoints.list_vpc_endpoints(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_opensearchserverless.types.list_vpc_endpoints_request.ListVpcEndpointsRequest = {}
+        if vpc_endpoint_filters is not None:
+            input_["vpc_endpoint_filters"] = vpc_endpoint_filters
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_vpc_endpoints(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchServerlessClientConfig] = None,
+        vpc_endpoint_filters: Optional[
+            "capo_opensearchserverless.types.vpc_endpoint_filters.VpcEndpointFilters"
+        ] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_opensearchserverless.types.list_vpc_endpoints_response.ListVpcEndpointsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_vpc_endpoints(
+                config_overrides=config_overrides,
+                vpc_endpoint_filters=vpc_endpoint_filters,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def __enter__(self) -> Self:
         return self

@@ -30,6 +30,9 @@ from capo_marketplace_catalog._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_marketplace_catalog.types.assessment_identifier
+    import capo_marketplace_catalog.types.assessment_summary
+    import capo_marketplace_catalog.types.assessment_target_filter
     import capo_marketplace_catalog.types.batch_describe_entities_request
     import capo_marketplace_catalog.types.batch_describe_entities_response
     import capo_marketplace_catalog.types.cancel_change_set_request
@@ -38,8 +41,12 @@ if TYPE_CHECKING:
     import capo_marketplace_catalog.types.change_set_name
     import capo_marketplace_catalog.types.change_set_summary_list_item
     import capo_marketplace_catalog.types.client_request_token
+    import capo_marketplace_catalog.types.control_assessment
     import capo_marketplace_catalog.types.delete_resource_policy_request
     import capo_marketplace_catalog.types.delete_resource_policy_response
+    import capo_marketplace_catalog.types.describe_assessment_max_result_integer
+    import capo_marketplace_catalog.types.describe_assessment_request
+    import capo_marketplace_catalog.types.describe_assessment_response
     import capo_marketplace_catalog.types.describe_change_set_request
     import capo_marketplace_catalog.types.describe_change_set_response
     import capo_marketplace_catalog.types.describe_entity_request
@@ -50,9 +57,14 @@ if TYPE_CHECKING:
     import capo_marketplace_catalog.types.entity_type_filters
     import capo_marketplace_catalog.types.entity_type_sort
     import capo_marketplace_catalog.types.filter_list
+    import capo_marketplace_catalog.types.framework_filters
+    import capo_marketplace_catalog.types.framework_id
     import capo_marketplace_catalog.types.get_resource_policy_request
     import capo_marketplace_catalog.types.get_resource_policy_response
     import capo_marketplace_catalog.types.intent
+    import capo_marketplace_catalog.types.list_assessments_max_result_integer
+    import capo_marketplace_catalog.types.list_assessments_request
+    import capo_marketplace_catalog.types.list_assessments_response
     import capo_marketplace_catalog.types.list_change_sets_max_result_integer
     import capo_marketplace_catalog.types.list_change_sets_request
     import capo_marketplace_catalog.types.list_change_sets_response
@@ -320,6 +332,98 @@ class AsyncMarketplaceCatalogClient:
         await response.response.aclose()
         return response.output
 
+    async def describe_assessment(
+        self,
+        catalog: "capo_marketplace_catalog.types.catalog.Catalog",
+        assessment_identifier: "capo_marketplace_catalog.types.assessment_identifier.AssessmentIdentifier",
+        *,
+        config_overrides: Optional[AsyncMarketplaceCatalogClientConfig] = None,
+        max_results: Optional[
+            "capo_marketplace_catalog.types.describe_assessment_max_result_integer.DescribeAssessmentMaxResultInteger"
+        ] = None,
+        next_token: Optional[
+            "capo_marketplace_catalog.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_marketplace_catalog.types.describe_assessment_response.DescribeAssessmentResponse":
+        """<p>Returns the metadata and detailed results of a single assessment, including the framework that was evaluated, the overall assessment result, and a paginated list of individual control evaluation results.</p> <p>To list available assessments before describing one, use the <code>ListAssessments</code> action.</p>
+
+        Args:
+            catalog: <p>The catalog related to the request. Fixed value: <code>AWSMarketplace</code> </p>
+            assessment_identifier: <p>The unique identifier of the assessment to describe. You can provide either the assessment ID (for example, <code>assessment-12345</code>) or the full assessment ARN (for example, <code>arn:aws:aws-marketplace:us-east-1::AWSMarketplace/Assessment/assessment-12345</code>).</p>
+            max_results: <p>Specifies the upper limit of <code>ControlAssessment</code> elements returned on a single page. If a value isn't provided, the default value is 50. Valid values range from 1 to 100.</p>
+            next_token: <p>The value of the next token, if it exists. <code>null</code> if there are no more results.</p>
+
+        Raises:
+            capo_marketplace_catalog.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p> <p>HTTP status code: 403</p>
+            capo_marketplace_catalog.errors.internal_service_exception.InternalServiceException: <p>There was an internal service exception.</p> <p>HTTP status code: 500</p>
+            capo_marketplace_catalog.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource wasn't found.</p> <p>HTTP status code: 404</p>
+            capo_marketplace_catalog.errors.throttling_exception.ThrottlingException: <p>Too many requests.</p> <p>HTTP status code: 429</p>
+            capo_marketplace_catalog.errors.validation_exception.ValidationException: <p>An error occurred during validation.</p> <p>HTTP status code: 422</p>
+            capo_marketplace_catalog.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_marketplace_catalog.types.describe_assessment_request.DescribeAssessmentRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_marketplace_catalog.types.describe_assessment_response.DescribeAssessmentResponse"
+        ]:
+            import capo_marketplace_catalog._operations.awsmp_seymour.describe_assessment
+
+            (
+                output,
+                http_response,
+            ) = await capo_marketplace_catalog._operations.awsmp_seymour.describe_assessment.async_describe_assessment(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_marketplace_catalog.types.describe_assessment_request.DescribeAssessmentRequest = {
+            "catalog": catalog,
+            "assessment_identifier": assessment_identifier,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_describe_assessment(
+        self,
+        catalog: "capo_marketplace_catalog.types.catalog.Catalog",
+        assessment_identifier: "capo_marketplace_catalog.types.assessment_identifier.AssessmentIdentifier",
+        *,
+        config_overrides: Optional[AsyncMarketplaceCatalogClientConfig] = None,
+        max_results: Optional[
+            "capo_marketplace_catalog.types.describe_assessment_max_result_integer.DescribeAssessmentMaxResultInteger"
+        ] = None,
+        next_token: Optional[
+            "capo_marketplace_catalog.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_marketplace_catalog.types.control_assessment.ControlAssessment]":
+        _token = next_token
+        while True:
+            _response = await self.describe_assessment(
+                catalog,
+                assessment_identifier,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("control_assessments",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def describe_change_set(
         self,
         catalog: "capo_marketplace_catalog.types.catalog.Catalog",
@@ -472,6 +576,122 @@ class AsyncMarketplaceCatalogClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def list_assessments(
+        self,
+        catalog: "capo_marketplace_catalog.types.catalog.Catalog",
+        *,
+        config_overrides: Optional[AsyncMarketplaceCatalogClientConfig] = None,
+        framework_id: Optional[
+            "capo_marketplace_catalog.types.framework_id.FrameworkId"
+        ] = None,
+        assessment_target_filter: Optional[
+            "capo_marketplace_catalog.types.assessment_target_filter.AssessmentTargetFilter"
+        ] = None,
+        framework_filters: Optional[
+            "capo_marketplace_catalog.types.framework_filters.FrameworkFilters"
+        ] = None,
+        max_results: Optional[
+            "capo_marketplace_catalog.types.list_assessments_max_result_integer.ListAssessmentsMaxResultInteger"
+        ] = None,
+        next_token: Optional[
+            "capo_marketplace_catalog.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_marketplace_catalog.types.list_assessments_response.ListAssessmentsResponse":
+        """<p>Returns a paginated list of assessments associated with an entity or change set in AWS Marketplace. An <i>assessment</i> is the result of evaluating a product or change set against a framework, such as AMI Security or Container Security.</p> <p>Use the <code>AssessmentTargetFilter</code> to scope results to a specific entity or change set, and use <code>FrameworkFilters</code> to scope results to a single framework. To retrieve detailed control-level results for an individual assessment, use the <code>DescribeAssessment</code> action.</p> <p>Results are sorted by assessment creation time in descending order.</p>
+
+        Args:
+            catalog: <p>The catalog related to the request. Fixed value: <code>AWSMarketplace</code> </p>
+            framework_id: <p>The unique identifier of a framework. When specified, only assessments performed against this framework are returned. For example, <code>AMISecurity</code>.</p>
+            assessment_target_filter: <p>Filters the list of assessments to those performed against a specific entity or change set.</p>
+            framework_filters: <p>Framework-specific filters. Set exactly one member to filter results to assessments performed against that framework.</p>
+            max_results: <p>Specifies the upper limit of the elements on a single page. If a value isn't provided, the default value is 20. Valid values range from 1 to 100.</p>
+            next_token: <p>The value of the next token, if it exists. <code>null</code> if there are no more results.</p>
+
+        Raises:
+            capo_marketplace_catalog.errors.access_denied_exception.AccessDeniedException: <p>Access is denied.</p> <p>HTTP status code: 403</p>
+            capo_marketplace_catalog.errors.internal_service_exception.InternalServiceException: <p>There was an internal service exception.</p> <p>HTTP status code: 500</p>
+            capo_marketplace_catalog.errors.throttling_exception.ThrottlingException: <p>Too many requests.</p> <p>HTTP status code: 429</p>
+            capo_marketplace_catalog.errors.validation_exception.ValidationException: <p>An error occurred during validation.</p> <p>HTTP status code: 422</p>
+            capo_marketplace_catalog.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_marketplace_catalog.types.list_assessments_request.ListAssessmentsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_marketplace_catalog.types.list_assessments_response.ListAssessmentsResponse"
+        ]:
+            import capo_marketplace_catalog._operations.awsmp_seymour.list_assessments
+
+            (
+                output,
+                http_response,
+            ) = await capo_marketplace_catalog._operations.awsmp_seymour.list_assessments.async_list_assessments(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_marketplace_catalog.types.list_assessments_request.ListAssessmentsRequest = {
+            "catalog": catalog
+        }
+        if framework_id is not None:
+            input_["framework_id"] = framework_id
+        if assessment_target_filter is not None:
+            input_["assessment_target_filter"] = assessment_target_filter
+        if framework_filters is not None:
+            input_["framework_filters"] = framework_filters
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_assessments(
+        self,
+        catalog: "capo_marketplace_catalog.types.catalog.Catalog",
+        *,
+        config_overrides: Optional[AsyncMarketplaceCatalogClientConfig] = None,
+        framework_id: Optional[
+            "capo_marketplace_catalog.types.framework_id.FrameworkId"
+        ] = None,
+        assessment_target_filter: Optional[
+            "capo_marketplace_catalog.types.assessment_target_filter.AssessmentTargetFilter"
+        ] = None,
+        framework_filters: Optional[
+            "capo_marketplace_catalog.types.framework_filters.FrameworkFilters"
+        ] = None,
+        max_results: Optional[
+            "capo_marketplace_catalog.types.list_assessments_max_result_integer.ListAssessmentsMaxResultInteger"
+        ] = None,
+        next_token: Optional[
+            "capo_marketplace_catalog.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_marketplace_catalog.types.assessment_summary.AssessmentSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessments(
+                catalog,
+                config_overrides=config_overrides,
+                framework_id=framework_id,
+                assessment_target_filter=assessment_target_filter,
+                framework_filters=framework_filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("assessment_summary_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_change_sets(
         self,

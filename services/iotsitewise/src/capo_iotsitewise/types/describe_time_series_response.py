@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.property_data_type
     import capo_iotsitewise.types.time_series_id
     import capo_iotsitewise.types.timestamp
+    import capo_iotsitewise.types.workspace_name
 
 
 class DescribeTimeSeriesResponse(TypedDict, closed=True):
@@ -35,6 +36,8 @@ class DescribeTimeSeriesResponse(TypedDict, closed=True):
     """<p>The date that the time series was last updated, in Unix epoch time.</p>"""
     time_series_arn: "capo_iotsitewise.types.arn.ARN"
     r"""<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the time series, which has the following format.</p> <p> <code>arn:${Partition}:iotsitewise:${Region}:${Account}:time-series/${TimeSeriesId}</code> </p>"""
+    workspace_name: NotRequired["capo_iotsitewise.types.workspace_name.WorkspaceName"]
+    """<p>The name of the workspace.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -65,6 +68,8 @@ def serialize_json(value: DescribeTimeSeriesResponse) -> dict:
         value["time_series_last_update_date"]
     )
     out["timeSeriesArn"] = value["time_series_arn"]
+    if "workspace_name" in value:
+        out["workspaceName"] = value["workspace_name"]
     return out
 
 
@@ -120,4 +125,6 @@ def deserialize_json(data: dict) -> DescribeTimeSeriesResponse:
         raise DeserializationError(
             "DescribeTimeSeriesResponse.time_series_arn required"
         )
+    if data.get("workspaceName") is not None:
+        out["workspace_name"] = data["workspaceName"]
     return out

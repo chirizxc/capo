@@ -17,6 +17,8 @@ HandshakeConstraintViolationExceptionReason: TypeAlias = Literal[
     "SOURCE_AND_TARGET_CANNOT_MATCH",
     "UNUSED_PREPAYMENT_BALANCE",
     "LEGACY_PERMISSIONS_STILL_IN_USE",
+    "PAST_DUE_INVOICE",
+    "TARGET_ACCOUNT_VALIDATION_FAILURE",
 ]
 
 

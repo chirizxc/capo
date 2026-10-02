@@ -23,6 +23,7 @@ from capo_s3._auth._providers import (
 from capo_s3._auth._signers import SigV4Signer
 from capo_s3._auth._sigv4 import presign_sigv4
 from capo_s3._auth._zapros_handler import AuthMiddleware
+from capo_s3._body import Body, aclosing_bodies
 from capo_s3._checksums import ChecksumMiddleware, strip_checksum_headers
 from capo_s3._iter import ensure_async_iterator
 from capo_s3._pagination import resolve_path as _resolve_path
@@ -285,6 +286,9 @@ if TYPE_CHECKING:
     import capo_s3.types.object_key
     import capo_s3.types.object_lock_configuration
     import capo_s3.types.object_lock_enabled_for_bucket
+    import capo_s3.types.object_lock_event_hold
+    import capo_s3.types.object_lock_event_hold_duration_days
+    import capo_s3.types.object_lock_event_hold_duration_years
     import capo_s3.types.object_lock_legal_hold
     import capo_s3.types.object_lock_legal_hold_status
     import capo_s3.types.object_lock_mode
@@ -861,6 +865,15 @@ class AsyncS3Client:
         object_lock_legal_hold_status: Optional[
             "capo_s3.types.object_lock_legal_hold_status.ObjectLockLegalHoldStatus"
         ] = None,
+        object_lock_event_hold: Optional[
+            "capo_s3.types.object_lock_event_hold.ObjectLockEventHold"
+        ] = None,
+        object_lock_event_hold_duration_days: Optional[
+            "capo_s3.types.object_lock_event_hold_duration_days.ObjectLockEventHoldDurationDays"
+        ] = None,
+        object_lock_event_hold_duration_years: Optional[
+            "capo_s3.types.object_lock_event_hold_duration_years.ObjectLockEventHoldDurationYears"
+        ] = None,
         expected_bucket_owner: Optional["capo_s3.types.account_id.AccountId"] = None,
         expected_source_bucket_owner: Optional[
             "capo_s3.types.account_id.AccountId"
@@ -910,6 +923,9 @@ class AsyncS3Client:
             object_lock_mode: <p>The Object Lock mode that you want to apply to the object copy.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
             object_lock_retain_until_date: <p>The date and time when you want the Object Lock of the object copy to expire.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
             object_lock_legal_hold_status: <p>Specifies whether you want to apply a legal hold to the object copy.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
+            object_lock_event_hold: <p>The event hold status to apply to the object copy. Set to <code>ON</code> to enable or <code>OFF</code> to disable.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
+            object_lock_event_hold_duration_days: <p>The event hold duration in days to apply to the object copy. You cannot specify a duration in both days and years.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
+            object_lock_event_hold_duration_years: <p>The event hold duration in years to apply to the object copy. You cannot specify a duration in both days and years.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
             expected_bucket_owner: <p>The account ID of the expected destination bucket owner. If the account ID that you provide does not match the actual owner of the destination bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>
             expected_source_bucket_owner: <p>The account ID of the expected source bucket owner. If the account ID that you provide does not match the actual owner of the source bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>
 
@@ -1027,6 +1043,16 @@ class AsyncS3Client:
             input_["object_lock_retain_until_date"] = object_lock_retain_until_date
         if object_lock_legal_hold_status is not None:
             input_["object_lock_legal_hold_status"] = object_lock_legal_hold_status
+        if object_lock_event_hold is not None:
+            input_["object_lock_event_hold"] = object_lock_event_hold
+        if object_lock_event_hold_duration_days is not None:
+            input_["object_lock_event_hold_duration_days"] = (
+                object_lock_event_hold_duration_days
+            )
+        if object_lock_event_hold_duration_years is not None:
+            input_["object_lock_event_hold_duration_years"] = (
+                object_lock_event_hold_duration_years
+            )
         if expected_bucket_owner is not None:
             input_["expected_bucket_owner"] = expected_bucket_owner
         if expected_source_bucket_owner is not None:
@@ -1320,6 +1346,15 @@ class AsyncS3Client:
         object_lock_legal_hold_status: Optional[
             "capo_s3.types.object_lock_legal_hold_status.ObjectLockLegalHoldStatus"
         ] = None,
+        object_lock_event_hold: Optional[
+            "capo_s3.types.object_lock_event_hold.ObjectLockEventHold"
+        ] = None,
+        object_lock_event_hold_duration_days: Optional[
+            "capo_s3.types.object_lock_event_hold_duration_days.ObjectLockEventHoldDurationDays"
+        ] = None,
+        object_lock_event_hold_duration_years: Optional[
+            "capo_s3.types.object_lock_event_hold_duration_years.ObjectLockEventHoldDurationYears"
+        ] = None,
         expected_bucket_owner: Optional["capo_s3.types.account_id.AccountId"] = None,
         checksum_algorithm: Optional[
             "capo_s3.types.checksum_algorithm.ChecksumAlgorithm"
@@ -1356,6 +1391,9 @@ class AsyncS3Client:
             object_lock_mode: <p>Specifies the Object Lock mode that you want to apply to the uploaded object.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
             object_lock_retain_until_date: <p>Specifies the date and time when you want the Object Lock to expire.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
             object_lock_legal_hold_status: <p>Specifies whether you want to apply a legal hold to the uploaded object.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
+            object_lock_event_hold: <p>Specifies the event hold status to apply to the uploaded object. Set to <code>ON</code> to enable or <code>OFF</code> to disable.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
+            object_lock_event_hold_duration_days: <p>Specifies the event hold duration in days to apply to the uploaded object. You cannot specify a duration in both days and years.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
+            object_lock_event_hold_duration_years: <p>Specifies the event hold duration in years to apply to the uploaded object. You cannot specify a duration in both days and years.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
             expected_bucket_owner: <p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>
             checksum_algorithm: <p>Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>
             checksum_type: <p>Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3 User Guide</a>.</p>
@@ -1442,6 +1480,16 @@ class AsyncS3Client:
             input_["object_lock_retain_until_date"] = object_lock_retain_until_date
         if object_lock_legal_hold_status is not None:
             input_["object_lock_legal_hold_status"] = object_lock_legal_hold_status
+        if object_lock_event_hold is not None:
+            input_["object_lock_event_hold"] = object_lock_event_hold
+        if object_lock_event_hold_duration_days is not None:
+            input_["object_lock_event_hold_duration_days"] = (
+                object_lock_event_hold_duration_days
+            )
+        if object_lock_event_hold_duration_years is not None:
+            input_["object_lock_event_hold_duration_years"] = (
+                object_lock_event_hold_duration_years
+            )
         if expected_bucket_owner is not None:
             input_["expected_bucket_owner"] = expected_bucket_owner
         if checksum_algorithm is not None:
@@ -2347,7 +2395,7 @@ class AsyncS3Client:
         await response.response.aclose()
         return response.output
 
-    def presigned_delete_object(
+    async def presigned_delete_object(
         self,
         bucket: "capo_s3.types.bucket_name.BucketName",
         key: "capo_s3.types.object_key.ObjectKey",
@@ -2398,7 +2446,7 @@ class AsyncS3Client:
         signer = (request.context or {}).get("signer")
         if not isinstance(signer, SigV4Signer):
             raise RuntimeError("presign requires SigV4 credentials")
-        creds = signer.provider.resolve_identity()
+        creds = await signer.provider.aresolve_identity()
         ctx: capo_s3._auth._sigv4.SigV4AuthContext = {
             "type": "sig_v4",
             "access_key_id": creds["access_key"],
@@ -3977,7 +4025,7 @@ class AsyncS3Client:
         finally:
             await response.response.aclose()
 
-    def presigned_get_object(
+    async def presigned_get_object(
         self,
         bucket: "capo_s3.types.bucket_name.BucketName",
         key: "capo_s3.types.object_key.ObjectKey",
@@ -4079,7 +4127,7 @@ class AsyncS3Client:
         signer = (request.context or {}).get("signer")
         if not isinstance(signer, SigV4Signer):
             raise RuntimeError("presign requires SigV4 credentials")
-        creds = signer.provider.resolve_identity()
+        creds = await signer.provider.aresolve_identity()
         ctx: capo_s3._auth._sigv4.SigV4AuthContext = {
             "type": "sig_v4",
             "access_key_id": creds["access_key"],
@@ -4950,7 +4998,7 @@ class AsyncS3Client:
         await response.response.aclose()
         return response.output
 
-    def presigned_head_object(
+    async def presigned_head_object(
         self,
         bucket: "capo_s3.types.bucket_name.BucketName",
         key: "capo_s3.types.object_key.ObjectKey",
@@ -5052,7 +5100,7 @@ class AsyncS3Client:
         signer = (request.context or {}).get("signer")
         if not isinstance(signer, SigV4Signer):
             raise RuntimeError("presign requires SigV4 credentials")
-        creds = signer.provider.resolve_identity()
+        creds = await signer.provider.aresolve_identity()
         ctx: capo_s3._auth._sigv4.SigV4AuthContext = {
             "type": "sig_v4",
             "access_key_id": creds["access_key"],
@@ -7503,7 +7551,9 @@ class AsyncS3Client:
         *,
         config_overrides: Optional[AsyncS3ClientConfig] = None,
         acl: Optional["capo_s3.types.object_canned_acl.ObjectCannedACL"] = None,
-        body: Optional[AsyncIterator[bytes] | bytes] = None,
+        body: Optional[
+            Body[AsyncIterator[bytes]] | AsyncIterator[bytes] | bytes
+        ] = None,
         cache_control: Optional["capo_s3.types.cache_control.CacheControl"] = None,
         content_disposition: Optional[
             "capo_s3.types.content_disposition.ContentDisposition"
@@ -7591,6 +7641,15 @@ class AsyncS3Client:
         object_lock_legal_hold_status: Optional[
             "capo_s3.types.object_lock_legal_hold_status.ObjectLockLegalHoldStatus"
         ] = None,
+        object_lock_event_hold: Optional[
+            "capo_s3.types.object_lock_event_hold.ObjectLockEventHold"
+        ] = None,
+        object_lock_event_hold_duration_days: Optional[
+            "capo_s3.types.object_lock_event_hold_duration_days.ObjectLockEventHoldDurationDays"
+        ] = None,
+        object_lock_event_hold_duration_years: Optional[
+            "capo_s3.types.object_lock_event_hold_duration_years.ObjectLockEventHoldDurationYears"
+        ] = None,
         expected_bucket_owner: Optional["capo_s3.types.account_id.AccountId"] = None,
     ) -> "capo_s3.types.put_object_output.PutObjectOutput":
         r"""<important> <p>End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025, the request will receive an <code>HTTP 405</code> (Method Not Allowed) error.</p> <p>This change affects the following Amazon Web Services Regions: US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Europe (Ireland), and South America (São Paulo).</p> </important> <p>Adds an object to a bucket.</p> <note> <ul> <li> <p>Amazon S3 never adds partial objects; if you receive a success response, Amazon S3 added the entire object to the bucket. You cannot use <code>PutObject</code> to only update a single piece of metadata for an existing object. You must put the entire object with updated metadata if you want to update some values.</p> </li> <li> <p>If your bucket uses the bucket owner enforced setting for Object Ownership, ACLs are disabled and no longer affect permissions. All objects written to the bucket by any account will be owned by the bucket owner.</p> </li> <li> <p> <b>Directory buckets</b> - For directory buckets, you must make requests for this API operation to the Zonal endpoint. These endpoints support virtual-hosted-style requests in the format <code>https://<i>amzn-s3-demo-bucket</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com/<i>key-name</i> </code>. Path-style requests are not supported. For more information about endpoints in Availability Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html\">Regional and Zonal endpoints for directory buckets in Availability Zones</a> in the <i>Amazon S3 User Guide</i>. For more information about endpoints in Local Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html\">Concepts for directory buckets in Local Zones</a> in the <i>Amazon S3 User Guide</i>.</p> </li> </ul> </note> <p>Amazon S3 is a distributed system. If it receives multiple write requests for the same object simultaneously, it overwrites all but the last object written. However, Amazon S3 provides features that can modify this behavior:</p> <ul> <li> <p> <b>S3 Object Lock</b> - To prevent objects from being deleted or overwritten, you can use <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html\">Amazon S3 Object Lock</a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note> </li> <li> <p> <b>If-None-Match</b> - Uploads the object only if the object key name does not already exist in the specified bucket. Otherwise, Amazon S3 returns a <code>412 Precondition Failed</code> error. If a conflicting operation occurs during the upload, S3 returns a <code>409 ConditionalRequestConflict</code> response. On a 409 failure, retry the upload.</p> <p>Expects the * character (asterisk).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html\">Add preconditions to S3 operations with conditional requests</a> in the <i>Amazon S3 User Guide</i> or <a href=\"https://datatracker.ietf.org/doc/rfc7232/\">RFC 7232</a>. </p> <note> <p>This functionality is not supported for S3 on Outposts.</p> </note> </li> <li> <p> <b>S3 Versioning</b> - When you enable versioning for a bucket, if Amazon S3 receives multiple write requests for the same object simultaneously, it stores all versions of the objects. For each write request that is made to the same object, Amazon S3 automatically generates a unique version ID of that object being stored in Amazon S3. You can retrieve, replace, or delete any version of the object. For more information about versioning, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/AddingObjectstoVersioningEnabledBuckets.html\">Adding Objects to Versioning-Enabled Buckets</a> in the <i>Amazon S3 User Guide</i>. For information about returning the versioning state of a bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html\">GetBucketVersioning</a>. </p> <note> <p>This functionality is not supported for directory buckets.</p> </note> </li> </ul> <dl> <dt>Permissions</dt> <dd> <ul> <li> <p> <b>General purpose bucket permissions</b> - The following permissions are required in your policies when your <code>PutObject</code> request includes specific headers.</p> <ul> <li> <p> <b> <code>s3:PutObject</code> </b> - To successfully complete the <code>PutObject</code> request, you must always have the <code>s3:PutObject</code> permission on a bucket to add an object to it.</p> </li> <li> <p> <b> <code>s3:PutObjectAcl</code> </b> - To successfully change the objects ACL of your <code>PutObject</code> request, you must have the <code>s3:PutObjectAcl</code>.</p> </li> <li> <p> <b> <code>s3:PutObjectTagging</code> </b> - To successfully set the tag-set with your <code>PutObject</code> request, you must have the <code>s3:PutObjectTagging</code>.</p> </li> </ul> </li> <li> <p> <b>Directory bucket permissions</b> - To grant access to this API operation on a directory bucket, we recommend that you use the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\"> <code>CreateSession</code> </a> API operation for session-based authorization. Specifically, you grant the <code>s3express:CreateSession</code> permission to the directory bucket in a bucket policy or an IAM identity-based policy. Then, you make the <code>CreateSession</code> API call on the bucket to obtain a session token. With the session token in your request header, you can make API requests to this operation. After the session token expires, you make another <code>CreateSession</code> API call to generate a new session token for use. Amazon Web Services CLI or SDKs create session and refresh the session token automatically to avoid service interruptions when a session expires. For more information about authorization, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\"> <code>CreateSession</code> </a>.</p> <p>If the object is encrypted with SSE-KMS, you must also have the <code>kms:GenerateDataKey</code> and <code>kms:Decrypt</code> permissions in IAM identity-based policies and KMS key policies for the KMS key.</p> </li> </ul> </dd> <dt>Data integrity with Content-MD5</dt> <dd> <ul> <li> <p> <b>General purpose bucket</b> - To ensure that data is not corrupted traversing the network, use the <code>Content-MD5</code> header. When you use this header, Amazon S3 checks the object against the provided MD5 value and, if they do not match, Amazon S3 returns an error. Alternatively, when the object's ETag is its MD5 digest, you can calculate the MD5 while putting the object to Amazon S3 and compare the returned ETag to the calculated MD5 value.</p> </li> <li> <p> <b>Directory bucket</b> - This functionality is not supported for directory buckets.</p> </li> </ul> </dd> <dt>HTTP Host header syntax</dt> <dd> <p> <b>Directory buckets </b> - The HTTP Host header syntax is <code> <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>.</p> </dd> </dl> <dl> <dt>Errors</dt> <dd> <ul> <li> <p>You might receive an <code>InvalidRequest</code> error for several reasons. Depending on the reason for the error, you might receive one of the following messages:</p> <ul> <li> <p>Cannot specify both a write offset value and user-defined object metadata for existing objects.</p> </li> <li> <p>Checksum Type mismatch occurred, expected checksum Type: sha1, actual checksum Type: crc32c.</p> </li> <li> <p>Request body cannot be empty when 'write offset' is specified.</p> </li> </ul> </li> </ul> </dd> </dl> <p>For more information about related Amazon S3 APIs, see the following:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html\">DeleteObject</a> </p> </li> </ul> <important> <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p> </important>
@@ -7640,6 +7699,9 @@ class AsyncS3Client:
             object_lock_mode: <p>The Object Lock mode that you want to apply to this object.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
             object_lock_retain_until_date: <p>The date and time when you want this object's Object Lock to expire. Must be formatted as a timestamp parameter.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
             object_lock_legal_hold_status: <p>Specifies whether a legal hold will be applied to this object. For more information about S3 Object Lock, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html\">Object Lock</a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
+            object_lock_event_hold: <p>Specifies the event hold status to apply to this object. Set to <code>ON</code> to enable or <code>OFF</code> to disable.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
+            object_lock_event_hold_duration_days: <p>Specifies the event hold duration in days to apply to this object. You cannot specify a duration in both days and years.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
+            object_lock_event_hold_duration_years: <p>Specifies the event hold duration in years to apply to this object. You cannot specify a duration in both days and years.</p> <note> <p>This functionality is not supported for directory buckets.</p> </note>
             expected_bucket_owner: <p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>
 
         Raises:
@@ -7784,18 +7846,29 @@ class AsyncS3Client:
             input_["object_lock_retain_until_date"] = object_lock_retain_until_date
         if object_lock_legal_hold_status is not None:
             input_["object_lock_legal_hold_status"] = object_lock_legal_hold_status
+        if object_lock_event_hold is not None:
+            input_["object_lock_event_hold"] = object_lock_event_hold
+        if object_lock_event_hold_duration_days is not None:
+            input_["object_lock_event_hold_duration_days"] = (
+                object_lock_event_hold_duration_days
+            )
+        if object_lock_event_hold_duration_years is not None:
+            input_["object_lock_event_hold_duration_years"] = (
+                object_lock_event_hold_duration_years
+            )
         if expected_bucket_owner is not None:
             input_["expected_bucket_owner"] = expected_bucket_owner
 
-        response = await aexecute_pipeline(
-            AsyncOperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        await response.response.aclose()
-        return response.output
+        async with aclosing_bodies(input_):
+            response = await aexecute_pipeline(
+                AsyncOperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            await response.response.aclose()
+            return response.output
 
-    def presigned_put_object(
+    async def presigned_put_object(
         self,
         bucket: "capo_s3.types.bucket_name.BucketName",
         key: "capo_s3.types.object_key.ObjectKey",
@@ -7889,6 +7962,15 @@ class AsyncS3Client:
         ] = None,
         object_lock_legal_hold_status: Optional[
             "capo_s3.types.object_lock_legal_hold_status.ObjectLockLegalHoldStatus"
+        ] = None,
+        object_lock_event_hold: Optional[
+            "capo_s3.types.object_lock_event_hold.ObjectLockEventHold"
+        ] = None,
+        object_lock_event_hold_duration_days: Optional[
+            "capo_s3.types.object_lock_event_hold_duration_days.ObjectLockEventHoldDurationDays"
+        ] = None,
+        object_lock_event_hold_duration_years: Optional[
+            "capo_s3.types.object_lock_event_hold_duration_years.ObjectLockEventHoldDurationYears"
         ] = None,
         expected_bucket_owner: Optional["capo_s3.types.account_id.AccountId"] = None,
     ) -> str:
@@ -7984,6 +8066,16 @@ class AsyncS3Client:
             input_["object_lock_retain_until_date"] = object_lock_retain_until_date
         if object_lock_legal_hold_status is not None:
             input_["object_lock_legal_hold_status"] = object_lock_legal_hold_status
+        if object_lock_event_hold is not None:
+            input_["object_lock_event_hold"] = object_lock_event_hold
+        if object_lock_event_hold_duration_days is not None:
+            input_["object_lock_event_hold_duration_days"] = (
+                object_lock_event_hold_duration_days
+            )
+        if object_lock_event_hold_duration_years is not None:
+            input_["object_lock_event_hold_duration_years"] = (
+                object_lock_event_hold_duration_years
+            )
         if expected_bucket_owner is not None:
             input_["expected_bucket_owner"] = expected_bucket_owner
 
@@ -7996,7 +8088,7 @@ class AsyncS3Client:
         signer = (request.context or {}).get("signer")
         if not isinstance(signer, SigV4Signer):
             raise RuntimeError("presign requires SigV4 credentials")
-        creds = signer.provider.resolve_identity()
+        creds = await signer.provider.aresolve_identity()
         ctx: capo_s3._auth._sigv4.SigV4AuthContext = {
             "type": "sig_v4",
             "access_key_id": creds["access_key"],
@@ -8124,7 +8216,7 @@ class AsyncS3Client:
         bucket: "capo_s3.types.bucket_name.BucketName",
         key: "capo_s3.types.object_key.ObjectKey",
         annotation_name: "capo_s3.types.annotation_name.AnnotationName",
-        annotation_payload: AsyncIterator[bytes] | bytes,
+        annotation_payload: Body[AsyncIterator[bytes]] | AsyncIterator[bytes] | bytes,
         *,
         config_overrides: Optional[AsyncS3ClientConfig] = None,
         version_id: Optional["capo_s3.types.object_version_id.ObjectVersionId"] = None,
@@ -8249,13 +8341,14 @@ class AsyncS3Client:
         if expected_bucket_owner is not None:
             input_["expected_bucket_owner"] = expected_bucket_owner
 
-        response = await aexecute_pipeline(
-            AsyncOperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        await response.response.aclose()
-        return response.output
+        async with aclosing_bodies(input_):
+            response = await aexecute_pipeline(
+                AsyncOperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            await response.response.aclose()
+            return response.output
 
     async def put_object_legal_hold(
         self,
@@ -9140,7 +9233,9 @@ class AsyncS3Client:
         upload_id: "capo_s3.types.multipart_upload_id.MultipartUploadId",
         *,
         config_overrides: Optional[AsyncS3ClientConfig] = None,
-        body: Optional[AsyncIterator[bytes] | bytes] = None,
+        body: Optional[
+            Body[AsyncIterator[bytes]] | AsyncIterator[bytes] | bytes
+        ] = None,
         content_length: Optional["capo_s3.types.content_length.ContentLength"] = None,
         content_md5: Optional["capo_s3.types.content_md5.ContentMD5"] = None,
         checksum_algorithm: Optional[
@@ -9279,15 +9374,16 @@ class AsyncS3Client:
         if expected_bucket_owner is not None:
             input_["expected_bucket_owner"] = expected_bucket_owner
 
-        response = await aexecute_pipeline(
-            AsyncOperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        await response.response.aclose()
-        return response.output
+        async with aclosing_bodies(input_):
+            response = await aexecute_pipeline(
+                AsyncOperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            await response.response.aclose()
+            return response.output
 
-    def presigned_upload_part(
+    async def presigned_upload_part(
         self,
         bucket: "capo_s3.types.bucket_name.BucketName",
         key: "capo_s3.types.object_key.ObjectKey",
@@ -9393,7 +9489,7 @@ class AsyncS3Client:
         signer = (request.context or {}).get("signer")
         if not isinstance(signer, SigV4Signer):
             raise RuntimeError("presign requires SigV4 credentials")
-        creds = signer.provider.resolve_identity()
+        creds = await signer.provider.aresolve_identity()
         ctx: capo_s3._auth._sigv4.SigV4AuthContext = {
             "type": "sig_v4",
             "access_key_id": creds["access_key"],
@@ -9564,7 +9660,9 @@ class AsyncS3Client:
         request_token: "capo_s3.types.request_token.RequestToken",
         *,
         config_overrides: Optional[AsyncS3ClientConfig] = None,
-        body: Optional[AsyncIterator[bytes] | bytes] = None,
+        body: Optional[
+            Body[AsyncIterator[bytes]] | AsyncIterator[bytes] | bytes
+        ] = None,
         status_code: Optional[
             "capo_s3.types.get_object_response_status_code.GetObjectResponseStatusCode"
         ] = None,
@@ -9809,13 +9907,14 @@ class AsyncS3Client:
         if bucket_key_enabled is not None:
             input_["bucket_key_enabled"] = bucket_key_enabled
 
-        response = await aexecute_pipeline(
-            AsyncOperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        await response.response.aclose()
-        return response.output
+        async with aclosing_bodies(input_):
+            response = await aexecute_pipeline(
+                AsyncOperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            await response.response.aclose()
+            return response.output
 
     async def __aenter__(self) -> Self:
         return self

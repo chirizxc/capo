@@ -33,16 +33,22 @@ if TYPE_CHECKING:
     import capo_sustainability.types.dimension_list
     import capo_sustainability.types.emissions_type_list
     import capo_sustainability.types.estimated_carbon_emissions
+    import capo_sustainability.types.estimated_water_allocation
     import capo_sustainability.types.filter_expression
     import capo_sustainability.types.get_estimated_carbon_emissions_dimension_values_request
     import capo_sustainability.types.get_estimated_carbon_emissions_dimension_values_response
     import capo_sustainability.types.get_estimated_carbon_emissions_request
     import capo_sustainability.types.get_estimated_carbon_emissions_response
+    import capo_sustainability.types.get_estimated_water_allocation_dimension_values_request
+    import capo_sustainability.types.get_estimated_water_allocation_dimension_values_response
+    import capo_sustainability.types.get_estimated_water_allocation_request
+    import capo_sustainability.types.get_estimated_water_allocation_response
     import capo_sustainability.types.granularity_configuration
     import capo_sustainability.types.max_results
     import capo_sustainability.types.next_token
     import capo_sustainability.types.time_granularity
     import capo_sustainability.types.time_period
+    import capo_sustainability.types.water_allocation_type_list
 
 
 class SustainabilityClientConfig(TypedDict, total=False, closed=True):
@@ -159,13 +165,13 @@ class SustainabilityClient:
         """<p>Returns estimated carbon emission values based on customer grouping and filtering parameters. We recommend using pagination to ensure that the operation returns quickly and successfully. </p>
 
         Args:
-            time_period: <p>The date range for fetching estimated carbon emissions.</p>
+            time_period: <p> The date range for fetching estimated carbon emissions. The range must include the start date of a month for that month's data to be included in the response. </p>
             group_by: <p>The dimensions available for grouping estimated carbon emissions.</p>
-            filter_by: <p>The criteria for filtering estimated carbon emissions.</p>
+            filter_by: <p> The criteria for filtering estimated carbon emissions. To determine which dimensions are available to be filtered by, you can first call <a>GetEstimatedCarbonEmissionsDimensionValues</a> </p>
             emissions_types: <p>The emission types to include in the results. If absent, returns <code>TOTAL_LBM_CARBON_EMISSIONS</code> and <code>TOTAL_MBM_CARBON_EMISSIONS</code> emissions types. </p>
-            granularity: <p>The time granularity for the results. If absent, uses <code>MONTHLY</code> time granularity.</p>
+            granularity: <p> The time granularity for the results. If absent, uses <code>MONTHLY</code> time granularity. The smallest supported granularity for carbon emissions is <code>MONTHLY</code>. </p> <p> If requesting partial time periods, data will be returned based on the smallest supported granularity. For example, requesting <code>2025-04-01T00:00:00Z</code> to <code>2026-04-01T00:00:00Z</code> with <code>YEARLY_CALENDAR</code> granularity will return the last 9 months for 2025 and the first 3 months of 2026. </p>
             granularity_configuration: <p>Configuration for fiscal year calculations when using <code>YEARLY_FISCAL</code> or <code>QUARTERLY_FISCAL</code> granularity. </p>
-            max_results: <p>The maximum number of results to return in a single call. Default is 40.</p>
+            max_results: <p>The maximum number of results to return in a single call. Default is 1000.</p>
             next_token: <p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p>
 
         Raises:
@@ -281,9 +287,9 @@ class SustainabilityClient:
         """<p>Returns the possible dimension values available for a customer's account. We recommend using pagination to ensure that the operation returns quickly and successfully. </p>
 
         Args:
-            time_period: <p>The date range for fetching the dimension values.</p>
+            time_period: <p> The date range for fetching the dimension values. The range must include the start date of a month for that month's dimensions to be included in the response. </p>
             dimensions: <p>The dimensions available for grouping estimated carbon emissions.</p>
-            max_results: <p>The maximum number of results to return in a single call. Default is 40.</p>
+            max_results: <p>The maximum number of results to return in a single call. Default is 1000.</p>
             next_token: <p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p>
 
         Raises:
@@ -345,6 +351,223 @@ class SustainabilityClient:
         _token = next_token
         while True:
             _response = self.get_estimated_carbon_emissions_dimension_values(
+                time_period,
+                dimensions,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("results",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def get_estimated_water_allocation(
+        self,
+        time_period: "capo_sustainability.types.time_period.TimePeriod",
+        *,
+        config_overrides: Optional[SustainabilityClientConfig] = None,
+        group_by: Optional[
+            "capo_sustainability.types.dimension_list.DimensionList"
+        ] = None,
+        filter_by: Optional[
+            "capo_sustainability.types.filter_expression.FilterExpression"
+        ] = None,
+        allocation_types: Optional[
+            "capo_sustainability.types.water_allocation_type_list.WaterAllocationTypeList"
+        ] = None,
+        granularity: Optional[
+            "capo_sustainability.types.time_granularity.TimeGranularity"
+        ] = None,
+        max_results: Optional[
+            "capo_sustainability.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_sustainability.types.next_token.NextToken"] = None,
+    ) -> "capo_sustainability.types.get_estimated_water_allocation_response.GetEstimatedWaterAllocationResponse":
+        """<p>Returns estimated water allocation values based on customer grouping and filtering parameters. We recommend using pagination to ensure that the operation returns quickly and successfully. </p>
+
+        Args:
+            time_period: <p> The date range for fetching estimated water allocation. The range must include the start date of a year for that year's data to be included in the response. </p>
+            group_by: <p>The dimensions available for grouping estimated water allocation.</p>
+            filter_by: <p> The criteria for filtering estimated water allocation. To determine which dimensions are available to be filtered by, you can first call <a>GetEstimatedWaterAllocationDimensionValues</a> </p>
+            allocation_types: <p>The allocation types to include in the results. If absent, returns <code>TOTAL_WATER_WITHDRAWALS</code> allocation types. </p>
+            granularity: <p>The time granularity for the results. Only <code>YEARLY_CALENDAR</code> time granularity is currently supported for water allocation. Defaults to <code>YEARLY_CALENDAR</code> if absent.</p> <p> If requesting partial time periods, data will be returned based on the smallest supported granularity. For example, requesting <code>2025-04-01T00:00:00Z</code> to <code>2026-04-01T00:00:00Z</code> with <code>YEARLY_CALENDAR</code> will return all the data for 2026 only. </p>
+            max_results: <p>The maximum number of results to return in a single call. Default is 1000.</p>
+            next_token: <p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p>
+
+        Raises:
+            capo_sustainability.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sustainability.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_sustainability.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_sustainability.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_sustainability.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            GetEstimatedWaterAllocationSuccess
+
+            >>> client.get_estimated_water_allocation(time_period={'Start': '2025-01-01T00:00:00.00Z', 'End': '2026-01-01T00:00:00.00Z'}, group_by=['SERVICE'], allocation_types=['TOTAL_WATER_WITHDRAWALS'], granularity='YEARLY_CALENDAR')
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_sustainability.types.get_estimated_water_allocation_request.GetEstimatedWaterAllocationRequest]",
+        ) -> OperationResponse[
+            "capo_sustainability.types.get_estimated_water_allocation_response.GetEstimatedWaterAllocationResponse"
+        ]:
+            import capo_sustainability._operations.aws_sustainability_api_service.get_estimated_water_allocation
+
+            output, http_response = (
+                capo_sustainability._operations.aws_sustainability_api_service.get_estimated_water_allocation.get_estimated_water_allocation(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sustainability.types.get_estimated_water_allocation_request.GetEstimatedWaterAllocationRequest = {
+            "time_period": time_period
+        }
+        if group_by is not None:
+            input_["group_by"] = group_by
+        if filter_by is not None:
+            input_["filter_by"] = filter_by
+        if allocation_types is not None:
+            input_["allocation_types"] = allocation_types
+        if granularity is not None:
+            input_["granularity"] = granularity
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_get_estimated_water_allocation(
+        self,
+        time_period: "capo_sustainability.types.time_period.TimePeriod",
+        *,
+        config_overrides: Optional[SustainabilityClientConfig] = None,
+        group_by: Optional[
+            "capo_sustainability.types.dimension_list.DimensionList"
+        ] = None,
+        filter_by: Optional[
+            "capo_sustainability.types.filter_expression.FilterExpression"
+        ] = None,
+        allocation_types: Optional[
+            "capo_sustainability.types.water_allocation_type_list.WaterAllocationTypeList"
+        ] = None,
+        granularity: Optional[
+            "capo_sustainability.types.time_granularity.TimeGranularity"
+        ] = None,
+        max_results: Optional[
+            "capo_sustainability.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_sustainability.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_sustainability.types.estimated_water_allocation.EstimatedWaterAllocation]":
+        _token = next_token
+        while True:
+            _response = self.get_estimated_water_allocation(
+                time_period,
+                config_overrides=config_overrides,
+                group_by=group_by,
+                filter_by=filter_by,
+                allocation_types=allocation_types,
+                granularity=granularity,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("results",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def get_estimated_water_allocation_dimension_values(
+        self,
+        time_period: "capo_sustainability.types.time_period.TimePeriod",
+        dimensions: "capo_sustainability.types.dimension_list.DimensionList",
+        *,
+        config_overrides: Optional[SustainabilityClientConfig] = None,
+        max_results: Optional[
+            "capo_sustainability.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_sustainability.types.next_token.NextToken"] = None,
+    ) -> "capo_sustainability.types.get_estimated_water_allocation_dimension_values_response.GetEstimatedWaterAllocationDimensionValuesResponse":
+        """<p>Returns the possible dimension values available for a customer's account. We recommend using pagination to ensure that the operation returns quickly and successfully. </p>
+
+        Args:
+            time_period: <p> The date range for fetching the dimension values. The range must include the start date of a year for that year's data to be included in the response. </p>
+            dimensions: <p>The dimensions available for grouping estimated water allocation.</p>
+            max_results: <p>The maximum number of results to return in a single call. Default is 1000.</p>
+            next_token: <p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p>
+
+        Raises:
+            capo_sustainability.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sustainability.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_sustainability.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_sustainability.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_sustainability.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            GetEstimatedWaterAllocationDimensionValuesSuccess
+
+            >>> client.get_estimated_water_allocation_dimension_values(time_period={'Start': '2025-01-01T00:00:00.00Z', 'End': '2026-01-01T00:00:00.00Z'}, dimensions=['REGION', 'SERVICE', 'USAGE_ACCOUNT_ID'])
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_sustainability.types.get_estimated_water_allocation_dimension_values_request.GetEstimatedWaterAllocationDimensionValuesRequest]",
+        ) -> OperationResponse[
+            "capo_sustainability.types.get_estimated_water_allocation_dimension_values_response.GetEstimatedWaterAllocationDimensionValuesResponse"
+        ]:
+            import capo_sustainability._operations.aws_sustainability_api_service.get_estimated_water_allocation_dimension_values
+
+            output, http_response = (
+                capo_sustainability._operations.aws_sustainability_api_service.get_estimated_water_allocation_dimension_values.get_estimated_water_allocation_dimension_values(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sustainability.types.get_estimated_water_allocation_dimension_values_request.GetEstimatedWaterAllocationDimensionValuesRequest = {
+            "time_period": time_period,
+            "dimensions": dimensions,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_get_estimated_water_allocation_dimension_values(
+        self,
+        time_period: "capo_sustainability.types.time_period.TimePeriod",
+        dimensions: "capo_sustainability.types.dimension_list.DimensionList",
+        *,
+        config_overrides: Optional[SustainabilityClientConfig] = None,
+        max_results: Optional[
+            "capo_sustainability.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_sustainability.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_sustainability.types.dimension_entry.DimensionEntry]":
+        _token = next_token
+        while True:
+            _response = self.get_estimated_water_allocation_dimension_values(
                 time_period,
                 dimensions,
                 config_overrides=config_overrides,

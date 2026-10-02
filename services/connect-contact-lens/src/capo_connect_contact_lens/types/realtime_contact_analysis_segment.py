@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_connect_contact_lens.types.categories
+    import capo_connect_contact_lens.types.extracted_information
     import capo_connect_contact_lens.types.post_contact_summary
     import capo_connect_contact_lens.types.transcript
 
@@ -19,6 +20,10 @@ class RealtimeContactAnalysisSegment(TypedDict, closed=True):
         "capo_connect_contact_lens.types.post_contact_summary.PostContactSummary"
     ]
     """<p>Information about the post-contact summary.</p>"""
+    extracted_information: NotRequired[
+        "capo_connect_contact_lens.types.extracted_information.ExtractedInformation"
+    ]
+    """<p>The extracted information from the conversation.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -44,6 +49,14 @@ def serialize_json(value: RealtimeContactAnalysisSegment) -> dict:
                 value["post_contact_summary"]
             )
         )
+    if "extracted_information" in value:
+        import capo_connect_contact_lens.types.extracted_information
+
+        out["ExtractedInformation"] = (
+            capo_connect_contact_lens.types.extracted_information.serialize_json(
+                value["extracted_information"]
+            )
+        )
     return out
 
 
@@ -67,6 +80,14 @@ def deserialize_json(data: dict) -> RealtimeContactAnalysisSegment:
         out["post_contact_summary"] = (
             capo_connect_contact_lens.types.post_contact_summary.deserialize_json(
                 data["PostContactSummary"]
+            )
+        )
+    if data.get("ExtractedInformation") is not None:
+        import capo_connect_contact_lens.types.extracted_information
+
+        out["extracted_information"] = (
+            capo_connect_contact_lens.types.extracted_information.deserialize_json(
+                data["ExtractedInformation"]
             )
         )
     return out

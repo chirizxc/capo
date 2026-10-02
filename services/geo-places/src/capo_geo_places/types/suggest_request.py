@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     import capo_geo_places.types.suggest_additional_feature_list
     import capo_geo_places.types.suggest_filter
     import capo_geo_places.types.suggest_intended_use
+    import capo_geo_places.types.suggest_travel_mode
 
 
 class SuggestRequest(TypedDict, closed=True):
@@ -33,13 +34,17 @@ class SuggestRequest(TypedDict, closed=True):
     ]
     r"""<p> A list of optional additional parameters, such as time zone, that can be requested for each result. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the <code>Core</code> and <code>TimeZone</code> values. </p>"""
     language: NotRequired["capo_geo_places.types.language_tag.LanguageTag"]
-    r"""<p> A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>"""
+    r"""<p> A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry. For <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions support only the following codes: <code>en, id, km, lo, ms, my, pt, th, tl, vi, zh</code> </p>"""
     political_view: NotRequired["capo_geo_places.types.country_code.CountryCode"]
     r"""<p> The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p>"""
     intended_use: NotRequired[
         "capo_geo_places.types.suggest_intended_use.SuggestIntendedUse"
     ]
     """<p> Indicates if the query results will be persisted in customer infrastructure. Defaults to <code>SingleUse</code> (not stored). Currently, <code>Suggest</code> does not support storage of results. </p>"""
+    travel_mode: NotRequired[
+        "capo_geo_places.types.suggest_travel_mode.SuggestTravelMode"
+    ]
+    """<p>Indicates the mode of mobility used by the end user. This is used to improve the relevance of search results. Valid values are <code>Car</code>, <code>Scooter</code>, and <code>Truck</code>.</p>"""
     key: NotRequired["capo_geo_places.types.api_key.ApiKey"]
     """<p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.</p>"""
 
@@ -77,7 +82,17 @@ def serialize_json(value: SuggestRequest) -> dict:
     if "political_view" in value:
         out["PoliticalView"] = value["political_view"]
     if "intended_use" in value:
-        out["IntendedUse"] = value["intended_use"]
+        import capo_geo_places.types.suggest_intended_use
+
+        out["IntendedUse"] = capo_geo_places.types.suggest_intended_use.serialize_json(
+            value["intended_use"]
+        )
+    if "travel_mode" in value:
+        import capo_geo_places.types.suggest_travel_mode
+
+        out["TravelMode"] = capo_geo_places.types.suggest_travel_mode.serialize_json(
+            value["travel_mode"]
+        )
     return out
 
 
@@ -116,5 +131,17 @@ def deserialize_json(data: dict) -> SuggestRequest:
     if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
     if data.get("IntendedUse") is not None:
-        out["intended_use"] = data["IntendedUse"]
+        import capo_geo_places.types.suggest_intended_use
+
+        out["intended_use"] = (
+            capo_geo_places.types.suggest_intended_use.deserialize_json(
+                data["IntendedUse"]
+            )
+        )
+    if data.get("TravelMode") is not None:
+        import capo_geo_places.types.suggest_travel_mode
+
+        out["travel_mode"] = capo_geo_places.types.suggest_travel_mode.deserialize_json(
+            data["TravelMode"]
+        )
     return out

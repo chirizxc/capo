@@ -9,6 +9,7 @@ from capo_datazone.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_datazone.types.blueprint_category
     import capo_datazone.types.custom_parameter_list
     import capo_datazone.types.deployment_properties
     import capo_datazone.types.description
@@ -41,6 +42,10 @@ class CreateEnvironmentBlueprintOutput(TypedDict, closed=True):
     """<p>The user parameters of this Amazon DataZone blueprint.</p>"""
     glossary_terms: NotRequired["capo_datazone.types.glossary_terms.GlossaryTerms"]
     """<p>The glossary terms attached to this Amazon DataZone blueprint.</p>"""
+    blueprint_category: NotRequired[
+        "capo_datazone.types.blueprint_category.BlueprintCategory"
+    ]
+    """<p>The category of the Amazon DataZone blueprint. The only valid value is <code>TOOLING</code>, which indicates a blueprint that provisions the tooling resources of a project.</p>"""
     created_at: NotRequired["datetime.datetime"]
     """<p>The timestamp at which the environment blueprint was created.</p>"""
     updated_at: NotRequired["datetime.datetime"]
@@ -83,6 +88,14 @@ def serialize_json(value: CreateEnvironmentBlueprintOutput) -> dict:
 
         out["glossaryTerms"] = capo_datazone.types.glossary_terms.serialize_json(
             value["glossary_terms"]
+        )
+    if "blueprint_category" in value:
+        import capo_datazone.types.blueprint_category
+
+        out["blueprintCategory"] = (
+            capo_datazone.types.blueprint_category.serialize_json(
+                value["blueprint_category"]
+            )
         )
     if "created_at" in value:
         import capo_datazone._protocol.serialize
@@ -148,6 +161,14 @@ def deserialize_json(data: dict) -> CreateEnvironmentBlueprintOutput:
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
+        )
+    if data.get("blueprintCategory") is not None:
+        import capo_datazone.types.blueprint_category
+
+        out["blueprint_category"] = (
+            capo_datazone.types.blueprint_category.deserialize_json(
+                data["blueprintCategory"]
+            )
         )
     if data.get("createdAt") is not None:
         import datetime

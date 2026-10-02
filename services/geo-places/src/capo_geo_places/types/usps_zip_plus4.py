@@ -19,12 +19,22 @@ class UspsZipPlus4(TypedDict, closed=True):
 def serialize_json(value: UspsZipPlus4) -> dict:
     out: dict = {}
     if "record_type_code" in value:
-        out["RecordTypeCode"] = value["record_type_code"]
+        import capo_geo_places.types.record_type_code
+
+        out["RecordTypeCode"] = capo_geo_places.types.record_type_code.serialize_json(
+            value["record_type_code"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> UspsZipPlus4:
     out: UspsZipPlus4 = {}  # type: ignore[typeddict-item]
     if data.get("RecordTypeCode") is not None:
-        out["record_type_code"] = data["RecordTypeCode"]
+        import capo_geo_places.types.record_type_code
+
+        out["record_type_code"] = (
+            capo_geo_places.types.record_type_code.deserialize_json(
+                data["RecordTypeCode"]
+            )
+        )
     return out

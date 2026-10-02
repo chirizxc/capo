@@ -6,6 +6,9 @@ Partition: TypeAlias = Literal[
     "aws",
     "aws-cn",
     "aws-us-gov",
+    "aws-us-iso",
+    "aws-us-iso-b",
+    "AzureCloud",
 ]
 
 

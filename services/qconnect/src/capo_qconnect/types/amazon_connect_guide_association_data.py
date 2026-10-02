@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class AmazonConnectGuideAssociationData(TypedDict, closed=True):
     flow_id: NotRequired["capo_qconnect.types.generic_arn.GenericArn"]
-    """<p> The Amazon Resource Name (ARN) of an Amazon Connect flow. Step-by-step guides are a type of flow.</p>"""
+    """<p> The Amazon Resource Name (ARN) of an Connect Customer flow. Step-by-step guides are a type of flow.</p>"""
 
 
 # --- restJson1 ser/de ---

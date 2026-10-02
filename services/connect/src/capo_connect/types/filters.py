@@ -24,7 +24,7 @@ class Filters(TypedDict, closed=True):
     routing_step_expressions: NotRequired[
         "capo_connect.types.routing_expressions.RoutingExpressions"
     ]
-    """<p>A list of expressions as a filter, in which an expression is an object of a step in a routing criteria.</p>"""
+    """<p>A list of expressions as a filter, in which an expression is an object of a step in a routing criteria. Accepts filter values up to 3,000 characters in length. Filter values are case-sensitive. JSON object key order and whitespace may be arbitrary; array order and tree structure must be preserved.</p>"""
     agent_statuses: NotRequired["capo_connect.types.agent_statuses.AgentStatuses"]
     """<p>A list of up to 50 agent status IDs or ARNs.</p>"""
     subtypes: NotRequired["capo_connect.types.subtypes.Subtypes"]

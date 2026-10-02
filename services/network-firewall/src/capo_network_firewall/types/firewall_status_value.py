@@ -6,6 +6,7 @@ FirewallStatusValue: TypeAlias = Literal[
     "PROVISIONING",
     "DELETING",
     "READY",
+    "FAILED",
 ]
 
 

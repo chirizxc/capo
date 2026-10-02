@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 
 class CaseDetails(TypedDict, closed=True):
     case_id: NotRequired["capo_support.types.case_id.CaseId"]
-    """<p>The support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-<i>12345678910-2013-c4c1d2bf33c5cf47</i> </p>"""
+    """<p>The support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-<i>12345678910-exen-2025-c4c1d2bf33c5cf47</i> </p>"""
     display_id: NotRequired["capo_support.types.display_id.DisplayId"]
     """<p>The ID displayed for the case in the Amazon Web Services Support Center. This is a numeric string.</p>"""
     subject: NotRequired["capo_support.types.subject.Subject"]
@@ -47,7 +47,7 @@ class CaseDetails(TypedDict, closed=True):
     ]
     """<p>The email addresses that receive copies of communication about the case.</p>"""
     language: NotRequired["capo_support.types.language.Language"]
-    r"""<p>The language in which Amazon Web Services Support handles the case. Amazon Web Services Support currently supports Chinese (“zh”), English (\"en\"), Japanese (\"ja\") and Korean (“ko”). You must specify the ISO 639-1 code for the <code>language</code> parameter if you want support in that language.</p>"""
+    r"""<p>The language in which Amazon Web Services Support handles the case. Amazon Web Services Support currently supports Chinese (“zh”), English (\"en\"), Japanese (\"ja\") , Chinese (\"zh\"), Spanish (\"es\"), Portuguese (\"pt\"), French (\"fr\"), Korean (“ko”), and Turkish (\"tr\"). You must specify the ISO 639-1 code for the <code>language</code> parameter if you want support in that language.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

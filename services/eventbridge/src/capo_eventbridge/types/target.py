@@ -56,7 +56,7 @@ class Target(TypedDict, closed=True):
     ]
     r"""<p>If the event target is an Batch job, this contains the job definition, job name, and other parameters. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/jobs.html\">Jobs</a> in the <i>Batch User Guide</i>.</p>"""
     sqs_parameters: NotRequired["capo_eventbridge.types.sqs_parameters.SqsParameters"]
-    """<p>Contains the message group ID to use when the target is a FIFO queue.</p> <p>If you specify an SQS FIFO queue as a target, the queue must have content-based deduplication enabled.</p>"""
+    """<p>Contains the message group ID to use when the target is an Amazon SQS fair or FIFO queue.</p> <p>If you specify a fair or FIFO queue as a target, the queue must have content-based deduplication enabled.</p>"""
     http_parameters: NotRequired[
         "capo_eventbridge.types.http_parameters.HttpParameters"
     ]

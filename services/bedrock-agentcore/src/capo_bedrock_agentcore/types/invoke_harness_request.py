@@ -9,6 +9,7 @@ from capo_bedrock_agentcore.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.harness_allowed_tools
     import capo_bedrock_agentcore.types.harness_arn
+    import capo_bedrock_agentcore.types.harness_endpoint_name
     import capo_bedrock_agentcore.types.harness_messages
     import capo_bedrock_agentcore.types.harness_model_configuration
     import capo_bedrock_agentcore.types.harness_skills
@@ -20,10 +21,22 @@ if TYPE_CHECKING:
 class InvokeHarnessRequest(TypedDict, closed=True):
     harness_arn: "capo_bedrock_agentcore.types.harness_arn.HarnessArn"
     """<p>The ARN of the harness to invoke.</p>"""
+    qualifier: NotRequired[
+        "capo_bedrock_agentcore.types.harness_endpoint_name.HarnessEndpointName"
+    ]
+    """<p>The endpoint name to invoke. If omitted, the DEFAULT endpoint is used.</p>"""
     runtime_session_id: "capo_bedrock_agentcore.types.session_id.SessionId"
     """<p>The session ID for the invocation. Use the same session ID across requests to continue a conversation.</p>"""
     runtime_user_id: NotRequired["str"]
     """<p>An identifier for the end user making the request. This value is passed through to the runtime container.</p>"""
+    trace_parent: NotRequired["str"]
+    """<p>W3C trace context parent header containing version, trace ID, parent span ID, and trace flags.</p>"""
+    trace_state: NotRequired["str"]
+    """<p>W3C trace context state header for vendor-specific trace information.</p>"""
+    trace_id: NotRequired["str"]
+    """<p>Trace ID for maintaining observability through the operation.</p>"""
+    baggage: NotRequired["str"]
+    """<p>W3C Baggage header for user-defined context propagation. Format: key1=value1,key2=value2</p>"""
     messages: "capo_bedrock_agentcore.types.harness_messages.HarnessMessages"
     """<p>The messages to send to the agent.</p>"""
     model: NotRequired[

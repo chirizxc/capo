@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     import capo_geo_places.types.sensitive_boolean
     import capo_geo_places.types.sensitive_string
     import capo_geo_places.types.time_zone
+    import capo_geo_places.types.translation_details
 
 
 class GeocodeResultItem(TypedDict, closed=True):
@@ -80,13 +81,25 @@ class GeocodeResultItem(TypedDict, closed=True):
         "capo_geo_places.types.related_place_list.RelatedPlaceList"
     ]
     """<p>All secondary addresses that are associated with a main address. A secondary address is one that includes secondary designators, such as a Suite or Unit Number, Building, or Floor information.</p> <note> <p>Coverage for this functionality is available in the following countries: AUS, CAN, NZL, USA, PRI.</p> </note>"""
+    translations: NotRequired[
+        "capo_geo_places.types.translation_details.TranslationDetails"
+    ]
+    """<p>All name translations and alternative names for the requested address fields in all available languages.</p>"""
+    estimated_point_address: NotRequired[
+        "capo_geo_places.types.sensitive_boolean.SensitiveBoolean"
+    ]
+    """<p>If <code>true</code>, indicates that the coordinates of the position and access points of the point address are estimated.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: GeocodeResultItem) -> dict:
     out: dict = {}
     out["PlaceId"] = value["place_id"]
-    out["PlaceType"] = value["place_type"]
+    import capo_geo_places.types.place_type
+
+    out["PlaceType"] = capo_geo_places.types.place_type.serialize_json(
+        value["place_type"]
+    )
     out["Title"] = value["title"]
     if "address" in value:
         import capo_geo_places.types.address
@@ -173,6 +186,14 @@ def serialize_json(value: GeocodeResultItem) -> dict:
                 value["secondary_addresses"]
             )
         )
+    if "translations" in value:
+        import capo_geo_places.types.translation_details
+
+        out["Translations"] = capo_geo_places.types.translation_details.serialize_json(
+            value["translations"]
+        )
+    if "estimated_point_address" in value:
+        out["EstimatedPointAddress"] = value["estimated_point_address"]
     return out
 
 
@@ -183,7 +204,11 @@ def deserialize_json(data: dict) -> GeocodeResultItem:
     else:
         raise DeserializationError("GeocodeResultItem.place_id required")
     if data.get("PlaceType") is not None:
-        out["place_type"] = data["PlaceType"]
+        import capo_geo_places.types.place_type
+
+        out["place_type"] = capo_geo_places.types.place_type.deserialize_json(
+            data["PlaceType"]
+        )
     else:
         raise DeserializationError("GeocodeResultItem.place_type required")
     if data.get("Title") is not None:
@@ -282,4 +307,14 @@ def deserialize_json(data: dict) -> GeocodeResultItem:
                 data["SecondaryAddresses"]
             )
         )
+    if data.get("Translations") is not None:
+        import capo_geo_places.types.translation_details
+
+        out["translations"] = (
+            capo_geo_places.types.translation_details.deserialize_json(
+                data["Translations"]
+            )
+        )
+    if data.get("EstimatedPointAddress") is not None:
+        out["estimated_point_address"] = data["EstimatedPointAddress"]
     return out

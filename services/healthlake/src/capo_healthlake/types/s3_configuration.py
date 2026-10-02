@@ -13,9 +13,9 @@ if TYPE_CHECKING:
 
 class S3Configuration(TypedDict, closed=True):
     s3_uri: "capo_healthlake.types.s3_uri.S3Uri"
-    """<p>The <code>S3Uri</code> is the user-specified S3 location of the FHIR data to be imported into AWS HealthLake.</p>"""
+    """<p>The <code>S3Uri</code> is the user-specified Amazon S3 location of the FHIR data to be imported into HealthLake.</p>"""
     kms_key_id: "capo_healthlake.types.encryption_key_id.EncryptionKeyID"
-    """<p>The Key Management Service (KMS) key ID used to access the S3 bucket. </p>"""
+    """<p>The Key Management Service (KMS) key ID used to access the Amazon S3 bucket. </p>"""
 
 
 # --- awsJson1_0 ser/de ---

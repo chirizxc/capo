@@ -9,9 +9,9 @@ from capo_appconfig.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_appconfig.types.configuration_profile_type
     import capo_appconfig.types.description
-    import capo_appconfig.types.id
     import capo_appconfig.types.kms_key_identifier
     import capo_appconfig.types.long_name
+    import capo_appconfig.types.name
     import capo_appconfig.types.role_arn
     import capo_appconfig.types.tag_map
     import capo_appconfig.types.uri
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 
 class CreateConfigurationProfileRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
     name: "capo_appconfig.types.long_name.LongName"
     """<p>A name for the configuration profile.</p>"""

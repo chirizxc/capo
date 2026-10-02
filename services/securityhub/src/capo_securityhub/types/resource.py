@@ -5,11 +5,13 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_securityhub.types.cloud_provider_name
     import capo_securityhub.types.data_classification_details
     import capo_securityhub.types.field_map
     import capo_securityhub.types.non_empty_string
     import capo_securityhub.types.partition
     import capo_securityhub.types.resource_details
+    import capo_securityhub.types.resource_owner
 
 
 class Resource(TypedDict, closed=True):
@@ -21,6 +23,12 @@ class Resource(TypedDict, closed=True):
     """<p>The canonical Amazon Web Services partition name that the Region is assigned to.</p>"""
     region: NotRequired["capo_securityhub.types.non_empty_string.NonEmptyString"]
     """<p>The canonical Amazon Web Services external Region name where this resource is located.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 16.</p>"""
+    provider: NotRequired[
+        "capo_securityhub.types.cloud_provider_name.CloudProviderName"
+    ]
+    """<p>The cloud provider that the resource belongs to. Valid values are <code>AWS</code> and <code>Azure</code>.</p>"""
+    owner: NotRequired["capo_securityhub.types.resource_owner.ResourceOwner"]
+    """<p>Information about the account and organization that own the resource.</p>"""
     resource_role: NotRequired["capo_securityhub.types.non_empty_string.NonEmptyString"]
     """<p>Identifies the role of the resource in the finding. A resource is either the actor or target of the finding activity,</p>"""
     tags: NotRequired["capo_securityhub.types.field_map.FieldMap"]
@@ -56,6 +64,18 @@ def serialize_json(value: Resource) -> dict:
         )
     if "region" in value:
         out["Region"] = value["region"]
+    if "provider" in value:
+        import capo_securityhub.types.cloud_provider_name
+
+        out["Provider"] = capo_securityhub.types.cloud_provider_name.serialize_json(
+            value["provider"]
+        )
+    if "owner" in value:
+        import capo_securityhub.types.resource_owner
+
+        out["Owner"] = capo_securityhub.types.resource_owner.serialize_json(
+            value["owner"]
+        )
     if "resource_role" in value:
         out["ResourceRole"] = value["resource_role"]
     if "tags" in value:
@@ -97,6 +117,18 @@ def deserialize_json(data: dict) -> Resource:
         )
     if data.get("Region") is not None:
         out["region"] = data["Region"]
+    if data.get("Provider") is not None:
+        import capo_securityhub.types.cloud_provider_name
+
+        out["provider"] = capo_securityhub.types.cloud_provider_name.deserialize_json(
+            data["Provider"]
+        )
+    if data.get("Owner") is not None:
+        import capo_securityhub.types.resource_owner
+
+        out["owner"] = capo_securityhub.types.resource_owner.deserialize_json(
+            data["Owner"]
+        )
     if data.get("ResourceRole") is not None:
         out["resource_role"] = data["ResourceRole"]
     if data.get("Tags") is not None:

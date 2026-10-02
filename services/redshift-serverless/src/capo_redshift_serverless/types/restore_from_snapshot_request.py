@@ -29,6 +29,8 @@ class RestoreFromSnapshotRequest(TypedDict, closed=True):
         "capo_redshift_serverless.types.kms_key_id.KmsKeyId"
     ]
     """<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>"""
+    maintain_integration: NotRequired["bool"]
+    """<p>If <code>true</code>, maintain existing data sharing, zero-ETL and S3 event integrations when restoring. Otherwise, integrations will not be maintained after the restore operation. Integrations are only maintained when restored to the same serverless namespace.</p> <p>Default: true</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -46,6 +48,8 @@ def serialize_aws_json_1_1(value: RestoreFromSnapshotRequest) -> dict:
         out["manageAdminPassword"] = value["manage_admin_password"]
     if "admin_password_secret_kms_key_id" in value:
         out["adminPasswordSecretKmsKeyId"] = value["admin_password_secret_kms_key_id"]
+    if "maintain_integration" in value:
+        out["maintainIntegration"] = value["maintain_integration"]
     return out
 
 
@@ -69,4 +73,6 @@ def deserialize_aws_json_1_1(data: dict) -> RestoreFromSnapshotRequest:
         out["manage_admin_password"] = data["manageAdminPassword"]
     if data.get("adminPasswordSecretKmsKeyId") is not None:
         out["admin_password_secret_kms_key_id"] = data["adminPasswordSecretKmsKeyId"]
+    if data.get("maintainIntegration") is not None:
+        out["maintain_integration"] = data["maintainIntegration"]
     return out

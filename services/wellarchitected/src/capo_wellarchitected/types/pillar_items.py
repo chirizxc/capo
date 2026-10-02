@@ -1,0 +1,29 @@
+"""Generated from Smithy shape ``com.amazonaws.wellarchitected#PillarItems``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_wellarchitected.types.pillar_item
+
+PillarItems: TypeAlias = list["capo_wellarchitected.types.pillar_item.PillarItem"]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: PillarItems) -> list:
+    import capo_wellarchitected.types.pillar_item
+
+    out: list = []
+    for item in value:
+        out.append(capo_wellarchitected.types.pillar_item.serialize_json(item))
+    return out
+
+
+def deserialize_json(data: list) -> PillarItems:
+    import capo_wellarchitected.types.pillar_item
+
+    out: PillarItems = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(capo_wellarchitected.types.pillar_item.deserialize_json(item))
+    return out

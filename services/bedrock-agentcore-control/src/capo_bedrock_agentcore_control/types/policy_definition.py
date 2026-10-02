@@ -12,6 +12,7 @@ from capo_bedrock_agentcore_control.errors import (
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.cedar_policy
     import capo_bedrock_agentcore_control.types.policy_generation_details
+    import capo_bedrock_agentcore_control.types.policy_statement
 
 
 class _PolicyDefinition_cedar(TypedDict, closed=True):
@@ -22,8 +23,14 @@ class _PolicyDefinition_policyGeneration(TypedDict, closed=True):
     policyGeneration: "capo_bedrock_agentcore_control.types.policy_generation_details.PolicyGenerationDetails"
 
 
+class _PolicyDefinition_policy(TypedDict, closed=True):
+    policy: "capo_bedrock_agentcore_control.types.policy_statement.PolicyStatement"
+
+
 PolicyDefinition: TypeAlias = (
-    _PolicyDefinition_cedar | _PolicyDefinition_policyGeneration
+    _PolicyDefinition_cedar
+    | _PolicyDefinition_policyGeneration
+    | _PolicyDefinition_policy
 )
 
 
@@ -45,6 +52,14 @@ def serialize_json(value: PolicyDefinition) -> dict:
                 value["policyGeneration"]
             )
         }
+    elif "policy" in value:
+        import capo_bedrock_agentcore_control.types.policy_statement
+
+        return {
+            "policy": capo_bedrock_agentcore_control.types.policy_statement.serialize_json(
+                value["policy"]
+            )
+        }
     else:
         raise SerializationError("PolicyDefinition: no variant present")
 
@@ -64,6 +79,14 @@ def deserialize_json(data: dict) -> PolicyDefinition:
         return {
             "policyGeneration": capo_bedrock_agentcore_control.types.policy_generation_details.deserialize_json(
                 data["policyGeneration"]
+            )
+        }
+    elif data.get("policy") is not None:
+        import capo_bedrock_agentcore_control.types.policy_statement
+
+        return {
+            "policy": capo_bedrock_agentcore_control.types.policy_statement.deserialize_json(
+                data["policy"]
             )
         }
     else:

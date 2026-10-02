@@ -18,7 +18,11 @@ import capo_support.types.describe_trusted_advisor_checks_response
 import capo_support.types.trusted_advisor_check_list
 from capo_support._protocol.errors import parse_error_metadata_json
 from capo_support._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_support._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_support._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_support.errors import UnknownServiceError
 
 
@@ -127,7 +131,7 @@ def describe_trusted_advisor_checks(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -145,7 +149,7 @@ async def async_describe_trusted_advisor_checks(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

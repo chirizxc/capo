@@ -9,6 +9,7 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.authorizer_configuration
     import capo_bedrock_agentcore_control.types.authorizer_type
+    import capo_bedrock_agentcore_control.types.custom_transform_configuration
     import capo_bedrock_agentcore_control.types.date_timestamp
     import capo_bedrock_agentcore_control.types.exception_level
     import capo_bedrock_agentcore_control.types.gateway_arn
@@ -24,6 +25,8 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.role_arn
     import capo_bedrock_agentcore_control.types.status_reasons
+    import capo_bedrock_agentcore_control.types.waf_configuration
+    import capo_bedrock_agentcore_control.types.web_acl_arn
     import capo_bedrock_agentcore_control.types.workload_identity_details
 
 
@@ -73,6 +76,10 @@ class GetGatewayResponse(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
     ]
     """<p>The Amazon Resource Name (ARN) of the KMS key used to encrypt the gateway.</p>"""
+    custom_transform_configuration: NotRequired[
+        "capo_bedrock_agentcore_control.types.custom_transform_configuration.CustomTransformConfiguration"
+    ]
+    """<p>The custom transformation configuration for the gateway. This configuration defines how the gateway transforms requests and responses.</p>"""
     interceptor_configurations: NotRequired[
         "capo_bedrock_agentcore_control.types.gateway_interceptor_configurations.GatewayInterceptorConfigurations"
     ]
@@ -89,6 +96,14 @@ class GetGatewayResponse(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.exception_level.ExceptionLevel"
     ]
     """<p>The level of detail in error messages returned when invoking the gateway.</p> <ul> <li> <p>If the value is <code>DEBUG</code>, granular exception messages are returned to help a user debug the gateway.</p> </li> <li> <p>If the value is omitted, a generic error message is returned to the end user.</p> </li> </ul>"""
+    web_acl_arn: NotRequired[
+        "capo_bedrock_agentcore_control.types.web_acl_arn.WebAclArn"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the Amazon Web Services WAF web ACL associated with the gateway.</p>"""
+    waf_configuration: NotRequired[
+        "capo_bedrock_agentcore_control.types.waf_configuration.WafConfiguration"
+    ]
+    """<p>The Amazon Web Services WAF configuration for the gateway.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -162,6 +177,14 @@ def serialize_json(value: GetGatewayResponse) -> dict:
         )
     if "kms_key_arn" in value:
         out["kmsKeyArn"] = value["kms_key_arn"]
+    if "custom_transform_configuration" in value:
+        import capo_bedrock_agentcore_control.types.custom_transform_configuration
+
+        out["customTransformConfiguration"] = (
+            capo_bedrock_agentcore_control.types.custom_transform_configuration.serialize_json(
+                value["custom_transform_configuration"]
+            )
+        )
     if "interceptor_configurations" in value:
         import capo_bedrock_agentcore_control.types.gateway_interceptor_configurations
 
@@ -192,6 +215,16 @@ def serialize_json(value: GetGatewayResponse) -> dict:
         out["exceptionLevel"] = (
             capo_bedrock_agentcore_control.types.exception_level.serialize_json(
                 value["exception_level"]
+            )
+        )
+    if "web_acl_arn" in value:
+        out["webAclArn"] = value["web_acl_arn"]
+    if "waf_configuration" in value:
+        import capo_bedrock_agentcore_control.types.waf_configuration
+
+        out["wafConfiguration"] = (
+            capo_bedrock_agentcore_control.types.waf_configuration.serialize_json(
+                value["waf_configuration"]
             )
         )
     return out
@@ -293,6 +326,14 @@ def deserialize_json(data: dict) -> GetGatewayResponse:
         )
     if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
+    if data.get("customTransformConfiguration") is not None:
+        import capo_bedrock_agentcore_control.types.custom_transform_configuration
+
+        out["custom_transform_configuration"] = (
+            capo_bedrock_agentcore_control.types.custom_transform_configuration.deserialize_json(
+                data["customTransformConfiguration"]
+            )
+        )
     if data.get("interceptorConfigurations") is not None:
         import capo_bedrock_agentcore_control.types.gateway_interceptor_configurations
 
@@ -323,6 +364,16 @@ def deserialize_json(data: dict) -> GetGatewayResponse:
         out["exception_level"] = (
             capo_bedrock_agentcore_control.types.exception_level.deserialize_json(
                 data["exceptionLevel"]
+            )
+        )
+    if data.get("webAclArn") is not None:
+        out["web_acl_arn"] = data["webAclArn"]
+    if data.get("wafConfiguration") is not None:
+        import capo_bedrock_agentcore_control.types.waf_configuration
+
+        out["waf_configuration"] = (
+            capo_bedrock_agentcore_control.types.waf_configuration.deserialize_json(
+                data["wafConfiguration"]
             )
         )
     return out

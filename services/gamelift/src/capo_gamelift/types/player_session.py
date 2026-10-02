@@ -28,7 +28,7 @@ class PlayerSession(TypedDict, closed=True):
     game_session_id: NotRequired[
         "capo_gamelift.types.non_zero_and_max_string.NonZeroAndMaxString"
     ]
-    """<p>An identifier for the game session that is unique across all regions that the player session is connected to. The value is always a full ARN in the following format: <code>arn:aws:gamelift:<location>::gamesession/<fleet ID>/<ID string></code>.</p>"""
+    """<p>An identifier for the game session that is unique across all regions that the player session is connected to. The value is always a full ARN in the following format: For Home Region game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<ID string></code>. For Remote Location game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<location>/<ID string></code>.</p>"""
     fleet_id: NotRequired["capo_gamelift.types.fleet_id.FleetId"]
     """<p>A unique identifier for the fleet that the player's game session is running on.</p>"""
     fleet_arn: NotRequired["capo_gamelift.types.fleet_arn.FleetArn"]

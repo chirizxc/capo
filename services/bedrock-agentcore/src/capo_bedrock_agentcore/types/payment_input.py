@@ -8,6 +8,7 @@ from capo_bedrock_agentcore.errors import DeserializationError, SerializationErr
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.crypto_x402_payment_input
+    import capo_bedrock_agentcore.types.mpp_payment_input
 
 
 class _PaymentInput_cryptoX402(TypedDict, closed=True):
@@ -16,7 +17,11 @@ class _PaymentInput_cryptoX402(TypedDict, closed=True):
     )
 
 
-PaymentInput: TypeAlias = _PaymentInput_cryptoX402
+class _PaymentInput_mpp(TypedDict, closed=True):
+    mpp: "capo_bedrock_agentcore.types.mpp_payment_input.MppPaymentInput"
+
+
+PaymentInput: TypeAlias = _PaymentInput_cryptoX402 | _PaymentInput_mpp
 
 
 # --- restJson1 ser/de ---
@@ -27,6 +32,14 @@ def serialize_json(value: PaymentInput) -> dict:
         return {
             "cryptoX402": capo_bedrock_agentcore.types.crypto_x402_payment_input.serialize_json(
                 value["cryptoX402"]
+            )
+        }
+    elif "mpp" in value:
+        import capo_bedrock_agentcore.types.mpp_payment_input
+
+        return {
+            "mpp": capo_bedrock_agentcore.types.mpp_payment_input.serialize_json(
+                value["mpp"]
             )
         }
     else:
@@ -40,6 +53,14 @@ def deserialize_json(data: dict) -> PaymentInput:
         return {
             "cryptoX402": capo_bedrock_agentcore.types.crypto_x402_payment_input.deserialize_json(
                 data["cryptoX402"]
+            )
+        }
+    elif data.get("mpp") is not None:
+        import capo_bedrock_agentcore.types.mpp_payment_input
+
+        return {
+            "mpp": capo_bedrock_agentcore.types.mpp_payment_input.deserialize_json(
+                data["mpp"]
             )
         }
     else:

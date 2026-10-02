@@ -20,11 +20,16 @@ import capo_securityhub.errors.validation_exception
 import capo_securityhub.types.connector_provider_name
 import capo_securityhub.types.connector_status
 import capo_securityhub.types.connector_summary_list
+import capo_securityhub.types.enablement_status
 import capo_securityhub.types.list_connectors_v2_request
 import capo_securityhub.types.list_connectors_v2_response
 from capo_securityhub._protocol.errors import parse_error_metadata_json
 from capo_securityhub._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_securityhub._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_securityhub._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_securityhub.errors import UnknownServiceError
 
 
@@ -124,6 +129,7 @@ def build_request(
     )  # noqa: F841
     import capo_securityhub.types.connector_provider_name
     import capo_securityhub.types.connector_status
+    import capo_securityhub.types.enablement_status
 
     url = endpoint.url.rstrip("/") + "/connectorsv2"
     params: list[tuple[str, str]] = []
@@ -149,6 +155,15 @@ def build_request(
                 ),
             )
         )
+    if "enablement_status" in input_:
+        params.append(
+            (
+                "EnablementStatus",
+                capo_securityhub.types.enablement_status.serialize_json(
+                    input_["enablement_status"]
+                ),
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
@@ -171,7 +186,7 @@ def list_connectors_v2(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -189,7 +204,7 @@ async def async_list_connectors_v2(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

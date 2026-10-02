@@ -12,7 +12,7 @@ class StartMetadataModelConversionResponse(TypedDict, closed=True):
     request_identifier: NotRequired[
         "capo_database_migration_service.types.string.String"
     ]
-    """<p>The identifier for the conversion operation.</p>"""
+    """<p>The identifier for the conversion request.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

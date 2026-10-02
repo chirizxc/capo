@@ -30,4 +30,5 @@ from .direct_connect_server_exception import (
 from .duplicate_tag_keys_exception import (
     DuplicateTagKeysException as DuplicateTagKeysException,
 )
+from .limit_exceeded_exception import LimitExceededException as LimitExceededException
 from .too_many_tags_exception import TooManyTagsException as TooManyTagsException

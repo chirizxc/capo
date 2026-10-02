@@ -10,6 +10,7 @@ ContainerFleetStatus: TypeAlias = Literal[
     "ACTIVE",
     "UPDATING",
     "DELETING",
+    "EXPIRED",
 ]
 
 

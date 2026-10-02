@@ -61,6 +61,7 @@ if TYPE_CHECKING:
     import capo_transcribe_streaming.types.start_medical_stream_transcription_response
     import capo_transcribe_streaming.types.start_stream_transcription_request
     import capo_transcribe_streaming.types.start_stream_transcription_response
+    import capo_transcribe_streaming.types.transcript_format
     import capo_transcribe_streaming.types.type
     import capo_transcribe_streaming.types.vocabulary_filter_method
     import capo_transcribe_streaming.types.vocabulary_filter_name
@@ -176,7 +177,7 @@ class TranscribeStreamingClient:
         Raises:
             capo_transcribe_streaming.errors.bad_request_exception.BadRequestException: <p>One or more arguments to the <code>StartStreamTranscription</code>, <code>StartMedicalStreamTranscription</code>, or <code>StartCallAnalyticsStreamTranscription</code> operation was not valid. For example, <code>MediaEncoding</code> or <code>LanguageCode</code> used unsupported values. Check the specified parameters and try your request again.</p>
             capo_transcribe_streaming.errors.internal_failure_exception.InternalFailureException: <p>A problem occurred while processing the audio. Amazon Transcribe terminated processing.</p>
-            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits. This is typically the audio length limit. Break your audio stream into smaller chunks and try your request again.</p>
+            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits, typically the concurrent stream service quota. This error can also occur if a stream exceeds the maximum session duration. In rare cases, this error can also occur if you increase your number of concurrent streams too quickly. Reduce your number of concurrent streams and try your request again using an exponential backoff strategy.</p>
             capo_transcribe_streaming.errors.resource_not_found_exception.ResourceNotFoundException: <p>The request references a resource which doesn't exist.</p>
             capo_transcribe_streaming.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -292,7 +293,7 @@ class TranscribeStreamingClient:
             capo_transcribe_streaming.errors.bad_request_exception.BadRequestException: <p>One or more arguments to the <code>StartStreamTranscription</code>, <code>StartMedicalStreamTranscription</code>, or <code>StartCallAnalyticsStreamTranscription</code> operation was not valid. For example, <code>MediaEncoding</code> or <code>LanguageCode</code> used unsupported values. Check the specified parameters and try your request again.</p>
             capo_transcribe_streaming.errors.conflict_exception.ConflictException: <p>A new stream started with the same session ID. The current stream has been terminated.</p>
             capo_transcribe_streaming.errors.internal_failure_exception.InternalFailureException: <p>A problem occurred while processing the audio. Amazon Transcribe terminated processing.</p>
-            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits. This is typically the audio length limit. Break your audio stream into smaller chunks and try your request again.</p>
+            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits, typically the concurrent stream service quota. This error can also occur if a stream exceeds the maximum session duration. In rare cases, this error can also occur if you increase your number of concurrent streams too quickly. Reduce your number of concurrent streams and try your request again using an exponential backoff strategy.</p>
             capo_transcribe_streaming.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is currently unavailable. Try your request later.</p>
             capo_transcribe_streaming.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -388,7 +389,7 @@ class TranscribeStreamingClient:
             capo_transcribe_streaming.errors.bad_request_exception.BadRequestException: <p>One or more arguments to the <code>StartStreamTranscription</code>, <code>StartMedicalStreamTranscription</code>, or <code>StartCallAnalyticsStreamTranscription</code> operation was not valid. For example, <code>MediaEncoding</code> or <code>LanguageCode</code> used unsupported values. Check the specified parameters and try your request again.</p>
             capo_transcribe_streaming.errors.conflict_exception.ConflictException: <p>A new stream started with the same session ID. The current stream has been terminated.</p>
             capo_transcribe_streaming.errors.internal_failure_exception.InternalFailureException: <p>A problem occurred while processing the audio. Amazon Transcribe terminated processing.</p>
-            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits. This is typically the audio length limit. Break your audio stream into smaller chunks and try your request again.</p>
+            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits, typically the concurrent stream service quota. This error can also occur if a stream exceeds the maximum session duration. In rare cases, this error can also occur if you increase your number of concurrent streams too quickly. Reduce your number of concurrent streams and try your request again using an exponential backoff strategy.</p>
             capo_transcribe_streaming.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is currently unavailable. Try your request later.</p>
             capo_transcribe_streaming.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -476,7 +477,7 @@ class TranscribeStreamingClient:
             capo_transcribe_streaming.errors.bad_request_exception.BadRequestException: <p>One or more arguments to the <code>StartStreamTranscription</code>, <code>StartMedicalStreamTranscription</code>, or <code>StartCallAnalyticsStreamTranscription</code> operation was not valid. For example, <code>MediaEncoding</code> or <code>LanguageCode</code> used unsupported values. Check the specified parameters and try your request again.</p>
             capo_transcribe_streaming.errors.conflict_exception.ConflictException: <p>A new stream started with the same session ID. The current stream has been terminated.</p>
             capo_transcribe_streaming.errors.internal_failure_exception.InternalFailureException: <p>A problem occurred while processing the audio. Amazon Transcribe terminated processing.</p>
-            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits. This is typically the audio length limit. Break your audio stream into smaller chunks and try your request again.</p>
+            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits, typically the concurrent stream service quota. This error can also occur if a stream exceeds the maximum session duration. In rare cases, this error can also occur if you increase your number of concurrent streams too quickly. Reduce your number of concurrent streams and try your request again using an exponential backoff strategy.</p>
             capo_transcribe_streaming.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is currently unavailable. Try your request later.</p>
             capo_transcribe_streaming.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -598,6 +599,9 @@ class TranscribeStreamingClient:
         session_resume_window: Optional[
             "capo_transcribe_streaming.types.session_resume_window.SessionResumeWindow"
         ] = None,
+        transcript_format: Optional[
+            "capo_transcribe_streaming.types.transcript_format.TranscriptFormat"
+        ] = None,
     ) -> "Generator[capo_transcribe_streaming.types.start_stream_transcription_response.StartStreamTranscriptionResponse]":
         r"""<p>Starts a bidirectional HTTP/2 or WebSocket stream where audio is streamed to Amazon Transcribe and the transcription results are streamed to your application.</p> <p>The following parameters are required:</p> <ul> <li> <p> <code>language-code</code> or <code>identify-language</code> or <code>identify-multiple-language</code> </p> </li> <li> <p> <code>media-encoding</code> </p> </li> <li> <p> <code>sample-rate</code> </p> </li> </ul> <p>For more information on streaming with Amazon Transcribe, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/streaming.html\">Transcribing streaming audio</a>.</p>
 
@@ -626,12 +630,13 @@ class TranscribeStreamingClient:
             vocabulary_names: <p>Specify the names of the custom vocabularies that you want to use when processing your transcription. Note that vocabulary names are case sensitive.</p> <p>If none of the languages of the specified custom vocabularies match the language identified in your media, your job fails.</p> <important> <p>This parameter is only intended for use <b>with</b> the <code>IdentifyLanguage</code> parameter. If you're <b>not</b> including <code>IdentifyLanguage</code> in your request and want to use a custom vocabulary with your transcription, use the <code>VocabularyName</code> parameter instead.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html\">Custom vocabularies</a>.</p>
             vocabulary_filter_names: <p>Specify the names of the custom vocabulary filters that you want to use when processing your transcription. Note that vocabulary filter names are case sensitive.</p> <p>If none of the languages of the specified custom vocabulary filters match the language identified in your media, your job fails.</p> <important> <p>This parameter is only intended for use <b>with</b> the <code>IdentifyLanguage</code> parameter. If you're <b>not</b> including <code>IdentifyLanguage</code> in your request and want to use a custom vocabulary filter with your transcription, use the <code>VocabularyFilterName</code> parameter instead.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-filtering.html\">Using vocabulary filtering with unwanted words</a>.</p>
             session_resume_window: <p>Specify the time window, in minutes, during which your transcription session can be resumed, measured from the stream start time. This optional parameter accepts integer values from 1 to 300 (5 hours).</p> <p> For example, if your stream starts at 1 PM and you specify a <code>SessionResumeWindow</code> of 30 minutes, you can reconnect to the session as many times as you want until 1:30 PM. </p>
+            transcript_format: <p>Specify how numbers, dates, and other alphanumeric entities are rendered in your transcription results.</p> <ul> <li> <p> <code>WRITTEN</code> renders these entities in their standard written form (for example, <code>$50</code>, <code>10:30 AM</code>, and <code>101</code>).</p> </li> <li> <p> <code>SPOKEN</code> renders these entities as words, exactly as they were spoken (for example, <code>fifty dollars</code>, <code>ten thirty a m</code>, and <code>one oh one</code>).</p> </li> </ul> <p>If you don't specify a value, Amazon Transcribe uses <code>WRITTEN</code> by default.</p>
 
         Raises:
             capo_transcribe_streaming.errors.bad_request_exception.BadRequestException: <p>One or more arguments to the <code>StartStreamTranscription</code>, <code>StartMedicalStreamTranscription</code>, or <code>StartCallAnalyticsStreamTranscription</code> operation was not valid. For example, <code>MediaEncoding</code> or <code>LanguageCode</code> used unsupported values. Check the specified parameters and try your request again.</p>
             capo_transcribe_streaming.errors.conflict_exception.ConflictException: <p>A new stream started with the same session ID. The current stream has been terminated.</p>
             capo_transcribe_streaming.errors.internal_failure_exception.InternalFailureException: <p>A problem occurred while processing the audio. Amazon Transcribe terminated processing.</p>
-            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits. This is typically the audio length limit. Break your audio stream into smaller chunks and try your request again.</p>
+            capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException: <p>Your client has exceeded one of the Amazon Transcribe limits, typically the concurrent stream service quota. This error can also occur if a stream exceeds the maximum session duration. In rare cases, this error can also occur if you increase your number of concurrent streams too quickly. Reduce your number of concurrent streams and try your request again using an exponential backoff strategy.</p>
             capo_transcribe_streaming.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is currently unavailable. Try your request later.</p>
             capo_transcribe_streaming.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -700,6 +705,8 @@ class TranscribeStreamingClient:
             input_["vocabulary_filter_names"] = vocabulary_filter_names
         if session_resume_window is not None:
             input_["session_resume_window"] = session_resume_window
+        if transcript_format is not None:
+            input_["transcript_format"] = transcript_format
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

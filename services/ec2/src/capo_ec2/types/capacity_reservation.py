@@ -12,6 +12,8 @@ if TYPE_CHECKING:
     import capo_ec2.types.boxed_boolean
     import capo_ec2.types.capacity_allocations
     import capo_ec2.types.capacity_block_id
+    import capo_ec2.types.capacity_reservation_adjustment_details
+    import capo_ec2.types.capacity_reservation_adjustment_status
     import capo_ec2.types.capacity_reservation_commitment_info
     import capo_ec2.types.capacity_reservation_delivery_preference
     import capo_ec2.types.capacity_reservation_instance_platform
@@ -29,6 +31,7 @@ if TYPE_CHECKING:
     import capo_ec2.types.placement_group_arn
     import capo_ec2.types.string
     import capo_ec2.types.tag_list
+    import capo_ec2.types.zero_size_preference
 
 
 class CapacityReservation(TypedDict, closed=True):
@@ -116,6 +119,22 @@ class CapacityReservation(TypedDict, closed=True):
     """<p> Contains allocation details for interruptible reservations, including current allocated instances and target instance counts within the interruptibleCapacityAllocation object. </p>"""
     interruption_info: NotRequired["capo_ec2.types.interruption_info.InterruptionInfo"]
     """<p> Information about the interruption configuration and association with the source reservation for interruptible Capacity Reservations. </p>"""
+    adjustment_status: NotRequired[
+        "capo_ec2.types.capacity_reservation_adjustment_status.CapacityReservationAdjustmentStatus"
+    ]
+    """<p>The status of the most recent modification to the Capacity Reservation. A Capacity Reservation can have one of the following adjustment statuses:</p> <ul> <li> <p> <code>requested</code> - The modification was requested and is being processed.</p> </li> <li> <p> <code>applied</code> - The modification was applied to the Capacity Reservation.</p> </li> <li> <p> <code>rejected</code> - The modification was not applied and the Capacity Reservation keeps its existing configuration.</p> </li> </ul> <p>This field is not returned if the Capacity Reservation has never been modified.</p>"""
+    adjustment_details: NotRequired[
+        "capo_ec2.types.capacity_reservation_adjustment_details.CapacityReservationAdjustmentDetails"
+    ]
+    """<p>The configuration that the Capacity Reservation will have after the requested adjustment is applied.</p>"""
+    original_start_date: NotRequired[
+        "capo_ec2.types.millisecond_date_time.MillisecondDateTime"
+    ]
+    """<p>The start date that you originally requested for the Capacity Reservation, in the ISO8601 format in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>). This value doesn't change when you push out the start date.</p>"""
+    zero_size_preference: NotRequired[
+        "capo_ec2.types.zero_size_preference.ZeroSizePreference"
+    ]
+    """<p> The zero-size preference configured for the interruptible Capacity Reservation. A value of <code>retain</code> keeps the interruptible Capacity Reservation active at zero capacity when you reduce its allocation to zero. A value of <code>default</code> cancels the interruptible Capacity Reservation when you reduce its allocation to zero. </p>"""
 
 
 # --- ec2Query ser/de ---
@@ -291,6 +310,30 @@ def serialize_ec2_query(
 
         capo_ec2.types.interruption_info.serialize_ec2_query(
             value["interruption_info"], pairs, f"{key_prefix}InterruptionInfo"
+        )
+    if "adjustment_status" in value:
+        import capo_ec2.types.capacity_reservation_adjustment_status
+
+        capo_ec2.types.capacity_reservation_adjustment_status.serialize_ec2_query(
+            value["adjustment_status"], pairs, f"{key_prefix}AdjustmentStatus"
+        )
+    if "adjustment_details" in value:
+        import capo_ec2.types.capacity_reservation_adjustment_details
+
+        capo_ec2.types.capacity_reservation_adjustment_details.serialize_ec2_query(
+            value["adjustment_details"], pairs, f"{key_prefix}AdjustmentDetails"
+        )
+    if "original_start_date" in value:
+        import capo_ec2.types.millisecond_date_time
+
+        capo_ec2.types.millisecond_date_time.serialize_ec2_query(
+            value["original_start_date"], pairs, f"{key_prefix}OriginalStartDate"
+        )
+    if "zero_size_preference" in value:
+        import capo_ec2.types.zero_size_preference
+
+        capo_ec2.types.zero_size_preference.serialize_ec2_query(
+            value["zero_size_preference"], pairs, f"{key_prefix}ZeroSizePreference"
         )
 
 
@@ -469,6 +512,42 @@ def deserialize_ec2_query(el: Element) -> CapacityReservation:
         out["interruption_info"] = (
             capo_ec2.types.interruption_info.deserialize_ec2_query(
                 child_interruption_info
+            )
+        )
+    child_adjustment_status = el.find("adjustmentStatus")
+    if child_adjustment_status is not None:
+        import capo_ec2.types.capacity_reservation_adjustment_status
+
+        out["adjustment_status"] = (
+            capo_ec2.types.capacity_reservation_adjustment_status.deserialize_ec2_query(
+                child_adjustment_status
+            )
+        )
+    child_adjustment_details = el.find("adjustmentDetails")
+    if child_adjustment_details is not None:
+        import capo_ec2.types.capacity_reservation_adjustment_details
+
+        out["adjustment_details"] = (
+            capo_ec2.types.capacity_reservation_adjustment_details.deserialize_ec2_query(
+                child_adjustment_details
+            )
+        )
+    child_original_start_date = el.find("originalStartDate")
+    if child_original_start_date is not None:
+        import capo_ec2.types.millisecond_date_time
+
+        out["original_start_date"] = (
+            capo_ec2.types.millisecond_date_time.deserialize_ec2_query(
+                child_original_start_date
+            )
+        )
+    child_zero_size_preference = el.find("zeroSizePreference")
+    if child_zero_size_preference is not None:
+        import capo_ec2.types.zero_size_preference
+
+        out["zero_size_preference"] = (
+            capo_ec2.types.zero_size_preference.deserialize_ec2_query(
+                child_zero_size_preference
             )
         )
     return out

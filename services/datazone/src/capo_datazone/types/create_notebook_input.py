@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_datazone.types.domain_id
     import capo_datazone.types.metadata
     import capo_datazone.types.notebook_name
+    import capo_datazone.types.notebook_type
     import capo_datazone.types.parameters
     import capo_datazone.types.project_id
 
@@ -25,6 +26,8 @@ class CreateNotebookInput(TypedDict, closed=True):
     """<p>The name of the notebook. The name must be between 1 and 256 characters.</p>"""
     description: NotRequired["capo_datazone.types.description.Description"]
     """<p>The description of the notebook.</p>"""
+    type: NotRequired["capo_datazone.types.notebook_type.NotebookType"]
+    """<p>The type of the notebook.</p>"""
     metadata: NotRequired["capo_datazone.types.metadata.Metadata"]
     """<p>The metadata for the notebook, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.</p>"""
     parameters: NotRequired["capo_datazone.types.parameters.Parameters"]
@@ -40,6 +43,10 @@ def serialize_json(value: CreateNotebookInput) -> dict:
     out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
+    if "type" in value:
+        import capo_datazone.types.notebook_type
+
+        out["type"] = capo_datazone.types.notebook_type.serialize_json(value["type"])
     if "metadata" in value:
         import capo_datazone.types.metadata
 
@@ -69,6 +76,10 @@ def deserialize_json(data: dict) -> CreateNotebookInput:
         raise DeserializationError("CreateNotebookInput.name required")
     if data.get("description") is not None:
         out["description"] = data["description"]
+    if data.get("type") is not None:
+        import capo_datazone.types.notebook_type
+
+        out["type"] = capo_datazone.types.notebook_type.deserialize_json(data["type"])
     if data.get("metadata") is not None:
         import capo_datazone.types.metadata
 

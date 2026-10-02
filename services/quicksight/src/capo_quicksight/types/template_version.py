@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.sheet_list
     import capo_quicksight.types.template_error_list
     import capo_quicksight.types.timestamp
+    import capo_quicksight.types.topic_configuration_list
     import capo_quicksight.types.version_description
     import capo_quicksight.types.version_number
 
@@ -28,6 +29,10 @@ class TemplateVersion(TypedDict, closed=True):
         "capo_quicksight.types.data_set_configuration_list.DataSetConfigurationList"
     ]
     """<p>Schema of the dataset identified by the placeholder. Any dashboard created from this template should be bound to new datasets matching the same schema described through this API operation.</p>"""
+    topic_configurations: NotRequired[
+        "capo_quicksight.types.topic_configuration_list.TopicConfigurationList"
+    ]
+    """<p>Schema of the topic identified by the placeholder. Any dashboard created from this template should be bound to new topics matching the same schema described through this API operation.</p>"""
     description: NotRequired[
         "capo_quicksight.types.version_description.VersionDescription"
     ]
@@ -71,6 +76,14 @@ def serialize_json(value: TemplateVersion) -> dict:
                 value["data_set_configurations"]
             )
         )
+    if "topic_configurations" in value:
+        import capo_quicksight.types.topic_configuration_list
+
+        out["TopicConfigurations"] = (
+            capo_quicksight.types.topic_configuration_list.serialize_json(
+                value["topic_configurations"]
+            )
+        )
     if "description" in value:
         out["Description"] = value["description"]
     if "source_entity_arn" in value:
@@ -112,6 +125,14 @@ def deserialize_json(data: dict) -> TemplateVersion:
         out["data_set_configurations"] = (
             capo_quicksight.types.data_set_configuration_list.deserialize_json(
                 data["DataSetConfigurations"]
+            )
+        )
+    if data.get("TopicConfigurations") is not None:
+        import capo_quicksight.types.topic_configuration_list
+
+        out["topic_configurations"] = (
+            capo_quicksight.types.topic_configuration_list.deserialize_json(
+                data["TopicConfigurations"]
             )
         )
     if data.get("Description") is not None:

@@ -17,7 +17,7 @@ class WorkflowParameterDetail(TypedDict, closed=True):
     name: "capo_imagebuilder.types.workflow_parameter_name.WorkflowParameterName"
     """<p>The name of this input parameter.</p>"""
     type: "capo_imagebuilder.types.workflow_parameter_type.WorkflowParameterType"
-    r"""<p>The type of input this parameter provides. The currently supported value is \"string\".</p>"""
+    """<p>The type of input this parameter provides. Supported values are <code>string</code>, <code>integer</code>, <code>boolean</code>, and <code>stringList</code>.</p>"""
     default_value: NotRequired[
         "capo_imagebuilder.types.workflow_parameter_value_list.WorkflowParameterValueList"
     ]

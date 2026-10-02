@@ -6,6 +6,7 @@ SourceType: TypeAlias = Literal[
     "AWS::EC2::Instance",
     "AWS::IoT::Thing",
     "AWS::SSM::ManagedInstance",
+    "Microsoft.Compute/virtualMachines",
 ]
 
 

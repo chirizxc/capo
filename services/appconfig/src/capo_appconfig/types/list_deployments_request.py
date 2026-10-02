@@ -5,15 +5,15 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_appconfig.types.id
     import capo_appconfig.types.max_results
+    import capo_appconfig.types.name
     import capo_appconfig.types.next_token
 
 
 class ListDeploymentsRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
-    environment_id: "capo_appconfig.types.id.Id"
+    environment_id: "capo_appconfig.types.name.Name"
     """<p>The environment ID.</p>"""
     max_results: NotRequired["capo_appconfig.types.max_results.MaxResults"]
     """<p>The maximum number of items that may be returned for this call. If there are items that have not yet been returned, the response will include a non-null <code>NextToken</code> that you can provide in a subsequent call to get the next set of results.</p>"""

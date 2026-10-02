@@ -21,6 +21,7 @@ import capo_devops_agent.errors.service_quota_exceeded_exception
 import capo_devops_agent.errors.throttling_exception
 import capo_devops_agent.errors.validation_exception
 import capo_devops_agent.types.agent_space
+import capo_devops_agent.types.agent_space_preferences
 import capo_devops_agent.types.create_agent_space_input
 import capo_devops_agent.types.create_agent_space_output
 import capo_devops_agent.types.tags
@@ -29,6 +30,7 @@ from capo_devops_agent._rule_engine._endpoint_rule_set import EndpointParams, re
 from capo_devops_agent._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_devops_agent.errors import UnknownServiceError
 
@@ -164,7 +166,7 @@ def create_agent_space(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -182,7 +184,7 @@ async def async_create_agent_space(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -20,7 +20,7 @@ class UpdateIngestConfigurationRequest(TypedDict, closed=True):
     ]
     """<p>Stage ARN that needs to be updated.</p>"""
     redundant_ingest: "capo_ivs_realtime.types.redundant_ingest.RedundantIngest"
-    """<p>Indicates whether redundant ingest is enabled for the ingest configuration. Default: <code>false</code>.</p>"""
+    """<p>Indicates whether redundant ingest is enabled for the ingest configuration. Default: <code>false</code>. </p>"""
 
 
 # --- restJson1 ser/de ---

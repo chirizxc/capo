@@ -14,7 +14,11 @@ import capo_health._protocol.eventstream
 import capo_health.errors.concurrent_modification_exception
 from capo_health._protocol.errors import parse_error_metadata_json
 from capo_health._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_health._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_health._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_health.errors import UnknownServiceError
 
 
@@ -91,7 +95,7 @@ def disable_health_service_access_for_organization(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -105,7 +109,7 @@ async def async_disable_health_service_access_for_organization(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

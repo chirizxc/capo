@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     import capo_auto_scaling.types.load_balancer_names
     import capo_auto_scaling.types.max_instance_lifetime
     import capo_auto_scaling.types.mixed_instances_policy
+    import capo_auto_scaling.types.operator
     import capo_auto_scaling.types.resource_name
     import capo_auto_scaling.types.suspended_processes
     import capo_auto_scaling.types.tag_description_list
@@ -198,6 +199,8 @@ class AutoScalingGroup(TypedDict, closed=True):
         "capo_auto_scaling.types.instance_lifecycle_policy.InstanceLifecyclePolicy"
     ]
     """<p>The instance lifecycle policy for the Auto Scaling group.</p>"""
+    operator: NotRequired["capo_auto_scaling.types.operator.Operator"]
+    """<p>The entity that manages the Auto Scaling group, if applicable. When set, only the designated operator can make changes to the group configuration.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -417,6 +420,12 @@ def serialize_query(
             value["instance_lifecycle_policy"],
             pairs,
             f"{key_prefix}InstanceLifecyclePolicy",
+        )
+    if "operator" in value:
+        import capo_auto_scaling.types.operator
+
+        capo_auto_scaling.types.operator.serialize_query(
+            value["operator"], pairs, f"{key_prefix}Operator"
         )
 
 
@@ -672,5 +681,12 @@ def deserialize_query(el: Element) -> AutoScalingGroup:
             capo_auto_scaling.types.instance_lifecycle_policy.deserialize_query(
                 child_instance_lifecycle_policy
             )
+        )
+    child_operator = el.find("Operator")
+    if child_operator is not None:
+        import capo_auto_scaling.types.operator
+
+        out["operator"] = capo_auto_scaling.types.operator.deserialize_query(
+            child_operator
         )
     return out

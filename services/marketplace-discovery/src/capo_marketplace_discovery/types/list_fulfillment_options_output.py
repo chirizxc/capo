@@ -8,10 +8,12 @@ from capo_marketplace_discovery.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_marketplace_discovery.types.fulfillment_options_list
+    import capo_marketplace_discovery.types.locale
     import capo_marketplace_discovery.types.next_token
 
 
 class ListFulfillmentOptionsOutput(TypedDict, closed=True):
+    locale: NotRequired["capo_marketplace_discovery.types.locale.Locale"]
     fulfillment_options: "capo_marketplace_discovery.types.fulfillment_options_list.FulfillmentOptionsList"
     """<p>The fulfillment options available for the product. Each option describes how the buyer can deploy or access the product.</p>"""
     next_token: NotRequired["capo_marketplace_discovery.types.next_token.NextToken"]
@@ -21,6 +23,8 @@ class ListFulfillmentOptionsOutput(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ListFulfillmentOptionsOutput) -> dict:
     out: dict = {}
+    if "locale" in value:
+        out["locale"] = value["locale"]
     import capo_marketplace_discovery.types.fulfillment_options_list
 
     out["fulfillmentOptions"] = (
@@ -35,6 +39,8 @@ def serialize_json(value: ListFulfillmentOptionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListFulfillmentOptionsOutput:
     out: ListFulfillmentOptionsOutput = {}  # type: ignore[typeddict-item]
+    if data.get("locale") is not None:
+        out["locale"] = data["locale"]
     if data.get("fulfillmentOptions") is not None:
         import capo_marketplace_discovery.types.fulfillment_options_list
 

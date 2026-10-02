@@ -6,12 +6,23 @@ ResourcesStringField: TypeAlias = Literal[
     "ResourceGuid",
     "ResourceId",
     "AccountId",
+    "AccountName",
     "Region",
+    "ResourceProvider",
+    "ResourceOwnerAccountId",
+    "ResourceOwnerOrgId",
+    "ResourceCloudPartition",
+    "ResourceRegion",
     "ResourceCategory",
     "ResourceType",
     "ResourceName",
     "FindingsSummary.FindingType",
     "FindingsSummary.ProductName",
+    "ResourceSubCategory",
+    "DiscoveryType",
+    "ResourceInfo.AIDetails.HostResourceGuid",
+    "ResourceInfo.AIDetails.HostResourceType",
+    "ResourceInfo.AIDetails.CanonicalId",
 ]
 
 

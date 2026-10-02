@@ -12,8 +12,24 @@ GeocodeAdditionalFeatureList: TypeAlias = list[
 
 # --- restJson1 ser/de ---
 def serialize_json(value: GeocodeAdditionalFeatureList) -> list:
-    return list(value)
+    import capo_geo_places.types.geocode_additional_feature
+
+    out: list = []
+    for item in value:
+        out.append(
+            capo_geo_places.types.geocode_additional_feature.serialize_json(item)
+        )
+    return out
 
 
 def deserialize_json(data: list) -> GeocodeAdditionalFeatureList:
-    return [item for item in data if item is not None]
+    import capo_geo_places.types.geocode_additional_feature
+
+    out: GeocodeAdditionalFeatureList = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(
+            capo_geo_places.types.geocode_additional_feature.deserialize_json(item)
+        )
+    return out

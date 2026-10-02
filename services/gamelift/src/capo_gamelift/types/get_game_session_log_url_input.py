@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class GetGameSessionLogUrlInput(TypedDict, closed=True):
     game_session_id: NotRequired["capo_gamelift.types.arn_string_model.ArnStringModel"]
-    """<p>An identifier for the game session that is unique across all regions to get logs for. The value is always a full ARN in the following format: <code>arn:aws:gamelift:<location>::gamesession/<fleet ID>/<ID string></code>.</p>"""
+    """<p>An identifier for the game session that is unique across all regions to get logs for. The value is always a full ARN in the following format: For Home Region game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<ID string></code>. For Remote Location game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<location>/<ID string></code>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

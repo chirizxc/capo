@@ -6,14 +6,12 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.contact_center_system_type_list
-    import capo_chime_sdk_voice.types.non_empty_string128
     import capo_chime_sdk_voice.types.session_border_controller_type_list
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class PutVoiceConnectorExternalSystemsConfigurationRequest(TypedDict, closed=True):
-    voice_connector_id: (
-        "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128"
-    )
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The ID of the Voice Connector for which to add the external system configuration.</p>"""
     session_border_controller_types: NotRequired[
         "capo_chime_sdk_voice.types.session_border_controller_type_list.SessionBorderControllerTypeList"

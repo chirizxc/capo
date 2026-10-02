@@ -15,13 +15,14 @@ from capo_bedrock_agent_runtime._services._pipeline import (
 
 if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.guardrail_configuration
-    import capo_bedrock_agent_runtime.types.knowledge_base_id
+    import capo_bedrock_agent_runtime.types.knowledge_base_identifier
     import capo_bedrock_agent_runtime.types.knowledge_base_query
     import capo_bedrock_agent_runtime.types.knowledge_base_retrieval_configuration
     import capo_bedrock_agent_runtime.types.knowledge_base_retrieval_result
     import capo_bedrock_agent_runtime.types.next_token
     import capo_bedrock_agent_runtime.types.retrieve_request
     import capo_bedrock_agent_runtime.types.retrieve_response
+    import capo_bedrock_agent_runtime.types.user_context
     from capo_bedrock_agent_runtime._services.async_bedrock_agent_runtime import (
         AsyncBedrockAgentRuntimeClient,
         AsyncBedrockAgentRuntimeClientConfig,
@@ -38,7 +39,7 @@ class RetrieveResource:
 
     def retrieve(
         self,
-        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_id.KnowledgeBaseId",
+        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_identifier.KnowledgeBaseIdentifier",
         retrieval_query: "capo_bedrock_agent_runtime.types.knowledge_base_query.KnowledgeBaseQuery",
         *,
         config_overrides: Optional[BedrockAgentRuntimeClientConfig] = None,
@@ -51,6 +52,9 @@ class RetrieveResource:
         next_token: Optional[
             "capo_bedrock_agent_runtime.types.next_token.NextToken"
         ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
     ) -> "capo_bedrock_agent_runtime.types.retrieve_response.RetrieveResponse":
         r"""<p>Queries a knowledge base and retrieves information from it.</p>
 
@@ -60,6 +64,7 @@ class RetrieveResource:
             retrieval_configuration: <p>Contains configurations for the knowledge base query and retrieval process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p>
             guardrail_configuration: <p>Guardrail settings.</p>
             next_token: <p>If there are more results than can fit in the response, the response returns a <code>nextToken</code>. Use this token in the <code>nextToken</code> field of another request to retrieve the next batch of results.</p>
+            user_context: <p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>
 
         Raises:
             capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
@@ -99,6 +104,8 @@ class RetrieveResource:
             input_["guardrail_configuration"] = guardrail_configuration
         if next_token is not None:
             input_["next_token"] = next_token
+        if user_context is not None:
+            input_["user_context"] = user_context
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -115,7 +122,7 @@ class AsyncRetrieveResource:
 
     async def retrieve(
         self,
-        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_id.KnowledgeBaseId",
+        knowledge_base_id: "capo_bedrock_agent_runtime.types.knowledge_base_identifier.KnowledgeBaseIdentifier",
         retrieval_query: "capo_bedrock_agent_runtime.types.knowledge_base_query.KnowledgeBaseQuery",
         *,
         config_overrides: Optional[AsyncBedrockAgentRuntimeClientConfig] = None,
@@ -128,6 +135,9 @@ class AsyncRetrieveResource:
         next_token: Optional[
             "capo_bedrock_agent_runtime.types.next_token.NextToken"
         ] = None,
+        user_context: Optional[
+            "capo_bedrock_agent_runtime.types.user_context.UserContext"
+        ] = None,
     ) -> "capo_bedrock_agent_runtime.types.retrieve_response.RetrieveResponse":
         r"""<p>Queries a knowledge base and retrieves information from it.</p>
 
@@ -137,6 +147,7 @@ class AsyncRetrieveResource:
             retrieval_configuration: <p>Contains configurations for the knowledge base query and retrieval process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p>
             guardrail_configuration: <p>Guardrail settings.</p>
             next_token: <p>If there are more results than can fit in the response, the response returns a <code>nextToken</code>. Use this token in the <code>nextToken</code> field of another request to retrieve the next batch of results.</p>
+            user_context: <p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>
 
         Raises:
             capo_bedrock_agent_runtime.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>
@@ -177,6 +188,8 @@ class AsyncRetrieveResource:
             input_["guardrail_configuration"] = guardrail_configuration
         if next_token is not None:
             input_["next_token"] = next_token
+        if user_context is not None:
+            input_["user_context"] = user_context
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

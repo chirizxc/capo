@@ -525,7 +525,12 @@ class AsyncBedrockClient:
         )
         if resolved_credentials_provider is None and credentials is not None:
             resolved_credentials_provider = StaticAwsCredentialsProvider(credentials)
-        if resolved_credentials_provider is None and credentials is None:
+        if (
+            resolved_credentials_provider is None
+            and credentials is None
+            and bearer is None
+            and bearer_provider is None
+        ):
             resolved_credentials_provider = default_aws_credentials_chain(
                 AsyncClient(http_handler)
             )

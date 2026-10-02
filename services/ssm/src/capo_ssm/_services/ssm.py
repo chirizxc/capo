@@ -66,6 +66,7 @@ if TYPE_CHECKING:
     import capo_ssm.types.automation_parameter_key
     import capo_ssm.types.automation_parameter_map
     import capo_ssm.types.automation_target_parameter_name
+    import capo_ssm.types.automation_targets
     import capo_ssm.types.baseline_description
     import capo_ssm.types.baseline_id
     import capo_ssm.types.baseline_name
@@ -79,6 +80,13 @@ if TYPE_CHECKING:
     import capo_ssm.types.change_details_value
     import capo_ssm.types.change_request_name
     import capo_ssm.types.client_token
+    import capo_ssm.types.cloud_connector_configuration
+    import capo_ssm.types.cloud_connector_description
+    import capo_ssm.types.cloud_connector_filter_list
+    import capo_ssm.types.cloud_connector_iam_role_arn
+    import capo_ssm.types.cloud_connector_id
+    import capo_ssm.types.cloud_connector_max_results
+    import capo_ssm.types.cloud_connector_summary
     import capo_ssm.types.cloud_watch_output_config
     import capo_ssm.types.command
     import capo_ssm.types.command_filter_list
@@ -99,6 +107,7 @@ if TYPE_CHECKING:
     import capo_ssm.types.compliance_summary_item
     import capo_ssm.types.compliance_type_name
     import capo_ssm.types.compliance_upload_type
+    import capo_ssm.types.config_connector_arn
     import capo_ssm.types.create_activation_request
     import capo_ssm.types.create_activation_result
     import capo_ssm.types.create_association_batch_request
@@ -106,6 +115,8 @@ if TYPE_CHECKING:
     import capo_ssm.types.create_association_batch_result
     import capo_ssm.types.create_association_request
     import capo_ssm.types.create_association_result
+    import capo_ssm.types.create_cloud_connector_request
+    import capo_ssm.types.create_cloud_connector_result
     import capo_ssm.types.create_document_request
     import capo_ssm.types.create_document_result
     import capo_ssm.types.create_maintenance_window_request
@@ -124,6 +135,8 @@ if TYPE_CHECKING:
     import capo_ssm.types.delete_activation_result
     import capo_ssm.types.delete_association_request
     import capo_ssm.types.delete_association_result
+    import capo_ssm.types.delete_cloud_connector_request
+    import capo_ssm.types.delete_cloud_connector_result
     import capo_ssm.types.delete_document_request
     import capo_ssm.types.delete_document_result
     import capo_ssm.types.delete_inventory_request
@@ -222,6 +235,7 @@ if TYPE_CHECKING:
     import capo_ssm.types.describe_sessions_response
     import capo_ssm.types.disassociate_ops_item_related_item_request
     import capo_ssm.types.disassociate_ops_item_related_item_response
+    import capo_ssm.types.display_name
     import capo_ssm.types.document_arn
     import capo_ssm.types.document_content
     import capo_ssm.types.document_display_name
@@ -256,6 +270,8 @@ if TYPE_CHECKING:
     import capo_ssm.types.get_automation_execution_result
     import capo_ssm.types.get_calendar_state_request
     import capo_ssm.types.get_calendar_state_response
+    import capo_ssm.types.get_cloud_connector_request
+    import capo_ssm.types.get_cloud_connector_result
     import capo_ssm.types.get_command_invocation_request
     import capo_ssm.types.get_command_invocation_result
     import capo_ssm.types.get_connection_status_request
@@ -341,6 +357,8 @@ if TYPE_CHECKING:
     import capo_ssm.types.list_association_versions_result
     import capo_ssm.types.list_associations_request
     import capo_ssm.types.list_associations_result
+    import capo_ssm.types.list_cloud_connectors_request
+    import capo_ssm.types.list_cloud_connectors_result
     import capo_ssm.types.list_command_invocations_request
     import capo_ssm.types.list_command_invocations_result
     import capo_ssm.types.list_commands_request
@@ -590,6 +608,8 @@ if TYPE_CHECKING:
     import capo_ssm.types.update_association_result
     import capo_ssm.types.update_association_status_request
     import capo_ssm.types.update_association_status_result
+    import capo_ssm.types.update_cloud_connector_request
+    import capo_ssm.types.update_cloud_connector_result
     import capo_ssm.types.update_document_default_version_request
     import capo_ssm.types.update_document_default_version_result
     import capo_ssm.types.update_document_metadata_request
@@ -615,6 +635,10 @@ if TYPE_CHECKING:
     import capo_ssm.types.update_service_setting_request
     import capo_ssm.types.update_service_setting_result
     import capo_ssm.types.uuid
+    import capo_ssm.types.validate_cloud_connector_max_results
+    import capo_ssm.types.validate_cloud_connector_request
+    import capo_ssm.types.validate_cloud_connector_result
+    import capo_ssm.types.validation_finding
 
 
 class SSMClientConfig(TypedDict, total=False, closed=True):
@@ -1065,7 +1089,7 @@ class SSMClient:
             sync_compliance: <p>The mode for generating association compliance. You can specify <code>AUTO</code> or <code>MANUAL</code>. In <code>AUTO</code> mode, the system uses the status of the association execution to determine the compliance status. If the association execution runs successfully, then the association is <code>COMPLIANT</code>. If the association execution doesn't run successfully, the association is <code>NON-COMPLIANT</code>.</p> <p>In <code>MANUAL</code> mode, you must specify the <code>AssociationId</code> as a parameter for the <a>PutComplianceItems</a> API operation. In this case, compliance data isn't managed by State Manager. It is managed by your direct call to the <a>PutComplianceItems</a> API operation.</p> <p>By default, all associations use <code>AUTO</code> mode.</p>
             apply_only_at_cron_interval: <p>By default, when you create a new association, the system runs it immediately after it is created and then according to the schedule you specified and when target changes are detected. Specify <code>true</code> for <code>ApplyOnlyAtCronInterval</code>if you want the association to run only according to the schedule you specified.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-about.html#state-manager-about-scheduling\">Understanding when associations are applied to resources</a> and <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-about.html#runbook-target-updates\">>About target updates with Automation runbooks</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p> <p>This parameter isn't supported for rate expressions.</p>
             calendar_names: <p>The names of Amazon Resource Names (ARNs) of the Change Calendar type documents you want to gate your associations under. The associations only run when that change calendar is open. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar\">Amazon Web Services Systems Manager Change Calendar</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>
-            target_locations: <p>A location is a combination of Amazon Web Services Regions and Amazon Web Services accounts where you want to run the association. Use this action to create an association in multiple Regions and multiple accounts.</p> <note> <p>The <code>IncludeChildOrganizationUnits</code> parameter is not supported by State Manager.</p> </note>
+            target_locations: <p>A location is a combination of Amazon Web Services Regions and Amazon Web Services accounts where you want to run the association. Use this action to create an association in multiple Regions and multiple accounts.</p> <note> <p>The <code>TargetLocationAlarmConfiguration</code> parameter is not supported by State Manager.</p> </note>
             schedule_offset: <p>Number of days to wait after the scheduled day to run an association. For example, if you specified a cron schedule of <code>cron(0 0 ? * THU#2 *)</code>, you could specify an offset of 3 to run the association each Sunday after the second Thursday of the month. For more information about cron schedules for associations, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/reference-cron-and-rate-expressions.html\">Reference: Cron and rate expressions for Systems Manager</a> in the <i>Amazon Web Services Systems Manager User Guide</i>. </p> <note> <p>To use offsets, you must specify the <code>ApplyOnlyAtCronInterval</code> parameter. This option tells the system not to run an association immediately after you create it. </p> </note>
             duration: <p>The number of hours the association can run before it is canceled. Duration applies to associations that are currently running, and any pending and in progress commands on all targets. If a target was taken offline for the association to run, it is made available again immediately, without a reboot. </p> <p>The <code>Duration</code> parameter applies only when both these conditions are true:</p> <ul> <li> <p>The association for which you specify a duration is cancelable according to the parameters of the SSM command document or Automation runbook associated with this execution. </p> </li> <li> <p>The command specifies the <code> <a href=\"https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateAssociation.html#systemsmanager-CreateAssociation-request-ApplyOnlyAtCronInterval\">ApplyOnlyAtCronInterval</a> </code> parameter, which means that the association doesn't run immediately after it is created, but only according to the specified schedule.</p> </li> </ul>
             target_maps: <p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>
@@ -1215,6 +1239,70 @@ class SSMClient:
             input_["association_dispatch_assume_role"] = (
                 association_dispatch_assume_role
             )
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_cloud_connector(
+        self,
+        display_name: "capo_ssm.types.display_name.DisplayName",
+        role_arn: "capo_ssm.types.cloud_connector_iam_role_arn.CloudConnectorIamRoleArn",
+        configuration: "capo_ssm.types.cloud_connector_configuration.CloudConnectorConfiguration",
+        config_connector_arn: "capo_ssm.types.config_connector_arn.ConfigConnectorArn",
+        *,
+        config_overrides: Optional[SSMClientConfig] = None,
+        description: Optional[
+            "capo_ssm.types.cloud_connector_description.CloudConnectorDescription"
+        ] = None,
+        tags: Optional["capo_ssm.types.tag_list.TagList"] = None,
+    ) -> "capo_ssm.types.create_cloud_connector_result.CreateCloudConnectorResult":
+        """<p>Creates a cloud connector that establishes a connection between Systems Manager and a third-party cloud environment.</p>
+
+        Args:
+            display_name: <p>A friendly name for the cloud connector.</p>
+            role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that the cloud connector uses to communicate with the third-party cloud environment.</p>
+            description: <p>A description for the cloud connector.</p>
+            configuration: <p>The configuration details for connecting to the third-party cloud environment.</p>
+            config_connector_arn: <p>The ARN of the Amazon Web Services Config connector associated with this cloud connector.</p>
+            tags: <p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment.</p>
+
+        Raises:
+            capo_ssm.errors.conflict_exception.ConflictException: <p>An error occurred because of a conflict with a concurrent request or the current state of the resource. Retry your request.</p>
+            capo_ssm.errors.internal_server_error.InternalServerError: <p>An error occurred on the server side.</p>
+            capo_ssm.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds the service quota. Service quotas, also referred to as limits, are the maximum number of service resources or operations for your Amazon Web Services account.</p>
+            capo_ssm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ssm.types.create_cloud_connector_request.CreateCloudConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_ssm.types.create_cloud_connector_result.CreateCloudConnectorResult"
+        ]:
+            import capo_ssm._operations.amazon_ssm.create_cloud_connector
+
+            output, http_response = (
+                capo_ssm._operations.amazon_ssm.create_cloud_connector.create_cloud_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ssm.types.create_cloud_connector_request.CreateCloudConnectorRequest = {
+            "display_name": display_name,
+            "role_arn": role_arn,
+            "configuration": configuration,
+            "config_connector_arn": config_connector_arn,
+        }
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1861,6 +1949,51 @@ class SSMClient:
             input_["instance_id"] = instance_id
         if association_id is not None:
             input_["association_id"] = association_id
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_cloud_connector(
+        self,
+        cloud_connector_id: "capo_ssm.types.cloud_connector_id.CloudConnectorId",
+        *,
+        config_overrides: Optional[SSMClientConfig] = None,
+    ) -> "capo_ssm.types.delete_cloud_connector_result.DeleteCloudConnectorResult":
+        """<p>Deletes a cloud connector.</p>
+
+        Args:
+            cloud_connector_id: <p>The ID of the cloud connector to delete.</p>
+
+        Raises:
+            capo_ssm.errors.conflict_exception.ConflictException: <p>An error occurred because of a conflict with a concurrent request or the current state of the resource. Retry your request.</p>
+            capo_ssm.errors.internal_server_error.InternalServerError: <p>An error occurred on the server side.</p>
+            capo_ssm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified parameter to be shared could not be found.</p>
+            capo_ssm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ssm.types.delete_cloud_connector_request.DeleteCloudConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_ssm.types.delete_cloud_connector_result.DeleteCloudConnectorResult"
+        ]:
+            import capo_ssm._operations.amazon_ssm.delete_cloud_connector
+
+            output, http_response = (
+                capo_ssm._operations.amazon_ssm.delete_cloud_connector.delete_cloud_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ssm.types.delete_cloud_connector_request.DeleteCloudConnectorRequest = {
+            "cloud_connector_id": cloud_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -5502,6 +5635,50 @@ class SSMClient:
         response.response.close()
         return response.output
 
+    def get_cloud_connector(
+        self,
+        cloud_connector_id: "capo_ssm.types.cloud_connector_id.CloudConnectorId",
+        *,
+        config_overrides: Optional[SSMClientConfig] = None,
+    ) -> "capo_ssm.types.get_cloud_connector_result.GetCloudConnectorResult":
+        """<p>Returns detailed information about a cloud connector.</p>
+
+        Args:
+            cloud_connector_id: <p>The ID of the cloud connector to retrieve information about.</p>
+
+        Raises:
+            capo_ssm.errors.internal_server_error.InternalServerError: <p>An error occurred on the server side.</p>
+            capo_ssm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified parameter to be shared could not be found.</p>
+            capo_ssm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ssm.types.get_cloud_connector_request.GetCloudConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_ssm.types.get_cloud_connector_result.GetCloudConnectorResult"
+        ]:
+            import capo_ssm._operations.amazon_ssm.get_cloud_connector
+
+            output, http_response = (
+                capo_ssm._operations.amazon_ssm.get_cloud_connector.get_cloud_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ssm.types.get_cloud_connector_request.GetCloudConnectorRequest = {
+            "cloud_connector_id": cloud_connector_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def get_command_invocation(
         self,
         command_id: "capo_ssm.types.command_id.CommandId",
@@ -6465,7 +6642,7 @@ class SSMClient:
         config_overrides: Optional[SSMClientConfig] = None,
         with_decryption: Optional["capo_ssm.types.boolean.Boolean"] = None,
     ) -> "capo_ssm.types.get_parameter_result.GetParameterResult":
-        r"""<p>Get information about a single parameter by specifying the parameter name.</p> <p>Parameter names can't contain spaces. The service removes any spaces specified for the beginning or end of a parameter name. If the specified name for a parameter contains spaces between characters, the request fails with a <code>ValidationException</code> error.</p> <note> <p>To get information about more than one parameter at a time, use the <a>GetParameters</a> operation.</p> </note>
+        r"""<p>Get information about a single parameter by specifying the parameter name.</p> <p>Parameter names can't contain spaces. The service removes any spaces specified for the beginning or end of a parameter name. If the specified name for a parameter contains spaces between characters, the request fails with a <code>ValidationException</code> error.</p> <note> <p>To get information about more than one parameter at a time, use the <a>GetParameters</a> operation.</p> </note> <note> <p>Parameter Store throughput defines the number of API transactions per second (TPS) that Systems Manager can process. This applies to <code>GetParameter</code>, <code>GetParameters</code>, and <code>PutParameter</code> API calls for your Amazon Web Services account and Amazon Web Services Region. By default, Parameter Store is configured with a standard throughput quota suitable for low- to moderate-volume workloads. Applications that retrieve configuration data infrequently or operate at smaller scale can use this default setting without additional cost.</p> <p>For higher-volume workloads, you can enable higher throughput. This increases the maximum number of supported transactions per second for your account and Region. Increased throughput supports applications and workloads that need concurrent access to multiple parameters. If you experience <code>ThrottlingException: Rate exceeded</code> errors, enable higher throughput. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-throughput.html\">Changing Parameter Store throughput</a>.</p> </note>
 
         Args:
             name: <p>The name or Amazon Resource Name (ARN) of the parameter that you want to query. For parameters shared with you from another account, you must use the full ARN.</p> <p>To query by parameter label, use <code>\"Name\": \"name:label\"</code>. To query by parameter version, use <code>\"Name\": \"name:version\"</code>.</p> <p>For more information about shared parameters, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html\">Working with shared parameters</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>
@@ -6596,7 +6773,7 @@ class SSMClient:
         config_overrides: Optional[SSMClientConfig] = None,
         with_decryption: Optional["capo_ssm.types.boolean.Boolean"] = None,
     ) -> "capo_ssm.types.get_parameters_result.GetParametersResult":
-        r"""<p>Get information about one or more parameters by specifying multiple parameter names.</p> <note> <p>To get information about a single parameter, you can use the <a>GetParameter</a> operation instead.</p> </note> <p>Parameter names can't contain spaces. The service removes any spaces specified for the beginning or end of a parameter name. If the specified name for a parameter contains spaces between characters, the request fails with a <code>ValidationException</code> error.</p>
+        r"""<p>Get information about one or more parameters by specifying multiple parameter names.</p> <note> <p>To get information about a single parameter, you can use the <a>GetParameter</a> operation instead.</p> </note> <p>Parameter names can't contain spaces. The service removes any spaces specified for the beginning or end of a parameter name. If the specified name for a parameter contains spaces between characters, the request fails with a <code>ValidationException</code> error.</p> <note> <p>Parameter Store throughput defines the number of API transactions per second (TPS) that Systems Manager can process. This applies to <code>GetParameter</code>, <code>GetParameters</code>, and <code>PutParameter</code> API calls for your Amazon Web Services account and Amazon Web Services Region. By default, Parameter Store is configured with a standard throughput quota suitable for low- to moderate-volume workloads. Applications that retrieve configuration data infrequently or operate at smaller scale can use this default setting without additional cost.</p> <p>For higher-volume workloads, you can enable higher throughput. This increases the maximum number of supported transactions per second for your account and Region. Increased throughput supports applications and workloads that need concurrent access to multiple parameters. If you experience <code>ThrottlingException: Rate exceeded</code> errors, enable higher throughput. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-throughput.html\">Changing Parameter Store throughput</a>.</p> </note>
 
         Args:
             names: <p>The names or Amazon Resource Names (ARNs) of the parameters that you want to query. For parameters shared with you from another account, you must use the full ARNs.</p> <p>To query by parameter label, use <code>\"Name\": \"name:label\"</code>. To query by parameter version, use <code>\"Name\": \"name:version\"</code>.</p> <note> <p>The results for <code>GetParameters</code> requests are listed in alphabetical order in query responses.</p> </note> <p>For information about shared parameters, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html\">Working with shared parameters</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>
@@ -6798,7 +6975,7 @@ class SSMClient:
 
         Args:
             patch_group: <p>The name of the patch group whose patch baseline should be retrieved.</p>
-            operating_system: <p>Returns the operating system rule specified for patch groups using the patch baseline.</p>
+            operating_system: <p>Returns the operating system rule specified for patch groups using the patch baseline. The default value is <code>WINDOWS</code>. </p>
 
         Raises:
             capo_ssm.errors.internal_server_error.InternalServerError: <p>An error occurred on the server side.</p>
@@ -7165,6 +7342,88 @@ class SSMClient:
                 next_token=_token,
             )
             _page = _resolve_path(_response, ("association_versions",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_cloud_connectors(
+        self,
+        *,
+        config_overrides: Optional[SSMClientConfig] = None,
+        max_results: Optional[
+            "capo_ssm.types.cloud_connector_max_results.CloudConnectorMaxResults"
+        ] = None,
+        next_token: Optional["capo_ssm.types.next_token.NextToken"] = None,
+        filters: Optional[
+            "capo_ssm.types.cloud_connector_filter_list.CloudConnectorFilterList"
+        ] = None,
+    ) -> "capo_ssm.types.list_cloud_connectors_result.ListCloudConnectorsResult":
+        """<p>Returns a list of cloud connectors in the current Amazon Web Services account and Amazon Web Services Region.</p>
+
+        Args:
+            max_results: <p>The maximum number of items to return for this call.</p>
+            next_token: <p>The token for the next set of items to return. (You received this token from a previous call.)</p>
+            filters: <p>One or more filters to limit the cloud connectors returned in the response.</p>
+
+        Raises:
+            capo_ssm.errors.internal_server_error.InternalServerError: <p>An error occurred on the server side.</p>
+            capo_ssm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ssm.types.list_cloud_connectors_request.ListCloudConnectorsRequest]",
+        ) -> OperationResponse[
+            "capo_ssm.types.list_cloud_connectors_result.ListCloudConnectorsResult"
+        ]:
+            import capo_ssm._operations.amazon_ssm.list_cloud_connectors
+
+            output, http_response = (
+                capo_ssm._operations.amazon_ssm.list_cloud_connectors.list_cloud_connectors(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ssm.types.list_cloud_connectors_request.ListCloudConnectorsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if filters is not None:
+            input_["filters"] = filters
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_cloud_connectors(
+        self,
+        *,
+        config_overrides: Optional[SSMClientConfig] = None,
+        max_results: Optional[
+            "capo_ssm.types.cloud_connector_max_results.CloudConnectorMaxResults"
+        ] = None,
+        next_token: Optional["capo_ssm.types.next_token.NextToken"] = None,
+        filters: Optional[
+            "capo_ssm.types.cloud_connector_filter_list.CloudConnectorFilterList"
+        ] = None,
+    ) -> "Iterator[capo_ssm.types.cloud_connector_summary.CloudConnectorSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_cloud_connectors(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                filters=filters,
+            )
+            _page = _resolve_path(_response, ("cloud_connectors",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -8724,7 +8983,7 @@ class SSMClient:
             "capo_ssm.types.parameter_data_type.ParameterDataType"
         ] = None,
     ) -> "capo_ssm.types.put_parameter_result.PutParameterResult":
-        r"""<p>Create or update a parameter in Parameter Store.</p>
+        r"""<p>Create or update a parameter in Parameter Store.</p> <note> <p>Parameter Store throughput defines the number of API transactions per second (TPS) that Systems Manager can process. This applies to <code>GetParameter</code>, <code>GetParameters</code>, and <code>PutParameter</code> API calls for your Amazon Web Services account and Amazon Web Services Region. By default, Parameter Store is configured with a standard throughput quota suitable for low- to moderate-volume workloads. Applications that retrieve configuration data infrequently or operate at smaller scale can use this default setting without additional cost.</p> <p>For higher-volume workloads, you can enable higher throughput. This increases the maximum number of supported transactions per second for your account and Region. Increased throughput supports applications and workloads that need concurrent access to multiple parameters. If you experience <code>ThrottlingException: Rate exceeded</code> errors, enable higher throughput. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-throughput.html\">Changing Parameter Store throughput</a>.</p> </note>
 
         Args:
             name: <p>The fully qualified name of the parameter that you want to create or update.</p> <note> <p>You can't enter the Amazon Resource Name (ARN) for a parameter, only the parameter name itself.</p> </note> <p>The fully qualified name includes the complete hierarchy of the parameter path and name. For parameters in a hierarchy, you must include a leading forward slash character (/) when you create or reference a parameter. For example: <code>/Dev/DBServer/MySQL/db-string13</code> </p> <p>Naming Constraints:</p> <ul> <li> <p>Parameter names are case sensitive.</p> </li> <li> <p>A parameter name must be unique within an Amazon Web Services Region</p> </li> <li> <p>A parameter name can't be prefixed with \"<code>aws</code>\" or \"<code>ssm</code>\" (case-insensitive).</p> </li> <li> <p>Parameter names can include only the following symbols and letters: <code>a-zA-Z0-9_.-</code> </p> <p>In addition, the slash character ( / ) is used to delineate hierarchies in parameter names. For example: <code>/Dev/Production/East/Project-ABC/MyParameter</code> </p> </li> <li> <p>Parameter names can't contain spaces. The service removes any spaces specified for the beginning or end of a parameter name. If the specified name for a parameter contains spaces between characters, the request fails with a <code>ValidationException</code> error.</p> </li> <li> <p>Parameter hierarchies are limited to a maximum depth of fifteen levels.</p> </li> </ul> <p>For additional information about valid values for parameter names, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html\">Creating Systems Manager parameters</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p> <note> <p>The reported maximum length of 2048 characters for a parameter name includes 1037 characters that are reserved for internal use by Systems Manager. The maximum length for a parameter name that you specify is 1011 characters.</p> <p>This count of 1011 characters includes the characters in the ARN that precede the name you specify. This ARN length will vary depending on your partition and Region. For example, the following 45 characters count toward the 1011 character maximum for a parameter created in the US East (Ohio) Region: <code>arn:aws:ssm:us-east-2:111122223333:parameter/</code>.</p> </note>
@@ -9606,7 +9865,7 @@ class SSMClient:
         target_parameter_name: Optional[
             "capo_ssm.types.automation_parameter_key.AutomationParameterKey"
         ] = None,
-        targets: Optional["capo_ssm.types.targets.Targets"] = None,
+        targets: Optional["capo_ssm.types.automation_targets.AutomationTargets"] = None,
         target_maps: Optional["capo_ssm.types.target_maps.TargetMaps"] = None,
         max_concurrency: Optional[
             "capo_ssm.types.max_concurrency.MaxConcurrency"
@@ -10151,7 +10410,7 @@ class SSMClient:
             sync_compliance: <p>The mode for generating association compliance. You can specify <code>AUTO</code> or <code>MANUAL</code>. In <code>AUTO</code> mode, the system uses the status of the association execution to determine the compliance status. If the association execution runs successfully, then the association is <code>COMPLIANT</code>. If the association execution doesn't run successfully, the association is <code>NON-COMPLIANT</code>.</p> <p>In <code>MANUAL</code> mode, you must specify the <code>AssociationId</code> as a parameter for the <a>PutComplianceItems</a> API operation. In this case, compliance data isn't managed by State Manager, a tool in Amazon Web Services Systems Manager. It is managed by your direct call to the <a>PutComplianceItems</a> API operation.</p> <p>By default, all associations use <code>AUTO</code> mode.</p>
             apply_only_at_cron_interval: <p>By default, when you update an association, the system runs it immediately after it is updated and then according to the schedule you specified. Specify <code>true</code> for <code>ApplyOnlyAtCronInterval</code> if you want the association to run only according to the schedule you specified.</p> <p>If you chose this option when you created an association and later you edit that association or you make changes to the Automation runbook or SSM document on which that association is based, State Manager applies the association at the next specified cron interval. For example, if you chose the <code>Latest</code> version of an SSM document when you created an association and you edit the association by choosing a different document version on the Documents page, State Manager applies the association at the next specified cron interval if you previously set <code>ApplyOnlyAtCronInterval</code> to <code>true</code>. If this option wasn't selected, State Manager immediately runs the association.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-about.html#state-manager-about-scheduling\">Understanding when associations are applied to resources</a> and <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-about.html#runbook-target-updates\">About target updates with Automation runbooks</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p> <p>This parameter isn't supported for rate expressions.</p> <p>You can reset this parameter. To do so, specify the <code>no-apply-only-at-cron-interval</code> parameter when you update the association from the command line. This parameter forces the association to run immediately after updating it and according to the interval specified.</p>
             calendar_names: <p>The names or Amazon Resource Names (ARNs) of the Change Calendar type documents you want to gate your associations under. The associations only run when that change calendar is open. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar\">Amazon Web Services Systems Manager Change Calendar</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>
-            target_locations: <p>A location is a combination of Amazon Web Services Regions and Amazon Web Services accounts where you want to run the association. Use this action to update an association in multiple Regions and multiple accounts.</p> <note> <p>The <code>IncludeChildOrganizationUnits</code> parameter is not supported by State Manager.</p> </note>
+            target_locations: <p>A location is a combination of Amazon Web Services Regions and Amazon Web Services accounts where you want to run the association. Use this action to update an association in multiple Regions and multiple accounts.</p> <note> <p>The <code>TargetLocationAlarmConfiguration</code> parameter is not supported by State Manager.</p> </note>
             schedule_offset: <p>Number of days to wait after the scheduled day to run an association. For example, if you specified a cron schedule of <code>cron(0 0 ? * THU#2 *)</code>, you could specify an offset of 3 to run the association each Sunday after the second Thursday of the month. For more information about cron schedules for associations, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/reference-cron-and-rate-expressions.html\">Reference: Cron and rate expressions for Systems Manager</a> in the <i>Amazon Web Services Systems Manager User Guide</i>. </p> <note> <p>To use offsets, you must specify the <code>ApplyOnlyAtCronInterval</code> parameter. This option tells the system not to run an association immediately after you create it. </p> </note>
             duration: <p>The number of hours the association can run before it is canceled. Duration applies to associations that are currently running, and any pending and in progress commands on all targets. If a target was taken offline for the association to run, it is made available again immediately, without a reboot. </p> <p>The <code>Duration</code> parameter applies only when both these conditions are true:</p> <ul> <li> <p>The association for which you specify a duration is cancelable according to the parameters of the SSM command document or Automation runbook associated with this execution. </p> </li> <li> <p>The command specifies the <code> <a href=\"https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateAssociation.html#systemsmanager-UpdateAssociation-request-ApplyOnlyAtCronInterval\">ApplyOnlyAtCronInterval</a> </code> parameter, which means that the association doesn't run immediately after it is updated, but only according to the specified schedule.</p> </li> </ul>
             target_maps: <p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>
@@ -10294,6 +10553,67 @@ class SSMClient:
             "instance_id": instance_id,
             "association_status": association_status,
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_cloud_connector(
+        self,
+        cloud_connector_id: "capo_ssm.types.cloud_connector_id.CloudConnectorId",
+        *,
+        config_overrides: Optional[SSMClientConfig] = None,
+        display_name: Optional["capo_ssm.types.display_name.DisplayName"] = None,
+        configuration: Optional[
+            "capo_ssm.types.cloud_connector_configuration.CloudConnectorConfiguration"
+        ] = None,
+        description: Optional[
+            "capo_ssm.types.cloud_connector_description.CloudConnectorDescription"
+        ] = None,
+    ) -> "capo_ssm.types.update_cloud_connector_result.UpdateCloudConnectorResult":
+        """<p>Updates an existing cloud connector with new configuration details.</p>
+
+        Args:
+            cloud_connector_id: <p>The ID of the cloud connector to update.</p>
+            display_name: <p>A new friendly name for the cloud connector.</p>
+            configuration: <p>The updated configuration details for connecting to the third-party cloud environment.</p>
+            description: <p>A new description for the cloud connector.</p>
+
+        Raises:
+            capo_ssm.errors.conflict_exception.ConflictException: <p>An error occurred because of a conflict with a concurrent request or the current state of the resource. Retry your request.</p>
+            capo_ssm.errors.internal_server_error.InternalServerError: <p>An error occurred on the server side.</p>
+            capo_ssm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified parameter to be shared could not be found.</p>
+            capo_ssm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ssm.types.update_cloud_connector_request.UpdateCloudConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_ssm.types.update_cloud_connector_result.UpdateCloudConnectorResult"
+        ]:
+            import capo_ssm._operations.amazon_ssm.update_cloud_connector
+
+            output, http_response = (
+                capo_ssm._operations.amazon_ssm.update_cloud_connector.update_cloud_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ssm.types.update_cloud_connector_request.UpdateCloudConnectorRequest = {
+            "cloud_connector_id": cloud_connector_id
+        }
+        if display_name is not None:
+            input_["display_name"] = display_name
+        if configuration is not None:
+            input_["configuration"] = configuration
+        if description is not None:
+            input_["description"] = description
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -11241,6 +11561,85 @@ class SSMClient:
         )
         response.response.close()
         return response.output
+
+    def validate_cloud_connector(
+        self,
+        cloud_connector_id: "capo_ssm.types.cloud_connector_id.CloudConnectorId",
+        *,
+        config_overrides: Optional[SSMClientConfig] = None,
+        max_results: Optional[
+            "capo_ssm.types.validate_cloud_connector_max_results.ValidateCloudConnectorMaxResults"
+        ] = None,
+        next_token: Optional["capo_ssm.types.next_token.NextToken"] = None,
+    ) -> "capo_ssm.types.validate_cloud_connector_result.ValidateCloudConnectorResult":
+        """<p>Validates the configuration and connectivity of a cloud connector.</p>
+
+        Args:
+            cloud_connector_id: <p>The ID of the cloud connector to validate.</p>
+            max_results: <p>The maximum number of validation findings to return.</p>
+            next_token: <p>The token for the next set of items to return. (You received this token from a previous call.)</p>
+
+        Raises:
+            capo_ssm.errors.internal_server_error.InternalServerError: <p>An error occurred on the server side.</p>
+            capo_ssm.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified parameter to be shared could not be found.</p>
+            capo_ssm.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_ssm.types.validate_cloud_connector_request.ValidateCloudConnectorRequest]",
+        ) -> OperationResponse[
+            "capo_ssm.types.validate_cloud_connector_result.ValidateCloudConnectorResult"
+        ]:
+            import capo_ssm._operations.amazon_ssm.validate_cloud_connector
+
+            output, http_response = (
+                capo_ssm._operations.amazon_ssm.validate_cloud_connector.validate_cloud_connector(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_ssm.types.validate_cloud_connector_request.ValidateCloudConnectorRequest = {
+            "cloud_connector_id": cloud_connector_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_validate_cloud_connector(
+        self,
+        cloud_connector_id: "capo_ssm.types.cloud_connector_id.CloudConnectorId",
+        *,
+        config_overrides: Optional[SSMClientConfig] = None,
+        max_results: Optional[
+            "capo_ssm.types.validate_cloud_connector_max_results.ValidateCloudConnectorMaxResults"
+        ] = None,
+        next_token: Optional["capo_ssm.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_ssm.types.validation_finding.ValidationFinding]":
+        _token = next_token
+        while True:
+            _response = self.validate_cloud_connector(
+                cloud_connector_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("validation_findings",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def __enter__(self) -> Self:
         return self

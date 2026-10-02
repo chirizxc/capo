@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class GetQuoteInput(TypedDict, closed=True):
     quote_identifier: "capo_outposts.types.quote_identifier.QuoteIdentifier"
-    """<p>The ID or ARN of the quote.</p>"""
+    """<p>The ID of the quote.</p>"""
 
 
 # --- restJson1 ser/de ---

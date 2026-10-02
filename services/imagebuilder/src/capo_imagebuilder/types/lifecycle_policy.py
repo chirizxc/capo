@@ -27,7 +27,7 @@ class LifecyclePolicy(TypedDict, closed=True):
     status: NotRequired[
         "capo_imagebuilder.types.lifecycle_policy_status.LifecyclePolicyStatus"
     ]
-    """<p>Indicates whether the lifecycle policy resource is enabled.</p>"""
+    """<p>Indicates whether the lifecycle policy resource is enabled. Only enabled policies run on their schedule. Disabling or deleting a policy removes its schedule and cancels any in-flight lifecycle execution.</p>"""
     execution_role: NotRequired[
         "capo_imagebuilder.types.role_name_or_arn.RoleNameOrArn"
     ]
@@ -39,7 +39,7 @@ class LifecyclePolicy(TypedDict, closed=True):
     policy_details: NotRequired[
         "capo_imagebuilder.types.lifecycle_policy_details.LifecyclePolicyDetails"
     ]
-    """<p>The configuration details for a lifecycle policy resource.</p>"""
+    """<p>The list of rules for the lifecycle policy. Each rule pairs an action with a filter and optional exclusion rules. A policy can contain at most one rule per action type.</p>"""
     resource_selection: NotRequired[
         "capo_imagebuilder.types.lifecycle_policy_resource_selection.LifecyclePolicyResourceSelection"
     ]

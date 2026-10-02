@@ -20,7 +20,7 @@ class OptionSpecification(TypedDict, closed=True):
     namespace: NotRequired[
         "capo_elastic_beanstalk.types.option_namespace.OptionNamespace"
     ]
-    """<p>A unique namespace identifying the option's associated AWS resource.</p>"""
+    """<p>A unique namespace identifying the option's associated Amazon Web Services resource.</p>"""
     option_name: NotRequired[
         "capo_elastic_beanstalk.types.configuration_option_name.ConfigurationOptionName"
     ]

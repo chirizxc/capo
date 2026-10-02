@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_mediaconvert.types.__integer_min_negative1000_max1000
     import capo_mediaconvert.types.__list_of_color_conversion3_dlut_setting
     import capo_mediaconvert.types.__list_of_input
+    import capo_mediaconvert.types.__list_of_motion_image_inserter
     import capo_mediaconvert.types.__list_of_output_group
     import capo_mediaconvert.types.avail_blanking
     import capo_mediaconvert.types.esam_settings
@@ -52,6 +53,10 @@ class JobSettings(TypedDict, closed=True):
         "capo_mediaconvert.types.motion_image_inserter.MotionImageInserter"
     ]
     """Overlay motion graphics on top of your video. The motion graphics that you specify here appear on all outputs in all output groups. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/motion-graphic-overlay.html."""
+    motion_image_inserters: NotRequired[
+        "capo_mediaconvert.types.__list_of_motion_image_inserter.__listOfMotionImageInserter"
+    ]
+    """Array of motion image inserters for overlaying multiple independent motion graphics. Compositing order follows array index. Mutually exclusive with motionImageInserter."""
     nielsen_configuration: NotRequired[
         "capo_mediaconvert.types.nielsen_configuration.NielsenConfiguration"
     ]
@@ -129,6 +134,14 @@ def serialize_json(value: JobSettings) -> dict:
         out["motionImageInserter"] = (
             capo_mediaconvert.types.motion_image_inserter.serialize_json(
                 value["motion_image_inserter"]
+            )
+        )
+    if "motion_image_inserters" in value:
+        import capo_mediaconvert.types.__list_of_motion_image_inserter
+
+        out["motionImageInserters"] = (
+            capo_mediaconvert.types.__list_of_motion_image_inserter.serialize_json(
+                value["motion_image_inserters"]
             )
         )
     if "nielsen_configuration" in value:
@@ -226,6 +239,14 @@ def deserialize_json(data: dict) -> JobSettings:
         out["motion_image_inserter"] = (
             capo_mediaconvert.types.motion_image_inserter.deserialize_json(
                 data["motionImageInserter"]
+            )
+        )
+    if data.get("motionImageInserters") is not None:
+        import capo_mediaconvert.types.__list_of_motion_image_inserter
+
+        out["motion_image_inserters"] = (
+            capo_mediaconvert.types.__list_of_motion_image_inserter.deserialize_json(
+                data["motionImageInserters"]
             )
         )
     if data.get("nielsenConfiguration") is not None:
